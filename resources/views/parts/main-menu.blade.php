@@ -4,7 +4,7 @@
             <li>Our story</li>
             <li>Projects</li>
             <li>Get involved</li>
-            <li>Events</li>
+            <li><a href="/events">Events</a></li>
             <li>Appeals</li>
         </ul>
     </div>

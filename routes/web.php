@@ -15,6 +15,12 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', [PostController::class, 'index']);
 
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('/admin', 'AdminController@index');
+});
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/{slug}', [PostController::class, 'showFromSlug']);

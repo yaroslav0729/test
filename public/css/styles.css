@@ -1,6 +1,13 @@
 body {
     background-color: #fff;
 }
+h1 {
+    font-size: 24px;
+    text-transform: uppercase;
+    margin: 20px auto 20px auto;
+    font-weight: bold;
+    text-align: center;
+}
 .container {
     max-width: 1800px; 
 }
