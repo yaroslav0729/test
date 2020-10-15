@@ -25,6 +25,7 @@
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Email</th>
                 <th class="px-4 py-2">Role</th>
+                <th class="px-4 py-2">Registration date</th>
                 <th class="px-4 py-2">Action</th>
               </tr>
             </thead>
@@ -36,6 +37,7 @@
                         <td class="border px-4 py-2">{{ $user->name }}</td>
                         <td class="border px-4 py-2">{{ $user->email }}</td>
                         <td class="border px-4 py-2">{{ $user->role_name }}</td>
+                        <td class="border px-4 py-2">{{ $user->created_at->format('d/m/Y') }}</td>
                         <td class="border px-4 py-2">
                           <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}">
                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" title="Delete user">
