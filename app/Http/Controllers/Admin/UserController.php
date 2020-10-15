@@ -17,13 +17,20 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.users.edit', ['user' => $user]);
+        $roles = User::getRoles();
+        return view('admin.users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     public function update($id, Request $request)
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
+
+        if ($request->input('role') !== 'user') {
+            $user->syncRoles([$request->input('role')]);
+        } else {
+            $user->syncRoles([]);   
+        }
 
         return redirect()->route('admin.index')->with('status', 'Profile updated!');
     }

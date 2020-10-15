@@ -83,4 +83,9 @@ class User extends Authenticatable
             return "user";
         }
     }
+
+    public static function getRoles()
+    {
+        return self::ROLES_LABEL;
+    }
 }
