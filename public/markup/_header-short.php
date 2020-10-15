@@ -1,0 +1,26 @@
+<?php include "_base.php";?>
+
+    <header  class="only-menu">
+        <div class="down-bar">
+            <div class="wrap">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <a href="#" class="logo"><span></span></a>
+                        <ul class="d-flex justify-content-between">
+                            <li><a href="#" class="open-head-menu">our story</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Get Involved</a></li>
+                            <li><a href="#">newsroom</a></li>
+                            <li><a href="#">appeals</a></li>
+                            <li><a href="#"><i class="fas fa-search"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-4 text-right">
+                        <a href="#" class="btn btn-danger">Donate</a>
+                        <div class="basket"><i class="fal fa-shopping-cart"></i> <span>£50.00</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
