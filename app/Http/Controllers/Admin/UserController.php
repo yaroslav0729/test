@@ -11,13 +11,29 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(10);
-        return view('admin.index', ['users' => $users]);
+        return view('admin.users.index', ['users' => $users]);
     }
 
     public function edit($id)
     {
-        $users = User::paginate(10);
-        dd('user '. $id);
+        $user = User::findOrFail($id);
+        return view('admin.users.edit', ['user' => $user]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+
+        return redirect()->route('admin.index')->with('status', 'Profile updated!');
+    }
+
+    public function delete($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('admin.index')->with('status', 'User deleted!');
     }
 
 

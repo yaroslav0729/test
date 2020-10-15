@@ -25,6 +25,8 @@ Route::group(['middleware' => ['role:' . User::ROLE_SUPER_ADMIN ]], function () 
         
         Route::prefix('users')->group(function () {
             Route::get('edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
+            Route::post('update/{id}', [UserController::class, 'update'])->name('admin.user.update');
+            Route::delete('delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
         });
     });
 
