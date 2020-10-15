@@ -20,7 +20,7 @@ class UserRolesSeeder extends Seeder
         Role::create(['name' => User::ROLE_SUPER_ADMIN]);
         Role::create(['name' => User::ROLE_ADMIN]);
         Role::create(['name' => User::ROLE_EDITOR]);
-        Role::create(['name' => User::ROLE_SUBSCRIBER]);
-        Role::create(['name' => User::ROLE_VISITOR]);
+        //Role::create(['name' => User::ROLE_SUBSCRIBER]);
+        //Role::create(['name' => User::ROLE_VISITOR]);
     }
 }

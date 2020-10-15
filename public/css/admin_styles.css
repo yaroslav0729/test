@@ -1,0 +1,10 @@
+#left_menu ul li a:hover {
+    text-decoration: underline;
+}
+#admin_content a {
+    color: #2980b9;
+}
+
+#admin_content a:hover {
+    text-decoration: underline;
+}
