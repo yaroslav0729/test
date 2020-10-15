@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -29,7 +30,7 @@ class UserController extends Controller
         if ($request->input('role') !== 'user') {
             $user->syncRoles([$request->input('role')]);
         } else {
-            $user->syncRoles([]);   
+            $user->syncRoles([]);
         }
 
         return redirect()->route('admin.index')->with('status', 'Profile updated!');
@@ -42,7 +43,6 @@ class UserController extends Controller
 
         return redirect()->route('admin.index')->with('status', 'User deleted!');
     }
-
 
     // public function test()
     // {
