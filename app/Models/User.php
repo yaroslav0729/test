@@ -20,13 +20,17 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
     use HasRoles;
 
-    const ROLE_SUPER_ADMIN = 'super admin';
+    const ROLE_SUPER_ADMIN = 'super_admin';
     const ROLE_ADMIN = 'admin';
     const ROLE_EDITOR = 'editor';
     //const ROLE_SUBSCRIBER = 'subscriber';
     //const ROLE_VISITOR = 'visitor';
 
-
+    const ROLES_LABEL = [
+        self::ROLE_SUPER_ADMIN => 'Super administrator',
+        self::ROLE_ADMIN => 'administrator',
+        self::ROLE_EDITOR => 'Editor',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -68,4 +72,20 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function getRoleNameAttribute()
+    {
+        $roles = $this->getRoleNames();
+
+        if (count($roles)) {
+            return self::ROLES_LABEL[$roles[0]];
+        } else {
+            return "user";
+        }
+    }
+
+    public static function getRoles()
+    {
+        return self::ROLES_LABEL;
+    }
 }

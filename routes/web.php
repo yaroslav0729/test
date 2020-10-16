@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\UserController;
 
 use App\Models\User;
 /*
@@ -16,10 +16,20 @@ use App\Models\User;
 |
 */
 
-Route::get('/', [PostController::class, 'index']);
+Route::get('/', [PostController::class, 'index'])->name('index');
+//Route::get('/test', [UserController::class, 'test']);
 
 Route::group(['middleware' => ['role:' . User::ROLE_SUPER_ADMIN ]], function () {
-    Route::get('/admin', [AdminController::class, 'index']);
+    Route::prefix('admin')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('admin.index');
+        
+        Route::prefix('users')->group(function () {
+            Route::get('edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
+            Route::post('update/{id}', [UserController::class, 'update'])->name('admin.user.update');
+            Route::delete('delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
+        });
+    });
+
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
