@@ -20,16 +20,14 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
     use HasRoles;
 
-    const ROLE_SUPER_ADMIN = 'super_admin';
     const ROLE_ADMIN = 'admin';
     const ROLE_EDITOR = 'editor';
-    //const ROLE_SUBSCRIBER = 'subscriber';
-    //const ROLE_VISITOR = 'visitor';
+    const ROLE_USER = 'user';
 
     const ROLES_LABEL = [
-        self::ROLE_SUPER_ADMIN => 'Super administrator',
         self::ROLE_ADMIN => 'administrator',
-        self::ROLE_EDITOR => 'Editor',
+        self::ROLE_EDITOR => 'editor',
+        self::ROLE_USER => 'user',
     ];
 
     /**

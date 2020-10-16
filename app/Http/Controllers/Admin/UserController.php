@@ -47,7 +47,7 @@ class UserController extends Controller
     // public function test()
     // {
     //     $user = User::where('id',1)->firstOrFail();
-    //     $user->syncRoles([User::ROLE_SUPER_ADMIN]);
+    //     $user->syncRoles([User::ROLE_ADMIN]);
 
     //     dd('ok');
     // }
