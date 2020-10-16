@@ -7,7 +7,7 @@
                     <div class="col-6"><a href="#" class="logo"><span></span> Islamic Help</a></div>
                     <div class="col-6 text-right">
                         <div class="phone">020 5000 2400 <i class="fal fa-phone"></i></div>
-                        <div class="basket"><i class="fal fa-shopping-cart"></i> <span>£50.00</span></div>
+                        <div class="basket" data-toggle="modal" data-target="#cartModal"><i class="fal fa-shopping-cart"></i> <span>£50.00</span></div>
                     </div>
                 </div>
             </div>

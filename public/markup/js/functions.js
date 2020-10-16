@@ -10,9 +10,16 @@ $(function() {
          $('.header-menu').removeClass('open')
      })
 
-
-
      $("input[type='number']").inputSpinner()
+
+
+
+    $('#cartModal').on('hide.bs.modal', function (e) {
+        $('header .basket').removeClass('open')
+    })
+    $('#cartModal').on('show.bs.modal', function (e) {
+        $('header .basket').addClass('open')
+    })
 
 
 } );
