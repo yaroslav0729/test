@@ -25,7 +25,7 @@ class UserController extends Controller
     public function update($id, Request $request)
     {
         $user = User::findOrFail($id);
-        $user->update($request->all());
+        //$user->update($request->all());
 
         if ($request->input('role') !== 'user') {
             $user->syncRoles([$request->input('role')]);

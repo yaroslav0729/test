@@ -8,8 +8,8 @@
 
         <form action="{{ route('admin.user.update', ['id' => $user->id]) }}" method="post">
             @csrf
-            <input name="name" class="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $user->name }}" /><br>
-            <input name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $user->email }}" /><br>
+            <input name="name" class="shadow appearance-none border rounded w-full  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $user->name }}" readonly /><br>
+            <input name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $user->email }}" readonly /><br>
 
             @php
                 $noChecked = true;
