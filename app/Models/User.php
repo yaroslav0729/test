@@ -71,6 +71,15 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        self::created(function($model){
+            $model->syncRoles([self::ROLE_USER]);
+        });
+    }
+
     public function getRoleNameAttribute()
     {
         $roles = $this->getRoleNames();
