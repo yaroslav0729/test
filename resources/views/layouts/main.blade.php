@@ -12,18 +12,36 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+        <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="/libs/bootstrap/js/bootstrap.js"></script>
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+        <link href="/libs/fontawesome-pro-5.14.0/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+        <script src="/libs/bootstrap-input-spinner.js"></script>
+
+        <script src="/js/functions.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+        <link type="text/css" href="css/styles.css?1" rel="stylesheet" media="all" />
+
         @yield('head')
     </head>
     <body class="font-sans antialiased">
-
-        @include('parts.header')
-        @include('parts.main-menu')
-
-        @yield('content')
-
-        @include('parts.footer')
-
+        <div class="wrapper">
+            @yield('header')
+            @yield('content')
+            @include('parts.footer')
+        </div>
         @yield('scripts')
     </body>
 </html>

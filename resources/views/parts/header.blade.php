@@ -1,13 +1,35 @@
-<div class="bg-gray-100">
-    <div class="container mx-auto text-right">
-        @guest
-            <a class="mr-2" href="{{ route('login') }}">login</a>
-            <a href="{{ route('register') }}">register</a>
-        @else
-            <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-        @endguest
+<header>
+    <div class="top-bar">
+        <div class="wrap">
+            <div class="row align-items-center">
+                <div class="col-6"><a href="#" class="logo"><span></span> Islamic Help</a></div>
+                <div class="col-6 text-right">
+                    <div class="phone">020 5000 2400 <i class="fal fa-phone"></i></div>
+                    <div class="basket" data-toggle="modal" data-target="#cartModal"><i class="fal fa-shopping-cart"></i> <span>£50.00</span></div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<div id="header" class="container mx-auto box-border align-middle">
-    <div id="logo">Islamic Help</div>
-</div>
+    <div class="down-bar">
+        <div class="wrap">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <ul class="d-flex justify-content-between">
+                        <li><a href="#" class="open-head-menu">our story</a></li>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="#">Get Involved</a></li>
+                        <li><a href="#">newsroom</a></li>
+                        <li><a href="#">appeals</a></li>
+                        <li><a href="#"><i class="fas fa-search"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-4 text-right">
+                    <a href="#" class="btn btn-danger">Donate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+@include('parts.header_menu')
+
