@@ -2,17 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/markup/donate-confirm.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/markup/payments-details.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/markup/thank-you.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/_footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/_footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/_header-short-w.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/_header-short-w.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/_header-short.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/_header-short.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/_header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/_header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/js/functions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/payments-details.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/payments-details.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,46 +22,23 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/markup/payments-details.php">
+        <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/markup/_header-short-w.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="151" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/markup/_header-short.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="69" selection-start-line="18" selection-start-column="69" selection-end-line="18" selection-end-column="69" />
+            <state relative-caret-position="638">
+              <caret line="2503" column="55" selection-start-line="2503" selection-start-column="55" selection-end-line="2503" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/markup/_header.php">
+        <entry file="file://$PROJECT_DIR$/public/markup/thank-you.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="91" selection-start-line="8" selection-start-column="91" selection-end-line="8" selection-end-column="91" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="2150" column="41" lean-forward="true" selection-start-line="2150" selection-start-column="41" selection-end-line="2150" selection-end-column="41" />
+            <state relative-caret-position="225">
+              <caret line="54" column="28" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+              <folding>
+                <element signature="n#g#0;n#svg#0;n#div#0;n#div#0;n#section#0;n#div#0;n#!!top" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -81,28 +54,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>form-control</find>
-      <find>.btn</find>
-      <find>share</find>
-      <find>plus</find>
-      <find>.current-projects-list</find>
-      <find>form-con</find>
-      <find>selected</find>
-      <find>our-work</find>
-      <find>cover</find>
-      <find>black-line</find>
-      <find>arrow</find>
-      <find>donate-today-sheet</find>
-      <find>about-</find>
-      <find>form-</find>
-      <find>nav</find>
-      <find>footer</find>
-      <find>baske</find>
-      <find>nav-link</find>
-      <find>active-color-</find>
-      <find>.media</find>
-      <find>.line</find>
-      <find>.black</find>
       <find>header</find>
       <find>basket</find>
       <find>Your donation so far...</find>
@@ -110,7 +61,29 @@
       <find>input-group</find>
       <find>cart</find>
       <find>donated</find>
+      <find>.black-line</find>
+      <find>form-con</find>
+      <find>font-size-</find>
+      <find>modal</find>
+      <find>number</find>
+      <find>-danger</find>
       <find>donate-today</find>
+      <find>donate-today-sheet</find>
+      <find>donate-page</find>
+      <find>donated-page</find>
+      <find>order-cart-list</find>
+      <find>script</find>
+      <find>.btn</find>
+      <find>donated-</find>
+      <find>radio</find>
+      <find>check</find>
+      <find>gift</find>
+      <find>FIND</find>
+      <find>SUMMA</find>
+      <find>wavr</find>
+      <find>footer</find>
+      <find>style-danger</find>
+      <find>video</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -144,12 +117,13 @@
         <option value="$PROJECT_DIR$/public/markup/_header-short-w.php" />
         <option value="$PROJECT_DIR$/public/markup/js/functions.js" />
         <option value="$PROJECT_DIR$/public/markup/donate-today.php" />
-        <option value="$PROJECT_DIR$/public/markup/_footer.php" />
         <option value="$PROJECT_DIR$/public/markup/donate-confirm.php" />
-        <option value="$PROJECT_DIR$/public/markup/css/styles.less" />
-        <option value="$PROJECT_DIR$/public/markup/payments-details.php" />
         <option value="$PROJECT_DIR$/public/markup/_header-short.php" />
         <option value="$PROJECT_DIR$/public/markup/_header.php" />
+        <option value="$PROJECT_DIR$/public/markup/_footer.php" />
+        <option value="$PROJECT_DIR$/public/markup/payments-details.php" />
+        <option value="$PROJECT_DIR$/public/markup/css/styles.less" />
+        <option value="$PROJECT_DIR$/public/markup/thank-you.php" />
       </list>
     </option>
   </component>
@@ -214,10 +188,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/markup" />
+      <recent name="$PROJECT_DIR$/public/markup/img" />
       <recent name="$PROJECT_DIR$/img" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/css" />
-      <recent name="$PROJECT_DIR$/libs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -246,19 +220,19 @@
       <option name="presentableId" value="Default" />
       <updated>1602233121090</updated>
       <workItem from="1602233122522" duration="72588000" />
-      <workItem from="1602766523862" duration="6780000" />
+      <workItem from="1602766523862" duration="16703000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79368000" />
+    <option name="totallyTimeSpent" value="89291000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.17238913" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.21316166" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -312,20 +286,6 @@
     <entry file="file://$PROJECT_DIR$/_header.php" />
     <entry file="file://$PROJECT_DIR$/donate-today.php" />
     <entry file="file://$PROJECT_DIR$/css/styles.less" />
-    <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/_footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="24" column="69" lean-forward="true" selection-start-line="24" selection-start-column="69" selection-end-line="24" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/donate-today.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -340,27 +300,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="2150" column="41" lean-forward="true" selection-start-line="2150" selection-start-column="41" selection-end-line="2150" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/payments-details.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/_header-short-w.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="151" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/_header-short.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -372,6 +311,59 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="91" selection-start-line="8" selection-start-column="91" selection-end-line="8" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/_header-short-w.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="151" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/_footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/payments-details.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="593">
+          <caret line="299" lean-forward="true" selection-start-line="294" selection-end-line="299" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="125" column="16" selection-start-line="125" selection-start-column="16" selection-end-line="125" selection-end-column="152" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="2503" column="55" selection-start-line="2503" selection-start-column="55" selection-end-line="2503" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/thank-you.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="54" column="28" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+          <folding>
+            <element signature="n#g#0;n#svg#0;n#div#0;n#div#0;n#section#0;n#div#0;n#!!top" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

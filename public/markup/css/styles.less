@@ -91,7 +91,7 @@ footer {
     padding: 62px 116px 68px 180px;
     &.style-1 {background: #231F51}
     &.style-2 {background: #E3EFFE}
-    &.style-3 {background: red}
+    &.style-3 {background: #FED4C2}
     &.style-4 {background: red}
 
     .social {
@@ -180,9 +180,10 @@ footer {
             }
         }
     }
-    &.style-2 {
+    &.style-2, &.style-3 {
         .social a {color: #101525;}
         .copy {
+          opacity: 1;
             color: #101525;
             a {color: #101525;}
         }
@@ -612,6 +613,7 @@ header {
     background-color: #101525;
     position: relative;
     z-index: 2;
+    &.height-1 {height: 1px;}
     &.no-line {
         background: transparent;
         .head-menu-video {
@@ -627,11 +629,13 @@ header {
 .decor-wave {
     width: 185px; height: 14px;
     &.style-danger g {fill: #fdd3c1}
+    &.style-red g {fill: #F7796A}
     &.style-white g {fill: #ffffff}
 
     &.size-20 {width: 265px; height: 20px;}
 }
 
+.font-size-12 {font-size: 12px;letter-spacing: 1px;line-height: 18px;}
 .font-size-15 {font-size: 15px;}
 .font-size-16 {font-size: 16px; line-height: 30px}
 .font-size-18 {font-size: 18px;letter-spacing: 1.25px;line-height: 30px}
@@ -639,6 +643,8 @@ header {
 .font-size-30 {font-size: 30px; line-height: 40px}
 .font-size-45 {font-size: 45px; line-height: 50px}
 .font-size-60 {font-size: 60px; line-height: 65px}
+
+.cursor-pointer {cursor: pointer}
 
 .btn {
     font-size: 15px;
@@ -699,13 +705,23 @@ b, strong {font-weight: 900}
     position: relative;
     label {
         display: block;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 19px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 18px;
         color: #101525;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
+        padding-left: 20px;
         sup {color: red}
     }
+  &.has-error {
+    label {color: #F7796A;}
+  }
+}
+.invalid-feedback {
+  color: #F7796A;
+  font-size: 12px;
+  padding-left: 20px;
+  padding-top: 5px;
 }
 .form-control {
     border: 1px solid #E3EFFE;
@@ -725,6 +741,9 @@ b, strong {font-weight: 900}
         border-color: #101525;
         box-shadow: none !important;
     }
+    &.is-invalid {
+      border-color: #F7796A !important;
+    }
 }
 
 textarea.form-control {
@@ -743,6 +762,7 @@ select.form-control {
 
 input[type='number'] + .input-group {
     width: 150px;
+    display: inline-flex;
     .form-control {
         border-top-color: #101525;
         border-bottom-color: #101525;
@@ -762,6 +782,50 @@ input[type='number'].color-danger  + .input-group {
     }
     .btn {background: #FFF6F3}
 }
+
+
+.checkbox, .radio {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  line-height: 24px;
+  color: #000;
+  cursor: pointer;
+  margin: 0;
+  input {position: absolute; opacity: 0}
+  user-select: none;
+  min-width: 20px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 300;
+  padding-left: 35px;
+  a {color: #2B7CDB}
+  span {
+    display: inline-block;
+    width: 20px; height: 20px;
+    position: absolute; top: 2px; left: 0;
+    background: #F1F7FE;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #000;
+    i {
+      font-size: 22px;
+      color: #000000;
+      position: absolute; left: 4px; top: -3px;
+      opacity: 0;
+    }
+  }
+  input:checked + span {
+    box-shadow: 0 0 0 1px #F1F7FE;
+    i {opacity: 1;}
+  }
+  &.rPos {
+    padding-left: 0;
+    padding-right: 35px;
+    span {left: auto; right: 0;}
+  }
+
+}
+
 
 .gutter-0 {
     margin-left: 0px;
@@ -1778,6 +1842,7 @@ input[type='number'].color-danger  + .input-group {
         }
         .descr {
             position: relative;
+            z-index: 1;
             margin-top: -130px;
             div {
                 width: 40%;
@@ -1803,6 +1868,8 @@ input[type='number'].color-danger  + .input-group {
             padding: 60px 39px 0 52px;
             margin-left: -100px;
             margin-top: -60px;
+            position: relative;
+            z-index: 2;
             .item {
                 display: block;
                 position: relative;
@@ -2150,6 +2217,43 @@ input[type='number'].color-danger  + .input-group {
         padding: 0;
         .body {margin-top: 0 !important;}
     }
+    .toggle-view-donation {
+      display: inline-flex;
+      vertical-align: middle;
+      & + * {display: none}
+      &.open {
+        display: none;
+        & + * {display: inline-block}
+      }
+    }
+
+    .info-col {
+      border-right: 1px solid #101525;
+      padding: 20px 30px 0 0;
+      &.hide {display: none !important;}
+    }
+    .card-col {padding: 20px 0 0 30px;}
+    .info-col.hide + .card-col {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      & > div {
+        padding: 0 8.333333% 30px;
+        & > .text-center {text-align: left !important;}
+      }
+      .name-card-col {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+        & + .col-12 {
+          flex: 0 0 50% !important;
+          max-width: 50% !important;
+        }
+      }
+    }
+    .btn-submit {
+      position: absolute; left: 50%; bottom: 0;
+      transform: translateX(-50%);
+      margin-bottom: -48px;
+    }
 }
 
 .box {
@@ -2248,6 +2352,42 @@ input[type='number'].color-danger  + .input-group {
     }
 }
 
+.order-cart-list {
+  .item {
+    padding-bottom: 15px;
+    padding-top: 20px;
+    & + .item {border-top: 1px solid #101525;}
+    span {
+      display: inline-block;
+      color: #F7796A;
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 22px;
+    }
+    .btn-remove {
+      display: inline-block;
+      color: #101525;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      line-height: 22px;
+      opacity: .5;
+    }
+  }
+  .total {
+    background: #FFF6F3;
+    padding: 18px 24px;
+    border-radius: 5px 5px 0 0;
+    span {
+      display: block;
+      text-align: right;
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 44px;
+      color: #F7796A;
+    }
+  }
+}
 
 #cartModal {
     top: 100px;
@@ -2264,28 +2404,6 @@ input[type='number'].color-danger  + .input-group {
     }
     & + .modal-backdrop {
         top: 86px;
-    }
-
-    .item {
-        padding-bottom: 15px;
-        padding-top: 20px;
-        & + .item {border-top: 1px solid #101525;}
-        span {
-            display: inline-block;
-            color: #F7796A;
-            font-size: 15px;
-            font-weight: 900;
-            line-height: 22px;
-        }
-        .btn-remove {
-            display: inline-block;
-            color: #101525;
-            font-size: 15px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            line-height: 22px;
-            opacity: .5;
-        }
     }
 
     .price {
@@ -2311,4 +2429,79 @@ input[type='number'].color-danger  + .input-group {
             margin: 0;
         }
     }
+}
+
+.gift-aid-sheet  {
+  background: #231F51;
+  margin: 0 -40px;
+  padding: 35px 40px 64px;
+  .bg {
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 5px;
+    padding: 36px ;
+    .checkbox {
+      color: #fff;
+      font-size: 16px;
+      padding-left: 55px;
+      line-height: 28px;
+      span {
+        width: 28px; height: 28px;
+        background: #757392 !important;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.1) !important;
+        i {
+          color: #fff;
+          font-size: 31px;
+        }
+      }
+      input:checked + span {box-shadow: 0 0 0 1px rgba(255,255,255,0.1);}
+    }
+  }
+}
+
+
+.thank-you-page {
+  background: #FFF6F3 url(../img/bg-Confetti-2.png) no-repeat 20px 20px;
+  background-size: 512px 512px;
+  padding: 140px 0 130px;
+  .clearfix();
+  .text {
+    margin-left: 224px;
+    max-width: 572px;
+    float: left;
+    vertical-align: top;
+    div {
+      color: #F7796A;
+      font-size: 70px;
+      font-weight: 900;
+      line-height: 85px;
+      margin-bottom: 40px;
+    }
+    p {
+      color: #2CAABB;
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 44px;
+      margin-bottom: 30px;
+    }
+  }
+  .box {
+    float: right;
+    margin-right: 142px;
+    margin-top: 117px;
+    padding: 47px 0 0;
+    max-width: 420px;
+    .black-line {
+      margin: 20px 0;
+      width: calc(~'100% + 100px');
+    }
+    p {padding: 0 40px;}
+    .btn {border-radius: 0 0 5px 0;}
+    .img-video {
+      margin: 0 0 38px;
+      border-radius: 5px;
+      position: relative; left: -22px;
+      padding-bottom: 80.25%;
+      box-shadow: 0 18px 35px 0 rgba(191,164,153,0.25);
+    }
+  }
 }
