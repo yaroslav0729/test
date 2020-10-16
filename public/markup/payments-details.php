@@ -64,7 +64,7 @@
                          <input type="text" class="form-control" placeholder="Type postcode...">
                     </div>
                     <div class="text-right">
-                        <a href="#" class="toggle-manual-address font-size-12 text-underline text-dark">OR ENTER MANUALLY</a>
+                        <a href="#" class="toggle-manual-address font-size-12 text-dark">OR ENTER MANUALLY  <i class="far fa-chevron-down"></i></a>
                     </div>
                 </div>
                 <div class="col-5">
@@ -179,9 +179,9 @@
                 <div class="col-6">
                     <div class="toggle-view-donation">
                         <b class="mr-4">£300.00</b>
-                        <span class="text-underline cursor-pointer toggle-view-donation-info">VIEW SUMMARY</span>
+                        <span class="cursor-pointer toggle-view-donation-info">VIEW SUMMARY <i class="far fa-chevron-down"></i></span>
                     </div>
-                    <span class="text-underline cursor-pointer toggle-view-donation-info">CLOSE SUMMARY</span>
+                    <span class=" cursor-pointer toggle-view-donation-info">CLOSE SUMMARY <i class="far fa-chevron-up"></i></span>
                 </div>
                 <div class="col-6 text-right"><b>PAYMENT DETAIL</b></div>
             </div>

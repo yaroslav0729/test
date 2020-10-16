@@ -1,5 +1,9 @@
-<!--<footer class="style-2">-->
-<footer class="style-1">
+<!--style-1 - default-->
+<!--style-2 - donate-->
+<!--style-3 - thank you-->
+
+
+<footer class="style-3">
     <div class="wrap">
         <div class="row">
             <div class="col-8">
