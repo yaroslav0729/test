@@ -624,6 +624,9 @@ header.only-menu .down-bar.bg-white {
   position: relative;
   z-index: 2;
 }
+.black-line.height-1 {
+  height: 1px;
+}
 .black-line.no-line {
   background: transparent;
 }
@@ -648,6 +651,11 @@ header.only-menu .down-bar.bg-white {
 .decor-wave.size-20 {
   width: 265px;
   height: 20px;
+}
+.font-size-12 {
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 18px;
 }
 .font-size-15 {
   font-size: 15px;
@@ -677,6 +685,9 @@ header.only-menu .down-bar.bg-white {
 .font-size-60 {
   font-size: 60px;
   line-height: 65px;
+}
+.cursor-pointer {
+  cursor: pointer;
 }
 .btn {
   font-size: 15px;
@@ -748,14 +759,24 @@ strong {
 }
 .form-group label {
   display: block;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 19px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
   color: #101525;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  padding-left: 20px;
 }
 .form-group label sup {
   color: red;
+}
+.form-group.has-error label {
+  color: #F7796A;
+}
+.invalid-feedback {
+  color: #F7796A;
+  font-size: 12px;
+  padding-left: 20px;
+  padding-top: 5px;
 }
 .form-control {
   border: 1px solid #E3EFFE;
@@ -815,6 +836,9 @@ strong {
   border-color: #101525;
   box-shadow: none !important;
 }
+.form-control.is-invalid {
+  border-color: #F7796A !important;
+}
 textarea.form-control {
   height: 100px;
 }
@@ -831,6 +855,7 @@ select.form-control {
 }
 input[type='number'] + .input-group {
   width: 150px;
+  display: inline-flex;
 }
 input[type='number'] + .input-group .form-control {
   border-top-color: #101525;
@@ -851,6 +876,69 @@ input[type='number'].color-danger + .input-group .form-control {
 }
 input[type='number'].color-danger + .input-group .btn {
   background: #FFF6F3;
+}
+.checkbox,
+.radio {
+  display: inline-block;
+  position: relative;
+  line-height: 24px;
+  color: #000;
+  cursor: pointer;
+  margin: 0;
+  user-select: none;
+  min-width: 20px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 300;
+  padding-left: 35px;
+}
+.checkbox input,
+.radio input {
+  position: absolute;
+  opacity: 0;
+}
+.checkbox a,
+.radio a {
+  color: #2B7CDB;
+}
+.checkbox span,
+.radio span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 2px;
+  left: 0;
+  background: #F1F7FE;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #000;
+}
+.checkbox span i,
+.radio span i {
+  font-size: 22px;
+  color: #000000;
+  position: absolute;
+  left: 4px;
+  top: -3px;
+  opacity: 0;
+}
+.checkbox input:checked + span,
+.radio input:checked + span {
+  box-shadow: 0 0 0 1px #F1F7FE;
+}
+.checkbox input:checked + span i,
+.radio input:checked + span i {
+  opacity: 1;
+}
+.checkbox.rPos,
+.radio.rPos {
+  padding-left: 0;
+  padding-right: 35px;
+}
+.checkbox.rPos span,
+.radio.rPos span {
+  left: auto;
+  right: 0;
 }
 .gutter-0 {
   margin-left: 0px;
@@ -2008,6 +2096,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .donate-today .body .descr {
   position: relative;
+  z-index: 1;
   margin-top: -130px;
 }
 .donate-today .body .descr div {
@@ -2036,6 +2125,8 @@ input[type='number'].color-danger + .input-group .btn {
   padding: 60px 39px 0 52px;
   margin-left: -100px;
   margin-top: -60px;
+  position: relative;
+  z-index: 2;
 }
 .donate-today .body .donate-today-sheet .item {
   display: block;
@@ -2393,6 +2484,54 @@ input[type='number'].color-danger + .input-group .btn {
 .donated-page .about-donation .body {
   margin-top: 0 !important;
 }
+.donated-page .toggle-view-donation {
+  display: inline-flex;
+  vertical-align: middle;
+}
+.donated-page .toggle-view-donation + * {
+  display: none;
+}
+.donated-page .toggle-view-donation.open {
+  display: none;
+}
+.donated-page .toggle-view-donation.open + * {
+  display: inline-block;
+}
+.donated-page .info-col {
+  border-right: 1px solid #101525;
+  padding: 20px 30px 0 0;
+}
+.donated-page .info-col.hide {
+  display: none !important;
+}
+.donated-page .card-col {
+  padding: 20px 0 0 30px;
+}
+.donated-page .info-col.hide + .card-col {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+}
+.donated-page .info-col.hide + .card-col > div {
+  padding: 0 8.333333% 30px;
+}
+.donated-page .info-col.hide + .card-col > div > .text-center {
+  text-align: left !important;
+}
+.donated-page .info-col.hide + .card-col .name-card-col {
+  flex: 0 0 50% !important;
+  max-width: 50% !important;
+}
+.donated-page .info-col.hide + .card-col .name-card-col + .col-12 {
+  flex: 0 0 50% !important;
+  max-width: 50% !important;
+}
+.donated-page .btn-submit {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  margin-bottom: -48px;
+}
 .box {
   border-radius: 5px;
   background-color: #FFF;
@@ -2494,6 +2633,42 @@ input[type='number'].color-danger + .input-group .btn {
   transform: translate(-20px, 20px);
   z-index: -1;
 }
+.order-cart-list .item {
+  padding-bottom: 15px;
+  padding-top: 20px;
+}
+.order-cart-list .item + .item {
+  border-top: 1px solid #101525;
+}
+.order-cart-list .item span {
+  display: inline-block;
+  color: #F7796A;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 22px;
+}
+.order-cart-list .item .btn-remove {
+  display: inline-block;
+  color: #101525;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 22px;
+  opacity: .5;
+}
+.order-cart-list .total {
+  background: #FFF6F3;
+  padding: 18px 24px;
+  border-radius: 5px 5px 0 0;
+}
+.order-cart-list .total span {
+  display: block;
+  text-align: right;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 44px;
+  color: #F7796A;
+}
 #cartModal {
   top: 100px;
 }
@@ -2512,29 +2687,6 @@ input[type='number'].color-danger + .input-group .btn {
 }
 #cartModal + .modal-backdrop {
   top: 86px;
-}
-#cartModal .item {
-  padding-bottom: 15px;
-  padding-top: 20px;
-}
-#cartModal .item + .item {
-  border-top: 1px solid #101525;
-}
-#cartModal .item span {
-  display: inline-block;
-  color: #F7796A;
-  font-size: 15px;
-  font-weight: 900;
-  line-height: 22px;
-}
-#cartModal .item .btn-remove {
-  display: inline-block;
-  color: #101525;
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  line-height: 22px;
-  opacity: .5;
 }
 #cartModal .price {
   display: inline-block;
@@ -2558,5 +2710,34 @@ input[type='number'].color-danger + .input-group .btn {
   background-size: 60px 60px;
   padding: 15px 0 15px 80px;
   margin: 0;
+}
+.gift-aid-sheet {
+  background: #231F51;
+  margin: 0 -40px;
+  padding: 35px 40px 64px;
+}
+.gift-aid-sheet .bg {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  padding: 36px ;
+}
+.gift-aid-sheet .bg .checkbox {
+  color: #fff;
+  font-size: 16px;
+  padding-left: 55px;
+  line-height: 28px;
+}
+.gift-aid-sheet .bg .checkbox span {
+  width: 28px;
+  height: 28px;
+  background: #757392 !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+}
+.gift-aid-sheet .bg .checkbox span i {
+  color: #fff;
+  font-size: 31px;
+}
+.gift-aid-sheet .bg .checkbox input:checked + span {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 /*# sourceMappingURL=styles.css.map */
