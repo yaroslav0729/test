@@ -26,8 +26,6 @@ class TestUsersSeeder extends Seeder
             $user->email = Str::random(10).'@gmail.com';
             $user->password = Hash::make('password');
             $user->save();
-
-            //$user->syncRoles([User::ROLE_USER]);
         }
     }
 }
