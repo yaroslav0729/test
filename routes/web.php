@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\PostController as AdminPostController;
 
 use App\Models\User;
 /*
@@ -22,6 +23,8 @@ Route::get('/', [PostController::class, 'index'])->name('index');
 Route::group(['middleware' => ['role:' . User::ROLE_ADMIN ]], function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.index');
+
+        Route::resource('post', AdminPostController::class, ['as' => 'admin']);
         
         Route::prefix('users')->group(function () {
             Route::get('edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
