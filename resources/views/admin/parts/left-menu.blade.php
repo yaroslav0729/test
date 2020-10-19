@@ -1,4 +1,4 @@
-<div id="left_menu" class="text-gray-700 bg-gray-500 px-4 py-2 m-2">
+<div id="left_menu" class="text-gray-700 bg-gray-500 px-4 py-2">
     <ul>
         <li><a href="{{ route('admin.index') }}"><i class="fas fa-user-friends"></i>Users</a></li>
         <li><a href="{{ route('admin.post.index') }}"><i class="fas fa-file-alt"></i>Posts</a></li>

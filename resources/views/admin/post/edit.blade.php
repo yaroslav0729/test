@@ -23,6 +23,24 @@
             <label for="slug">Slug</label><br>
             <input id="slug" name="slug" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $post->slug }}" /><br>
             
+            <label for="groups">Post groups</label>
+            <br>
+
+            <select id="groups" name="groups[]" multiple class="w-full">
+                @foreach ($groups as $group)
+
+                    @php
+                        $selected = false;
+                        if (in_array($group->id, $post->group_ids)) {
+                            $selected = true;
+                        }
+                    @endphp
+
+                    <option value="{{ $group->id }}" @if($selected) selected @endif>{{ $group->name }}</option>   
+                @endforeach
+            </select>
+            <br><br>
+
             <label for="data">Post data</label><br>
             <textarea id="data" name="data" style="min-width:450px; min-height: 300px;">{{ $post->data }}</textarea>
             

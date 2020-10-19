@@ -13,4 +13,9 @@ class PostGroup extends Model
         'name',
         'slug',
     ];
+
+    public function posts()
+    {
+        return $this->belongsToMany('App\Models\Post');
+    }
 }

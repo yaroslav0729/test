@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\PostGroup;
 
 class PostController extends Controller
 {
@@ -27,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create');
+        $groups = PostGroup::all();
+        return view('admin.post.create', ['groups' => $groups]);
     }
 
     /**
@@ -39,6 +41,9 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $post = Post::create($request->all());
+
+        $gIds = $request->input('groups');
+        $post->groups()->attach($gIds);
 
         return redirect()->route('admin.post.index')->with('status', 'post created!');
     }
@@ -63,8 +68,9 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
+        $groups = PostGroup::all();
 
-        return view('admin.post.edit', ['post' => $post]);
+        return view('admin.post.edit', ['post' => $post, 'groups' => $groups]);
     }
 
     /**
@@ -78,6 +84,10 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->update($request->all());
+
+        $gIds = $request->input('groups');
+        $post->groups()->detach();
+        $post->groups()->attach($gIds);
 
         return redirect()->route('admin.post.index')->with('status', 'Post updated!');
     }
