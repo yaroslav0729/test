@@ -19,7 +19,6 @@ use App\Models\User;
 */
 
 Route::get('/', [PostController::class, 'index'])->name('index');
-//Route::get('/test', [UserController::class, 'test']);
 
 Route::group(['middleware' => ['role:' . User::ROLE_ADMIN ]], function () {
     Route::prefix('admin')->group(function () {

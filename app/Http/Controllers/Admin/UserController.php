@@ -43,12 +43,4 @@ class UserController extends Controller
 
         return redirect()->route('admin.index')->with('status', 'User deleted!');
     }
-
-    // public function test()
-    // {
-    //     $user = User::where('id',1)->firstOrFail();
-    //     $user->syncRoles([User::ROLE_ADMIN]);
-
-    //     dd('ok');
-    // }
 }
