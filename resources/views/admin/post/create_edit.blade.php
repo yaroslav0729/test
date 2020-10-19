@@ -29,7 +29,7 @@
 
 @section('content')
 
-<div id="admin_content" class="bg-gray-100 flex-auto h-screen">
+<div id="admin_content" class="bg-gray-100 flex-auto">
     <div class="p-5 pb-8 lg:w-1/2">
 
     @if ($errors->any())
@@ -89,12 +89,24 @@
 
             <h3 class="mb-3">Post content:</h3>
 
-            @foreach ($post->widgets as $widget)
-                {!! $widget->render() !!}
-            @endforeach
+            @isset($post)
+                @foreach ($post->widgets as $widget)
+                    {!! $widget->render() !!}
+                @endforeach
+            @endisset
 
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                 Submit
+            </button>
+
+            <br>
+
+            <div v-for="(val, key) in widgets">
+                @{{ val }}
+            </div>
+
+            <button @click='newWidget' class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-5" type="button" >
+                <i class="fas fa-plus"></i> New widget
             </button>
 
         </form>
@@ -102,4 +114,24 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+<script>
+
+var app = new Vue({
+  el: '#admin_content',
+  data: {
+    count: 0,
+    widgets:[]
+  },
+  methods: {
+    newWidget() {
+        this.count++
+        this.widgets.push(this.count)
+    }
+  }
+})
+
+</script>
 @endsection

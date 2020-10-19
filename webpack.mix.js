@@ -17,3 +17,5 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss'),
     ]).postCss('resources/css/admin_styles.css', 'public/css', [
     ]);
+
+mix.js('resources/js/admin.js', 'public/js');
