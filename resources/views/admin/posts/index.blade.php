@@ -24,7 +24,7 @@
           </button>
         </a>
 
-        <table class="table-auto">
+        <table class="table-auto mb-3">
             <thead>
               <tr>
                 <th class="px-4 py-2">Id</th>
