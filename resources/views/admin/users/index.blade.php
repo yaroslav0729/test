@@ -40,8 +40,8 @@
                         <td class="border px-4 py-2">{{ $user->created_at->format('d/m/Y') }}</td>
                         <td class="border px-4 py-2">
                           <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" title="Delete user">
-                              Edit
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded" type="submit" title="Edit user">
+                              <i class="fas fa-edit"></i>
                             </button>
                           </a>
                           <form method="post" action="{{ route('admin.user.delete', ['id' => $user->id]) }}" style="display:inline-block">
@@ -49,8 +49,8 @@
                             @csrf
                             @method('DELETE')
     
-                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit" title="Delete user" onclick="return confirm('Are you sure want to delete?')">
-                              Delete
+                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded" type="submit" title="Delete user" onclick="return confirm('Are you sure want to delete?')">
+                              <i class="fas fa-trash-alt"></i>
                             </button>
     
                         </form>

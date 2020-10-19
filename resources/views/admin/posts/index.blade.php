@@ -40,12 +40,12 @@
                     <tr>
                         <td class="border px-4 py-2">{{ $post->id }}</td>
                         <td class="border px-4 py-2">{{ $post->title }}</td>
-                        <td class="border px-4 py-2">{{ $post->slug }}</td>
-                    <td class="border px-4 py-2">{{ $post->created_at->format('d/m/Y') }}</td>
+                        <td class="border px-4 py-2"><a href="{{ url($post->slug) }}" target="_blank">{{ $post->slug }}</a></td>
+                        <td class="border px-4 py-2">{{ $post->created_at->format('d/m/Y') }}</td>
                         <td class="border px-4 py-2">
                           <a href="{{ route('admin.post.edit', ['post' => $post->id]) }}">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" title="Delete post">
-                              Edit
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded" type="submit" title="Edit post">
+                              <i class="fas fa-edit"></i>
                             </button>
                           </a>
                           <form method="post" action="{{ route('admin.post.destroy', ['post' => $post->id]) }}" style="display:inline-block">
@@ -53,8 +53,8 @@
                             @csrf
                             @method('DELETE')
     
-                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit" title="Delete post" onclick="return confirm('Are you sure want to delete?')">
-                              Delete
+                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded" type="submit" title="Delete post" onclick="return confirm('Are you sure want to delete?')">
+                              <i class="fas fa-trash-alt"></i>
                             </button>
     
                         </form>
