@@ -25,9 +25,9 @@ class User extends Authenticatable
     const ROLE_USER = 'user';
 
     const ROLES_LABEL = [
-        self::ROLE_ADMIN => 'administrator',
-        self::ROLE_EDITOR => 'editor',
-        self::ROLE_USER => 'user',
+        self::ROLE_ADMIN => 'Administrator',
+        self::ROLE_EDITOR => 'Editor',
+        self::ROLE_USER => 'Public user',
     ];
 
     /**
