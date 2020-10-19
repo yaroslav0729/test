@@ -22,6 +22,11 @@ class Post extends Model
         return $this->belongsToMany('App\Models\PostGroup');
     }
 
+    public function widgets()
+    {
+        return $this->hasMany('App\Models\PostItem');
+    }
+
     public function getGroupIdsAttribute()
     {
         return $this->groups->pluck('id')->toArray();

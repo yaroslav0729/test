@@ -20,12 +20,12 @@
 
 @extends('layouts.admin')
 
-{{-- @section('head')
+@section('head')
 
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>tinymce.init({selector:'textarea'});</script>
+    <script>tinymce.init({selector: '.widget_{{ \App\Models\Widget::WIDGET_RICH_TEXT }}' });</script>
 
-@endsection --}}
+@endsection
 
 @section('content')
 
@@ -87,12 +87,12 @@
             </select>
             <br><br>
 
-            {{-- <label for="data">Post data</label><br>
-            <textarea id="data" name="data" style="min-width:450px; min-height: 300px;">{{ $post->data }}</textarea>
-             --}}
+            <h3 class="mb-3">Post content:</h3>
 
+            @foreach ($post->widgets as $widget)
+                {!! $widget->render() !!}
+            @endforeach
 
-            <br><br>
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                 Submit
             </button>
