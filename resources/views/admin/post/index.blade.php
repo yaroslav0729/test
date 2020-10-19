@@ -28,7 +28,7 @@
             <thead>
               <tr>
                 <th class="px-4 py-2">Id</th>
-                <th class="px-4 py-2">Title</th>
+                <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Slug</th>
                 <th class="px-4 py-2">Created at</th>
                 <th class="px-4 py-2">Action</th>
@@ -39,7 +39,7 @@
                 @foreach ($posts as $post)
                     <tr>
                         <td class="border px-4 py-2">{{ $post->id }}</td>
-                        <td class="border px-4 py-2">{{ $post->title }}</td>
+                        <td class="border px-4 py-2">{{ $post->name }}</td>
                         <td class="border px-4 py-2"><a href="{{ url($post->slug) }}" target="_blank">{{ $post->slug }}</a></td>
                         <td class="border px-4 py-2">{{ $post->created_at->format('d/m/Y') }}</td>
                         <td class="border px-4 py-2">

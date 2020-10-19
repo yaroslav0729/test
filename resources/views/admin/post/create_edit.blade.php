@@ -20,17 +20,28 @@
 
 @extends('layouts.admin')
 
-@section('head')
+{{-- @section('head')
 
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>tinymce.init({selector:'textarea'});</script>
 
-@endsection
+@endsection --}}
 
 @section('content')
 
 <div id="admin_content" class="bg-gray-100 flex-auto h-screen">
     <div class="p-5 pb-8 lg:w-1/2">
+
+    @if ($errors->any())
+        <div class="mb-2 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Validation errors:</strong>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <h1>{{ $pageTitle }}</h1>   
 
@@ -51,10 +62,12 @@
             <input id="title" name="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $title }}" /><br>
 
             <label for="description">Description</label><br>
-            <input id="description" name="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $description }}" /><br>
+            <textarea class="w-full" name="description" id="description">{{ $description }}</textarea>
+            <br>
 
             <label for="keywords">Keywords</label><br>
-            <input id="keywords" name="keywords" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $keywords }}" /><br>
+            <textarea class="w-full" name="keywords" id="keywords">{{ $keywords }}</textarea>
+            <br>
 
             <label for="groups">Post groups</label>
             <br>

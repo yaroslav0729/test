@@ -10,9 +10,11 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
+        'name',
         'slug',
-        'data',
+        'title',
+        'description',
+        'keywords',
     ];
 
     public function groups()
