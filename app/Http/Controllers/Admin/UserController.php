@@ -12,14 +12,14 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(10);
-        return view('admin.users.index', ['users' => $users]);
+        return view('admin.user.index', ['users' => $users]);
     }
 
     public function edit($id)
     {
         $user = User::findOrFail($id);
         $roles = User::getRoles();
-        return view('admin.users.edit', ['user' => $user, 'roles' => $roles]);
+        return view('admin.user.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     public function update($id, Request $request)

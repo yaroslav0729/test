@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\PostGroup;
 
-class PostController extends Controller
+class PostGroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        $pGroups = PostGroup::paginate(10);
 
-        return view('admin.post.index', ['posts' => $posts]);
+        return view('admin.post_group.index', ['pGroups' => $pGroups]);
     }
 
     /**
@@ -27,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create');
+        return view('admin.post_group.create');
     }
 
     /**
@@ -38,9 +38,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = Post::create($request->all());
+        $pGroup = PostGroup::create($request->all());
 
-        return redirect()->route('admin.post.index')->with('status', 'post created!');
+        return redirect()->route('admin.post_group.index')->with('status', 'post group created!');
     }
 
     /**
@@ -62,9 +62,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
+        $pGroup = PostGroup::findOrFail($id);
 
-        return view('admin.post.edit', ['post' => $post]);
+        return view('admin.post_group.edit', ['pGroup' => $pGroup]);
     }
 
     /**
@@ -76,10 +76,10 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = Post::findOrFail($id);
-        $post->update($request->all());
+        $pGroup = PostGroup::findOrFail($id);
+        $pGroup->update($request->all());
 
-        return redirect()->route('admin.post.index')->with('status', 'Post updated!');
+        return redirect()->route('admin.post_group.index')->with('status', 'Post group updated!');
     }
 
     /**
@@ -90,9 +90,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
-        $post->delete();
+        $pGroup = PostGroup::findOrFail($id);
+        $pGroup->delete();
 
-        return redirect()->route('admin.post.index')->with('status', 'Post deleted!');
+        return redirect()->route('admin.post_group.index')->with('status', 'Post group deleted!');
     }
 }
