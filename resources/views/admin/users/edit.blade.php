@@ -3,7 +3,7 @@
 @section('content')
 
 <div id="admin_content" class="bg-gray-100 flex-auto h-screen">
-    <div class="p-5 pb-8 md:w-1/3">
+    <div class="p-5 pb-8 lg:w-1/2">
         <h1>Edit user id: {{ $user->id }} page</h1>
 
         <form action="{{ route('admin.user.update', ['id' => $user->id]) }}" method="post">

@@ -1,9 +1,16 @@
 @extends('layouts.admin')
 
+@section('head')
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({selector:'textarea'});</script>
+
+@endsection
+
 @section('content')
 
 <div id="admin_content" class="bg-gray-100 flex-auto h-screen">
-    <div class="p-5 pb-8 md:w-1/3">
+    <div class="p-5 pb-8 lg:w-1/2">
         <h1>Edit post id: {{ $post->id }}</h1>
 
         <form action="{{ route('admin.post.update', ['post' => $post->id]) }}" method="post">
