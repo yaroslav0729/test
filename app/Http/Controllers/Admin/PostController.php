@@ -29,7 +29,7 @@ class PostController extends Controller
     public function create()
     {
         $groups = PostGroup::all();
-        return view('admin.post.create', ['groups' => $groups]);
+        return view('admin.post.create_edit', ['groups' => $groups]);
     }
 
     /**
@@ -70,7 +70,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $groups = PostGroup::all();
 
-        return view('admin.post.edit', ['post' => $post, 'groups' => $groups]);
+        return view('admin.post.create_edit', ['post' => $post, 'groups' => $groups]);
     }
 
     /**

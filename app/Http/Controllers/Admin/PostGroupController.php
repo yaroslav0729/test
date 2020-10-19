@@ -27,7 +27,7 @@ class PostGroupController extends Controller
      */
     public function create()
     {
-        return view('admin.post_group.create');
+        return view('admin.post_group.create_edit');
     }
 
     /**
@@ -64,7 +64,7 @@ class PostGroupController extends Controller
     {
         $pGroup = PostGroup::findOrFail($id);
 
-        return view('admin.post_group.edit', ['pGroup' => $pGroup]);
+        return view('admin.post_group.create_edit', ['pGroup' => $pGroup]);
     }
 
     /**
