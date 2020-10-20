@@ -20,7 +20,8 @@ use App\Models\User;
 
 Route::get('/', [PostController::class, 'index'])->name('index');
 
-Route::group(['middleware' => ['role:' . User::ROLE_ADMIN ]], function () {
+
+Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_ADMIN ]], function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.index');
 
@@ -33,8 +34,8 @@ Route::group(['middleware' => ['role:' . User::ROLE_ADMIN ]], function () {
             Route::delete('delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
         });
     });
-
 });
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

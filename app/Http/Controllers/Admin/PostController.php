@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\PostGroup;
+use App\Models\Widget;
 use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
@@ -30,7 +31,11 @@ class PostController extends Controller
     public function create()
     {
         $groups = PostGroup::all();
-        return view('admin.post.create_edit', ['groups' => $groups]);
+        $widgets = Widget::WIDGET_LABELS;
+        return view('admin.post.create_edit', [
+            'groups' => $groups,
+            'widgets' => $widgets
+            ]);
     }
 
     /**
@@ -70,8 +75,13 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $groups = PostGroup::all();
+        $widgets = Widget::WIDGET_LABELS;
 
-        return view('admin.post.create_edit', ['post' => $post, 'groups' => $groups]);
+        return view('admin.post.create_edit', [
+            'post' => $post, 
+            'groups' => $groups,
+            'widgets' => $widgets,
+        ]);
     }
 
     /**
@@ -89,6 +99,8 @@ class PostController extends Controller
         $gIds = $request->input('groups');
         $post->groups()->detach();
         $post->groups()->attach($gIds);
+
+        $post->parseWidgets($request->input('widgets'));
 
         return redirect()->route('admin.post.index')->with('status', 'Post updated!');
     }
