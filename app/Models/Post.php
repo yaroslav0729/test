@@ -8,4 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'slug',
+        'title',
+        'description',
+        'keywords',
+    ];
+
+    public function groups()
+    {
+        return $this->belongsToMany('App\Models\PostGroup');
+    }
+
+    public function widgets()
+    {
+        return $this->hasMany('App\Models\PostItem');
+    }
+
+    public function getGroupIdsAttribute()
+    {
+        return $this->groups->pluck('id')->toArray();
+    }
 }

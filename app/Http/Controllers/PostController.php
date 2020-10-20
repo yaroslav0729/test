@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('pages.home');
     }
 
     public function showFromSlug($slug)
