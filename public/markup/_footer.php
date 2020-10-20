@@ -1,9 +1,10 @@
 <!--style-1 - default-->
 <!--style-2 - donate-->
 <!--style-3 - thank you-->
+<!--style-4 - project-->
 
 
-<footer class="style-3">
+<footer class="style-4">
     <div class="wrap">
         <div class="row">
             <div class="col-8">

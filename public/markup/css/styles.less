@@ -92,7 +92,7 @@ footer {
     &.style-1 {background: #231F51}
     &.style-2 {background: #E3EFFE}
     &.style-3 {background: #FED4C2}
-    &.style-4 {background: red}
+    &.style-4 {background: #2CAABB}
 
     .social {
         padding-top: 5px;
@@ -641,6 +641,7 @@ header {
 .font-size-18 {font-size: 18px;letter-spacing: 1.25px;line-height: 30px}
 .font-size-20 {font-size: 20px;letter-spacing: 1.25px;line-height: 30px}
 .font-size-30 {font-size: 30px; line-height: 40px}
+.font-size-40 {font-size: 40px; line-height: 65px}
 .font-size-45 {font-size: 45px; line-height: 50px}
 .font-size-60 {font-size: 60px; line-height: 65px}
 
@@ -686,7 +687,9 @@ header {
 .bg {
     &-info {background-color: #2caabb !important;}
     &-danger {background-color: #F97866 !important;}
+    &-danger-light {background-color: #FFF6F3 !important;}
     &-warning {background-color: #F5C15D !important;}
+    &-dark {background-color: #101525 !important;}
 }
 
 .text {
@@ -1751,7 +1754,7 @@ input[type='number'].color-danger  + .input-group {
 }
 
 .discover-more {
-    background: #FFF6F3;
+    //background: #FFF6F3;
     padding: 67px 180px 0;
     .title {
         margin-bottom: 65px;
@@ -1834,8 +1837,31 @@ input[type='number'].color-danger  + .input-group {
         position: absolute; left: 0; right: 0; top: 50%; bottom: 0;
         z-index: -1;
     }
+    &.blue-gradient {
+        padding-bottom: 0;
+        &:before {
+            background: linear-gradient(142.85deg, #FFF 0%, #E3EFFE 44%, #FFF5F0 100%);
+            top: 155px
+        }
+    }
 
-    .title {padding: 0 102px;}
+    &.red-gradient {
+        padding-bottom: 0;
+        &:before {
+            background: linear-gradient(139.5deg, #FFF 0%, #F4D0BA 19%, #F97866 64%, #EA7E83 76%, #EA8E92 83%, #E9DBD9 100%);
+            top: 155px
+        }
+    }
+
+    .title {
+        padding: 0 102px;
+        position: relative;
+        .fa-arrow-down {
+            color: #101525;
+            font-size: 50px;
+            position: absolute; left: 20px; top: 30px;
+        }
+    }
     .body {
         .media {
             border-top: 4px solid #101525;
@@ -1929,6 +1955,13 @@ input[type='number'].color-danger  + .input-group {
                     }
                 }
             }
+            &.emergency {
+                .item > span {background: #FFF2ED}
+                .form-control {
+                    background-color: #FFF2ED !important;
+                    border-color: #FFF2ED !important;
+                }
+            }
         }
 
         .btn-submit {
@@ -1973,6 +2006,82 @@ input[type='number'].color-danger  + .input-group {
             }
         }
         .tab-content {padding: 0 40px;}
+    }
+}
+
+
+.donate-today-card {
+    padding-bottom: 93px;
+    padding-top: 150px;
+    .wrap {
+      border-bottom: 4px solid #101525;
+      padding-bottom: 43px;
+    }
+    .title {
+      text-align: center;
+      margin-bottom: 71px;
+      span {
+        display: inline-block;
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 44px;
+        position: relative;
+        &:before {
+          content: "Donate today,";
+          display: block;
+          color: #F1F7FE;
+          font-size: 80px;
+          font-weight: 900;
+          line-height: 118px;
+          position: absolute; left: 50%; top: -82px;
+          transform: translateX(-100%);
+          z-index: -1;
+          white-space: nowrap;
+        }
+      }
+    }
+    .list {
+      text-align: center;
+        .item {
+          min-width: 220px;
+          font-size: 15px;
+          font-weight: 900;
+          line-height: 24px;
+          text-align: center;
+          background: #F1F7FE;
+          border-radius: 5px;
+          padding: 54px 20px 50px;
+          margin: 0 10px;
+          cursor: pointer;
+          div {
+            position: relative;
+            font-size: 50px;
+            font-weight: 400;
+            line-height: 74px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            &:after {
+              content: "";
+              display: block;
+              height: 4px;
+              width: 60px;
+              background: #101525;
+              position: absolute; left: 50%; bottom: 0;
+              margin-left: -30px;
+            }
+          }
+          &.active {
+            background: #101525;
+            color: #fff;
+            div:after {background: #fff}
+            &.active-color-info {background: #2CAABB;}
+            &.active-color-danger {background: #F97866;}
+          }
+        }
+    }
+    &.emergency {
+        .title span:before {color: #FFF2ED}
+        .list .item {background: #FFF2ED}
     }
 }
 
@@ -2213,6 +2322,7 @@ input[type='number'].color-danger  + .input-group {
         position: absolute; left: 0; right: 0; top: 177px; bottom: 0;
         z-index: -1;
     }
+
     .about-donation {
         padding: 0;
         .body {margin-top: 0 !important;}
@@ -2504,4 +2614,65 @@ input[type='number'].color-danger  + .input-group {
       box-shadow: 0 18px 35px 0 rgba(191,164,153,0.25);
     }
   }
+}
+
+.whats-happened-far {
+    padding: 0 180px 0 90px;
+    overflow: hidden;
+    .body {
+        .tl {
+            font-size: 30px;
+            font-weight: 900;
+            line-height: 44px;
+            padding: 26px 36px 27px 90px;
+        }
+        .text {
+            padding: 40px 90px 0 180px;
+            margin-right: -60px;
+            margin-left: -90px;
+            position: relative;
+            p {
+                color: #FFF;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 30px;
+                margin: 0;
+            }
+            .info {
+                padding: 33px 0 33px 30px;
+                position: relative; top: 49px;
+                margin: 0 -180px 0 -30px;
+                .bg {position: absolute; left: 0; right: 90px; top: 0; bottom: 0;}
+                .rectangle {
+                    display: block;
+                    position: absolute; right: 90px; top: 0;
+                    height: 40px;width: 90px;
+                }
+
+                .help-info {
+                    padding: 40px 10px;
+                    width: 100%;
+                    & > div {
+                        padding: 0 10%;
+                        span {
+                            &:nth-child(1) {
+                                font-size: 40px;
+                                line-height: 59px;
+                                &:before {
+                                    height: 14px;
+                                    width: 14px;
+                                    margin: 0;
+                                    position: absolute;
+                                    top: -10px; left: 50%;
+                                }
+                            }
+                        }
+                        &:before {height: 66px;}
+                        &:nth-child(3) span:nth-child(1):before {background-color: #F7796A;}
+                    }
+                }
+            }
+
+        }
+    }
 }

@@ -109,7 +109,7 @@
     <div class="stat"><span>1.2k</span></div>
 </div>
 
-<section class="discover-more">
+<section class="discover-more bg-danger-light">
     <div class="wrap">
         <div class="title">
             <div class="row">
