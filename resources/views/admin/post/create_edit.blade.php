@@ -20,12 +20,12 @@
 
 @extends('layouts.admin')
 
-@section('head')
+{{-- @section('head')
 
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>tinymce.init({selector: '.widget_{{ \App\Models\Widget::WIDGET_RICH_TEXT }}' });</script>
 
-@endsection
+@endsection --}}
 
 @section('content')
 
@@ -105,14 +105,19 @@
             @endisset --}}
 
             <div class="mt-2 mb-3">
-                <div v-for="(val, key) in widgets" class="flex">
+                <div v-for="(val, key) in widgets" class="flex mb-2">
                     <div class="flex-initial mr-3">
                         <button @click="widgetDown(key)" type="button" class="bg-green-400 hover:bg-green-500 text-white py-2 px-2 mr-1 rounded"><i class="fas fa-arrow-down"></i></button>
                         <button @click="widgetUp(key)" type="button" class="bg-green-400 hover:bg-green-500 text-white py-2 px-2 mr-1 rounded"><i class="fas fa-arrow-up"></i></button>
                         <button @click="widgetDelete(key)" type="button" class="bg-red-400 hover:bg-red-500 text-white py-2 px-2 mr-1 rounded"><i class="fas fa-trash-alt"></i></button>
                     </div>
-                    <div class="mb-2 alert alert-danger flex-initial">
-                        @{{ val }}
+                    <div class="mb-2 flex-initial">
+                        <div v-if="val.id === 'new'" v-bind="{id: 'render_container_' + val.widget_id + '_' + val.ordering }">
+                            @{{ val }}
+                        </div>
+                        <div v-else v-bind="{id: 'render_container_' + val.id }"> {{-- rendered widget --}}
+                            @{{ val }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -173,6 +178,22 @@
             @endif
             ]
         </div>
+        <div id="rendered_post_items" class="d-none">
+            @isset($post)
+                @foreach ($post->widgets as $widget)
+                    <div id="rendered_post_items_{{ $widget->id }}">
+                        {!! $widget->render() !!}
+                    </div>
+                @endforeach
+            @endisset
+        </div>
+        <div id="rendered_widgets" class="d-none">
+            @foreach ($widgets as $widgetKey => $widget)
+                <div id="rendered_widget_{{ $widgetKey }}">
+                    {!! \App\Models\Widget::renderId($widgetKey) !!}
+                </div>
+            @endforeach
+        </div>
 </div>
 
 @endsection
@@ -194,7 +215,8 @@ function swap (arr, i, j) {
 var app = new Vue({
   el: '#admin_content',
   data: {
-    widgets: []
+    widgets: [],
+    savedVidgets: []
   },
   computed: {
     widgetsString() {
@@ -202,9 +224,15 @@ var app = new Vue({
     }
   },
   created: function() {
-    let currentWidgets = document.getElementById('current_post_items').innerHTML;
+    let currentWidgets = $('#current_post_items').html();
     currentWidgets = JSON.parse(currentWidgets)
     this.widgets = currentWidgets
+  },
+  mounted: function() {
+    this.renderedWidgets()
+  },
+  updated: function() {
+    this.restoreVidgets()
   },
   methods: {
     addWidget() {
@@ -224,12 +252,14 @@ var app = new Vue({
     },
     widgetUp(N) {
         if (N > 0) {
+            this.saveVidgetContent()
             swap(this.widgets, N, N-1)
             this.refreshOrdering()
         }  
     },
     widgetDown(N) {
         if (N !== this.widgets.length) {
+            this.saveVidgetContent()
             swap(this.widgets, N, N+1) 
             this.refreshOrdering()
         }     
@@ -240,7 +270,45 @@ var app = new Vue({
             this.widgets.splice(N, 1)
             this.refreshOrdering()
         }
-    }
+    },
+    renderedWidgets() {
+
+        for (var i=0; i< this.widgets.length; i++) {
+            let id = this.widgets[i].id
+            let widget = $('#rendered_post_items_' + id)
+            let container = $('#render_container_' + id)
+            let html = widget.html()
+            container.html(html)
+        }
+        
+        return
+    },
+    saveVidgetContent() {
+        this.savedVidgets = []
+
+        for (var i=0; i< this.widgets.length; i++) {
+            let id = this.widgets[i].id
+            let container = $('#render_container_' + id)
+            let html = container.html()
+            this.savedVidgets[this.widgets[i].id] = html
+        }
+
+        console.log('saved', this.savedVidgets)
+    },
+    restoreVidgets() {
+        for (var i=0; i< this.widgets.length; i++) {
+
+            let id = this.widgets[i].id
+
+            if (id !== 'new') {
+                let container = $('#render_container_' + id)
+                let html = this.savedVidgets[id]
+                container.html(html)
+            } else {
+                console.log('new widget found', this.widgets[i])
+            }
+        }   
+    },
   }
 })
 
