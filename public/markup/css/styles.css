@@ -45,7 +45,7 @@ footer.style-3 {
   background: #FED4C2;
 }
 footer.style-4 {
-  background: red;
+  background: #2CAABB;
 }
 footer .social {
   padding-top: 5px;
@@ -688,6 +688,10 @@ header.only-menu .down-bar.bg-white {
   font-size: 30px;
   line-height: 40px;
 }
+.font-size-40 {
+  font-size: 40px;
+  line-height: 65px;
+}
 .font-size-45 {
   font-size: 45px;
   line-height: 50px;
@@ -741,8 +745,14 @@ header.only-menu .down-bar.bg-white {
 .bg-danger {
   background-color: #F97866 !important;
 }
+.bg-danger-light {
+  background-color: #FFF6F3 !important;
+}
 .bg-warning {
   background-color: #F5C15D !important;
+}
+.bg-dark {
+  background-color: #101525 !important;
 }
 .text-info {
   color: #2caabb  !important;
@@ -2007,7 +2017,6 @@ input[type='number'].color-danger + .input-group .btn {
   background: #F7796A;
 }
 .discover-more {
-  background: #FFF6F3;
   padding: 67px 180px 0;
 }
 .discover-more .title {
@@ -2098,8 +2107,30 @@ input[type='number'].color-danger + .input-group .btn {
   bottom: 0;
   z-index: -1;
 }
+.donate-today.blue-gradient {
+  padding-bottom: 0;
+}
+.donate-today.blue-gradient:before {
+  background: linear-gradient(142.85deg, #FFF 0%, #E3EFFE 44%, #FFF5F0 100%);
+  top: 155px;
+}
+.donate-today.red-gradient {
+  padding-bottom: 0;
+}
+.donate-today.red-gradient:before {
+  background: linear-gradient(139.5deg, #FFF 0%, #F4D0BA 19%, #F97866 64%, #EA7E83 76%, #EA8E92 83%, #E9DBD9 100%);
+  top: 155px;
+}
 .donate-today .title {
   padding: 0 102px;
+  position: relative;
+}
+.donate-today .title .fa-arrow-down {
+  color: #101525;
+  font-size: 50px;
+  position: absolute;
+  left: 20px;
+  top: 30px;
 }
 .donate-today .body .media {
   border-top: 4px solid #101525;
@@ -2191,6 +2222,13 @@ input[type='number'].color-danger + .input-group .btn {
 .donate-today .body .donate-today-sheet .item.active-color-info input:checked + span {
   background: #2CAABB;
 }
+.donate-today .body .donate-today-sheet.emergency .item > span {
+  background: #FFF2ED;
+}
+.donate-today .body .donate-today-sheet.emergency .form-control {
+  background-color: #FFF2ED !important;
+  border-color: #FFF2ED !important;
+}
 .donate-today .body .btn-submit {
   margin-bottom: -25px;
 }
@@ -2236,6 +2274,92 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .donate-today .body .tab-content {
   padding: 0 40px;
+}
+.donate-today-card {
+  padding-bottom: 93px;
+  padding-top: 150px;
+}
+.donate-today-card .wrap {
+  border-bottom: 4px solid #101525;
+  padding-bottom: 43px;
+}
+.donate-today-card .title {
+  text-align: center;
+  margin-bottom: 71px;
+}
+.donate-today-card .title span {
+  display: inline-block;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 44px;
+  position: relative;
+}
+.donate-today-card .title span:before {
+  content: "Donate today,";
+  display: block;
+  color: #F1F7FE;
+  font-size: 80px;
+  font-weight: 900;
+  line-height: 118px;
+  position: absolute;
+  left: 50%;
+  top: -82px;
+  transform: translateX(-100%);
+  z-index: -1;
+  white-space: nowrap;
+}
+.donate-today-card .list {
+  text-align: center;
+}
+.donate-today-card .list .item {
+  min-width: 220px;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 24px;
+  text-align: center;
+  background: #F1F7FE;
+  border-radius: 5px;
+  padding: 54px 20px 50px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.donate-today-card .list .item div {
+  position: relative;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 74px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+}
+.donate-today-card .list .item div:after {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 60px;
+  background: #101525;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  margin-left: -30px;
+}
+.donate-today-card .list .item.active {
+  background: #101525;
+  color: #fff;
+}
+.donate-today-card .list .item.active div:after {
+  background: #fff;
+}
+.donate-today-card .list .item.active.active-color-info {
+  background: #2CAABB;
+}
+.donate-today-card .list .item.active.active-color-danger {
+  background: #F97866;
+}
+.donate-today-card.emergency .title span:before {
+  color: #FFF2ED;
+}
+.donate-today-card.emergency .list .item {
+  background: #FFF2ED;
 }
 .donate-projects-list {
   background: #f7faff;
@@ -2806,5 +2930,74 @@ input[type='number'].color-danger + .input-group .btn {
   left: -22px;
   padding-bottom: 80.25%;
   box-shadow: 0 18px 35px 0 rgba(191, 164, 153, 0.25);
+}
+.whats-happened-far {
+  padding: 0 180px 0 90px;
+  overflow: hidden;
+}
+.whats-happened-far .body .tl {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 44px;
+  padding: 26px 36px 27px 90px;
+}
+.whats-happened-far .body .text {
+  padding: 40px 90px 0 180px;
+  margin-right: -60px;
+  margin-left: -90px;
+  position: relative;
+}
+.whats-happened-far .body .text p {
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 30px;
+  margin: 0;
+}
+.whats-happened-far .body .text .info {
+  padding: 33px 0 33px 30px;
+  position: relative;
+  top: 49px;
+  margin: 0 -180px 0 -30px;
+}
+.whats-happened-far .body .text .info .bg {
+  position: absolute;
+  left: 0;
+  right: 90px;
+  top: 0;
+  bottom: 0;
+}
+.whats-happened-far .body .text .info .rectangle {
+  display: block;
+  position: absolute;
+  right: 90px;
+  top: 0;
+  height: 40px;
+  width: 90px;
+}
+.whats-happened-far .body .text .info .help-info {
+  padding: 40px 10px;
+  width: 100%;
+}
+.whats-happened-far .body .text .info .help-info > div {
+  padding: 0 10%;
+}
+.whats-happened-far .body .text .info .help-info > div span:nth-child(1) {
+  font-size: 40px;
+  line-height: 59px;
+}
+.whats-happened-far .body .text .info .help-info > div span:nth-child(1):before {
+  height: 14px;
+  width: 14px;
+  margin: 0;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+}
+.whats-happened-far .body .text .info .help-info > div:before {
+  height: 66px;
+}
+.whats-happened-far .body .text .info .help-info > div:nth-child(3) span:nth-child(1):before {
+  background-color: #F7796A;
 }
 /*# sourceMappingURL=styles.css.map */
