@@ -25,7 +25,7 @@ class Post extends Model
 
     public function widgets()
     {
-        return $this->hasMany('App\Models\PostItem');
+        return $this->hasMany('App\Models\PostItem')->orderBy('ordering');
     }
 
     public function getGroupIdsAttribute()
@@ -38,9 +38,11 @@ class Post extends Model
         $widgets = json_decode($widgets);
         $newWidgets = [];
 
+        $this->removeOldWidgets($widgets);
+
         foreach ($widgets as $widget) {
             if ($widget->id === 'new') {
-                $newWidgets = new PostItem([
+                $newWidgets[] = new PostItem([
                     'widget_id' => $widget->widget_id,
                     'ordering' => $widget->ordering,
                     'parameters' => $widget->parameters
@@ -54,9 +56,34 @@ class Post extends Model
         }
 
         if ($newWidgets !== []) {
-            $this->widgets()->save($newWidgets);
+            $this->widgets()->saveMany($newWidgets);
         }
 
         return true;
+    }
+
+    protected function removeOldWidgets($widgets)
+    {
+        $currentIds = [];
+        $newIds = [];
+        $deletedIds = [];
+
+        foreach ($this->widgets as $widget) {
+            $currentIds[] = $widget->id;   
+        }
+
+        foreach ($widgets as $widget) {
+            $newIds[] = $widget->id;   
+        }
+
+        foreach ($currentIds as $id) {
+            if (!in_array($id, $newIds)) {
+                $deletedIds[] = $id;
+            }
+        }
+
+        if (count($deletedIds)) {
+            $postItems = PostItem::whereIn('id', $deletedIds)->delete();
+        }
     }
 }
