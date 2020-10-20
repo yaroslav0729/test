@@ -9,6 +9,13 @@ class PostItem extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'post_id',
+        'widget_id',
+        'ordering',
+        'parameters',
+    ];
+
     protected $casts = [
         'parameters' => 'array',
     ];
