@@ -196,11 +196,11 @@
         <div class="list">
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4">
-                    <a href="#" class="item">
-                        <span class="img d-block" style="background-image: url(img/content/discover-more-1.jpg)">
+                    <div class="item">
+                        <a href="#" class="img d-block" style="background-image: url(img/content/discover-more-1.jpg)">
                             <span class="price">FREE</span>
-                        </span>
-                        <span class="tl d-block">Critical Event title, 60 char lorem sit amet, demis vella.</span>
+                        </a>
+                        <a href="#" class="tl d-block">Critical Event title, 60 char lorem sit amet, demis vella.</a>
                         <span class="time d-block"><i class="far fa-clock"></i> 10:00am</span>
                         <span class="row">
                             <span class="col-7">
@@ -210,14 +210,14 @@
                                 <span class="date">Oct<span>26</span></span>
                             </span>
                         </span>
-                    </a>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
-                    <a href="#" class="item">
-                        <span class="img d-block" style="background-image: url(img/content/discover-more-1.jpg)">
-                            <span class="price">FREE</span>
-                        </span>
-                        <span class="tl d-block">Critical </span>
+                    <div class="item">
+                        <a href="#" class="img d-block" style="background-image: url(img/content/discover-more-1.jpg)">
+                            <span class="price">£30</span>
+                        </a>
+                        <a href="#" class="tl d-block">Critical</a>
                         <span class="time d-block"><i class="far fa-clock"></i> 10:00am</span>
                         <span class="row">
                             <span class="col-7">
@@ -227,14 +227,14 @@
                                 <span class="date">Oct<span>26</span></span>
                             </span>
                         </span>
-                    </a>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
-                    <a href="#" class="item">
-                        <span class="img d-block" style="background-image: url(img/content/discover-more-1.jpg)">
+                    <div class="item">
+                        <a href="#" class="img d-block" style="background-image: url(img/content/discover-more-1.jpg)">
                             <span class="price">FREE</span>
-                        </span>
-                        <span class="tl d-block">Critical Event title, 60 char lorem sit amet, demis vella r lorem sit amet, demis vella.</span>
+                        </a>
+                        <a href="#" class="tl d-block">Critical Event title, 60 char lorem sit amet, demis vella  Event title, 60 char lorem sit amet, demis vella..</a>
                         <span class="time d-block"><i class="far fa-clock"></i> 10:00am</span>
                         <span class="row">
                             <span class="col-7">
@@ -244,14 +244,14 @@
                                 <span class="date">Oct<span>26</span></span>
                             </span>
                         </span>
-                    </a>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
-                    <a href="#" class="item">
-                        <span class="img d-block" style="background-image: url(img/content/discover-more-1.jpg)">
+                    <div class="item">
+                        <a href="#" class="img d-block" style="background-image: url(img/content/discover-more-1.jpg)">
                             <span class="price">FREE</span>
-                        </span>
-                        <span class="tl d-block">Critical Event title, 60 char lorem sit amet, demis vella.</span>
+                        </a>
+                        <a href="#" class="tl d-block">Critical Event title, 60 char lorem sit amet, demis vella.</a>
                         <span class="time d-block"><i class="far fa-clock"></i> 10:00am</span>
                         <span class="row">
                             <span class="col-7">
@@ -261,14 +261,14 @@
                                 <span class="date">Oct<span>26</span></span>
                             </span>
                         </span>
-                    </a>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
-                    <a href="#" class="item">
-                        <span class="img d-block" style="background-image: url(img/content/discover-more-1.jpg)">
+                    <div class="item">
+                        <a href="#" class="img d-block" style="background-image: url(img/content/discover-more-1.jpg)">
                             <span class="price">FREE</span>
-                        </span>
-                        <span class="tl d-block">Critical Event title, 60 char lorem sit amet, demis vella.</span>
+                        </a>
+                        <a href="#" class="tl d-block">Critical Event title, 60 char lorem sit amet, demis vella.</a>
                         <span class="time d-block"><i class="far fa-clock"></i> 10:00am</span>
                         <span class="row">
                             <span class="col-7">
@@ -278,7 +278,7 @@
                                 <span class="date">Oct<span>26</span></span>
                             </span>
                         </span>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
