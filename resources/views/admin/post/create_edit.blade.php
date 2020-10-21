@@ -172,7 +172,7 @@
                         "id": {{ $widget->id }}, 
                         "widget_id": {{ $widget->widget_id }},
                         "ordering": {{ $key }},
-                        "parameters": "[]"
+                        "parameters": {{ json_encode($widget->parameters) }}
                     }
                    @if((count($post->widgets) > 1) && ($key+1 !== count($post->widgets))), @endif
                 @endforeach
