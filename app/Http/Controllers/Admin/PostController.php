@@ -120,9 +120,4 @@ class PostController extends Controller
 
         return redirect()->route('admin.post.index')->with('status', 'Post deleted!');
     }
-
-    public function renderWidget($id)
-    {
-
-    }
 }

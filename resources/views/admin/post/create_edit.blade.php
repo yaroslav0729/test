@@ -213,6 +213,15 @@ function swap (arr, i, j) {
     return arr;
 }
 
+jQuery.fn.swapWith = function(to) {
+    return this.each(function() {
+        var copy_to = $(to).clone(true);
+        var copy_from = $(this).clone(true);
+        $(to).replaceWith(copy_from);
+        $(this).replaceWith(copy_to);
+    });
+};
+
 var app = new Vue({
   el: '#admin_content',
   data: {
@@ -234,8 +243,8 @@ var app = new Vue({
     this.renderPostWidgets()
   },
   updated: function() {
-    this.restoreVidgets()
-    this.renderNewWidgets()
+    //this.restoreVidgets()
+    //this.renderNewWidgets()
   },
   methods: {
     addWidget() {
@@ -257,15 +266,17 @@ var app = new Vue({
     },
     widgetUp(N) {
         if (N > 0) {
-            this.saveVidgetContent()
+            //this.saveVidgetContent()
             swap(this.widgets, N, N-1)
+            this.swapDomElements(N, N-1)
             this.refreshOrdering()
         }  
     },
     widgetDown(N) {
         if (N !== this.widgets.length) {
-            this.saveVidgetContent()
-            swap(this.widgets, N, N+1) 
+            //this.saveVidgetContent()
+            swap(this.widgets, N, N+1)
+            this.swapDomElements(N, N+1) 
             this.refreshOrdering()
         }     
     },
@@ -287,6 +298,15 @@ var app = new Vue({
         }
         
         return
+    },
+    swapDomElements(A, B) {
+        let id1 = this.widgets[A].id
+        let id2 = this.widgets[B].id
+
+        let container1 = $('#render_container_' + id1)
+        let container2 = $('#render_container_' + id2)
+
+        $(container1).swapWith(container2);
     },
     saveVidgetContent() {
         this.savedVidgets = []
