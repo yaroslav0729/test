@@ -20,12 +20,12 @@
 
 @extends('layouts.admin')
 
-{{-- @section('head')
+@section('head')
 
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>tinymce.init({selector: '.widget_{{ \App\Models\Widget::WIDGET_RICH_TEXT }}' });</script>
+    {{-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({selector: '.widget_{{ \App\Models\Widget::WIDGET_RICH_TEXT }}' });</script> --}}
 
-@endsection --}}
+@endsection
 
 @section('content')
 
@@ -112,10 +112,11 @@
                         <button @click="widgetDelete(key)" type="button" class="bg-red-400 hover:bg-red-500 text-white py-2 px-2 mr-1 rounded"><i class="fas fa-trash-alt"></i></button>
                     </div>
                     <div class="mb-2 flex-initial">
-                        <div v-if="val.id === 'new'" v-bind="{id: 'render_container_' + val.widget_id + '_' + val.ordering }">
+                        <div v-bind="{id: 'render_container_' + val.id }"> {{-- rendered widget --}}
                             @{{ val }}
                         </div>
-                        <div v-else v-bind="{id: 'render_container_' + val.id }"> {{-- rendered widget --}}
+
+                        <div class="alert alert-warning"> {{-- widget debug info --}}
                             @{{ val }}
                         </div>
                     </div>
@@ -215,6 +216,7 @@ function swap (arr, i, j) {
 var app = new Vue({
   el: '#admin_content',
   data: {
+    uniqCou: 0, // uniq for new added widget
     widgets: [],
     savedVidgets: []
   },
@@ -229,20 +231,23 @@ var app = new Vue({
     this.widgets = currentWidgets
   },
   mounted: function() {
-    this.renderedWidgets()
+    this.renderPostWidgets()
   },
   updated: function() {
     this.restoreVidgets()
+    this.renderNewWidgets()
   },
   methods: {
     addWidget() {
         let widgetId = $('#add_new_widget').val()
         let count = this.widgets.length
+        this.uniqCou++
         this.widgets.push({ 
-            'id': 'new', 
+            'id': 'new_' + this.uniqCou,
             'widget_id': widgetId,
             'ordering': count,
             'parameters': '[]',
+            'rendered': false
         })
     },
     refreshOrdering() {
@@ -271,7 +276,7 @@ var app = new Vue({
             this.refreshOrdering()
         }
     },
-    renderedWidgets() {
+    renderPostWidgets() {
 
         for (var i=0; i< this.widgets.length; i++) {
             let id = this.widgets[i].id
@@ -287,28 +292,48 @@ var app = new Vue({
         this.savedVidgets = []
 
         for (var i=0; i< this.widgets.length; i++) {
+            
             let id = this.widgets[i].id
             let container = $('#render_container_' + id)
             let html = container.html()
             this.savedVidgets[this.widgets[i].id] = html
         }
 
-        console.log('saved', this.savedVidgets)
+        console.log(this.savedVidgets)
     },
     restoreVidgets() {
         for (var i=0; i< this.widgets.length; i++) {
 
             let id = this.widgets[i].id
 
-            if (id !== 'new') {
-                let container = $('#render_container_' + id)
-                let html = this.savedVidgets[id]
-                container.html(html)
-            } else {
-                console.log('new widget found', this.widgets[i])
-            }
+            let container = $('#render_container_' + id)
+            let html = this.savedVidgets[id]
+            container.html(html)
         }   
     },
+    renderNewWidgets() {
+        for (var i=0; i< this.widgets.length; i++) {
+
+            let id = this.widgets[i].id.toString()
+
+            if (id.indexOf('new_') !== -1) {
+
+                let rendered = this.widgets[i].rendered
+                let widget_id = this.widgets[i].widget_id
+
+                if (!rendered) {
+
+                    console.log('first render new widget', id)
+
+                    this.widgets[i].rendered = true
+                    
+                    let container = $('#render_container_' + id)
+                    let html = $('#rendered_widget_' + widget_id).html()
+                    container.html(html)
+                }
+            }
+        } 
+    }
   }
 })
 
