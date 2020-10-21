@@ -30,5 +30,11 @@ $(function() {
         }, 100)
     })
 
+    $('.calculator .title .toggle-title').on('click', function () {
+        $(this).toggleClass('open');
+        $('.calculator .title .bottom').toggleClass('open');
+    })
+
+
 } );
 

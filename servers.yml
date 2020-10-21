@@ -1,0 +1,5 @@
+dev:
+  hostname: islamic_help_dev
+  stage: dev
+  deploy_path: /home/ubuntu/projects/islamic_help
+  branch: dev
