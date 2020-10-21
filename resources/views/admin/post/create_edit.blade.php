@@ -8,7 +8,7 @@
         $description = $post->description;
         $keywords = $post->keywords;
     } else {
-        $pageTitle = 'Create post';
+        $pageTitle = 'Create post:';
         $actionRoute = route('admin.post.store');
         $name = old('name');
         $slug = old('slug');

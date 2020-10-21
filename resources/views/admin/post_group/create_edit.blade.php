@@ -5,7 +5,7 @@
         $name = $pGroup->name;
         $slug = $pGroup->slug;
     } else {
-        $pageTitle = 'Create post group';
+        $pageTitle = 'Create post group:';
         $actionRoute = route('admin.post_group.store');
         $name = old('name');
         $slug = old('slug');
