@@ -28,6 +28,16 @@ class Post extends Model
         return $this->hasMany('App\Models\PostItem')->orderBy('ordering');
     }
 
+    public static function boot()
+    {
+        parent::boot();
+
+        self::deleting(function($model){
+            $model->groups()->detach();
+            $model->widgets()->delete();
+        });
+    }
+
     public function getGroupIdsAttribute()
     {
         return $this->groups->pluck('id')->toArray();
