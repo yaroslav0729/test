@@ -244,7 +244,7 @@ var app = new Vue({
   },
   updated: function() {
     //this.restoreVidgets()
-    //this.renderNewWidgets()
+    this.renderNewWidgets()
   },
   methods: {
     addWidget() {
