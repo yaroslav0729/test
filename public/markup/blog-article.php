@@ -64,17 +64,15 @@
     <div class="body">
         <div class="row gutter-0">
             <div class="col-7" style="z-index: 2">
-                <div class="text">
+                <div class="text bg-danger">
                     <div class="tl">Applications for Mission Impossible 2020 deployments are open!</div>
                     <p>170 Characters perspiciais und omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quaemus ab illo inventore veritatis.</p>
                 </div>
                 <div class="text-right">
-                    <a href="#" class="btn btn-danger view-more">Learn more</a>
+                    <a href="#" class="btn btn-danger-light view-more">Learn more</a>
                 </div>
             </div>
-            <div class="col-5">
-                <img src="img/content/mission-impossible-1.jpg" alt="" >
-            </div>
+            <div class="col-5 img" style="background-image: url(img/content/mission-impossible-1.jpg)">&nbsp;</div>
         </div>
     </div>
     </div>
