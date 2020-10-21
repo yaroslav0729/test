@@ -733,6 +733,10 @@ header.only-menu .down-bar.bg-white {
   background: #F5C15D;
   border-color: #F5C15D;
 }
+.btn-secondary {
+  background: #9496B0;
+  border-color: #9496B0;
+}
 .btn-outline-warning {
   background: #fff;
   border-color: #F5C15D;
@@ -764,6 +768,9 @@ header.only-menu .down-bar.bg-white {
 .bg-primary-light {
   background-color: #E3EFFE !important;
 }
+.bg-secondary {
+  background-color: #9496B0 !important;
+}
 .text-info {
   color: #2caabb  !important;
 }
@@ -772,6 +779,9 @@ header.only-menu .down-bar.bg-white {
 }
 .text-danger {
   color: #F97866 !important;
+}
+.text-secondary {
+  color: #9496B0 !important;
 }
 .text-underline {
   text-decoration: underline;
@@ -890,6 +900,7 @@ input[type='number'] + .input-group {
 input[type='number'] + .input-group .form-control {
   border-top-color: #101525;
   border-bottom-color: #101525;
+  padding: 5px;
 }
 input[type='number'] + .input-group .btn {
   background: #E3EFFE;
@@ -902,7 +913,6 @@ input[type='number'] + .input-group .btn strong {
 }
 input[type='number'].color-danger + .input-group .form-control {
   background: #FFF6F3 !important;
-  padding: 5px;
 }
 input[type='number'].color-danger + .input-group .btn {
   background: #FFF6F3;
@@ -1013,6 +1023,14 @@ input[type='number'].color-danger + .input-group .btn {
 .gutter-5 > div {
   padding-left: 5px;
   padding-right: 5px;
+}
+.gutter-10 {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.gutter-10 > div {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .gutter-30 {
   margin-left: -30px;
@@ -3580,6 +3598,22 @@ input[type='number'].color-danger + .input-group .btn {
 .events-home-search-form.view-btn .row {
   margin-right: 140px;
 }
+.place {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 30px;
+  background: #EFEFF4;
+  border-radius: 5px;
+  padding: 5px 15px;
+  text-transform: uppercase;
+  color: #9496B0;
+}
+.place i {
+  transform: scale(1.2);
+  margin-right: 5px;
+}
 .upcoming-events {
   padding: 0 86px 180px;
   margin-bottom: 102px;
@@ -3596,7 +3630,7 @@ input[type='number'].color-danger + .input-group .btn {
   margin: 0 10px;
   padding: 33px 30px 7px;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 5px 0 5px 5px;
   box-shadow: 0 10px 25px 0 rgba(104, 110, 117, 0.15);
   background-color: #fff;
   margin-bottom: 50px;
@@ -3648,23 +3682,6 @@ input[type='number'].color-danger + .input-group .btn {
   margin-right: 10px;
   transform: scale(1.4);
 }
-.upcoming-events .item .place {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  line-height: 30px;
-  background: #EFEFF4;
-  border-radius: 5px;
-  padding: 5px 15px;
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  color: #9496B0;
-}
-.upcoming-events .item .place i {
-  transform: scale(1.2);
-  margin-right: 5px;
-}
 .upcoming-events .item .date {
   display: inline-block;
   font-size: 16px;
@@ -3691,5 +3708,127 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .upcoming-events select.form-control {
   background-image: url(../img/arrow-down-yellow.svg) !important;
+}
+.event-info-head {
+  padding: 53px 180px 70px;
+}
+.event-info-head img {
+  border-radius: 5px;
+}
+.event-info-head .box {
+  padding-right: 10px;
+  margin-right: -70px;
+  position: relative;
+  z-index: 2;
+}
+.event-info-head .box h1 {
+  color: #101525;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 54px;
+  margin-bottom: 17px;
+  padding-right: 200px;
+}
+.event-info-head .box p {
+  color: #101525;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+  margin: 0;
+  padding-right: 200px;
+}
+.event-info-head .box .date {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 30px;
+  text-align: center;
+  color: #F7796A;
+  position: absolute;
+  bottom: 24px;
+  right: 25px;
+}
+.event-info-head .box .date span {
+  display: block;
+  color: #101525;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 27px;
+}
+.event-info-descr {
+  margin-bottom: 98px;
+}
+.event-info-descr .top {
+  background: #101525;
+  border-radius: 5px;
+  margin-top: -50px;
+  margin-bottom: 15px;
+  padding: 30px 30px 30px 34px;
+}
+.event-info-descr .top b {
+  display: inline-block;
+  vertical-align: baseline;
+  color: #FFF;
+  font-size: 16px;
+  line-height: 1;
+}
+.event-info-descr .top b i {
+  display: inline-block;
+  background: url(../img/ico-calendar-w.svg) no-repeat;
+  background-size: contain;
+  width: 24px;
+  height: 24px;
+  margin-right: 11px;
+  vertical-align: middle;
+  position: relative;
+  top: -3px;
+  line-height: 1;
+}
+.event-info-descr .top b + b {
+  margin-left: 60px;
+}
+.event-info-descr .top a {
+  color: #FFF;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 30px;
+  vertical-align: middle;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+.event-info-descr .top a + span {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: #3A7BF5;
+  color: #fff;
+  text-align: center;
+  font-size: 32px;
+  margin-left: 19px;
+  border-radius: 50%;
+  line-height: 46px;
+  vertical-align: middle;
+}
+.event-info-descr .down > .row > div > div {
+  background: #F8F7FA;
+  border-radius: 5px;
+  padding: 0 20px 20px;
+}
+.event-info-descr .down .title {
+  border-radius: 5px 5px 0 0;
+  background: #EEEDF2;
+  margin: 0 -20px 20px;
+  padding: 24px 20px 19px 35px;
+  color: #101525;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 22px;
+  text-transform: uppercase;
+}
+.event-info-descr .down .line {
+  height: 1px;
+  background: #101525;
+  margin: 12px 0;
 }
 /*# sourceMappingURL=styles.css.map */
