@@ -703,6 +703,9 @@ header.only-menu .down-bar.bg-white {
 .cursor-pointer {
   cursor: pointer;
 }
+.br-5 {
+  border-radius: 5px;
+}
 .btn {
   font-size: 15px;
   font-weight: 900;
@@ -746,6 +749,9 @@ header.only-menu .down-bar.bg-white {
 .btn.border-white {
   border-color: #fff !important;
   box-shadow: 0 0 0 2px #fff !important;
+}
+.btn.h-form-control {
+  padding: 20px 14px 21px;
 }
 .bg-info {
   background-color: #2caabb !important;
@@ -805,12 +811,19 @@ strong {
   color: #101525;
   margin-bottom: 10px;
   padding-left: 20px;
+  text-transform: uppercase;
 }
 .form-group label sup {
   color: red;
 }
 .form-group.has-error label {
   color: #F7796A;
+}
+.form-group .form-control + small {
+  color: #9496B0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
 }
 .invalid-feedback {
   color: #F7796A;
@@ -1844,6 +1857,7 @@ input[type='number'].color-danger + .input-group .btn {
   padding: 17px 40px 17px 66px;
   position: relative;
   margin-bottom: 59px;
+  z-index: 2;
 }
 .blockquote i {
   color: #2CAABB;
@@ -3830,5 +3844,160 @@ input[type='number'].color-danger + .input-group .btn {
   height: 1px;
   background: #101525;
   margin: 12px 0;
+}
+.calculator {
+  padding-top: 67px;
+  padding-bottom: 193px;
+  position: relative;
+}
+.calculator:before {
+  content: '';
+  display: block;
+  background-color: rgba(227, 239, 254, 0.3);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 174px;
+  bottom: 0;
+  z-index: -1;
+}
+.calculator .wrap {
+  box-shadow: 0 10px 25px 0 rgba(104, 110, 117, 0.15);
+  border-radius: 5px;
+  padding: 0 90px 58px;
+  background: #fff;
+  overflow: hidden;
+}
+.calculator .title {
+  background: #231F51;
+  padding: 38px 40px 25px;
+  border-radius: 5px 5px 0 0;
+  margin: 0 -90px;
+  margin-bottom: 40px;
+  position: relative;
+}
+.calculator .title .top b {
+  color: #FFF;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 44px;
+}
+.calculator .title .top .toggle-title {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 1.25px;
+  line-height: 26px;
+  text-align: right;
+  color: #FFF;
+  cursor: pointer;
+}
+.calculator .title .top .toggle-title div + div {
+  display: none;
+  background: #101525;
+  border-radius: 50%;
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  text-align: center;
+  font-size: 26px;
+  line-height: 41px;
+}
+.calculator .title .top .toggle-title div + div i {
+  position: relative;
+  left: 1px;
+}
+.calculator .title .top .toggle-title.open div {
+  display: none;
+}
+.calculator .title .top .toggle-title.open div + div {
+  display: inline-block;
+}
+.calculator .title .bottom {
+  display: none;
+  background: #231F51;
+  padding: 0 0 25px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 107px;
+  z-index: 2;
+}
+.calculator .title .bottom.open {
+  display: block;
+}
+.calculator .title .bottom .line {
+  background: #fff;
+  margin: 0 0 30px;
+}
+.calculator .title .bottom div {
+  color: #FFF;
+  padding: 0 40px;
+}
+.calculator .title .bottom div p {
+  font-family: "Noto Sans JP";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+}
+.calculator .general-content-tabs .nav-tabs .nav-link.active {
+  background: #F1F7FE;
+  border-radius: 5px 5px 0 0 !important;
+}
+.calculator .line {
+  height: 1px;
+  background: #101525;
+  margin: 18px 0;
+}
+.calculator .calc .item {
+  border-radius: 5px;
+  background: #F1F7FE;
+  padding: 28px 35px;
+  width: 550px;
+  margin: 0 auto 10px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+}
+.calculator .calc .item .row {
+  border-bottom: 1px solid #101525;
+}
+.calculator .down {
+  padding: 40px;
+  margin: 70px -90px -58px;
+}
+.calculator .down .total {
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid #101525;
+  padding: 23px 29px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.calculator .down .total b {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 44px;
+  vertical-align: middle;
+  line-height: 1;
+  margin-left: 18px;
+}
+.calculator .text {
+  padding: 0 57px;
+  position: relative;
+}
+.calculator .text h2 {
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 26px;
+  margin-bottom: 20px;
+}
+.calculator .text p {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+  margin-bottom: 20px;
 }
 /*# sourceMappingURL=styles.css.map */
