@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/markup/events-info.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/markup/img/ico-calendar-w.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/markup/calculator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/js/functions.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,20 +23,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="891" column="10" selection-start-line="891" selection-start-column="10" selection-end-line="891" selection-end-column="10" />
+            <state relative-caret-position="436">
+              <caret line="3509" column="35" selection-start-line="3509" selection-start-column="35" selection-end-line="3509" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/markup/events-info.php">
+        <entry file="file://$PROJECT_DIR$/public/markup/calculator.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#1;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="285">
+              <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -52,11 +49,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>arrow</find>
-      <find>view-more</find>
-      <find>E9F6F8</find>
-      <find>.bg</find>
-      <find>.our-story-swiper</find>
       <find>swiper</find>
       <find>svg</find>
       <find>&lt;svg</find>
@@ -65,7 +57,6 @@
       <find>.our-story-swiper</find>
       <find>.black-line</find>
       <find>img</find>
-      <find>.btn</find>
       <find>pagination</find>
       <find>mission-impossible</find>
       <find>missin</find>
@@ -74,14 +65,20 @@
       <find>price</find>
       <find>30</find>
       <find>eneral subtitle right here,</find>
-      <find>form-con</find>
       <find>place</find>
       <find>date</find>
       <find>ico-calendar</find>
-      <find>.btn</find>
       <find>coun</find>
       <find>number</find>
       <find>gut</find>
+      <find>donated-page</find>
+      <find>form-con</find>
+      <find>.bg</find>
+      <find>.btn</find>
+      <find>pagin</find>
+      <find>block</find>
+      <find>blockquote</find>
+      <find>.btn</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -120,7 +117,6 @@
         <option value="$PROJECT_DIR$/public/markup/payments-details.php" />
         <option value="$PROJECT_DIR$/public/markup/thank-you.php" />
         <option value="$PROJECT_DIR$/public/markup/_footer.php" />
-        <option value="$PROJECT_DIR$/public/markup/js/functions.js" />
         <option value="$PROJECT_DIR$/public/markup/project.php" />
         <option value="$PROJECT_DIR$/public/markup/project-emerjency.php" />
         <option value="$PROJECT_DIR$/public/markup/general-content.php" />
@@ -132,6 +128,8 @@
         <option value="$PROJECT_DIR$/public/markup/events-home.php" />
         <option value="$PROJECT_DIR$/public/markup/img/ico-calendar-w.svg" />
         <option value="$PROJECT_DIR$/public/markup/events-info.php" />
+        <option value="$PROJECT_DIR$/public/markup/js/functions.js" />
+        <option value="$PROJECT_DIR$/public/markup/calculator.php" />
         <option value="$PROJECT_DIR$/public/markup/css/styles.less" />
       </list>
     </option>
@@ -189,7 +187,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/markup/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/markup" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -197,8 +195,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/markup/img" />
       <recent name="$PROJECT_DIR$/public/markup" />
+      <recent name="$PROJECT_DIR$/public/markup/img" />
       <recent name="$PROJECT_DIR$/img" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/css" />
@@ -230,12 +228,12 @@
       <option name="presentableId" value="Default" />
       <updated>1602233121090</updated>
       <workItem from="1602233122522" duration="72588000" />
-      <workItem from="1602766523862" duration="55115000" />
+      <workItem from="1602766523862" duration="61087000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127703000" />
+    <option name="totallyTimeSpent" value="133675000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="0" />
@@ -266,7 +264,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/libs/swiper-5.0.3/swiper.js" />
     <entry file="file://$PROJECT_DIR$/libs/fontawesome-pro-5.14.0/css/all.css" />
     <entry file="file://$USER_HOME$/Downloads/TASKS/fontawesome-pro-5-2/fontawesome-pro-5.14.0-web/fontawesome-pro-5.14.0-web/css/light.css">
       <provider selected="true" editor-type-id="text-editor" />
@@ -334,13 +331,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/who-we-are.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -391,27 +381,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/general-content.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="10" lean-forward="true" selection-start-line="1" selection-end-line="18" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/events-home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="226" column="32" selection-start-line="226" selection-start-column="32" selection-end-line="226" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/blog-article.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="32" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/img/ico-calendar.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -432,20 +401,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/general-content.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="10" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="16" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/events-home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="288" column="20" selection-start-line="288" selection-start-column="20" selection-end-line="288" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/events-info.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#1;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="563">
+          <caret line="58" column="48" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/blog-article.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="50" column="18" lean-forward="true" selection-start-line="47" selection-start-column="12" selection-end-line="50" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="60" selection-start-line="34" selection-start-column="60" selection-end-line="34" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/calculator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="891" column="10" selection-start-line="891" selection-start-column="10" selection-end-line="891" selection-end-column="10" />
+        <state relative-caret-position="436">
+          <caret line="3509" column="35" selection-start-line="3509" selection-start-column="35" selection-end-line="3509" selection-end-column="35" />
         </state>
       </provider>
     </entry>
