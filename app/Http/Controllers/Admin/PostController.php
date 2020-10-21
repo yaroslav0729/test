@@ -51,6 +51,8 @@ class PostController extends Controller
         $gIds = $request->input('groups');
         $post->groups()->attach($gIds);
 
+        $post->parseWidgets($request->input('widgets'));
+
         return redirect()->route('admin.post.index')->with('status', 'post created!');
     }
 

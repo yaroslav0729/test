@@ -28,6 +28,16 @@ class Post extends Model
         return $this->hasMany('App\Models\PostItem')->orderBy('ordering');
     }
 
+    public static function boot()
+    {
+        parent::boot();
+
+        self::deleting(function($model){
+            $model->groups()->detach();
+            $model->widgets()->delete();
+        });
+    }
+
     public function getGroupIdsAttribute()
     {
         return $this->groups->pluck('id')->toArray();
@@ -41,7 +51,7 @@ class Post extends Model
         $this->removeOldWidgets($widgets);
 
         foreach ($widgets as $widget) {
-            if ($widget->id === 'new') {
+            if (strpos($widget->id, 'new_') !== false) {
                 $newWidgets[] = new PostItem([
                     'widget_id' => $widget->widget_id,
                     'ordering' => $widget->ordering,
