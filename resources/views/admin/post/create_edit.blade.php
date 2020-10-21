@@ -105,11 +105,11 @@
             @endisset --}}
 
             <div class="mt-2 mb-3">
-                <div v-for="(val, key) in widgets" class="flex mb-2">
-                    <div class="flex-initial mr-3">
-                        <button @click="widgetDown(key)" type="button" class="bg-green-400 hover:bg-green-500 text-white py-2 px-2 mr-1 rounded"><i class="fas fa-arrow-down"></i></button>
-                        <button @click="widgetUp(key)" type="button" class="bg-green-400 hover:bg-green-500 text-white py-2 px-2 mr-1 rounded"><i class="fas fa-arrow-up"></i></button>
-                        <button @click="widgetDelete(key)" type="button" class="bg-red-400 hover:bg-red-500 text-white py-2 px-2 mr-1 rounded"><i class="fas fa-trash-alt"></i></button>
+                <div v-for="(val, key) in widgets" class="d-flex mb-2">
+                    <div class="mr-3 widget_buttons">
+                        <button @click="widgetDown(key)" type="button" class="btn btn-success"><i class="fas fa-arrow-down"></i></button>
+                        <button @click="widgetUp(key)" type="button" class="btn btn-success"><i class="fas fa-arrow-up"></i></button>
+                        <button @click="widgetDelete(key)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                     </div>
                     <div class="mb-2 flex-initial">
                         <div v-bind="{id: 'render_container_' + val.id }"> {{-- rendered widget --}}
@@ -123,11 +123,11 @@
                 </div>
             </div>
 
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <button class="btn btn-info" type="submit">
                 Submit
             </button>
 
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"
+            <button class="btn btn-success" type="button"
                 data-toggle="modal" data-target="#exampleModal">
                 <i class="fas fa-plus"></i> New widget
             </button>

@@ -16,10 +16,18 @@
         @yield('head')
     </head>
     <body class="font-sans antialiased">
+        <div class="wrapper">
 
-        <div class="flex flex-row bg-gray-200">
-            @include('admin.parts.left-menu')
-            @yield('content')
+            @include('parts.header')
+
+            <div class="d-flex">
+                @include('admin.parts.left-menu')
+                <div class="flex-grow-1">
+                    @yield('content')
+                </div>
+            </div>
+            
+            @include('parts.footer')
         </div>
 
         @yield('scripts')

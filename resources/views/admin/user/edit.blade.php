@@ -34,7 +34,7 @@
             <input name="role" id="role_user" type="radio" value="user"  @if($noChecked) checked='checked' @endif />
             <label for="role_user">User</label><br>
 
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <button class="btn btn-info" type="submit">
                 Submit
             </button>
 

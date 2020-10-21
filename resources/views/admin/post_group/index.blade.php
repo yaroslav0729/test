@@ -19,7 +19,7 @@
         @endif
 
         <a href="{{ route('admin.post_group.create') }}">
-          <button class="bg-green-500 mb-3 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="button" title="Create post">
+          <button class="btn btn-success" type="button" title="Create post">
             <i class="far fa-plus-square mr-2"></i>Create
           </button>
         </a>
@@ -42,9 +42,9 @@
                         <td class="border px-4 py-2">{{ $group->name }}</td>
                         <td class="border px-4 py-2">{{ $group->slug }}</td>
                         <td class="border px-4 py-2">{{ $group->created_at->format('d/m/Y') }}</td>
-                        <td class="border px-4 py-2">
+                        <td class="border px-4 py-2 action_td">
                           <a href="{{ route('admin.post_group.edit', ['post_group' => $group->id]) }}">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded" type="submit" title="Edit post">
+                            <button class="btn btn-info action-btn" type="submit" title="Edit post">
                               <i class="fas fa-edit"></i>
                             </button>
                           </a>
@@ -53,7 +53,7 @@
                             @csrf
                             @method('DELETE')
     
-                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded" type="submit" title="Delete post" onclick="return confirm('Are you sure want to delete?')">
+                            <button class="btn btn-danger action-btn" type="submit" title="Delete post" onclick="return confirm('Are you sure want to delete?')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
     
