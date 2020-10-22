@@ -36,5 +36,35 @@ $(function() {
     })
 
 
+    $('.our-work-term .actions a').on('click', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var id  = $(this).attr('data-target')
+        $('.our-work-term .actions .d-none').removeClass('d-none');
+        $('.our-work-term .box, .our-work-term .img-video, .our-work-term .bg').addClass('d-none');
+
+
+        // our-work-term-1
+        // our-work-term-1-video
+        // our-work-term-5-bg
+
+        setTimeout(function () {
+            $this.parent().addClass('d-none')
+            $('.our-work-term #our-work-term-'+id).removeClass('d-none');
+            $('.our-work-term #our-work-term-'+id+'-bg').removeClass('d-none');
+            $('.our-work-term #our-work-term-'+id+'-video').removeClass('d-none');
+        }, 0)
+    })
+
+
+
+    $(".foodpack-range").ionRangeSlider({
+        grid: true,
+        min: 1,
+        max: 20,
+        from: 1,
+        step: 1,
+    });
+
 } );
 
