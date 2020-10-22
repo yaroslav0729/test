@@ -663,41 +663,41 @@ header.only-menu .down-bar.bg-white {
   height: 20px;
 }
 .font-size-12 {
-  font-size: 12px;
+  font-size: 12px !important;
   letter-spacing: 1px;
   line-height: 18px;
 }
 .font-size-15 {
-  font-size: 15px;
+  font-size: 15px !important;
 }
 .font-size-16 {
-  font-size: 16px;
+  font-size: 16px !important;
   line-height: 30px;
 }
 .font-size-18 {
-  font-size: 18px;
+  font-size: 18px !important;
   letter-spacing: 1.25px;
   line-height: 30px;
 }
 .font-size-20 {
-  font-size: 20px;
+  font-size: 20px !important;
   letter-spacing: 1.25px;
   line-height: 30px;
 }
 .font-size-30 {
-  font-size: 30px;
+  font-size: 30px !important;
   line-height: 40px;
 }
 .font-size-40 {
-  font-size: 40px;
+  font-size: 40px !important;
   line-height: 65px;
 }
 .font-size-45 {
-  font-size: 45px;
+  font-size: 45px !important;
   line-height: 50px;
 }
 .font-size-60 {
-  font-size: 60px;
+  font-size: 60px !important;
   line-height: 65px;
 }
 .cursor-pointer {
@@ -726,6 +726,10 @@ header.only-menu .down-bar.bg-white {
   background: #231F51;
   border-color: #231F51;
 }
+.btn-primary-light {
+  background: #E3EFFE;
+  border-color: #E3EFFE;
+}
 .btn-outline-primary {
   background: #fff;
   border-color: #231F51;
@@ -753,6 +757,10 @@ header.only-menu .down-bar.bg-white {
 .btn.h-form-control {
   padding: 20px 14px 21px;
 }
+.btn i {
+  margin: 0 5px;
+  transform: scale(1.4);
+}
 .bg-info {
   background-color: #2caabb !important;
 }
@@ -770,6 +778,9 @@ header.only-menu .down-bar.bg-white {
 }
 .bg-light {
   background-color: #F8F8F8 !important;
+}
+.bg-primary {
+  background-color: #231F51 !important;
 }
 .bg-primary-light {
   background-color: #E3EFFE !important;
@@ -1021,6 +1032,19 @@ input[type='number'].color-danger + .input-group .btn {
   left: auto;
   right: 0;
 }
+.irs--flat .irs-bar {
+  background: #231F51;
+}
+.irs--flat .irs-from,
+.irs--flat .irs-to,
+.irs--flat .irs-single {
+  background-color: #231F51;
+}
+.irs--flat .irs-from:before,
+.irs--flat .irs-to:before,
+.irs--flat .irs-single:before {
+  display: none;
+}
 .gutter-0 {
   margin-left: 0px;
   margin-right: 0px;
@@ -1270,6 +1294,18 @@ input[type='number'].color-danger + .input-group .btn {
   left: auto;
   right: 31px;
 }
+.img-video .caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 13px 22px 10px;
+  text-transform: uppercase;
+  color: #FFF;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 22px;
+}
 .who-we-are {
   padding: 51px 0 59px 120px;
   position: relative;
@@ -1412,6 +1448,103 @@ input[type='number'].color-danger + .input-group .btn {
   bottom: 0;
   transform: translate(-20px, 20px);
   z-index: -1;
+}
+.our-work-term {
+  padding: 0 195px 0 213px;
+  margin-bottom: 144px;
+}
+.our-work-term .view-more {
+  display: inline-block;
+  margin-bottom: 20px;
+  position: relative;
+}
+.our-work-term .view-more:after {
+  content: "";
+  display: block;
+  width: 216px;
+  height: 4px;
+  background: #FED4C2;
+  position: absolute;
+  left: 15px;
+  bottom: -20px;
+}
+.our-work-term .body {
+  position: relative;
+}
+.our-work-term .bg {
+  background: rgba(44, 170, 187, 0.1);
+  position: absolute;
+  left: -4px;
+  top: 20px;
+  right: 0;
+  height: 190px;
+  z-index: -1;
+}
+.our-work-term .bg span {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.our-work-term .bg span:first-child {
+  width: 100%;
+  height: 4px;
+}
+.our-work-term .bg span:last-child {
+  bottom: 0;
+  width: 4px;
+}
+.our-work-term .img-video {
+  margin: 0 30px 10px 20px;
+  padding-bottom: 44.25%;
+}
+.our-work-term .nav a {
+  margin: 0 auto;
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 43px 10px 20px;
+  box-shadow: 0 18px 35px 0 rgba(104, 110, 117, 0.2);
+  background: #fff;
+  position: relative;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.our-work-term .nav a span {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  margin: 0 auto 25px;
+}
+.our-work-term .nav a:before {
+  content: "";
+  display: block;
+  background-color: #FFF5F0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transform: translate(-10px, 10px);
+  z-index: -1;
+}
+.our-work-term .box {
+  padding-top: 58px;
+  background-size: 40px 40px;
+  background-position: top 36px right 36px;
+  background-repeat: no-repeat;
+}
+.our-work-term .box h2 {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 44px;
+  margin-bottom: 10px;
+}
+.our-work-term .box p {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
 }
 .current-projects {
   background: #F6F8FB;
@@ -1740,6 +1873,75 @@ input[type='number'].color-danger + .input-group .btn {
   top: 50%;
   transform: translateY(-50%);
 }
+.join-cause form {
+  background: #F7F8F8;
+  padding: 23px 26px;
+}
+.join-cause form input {
+  border: 2px solid #101525;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 20px 40px;
+  border-radius: 5px 0 0 5px;
+  color: #101525;
+}
+.join-cause form input::-webkit-input-placeholder {
+  color: #101525;
+  font-style: normal;
+  opacity: 1 !important;
+  transition: opacity 0.3s;
+}
+.join-cause form input:-moz-placeholder {
+  color: #101525;
+  font-style: normal;
+  opacity: 1 !important;
+  transition: opacity 0.3s;
+}
+.join-cause form input::-moz-placeholder {
+  color: #101525;
+  font-style: normal;
+  opacity: 1 !important;
+  transition: opacity 0.3s;
+}
+.join-cause form input:-ms-input-placeholder {
+  color: #101525;
+  font-style: normal;
+  opacity: 1 !important;
+  transition: opacity 0.3s;
+}
+.join-cause form input:focus::-webkit-input-placeholder {
+  opacity: 0 !important;
+  transition: opacity 0.3s;
+}
+.join-cause form input:focus::-moz-placeholder {
+  opacity: 0 !important;
+  transition: opacity 0.3s;
+}
+.join-cause form input:focus:-moz-placeholder {
+  opacity: 0 !important;
+  transition: opacity 0.3s;
+}
+.join-cause form input:focus:-ms-input-placeholder {
+  opacity: 0 !important;
+  transition: opacity 0.3s;
+}
+.join-cause form button {
+  border: 2px solid #101525;
+  border-left: 0;
+  background: transparent;
+  color: #2CAABB;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
+  padding: 20px 30px;
+  border-radius: 0 5px 5px 0;
+  white-space: nowrap;
+}
+.join-cause form button i {
+  margin-left: 20px;
+  transform: scale(1.4);
+}
 .join-cause-2 {
   padding: 110px 0;
   margin-bottom: 100px;
@@ -2027,7 +2229,7 @@ input[type='number'].color-danger + .input-group .btn {
   color: #101525;
   font-size: 25px;
   font-weight: 900;
-  line-height: 26px;
+  line-height: 1.3;
   margin-bottom: 40px;
 }
 .blog-article-body p,
@@ -2887,6 +3089,38 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 900;
   line-height: 44px;
   color: #F7796A;
+}
+.modal .modal-header {
+  background: #231F51;
+  padding: 24px 34px;
+}
+.modal .modal-header .modal-title {
+  text-transform: uppercase;
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 30px;
+  vertical-align: middle;
+}
+.modal .modal-header .close {
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  height: 36px;
+  width: 36px;
+  opacity: 1;
+  color: #fff;
+  text-shadow: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.modal .modal-body {
+  padding: 35px 40px 30px;
+}
+.modal .modal-body .line {
+  height: 1px;
+  background: #101525;
+  margin: 12px 0;
 }
 #cartModal {
   top: 100px;
@@ -3999,5 +4233,39 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   line-height: 30px;
   margin-bottom: 20px;
+}
+.contacts {
+  background: #fff url(../img/bg-contact-map.jpg) no-repeat 100% 50%;
+  padding-top: 100px;
+  padding-bottom: 250px;
+}
+.contacts h2 {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 60px;
+  margin-bottom: 10px;
+}
+.contacts h3 {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 60px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.contacts p {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+}
+.contacts .social {
+  padding-top: 5px;
+}
+.contacts .social a {
+  font-size: 23px;
+  color: #000;
+}
+.contacts .social a:hover {
+  color: #F7796A;
 }
 /*# sourceMappingURL=styles.css.map */

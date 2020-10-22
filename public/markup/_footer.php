@@ -40,8 +40,7 @@
 </footer>
 </div><!--wrapper-->
 
-
-<div class="modal fade1" id="cartModal" tabindex="-1" >
+<div class="modal fade" id="cartModal" tabindex="-1" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
@@ -103,3 +102,68 @@
     </div>
 </div>
 
+<div class="modal fade" id="foodPack">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Donate a ramadan family food pack today</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="font-size-16">Donate a food pack from £30 to help feed 8 people</p>
+                <div class="line"></div>
+                <div class="pt-4"></div>
+                <div class="pl-4 pr-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>STEP 2</h3>
+                            <p class="font-size-16">Simply select the <b>country</b> you would like to donate your foodpack to:</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3"><label class="checkbox"><input type="checkbox" checked><span><i class="fal fa-check"></i></span>Middle East</label></div>
+                                    <div class="mb-3"><label class="checkbox"><input type="checkbox"><span><i class="fal fa-check"></i></span>Pakistan</label></div>
+                                    <div class="mb-3"><label class="checkbox"><input type="checkbox"><span><i class="fal fa-check"></i></span>Gaza</label></div>
+                                    <div class="mb-3"><label class="checkbox"><input type="checkbox"><span><i class="fal fa-check"></i></span>Palestine</label></div>
+                                    <div class="mb-3"><label class="checkbox"><input type="checkbox"><span><i class="fal fa-check"></i></span>Where most needed</label></div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3"><label class="checkbox"><input type="checkbox"><span><i class="fal fa-check"></i></span>Bangladesh</label></div>
+                                    <div class="mb-3"><label class="checkbox"><input type="checkbox"><span><i class="fal fa-check"></i></span>Cameroon</label></div>
+                                    <div class="mb-3"><label class="checkbox"><input type="checkbox"><span><i class="fal fa-check"></i></span>Yemen</label></div>
+                                    <div class="mb-3"><label class="checkbox"><input type="checkbox"><span><i class="fal fa-check"></i></span>Jordan</label></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h3>STEP 2</h3>
+                            <p class="font-size-16">Select the <b>number</b> of Food Packs you would like to donate:</p>
+                            <div class="pl-5 pr-5">
+
+                                <div class="mb-3">
+                                    <input type="text" class="foodpack-range" name="my_range" value="" />
+                                </div>
+
+                                <p class="font-size-12 text-info mb-0"><b>1 FOOD PACK SELECTED</b></p>
+                                <p class="font-size-16"><b>Total: £30</b></p>
+
+                                <button class="btn btn-primary-light w-100"><span><i class="fal fa-plus"></i> Add £20 for an Eid Gift!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-right">
+                    <a href="#" class="btn  btn-danger">Checkout <i class="far fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        // $('#foodPack').modal('show')
+    } );
+</script>

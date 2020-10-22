@@ -26,7 +26,7 @@
                         </ul>
                     </div>
                     <div class="col-4 text-right">
-                        <a href="#" class="btn btn-danger">Donate</a>
+                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#foodPack">Donate</a>
                     </div>
                 </div>
             </div>
