@@ -18,7 +18,7 @@
         @endif
 
         <a href="{{ route('admin.post.create') }}">
-          <button class="btn btn-success" type="button" title="Create post">
+          <button class="btn btn-success mt-3 mb-3" type="button" title="Create post">
             <i class="far fa-plus-square mr-2"></i>Create
           </button>
         </a>

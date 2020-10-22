@@ -3,7 +3,7 @@
         @role(\App\Models\User::ROLE_ADMIN)
             <li><a href="{{ route('admin.index') }}"><i class="fas fa-user-shield"></i>Admin panel</a></li>
         @endrole
-        <li><a href="{{ route('dashboard') }}"><i class="far fa-list-alt"></i>Dashboard</a></li>
+        <li><a href="{{ route('dashboard') }}"><i class="far fa-list-alt"></i>User dashboard</a></li>
         <li><a href="{{ route('profile.show') }}"><i class="fas fa-user"></i>Profile</a></li>
     </ul>
     <br><br>

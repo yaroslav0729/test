@@ -43,3 +43,7 @@ h1 {
 .action_td a:hover {
     text-decoration: none;
 }
+.svg_icon {
+    width: 2rem;
+    height: 2rem; 
+}
