@@ -39,7 +39,7 @@
     </head>
     <body class="font-sans antialiased">
         <div class="wrapper">
-            @yield('header')
+            @include('parts.header')
             @yield('content')
             @include('parts.footer')
         </div>

@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
-@section('header')
+{{-- @section('header')
     @include('parts.header')  
-@endsection
+@endsection --}}
 
 @section('content')
 
