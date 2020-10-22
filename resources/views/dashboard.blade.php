@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.user')
 
 @section('content')
 
@@ -18,10 +18,9 @@
     </div>
 </x-app-layout> --}}
 
-<div class="container">
+<div class="container pt-3 pb-3">
 <h2>User {{ __('Dashboard') }}</h2>
 
-@livewire('navigation-dropdown')
 
 </div>
 
