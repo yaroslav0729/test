@@ -4,7 +4,7 @@
 
 <div id="admin_content" class="bg-gray-100 flex-auto h-screen">
     <div class="p-5 pb-8 lg:w-1/2">
-        <h1>Edit user id: {{ $user->id }} page</h1>
+        <h1>Edit user id: {{ $user->id }}</h1>
 
         <form action="{{ route('admin.user.update', ['id' => $user->id]) }}" method="post">
             @csrf
@@ -34,7 +34,7 @@
             <input name="role" id="role_user" type="radio" value="user"  @if($noChecked) checked='checked' @endif />
             <label for="role_user">User</label><br>
 
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <button class="btn btn-info" type="submit">
                 Submit
             </button>
 

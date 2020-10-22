@@ -8,7 +8,7 @@
         $description = $post->description;
         $keywords = $post->keywords;
     } else {
-        $pageTitle = 'Create post';
+        $pageTitle = 'Create post:';
         $actionRoute = route('admin.post.store');
         $name = old('name');
         $slug = old('slug');
@@ -32,13 +32,15 @@
 <div id="admin_content" class="bg-gray-100 flex-auto">
     
     @if ($errors->any())
-        <div class="mb-2 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-            <strong class="font-bold">Validation errors:</strong>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+        <div class="p-3">
+            <div class="alert alert-danger" role="alert">
+                <strong class="font-bold">Validation errors:</strong>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
     @endif
 
@@ -57,7 +59,7 @@
             <input id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $name }}" /><br>
             
             <label for="slug">Slug</label><br>
-            <input id="slug" name="slug" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $slug }}" /><br>
+            <input required id="slug" name="slug" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $slug }}" /><br>
             
             <label for="title">Title</label><br>
             <input id="title" name="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $title }}" /><br>
@@ -105,11 +107,11 @@
             @endisset --}}
 
             <div class="mt-2 mb-3">
-                <div v-for="(val, key) in widgets" class="flex mb-2">
-                    <div class="flex-initial mr-3">
-                        <button @click="widgetDown(key)" type="button" class="bg-green-400 hover:bg-green-500 text-white py-2 px-2 mr-1 rounded"><i class="fas fa-arrow-down"></i></button>
-                        <button @click="widgetUp(key)" type="button" class="bg-green-400 hover:bg-green-500 text-white py-2 px-2 mr-1 rounded"><i class="fas fa-arrow-up"></i></button>
-                        <button @click="widgetDelete(key)" type="button" class="bg-red-400 hover:bg-red-500 text-white py-2 px-2 mr-1 rounded"><i class="fas fa-trash-alt"></i></button>
+                <div v-for="(val, key) in widgets" class="d-flex mb-2">
+                    <div class="mr-3 widget_buttons">
+                        <button @click="widgetDown(key)" type="button" class="btn btn-success"><i class="fas fa-arrow-down"></i></button>
+                        <button @click="widgetUp(key)" type="button" class="btn btn-success"><i class="fas fa-arrow-up"></i></button>
+                        <button @click="widgetDelete(key)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                     </div>
                     <div class="mb-2 flex-initial">
                         <div v-bind="{id: 'render_container_' + val.id }"> {{-- rendered widget --}}
@@ -123,11 +125,11 @@
                 </div>
             </div>
 
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <button class="btn btn-info" type="submit">
                 Submit
             </button>
 
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"
+            <button class="btn btn-success" type="button"
                 data-toggle="modal" data-target="#exampleModal">
                 <i class="fas fa-plus"></i> New widget
             </button>
@@ -172,7 +174,7 @@
                         "id": {{ $widget->id }}, 
                         "widget_id": {{ $widget->widget_id }},
                         "ordering": {{ $key }},
-                        "parameters": "[]"
+                        "parameters": {{ json_encode($widget->parameters) }}
                     }
                    @if((count($post->widgets) > 1) && ($key+1 !== count($post->widgets))), @endif
                 @endforeach
@@ -244,7 +246,7 @@ var app = new Vue({
   },
   updated: function() {
     //this.restoreVidgets()
-    //this.renderNewWidgets()
+    this.renderNewWidgets()
   },
   methods: {
     addWidget() {

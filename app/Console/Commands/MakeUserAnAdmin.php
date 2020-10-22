@@ -41,7 +41,7 @@ class MakeUserAnAdmin extends Command
     public function handle()
     {
         $id = $this->argument('id');
-        $user = User::where('id',1)->firstOrFail();
+        $user = User::where('id', $id)->firstOrFail();
         $user->syncRoles([User::ROLE_ADMIN]);
 
         $this->info('User id: ' . $id . ' is admin now');

@@ -5,7 +5,7 @@
         $name = $pGroup->name;
         $slug = $pGroup->slug;
     } else {
-        $pageTitle = 'Create post group';
+        $pageTitle = 'Create post group:';
         $actionRoute = route('admin.post_group.store');
         $name = old('name');
         $slug = old('slug');
@@ -34,7 +34,7 @@
             <input id="slug" name="slug" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $slug }}" /><br>
             
             <br><br>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <button class="btn btn-info" type="submit">
                 Submit
             </button>
 
