@@ -15,7 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
     .less('resources/less/styles.less', 'public/css')
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
-        require('tailwindcss'),
+        //require('tailwindcss'),
     ]).postCss('resources/css/admin_styles.css', 'public/css', [
     ]);
 
