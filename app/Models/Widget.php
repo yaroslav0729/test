@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\WidgetParameters;
+
 class Widget
 {
     const WIDGET_RICH_TEXT = 100;
@@ -15,4 +17,14 @@ class Widget
     static public function renderId($id) {
         return view('widgets.' . $id, ['parameters' => []]);
     }
+
+    const AVAILABLE_PARAMETERS = [
+        self::WIDGET_RICH_TEXT => [
+            WidgetParameters::PARAM_ENABLED,
+            WidgetParameters::PARAM_DATA
+        ],
+        self::WIDGET_GROUP_TILES => [
+            WidgetParameters::PARAM_COLOR    
+        ]
+    ];
 }
