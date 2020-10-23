@@ -106,20 +106,40 @@
                 @endforeach
             @endisset --}}
 
-            <div class="mt-2 mb-3">
+            <div class="alert alert-warning">
                 <div v-for="(val, key) in widgets" class="mb-3 border rounded p-3">
+                    @{{ val }}
+                </div>
+            </div>
+
+            <div class="mt-2 mb-3">
+                <div v-for="(widget, key) in widgets" class="mb-3 border rounded p-3">
                     <div class="mr-3 widget_buttons">
                         <button @click="widgetDown(key)" type="button" class="btn btn-success"><i class="fas fa-arrow-down"></i></button>
                         <button @click="widgetUp(key)" type="button" class="btn btn-success"><i class="fas fa-arrow-up"></i></button>
                         <button @click="widgetDelete(key)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                     </div>
                     <div class="mb-2 flex-initial">
-                        <div v-bind="{id: 'render_container_' + val.id }"> {{-- rendered widget --}}
-                            @{{ val }}
-                        </div>
+                        <div v-bind="{id: 'render_container_' + widget.id }"> {{-- rendered widget --}}
+                            <h3>@{{ widget.label }}</h3>
 
-                        <div class="alert alert-warning"> {{-- widget debug info --}}
-                            @{{ val }}
+                            <div v-for="(param, key) in widget.saved_parameters" class="mb-3 border rounded p-3">
+                                <h4>Param name: @{{ param.name  }}</h4>
+
+                                <div v-if="param.type === '{{ \App\Models\WidgetParameters::PARAM_TYPE_BOOLEAN }}'">
+                                    <input v-model="param.value" type="radio" id="@{{ av_param.name }}" name="@{{ av_param.name }}" value="true">
+                                    <label>Enabled</label><br>
+                                    <input v-model="param.value" type="radio" id="@{{ av_param.name }}" name="@{{ av_param.name }}" value="false">
+                                    <label>Disabled</label><br>
+                                </div>
+                            </div>
+
+
+
+                            {{-- <textarea v-model="widgets[key].parameters.data">
+                            </textarea> --}}
+
+
                         </div>
                     </div>
                 </div>
@@ -151,7 +171,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <select class="form-control" id="add_new_widget">
-                            @foreach ($widgets as $key => $widget)
+                            @foreach (\App\Models\Widget::WIDGET_LABELS as $key => $widget)
                                 <option value="{{ $key }}">{{ $widget }}</option>
                             @endforeach
                         </select>
@@ -165,37 +185,8 @@
             </div>
         </div>
 
-        {{-- do not remove this block - for Vue init --}}
         <div id="current_post_items" class="d-none alert alert-warning mt-3" >
-            [
-            @if (isset($post) && (count($post->widgets) > 0))
-                @foreach ($post->widgets as $key => $widget)
-                   {
-                        "id": {{ $widget->id }}, 
-                        "widget_id": {{ $widget->widget_id }},
-                        "ordering": {{ $key }},
-                        "parameters": {{ json_encode($widget->parameters) }}
-                    }
-                   @if((count($post->widgets) > 1) && ($key+1 !== count($post->widgets))), @endif
-                @endforeach
-            @endif
-            ]
-        </div>
-        <div id="rendered_post_items" class="d-none">
-            @isset($post)
-                @foreach ($post->widgets as $widget)
-                    <div id="rendered_post_items_{{ $widget->id }}">
-                        {!! $widget->render() !!}
-                    </div>
-                @endforeach
-            @endisset
-        </div>
-        <div id="rendered_widgets" class="d-none">
-            @foreach ($widgets as $widgetKey => $widget)
-                <div id="rendered_widget_{{ $widgetKey }}">
-                    {!! \App\Models\Widget::renderId($widgetKey) !!}
-                </div>
-            @endforeach
+            {{ $widgets }}
         </div>
 </div>
 
@@ -242,11 +233,10 @@ var app = new Vue({
     this.widgets = currentWidgets
   },
   mounted: function() {
-    this.renderPostWidgets()
+    //this.renderPostWidgets()
   },
   updated: function() {
-    //this.restoreVidgets()
-    this.renderNewWidgets()
+
   },
   methods: {
     addWidget() {
@@ -268,17 +258,13 @@ var app = new Vue({
     },
     widgetUp(N) {
         if (N > 0) {
-            //this.saveVidgetContent()
             swap(this.widgets, N, N-1)
-            this.swapDomElements(N, N-1)
             this.refreshOrdering()
         }  
     },
     widgetDown(N) {
         if (N !== this.widgets.length) {
-            //this.saveVidgetContent()
             swap(this.widgets, N, N+1)
-            this.swapDomElements(N, N+1) 
             this.refreshOrdering()
         }     
     },

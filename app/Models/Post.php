@@ -51,16 +51,19 @@ class Post extends Model
         $this->removeOldWidgets($widgets);
 
         foreach ($widgets as $widget) {
+
+            $this->parseSavedParameters($widget->saved_parameters);
+
             if (strpos($widget->id, 'new_') !== false) {
                 $newWidgets[] = new PostItem([
                     'widget_id' => $widget->widget_id,
                     'ordering' => $widget->ordering,
-                    'parameters' => $widget->parameters
+                    'parameters' => $this->parseSavedParameters($widget->saved_parameters)
                 ]);    
             } else {
                 $postItem = PostItem::where('id', $widget->id)->firstOrFail();
                 $postItem->ordering = $widget->ordering;
-                $postItem->parameters = $widget->parameters;
+                $postItem->parameters = $this->parseSavedParameters($widget->saved_parameters);
                 $postItem->save();
             }
         }
@@ -70,6 +73,17 @@ class Post extends Model
         }
 
         return true;
+    }
+
+    protected function parseSavedParameters($savedParams)
+    {
+        $parameters = [];
+
+        foreach ($savedParams as $sParam) {
+            $parameters[$sParam->name] = $sParam->value;
+        }
+
+        return $parameters;
     }
 
     protected function removeOldWidgets($widgets)

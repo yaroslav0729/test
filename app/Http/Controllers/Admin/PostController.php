@@ -77,12 +77,22 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $groups = PostGroup::all();
-        $widgets = Widget::WIDGET_LABELS;
+        $widgets = [];
+
+        foreach ($post->widgets as $widget) {
+            $widgets[] = [
+                "id" => $widget->id, 
+                "widget_id" => $widget->widget_id,
+                "ordering" => $widget->ordering,
+                "saved_parameters" => $widget->saved_parameters,
+                "label" => $widget->label
+            ];
+        }
 
         return view('admin.post.create_edit', [
             'post' => $post, 
             'groups' => $groups,
-            'widgets' => $widgets,
+            'widgets' => json_encode($widgets),
         ]);
     }
 

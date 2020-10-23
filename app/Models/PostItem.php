@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Widget;
+use App\Models\WidgetParameters;
 
 class PostItem extends Model
 {
@@ -23,5 +25,31 @@ class PostItem extends Model
     public function render()
     {
         return view('widgets.' . $this->widget_id, ['parameters' => $this->parameters]);
+    }
+
+    public function getLabelAttribute()
+    {
+        return Widget::WIDGET_LABELS[$this->widget_id];
+    }
+
+    public function getAvailableParametersAttribute()
+    {
+        return Widget::AVAILABLE_PARAMETERS[$this->widget_id];
+    }
+
+    public function getSavedParametersAttribute()
+    {
+        $savedParams = Widget::AVAILABLE_PARAMETERS[$this->widget_id];
+
+        foreach ($savedParams as $key => $param) {
+
+            if (array_key_exists($param['name'], $this->parameters)) {
+                $savedParams[$key]['value'] = $this->parameters[$param['name']];
+            } else {
+                $savedParams[$key]['value'] = null;
+            }
+        }
+
+        return $savedParams;
     }
 }

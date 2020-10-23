@@ -16,11 +16,11 @@ class Widget
 
     const AVAILABLE_PARAMETERS = [
         self::WIDGET_RICH_TEXT => [
-            WidgetParameters::PARAM_ENABLED,
-            WidgetParameters::PARAM_DATA
+            WidgetParameters::PARAMS[WidgetParameters::PARAM_ENABLED],
+            WidgetParameters::PARAMS[WidgetParameters::PARAM_DATA]
         ],
         self::WIDGET_GROUP_TILES => [
-            WidgetParameters::PARAM_COLOR    
+            WidgetParameters::PARAMS[WidgetParameters::PARAM_COLOR] 
         ]
     ];
 
