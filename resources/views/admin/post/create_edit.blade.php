@@ -127,9 +127,9 @@
                                 <h4>Param name: @{{ param.name  }}</h4>
 
                                 <div v-if="param.type === '{{ \App\Models\WidgetParameters::PARAM_TYPE_BOOLEAN }}'">
-                                    <input v-model="param.value" type="radio" id="@{{ av_param.name }}" name="@{{ av_param.name }}" value="true">
+                                    <input v-model="param.value" type="radio" value="true">
                                     <label>Enabled</label><br>
-                                    <input v-model="param.value" type="radio" id="@{{ av_param.name }}" name="@{{ av_param.name }}" value="false">
+                                    <input v-model="param.value" type="radio" value="false">
                                     <label>Disabled</label><br>
                                 </div>
 
@@ -142,12 +142,6 @@
                                 </div>
 
                             </div>
-
-
-
-                            {{-- <textarea v-model="widgets[key].parameters.data">
-                            </textarea> --}}
-
 
                         </div>
                     </div>
@@ -195,8 +189,18 @@
         </div>
 
         <div id="current_post_items" class="d-none alert alert-warning mt-3" >
-            {{ $widgets }}
+            {{ $widgetsRestore }}
         </div>
+
+        <div id="widget_default_values" class="alert alert-warning mt-3" >
+            {{ $widgetDefaultValues }}
+        </div>
+
+        <div id="widget_labels" class="alert alert-warning mt-3" >
+            {{ $widgetLabels }}
+        </div>
+
+
 </div>
 
 @endsection
@@ -229,7 +233,9 @@ var app = new Vue({
   data: {
     uniqCou: 0, // uniq for new added widget
     widgets: [],
-    savedVidgets: []
+    savedVidgets: [],
+    defaultValues: [],
+    widgetLabels: [],
   },
   computed: {
     widgetsString() {
@@ -243,11 +249,23 @@ var app = new Vue({
   },
   mounted: function() {
     //this.renderPostWidgets()
+    this.calcDefaultValues()
+    this.setWidgetLabels()
   },
   updated: function() {
 
   },
   methods: {
+    calcDefaultValues() {
+        let defaults = $('#widget_default_values').html()
+        this.defaultValues = JSON.parse(defaults)
+        console.log(this.defaultValues)
+    },
+    setWidgetLabels() {
+        let labels = $('#widget_labels').html()
+        this.widgetLabels = JSON.parse(labels)
+        console.log('labels', this.widgetLabels)
+    },
     addWidget() {
         let widgetId = $('#add_new_widget').val()
         let count = this.widgets.length
@@ -256,8 +274,9 @@ var app = new Vue({
             'id': 'new_' + this.uniqCou,
             'widget_id': widgetId,
             'ordering': count,
-            'parameters': '[]',
-            'rendered': false
+            'saved_parameters': this.defaultValues[widgetId],
+            'rendered': false,
+            'label': this.widgetLabels[widgetId]
         })
     },
     refreshOrdering() {

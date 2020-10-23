@@ -77,10 +77,12 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $groups = PostGroup::all();
-        $widgets = [];
+        $widgetsRestore = [];
+        $widgetDefaultValues = Widget::AVAILABLE_PARAMETERS;
+        $widgetLabels = Widget::WIDGET_LABELS;
 
         foreach ($post->widgets as $widget) {
-            $widgets[] = [
+            $widgetsRestore[] = [
                 "id" => $widget->id, 
                 "widget_id" => $widget->widget_id,
                 "ordering" => $widget->ordering,
@@ -92,7 +94,9 @@ class PostController extends Controller
         return view('admin.post.create_edit', [
             'post' => $post, 
             'groups' => $groups,
-            'widgets' => json_encode($widgets),
+            'widgetsRestore' => json_encode($widgetsRestore),
+            'widgetDefaultValues' => json_encode($widgetDefaultValues),
+            'widgetLabels' => json_encode($widgetLabels),
         ]);
     }
 

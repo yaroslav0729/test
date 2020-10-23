@@ -45,6 +45,7 @@ class PostItem extends Model
 
             if (array_key_exists($param['name'], $this->parameters)) {
                 $savedParams[$key]['value'] = $this->parameters[$param['name']];
+                unset($savedParams[$key]['default']);
             } else {
                 $savedParams[$key]['value'] = null;
             }
