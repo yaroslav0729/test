@@ -132,6 +132,15 @@
                                     <input v-model="param.value" type="radio" id="@{{ av_param.name }}" name="@{{ av_param.name }}" value="false">
                                     <label>Disabled</label><br>
                                 </div>
+
+                                <div v-if="param.type === '{{ \App\Models\WidgetParameters::PARAM_TYPE_TEXT }}'">
+                                    <textarea v-model="param.value"></textarea>
+                                </div>
+
+                                <div v-if="param.type === '{{ \App\Models\WidgetParameters::PARAM_TYPE_INPUT_STRING }}'">
+                                    <input v-model="param.value" />
+                                </div>
+
                             </div>
 
 
