@@ -31,8 +31,9 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
     <link type="text/css" href="css/styles.css?1" rel="stylesheet" media="all" />
+    <link type="text/css" href="css/mobile.css?1" rel="stylesheet" media="all" />
 
 </head>
-<body>
+<body class="mobile-template">
 
 <div class="wrapper">
