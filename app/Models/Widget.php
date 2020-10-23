@@ -14,10 +14,6 @@ class Widget
         self::WIDGET_GROUP_TILES => 'Group tiles',
     ];
 
-    static public function renderId($id) {
-        return view('widgets.' . $id, ['parameters' => []]);
-    }
-
     const AVAILABLE_PARAMETERS = [
         self::WIDGET_RICH_TEXT => [
             WidgetParameters::PARAM_ENABLED,
@@ -27,4 +23,8 @@ class Widget
             WidgetParameters::PARAM_COLOR    
         ]
     ];
+
+    static public function renderId($id) {
+        return view('widgets.' . $id, ['parameters' => []]);
+    }
 }

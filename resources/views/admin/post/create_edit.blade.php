@@ -107,7 +107,7 @@
             @endisset --}}
 
             <div class="mt-2 mb-3">
-                <div v-for="(val, key) in widgets" class="d-flex mb-2">
+                <div v-for="(val, key) in widgets" class="mb-3 border rounded p-3">
                     <div class="mr-3 widget_buttons">
                         <button @click="widgetDown(key)" type="button" class="btn btn-success"><i class="fas fa-arrow-down"></i></button>
                         <button @click="widgetUp(key)" type="button" class="btn btn-success"><i class="fas fa-arrow-up"></i></button>
