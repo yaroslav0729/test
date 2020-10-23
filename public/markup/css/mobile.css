@@ -1,0 +1,455 @@
+.mobile-template .wrapper {
+  padding-top: 54px;
+}
+.mobile-template .wrap {
+  min-width: 200px;
+}
+.mobile-template header {
+  background: #E3EFFE;
+}
+.mobile-template header .top-bar {
+  padding: 14px 12px;
+}
+.mobile-template header .top-bar .logo {
+  font-size: 16px;
+}
+.mobile-template header .top-bar .logo span {
+  background-color: #fff;
+  height: 26px;
+  width: 26px;
+  margin-right: 10px;
+}
+.mobile-template .header-menu {
+  padding: 0px 49px 20px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.mobile-template .header-menu .line {
+  width: 260px;
+  height: 4px;
+  background: #101525;
+  margin: 20px 0 20px -49px;
+}
+.mobile-template .header-menu.dark-theme {
+  background: #101525;
+}
+.mobile-template .header-menu.dark-theme .line {
+  background: #ffffff;
+}
+.mobile-template .header-menu.dark-theme .top a {
+  color: #fff !important;
+}
+.mobile-template .header-menu.dark-theme > ul li {
+  color: #fff;
+}
+.mobile-template .header-menu.dark-theme > ul li a {
+  color: #fff;
+}
+.mobile-template .header-menu.dark-theme.menu-2 li a {
+  color: #fff;
+}
+.mobile-template .header-menu.dark-theme .title {
+  color: #fff;
+}
+.mobile-template .header-menu .top {
+  padding: 14px 12px;
+  margin: 0 -49px;
+}
+.mobile-template .header-menu .top a,
+.mobile-template .header-menu .top .search-btn,
+.mobile-template .header-menu .top .close-menu {
+  color: #101525;
+  font-size: 23px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 22px;
+}
+.mobile-template .header-menu .top .close-menu {
+  font-size: 27px;
+}
+.mobile-template .header-menu .logo {
+  margin-bottom: 15px;
+}
+.mobile-template .header-menu .level-0 > ul {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+.mobile-template .header-menu .level-0 > ul li {
+  display: block;
+  padding: 0;
+  font-size: 20px;
+  line-height: 50px;
+}
+.mobile-template .header-menu .level-0 > ul li a {
+  font-weight: 900;
+  color: #101525;
+}
+.mobile-template .header-menu .level-0 > ul.menu-2 li {
+  font-size: 16px;
+}
+.mobile-template .header-menu .level-0 > ul.menu-2 li a {
+  color: #101525;
+}
+.mobile-template .header-menu .title {
+  font-size: 20px;
+  line-height: 50px;
+  font-weight: 900;
+  padding: 0;
+  margin: 0 0 20px;
+}
+.mobile-template .header-menu .title + div {
+  padding-left: 0;
+}
+.mobile-template .header-menu .menu {
+  margin: 0;
+}
+.mobile-template .header-menu .menu li a {
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 50px;
+}
+.mobile-template .header-menu .projects-group-swiper {
+  padding: 0;
+  margin: 0;
+}
+.mobile-template .header-menu .projects-group-swiper .item {
+  text-align: left;
+  padding: 21px 30px 22px 49px;
+  margin: 0 0 4px -49px;
+}
+.mobile-template .header-menu .categories {
+  background: #101525;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.mobile-template .header-menu .categories ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.mobile-template .header-menu .categories ul li {
+  display: block;
+}
+.mobile-template .header-menu .categories ul li a {
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 50px;
+}
+.mobile-template footer {
+  padding: 33px 47px 100px;
+}
+.mobile-template footer .menu {
+  margin: 0 0 30px;
+}
+.mobile-template footer .menu li {
+  display: block;
+}
+.mobile-template footer .menu li:after {
+  display: none !important;
+}
+.mobile-template footer .menu .sub-menu {
+  position: relative;
+  top: 0;
+  padding-left: 10px;
+}
+.mobile-template footer .menu .open .sub-menu:after {
+  display: none !important;
+}
+.mobile-template footer .copy {
+  opacity: 1;
+  line-height: 2;
+}
+.mobile-template footer .social {
+  padding-top: 30px;
+}
+.mobile-template footer .social a {
+  font-size: 30px;
+}
+.mobile-template footer .toggle-menu {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 50px;
+  position: relative;
+  margin-bottom: 20px;
+}
+.mobile-template footer .toggle-menu:after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 4px;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.mobile-template .main-page-header {
+  padding: 0;
+}
+.mobile-template .main-page-header .body {
+  border: 0;
+  padding: 0;
+  flex-direction: column;
+}
+.mobile-template .main-page-header .body .left {
+  flex: 1 1 100%;
+  padding: 0;
+  padding: 30px 20px 40px 29px;
+  order: 2;
+}
+.mobile-template .main-page-header .body .right {
+  flex: 1 1 250px;
+  padding: 0;
+  order: 1;
+}
+.mobile-template .main-page-header .body .title {
+  font-size: 30px;
+  line-height: 35px;
+}
+.mobile-template .main-page-header .body p {
+  font-size: 16px;
+  line-height: 24px;
+}
+.mobile-template .main-page-header .body .view-more {
+  display: inline-block;
+  position: relative;
+}
+.mobile-template .who-we-are {
+  padding: 20px 30px 60px;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+.mobile-template .who-we-are:before {
+  width: 100%;
+  z-index: -1;
+}
+.mobile-template .who-we-are .img-video {
+  margin-left: -30px;
+  margin-right: -30px;
+  padding-bottom: 56.25%;
+}
+.mobile-template .who-we-are .help-info {
+  position: relative;
+  right: auto;
+  bottom: 0;
+}
+.mobile-template .who-we-are + .help-info-swiper {
+  margin: -52px 0 40px;
+}
+.mobile-template .current-projects {
+  padding: 56px 13px;
+  margin-bottom: 0;
+}
+.mobile-template .current-projects .wrap {
+  padding: 0;
+}
+.mobile-template .current-projects .title {
+  margin-bottom: 35px;
+}
+.mobile-template .current-projects .title:after {
+  display: none;
+  bottom: -20px;
+}
+.mobile-template .current-projects .title span {
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 35px;
+}
+.mobile-template .current-projects .title .fa-arrow-down {
+  left: auto;
+  right: 13px;
+  top: 4px;
+  font-size: 35px;
+}
+.mobile-template .current-projects .body {
+  top: 0;
+}
+.mobile-template .current-projects .body .left {
+  padding: 45px 35px 0;
+  border-radius: 5px 5px 0 0;
+  z-index: 2;
+  position: relative;
+}
+.mobile-template .current-projects .body .left .btn {
+  margin-bottom: -24px;
+}
+.mobile-template .current-projects .swiper-pagination {
+  position: relative;
+  text-align: center;
+  bottom: 0;
+  margin-top: 40px;
+}
+.mobile-template .current-projects .swiper-pagination .swiper-pagination-bullet {
+  background: #DAE7F9;
+  border-radius: 0;
+  height: 4px;
+  width: 40px;
+  min-width: 10px;
+  margin-right: 10px;
+  opacity: 1;
+}
+.mobile-template .current-projects .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #F5C15D;
+}
+.mobile-template .current-projects .swiper-button-prev,
+.mobile-template .current-projects .swiper-button-next {
+  top: auto;
+  bottom: 66px;
+  margin: 0 !important;
+  font-size: 35px;
+  background: #F5C15D;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 60px;
+  color: #fff;
+}
+.mobile-template .current-projects .swiper-button-prev:after,
+.mobile-template .current-projects .swiper-button-next:after {
+  display: none;
+}
+.mobile-template .current-projects .swiper-button-next {
+  right: 0;
+}
+.mobile-template .current-projects .swiper-button-prev {
+  left: 0;
+}
+.mobile-template .lets-join {
+  padding: 0;
+  margin: 0;
+}
+.mobile-template .lets-join .title {
+  font-size: 25px;
+  padding-top: 70px;
+  margin: 0 30px 30px;
+  position: relative;
+  border-top: 4px solid #101525;
+}
+.mobile-template .lets-join .title span {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 20px;
+}
+.mobile-template .lets-join .title span:after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 4px;
+  background: #101525;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+}
+.mobile-template .lets-join .title i {
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+}
+.mobile-template .lets-join .item {
+  padding-bottom: 50px;
+  box-shadow: none;
+}
+.mobile-template .lets-join .item .img,
+.mobile-template .lets-join .item .img-video {
+  margin-bottom: 40px;
+}
+.mobile-template .widget-about-project {
+  margin: 0;
+}
+.mobile-template .widget-about-project .img {
+  padding-bottom: 52%;
+}
+.mobile-template .widget-about-project .descr {
+  padding: 20px 30px 30px;
+}
+.mobile-template .widget-about-project .descr a:first-child {
+  font-size: 30px;
+  color: #fff;
+}
+.mobile-template .widget-about-project .descr > div {
+  padding: 0;
+}
+.mobile-template .whats-new {
+  padding: 50px 13px 0;
+}
+.mobile-template .whats-new .title {
+  font-size: 25px;
+  margin-bottom: 25px;
+}
+.mobile-template .whats-new .item .img {
+  width: 104px;
+  height: 115px;
+}
+.mobile-template .whats-new .item .img .plus {
+  display: none;
+}
+.mobile-template .whats-new .item .descr {
+  max-width: calc(100% - 70px);
+  display: block;
+  left: 0;
+  margin-left: 70px;
+  padding: 16px 25px;
+}
+.mobile-template .whats-new .item .descr p {
+  line-height: 1.4;
+}
+.mobile-template .whats-new .item .descr .date {
+  display: none;
+}
+.mobile-template .whats-new .item.vertical .img {
+  width: 100%;
+  height: auto;
+  padding-top: 68%;
+}
+.mobile-template .whats-new .item.vertical .descr {
+  border-radius: 5px;
+}
+.mobile-template .whats-new .item.vertical .descr:after {
+  display: none;
+}
+.mobile-template .whats-new .swiper-container {
+  margin-bottom: 0;
+}
+.mobile-template .whats-new .swiper-container .swiper-slide {
+  padding-bottom: 50px;
+}
+.mobile-template .whats-new .swiper-container .swiper-pagination {
+  position: relative;
+  text-align: center;
+  bottom: 0;
+  margin-top: 0px;
+}
+.mobile-template .whats-new .swiper-container .swiper-pagination .swiper-pagination-bullet {
+  background: #DAE7F9;
+  border-radius: 0;
+  height: 4px;
+  width: 40px;
+  min-width: 10px;
+  margin-right: 10px;
+  opacity: 1;
+}
+.mobile-template .whats-new .swiper-container .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #2CAABB;
+}
+.mobile-template .join-cause {
+  padding: 70px 13px 50px;
+}
+.mobile-template .join-cause form {
+  padding: 20px 0 0;
+  background: transparent;
+}
+.mobile-template .join-cause form button {
+  padding: 20px 25px;
+  text-align: center;
+}
+.mobile-template .join-cause form button i {
+  margin: 0;
+}
+/*# sourceMappingURL=mobile.css.map */
