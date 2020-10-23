@@ -28381,11 +28381,11 @@ header.only-menu .down-bar.bg-white {
 }
 
 .text-info {
-  color: #2caabb  !important;
+  color: #2caabb !important;
 }
 
 .text-dark {
-  color: #101525  !important;
+  color: #101525 !important;
 }
 
 .text-danger {
@@ -30281,7 +30281,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .about-donation .body .item span {
@@ -30492,7 +30492,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 #cartModal .price {
@@ -30519,4 +30519,4 @@ input[type='number'].color-danger + .input-group .btn {
   background-size: 60px 60px;
   padding: 15px 0 15px 80px;
   margin: 0;
-}
+} 
