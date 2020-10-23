@@ -120,6 +120,13 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::findOrFail($id);
+
+        if ($post->slug !== $request->input('slug')) {
+            $validatedData = $request->validate([
+                'slug' => 'required|unique:posts'
+            ]);
+        }
+
         $post->update($request->all());
 
         $gIds = $request->input('groups');
