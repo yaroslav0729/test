@@ -49363,14 +49363,26 @@ $(function () {
 
 /***/ }),
 
+/***/ "./resources/less/styles.less":
+/*!************************************!*\
+  !*** ./resources/less/styles.less ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!********************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/css/app.css ./resources/css/admin_styles.css ***!
-  \********************************************************************************************/
+/*!*************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/less/styles.less ./resources/css/app.css ./resources/css/admin_styles.css ***!
+  \*************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /var/www/html/islamichelp.local/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/less/styles.less */"./resources/less/styles.less");
 __webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app.css */"./resources/css/app.css");
 module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
 

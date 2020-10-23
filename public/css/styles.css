@@ -724,10 +724,10 @@ header.only-menu .down-bar.bg-white {
   background-color: #F5C15D !important;
 }
 .text-info {
-  color: #2caabb  !important;
+  color: #2caabb !important;
 }
 .text-dark {
-  color: #101525  !important;
+  color: #101525 !important;
 }
 .text-danger {
   color: #F97866 !important;
@@ -774,40 +774,48 @@ strong {
   color: #838EAB;
   font-style: normal;
   opacity: 1 !important;
+  -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
 .form-control:-moz-placeholder {
   color: #838EAB;
   font-style: normal;
   opacity: 1 !important;
+  -moz-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
 .form-control::-moz-placeholder {
   color: #838EAB;
   font-style: normal;
   opacity: 1 !important;
+  -moz-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
 .form-control:-ms-input-placeholder {
   color: #838EAB;
   font-style: normal;
   opacity: 1 !important;
+  -ms-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
 .form-control:focus::-webkit-input-placeholder {
   opacity: 0 !important;
+  -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
 .form-control:focus::-moz-placeholder {
   opacity: 0 !important;
+  -moz-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
 .form-control:focus:-moz-placeholder {
   opacity: 0 !important;
+  -moz-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
 .form-control:focus:-ms-input-placeholder {
   opacity: 0 !important;
+  -ms-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
 .form-control:focus {
@@ -825,7 +833,7 @@ select.form-control {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background: #E3EFFE url(../img/arrow-down.svg) no-repeat top 50% right 20px !important;
+  background: #E3EFFE url(/images/arrow-down.svg?dce6d7b4cd7efbfb6ff1cdf47ac63941) no-repeat top 50% right 20px !important;
   background-size: 20px 15px !important;
   padding-right: 45px !important;
 }
@@ -1581,7 +1589,7 @@ input[type='number'].color-danger + .input-group .btn {
 .join-cause-2 .wrap > div:after {
   content: "";
   display: block;
-  background: url(../img/Line-styling.png) no-repeat;
+  background: url(/images/Line-styling.png?b03a87dd394747a88d56e0d8ba1cafa2) no-repeat;
   background-size: contain;
   height: 197px;
   width: 196px;
@@ -1647,7 +1655,7 @@ input[type='number'].color-danger + .input-group .btn {
   border-radius: 50%;
   height: 46px;
   width: 46px;
-  background: #F8F8F8 url(../img/ico-power.svg) no-repeat 50% 50%;
+  background: #F8F8F8 url(/images/ico-power.svg?992d6225d069f36556f00637c7b21022) no-repeat 50% 50%;
   background-size: 23px 23px;
   position: relative;
   vertical-align: middle;
@@ -1711,7 +1719,7 @@ input[type='number'].color-danger + .input-group .btn {
 .blockquote:after {
   content: "";
   display: block;
-  background: url(../img/ico-quote.svg) no-repeat;
+  background: url(/images/ico-quote.svg?ebf6243e5457c05b183a6dbbeaa64fe5) no-repeat;
   background-size: contain;
   width: 43px;
   height: 43px;
@@ -1803,7 +1811,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .blog-article-head .date i {
   display: inline-block;
-  background: url(../img/ico-calendar.svg) no-repeat;
+  background: url(/images/ico-calendar.svg?b7fb7006370afed0f8ee1f63f70023cf) no-repeat;
   background-size: contain;
   width: 20px;
   height: 20px;
@@ -2274,7 +2282,7 @@ input[type='number'].color-danger + .input-group .btn {
   margin-top: 0 !important;
 }
 .about-donation .body.no-donate {
-  background-image: url(../img/ico-smile-cloud.svg);
+  background-image: url(/images/ico-smile-cloud.svg?eeb8613cdf4195ebf1104b5033a8a6d4);
   background-position: top 50% right 43px;
   background-repeat: no-repeat;
   background-size: 55px 46px;
@@ -2332,7 +2340,7 @@ input[type='number'].color-danger + .input-group .btn {
   border-radius: 0 0 5px 5px;
 }
 .about-donation .body.donated .down-bar p {
-  background: url(../img/ico-smile.svg) no-repeat 0 50%;
+  background: url(/images/ico-smile.svg?9dcaa9304d7217f5b7097ae6cea32b34) no-repeat 0 50%;
   background-size: 60px 60px;
   padding: 15px 0 15px 80px;
   margin: 0;
@@ -2352,7 +2360,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: .5;
+  opacity: 0.5;
 }
 .about-donation .body .item span {
   display: inline-block;
@@ -2433,7 +2441,7 @@ input[type='number'].color-danger + .input-group .btn {
   line-height: 37px;
   text-align: center;
   min-width: 110px;
-  background: url(../img/bg-confetti.png) no-repeat 50% 50%;
+  background: url(/images/bg-confetti.png?9399384367ff3cff0a76ed9c893d3863) no-repeat 50% 50%;
   background-size: contain;
   padding: 27px 5px;
 }
@@ -2534,7 +2542,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: .5;
+  opacity: 0.5;
 }
 #cartModal .price {
   display: inline-block;
@@ -2554,9 +2562,8 @@ input[type='number'].color-danger + .input-group .btn {
   border-radius: 0 0 5px 5px;
 }
 #cartModal .down-bar p {
-  background: url(../img/ico-smile.svg) no-repeat 0 50%;
+  background: url(/images/ico-smile.svg?9dcaa9304d7217f5b7097ae6cea32b34) no-repeat 0 50%;
   background-size: 60px 60px;
   padding: 15px 0 15px 80px;
   margin: 0;
 }
-/*# sourceMappingURL=styles.css.map */
