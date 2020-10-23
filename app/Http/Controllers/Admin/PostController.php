@@ -33,6 +33,7 @@ class PostController extends Controller
         $groups = PostGroup::all();
         $widgetDefaultValues = Widget::AVAILABLE_PARAMETERS;
         $widgetLabels = Widget::WIDGET_LABELS;
+        
         return view('admin.post.create_edit', [
             'groups' => $groups,
             'widgetDefaultValues' => json_encode($widgetDefaultValues),
