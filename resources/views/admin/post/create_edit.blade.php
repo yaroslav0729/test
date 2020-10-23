@@ -189,7 +189,9 @@
         </div>
 
         <div id="current_post_items" class="d-none alert alert-warning mt-3" >
-            {{ $widgetsRestore }}
+            @isset($widgetsRestore)
+                {{ $widgetsRestore }}
+            @endisset
         </div>
 
         <div id="widget_default_values" class="alert alert-warning mt-3" >

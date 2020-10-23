@@ -33,7 +33,7 @@
             </div>
 
             <div class="black-line">
-                <div class="head-menu-video" style="background-image: url(img/content/Winter-A-2-1200x800.jpg)">
+                <div class="head-menu-video" style="background-image: url(/img/content/Winter-A-2-1200x800.jpg)">
                     <i class="fas fa-play-circle"></i>
                     <div class="name">IH LATEST <b>WINTER APPEAL</b></div>
                 </div>

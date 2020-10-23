@@ -31,10 +31,12 @@ class PostController extends Controller
     public function create()
     {
         $groups = PostGroup::all();
-        $widgets = Widget::WIDGET_LABELS;
+        $widgetDefaultValues = Widget::AVAILABLE_PARAMETERS;
+        $widgetLabels = Widget::WIDGET_LABELS;
         return view('admin.post.create_edit', [
             'groups' => $groups,
-            'widgets' => $widgets
+            'widgetDefaultValues' => json_encode($widgetDefaultValues),
+            'widgetLabels' => json_encode($widgetLabels),
             ]);
     }
 
@@ -77,9 +79,22 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $groups = PostGroup::all();
-        $widgetsRestore = [];
+        $widgetsRestore = $this->restoreWidgets($post);
         $widgetDefaultValues = Widget::AVAILABLE_PARAMETERS;
         $widgetLabels = Widget::WIDGET_LABELS;
+
+        return view('admin.post.create_edit', [
+            'post' => $post, 
+            'groups' => $groups,
+            'widgetsRestore' => json_encode($widgetsRestore),
+            'widgetDefaultValues' => json_encode($widgetDefaultValues),
+            'widgetLabels' => json_encode($widgetLabels),
+        ]);
+    }
+
+    protected function restoreWidgets($post)
+    {
+        $widgetsRestore = [];
 
         foreach ($post->widgets as $widget) {
             $widgetsRestore[] = [
@@ -91,13 +106,7 @@ class PostController extends Controller
             ];
         }
 
-        return view('admin.post.create_edit', [
-            'post' => $post, 
-            'groups' => $groups,
-            'widgetsRestore' => json_encode($widgetsRestore),
-            'widgetDefaultValues' => json_encode($widgetDefaultValues),
-            'widgetLabels' => json_encode($widgetLabels),
-        ]);
+        return $widgetsRestore;
     }
 
     /**
