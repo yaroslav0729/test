@@ -33,6 +33,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
             Route::post('update/{id}', [UserController::class, 'update'])->name('admin.user.update');
             Route::delete('delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
         });
+
+        Route::get('/modal/get_widget_modal', [AdminPostController::class, 'getWidgetModal'])->name('admin.modal.getWidgetModal');
     });
 });
 

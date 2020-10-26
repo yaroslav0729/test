@@ -12,7 +12,7 @@
 
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <script src="{{ asset('js/app.js') }}""></script>
-        <script src="{{ asset('js/admin.js') }}""></script>
+        {{-- <script src="{{ asset('js/admin.js') }}""></script> --}}
         <link rel="stylesheet" href="{{ asset('css/admin_styles.css') }}">
         @yield('head')
     </head>
@@ -29,6 +29,11 @@
             </div>
             
             @include('parts.footer')
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-wrap" tabindex="-1" aria-labelledby="myExtraLargeModalLabel" role="dialog" aria-hidden="true">
+            {{-- @include('admin.modals.add_widget') --}}
         </div>
 
         @yield('scripts')

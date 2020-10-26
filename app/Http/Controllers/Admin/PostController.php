@@ -151,4 +151,14 @@ class PostController extends Controller
 
         return redirect()->route('admin.post.index')->with('status', 'Post deleted!');
     }
+
+    public function getWidgetModal()
+    {
+        $modalView = view('admin.modals.add_widget')->render();
+
+        return response()->json([
+            'html' => $modalView,
+            'status' => 'success',
+        ]); 
+    }
 }
