@@ -33,7 +33,9 @@
 
         <!-- Modal -->
         <div class="modal fade" id="modal-wrap" tabindex="-1" aria-labelledby="myExtraLargeModalLabel" role="dialog" aria-hidden="true">
-            {{-- @include('admin.modals.add_widget') --}}
+            <div class="modal-dialog">
+                {{-- @include('admin.modals.add_widget') --}}
+            </div>
         </div>
 
         @yield('scripts')
