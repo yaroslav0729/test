@@ -37,7 +37,7 @@ class PostController extends Controller
         
         return view('admin.post.create_edit', [
             'groups' => $groups,
-            ]);
+        ]);
     }
 
     /**
@@ -147,15 +147,11 @@ class PostController extends Controller
             abort(404);
         }
 
-        $widgetHtml = view('widgets.' . $widgetId)->render();
-        $widgetWithElements = view('widgets.widget_elements', [
-            'widgetHtml' => $widgetHtml,
-            'availableParameters' =>  WidgetParameters::AVAILABLE_PARAMETERS[$widgetId],
-            'widgetId' => $widgetId
-        ])->render();
+        $widget = new PostItem(['widget_id' => $widgetId]);
+        $widgetHtml = $widget->renderWidhElements()->render();
 
         return response()->json([
-            'content' => $widgetWithElements
+            'content' => $widgetHtml
         ], 200); 
     }
 }
