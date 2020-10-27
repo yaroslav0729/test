@@ -47,6 +47,7 @@ class Post extends Model
     {
         $data = $request->all();
         $saveData = [];
+        $newWidgets = [];
 
         foreach ($data as $paramKey => $param) {
             if (strpos($paramKey, 'widget_param_') !== false) {
@@ -60,12 +61,10 @@ class Post extends Model
             }    
         }
 
-        
-
         foreach ($saveData as $postItemId => $postData) {
             foreach ($postData as $widgetId => $widget) {
                 $postItem = PostItem::where('id', $postItemId)->
-                                    where('widget_id', $widgetId)->firstOrFail();
+                                    where('widget_id', $widgetId)->first();
 
                 $params = [];
                 foreach ($widget as $paramId => $param) {
@@ -73,12 +72,20 @@ class Post extends Model
                 }
 
                 if (!$postItem) {
-                    $postItem = new PostItem;
-                } 
-
-                $postItem->parameters = $params;
-                $postItem->save();
+                    $newWidgets[] = new PostItem([
+                        'widget_id' => $widgetId,
+                        'ordering' => 1,
+                        'parameters' => $params
+                    ]);
+                } else {
+                    $postItem->parameters = $params;
+                    $postItem->save();
+                }
             }
+        }
+
+        if ($newWidgets !== []) {
+            $this->widgets()->saveMany($newWidgets);
         }
     }
 

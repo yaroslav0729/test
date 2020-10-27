@@ -24,7 +24,7 @@ received parameters
                 $inputName = "";
 
                 if (!isset($itemId)) {
-                    $itemId = "new";
+                    $itemId = "new-" . \Illuminate\Support\Str::random(20);
                 }
             
                 $inputName = "widget_param_" . $itemId . "_" . $widgetId . "_";
