@@ -191,6 +191,13 @@ $(function () {
         itemsElement.append($(this).html());
         $(this).html('')
     });
+
+    $(document).on('click', '.widget_buttons [btn-delete]', function () {
+        
+        let el = $(this).closest('.widget-item')
+        console.log('btn-delete click', el.html())
+        el.remove()
+    });
 })
 
 //require('./functions');
