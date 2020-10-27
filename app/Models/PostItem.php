@@ -32,7 +32,10 @@ class PostItem extends Model
     public function renderWidhElements()
     {
         return view('widgets.widget_elements', [
-            'widgetHtml' => $this->render()
+            'widgetHtml' => $this->render(),
+            'availableParameters' =>  WidgetParameters::AVAILABLE_PARAMETERS[$this->widget_id],
+            'widgetId' => $this->widget_id,
+            'parameters' => $this->parameters
         ]);
     }
 
@@ -43,23 +46,6 @@ class PostItem extends Model
 
     public function getAvailableParametersAttribute()
     {
-        return Widget::AVAILABLE_PARAMETERS[$this->widget_id];
-    }
-
-    public function getSavedParametersAttribute()
-    {
-        $savedParams = Widget::AVAILABLE_PARAMETERS[$this->widget_id];
-
-        foreach ($savedParams as $key => $param) {
-
-            if (array_key_exists($param['name'], $this->parameters)) {
-                $savedParams[$key]['value'] = $this->parameters[$param['name']];
-                unset($savedParams[$key]['default']);
-            } else {
-                $savedParams[$key]['value'] = null;
-            }
-        }
-
-        return $savedParams;
+        return WidgetParameters::AVAILABLE_PARAMETERS[$this->widget_id];
     }
 }
