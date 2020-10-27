@@ -263,7 +263,10 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label><b>CARD NUMBER</b></label>
+                                    <label class="row gutter-0 d-flex">
+                                        <b class="col-6 d-block">CARD NUMBER</b>
+                                        <span class="col-6 text-right d-block"><img src="img/payment-global.png" alt=""></span>
+                                    </label>
                                     <input type="text" class="form-control">
                                 </div>
                                 <div class="row gutter-5">

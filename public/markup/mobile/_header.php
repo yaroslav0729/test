@@ -6,6 +6,7 @@
                 <div class="row align-items-center">
                     <div class="col-6"><a href="#" class="logo"><span></span> Islamic Help</a></div>
                     <div class="col-6 text-right">
+                        <a href="#" class="basket"><i class="fal fa-shopping-cart"></i><span></span></a>
                         <span class="open-head-menu"><i class="fas fa-bars"></i></span>
                     </div>
                 </div>

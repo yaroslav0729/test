@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="http://islamic-help.lo/">
+    <base href="//<?=$_SERVER['HTTP_HOST'];?>">
 
     <title>Islamic-Help</title>
     <meta charset='utf-8'>
