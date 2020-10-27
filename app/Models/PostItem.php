@@ -29,6 +29,13 @@ class PostItem extends Model
         ]);
     }
 
+    public function renderWidhElements()
+    {
+        return view('widgets.widget_elements', [
+            'widgetHtml' => $this->render()
+        ]);
+    }
+
     public function getLabelAttribute()
     {
         return Widget::WIDGET_LABELS[$this->widget_id];

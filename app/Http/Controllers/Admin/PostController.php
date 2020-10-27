@@ -174,9 +174,12 @@ class PostController extends Controller
         }
 
         $widgetHtml = view('widgets.' . $widgetId)->render();
+        $widgetWithElements = view('widgets.widget_elements', [
+            'widgetHtml' => $widgetHtml
+        ])->render();
 
         return response()->json([
-            'content' => $widgetHtml
+            'content' => $widgetWithElements
         ], 200); 
     }
 }
