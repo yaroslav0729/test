@@ -1,46 +1,23 @@
 <?php
 
 namespace App\Models;
+use App\Models\Widget;
 
 class WidgetParameters
 {
-    const PARAM_ENABLED = 'enabled';
-    const PARAM_COLOR = 'color';
-    const PARAM_DATA = 'data';
-    const PARAM_WIDTH = 'width';
-    const PARAM_HEIGHT = 'height';
+    const PARAM_HTML = 100;
+    const PARAM_GROUP = 200;
+    const PARAM_ELEMENTS_QUANT = 300;
+    const PARAM_PAGES_QUANT = 400;
 
-    const PARAM_TYPE_DROPDOWN = 'dropdown';
-    const PARAM_TYPE_INPUT_STRING = 'input string';
-    const PARAM_TYPE_TEXT = 'text';
-    const PARAM_TYPE_BOOLEAN = 'boolean';
-    const PARAM_TYPE_DIGIT = 'digit';
-
-    const PARAMS = [
-        self::PARAM_ENABLED => [
-            'name' => self::PARAM_ENABLED,
-            'type' => self::PARAM_TYPE_BOOLEAN,
-            'default' => false
+    const AVAILABLE_PARAMETERS = [
+        Widget::WIDGET_RICH_TEXT => [
+            self::PARAM_HTML    
         ],
-        self::PARAM_COLOR => [
-            'name' => self::PARAM_COLOR,
-            'type' => self::PARAM_TYPE_INPUT_STRING,
-            'default' => '#ffffff'
-        ],
-        self::PARAM_DATA => [
-            'name' => self::PARAM_DATA,
-            'type' => self::PARAM_TYPE_TEXT,
-            'default' => ''
-        ],
-        self::PARAM_WIDTH => [
-            'name' => self::PARAM_WIDTH,
-            'type' => self::PARAM_TYPE_DIGIT,
-            'default' => 0
-        ],
-        self::PARAM_HEIGHT => [
-            'name' => self::PARAM_HEIGHT,
-            'type' => self::PARAM_TYPE_DIGIT,
-            'default' => 0
-        ],
+        Widget::WIDGET_GROUP_TILES => [
+            self::PARAM_GROUP,
+            self::PARAM_ELEMENTS_QUANT,
+            self::PARAM_PAGES_QUANT    
+        ]
     ];
 }

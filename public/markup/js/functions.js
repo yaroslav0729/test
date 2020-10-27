@@ -74,7 +74,7 @@ $(function() {
 
 
 
-     $("input[type='number']").inputSpinner()
+    $("input[type='number']").inputSpinner()
 
 
 

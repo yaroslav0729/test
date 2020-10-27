@@ -97,55 +97,18 @@
 
             <hr>
 
-            <div class="p-5 pb-8 lg:w-full">
+            <div class="p-5 pb-8">
             <h3 class="mb-3">Post content:</h3>
 
-            {{-- @isset($post)
-                @foreach ($post->widgets as $widget)
-                    {!! $widget->render() !!}
-                @endforeach
-            @endisset --}}
-
-            <div class="alert alert-warning">
-                <div v-for="(val, key) in widgets" class="mb-3 border rounded p-3">
-                    @{{ val }}
-                </div>
+            <div id="widget-items-wrapper" class="mb-3">
+                @isset($post)
+                    @foreach ($post->widgets as $wKey => $widget)
+                        {!! $widget->renderWidhElements() !!}
+                    @endforeach
+                @endisset
             </div>
 
-            <div class="mt-2 mb-3">
-                <div v-for="(widget, key) in widgets" class="mb-3 border rounded p-3">
-                    <div class="mr-3 widget_buttons">
-                        <button @click="widgetDown(key)" type="button" class="btn btn-success"><i class="fas fa-arrow-down"></i></button>
-                        <button @click="widgetUp(key)" type="button" class="btn btn-success"><i class="fas fa-arrow-up"></i></button>
-                        <button @click="widgetDelete(key)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                    <div class="mb-2 flex-initial">
-                        <div v-bind="{id: 'render_container_' + widget.id }"> {{-- rendered widget --}}
-                            <h3>@{{ widget.label }}</h3>
-
-                            <div v-for="(param, key) in widget.saved_parameters" class="mb-3 border rounded p-3">
-                                <h4>Param name: @{{ param.name  }}</h4>
-
-                                <div v-if="param.type === '{{ \App\Models\WidgetParameters::PARAM_TYPE_BOOLEAN }}'">
-                                    <input v-model="param.value" type="radio" value="true">
-                                    <label>Enabled</label><br>
-                                    <input v-model="param.value" type="radio" value="false">
-                                    <label>Disabled</label><br>
-                                </div>
-
-                                <div v-if="param.type === '{{ \App\Models\WidgetParameters::PARAM_TYPE_TEXT }}'">
-                                    <textarea v-model="param.value"></textarea>
-                                </div>
-
-                                <div v-if="param.type === '{{ \App\Models\WidgetParameters::PARAM_TYPE_INPUT_STRING }}'">
-                                    <input v-model="param.value" />
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+            <div id="response-content" class="d-none">
             </div>
 
             <button class="btn btn-info" type="submit">
@@ -153,55 +116,15 @@
             </button>
 
             <button class="btn btn-success" type="button"
-                data-toggle="modal" data-target="#exampleModal">
+                modal-call
+                path="{{ route('admin.modal.getWidgetModal') }}"
+                data-toggle="modal" data-target="#modal-wrap">
                 <i class="fas fa-plus"></i> New widget
             </button>
 
             </div>
 
         </form>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Select widget type</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <select class="form-control" id="add_new_widget">
-                            @foreach (\App\Models\Widget::WIDGET_LABELS as $key => $widget)
-                                <option value="{{ $key }}">{{ $widget }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" @click="addWidget">Select</button>
-                </div>
-            </div>
-            </div>
-        </div>
-
-        <div id="current_post_items" class="d-none alert alert-warning mt-3" >
-            @isset($widgetsRestore)
-                {{ $widgetsRestore }}
-            @endisset
-        </div>
-
-        <div id="widget_default_values" class="alert alert-warning mt-3" >
-            {{ $widgetDefaultValues }}
-        </div>
-
-        <div id="widget_labels" class="alert alert-warning mt-3" >
-            {{ $widgetLabels }}
-        </div>
-
 
 </div>
 
@@ -210,170 +133,9 @@
 @section('scripts')
 <script>
 
-function swap (arr, i, j) {
-    var temp = arr[i]; //temporarily store original value at i position
-    arr[i] = arr[j]; //reassign value at i position to be value at j position
-    arr[j] = temp; //reassign value at j position to original value at i position
-  
-    arr.push(0)//for vue reactivity
-    arr.splice(arr.length-1, 1);//for vue reactivity
-  
-    return arr;
-}
 
-jQuery.fn.swapWith = function(to) {
-    return this.each(function() {
-        var copy_to = $(to).clone(true);
-        var copy_from = $(this).clone(true);
-        $(to).replaceWith(copy_from);
-        $(this).replaceWith(copy_to);
-    });
-};
 
-var app = new Vue({
-  el: '#admin_content',
-  data: {
-    uniqCou: 0, // uniq for new added widget
-    widgets: [],
-    savedVidgets: [],
-    defaultValues: [],
-    widgetLabels: [],
-  },
-  computed: {
-    widgetsString() {
-        return JSON.stringify(this.widgets)
-    }
-  },
-  created: function() {
-    let currentWidgets = $('#current_post_items').html();
-    currentWidgets = JSON.parse(currentWidgets)
-    this.widgets = currentWidgets
-  },
-  mounted: function() {
-    //this.renderPostWidgets()
-    this.calcDefaultValues()
-    this.setWidgetLabels()
-  },
-  updated: function() {
 
-  },
-  methods: {
-    calcDefaultValues() {
-        let defaults = $('#widget_default_values').html()
-        this.defaultValues = JSON.parse(defaults)
-        console.log(this.defaultValues)
-    },
-    setWidgetLabels() {
-        let labels = $('#widget_labels').html()
-        this.widgetLabels = JSON.parse(labels)
-        console.log('labels', this.widgetLabels)
-    },
-    addWidget() {
-        let widgetId = $('#add_new_widget').val()
-        let count = this.widgets.length
-        this.uniqCou++
-        this.widgets.push({ 
-            'id': 'new_' + this.uniqCou,
-            'widget_id': widgetId,
-            'ordering': count,
-            'saved_parameters': this.defaultValues[widgetId],
-            'rendered': false,
-            'label': this.widgetLabels[widgetId]
-        })
-    },
-    refreshOrdering() {
-        for (let i=0; i<this.widgets.length; i++) {
-            this.widgets[i].ordering = i;    
-        }
-    },
-    widgetUp(N) {
-        if (N > 0) {
-            swap(this.widgets, N, N-1)
-            this.refreshOrdering()
-        }  
-    },
-    widgetDown(N) {
-        if (N !== this.widgets.length) {
-            swap(this.widgets, N, N+1)
-            this.refreshOrdering()
-        }     
-    },
-    widgetDelete(N) {
-        let ok = confirm("Are you sure want to delete?");
-        if (ok) {
-            this.widgets.splice(N, 1)
-            this.refreshOrdering()
-        }
-    },
-    renderPostWidgets() {
-
-        for (var i=0; i< this.widgets.length; i++) {
-            let id = this.widgets[i].id
-            let widget = $('#rendered_post_items_' + id)
-            let container = $('#render_container_' + id)
-            let html = widget.html()
-            container.html(html)
-        }
-        
-        return
-    },
-    swapDomElements(A, B) {
-        let id1 = this.widgets[A].id
-        let id2 = this.widgets[B].id
-
-        let container1 = $('#render_container_' + id1)
-        let container2 = $('#render_container_' + id2)
-
-        $(container1).swapWith(container2);
-    },
-    saveVidgetContent() {
-        this.savedVidgets = []
-
-        for (var i=0; i< this.widgets.length; i++) {
-            
-            let id = this.widgets[i].id
-            let container = $('#render_container_' + id)
-            let html = container.html()
-            this.savedVidgets[this.widgets[i].id] = html
-        }
-
-        console.log(this.savedVidgets)
-    },
-    restoreVidgets() {
-        for (var i=0; i< this.widgets.length; i++) {
-
-            let id = this.widgets[i].id
-
-            let container = $('#render_container_' + id)
-            let html = this.savedVidgets[id]
-            container.html(html)
-        }   
-    },
-    renderNewWidgets() {
-        for (var i=0; i< this.widgets.length; i++) {
-
-            let id = this.widgets[i].id.toString()
-
-            if (id.indexOf('new_') !== -1) {
-
-                let rendered = this.widgets[i].rendered
-                let widget_id = this.widgets[i].widget_id
-
-                if (!rendered) {
-
-                    console.log('first render new widget', id)
-
-                    this.widgets[i].rendered = true
-                    
-                    let container = $('#render_container_' + id)
-                    let html = $('#rendered_widget_' + widget_id).html()
-                    container.html(html)
-                }
-            }
-        } 
-    }
-  }
-})
 
 </script>
 @endsection

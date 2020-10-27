@@ -1,5 +1,5 @@
-<h3>{{ \App\Models\Widget::WIDGET_LABELS[\App\Models\Widget::WIDGET_RICH_TEXT] }}</h3>
-<textarea class="widget_{{ \App\Models\Widget::WIDGET_RICH_TEXT }}">
-@isset($parameters['data']){!! $parameters['data'] !!}@endisset
-</textarea>
-<br>
+<div class="widget_layout">
+    @isset($parameters[\App\Models\WidgetParameters::PARAM_HTML])
+        {!! $parameters[\App\Models\WidgetParameters::PARAM_HTML] !!}
+    @endisset
+</div>
