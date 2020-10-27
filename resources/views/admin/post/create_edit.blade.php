@@ -101,7 +101,7 @@
             <div id="widget-items-wrapper" class="mb-3">
                 @isset($post)
                     @foreach ($post->widgets as $wKey => $widget)
-                        {!! $widget->renderWidhElements() !!}
+                        {!! $widget->renderWithElements() !!}
                     @endforeach
                 @endisset
             </div>

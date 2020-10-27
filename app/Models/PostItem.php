@@ -29,7 +29,7 @@ class PostItem extends Model
         ]);
     }
 
-    public function renderWidhElements()
+    public function renderWithElements()
     {
         return view('widgets.widget_elements', [
             'itemId' => $this->id,

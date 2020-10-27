@@ -148,7 +148,7 @@ class PostController extends Controller
         }
 
         $widget = new PostItem(['widget_id' => $widgetId]);
-        $widgetHtml = $widget->renderWidhElements()->render();
+        $widgetHtml = $widget->renderWithElements()->render();
 
         return response()->json([
             'content' => $widgetHtml
