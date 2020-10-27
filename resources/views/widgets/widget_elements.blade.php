@@ -56,7 +56,15 @@ received parameters
                             $inputName = $inputName . \App\Models\WidgetParameters::PARAM_ELEMENTS_QUANT;
                         @endphp
                         <div class="input-group mb-3">
-                            <input name="{{ $inputName }}" type="number" class="form-control" placeholder="Quantity of elements">
+                            <input 
+                                name="{{ $inputName }}" 
+                                type="number" 
+                                class="form-control" 
+                                placeholder="Quantity of elements"
+                                @isset($parameters[\App\Models\WidgetParameters::PARAM_ELEMENTS_QUANT]) 
+                                    value="{{ $parameters[\App\Models\WidgetParameters::PARAM_ELEMENTS_QUANT] }}" 
+                                @endisset
+                            />
                         </div>
                         
                     @break
@@ -66,7 +74,15 @@ received parameters
                             $inputName = $inputName . \App\Models\WidgetParameters::PARAM_PAGES_QUANT;
                         @endphp
                         <div class="input-group mb-3">
-                            <input name="{{ $inputName }}" type="number" class="form-control" placeholder="Quantity of pages">
+                            <input 
+                                name="{{ $inputName }}" 
+                                type="number" 
+                                class="form-control" 
+                                placeholder="Quantity of pages"
+                                @isset($parameters[\App\Models\WidgetParameters::PARAM_PAGES_QUANT]) 
+                                    value="{{ $parameters[\App\Models\WidgetParameters::PARAM_PAGES_QUANT] }}" 
+                                @endisset 
+                            />
                         </div>
                     @break
 
