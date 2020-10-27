@@ -8,6 +8,8 @@ use App\Models\Post;
 use App\Models\PostGroup;
 use App\Models\Widget;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\Admin\WidgetAddRequest;
+
 
 class PostController extends Controller
 {
@@ -150,5 +152,30 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->route('admin.post.index')->with('status', 'Post deleted!');
+    }
+
+    public function getWidgetModal()
+    {
+        $modalView = view('admin.modals.add_widget')->render();
+
+        return response()->json([
+            'html' => $modalView,
+            'status' => 'success',
+        ]); 
+    }
+
+    public function addWidget(WidgetAddRequest $request)
+    {
+        // $widgetId = (int)$request->input('widget_id');
+
+        // if ($widgetId === 0) {
+        //     return response()->json([
+        //         'message' => 'Choose the widget type',
+        //         'status' => 'error',
+        //     ], 404);     
+        // }
+
+        return response()->json([
+        ], 200); 
     }
 }
