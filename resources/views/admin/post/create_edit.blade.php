@@ -100,19 +100,16 @@
             <div class="p-5 pb-8">
             <h3 class="mb-3">Post content:</h3>
 
-            @isset($post)
-                @foreach ($post->widgets as $wKey => $widget)
-                    <div class="border border-dark rounded p-3 smb-3"
-                        id="widget_{{ $wKey + 1 }}" data-id="{{ $widget->id }}">
+            <div id="widget-items-wrapper" class="mb-3">
+                @isset($post)
+                    @foreach ($post->widgets as $wKey => $widget)
                         {!! $widget->render() !!}
-                    </div>
-                    <div class="border mb-3 mt-3 p-3 widget_buttons">
-                        <button type="button" class="btn btn-success"><i class="fas fa-arrow-down"></i></button>
-                        <button type="button" class="btn btn-success"><i class="fas fa-arrow-up"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                @endforeach
-            @endisset
+                    @endforeach
+                @endisset
+            </div>
+
+            <div id="response-content" class="d-none">
+            </div>
 
             <button class="btn btn-info" type="submit">
                 Submit

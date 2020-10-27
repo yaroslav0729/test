@@ -50,11 +50,6 @@ $(function () {
         });   
     }
 
-    // $(document).on('click', '#modal-wrap .close', function() {
-    //     //console.log('close')
-    //     $('#modal-wrap').modal('hide')
-    // });
-
     $(document).on('click', '#submit_modal_form', function() {
         $('form#modal-form').submit()
     });
@@ -73,8 +68,6 @@ $(function () {
         var form = $(this);
         var formData = new FormData(form[0]);
 
-        console.log('formData', formData)
-
         $.ajax({
             url     : form.attr('action'),
             type    : form.attr('method'),
@@ -88,7 +81,6 @@ $(function () {
                 if ('content' in response) {
                     let element = $('#response-content');
                     element.html(response.content);
-                    element.attr('wrapper-id', response.wrapper_id);
                     element.trigger('process');
                     $('#modal-wrap').modal('hide');
 
@@ -128,7 +120,7 @@ $(function () {
             {
                 MODAL_FORM_LOCK = false;
 
-                if(response.status === 422) {
+                if (response.status === 422) {
 
                     // Hide previous errors
                     $('#modal-errors').closest('div').hide();
@@ -193,6 +185,12 @@ $(function () {
             }
         })
     })
+
+    $(document).on('process', '#response-content', function () {
+        let itemsElement = $('#widget-items-wrapper');
+        itemsElement.append($(this).html());
+        $(this).html('')
+    });
 })
 
 //require('./functions');

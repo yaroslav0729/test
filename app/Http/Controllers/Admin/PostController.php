@@ -9,7 +9,7 @@ use App\Models\PostGroup;
 use App\Models\Widget;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\Admin\WidgetAddRequest;
-
+use App\Models\PostItem;
 
 class PostController extends Controller
 {
@@ -166,16 +166,17 @@ class PostController extends Controller
 
     public function addWidget(WidgetAddRequest $request)
     {
-        // $widgetId = (int)$request->input('widget_id');
+        $widgetId = (int)$request->input('widget_id');
+        $widget = PostItem::where('widget_id', $widgetId)->first();
 
-        // if ($widgetId === 0) {
-        //     return response()->json([
-        //         'message' => 'Choose the widget type',
-        //         'status' => 'error',
-        //     ], 404);     
-        // }
+        if (!$widget) {
+            abort(404);
+        }
+
+        $widgetHtml = view('widgets.' . $widgetId)->render();
 
         return response()->json([
+            'content' => $widgetHtml
         ], 200); 
     }
 }
