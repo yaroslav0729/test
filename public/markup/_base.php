@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="//<?=$_SERVER['HTTP_HOST'];?>">
+    <base href="//<?=$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];?>">
 
     <title>Islamic-Help</title>
     <meta charset='utf-8'>
@@ -36,3 +36,4 @@
 <body>
 
 <div class="wrapper">
+
