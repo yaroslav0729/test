@@ -1,3 +1,15 @@
+{{--
+
+received parameters
+    
+- $itemId - not required
+- $widgetId
+- $widgetHtml
+- $availableParameters
+- $parameters - not required
+
+--}}
+
 <div class="widget-item border border-dark rounded p-3 mb-3">
     <h2 class="mt-1 mb-3">{{  \App\Models\Widget::WIDGET_LABELS[$widgetId] }}</h2>
     
@@ -7,21 +19,55 @@
 
     <div class="border rounded p-3">
         @foreach ($availableParameters as $param)
+
+            @php
+                $inputName = "";
+
+                if (!isset($itemId)) {
+                    $itemId = "new";
+                }
+            
+                $inputName = "widget_param_" . $itemId . "_" . $widgetId . "_";
+            @endphp
+
             @switch($param)
                 @case(\App\Models\WidgetParameters::PARAM_HTML)
-                        <textarea name="widget_">@isset($parameters[\App\Models\WidgetParameters::PARAM_HTML]){!! $parameters[\App\Models\WidgetParameters::PARAM_HTML] !!}@endisset</textarea>
+                        @php
+                            $inputName = $inputName . \App\Models\WidgetParameters::PARAM_HTML;
+                        @endphp
+                        <textarea name="{{ $inputName }}">@isset($parameters[\App\Models\WidgetParameters::PARAM_HTML]){!! $parameters[\App\Models\WidgetParameters::PARAM_HTML] !!}@endisset</textarea>
                     @break
 
                 @case(\App\Models\WidgetParameters::PARAM_GROUP)
-                        PARAM_GROUP<br>
+                        @php
+                            $inputName = $inputName . \App\Models\WidgetParameters::PARAM_GROUP;
+                        @endphp
+                        <div class="input-group mb-3">
+                            <select name="{{ $inputName }}" multiple class="w-full">
+                                <option value="1">Param group 1</option>
+                                <option value="2">Param group 2</option>
+                                <option value="3">Param group 3</option>
+                            </select>
+                        </div>
                     @break
 
                 @case(\App\Models\WidgetParameters::PARAM_ELEMENTS_QUANT)
-                        PARAM_ELEMENTS_QUANT<br>
+                        @php
+                            $inputName = $inputName . \App\Models\WidgetParameters::PARAM_ELEMENTS_QUANT;
+                        @endphp
+                        <div class="input-group mb-3">
+                            <input name="{{ $inputName }}" type="number" class="form-control" placeholder="Quantity of elements">
+                        </div>
+                        
                     @break
 
                 @case(\App\Models\WidgetParameters::PARAM_PAGES_QUANT)
-                        PARAM_PAGES_QUANT<br>
+                        @php
+                            $inputName = $inputName . \App\Models\WidgetParameters::PARAM_PAGES_QUANT;
+                        @endphp
+                        <div class="input-group mb-3">
+                            <input name="{{ $inputName }}" type="number" class="form-control" placeholder="Quantity of pages">
+                        </div>
                     @break
 
                 @default

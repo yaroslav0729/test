@@ -109,7 +109,7 @@ class PostController extends Controller
         $post->groups()->detach();
         $post->groups()->attach($gIds);
 
-        //$post->parseWidgets($request->input('widgets'));
+        $post->parseWidgets($request);
 
         return redirect()->route('admin.post.index')->with('status', 'Post updated!');
     }

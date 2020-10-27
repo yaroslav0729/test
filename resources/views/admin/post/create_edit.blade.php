@@ -93,8 +93,6 @@
             </div>
             <br>
 
-            <input type="hidden" name="widgets" :value="widgetsString" />
-
             <hr>
 
             <div class="p-5 pb-8">

@@ -43,7 +43,46 @@ class Post extends Model
         return $this->groups->pluck('id')->toArray();
     }
 
-    public function parseWidgets($widgets)
+    public function parseWidgets($request)
+    {
+        $data = $request->all();
+        $saveData = [];
+
+        foreach ($data as $paramKey => $param) {
+            if (strpos($paramKey, 'widget_param_') !== false) {
+
+                $postData = substr($paramKey, strlen('widget_param_'));
+                $postData = explode('_', $postData);
+
+                list($postItemId, $widgetId, $paramId) = $postData;
+
+                $saveData[$postItemId][$widgetId][$paramId] = $param; 
+            }    
+        }
+
+        
+
+        foreach ($saveData as $postItemId => $postData) {
+            foreach ($postData as $widgetId => $widget) {
+                $postItem = PostItem::where('id', $postItemId)->
+                                    where('widget_id', $widgetId)->firstOrFail();
+
+                $params = [];
+                foreach ($widget as $paramId => $param) {
+                    $params[$paramId] = $param;
+                }
+
+                if (!$postItem) {
+                    $postItem = new PostItem;
+                } 
+
+                $postItem->parameters = $params;
+                $postItem->save();
+            }
+        }
+    }
+
+    public function parseWidgetsOld($widgets)
     {
         $widgets = json_decode($widgets);
         $newWidgets = [];
