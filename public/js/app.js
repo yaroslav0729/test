@@ -47459,6 +47459,16 @@ $(function () {
     console.log('btn-delete click', el.html());
     el.remove();
   });
+  $(document).on('click', '.widget_buttons [btn-up]', function () {
+    var block1 = $(this).closest('.widget-item');
+    var block2 = block1.prev();
+    block1.insertBefore(block2);
+  });
+  $(document).on('click', '.widget_buttons [btn-down]', function () {
+    var block1 = $(this).closest('.widget-item');
+    var block2 = block1.next();
+    block2.insertBefore(block1);
+  });
 }); //require('./functions');
 
 /***/ }),

@@ -24,7 +24,9 @@ class PostItem extends Model
 
     public function render()
     {
-        return view('widgets.' . $this->widget_id, ['parameters' => $this->parameters]);
+        return view('widgets.' . $this->widget_id, [
+            'parameters' => $this->parameters
+        ]);
     }
 
     public function getLabelAttribute()
