@@ -8,6 +8,8 @@ use App\Models\Post;
 use App\Models\PostGroup;
 use App\Models\Widget;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\Admin\WidgetAddRequest;
+
 
 class PostController extends Controller
 {
@@ -160,5 +162,20 @@ class PostController extends Controller
             'html' => $modalView,
             'status' => 'success',
         ]); 
+    }
+
+    public function addWidget(WidgetAddRequest $request)
+    {
+        // $widgetId = (int)$request->input('widget_id');
+
+        // if ($widgetId === 0) {
+        //     return response()->json([
+        //         'message' => 'Choose the widget type',
+        //         'status' => 'error',
+        //     ], 404);     
+        // }
+
+        return response()->json([
+        ], 200); 
     }
 }

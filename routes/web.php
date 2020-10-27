@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         });
 
         Route::get('/modal/get_widget_modal', [AdminPostController::class, 'getWidgetModal'])->name('admin.modal.getWidgetModal');
+        Route::post('/modal/add_widget', [AdminPostController::class, 'addWidget'])->name('admin.modal.add-widget');
     });
 });
 

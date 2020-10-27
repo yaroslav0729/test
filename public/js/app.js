@@ -47314,7 +47314,7 @@ $(function () {
     $.get(url, data, showModalResponse, 'json');
   }
 
-  function showModalResponse(response, textStatus) {
+  function showModalResponse(response) {
     $('#modal-wrap').html(response.html);
     $('#modal-wrap').modal({
       show: true,
@@ -47326,30 +47326,147 @@ $(function () {
   //     $('#modal-wrap').modal('hide')
   // });
 
+
+  $(document).on('click', '#submit_modal_form', function () {
+    $('form#modal-form').submit();
+  });
+  var MODAL_FORM_LOCK = false;
+  $(document).on('submit', '#modal-form', function (event) {
+    event.preventDefault();
+
+    if (MODAL_FORM_LOCK) {
+      return false;
+    }
+
+    MODAL_FORM_LOCK = true;
+    var form = $(this);
+    var formData = new FormData(form[0]);
+    console.log('formData', formData);
+    $.ajax({
+      url: form.attr('action'),
+      type: form.attr('method'),
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function success(response, textStatus, jqXHR) {
+        MODAL_FORM_LOCK = false;
+
+        if ('content' in response) {
+          var element = $('#response-content');
+          element.html(response.content);
+          element.attr('wrapper-id', response.wrapper_id);
+          element.trigger('process');
+          $('#modal-wrap').modal('hide');
+          return;
+        }
+
+        if (response.trigger_click) {
+          $('#modal-wrap').modal('hide');
+          $(response.trigger_click).trigger('click');
+          return;
+        }
+
+        if (response.blank) {
+          var win = window.open(response.blank, '_blank');
+        }
+
+        if (response.redirect) {
+          window.location.href = response.redirect;
+          return;
+        }
+
+        if (response.html) {
+          showModalResponse(response);
+          return;
+        }
+
+        if (response.messageSuccess) {
+          $('#modal-message-success').html(response.messageSuccess);
+          $('#modal-message-success').closest('div').show();
+          $('#modal-wrap').animate({
+            scrollTop: 0
+          }, 'slow');
+          return;
+        }
+
+        window.location.reload();
+      },
+      error: function error(response) {
+        MODAL_FORM_LOCK = false;
+
+        if (response.status === 422) {
+          // Hide previous errors
+          $('#modal-errors').closest('div').hide();
+          $('*', form).removeClass('is-invalid');
+          $('.invalid-feedback', form).removeClass('d-block');
+          var message = '';
+          var showed = [];
+          var control, feedback, controlMessages;
+          $.each(response.responseJSON.errors, function (field, errors) {
+            // Field can be dotted (array-input)
+            var original = field;
+            var parts = original.split('.');
+
+            if (parts.length > 1) {
+              field = parts.shift() + '[' + parts.join('][') + ']';
+            } // Try to find field with error container.
+
+
+            control = $('[name="' + field + '"]', form);
+            feedback = $('.invalid-feedback', control.parents('div.form-group'));
+
+            if (!feedback.length) {
+              feedback = $('[data-error="' + original + '"]');
+            }
+
+            controlMessages = [];
+            $.each(errors, function (i, error) {
+              if (feedback.length) {
+                controlMessages[controlMessages.length] = error;
+              } else {
+                if (showed.indexOf(error) < 0) {
+                  message += '<li>' + error + '</li>';
+                  showed[showed.length] = error;
+                }
+              }
+            });
+
+            if (control.length) {
+              control.addClass('is-invalid');
+            }
+
+            if (feedback.length && controlMessages.length) {
+              feedback.html(controlMessages.join('<br>'));
+              feedback.addClass('d-block');
+            }
+          });
+
+          if (message) {
+            $('#modal-errors').html(message);
+            $('#modal-errors').closest('div').show();
+          }
+
+          $('#modal-wrap').animate({
+            scrollTop: 0
+          }, 'slow');
+        } else {
+          $('#modal-wrap').modal('hide');
+        }
+      }
+    });
+  });
 }); //require('./functions');
 
 /***/ }),
 
-/***/ "./resources/less/styles.less":
-/*!************************************!*\
-  !*** ./resources/less/styles.less ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 0:
-/*!*************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/less/styles.less ./resources/css/app.css ./resources/css/admin_styles.css ***!
-  \*************************************************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/css/app.css ./resources/css/admin_styles.css ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /var/www/html/islamichelp.local/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/less/styles.less */"./resources/less/styles.less");
 __webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app.css */"./resources/css/app.css");
 module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
 
