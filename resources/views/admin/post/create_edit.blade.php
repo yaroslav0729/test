@@ -76,7 +76,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <label for="keywords">Keywords</label>
-                        <textarea class="form-control" rows="2" name="keywords" id="keywords">{{ $keywords }}</textarea>
+                        <textarea id="mytextarea" class="form-control" rows="2" name="keywords" id="keywords">{{ $keywords }}</textarea>
                     </div>
                 </div>
 
@@ -145,11 +145,12 @@
 @endsection
 
 @section('scripts')
+
 <script>
-
-
-
-
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
 
 </script>
 @endsection
