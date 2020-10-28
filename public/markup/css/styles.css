@@ -2298,6 +2298,9 @@ input[type='number'].color-danger + .input-group .btn {
   vertical-align: middle;
   margin-right: 19px;
 }
+.blog-article-head .author {
+  white-space: nowrap;
+}
 .blog-article-head .author .img {
   display: inline-block;
   width: 46px;
