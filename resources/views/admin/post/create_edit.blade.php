@@ -27,7 +27,7 @@
     @if ($errors->any())
         <div class="p-3">
             <div class="alert alert-danger" role="alert">
-                <strong class="font-bold">Validation errors:</strong>
+                <strong class="font-weight-bold">Validation errors:</strong>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>

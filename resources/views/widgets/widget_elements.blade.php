@@ -15,7 +15,7 @@ received parameters
     <div class="">
         @foreach ($availableParameters as $param)
 
-            <h4 class="mt-4 mb-3">Parameter: "{{ \App\Models\WidgetParameters::PARAM_LABELS[$param] }}"</h4>
+            <label class="font-weight-bold mb-2">Parameter: "{{ \App\Models\WidgetParameters::PARAM_LABELS[$param] }}"</label>
             @php
                 $inputName = "";
 
@@ -90,7 +90,7 @@ received parameters
         @endforeach
     </div>
 
-    <div class="mt-3 p-3 widget_buttons">
+    <div class="widget_buttons">
         <button type="button" btn-down class="btn btn-success"><i class="fas fa-arrow-down"></i></button>
         <button type="button" btn-up class="btn btn-success"><i class="fas fa-arrow-up"></i></button>
         <button type="button" btn-delete class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
