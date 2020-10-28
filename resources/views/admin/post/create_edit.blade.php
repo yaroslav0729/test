@@ -127,7 +127,7 @@
             </div>
 
             <button class="btn btn-info" type="submit">
-                Submit
+                <i class="far fa-save"></i> Submit
             </button>
 
             <button class="btn btn-success" type="button"
