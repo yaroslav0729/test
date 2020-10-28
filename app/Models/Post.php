@@ -61,6 +61,8 @@ class Post extends Model
             }    
         }
 
+        $ordering = 0;
+
         foreach ($saveData as $postItemId => $postData) {
             foreach ($postData as $widgetId => $widget) {
                 $postItem = PostItem::where('id', $postItemId)->
@@ -74,14 +76,17 @@ class Post extends Model
                 if (!$postItem) {
                     $newWidgets[] = new PostItem([
                         'widget_id' => $widgetId,
-                        'ordering' => 1,
+                        'ordering' => $ordering,
                         'parameters' => $params
                     ]);
                 } else {
+                    $postItem->ordering = $ordering;
                     $postItem->parameters = $params;
                     $postItem->save();
                 }
             }
+
+            $ordering++;
         }
 
         if ($newWidgets !== []) {
