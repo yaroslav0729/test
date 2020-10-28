@@ -20,13 +20,6 @@
 
 @extends('layouts.admin')
 
-@section('head')
-
-    {{-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>tinymce.init({selector: '.widget_{{ \App\Models\Widget::WIDGET_RICH_TEXT }}' });</script> --}}
-
-@endsection
-
 @section('content')
 
 <div id="admin_content" class="bg-gray-100 flex-auto">
@@ -34,7 +27,7 @@
     @if ($errors->any())
         <div class="p-3">
             <div class="alert alert-danger" role="alert">
-                <strong class="font-bold">Validation errors:</strong>
+                <strong class="font-weight-bold">Validation errors:</strong>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -51,59 +44,81 @@
                 @method('PUT')
             @endisset
 
-            <div class="p-5 pb-8 lg:w-1/2">
-
             <h1>{{ $pageTitle }}</h1> 
 
-            <label for="name">Name</label><br>
-            <input id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $name }}" /><br>
-            
-            <label for="slug">Slug</label><br>
-            <input required id="slug" name="slug" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $slug }}" /><br>
-            
-            <label for="title">Title</label><br>
-            <input id="title" name="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $title }}" /><br>
-
-            <label for="description">Description</label><br>
-            <textarea class="w-full" name="description" id="description">{{ $description }}</textarea>
-            <br>
-
-            <label for="keywords">Keywords</label><br>
-            <textarea class="w-full" name="keywords" id="keywords">{{ $keywords }}</textarea>
-            <br>
-
-            <label for="groups">Post groups</label>
-            <br>
-
-            
-            <select id="groups" name="groups[]" multiple class="w-full">
-                @foreach ($groups as $group)
-
-                    @php
-                        $selected = false;
-                        if ((isset($post)) && (in_array($group->id, $post->group_ids))) {
-                            $selected = true;
-                        }
-                    @endphp
-
-                    <option value="{{ $group->id }}" @if($selected) selected @endif>{{ $group->name }}</option>   
-                @endforeach
-            </select>
-
+            <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" class="form-control" type="text" value="{{ $name }}" />
             </div>
-            <br>
 
-            <input type="hidden" name="widgets" :value="widgetsString" />
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="slug">Slug</label>
+                        <input required id="slug" name="slug" class="form-control" type="text" value="{{ $slug }}" />
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input id="title" name="title" class="form-control" type="text" value="{{ $title }}" />
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" name="description" id="description">{{ $description }}</textarea>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="keywords">Keywords</label>
+                        <textarea class="form-control" rows="2" name="keywords" id="keywords">{{ $keywords }}</textarea>
+                    </div>
+                </div>
+
+                
+            </div>
+
+            
+                <div class="form-group">
+                    <label for="groups">Post groups</label>
+                    <select id="groups" name="groups[]" multiple class="form-control">
+                        @foreach ($groups as $group)
+
+                            @php
+                                $selected = false;
+                                if ((isset($post)) && (in_array($group->id, $post->group_ids))) {
+                                    $selected = true;
+                                }
+                            @endphp
+
+                            <option value="{{ $group->id }}" @if($selected) selected @endif>{{ $group->name }}</option>   
+                        @endforeach
+                    </select>
+                </div>
 
             <hr>
 
-            <div class="p-5 pb-8">
-            <h3 class="mb-3">Post content:</h3>
+
+            <h2>Post content</h2>
+
+            <div class="mb-3">
+                <button class="btn btn-success" type="button"
+                    modal-call
+                    path="{{ route('admin.modal.getWidgetModal') }}"
+                    data-toggle="modal" data-target="#modal-wrap">
+                    <i class="fas fa-plus"></i> New widget
+                </button>
+            </div>
 
             <div id="widget-items-wrapper" class="mb-3">
                 @isset($post)
                     @foreach ($post->widgets as $wKey => $widget)
-                        {!! $widget->renderWidhElements() !!}
+                        {!! $widget->renderWithElements() !!}
                     @endforeach
                 @endisset
             </div>
@@ -112,7 +127,7 @@
             </div>
 
             <button class="btn btn-info" type="submit">
-                Submit
+                <i class="far fa-save"></i> Submit
             </button>
 
             <button class="btn btn-success" type="button"
@@ -122,7 +137,6 @@
                 <i class="fas fa-plus"></i> New widget
             </button>
 
-            </div>
 
         </form>
 
@@ -131,11 +145,5 @@
 @endsection
 
 @section('scripts')
-<script>
 
-
-
-
-
-</script>
 @endsection

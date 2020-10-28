@@ -29,12 +29,13 @@ class PostItem extends Model
         ]);
     }
 
-    public function renderWidhElements()
+    public function renderWithElements()
     {
         return view('widgets.widget_elements', [
-            'widgetHtml' => $this->render(),
-            'availableParameters' =>  WidgetParameters::AVAILABLE_PARAMETERS[$this->widget_id],
+            'itemId' => $this->id,
             'widgetId' => $this->widget_id,
+            //'widgetHtml' => $this->render(),
+            'availableParameters' =>  WidgetParameters::AVAILABLE_PARAMETERS[$this->widget_id],
             'parameters' => $this->parameters
         ]);
     }

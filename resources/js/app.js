@@ -4,21 +4,18 @@ window.Popper = require('popper.js').default;
 window.$ = window.jQuery = require('jquery');
 require('bootstrap');
 
+require('tinymce');
+
 import Swiper from 'swiper';
 window.Swiper = Swiper
 
 require('bootstrap-input-spinner');
 
+import { initWysiwyg } from './admin_parts/init_tiny-mce';
+
 $(function () {
 
-    // jQuery.fn.swapWith = function(to) {
-    //     return this.each(function() {
-    //         var copy_to = $(to).clone(true);
-    //         var copy_from = $(this).clone(true);
-    //         $(to).replaceWith(copy_from);
-    //         $(this).replaceWith(copy_to);
-    //     });
-    // };
+    initWysiwyg()
 
     $(document).on('click', '[modal-call]', modalCall);
 
@@ -190,6 +187,8 @@ $(function () {
         let itemsElement = $('#widget-items-wrapper');
         itemsElement.append($(this).html());
         $(this).html('')
+
+        initWysiwyg()
     });
 
     $(document).on('click', '.widget_buttons [btn-delete]', function () {

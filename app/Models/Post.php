@@ -43,71 +43,61 @@ class Post extends Model
         return $this->groups->pluck('id')->toArray();
     }
 
-    public function parseWidgets($widgets)
+    public function parseWidgets($request)
     {
-        $widgets = json_decode($widgets);
+        $data = $request->all();
+        $saveData = [];
         $newWidgets = [];
 
-        $this->removeOldWidgets($widgets);
+        foreach ($data as $paramKey => $param) {
+            if (strpos($paramKey, 'widget_param_') !== false) {
 
-        foreach ($widgets as $widget) {
+                $postData = substr($paramKey, strlen('widget_param_'));
+                $postData = explode('_', $postData);
 
-            $this->parseSavedParameters($widget->saved_parameters);
+                list($postItemId, $widgetId, $paramId) = $postData;
 
-            if (strpos($widget->id, 'new_') !== false) {
-                $newWidgets[] = new PostItem([
-                    'widget_id' => $widget->widget_id,
-                    'ordering' => $widget->ordering,
-                    'parameters' => $this->parseSavedParameters($widget->saved_parameters)
-                ]);    
-            } else {
-                $postItem = PostItem::where('id', $widget->id)->firstOrFail();
-                $postItem->ordering = $widget->ordering;
-                $postItem->parameters = $this->parseSavedParameters($widget->saved_parameters);
-                $postItem->save();
+                $saveData[$postItemId][$widgetId][$paramId] = $param; 
+            }    
+        }
+
+        $this->removeOldWidgets(array_keys($saveData));
+
+        $ordering = 0;
+
+        foreach ($saveData as $postItemId => $postData) {
+            foreach ($postData as $widgetId => $widget) {
+                $postItem = PostItem::where('id', $postItemId)->
+                                    where('widget_id', $widgetId)->first();
+
+                $params = [];
+                foreach ($widget as $paramId => $param) {
+                    $params[$paramId] = $param;
+                }
+
+                if (!$postItem) {
+                    $newWidgets[] = new PostItem([
+                        'widget_id' => $widgetId,
+                        'ordering' => $ordering,
+                        'parameters' => $params
+                    ]);
+                } else {
+                    $postItem->ordering = $ordering;
+                    $postItem->parameters = $params;
+                    $postItem->save();
+                }
             }
+
+            $ordering++;
         }
 
         if ($newWidgets !== []) {
             $this->widgets()->saveMany($newWidgets);
         }
-
-        return true;
     }
 
-    protected function parseSavedParameters($savedParams)
+    protected function removeOldWidgets($ids)
     {
-        $parameters = [];
-
-        foreach ($savedParams as $sParam) {
-            $parameters[$sParam->name] = $sParam->value;
-        }
-
-        return $parameters;
-    }
-
-    protected function removeOldWidgets($widgets)
-    {
-        $currentIds = [];
-        $newIds = [];
-        $deletedIds = [];
-
-        foreach ($this->widgets as $widget) {
-            $currentIds[] = $widget->id;   
-        }
-
-        foreach ($widgets as $widget) {
-            $newIds[] = $widget->id;   
-        }
-
-        foreach ($currentIds as $id) {
-            if (!in_array($id, $newIds)) {
-                $deletedIds[] = $id;
-            }
-        }
-
-        if (count($deletedIds)) {
-            $postItems = PostItem::whereIn('id', $deletedIds)->delete();
-        }
+        PostItem::where('post_id', $this->id)->whereNotIn('id', $ids)->delete();
     }
 }

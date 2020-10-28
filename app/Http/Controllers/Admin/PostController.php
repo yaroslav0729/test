@@ -37,7 +37,7 @@ class PostController extends Controller
         
         return view('admin.post.create_edit', [
             'groups' => $groups,
-            ]);
+        ]);
     }
 
     /**
@@ -53,7 +53,7 @@ class PostController extends Controller
         $gIds = $request->input('groups');
         $post->groups()->attach($gIds);
 
-        $post->parseWidgets($request->input('widgets'));
+        $post->parseWidgets($request);
 
         return redirect()->route('admin.post.index')->with('status', 'post created!');
     }
@@ -109,7 +109,7 @@ class PostController extends Controller
         $post->groups()->detach();
         $post->groups()->attach($gIds);
 
-        //$post->parseWidgets($request->input('widgets'));
+        $post->parseWidgets($request);
 
         return redirect()->route('admin.post.index')->with('status', 'Post updated!');
     }
@@ -147,15 +147,11 @@ class PostController extends Controller
             abort(404);
         }
 
-        $widgetHtml = view('widgets.' . $widgetId)->render();
-        $widgetWithElements = view('widgets.widget_elements', [
-            'widgetHtml' => $widgetHtml,
-            'availableParameters' =>  WidgetParameters::AVAILABLE_PARAMETERS[$widgetId],
-            'widgetId' => $widgetId
-        ])->render();
+        $widget = new PostItem(['widget_id' => $widgetId]);
+        $widgetHtml = $widget->renderWithElements()->render();
 
         return response()->json([
-            'content' => $widgetWithElements
+            'content' => $widgetHtml
         ], 200); 
     }
 }
