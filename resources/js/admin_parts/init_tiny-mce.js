@@ -33,7 +33,6 @@ function initWysiwyg()
             relative_urls :false,
             menubar: menubar,
             statusbar: true,
-            content_css: ['/css/fonts.css'],
             font_formats: "Arial=arial;Arial Black=arial black;Impact=impact;Sofia Pro=Sofia Pro;Tahoma=tahoma;",
             fontsize_formats: "8pt 9pt 10pt 11pt 12pt 13pt 14pt 15pt 16pt 17pt 18pt 19pt 24pt 36pt",
             image_list: [
