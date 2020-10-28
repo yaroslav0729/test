@@ -17,6 +17,19 @@ mix.js('resources/js/app.js', 'public/js')
         require('postcss-import'),
         //require('tailwindcss'),
     ]).postCss('resources/css/admin_styles.css', 'public/css', [
-    ]);
+    ])
+    .webpackConfig({
+        module: {
+            rules: [{
+                test: /\.js?$/,
+                exclude: /(bower_components)/,
+                use: [{
+                    loader: 'babel-loader',
+                    options: mix.config.babel()
+                }]
+            }]
+        }
+    })
+    .version();
 
 //mix.js('resources/js/admin.js', 'public/js');
