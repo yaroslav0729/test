@@ -32,7 +32,7 @@ received parameters
                             $inputName = $inputName . \App\Models\WidgetParameters::PARAM_HTML;
                         @endphp
                         <div class="form-group">
-                            <textarea name="{{ $inputName }}" class="form-control">@isset($parameters[\App\Models\WidgetParameters::PARAM_HTML]){!! $parameters[\App\Models\WidgetParameters::PARAM_HTML] !!}@endisset</textarea>
+                            <textarea wysiwyg-editor id="{{ $inputName }}" name="{{ $inputName }}" class="form-control">@isset($parameters[\App\Models\WidgetParameters::PARAM_HTML]){!! $parameters[\App\Models\WidgetParameters::PARAM_HTML] !!}@endisset</textarea>
                         </div>
                     @break
 
