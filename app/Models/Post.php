@@ -61,6 +61,8 @@ class Post extends Model
             }    
         }
 
+        $this->removeOldWidgets(array_keys($saveData));
+
         $ordering = 0;
 
         foreach ($saveData as $postItemId => $postData) {
@@ -94,71 +96,8 @@ class Post extends Model
         }
     }
 
-    public function parseWidgetsOld($widgets)
+    protected function removeOldWidgets($ids)
     {
-        $widgets = json_decode($widgets);
-        $newWidgets = [];
-
-        $this->removeOldWidgets($widgets);
-
-        foreach ($widgets as $widget) {
-
-            $this->parseSavedParameters($widget->saved_parameters);
-
-            if (strpos($widget->id, 'new_') !== false) {
-                $newWidgets[] = new PostItem([
-                    'widget_id' => $widget->widget_id,
-                    'ordering' => $widget->ordering,
-                    'parameters' => $this->parseSavedParameters($widget->saved_parameters)
-                ]);    
-            } else {
-                $postItem = PostItem::where('id', $widget->id)->firstOrFail();
-                $postItem->ordering = $widget->ordering;
-                $postItem->parameters = $this->parseSavedParameters($widget->saved_parameters);
-                $postItem->save();
-            }
-        }
-
-        if ($newWidgets !== []) {
-            $this->widgets()->saveMany($newWidgets);
-        }
-
-        return true;
-    }
-
-    protected function parseSavedParameters($savedParams)
-    {
-        $parameters = [];
-
-        foreach ($savedParams as $sParam) {
-            $parameters[$sParam->name] = $sParam->value;
-        }
-
-        return $parameters;
-    }
-
-    protected function removeOldWidgets($widgets)
-    {
-        $currentIds = [];
-        $newIds = [];
-        $deletedIds = [];
-
-        foreach ($this->widgets as $widget) {
-            $currentIds[] = $widget->id;   
-        }
-
-        foreach ($widgets as $widget) {
-            $newIds[] = $widget->id;   
-        }
-
-        foreach ($currentIds as $id) {
-            if (!in_array($id, $newIds)) {
-                $deletedIds[] = $id;
-            }
-        }
-
-        if (count($deletedIds)) {
-            $postItems = PostItem::whereIn('id', $deletedIds)->delete();
-        }
+        PostItem::where('post_id', $this->id)->whereNotIn('id', $ids)->delete();
     }
 }
