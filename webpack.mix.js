@@ -44,6 +44,18 @@ mix.js('resources/js/app.js', 'public/js')
             }]
         }
     })
+  //   mix.webpackConfig({
+  //   resolve: {
+  //     modules: [
+  //       path.resolve('./resources/assets'),
+  //       path.resolve('./node_modules')
+  //     ]
+  //   }
+  // })
     .version();
 
 //mix.js('resources/js/admin.js', 'public/js');
+
+// MediaManager
+mix.sass('resources/assets/vendor/MediaManager/sass/manager.scss', 'public/assets/vendor/MediaManager/style.css')
+    .copyDirectory('resources/assets/vendor/MediaManager/dist', 'public/assets/vendor/MediaManager')

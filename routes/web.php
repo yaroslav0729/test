@@ -45,3 +45,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/{slug}', [PostController::class, 'showFromSlug']);
+// MediaManager
+ctf0\MediaManager\MediaRoutes::routes();

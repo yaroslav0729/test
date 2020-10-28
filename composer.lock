@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6acbba1324a5ea1a2887abf1e9f9cbb9",
+    "content-hash": "f9cb0495e169e1a7eb3a792d453cbb0f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -152,6 +152,117 @@
                 "math"
             ],
             "time": "2020-08-18T23:57:15+00:00"
+        },
+        {
+            "name": "ctf0/media-manager",
+            "version": "v3.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ctf0/Laravel-Media-Manager.git",
+                "reference": "f1e63b1cc6ece685d16662368395115c09798981"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ctf0/Laravel-Media-Manager/zipball/f1e63b1cc6ece685d16662368395115c09798981",
+                "reference": "f1e63b1cc6ece685d16662368395115c09798981",
+                "shasum": ""
+            },
+            "require": {
+                "ctf0/package-changelog": "*",
+                "illuminate/support": ">=6.0 <9.0",
+                "jhofm/flysystem-iterator": "^2.2",
+                "maennchen/zipstream-php": ">=1.0",
+                "php": "~7.0"
+            },
+            "suggest": {
+                "league/flysystem-cached-adapter": "Required to use the Flysystem cache (~1.0)."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ctf0\\MediaManager\\MediaManagerServiceProvider"
+                    ]
+                },
+                "changeLog": "logs"
+            },
+            "autoload": {
+                "psr-4": {
+                    "ctf0\\MediaManager\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muah",
+                    "email": "muah003@gmail.com"
+                }
+            ],
+            "description": "A Media Manager Built With Vuejs & Laravel",
+            "homepage": "https://github.com/ctf0/Laravel-Media-Manager",
+            "keywords": [
+                "ctf0",
+                "gui",
+                "laravel",
+                "manager",
+                "media",
+                "mediamanager"
+            ],
+            "time": "2020-10-08T11:15:52+00:00"
+        },
+        {
+            "name": "ctf0/package-changelog",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ctf0/PackageChangeLog.git",
+                "reference": "bc53f9faa3fef48da4504e2f4080e837d9edc689"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ctf0/PackageChangeLog/zipball/bc53f9faa3fef48da4504e2f4080e837d9edc689",
+                "reference": "bc53f9faa3fef48da4504e2f4080e837d9edc689",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.0",
+                "php": "~7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ctf0\\PackageChangeLog\\PackageChangeLogServiceProvider"
+                    ]
+                },
+                "changeLog": "logs"
+            },
+            "autoload": {
+                "psr-4": {
+                    "ctf0\\PackageChangeLog\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muah",
+                    "email": "muah003@gmail.com"
+                }
+            ],
+            "description": "show package changeLog on install/update",
+            "homepage": "https://github.com/ctf0/PackageChangeLog",
+            "keywords": [
+                "ctf0",
+                "laravel",
+                "package-changelog"
+            ],
+            "time": "2020-03-04T13:09:26+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -968,6 +1079,48 @@
             "time": "2020-06-13T08:05:20+00:00"
         },
         {
+            "name": "jhofm/flysystem-iterator",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jhofm/flysystem-iterator.git",
+                "reference": "93aa7613f1bda960c5d9e8e7ae0b98257be1153d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jhofm/flysystem-iterator/zipball/93aa7613f1bda960c5d9e8e7ae0b98257be1153d",
+                "reference": "93aa7613f1bda960c5d9e8e7ae0b98257be1153d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "league/flysystem": "^1.0",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "league/flysystem-memory": "^1.0",
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jhofm\\FlysystemIterator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes Hofmann",
+                    "email": "hofmann.johannes@gmail.com"
+                }
+            ],
+            "description": "Iterator plugin for league/flysystem",
+            "time": "2019-12-09T19:25:07+00:00"
+        },
+        {
             "name": "laravel/fortify",
             "version": "v1.6.1",
             "source": {
@@ -1630,6 +1783,67 @@
             "time": "2020-09-30T16:19:54+00:00"
         },
         {
+            "name": "maennchen/zipstream-php",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maennchen/ZipStream-PHP.git",
+                "reference": "c4c5803cc1f93df3d2448478ef79394a5981cc58"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maennchen/ZipStream-PHP/zipball/c4c5803cc1f93df3d2448478ef79394a5981cc58",
+                "reference": "c4c5803cc1f93df3d2448478ef79394a5981cc58",
+                "shasum": ""
+            },
+            "require": {
+                "myclabs/php-enum": "^1.5",
+                "php": ">= 7.1",
+                "psr/http-message": "^1.0",
+                "symfony/polyfill-mbstring": "^1.0"
+            },
+            "require-dev": {
+                "ext-zip": "*",
+                "guzzlehttp/guzzle": ">= 6.3",
+                "mikey179/vfsstream": "^1.6",
+                "phpunit/phpunit": ">= 7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ZipStream\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Duncan",
+                    "email": "pabs@pablotron.org"
+                },
+                {
+                    "name": "Jonatan Männchen",
+                    "email": "jonatan@maennchen.ch"
+                },
+                {
+                    "name": "Jesse Donat",
+                    "email": "donatj@gmail.com"
+                },
+                {
+                    "name": "András Kolesár",
+                    "email": "kolesar@kolesar.hu"
+                }
+            ],
+            "description": "ZipStream is a library for dynamically streaming dynamic zip files from PHP without writing to the disk at all on the server.",
+            "keywords": [
+                "stream",
+                "zip"
+            ],
+            "time": "2020-05-30T13:11:16+00:00"
+        },
+        {
             "name": "mobiledetect/mobiledetectlib",
             "version": "2.8.34",
             "source": {
@@ -1761,6 +1975,52 @@
                 "psr-3"
             ],
             "time": "2020-07-23T08:41:23+00:00"
+        },
+        {
+            "name": "myclabs/php-enum",
+            "version": "1.7.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/myclabs/php-enum.git",
+                "reference": "5f36467c7a87e20fbdc51e524fd8f9d1de80187c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/myclabs/php-enum/zipball/5f36467c7a87e20fbdc51e524fd8f9d1de80187c",
+                "reference": "5f36467c7a87e20fbdc51e524fd8f9d1de80187c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7",
+                "squizlabs/php_codesniffer": "1.*",
+                "vimeo/psalm": "^3.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MyCLabs\\Enum\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP Enum contributors",
+                    "homepage": "https://github.com/myclabs/php-enum/graphs/contributors"
+                }
+            ],
+            "description": "PHP Enum implementation",
+            "homepage": "http://github.com/myclabs/php-enum",
+            "keywords": [
+                "enum"
+            ],
+            "time": "2020-02-14T08:15:52+00:00"
         },
         {
             "name": "nesbot/carbon",

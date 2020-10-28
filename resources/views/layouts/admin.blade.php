@@ -19,7 +19,7 @@
     <body class="font-sans antialiased">
         <div class="wrapper" style="padding-top:0">
 
-            <div class="d-flex">
+            <div class="d-flex" id="app">
                 @include('admin.parts.left-menu')
                 <div class="flex-grow-1 p-4">
                     @yield('content')

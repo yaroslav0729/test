@@ -13,7 +13,15 @@ require('bootstrap-input-spinner');
 
 import { initWysiwyg } from './admin_parts/init_tiny-mce';
 
+window.Vue = require('vue')
+
+require('../assets/vendor/MediaManager/js/manager')
+
 $(function () {
+
+    new Vue({
+        el: '#app'
+    })
 
     initWysiwyg()
 
