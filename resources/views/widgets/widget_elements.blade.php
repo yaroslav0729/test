@@ -4,22 +4,18 @@ received parameters
     
 - $itemId - not required
 - $widgetId
-- $widgetHtml
 - $availableParameters
 - $parameters - not required
 
 --}}
 
 <div class="widget-item border border-dark rounded p-3 mb-3">
-    <h2 class="mt-1 mb-3">{{  \App\Models\Widget::WIDGET_LABELS[$widgetId] }}</h2>
-    
-    <div class="border rounded p-3 mb-3">
-        {!! $widgetHtml !!}
-    </div>
+    <h3 class="mt-1 mb-3">{{  \App\Models\Widget::WIDGET_LABELS[$widgetId] }}</h3>
 
-    <div class="border rounded p-3">
+    <div class="">
         @foreach ($availableParameters as $param)
 
+            <h4 class="mt-4 mb-3">Parameter: "{{ \App\Models\WidgetParameters::PARAM_LABELS[$param] }}"</h4>
             @php
                 $inputName = "";
 
@@ -35,15 +31,17 @@ received parameters
                         @php
                             $inputName = $inputName . \App\Models\WidgetParameters::PARAM_HTML;
                         @endphp
-                        <textarea name="{{ $inputName }}">@isset($parameters[\App\Models\WidgetParameters::PARAM_HTML]){!! $parameters[\App\Models\WidgetParameters::PARAM_HTML] !!}@endisset</textarea>
+                        <div class="form-group">
+                            <textarea name="{{ $inputName }}" class="form-control">@isset($parameters[\App\Models\WidgetParameters::PARAM_HTML]){!! $parameters[\App\Models\WidgetParameters::PARAM_HTML] !!}@endisset</textarea>
+                        </div>
                     @break
 
                 @case(\App\Models\WidgetParameters::PARAM_GROUP)
                         @php
                             $inputName = $inputName . \App\Models\WidgetParameters::PARAM_GROUP;
                         @endphp
-                        <div class="input-group mb-3">
-                            <select name="{{ $inputName }}" multiple class="w-full">
+                        <div class="form-group mb-3">
+                            <select name="{{ $inputName }}" multiple class="form-control">
                                 <option value="1">Param group 1</option>
                                 <option value="2">Param group 2</option>
                                 <option value="3">Param group 3</option>
@@ -92,7 +90,7 @@ received parameters
         @endforeach
     </div>
 
-    <div class="mt-3 p-3 border widget_buttons">
+    <div class="mt-3 p-3 widget_buttons">
         <button type="button" btn-down class="btn btn-success"><i class="fas fa-arrow-down"></i></button>
         <button type="button" btn-up class="btn btn-success"><i class="fas fa-arrow-up"></i></button>
         <button type="button" btn-delete class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>

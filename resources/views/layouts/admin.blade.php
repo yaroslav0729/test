@@ -17,18 +17,15 @@
         @yield('head')
     </head>
     <body class="font-sans antialiased">
-        <div class="wrapper">
-
-            @include('parts.header')
+        <div class="wrapper" style="padding-top:0">
 
             <div class="d-flex">
                 @include('admin.parts.left-menu')
-                <div class="flex-grow-1">
+                <div class="flex-grow-1 p-4">
                     @yield('content')
                 </div>
             </div>
             
-            @include('parts.footer')
         </div>
 
         <!-- Modal -->

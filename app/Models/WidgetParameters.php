@@ -17,7 +17,7 @@ class WidgetParameters
         self::PARAM_PAGES_QUANT => 'pages quantity',
     ];
 
-    const AVAILABLE_PARAMETERS = [
+    const AVAILABLE_PARAMETERS = [ //function
         Widget::WIDGET_RICH_TEXT => [
             self::PARAM_HTML    
         ],
