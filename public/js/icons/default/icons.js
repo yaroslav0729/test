@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -268,7 +268,7 @@ tinymce.IconManager.add('default', {
 
 /***/ }),
 
-/***/ 9:
+/***/ 10:
 /*!***********************************************************!*\
   !*** multi ./node_modules/tinymce/icons/default/icons.js ***!
   \***********************************************************/
