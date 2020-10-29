@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\PostGroupController;
+use App\Http\Controllers\Admin\MediaController;
 
 use App\Models\User;
 /*
@@ -36,6 +37,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
 
         Route::get('/modal/get_widget_modal', [AdminPostController::class, 'getWidgetModal'])->name('admin.modal.getWidgetModal');
         Route::post('/modal/add_widget', [AdminPostController::class, 'addWidget'])->name('admin.modal.add-widget');
+    
+        Route::get('media/show-form-test', [MediaController::class, 'showForm']);
+        Route::post('media/upload_mce', [MediaController::class, 'upload']);
+
+        // MediaManager
+        ctf0\MediaManager\MediaRoutes::routes();
     });
 });
 
@@ -43,8 +50,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
-// MediaManager
-ctf0\MediaManager\MediaRoutes::routes();
 
 Route::get('/{slug}', [PostController::class, 'showFromSlug']);

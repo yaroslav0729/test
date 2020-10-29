@@ -28,7 +28,7 @@ function initWysiwyg()
             height: height,
             toolbar: toolbar,
             plugins: "image, table, lists, hr, code, link, media",
-            images_upload_url: '/images/upload',
+            images_upload_url: '/admin/media/upload_mce',
             images_upload_credentials: true,
             relative_urls :false,
             menubar: menubar,
@@ -48,7 +48,10 @@ function initWysiwyg()
                 editor.on('init', function() {
                     editor.execCommand("fontName", false, "Arial");
                 });
-            }
+            },
+            // file_picker_callback: function(callback, value, meta) {
+            //     conaole.log('file_picker_callback')
+            // }
         });
 
         $(this).removeAttr('wysiwyg-editor');
