@@ -12,6 +12,7 @@ use App\Models\WidgetParameters;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\Admin\WidgetAddRequest;
 use App\Models\PostItem;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -49,6 +50,14 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+        $validator = $this->_validateSlug($request);
+
+        if (count($validator->errors())) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        
         $postContainer = PostContainer::create();
         $post = Post::create($request->all());
         $post->container()->associate($postContainer);
@@ -100,14 +109,16 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = $this->_validateSlug($request, $id);
+
+        if (count($validator->errors())) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        
         $postContainer = PostContainer::findOrFail($id);
         $oldPost = $postContainer->actual_post;
-
-        // if ($post->slug !== $request->input('slug')) {
-        //     $validatedData = $request->validate([
-        //         'slug' => 'required|unique:posts'
-        //     ]);
-        // }
 
         if (isset($oldPost)) {
             $oldPost->actual = false;
@@ -166,5 +177,24 @@ class PostController extends Controller
         return response()->json([
             'content' => $widgetHtml
         ], 200); 
+    }
+
+    protected function _validateSlug($request, $id = null)
+    {
+        $validator = Validator::make($request->all(), []);
+        $slug = $request->input('slug');
+        $posts = Post::where('slug', $slug)
+                        ->where('actual', true);
+
+        if (isset($id)) {
+            $posts = $posts->where('post_container_id', '<>', $id);
+        }
+        $posts = $posts->get();
+
+        if (count($posts)) {
+            $validator->errors()->add('slug', 'The slug must be unique to publish');
+        }
+
+        return $validator;
     }
 }
