@@ -29,6 +29,7 @@
                 <th class="px-4 py-2">Id</th>
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Slug</th>
+                <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Created at</th>
                 <th class="px-4 py-2">Action</th>
               </tr>
@@ -44,6 +45,20 @@
                           <td class="border px-4 py-2">{{ $postContainer->id }}</td>
                           <td class="border px-4 py-2">{{ $post->name }}</td>
                           <td class="border px-4 py-2"><a href="{{ url($post->slug) }}" target="_blank">{{ $post->slug }}</a></td>
+                          <td class="border px-4 py-2">
+
+                            <form method="post">
+                              <div class="form-group">
+                              <select name="status" class="form-control">
+                                @foreach (\App\Models\PostContainer::POST_STATUS as $statusKey => $status)
+                                  <option value="{{ $statusKey }}"
+                                  @if($statusKey === $postContainer->status) selected @endif
+                                  >{{ $status }}</option>
+                                @endforeach
+                              </select>
+                              </div>
+                            </form>
+                          </td>
                           <td class="border px-4 py-2">{{ $post->created_at->format('d/m/Y') }}</td>
                           <td class="border px-4 py-2 action_td">
                             <a href="{{ route('admin.post.edit', ['post' => $postContainer->id]) }}">
