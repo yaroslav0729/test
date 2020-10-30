@@ -18,4 +18,17 @@ class PostContainer extends Model
     {
         return $this->posts()->where('actual', true)->first();
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::deleting(function($model){
+            // $post = $model->actual_post;
+            // $post->actual = false;
+            // $post->save();
+
+            $model->posts()->delete();
+        });
+    }
 }
