@@ -80,7 +80,35 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::where('id', $id)->firstOrFail();
+        $groups = PostGroup::all();
+
+        return view('admin.post.history_post', [
+            'post' => $post,
+            'groups' => $groups,
+        ]);
+    }
+
+    public function restore($id)
+    {
+        $post = Post::where('id', $id)->firstOrFail();
+        $postContainer = PostContainer::where('id', $post->post_container_id)->firstOrFail();
+        $oldActualPost = $postContainer->actual_post;
+        $oldActualPost->actual = false;
+        $oldActualPost->save();
+        $post->actual = true;
+        $post->save();
+
+        return redirect()->route('admin.post.index')->with('status', 'Post restored!');
+
+    }
+
+    public function history($id)
+    {
+        $postContainer = PostContainer::where('id', $id)->firstOrFail();
+        $posts = $postContainer->posts()->orderBy('id', 'desc')->get();
+
+        return view('admin.post.history_index', ['posts' => $posts]);
     }
 
     /**

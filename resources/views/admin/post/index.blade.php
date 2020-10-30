@@ -4,7 +4,7 @@
     
 <div id="admin_content" class="bg-gray-100 flex-auto h-screen">
     <div class="p-5 pb-8">
-        <h1>Posts index page</h1>
+        <h1>Posts:</h1>
 
         @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -47,8 +47,13 @@
                           <td class="border px-4 py-2">{{ $post->created_at->format('d/m/Y') }}</td>
                           <td class="border px-4 py-2 action_td">
                             <a href="{{ route('admin.post.edit', ['post' => $postContainer->id]) }}">
-                              <button class="btn btn-info action-btn" type="submit" title="Edit post">
+                              <button class="btn btn-info action-btn" type="button" title="Edit post">
                                 <i class="fas fa-edit"></i>
+                              </button>
+                            </a>
+                            <a href="{{ route('admin.post.history', ['id' => $postContainer->id]) }}" >
+                              <button class="btn btn-outline-success action-btn" type="button" title="Watch post history">
+                                <i class="fas fa-history"></i>
                               </button>
                             </a>
                             <form method="post" action="{{ route('admin.post.destroy', ['post' => $postContainer->id]) }}" style="display:inline-block">
@@ -60,6 +65,7 @@
                                 <i class="fas fa-trash-alt"></i>
                               </button>
                           </form>
+                          
                           </td>
                       </tr>
                     @endif
