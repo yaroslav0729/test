@@ -72,25 +72,17 @@ class Post extends Model
 
         foreach ($saveData as $postItemId => $postData) {
             foreach ($postData as $widgetId => $widget) {
-                $postItem = PostItem::where('id', $postItemId)->
-                                    where('widget_id', $widgetId)->first();
 
                 $params = [];
                 foreach ($widget as $paramId => $param) {
                     $params[$paramId] = $param;
                 }
 
-                if (!$postItem) {
-                    $newWidgets[] = new PostItem([
-                        'widget_id' => $widgetId,
-                        'ordering' => $ordering,
-                        'parameters' => $params
-                    ]);
-                } else {
-                    $postItem->ordering = $ordering;
-                    $postItem->parameters = $params;
-                    $postItem->save();
-                }
+                $newWidgets[] = new PostItem([
+                    'widget_id' => $widgetId,
+                    'ordering' => $ordering,
+                    'parameters' => $params
+                ]);
             }
 
             $ordering++;

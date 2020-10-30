@@ -23,12 +23,6 @@ class AddActualPostColumn extends Migration
                     ->after('keywords')
                     ->default(false);
         });
-
-        Schema::table('post_items', function (Blueprint $table) {
-            $table->boolean('actual')
-                    ->after('parameters')
-                    ->default(false);
-        });
     }
 
     /**
@@ -42,9 +36,5 @@ class AddActualPostColumn extends Migration
             $table->dropColumn('post_container_id');
             $table->dropColumn('actual');
         });
-
-        Schema::table('post_items', function (Blueprint $table) {
-            $table->dropColumn('actual');
-        });
-    }
+}
 }

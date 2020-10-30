@@ -165,11 +165,6 @@ class PostController extends Controller
     public function addWidget(WidgetAddRequest $request)
     {
         $widgetId = (int)$request->input('widget_id');
-        $widget = PostItem::where('widget_id', $widgetId)->first();
-
-        if (!$widget) {
-            abort(404);
-        }
 
         $widget = new PostItem(['widget_id' => $widgetId]);
         $widgetHtml = $widget->renderWithElements()->render();
