@@ -10,12 +10,15 @@ received parameters
 --}}
 
 <div class="widget-item border border-dark rounded p-3 mb-3">
-    <h3 class="mt-1 mb-3">{{  \App\Models\Widget::WIDGET_LABELS[$widgetId] }}</h3>
+    {{-- <h3 class="mt-1 mb-3">{{  \App\Models\Widget::WIDGET_LABELS[$widgetId] }}</h3> --}}
 
     <div class="">
         @foreach ($availableParameters as $param)
 
-            <label class="font-weight-bold mb-2">Parameter: "{{ \App\Models\WidgetParameters::PARAM_LABELS[$param] }}"</label>
+            @if ($param !== \App\Models\WidgetParameters::PARAM_HTML)
+                <label class="mb-2">{{ \App\Models\WidgetParameters::PARAM_LABELS[$param] }}</label>
+            @endif
+            
             @php
                 $inputName = "";
 
