@@ -28,6 +28,11 @@ class Post extends Model
         return $this->hasMany('App\Models\PostItem')->orderBy('ordering');
     }
 
+    public function container()
+    {
+        return $this->belongsTo('App\Models\PostContainer', 'post_container_id');
+    }
+
     public static function boot()
     {
         parent::boot();

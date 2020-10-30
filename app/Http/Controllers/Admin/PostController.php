@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\PostContainer;
 use App\Models\PostGroup;
 use App\Models\Widget;
 use App\Models\WidgetParameters;
@@ -21,9 +22,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        $postContainers = PostContainer::paginate(10);
 
-        return view('admin.post.index', ['posts' => $posts]);
+        return view('admin.post.index', ['postContainers' => $postContainers]);
     }
 
     /**
@@ -48,8 +49,12 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+        $postContainer = PostContainer::create();
         $post = Post::create($request->all());
-
+        $post->container()->associate($postContainer);
+        $post->actual = true;
+        $post->save();
+        
         $gIds = $request->input('groups');
         $post->groups()->attach($gIds);
 
@@ -77,11 +82,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
+        $postContainer = PostContainer::findOrFail($id);
         $groups = PostGroup::all();
 
         return view('admin.post.create_edit', [
-            'post' => $post, 
+            'postContainer' => $postContainer, 
             'groups' => $groups,
         ]);
     }
@@ -95,18 +100,26 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = Post::findOrFail($id);
+        $postContainer = PostContainer::findOrFail($id);
+        $oldPost = $postContainer->actual_post;
 
-        if ($post->slug !== $request->input('slug')) {
-            $validatedData = $request->validate([
-                'slug' => 'required|unique:posts'
-            ]);
+        // if ($post->slug !== $request->input('slug')) {
+        //     $validatedData = $request->validate([
+        //         'slug' => 'required|unique:posts'
+        //     ]);
+        // }
+
+        if (isset($oldPost)) {
+            $oldPost->actual = false;
+            $oldPost->save();   
         }
 
-        $post->update($request->all());
+        $post = Post::create($request->all());
+        $post->container()->associate($postContainer);
+        $post->actual = true;
+        $post->save();
 
         $gIds = $request->input('groups');
-        $post->groups()->detach();
         $post->groups()->attach($gIds);
 
         $post->parseWidgets($request);
