@@ -33,6 +33,11 @@ class Post extends Model
         return $this->belongsTo('App\Models\PostContainer', 'post_container_id');
     }
 
+    public function author()
+    {
+        return $this->belongsTo('App\Models\User', 'author_id');
+    }
+
     public static function boot()
     {
         parent::boot();

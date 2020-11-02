@@ -62,6 +62,7 @@ class PostController extends Controller
         $post = Post::create($request->all());
         $post->container()->associate($postContainer);
         $post->actual = true;
+        $post->author()->associate(auth()->user());
         $post->save();
         
         $gIds = $request->input('groups');

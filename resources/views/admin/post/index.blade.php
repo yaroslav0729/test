@@ -29,6 +29,7 @@
                 <th class="px-4 py-2">Id</th>
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Slug</th>
+                <th class="px-4 py-2">Author</th>
                 <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Created at</th>
                 <th class="px-4 py-2">Action</th>
@@ -45,6 +46,7 @@
                           <td class="border px-4 py-2">{{ $postContainer->id }}</td>
                           <td class="border px-4 py-2">{{ $post->name }}</td>
                           <td class="border px-4 py-2"><a href="{{ url($post->slug) }}" target="_blank">{{ $post->slug }}</a></td>
+                          <td class="border px-4 py-2">@isset($post->author){{ $post->author->name }} @else No author @endisset</td>
                           <td class="border px-4 py-2">
 
                             <form method="post" class="form-inline" action="{{ route('admin.post.save_status', ['id' => $postContainer->id]) }}">
