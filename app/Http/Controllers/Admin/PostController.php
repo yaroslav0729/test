@@ -180,6 +180,15 @@ class PostController extends Controller
         return redirect()->route('admin.post.index')->with('status', 'Post deleted!');
     }
 
+    public function saveStatus(Request $request, $id)
+    {
+        $postContainer = PostContainer::findOrFail($id);
+        $postContainer->status = $request->status;
+        $postContainer->save();
+
+        return redirect()->route('admin.post.index')->with('status', 'Post status changed successfully!');
+    }
+
     public function getWidgetModal()
     {
         $modalView = view('admin.modals.add_widget')->render();

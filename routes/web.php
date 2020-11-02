@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         Route::resource('post_group', PostGroupController::class, ['as' => 'admin']);
         Route::get('/post_history/{id}', [AdminPostController::class, 'history'])->name('admin.post.history');
         Route::post('/restore_post/{id}', [AdminPostController::class, 'restore'])->name('admin.post.restore');
+        Route::post('/save_status/{id}', [AdminPostController::class, 'saveStatus'])->name('admin.post.save_status');
 
         Route::prefix('users')->group(function () {
             Route::get('edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');

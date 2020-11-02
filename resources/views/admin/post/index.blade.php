@@ -47,8 +47,9 @@
                           <td class="border px-4 py-2"><a href="{{ url($post->slug) }}" target="_blank">{{ $post->slug }}</a></td>
                           <td class="border px-4 py-2">
 
-                            <form method="post">
-                              <div class="form-group">
+                            <form method="post" class="form-inline" action="{{ route('admin.post.save_status', ['id' => $postContainer->id]) }}">
+                              @csrf
+                              <div class="form-group m-0 mr-2">
                               <select name="status" class="form-control">
                                 @foreach (\App\Models\PostContainer::POST_STATUS as $statusKey => $status)
                                   <option value="{{ $statusKey }}"
@@ -57,6 +58,7 @@
                                 @endforeach
                               </select>
                               </div>
+                              <button class="btn btn-inline btn-outline-primary" type="submit"><i class="far fa-save"></i></button>
                             </form>
                           </td>
                           <td class="border px-4 py-2">{{ $post->created_at->format('d/m/Y') }}</td>
