@@ -98,6 +98,11 @@ $(function() {
         $(this).toggleClass('open');
         $('.calculator .title .bottom').toggleClass('open');
     })
+    $('.calculator .title .bottom .toggle-title').on('click', function () {
+        $('.calculator .title .top .toggle-title').removeClass('open');
+        $('.calculator .title .bottom').removeClass('open');
+
+    })
 
 
     $('.our-work-term .actions a').on('click', function (e) {

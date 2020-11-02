@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/markup/img/Line-styling-White.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/markup/img/ico-menu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/markup/mobile/blog-article.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/markup/img/ico-clock-w.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/markup/img/ico-clock.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/markup/mobile/calculator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/markup/mobile/events-home.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/markup/mobile/events-info.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/markup/mobile/general-content.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/markup/mobile/who-we-are.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/mobile.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/mobile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/mobile.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/mobile.css.map" afterDir="false" />
@@ -12,9 +16,8 @@
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/mobile/_header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/mobile/_header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/mobile/donate-today.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/mobile/donate-today.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/mobile/project.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/mobile/project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/js/functions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/mobile/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/mobile/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,21 +33,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/markup/css/mobile.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="103" column="35" selection-start-line="103" selection-start-column="35" selection-end-line="103" selection-end-column="35" />
+            <state relative-caret-position="277">
+              <caret line="569" column="20" selection-start-line="569" selection-start-column="20" selection-end-line="569" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/markup/mobile/donate-today.php">
+        <entry file="file://$PROJECT_DIR$/public/markup/mobile/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="348" column="124" selection-start-line="348" selection-start-column="124" selection-end-line="348" selection-end-column="124" />
+            <state relative-caret-position="256">
+              <caret line="297" column="34" selection-start-line="297" selection-start-column="34" selection-end-line="297" selection-end-column="34" />
               <folding>
-                <element signature="e#19265#19271#0#HTML" expanded="true" />
-                <element signature="e#19271#19277#0#HTML" expanded="true" />
-                <element signature="e#19277#19283#0#HTML" expanded="true" />
+                <element signature="n#svg#0;n#div#4;n#div#0;n#section#7;n#!!top" />
+                <element signature="n#g#0;n#svg#0;n#div#0;n#div#0;n#div#0;n#section#9;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -62,36 +64,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>form-con</find>
-      <find>checkbox</find>
-      <find>media</find>
-      <find>NOTE</find>
-      <find>arrow</find>
-      <find>NUMBER</find>
-      <find>.gutt</find>
-      <find>gutter-0</find>
-      <find>NAME</find>
-      <find>form-title</find>
-      <find>.logo</find>
-      <find>quick-donation</find>
-      <find>help-info-swiper</find>
-      <find>pagin</find>
-      <find>pagination-bullet</find>
-      <find>donate-today</find>
-      <find>donate-today</find>
-      <find>&quot;donate-today</find>
-      <find>header</find>
-      <find>author</find>
-      <find>.blog-video</find>
-      <find>way</find>
-      <find>other-way-give</find>
-      <find>share-box</find>
-      <find>discover-more</find>
-      <find>join-cause</find>
       <find>50%</find>
       <find>join-cause-</find>
       <find>we-</find>
       <find>Other way</find>
+      <find>.blog-article-body</find>
+      <find>general-content-head</find>
+      <find>blog-article-head</find>
+      <find>blog-article</find>
+      <find>genera</find>
+      <find>our-story-swiper</find>
+      <find>promo-project-swiper</find>
+      <find>who-we-are-head</find>
+      <find>gw-map-btn</find>
+      <find>LEARN MOR</find>
+      <find>swiper</find>
+      <find>mission-impossible</find>
+      <find>border-radius</find>
+      <find>place</find>
+      <find>place</find>
+      <find>event-info-head</find>
+      <find>50%</find>
+      <find>date</find>
+      <find>event-info-descr</find>
+      <find>.calc</find>
+      <find>calculator</find>
+      <find>br-5</find>
+      <find>widget-about-project</find>
+      <find>whats-new</find>
+      <find>lets-join</find>
+      <find>decor-wave</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/public/markup/mobile</dir>
@@ -104,12 +106,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/_header.php" />
-        <option value="$PROJECT_DIR$/_header-short-w.php" />
-        <option value="$PROJECT_DIR$/blog-article.php" />
-        <option value="$PROJECT_DIR$/img/arrow-down.svg" />
-        <option value="$PROJECT_DIR$/img/ico-smile-cloud.svg" />
-        <option value="$PROJECT_DIR$/img/ico-smile.svg" />
         <option value="$PROJECT_DIR$/libs/bootstrap-input-spinner.js" />
         <option value="$PROJECT_DIR$/_base.php" />
         <option value="$PROJECT_DIR$/js/functions.js" />
@@ -139,9 +135,7 @@
         <option value="$PROJECT_DIR$/public/markup/index.php" />
         <option value="$PROJECT_DIR$/public/markup/_header-short.php" />
         <option value="$PROJECT_DIR$/public/markup/mobile/_footer.php" />
-        <option value="$PROJECT_DIR$/public/markup/js/functions.js" />
         <option value="$PROJECT_DIR$/public/markup/resources.html" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/index.php" />
         <option value="$PROJECT_DIR$/public/markup/mobile/donate-confirm.php" />
         <option value="$PROJECT_DIR$/public/markup/payments-details.php" />
         <option value="$PROJECT_DIR$/public/markup/mobile/payments-details.php" />
@@ -150,11 +144,19 @@
         <option value="$PROJECT_DIR$/public/markup/_base.php" />
         <option value="$PROJECT_DIR$/public/markup/img/ico-menu.svg" />
         <option value="$PROJECT_DIR$/public/markup/mobile/_header.php" />
-        <option value="$PROJECT_DIR$/public/markup/css/styles.less" />
         <option value="$PROJECT_DIR$/public/markup/mobile/project.php" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/blog-article.php" />
-        <option value="$PROJECT_DIR$/public/markup/css/mobile.less" />
         <option value="$PROJECT_DIR$/public/markup/mobile/donate-today.php" />
+        <option value="$PROJECT_DIR$/public/markup/mobile/general-content.php" />
+        <option value="$PROJECT_DIR$/public/markup/mobile/who-we-are.php" />
+        <option value="$PROJECT_DIR$/public/markup/mobile/blog-article.php" />
+        <option value="$PROJECT_DIR$/public/markup/mobile/events-home.php" />
+        <option value="$PROJECT_DIR$/public/markup/img/ico-clock-w.svg" />
+        <option value="$PROJECT_DIR$/public/markup/css/styles.less" />
+        <option value="$PROJECT_DIR$/public/markup/mobile/events-info.php" />
+        <option value="$PROJECT_DIR$/public/markup/js/functions.js" />
+        <option value="$PROJECT_DIR$/public/markup/mobile/calculator.php" />
+        <option value="$PROJECT_DIR$/public/markup/css/mobile.less" />
+        <option value="$PROJECT_DIR$/public/markup/mobile/index.php" />
       </list>
     </option>
   </component>
@@ -206,6 +208,13 @@
               <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="markup" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="markup" type="462c0819:PsiDirectoryNode" />
               <item name="mobile" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -218,7 +227,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/markup/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/markup/mobile" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -227,9 +236,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/markup/mobile" />
       <recent name="$PROJECT_DIR$/public/markup/img" />
       <recent name="$PROJECT_DIR$/public/img" />
-      <recent name="$PROJECT_DIR$/public/markup/mobile" />
       <recent name="$PROJECT_DIR$/public/markup" />
       <recent name="$PROJECT_DIR$/img" />
     </key>
@@ -260,12 +269,12 @@
       <option name="presentableId" value="Default" />
       <updated>1602233121090</updated>
       <workItem from="1602233122522" duration="72588000" />
-      <workItem from="1602766523862" duration="122755000" />
+      <workItem from="1602766523862" duration="147699000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195343000" />
+    <option name="totallyTimeSpent" value="220287000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="6" />
@@ -296,13 +305,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/libs/bootstrap-input-spinner.js" />
-    <entry file="file://$PROJECT_DIR$/_base.php" />
-    <entry file="file://$PROJECT_DIR$/js/functions.js" />
-    <entry file="file://$PROJECT_DIR$/_footer.php" />
-    <entry file="file://$PROJECT_DIR$/_header.php" />
-    <entry file="file://$PROJECT_DIR$/donate-today.php" />
-    <entry file="file://$PROJECT_DIR$/css/styles.less" />
     <entry file="file://$PROJECT_DIR$/public/markup/thank-you.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -338,13 +340,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/img/ico-calendar-w.svg">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/general-content.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="10" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="16" selection-end-column="10" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/contac.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -402,13 +397,6 @@
             <element signature="n#style#0;n#div#0;n#div#0;n#footer#0;n#!!top" expanded="true" />
             <element signature="e#4835#4842#1#HTML" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="71" column="59" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -481,13 +469,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/donate-confirm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/payments-details.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -527,13 +508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/_base.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/_base.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -558,33 +532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="1751" column="13" lean-forward="true" selection-start-line="1742" selection-start-column="12" selection-end-line="1751" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/blog-article.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="185" column="42" lean-forward="true" selection-start-line="185" selection-start-column="42" selection-end-line="185" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#section#2;n#!!top" expanded="true" />
-            <element signature="n#g#0;n#svg#0;n#div#0;n#div#0;n#section#4;n#!!top" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#section#6;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="534" column="10" lean-forward="true" selection-start-line="477" selection-end-line="534" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -599,13 +546,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/css/mobile.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="103" column="35" selection-start-line="103" selection-start-column="35" selection-end-line="103" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/mobile/donate-today.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -614,6 +554,122 @@
             <element signature="e#19265#19271#0#HTML" expanded="true" />
             <element signature="e#19271#19277#0#HTML" expanded="true" />
             <element signature="e#19277#19283#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/general-content.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/mobile/general-content.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="62" lean-forward="true" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
+          <folding>
+            <element signature="n#g#0;n#svg#0;n#div#0;n#div#0;n#section#3;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/mobile/_base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/mobile/who-we-are.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="289" column="10" lean-forward="true" selection-start-line="275" selection-end-line="289" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/mobile/events-home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="31" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#1;n#!!top" expanded="true" />
+            <element signature="n#g#0;n#svg#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#1;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#!!top" expanded="true" />
+            <element signature="n#g#0;n#svg#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/img/ico-clock.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/img/ico-clock-w.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/mobile/blog-article.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="182" column="10" lean-forward="true" selection-start-line="87" selection-end-line="182" selection-end-column="10" />
+          <folding>
+            <element signature="n#g#0;n#svg#0;n#div#0;n#div#0;n#section#4;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/mobile/events-info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="146" column="116" lean-forward="true" selection-start-line="146" selection-start-column="116" selection-end-line="146" selection-end-column="116" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#section#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/mobile/donate-confirm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" lean-forward="true" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="101" column="57" selection-start-line="101" selection-start-column="57" selection-end-line="101" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/mobile/calculator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="206" column="48" selection-start-line="206" selection-start-column="48" selection-end-line="206" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/css/mobile.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="569" column="20" selection-start-line="569" selection-start-column="20" selection-end-line="569" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="635" column="13" selection-start-line="635" selection-start-column="6" selection-end-line="635" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/mobile/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="297" column="34" selection-start-line="297" selection-start-column="34" selection-end-line="297" selection-end-column="34" />
+          <folding>
+            <element signature="n#svg#0;n#div#4;n#div#0;n#section#7;n#!!top" />
+            <element signature="n#g#0;n#svg#0;n#div#0;n#div#0;n#div#0;n#section#9;n#!!top" />
           </folding>
         </state>
       </provider>

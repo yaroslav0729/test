@@ -3056,6 +3056,26 @@ input[type='number'].color-danger  + .input-group {
         font-weight: 900;
         line-height: 44px;
     }
+    .date {
+        color: #101525;
+        font-size: 14px;
+        font-weight: 900;
+        line-height: 21px;
+        margin-bottom: 22px;
+        span {
+            display: inline-block;
+            color: #2CAABB;
+            margin-right: 23px;
+        }
+        i {
+            display: inline-block;
+            background: url(../img/ico-calendar.svg) no-repeat;
+            background-size: contain;
+            width: 20px; height: 20px;
+            vertical-align: middle;
+            margin-right: 19px;
+        }
+    }
 }
 
 
@@ -3292,32 +3312,34 @@ input[type='number'].color-danger  + .input-group {
         border-top: 4px solid #101525;
         border-bottom: 4px solid #101525;
     }
+    .btn {
+        position: absolute; left: 0; bottom: 18px;
+        border-radius: 0 5px 5px 0;
+    }
     .img {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 50% 50%;
-        .btn {
-            position: absolute; left: 0; bottom: 18px;
-            border-radius: 0 5px 5px 0;
-        }
+        position: relative;
     }
+    .prev, .next {
+        background: #101525;
+        width: 60px; height: 60px;
+        position: absolute; bottom: 0px; right: 0;
+        text-align: center;
+        font-size: 30px;
+        line-height: 60px;
+        color: #fff;
+        &:hover {background: #F7796A !important;}
+    }
+    .prev {right: auto; left: 0;}
+
     .text {
         padding: 100px 94px;
         color: #101525;
         font-size: 30px;
         font-weight: 900;
         line-height: 44px;
-        .prev, .next {
-            background: #101525;
-            width: 60px; height: 60px;
-            position: absolute; bottom: 0px; right: 0;
-            text-align: center;
-            font-size: 30px;
-            line-height: 60px;
-            color: #fff;
-            &:hover {background: #F7796A !important;}
-        }
-        .prev {right: auto; left: 0;}
         &:before {
             background: inherit;
             content: "";
@@ -3381,7 +3403,7 @@ input[type='number'].color-danger  + .input-group {
                 margin-bottom: 30px;
                 text-transform: uppercase;
                 i {
-                    transform: scale(1.2);
+                    transform: scale(1.5);
                     margin-right: 5px;
                 }
             }
@@ -3501,7 +3523,7 @@ input[type='number'].color-danger  + .input-group {
     text-transform: uppercase;
     color: #9496B0;
     i {
-        transform: scale(1.2);
+        transform: scale(1.5);
         margin-right: 5px;
     }
 }
@@ -3662,6 +3684,10 @@ input[type='number'].color-danger  + .input-group {
                 vertical-align: middle;
                 position: relative; top: -3px;
                 line-height: 1;
+                &.clock {
+                    background: url(../img/ico-clock-w.svg) no-repeat;
+                    background-size: 24px 24px;
+                }
             }
             & + b {margin-left: 60px}
         }
