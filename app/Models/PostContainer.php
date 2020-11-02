@@ -33,9 +33,9 @@ class PostContainer extends Model
     {
         parent::boot();
 
-        self::deleting(function($model){
-            $model->posts()->delete();
-        });
+        // self::deleting(function($model){
+        //     $model->posts()->delete();
+        // });
     }
 
     public function getStatusNameAttribute()

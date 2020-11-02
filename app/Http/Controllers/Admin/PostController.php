@@ -59,8 +59,9 @@ class PostController extends Controller
         }
         
         $postContainer = PostContainer::create();
-        $post = Post::create($request->all());
-        $post->container()->associate($postContainer);
+        $data = $request->all();
+        $data['post_container_id'] = $postContainer->id;
+        $post = Post::create($data);
         $post->actual = true;
         $post->author()->associate(auth()->user());
         $post->save();
@@ -153,8 +154,11 @@ class PostController extends Controller
             $oldPost->actual = false;
             $oldPost->save();   
         }
+        $data = $request->all();
+        $data['post_container_id'] = $oldPost->post_container_id;
+        $data['author_id'] = $oldPost->author_id;
 
-        $post = Post::create($request->all());
+        $post = Post::create($data);
         $post->container()->associate($postContainer);
         $post->actual = true;
         $post->save();

@@ -11,6 +11,8 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
+        'post_container_id',
+        'author_id',
         'name',
         'slug',
         'title',
@@ -42,10 +44,10 @@ class Post extends Model
     {
         parent::boot();
 
-        self::deleting(function($model){
-            $model->groups()->detach();
-            $model->widgets()->delete();
-        });
+        // self::deleting(function($model){
+        //     $model->groups()->detach();
+        //     $model->widgets()->delete();
+        // });
     }
 
     public function getGroupIdsAttribute()

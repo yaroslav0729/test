@@ -20,9 +20,12 @@ class CreatePostContainersTable extends Migration
 
         Schema::table('posts', function (Blueprint $table) {
 
-            $table->integer('post_container_id')
-                    ->after('id')
-                    ->nullable();
+            $table->unsignedBigInteger('post_container_id')
+                    ->after('id');
+
+            $table->foreign('post_container_id')
+                    ->references('id')->on('post_containers')
+                    ->onDelete('cascade');
         });
     }
 
