@@ -16,7 +16,7 @@ class AddPostStatus extends Migration
         Schema::table('post_containers', function (Blueprint $table) {
             $table->integer('status')
                     ->after('id')
-                    ->default(App\Models\Post::POST_STATUS_PUBLICHED);
+                    ->default(App\Models\PostContainer::POST_STATUS_PUBLICHED);
         });
     }
 

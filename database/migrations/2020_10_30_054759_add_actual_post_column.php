@@ -15,10 +15,6 @@ class AddActualPostColumn extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
 
-            $table->integer('post_container_id')
-                    ->after('id')
-                    ->nullable();
-
             $table->boolean('actual')
                     ->after('keywords')
                     ->default(false);
@@ -33,7 +29,6 @@ class AddActualPostColumn extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('post_container_id');
             $table->dropColumn('actual');
         });
 }

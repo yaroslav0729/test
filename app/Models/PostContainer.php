@@ -34,10 +34,6 @@ class PostContainer extends Model
         parent::boot();
 
         self::deleting(function($model){
-            // $post = $model->actual_post;
-            // $post->actual = false;
-            // $post->save();
-
             $model->posts()->delete();
         });
     }

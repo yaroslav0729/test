@@ -17,6 +17,13 @@ class CreatePostContainersTable extends Migration
             $table->id();
             $table->timestamps();
         });
+
+        Schema::table('posts', function (Blueprint $table) {
+
+            $table->integer('post_container_id')
+                    ->after('id')
+                    ->nullable();
+        });
     }
 
     /**
@@ -27,5 +34,9 @@ class CreatePostContainersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('post_containers');
+
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn('post_container_id');
+        });
     }
 }
