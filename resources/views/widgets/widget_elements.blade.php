@@ -13,6 +13,7 @@ received parameters
     {{-- <h3 class="mt-1 mb-3">{{  \App\Models\Widget::WIDGET_LABELS[$widgetId] }}</h3> --}}
 
     <div class="">
+
         @foreach ($availableParameters as $param)
 
             @if ($param !== \App\Models\WidgetParameters::PARAM_HTML)
@@ -30,6 +31,18 @@ received parameters
             @endphp
 
             @switch($param)
+                    @case(\App\Models\WidgetParameters::PARAM_EMPTY)
+                        @php
+                            $inputName = $inputName . \App\Models\WidgetParameters::PARAM_EMPTY;
+                        @endphp
+                        <div class="form-group">
+                            <input 
+                                name="{{ $inputName }}" 
+                                type="hidden" 
+                                value="" 
+                            />
+                        </div>
+                    @break
                 @case(\App\Models\WidgetParameters::PARAM_HTML)
                         @php
                             $inputName = $inputName . \App\Models\WidgetParameters::PARAM_HTML;

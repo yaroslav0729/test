@@ -6,9 +6,12 @@ class Widget
 {
     const WIDGET_RICH_TEXT = 100;
     const WIDGET_GROUP_TILES = 200;
+    const WIDGET_BLOG_ARTICLE_HEADER = 300;
+
 
     const WIDGET_LABELS = [
         self::WIDGET_RICH_TEXT => 'Rich text',
         self::WIDGET_GROUP_TILES => 'Group tiles',
+        self::WIDGET_BLOG_ARTICLE_HEADER => 'Blog article header',
     ];
 }

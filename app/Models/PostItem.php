@@ -34,8 +34,7 @@ class PostItem extends Model
         return view('widgets.widget_elements', [
             'itemId' => $this->id,
             'widgetId' => $this->widget_id,
-            //'widgetHtml' => $this->render(),
-            'availableParameters' =>  WidgetParameters::AVAILABLE_PARAMETERS[$this->widget_id],
+            'availableParameters' =>  WidgetParameters::getAvailableParameters($this->widget_id),
             'parameters' => $this->parameters
         ]);
     }
@@ -47,6 +46,6 @@ class PostItem extends Model
 
     public function getAvailableParametersAttribute()
     {
-        return WidgetParameters::AVAILABLE_PARAMETERS[$this->widget_id];
+        return WidgetParameters::getAvailableParameters($this->widget_id);
     }
 }
