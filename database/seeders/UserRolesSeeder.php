@@ -25,11 +25,5 @@ class UserRolesSeeder extends Seeder
                 Role::create(['name' => $roleKey]);
             }
         }
-        
-        //Role::create(['name' => User::ROLE_SUPER_ADMIN]);
-        //Role::create(['name' => User::ROLE_ADMIN]);
-        //Role::create(['name' => User::ROLE_EDITOR]);
-        //Role::create(['name' => User::ROLE_SUBSCRIBER]);
-        //Role::create(['name' => User::ROLE_VISITOR]);
     }
 }

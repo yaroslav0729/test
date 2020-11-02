@@ -15,9 +15,12 @@ class CreatePostPostGroupTable extends Migration
     {
         Schema::create('post_post_group', function (Blueprint $table) {
             $table->id();
-            $table->integer('post_id');
-            $table->integer('post_group_id');
+            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('post_group_id');
             $table->timestamps();
+
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->foreign('post_group_id')->references('id')->on('post_groups')->onDelete('cascade');
         });
     }
 
