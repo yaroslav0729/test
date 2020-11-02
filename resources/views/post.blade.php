@@ -1,13 +1,17 @@
-@extends('layouts.main')
+@extends('layouts.blog')
 
 @section('content')
     
-<div class="container  mx-auto">
-    <div class="p-5 pb-8">
-        @foreach ($post->widgets as $widget)
-            {!! $widget->render() !!}    
-        @endforeach
+<section class="blog-article-body">
+    <div class="wrap">
+        <div class="body">
+
+            @foreach ($post->widgets as $widget)
+                {!! $widget->render() !!}    
+            @endforeach
+
+        </div>
     </div>
-</div>
+</section>
 
 @endsection
