@@ -168,6 +168,8 @@ class PostController extends Controller
 
         $post->parseWidgets($request);
 
+        $postContainer->removeOldPosts();
+
         return redirect()->route('admin.post.index')->with('status', 'Post updated!');
     }
 

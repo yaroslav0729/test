@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Post;
+use Config;
 
 class PostContainer extends Model
 {
@@ -41,5 +43,20 @@ class PostContainer extends Model
     public function getStatusNameAttribute()
     {
         return self::POST_STATUS[$this->status];
+    }
+
+
+    public function removeOldPosts()
+    {
+        $limit = Config('app.POST_HISTORY_QUANTITY');
+        $ids = Post::where('post_container_id', $this->id)->orderBy('id', 'desc')->limit($limit)->pluck('id')->toArray();
+        
+        $actualPostId = $this->actual_post->id;
+
+        if (!in_array($actualPostId, $ids))
+            array_push($ids, $actualPostId);
+
+        Post::where('post_container_id', $this->id)
+                ->whereNotIn('id', $ids)->delete();
     }
 }
