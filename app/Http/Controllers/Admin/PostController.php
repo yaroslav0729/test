@@ -91,6 +91,13 @@ class PostController extends Controller
         ]);
     }
 
+    public function preview($id)
+    {
+        $post = Post::where('id', $id)->firstOrFail();
+        
+        return view('post', compact('post'));
+    }
+
     public function restore($id)
     {
         $post = Post::where('id', $id)->firstOrFail();

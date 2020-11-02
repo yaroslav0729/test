@@ -4,8 +4,9 @@
     
 <div class="container  mx-auto">
     <div class="p-5 pb-8">
-        <h1>{{ $post->title}}</h1>
-        {!! $post->data !!}
+        @foreach ($post->widgets as $widget)
+            {!! $widget->render() !!}    
+        @endforeach
     </div>
 </div>
 

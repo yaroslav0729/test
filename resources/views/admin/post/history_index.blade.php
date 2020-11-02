@@ -37,10 +37,15 @@
                         <td class="border px-4 py-2">{{ $post->created_at->format('d/m/Y') }}</td>
                         <td class="border px-4 py-2 action_td">
                         <a href="{{ route('admin.post.show', ['post' => $post->id]) }}">
-                            <button class="btn btn-outline-success action-btn" title="Watch this version">
-                            <i class="far fa-eye"></i>
+                            <button class="btn btn-outline-info action-btn" title="Version details">
+                            <i class="fas fa-info-circle"></i>
                             </button>
                         </a>
+                        <a href="{{ route('admin.post.preview', ['id' => $post->id]) }}" target="_blank">
+                          <button class="btn btn-outline-success action-btn" title="Watch this version">
+                          <i class="far fa-eye"></i>
+                          </button>
+                      </a>
                         </form>
                         
                         </td>

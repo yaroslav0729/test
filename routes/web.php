@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
 
         Route::resource('post', AdminPostController::class, ['as' => 'admin']);
         Route::resource('post_group', PostGroupController::class, ['as' => 'admin']);
+        Route::get('/preview_version/{id}', [AdminPostController::class, 'preview'])->name('admin.post.preview');
         Route::get('/post_history/{id}', [AdminPostController::class, 'history'])->name('admin.post.history');
         Route::post('/restore_post/{id}', [AdminPostController::class, 'restore'])->name('admin.post.restore');
         Route::post('/save_status/{id}', [AdminPostController::class, 'saveStatus'])->name('admin.post.save_status');
