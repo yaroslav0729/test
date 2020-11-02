@@ -3463,6 +3463,27 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 900;
   line-height: 44px;
 }
+.general-content-head .date {
+  color: #101525;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 21px;
+  margin-bottom: 22px;
+}
+.general-content-head .date span {
+  display: inline-block;
+  color: #2CAABB;
+  margin-right: 23px;
+}
+.general-content-head .date i {
+  display: inline-block;
+  background: url(../img/ico-calendar.svg) no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 19px;
+}
 .who-we-are-head {
   padding-top: 140px;
   padding-bottom: 105px;
@@ -3720,26 +3741,20 @@ input[type='number'].color-danger + .input-group .btn {
   border-top: 4px solid #101525;
   border-bottom: 4px solid #101525;
 }
-.promo-project-swiper .img {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-}
-.promo-project-swiper .img .btn {
+.promo-project-swiper .btn {
   position: absolute;
   left: 0;
   bottom: 18px;
   border-radius: 0 5px 5px 0;
 }
-.promo-project-swiper .text {
-  padding: 100px 94px;
-  color: #101525;
-  font-size: 30px;
-  font-weight: 900;
-  line-height: 44px;
+.promo-project-swiper .img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  position: relative;
 }
-.promo-project-swiper .text .prev,
-.promo-project-swiper .text .next {
+.promo-project-swiper .prev,
+.promo-project-swiper .next {
   background: #101525;
   width: 60px;
   height: 60px;
@@ -3751,13 +3766,20 @@ input[type='number'].color-danger + .input-group .btn {
   line-height: 60px;
   color: #fff;
 }
-.promo-project-swiper .text .prev:hover,
-.promo-project-swiper .text .next:hover {
+.promo-project-swiper .prev:hover,
+.promo-project-swiper .next:hover {
   background: #F7796A !important;
 }
-.promo-project-swiper .text .prev {
+.promo-project-swiper .prev {
   right: auto;
   left: 0;
+}
+.promo-project-swiper .text {
+  padding: 100px 94px;
+  color: #101525;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 44px;
 }
 .promo-project-swiper .text:before {
   background: inherit;
@@ -3822,7 +3844,7 @@ input[type='number'].color-danger + .input-group .btn {
   text-transform: uppercase;
 }
 .events-home-swiper .swiper-slide .text .place i {
-  transform: scale(1.2);
+  transform: scale(1.5);
   margin-right: 5px;
 }
 .events-home-swiper .swiper-slide .text .date {
@@ -3962,7 +3984,7 @@ input[type='number'].color-danger + .input-group .btn {
   color: #9496B0;
 }
 .place i {
-  transform: scale(1.2);
+  transform: scale(1.5);
   margin-right: 5px;
 }
 .upcoming-events {
@@ -4134,6 +4156,10 @@ input[type='number'].color-danger + .input-group .btn {
   position: relative;
   top: -3px;
   line-height: 1;
+}
+.event-info-descr .top b i.clock {
+  background: url(../img/ico-clock-w.svg) no-repeat;
+  background-size: 24px 24px;
 }
 .event-info-descr .top b + b {
   margin-left: 60px;
