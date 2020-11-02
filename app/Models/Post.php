@@ -11,6 +11,8 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
+        'post_container_id',
+        'author_id',
         'name',
         'slug',
         'title',
@@ -28,14 +30,24 @@ class Post extends Model
         return $this->hasMany('App\Models\PostItem')->orderBy('ordering');
     }
 
+    public function container()
+    {
+        return $this->belongsTo('App\Models\PostContainer', 'post_container_id');
+    }
+
+    public function author()
+    {
+        return $this->belongsTo('App\Models\User', 'author_id');
+    }
+
     public static function boot()
     {
         parent::boot();
 
-        self::deleting(function($model){
-            $model->groups()->detach();
-            $model->widgets()->delete();
-        });
+        // self::deleting(function($model){
+        //     $model->groups()->detach();
+        //     $model->widgets()->delete();
+        // });
     }
 
     public function getGroupIdsAttribute()
@@ -67,25 +79,17 @@ class Post extends Model
 
         foreach ($saveData as $postItemId => $postData) {
             foreach ($postData as $widgetId => $widget) {
-                $postItem = PostItem::where('id', $postItemId)->
-                                    where('widget_id', $widgetId)->first();
 
                 $params = [];
                 foreach ($widget as $paramId => $param) {
                     $params[$paramId] = $param;
                 }
 
-                if (!$postItem) {
-                    $newWidgets[] = new PostItem([
-                        'widget_id' => $widgetId,
-                        'ordering' => $ordering,
-                        'parameters' => $params
-                    ]);
-                } else {
-                    $postItem->ordering = $ordering;
-                    $postItem->parameters = $params;
-                    $postItem->save();
-                }
+                $newWidgets[] = new PostItem([
+                    'widget_id' => $widgetId,
+                    'ordering' => $ordering,
+                    'parameters' => $params
+                ]);
             }
 
             $ordering++;

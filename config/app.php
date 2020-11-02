@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Islamic help'),
+    'POST_HISTORY_QUANTITY' => env('POST_HISTORY_QUANTITY', 3),
 
     /*
     |--------------------------------------------------------------------------

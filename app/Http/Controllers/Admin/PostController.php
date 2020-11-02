@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\PostContainer;
 use App\Models\PostGroup;
 use App\Models\Widget;
 use App\Models\WidgetParameters;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\Admin\WidgetAddRequest;
 use App\Models\PostItem;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -21,9 +23,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        $postContainers = PostContainer::paginate(10);
 
-        return view('admin.post.index', ['posts' => $posts]);
+        return view('admin.post.index', ['postContainers' => $postContainers]);
     }
 
     /**
@@ -48,8 +50,22 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $post = Post::create($request->all());
+        $validator = $this->_validateSlug($request);
 
+        if (count($validator->errors())) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        
+        $postContainer = PostContainer::create();
+        $data = $request->all();
+        $data['post_container_id'] = $postContainer->id;
+        $post = Post::create($data);
+        $post->actual = true;
+        $post->author()->associate(auth()->user());
+        $post->save();
+        
         $gIds = $request->input('groups');
         $post->groups()->attach($gIds);
 
@@ -66,7 +82,42 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::where('id', $id)->firstOrFail();
+        $groups = PostGroup::all();
+
+        return view('admin.post.history_post', [
+            'post' => $post,
+            'groups' => $groups,
+        ]);
+    }
+
+    public function preview($id)
+    {
+        $post = Post::where('id', $id)->firstOrFail();
+        
+        return view('post', compact('post'));
+    }
+
+    public function restore($id)
+    {
+        $post = Post::where('id', $id)->firstOrFail();
+        $postContainer = PostContainer::where('id', $post->post_container_id)->firstOrFail();
+        $oldActualPost = $postContainer->actual_post;
+        $oldActualPost->actual = false;
+        $oldActualPost->save();
+        $post->actual = true;
+        $post->save();
+
+        return redirect()->route('admin.post.index')->with('status', 'Post restored!');
+
+    }
+
+    public function history($id)
+    {
+        $postContainer = PostContainer::where('id', $id)->firstOrFail();
+        $posts = $postContainer->posts()->orderBy('id', 'desc')->get();
+
+        return view('admin.post.history_index', ['posts' => $posts]);
     }
 
     /**
@@ -77,11 +128,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
+        $postContainer = PostContainer::findOrFail($id);
         $groups = PostGroup::all();
 
         return view('admin.post.create_edit', [
-            'post' => $post, 
+            'postContainer' => $postContainer, 
             'groups' => $groups,
         ]);
     }
@@ -95,21 +146,36 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = Post::findOrFail($id);
+        $validator = $this->_validateSlug($request, $id);
 
-        if ($post->slug !== $request->input('slug')) {
-            $validatedData = $request->validate([
-                'slug' => 'required|unique:posts'
-            ]);
+        if (count($validator->errors())) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
         }
+        
+        $postContainer = PostContainer::findOrFail($id);
+        $oldPost = $postContainer->actual_post;
 
-        $post->update($request->all());
+        if (isset($oldPost)) {
+            $oldPost->actual = false;
+            $oldPost->save();   
+        }
+        $data = $request->all();
+        $data['post_container_id'] = $oldPost->post_container_id;
+        $data['author_id'] = $oldPost->author_id;
+
+        $post = Post::create($data);
+        $post->container()->associate($postContainer);
+        $post->actual = true;
+        $post->save();
 
         $gIds = $request->input('groups');
-        $post->groups()->detach();
         $post->groups()->attach($gIds);
 
         $post->parseWidgets($request);
+
+        $postContainer->removeOldPosts();
 
         return redirect()->route('admin.post.index')->with('status', 'Post updated!');
     }
@@ -122,10 +188,19 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
-        $post->delete();
+        $postContainer = PostContainer::findOrFail($id);
+        $postContainer->delete();
 
         return redirect()->route('admin.post.index')->with('status', 'Post deleted!');
+    }
+
+    public function saveStatus(Request $request, $id)
+    {
+        $postContainer = PostContainer::findOrFail($id);
+        $postContainer->status = $request->status;
+        $postContainer->save();
+
+        return redirect()->route('admin.post.index')->with('status', 'Post status changed successfully!');
     }
 
     public function getWidgetModal()
@@ -141,11 +216,6 @@ class PostController extends Controller
     public function addWidget(WidgetAddRequest $request)
     {
         $widgetId = (int)$request->input('widget_id');
-        $widget = PostItem::where('widget_id', $widgetId)->first();
-
-        if (!$widget) {
-            abort(404);
-        }
 
         $widget = new PostItem(['widget_id' => $widgetId]);
         $widgetHtml = $widget->renderWithElements()->render();
@@ -153,5 +223,24 @@ class PostController extends Controller
         return response()->json([
             'content' => $widgetHtml
         ], 200); 
+    }
+
+    protected function _validateSlug($request, $id = null)
+    {
+        $validator = Validator::make($request->all(), []);
+        $slug = $request->input('slug');
+        $posts = Post::where('slug', $slug)
+                        ->where('actual', true);
+
+        if (isset($id)) {
+            $posts = $posts->where('post_container_id', '<>', $id);
+        }
+        $posts = $posts->get();
+
+        if (count($posts)) {
+            $validator->errors()->add('slug', 'The slug must be unique to publish');
+        }
+
+        return $validator;
     }
 }

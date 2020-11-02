@@ -1,5 +1,19 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/admin_styles.css": "/css/admin_styles.css"
+    "/js/app.js": "/js/app.js?id=ec8a4bb1023a4f43d286",
+    "/assets/vendor/MediaManager/style.css": "/assets/vendor/MediaManager/style.css?id=98fa89ea6e954aad49f6",
+    "/css/app.css": "/css/app.css?id=93d120e948105d8034f6",
+    "/css/admin_styles.css": "/css/admin_styles.css?id=5f8b3b69023821be6fbd",
+    "/js/icons/default/icons.js": "/js/icons/default/icons.js?id=fbdc849dec05958ac704",
+    "/js/plugins/code/plugin.js": "/js/plugins/code/plugin.js?id=62330a4222fa9e7f14cc",
+    "/js/plugins/hr/plugin.js": "/js/plugins/hr/plugin.js?id=06ed7b16abf988e33e76",
+    "/js/plugins/image/plugin.js": "/js/plugins/image/plugin.js?id=086056eecb47b83cc805",
+    "/js/plugins/imagetools/plugin.js": "/js/plugins/imagetools/plugin.js?id=3665a67255936a83beee",
+    "/js/plugins/link/plugin.js": "/js/plugins/link/plugin.js?id=77af8061327f865a540e",
+    "/js/plugins/lists/plugin.js": "/js/plugins/lists/plugin.js?id=97ac963a35184ae7b729",
+    "/js/plugins/media/plugin.js": "/js/plugins/media/plugin.js?id=8022e7b27f0d3f0a438a",
+    "/js/plugins/table/plugin.js": "/js/plugins/table/plugin.js?id=d135dcce8e30d8f9e438",
+    "/js/themes/silver/theme.js": "/js/themes/silver/theme.js?id=a4aaa062a31f8efeb146",
+    "/js/skins/ui/oxide/skin.min.css": "/js/skins/ui/oxide/skin.min.css?id=2c574babb0b2e33435ce",
+    "/js/skins/ui/oxide/content.min.css": "/js/skins/ui/oxide/content.min.css?id=715d7febbc5b2ae1df5f",
+    "/js/skins/content/default/content.css": "/js/skins/content/default/content.css?id=db31e42bcf1c9c26eb3c"
 }

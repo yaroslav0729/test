@@ -1,12 +1,19 @@
 @php
-    if (isset($post)) {
-        $pageTitle = 'Edit post id: ' . $post->id;
-        $actionRoute = route('admin.post.update', ['post' => $post->id]);
-        $name = $post->name;
-        $slug = $post->slug;
-        $title = $post->title;
-        $description = $post->description;
-        $keywords = $post->keywords;
+    if (isset($postContainer)) {
+
+        $post = $postContainer->actual_post;
+        if (isset($post)) {
+            $pageTitle = 'Edit post id: ' . $postContainer->id;
+            $actionRoute = route('admin.post.update', ['post' => $postContainer->id]);
+            $name = $post->name;
+            $slug = $post->slug;
+            $title = $post->title;
+            $description = $post->description;
+            $keywords = $post->keywords;
+        } else {
+            die('no post for this container');
+        }
+        
     } else {
         $pageTitle = 'Create post:';
         $actionRoute = route('admin.post.store');

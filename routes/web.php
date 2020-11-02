@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\PostGroupController;
+use App\Http\Controllers\Admin\MediaController;
 
 use App\Models\User;
 /*
@@ -27,7 +28,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
 
         Route::resource('post', AdminPostController::class, ['as' => 'admin']);
         Route::resource('post_group', PostGroupController::class, ['as' => 'admin']);
-        
+        Route::get('/preview_version/{id}', [AdminPostController::class, 'preview'])->name('admin.post.preview');
+        Route::get('/post_history/{id}', [AdminPostController::class, 'history'])->name('admin.post.history');
+        Route::post('/restore_post/{id}', [AdminPostController::class, 'restore'])->name('admin.post.restore');
+        Route::post('/save_status/{id}', [AdminPostController::class, 'saveStatus'])->name('admin.post.save_status');
+
         Route::prefix('users')->group(function () {
             Route::get('edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
             Route::post('update/{id}', [UserController::class, 'update'])->name('admin.user.update');
@@ -36,6 +41,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
 
         Route::get('/modal/get_widget_modal', [AdminPostController::class, 'getWidgetModal'])->name('admin.modal.getWidgetModal');
         Route::post('/modal/add_widget', [AdminPostController::class, 'addWidget'])->name('admin.modal.add-widget');
+    
+        Route::get('media/show-form-test', [MediaController::class, 'showForm']);
+        Route::post('media/upload_mce', [MediaController::class, 'upload']);
+
+        // MediaManager
+        ctf0\MediaManager\MediaRoutes::routes();
     });
 });
 

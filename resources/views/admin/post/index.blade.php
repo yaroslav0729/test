@@ -4,7 +4,7 @@
     
 <div id="admin_content" class="bg-gray-100 flex-auto h-screen">
     <div class="p-5 pb-8">
-        <h1>Posts index page</h1>
+        <h1>Posts:</h1>
 
         @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -29,41 +29,70 @@
                 <th class="px-4 py-2">Id</th>
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Slug</th>
+                <th class="px-4 py-2">Author</th>
+                <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Created at</th>
                 <th class="px-4 py-2">Action</th>
               </tr>
             </thead>
             <tbody>
 
-                @foreach ($posts as $post)
-                    <tr>
-                        <td class="border px-4 py-2">{{ $post->id }}</td>
-                        <td class="border px-4 py-2">{{ $post->name }}</td>
-                        <td class="border px-4 py-2"><a href="{{ url($post->slug) }}" target="_blank">{{ $post->slug }}</a></td>
-                        <td class="border px-4 py-2">{{ $post->created_at->format('d/m/Y') }}</td>
-                        <td class="border px-4 py-2 action_td">
-                          <a href="{{ route('admin.post.edit', ['post' => $post->id]) }}">
-                            <button class="btn btn-info action-btn" type="submit" title="Edit post">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                          </a>
-                          <form method="post" action="{{ route('admin.post.destroy', ['post' => $post->id]) }}" style="display:inline-block">
+                @foreach ($postContainers as $postContainer)
+                  @php
+                    $post = $postContainer->actual_post;    
+                  @endphp
+                    @if($post)
+                      <tr>
+                          <td class="border px-4 py-2">{{ $postContainer->id }}</td>
+                          <td class="border px-4 py-2">{{ $post->name }}</td>
+                          <td class="border px-4 py-2"><a href="{{ url($post->slug) }}" target="_blank">{{ $post->slug }}</a></td>
+                          <td class="border px-4 py-2">@isset($post->author){{ $post->author->name }} @else No author @endisset</td>
+                          <td class="border px-4 py-2">
 
-                            @csrf
-                            @method('DELETE')
-    
-                            <button class="btn btn-danger action-btn" type="submit" title="Delete post" onclick="return confirm('Are you sure want to delete?')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
-    
-                        </form>
-                        </td>
-                    </tr>
+                            <form method="post" class="form-inline" action="{{ route('admin.post.save_status', ['id' => $postContainer->id]) }}">
+                              @csrf
+                              <div class="form-group m-0 mr-2">
+                              <select name="status" class="form-control">
+                                @foreach (\App\Models\PostContainer::POST_STATUS as $statusKey => $status)
+                                  <option value="{{ $statusKey }}"
+                                  @if($statusKey === $postContainer->status) selected @endif
+                                  >{{ $status }}</option>
+                                @endforeach
+                              </select>
+                              </div>
+                              <button class="btn btn-inline btn-outline-primary" type="submit"><i class="far fa-save"></i></button>
+                            </form>
+                          </td>
+                          <td class="border px-4 py-2">{{ $post->created_at->format('d/m/Y') }}</td>
+                          <td class="border px-4 py-2 action_td">
+                            <a href="{{ route('admin.post.edit', ['post' => $postContainer->id]) }}">
+                              <button class="btn btn-info action-btn" type="button" title="Edit post">
+                                <i class="fas fa-edit"></i>
+                              </button>
+                            </a>
+                            <a href="{{ route('admin.post.history', ['id' => $postContainer->id]) }}" >
+                              <button class="btn btn-outline-success action-btn" type="button" title="Watch post history">
+                                <i class="fas fa-history"></i>
+                              </button>
+                            </a>
+                            <form method="post" action="{{ route('admin.post.destroy', ['post' => $postContainer->id]) }}" style="display:inline-block">
+
+                              @csrf
+                              @method('DELETE')
+      
+                              <button class="btn btn-danger action-btn" type="submit" title="Delete post" onclick="return confirm('Are you sure want to delete?')">
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                          </form>
+                          
+                          </td>
+                      </tr>
+                    @endif
                 @endforeach
 
             </tbody>
           </table>
-          {{ $posts->links() }}
+          {{ $postContainers->links() }}
     </div>
 </div>
 

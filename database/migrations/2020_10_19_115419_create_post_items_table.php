@@ -15,11 +15,15 @@ class CreatePostItemsTable extends Migration
     {
         Schema::create('post_items', function (Blueprint $table) {
             $table->id();
-            $table->integer('post_id');
-            $table->integer('widget_id');
+            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('widget_id');
             $table->integer('ordering');
             $table->text('parameters');
             $table->timestamps();
+
+            $table->foreign('post_id')
+                    ->references('id')->on('posts')
+                    ->onDelete('cascade');
         });
     }
 
