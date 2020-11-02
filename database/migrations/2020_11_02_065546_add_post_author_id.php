@@ -14,9 +14,13 @@ class AddPostAuthorId extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->integer('author_id')
+            $table->unsignedBigInteger('author_id')
                     ->after('post_container_id')
                     ->nullable();
+
+            $table->foreign('author_id')
+                    ->references('id')->on('users')
+                    ->onDelete('set null');
         });
     }
 
