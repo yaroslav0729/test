@@ -71,21 +71,21 @@ received parameters
                         </div>
                     @break
 
-                @case(\App\Models\WidgetParameters::PARAM_OPEN_TEXT)
+                @case(\App\Models\WidgetParameters::PARAM_MAIN_TEXT)
                     @php
-                        $inputName = $inputName . \App\Models\WidgetParameters::PARAM_OPEN_TEXT;
+                        $inputName = $inputName . \App\Models\WidgetParameters::PARAM_MAIN_TEXT;
                     @endphp
                     <div class="form-group">
-                        <textarea id="{{ $inputName }}" name="{{ $inputName }}" class="form-control">@isset($parameters[\App\Models\WidgetParameters::PARAM_OPEN_TEXT]){!! $parameters[\App\Models\WidgetParameters::PARAM_OPEN_TEXT] !!}@endisset</textarea>
+                        <textarea id="{{ $inputName }}" name="{{ $inputName }}" class="form-control">@isset($parameters[\App\Models\WidgetParameters::PARAM_MAIN_TEXT]){!! $parameters[\App\Models\WidgetParameters::PARAM_MAIN_TEXT] !!}@endisset</textarea>
                     </div>
                 @break
 
-                @case(\App\Models\WidgetParameters::PARAM_REFERENCE)
+                @case(\App\Models\WidgetParameters::PARAM_ADDITIONAL_TEXT)
                     @php
-                        $inputName = $inputName . \App\Models\WidgetParameters::PARAM_REFERENCE;
+                        $inputName = $inputName . \App\Models\WidgetParameters::PARAM_ADDITIONAL_TEXT;
                     @endphp
                     <div class="form-group">
-                        <textarea id="{{ $inputName }}" name="{{ $inputName }}" class="form-control">@isset($parameters[\App\Models\WidgetParameters::PARAM_REFERENCE]){!! $parameters[\App\Models\WidgetParameters::PARAM_REFERENCE] !!}@endisset</textarea>
+                        <textarea id="{{ $inputName }}" name="{{ $inputName }}" class="form-control">@isset($parameters[\App\Models\WidgetParameters::PARAM_ADDITIONAL_TEXT]){!! $parameters[\App\Models\WidgetParameters::PARAM_ADDITIONAL_TEXT] !!}@endisset</textarea>
                     </div>
                 @break
 

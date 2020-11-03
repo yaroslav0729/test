@@ -3,13 +3,13 @@
         <div class="body">
             <div class="blockquote">
                 <i>
-                    @isset($parameters[\App\Models\WidgetParameters::PARAM_OPEN_TEXT])
-                        {{ $parameters[\App\Models\WidgetParameters::PARAM_OPEN_TEXT] }}
+                    @isset($parameters[\App\Models\WidgetParameters::PARAM_MAIN_TEXT])
+                        {{ $parameters[\App\Models\WidgetParameters::PARAM_MAIN_TEXT] }}
                     @endisset 
                 </i>
                 <div style="text-transform: uppercase">
-                    @isset($parameters[\App\Models\WidgetParameters::PARAM_REFERENCE])
-                        {{ $parameters[\App\Models\WidgetParameters::PARAM_REFERENCE] }}
+                    @isset($parameters[\App\Models\WidgetParameters::PARAM_ADDITIONAL_TEXT])
+                        {{ $parameters[\App\Models\WidgetParameters::PARAM_ADDITIONAL_TEXT] }}
                     @endisset 
                 </div>
             </div>

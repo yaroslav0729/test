@@ -15,11 +15,8 @@ class CustomViewServiceProvider extends  ViewServiceProvider
             $agent = new Agent();
 
             $views = $app['config']['view.paths'];
-            if ($agent->isPhone()) {
+            if ($agent->isMobile()) {
                 array_unshift($views, resource_path('views/mobile'));
-            }
-            if ($agent->isTablet()) {
-                array_unshift($views, resource_path('views/tablet'));
             }
 
             return new FileViewFinder($app['files'], $views);

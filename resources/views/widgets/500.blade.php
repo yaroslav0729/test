@@ -14,13 +14,13 @@
             <div class="col-7" style="z-index: 2">
                 <div class="text bg-danger">
                     <div class="tl">
-                        @isset($parameters[\App\Models\WidgetParameters::PARAM_OPEN_TEXT])
-                            {{ $parameters[\App\Models\WidgetParameters::PARAM_OPEN_TEXT] }}
+                        @isset($parameters[\App\Models\WidgetParameters::PARAM_MAIN_TEXT])
+                            {{ $parameters[\App\Models\WidgetParameters::PARAM_MAIN_TEXT] }}
                         @endisset 
                     </div>
                     <p>
-                        @isset($parameters[\App\Models\WidgetParameters::PARAM_REFERENCE])
-                            {{ $parameters[\App\Models\WidgetParameters::PARAM_REFERENCE] }}
+                        @isset($parameters[\App\Models\WidgetParameters::PARAM_ADDITIONAL_TEXT])
+                            {{ $parameters[\App\Models\WidgetParameters::PARAM_ADDITIONAL_TEXT] }}
                         @endisset 
                     </p>
                 </div>

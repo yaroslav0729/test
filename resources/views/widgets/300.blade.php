@@ -12,8 +12,8 @@
                     <i></i>{{ date('d F Y', strtotime($post->container->published_at)) }}
                 </div>
                 <p>
-                    @isset($parameters[\App\Models\WidgetParameters::PARAM_OPEN_TEXT])
-                        {{ $parameters[\App\Models\WidgetParameters::PARAM_OPEN_TEXT] }}
+                    @isset($parameters[\App\Models\WidgetParameters::PARAM_MAIN_TEXT])
+                        {{ $parameters[\App\Models\WidgetParameters::PARAM_MAIN_TEXT] }}
                     @endisset 
                 </p>
                 <div class="author">   
