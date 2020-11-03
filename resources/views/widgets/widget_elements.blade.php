@@ -10,7 +10,7 @@ received parameters
 --}}
 
 <div class="widget-item border border-dark rounded p-3 mb-3">
-    {{-- <h3 class="mt-1 mb-3">{{  \App\Models\Widget::WIDGET_LABELS[$widgetId] }}</h3> --}}
+    <h3 class="mt-1 mb-3 text-center">{{  \App\Models\Widget::WIDGET_LABELS[$widgetId] }}</h3>
 
     <div class="">
 
@@ -52,6 +52,24 @@ received parameters
                         </div>
                     @break
 
+                @case(\App\Models\WidgetParameters::PARAM_OPEN_TEXT)
+                    @php
+                        $inputName = $inputName . \App\Models\WidgetParameters::PARAM_OPEN_TEXT;
+                    @endphp
+                    <div class="form-group">
+                        <textarea id="{{ $inputName }}" name="{{ $inputName }}" class="form-control">@isset($parameters[\App\Models\WidgetParameters::PARAM_OPEN_TEXT]){!! $parameters[\App\Models\WidgetParameters::PARAM_OPEN_TEXT] !!}@endisset</textarea>
+                    </div>
+                @break
+
+                @case(\App\Models\WidgetParameters::PARAM_REFERENCE)
+                    @php
+                        $inputName = $inputName . \App\Models\WidgetParameters::PARAM_REFERENCE;
+                    @endphp
+                    <div class="form-group">
+                        <textarea id="{{ $inputName }}" name="{{ $inputName }}" class="form-control">@isset($parameters[\App\Models\WidgetParameters::PARAM_REFERENCE]){!! $parameters[\App\Models\WidgetParameters::PARAM_REFERENCE] !!}@endisset</textarea>
+                    </div>
+                @break
+
                 @case(\App\Models\WidgetParameters::PARAM_GROUP)
                         @php
                             $inputName = $inputName . \App\Models\WidgetParameters::PARAM_GROUP;
@@ -64,6 +82,24 @@ received parameters
                             </select>
                         </div>
                     @break
+
+                @case(\App\Models\WidgetParameters::PARAM_BG_IMAGE)
+                    @php
+                        $inputName = $inputName . \App\Models\WidgetParameters::PARAM_BG_IMAGE;
+                    @endphp
+                    <div class="input-group mb-3">
+                        <input 
+                            name="{{ $inputName }}" 
+                            type="text" 
+                            class="form-control" 
+                            placeholder="{{ \App\Models\WidgetParameters::PARAM_LABELS[\App\Models\WidgetParameters::PARAM_BG_IMAGE] }}"
+                            @isset($parameters[\App\Models\WidgetParameters::PARAM_BG_IMAGE]) 
+                                value="{{ $parameters[\App\Models\WidgetParameters::PARAM_BG_IMAGE] }}" 
+                            @endisset
+                        />
+                    </div>
+                    
+                @break
 
                 @case(\App\Models\WidgetParameters::PARAM_ELEMENTS_QUANT)
                         @php
