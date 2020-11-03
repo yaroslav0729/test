@@ -15,6 +15,7 @@ class WidgetParameters
     const PARAM_LINK = 800;
     const PARAM_TITLE = 900;
     const PARAM_READ_STRING = 1000;
+    const PARAM_VIDEO_LINKS = 1100;
 
     const PARAM_LABELS = [
         self::PARAM_HTML => 'Html',
@@ -27,6 +28,7 @@ class WidgetParameters
         self::PARAM_LINK => 'link',
         self::PARAM_TITLE => 'Title',
         self::PARAM_READ_STRING => 'Read additional text',
+        self::PARAM_VIDEO_LINKS => 'Video links',
     ];
 
     static public function getAvailableParameters($widget)
@@ -76,6 +78,11 @@ class WidgetParameters
             }
             case Widget::WIDGET_BACK_LINK: {
                 return [
+                ];  
+            }
+            case Widget::WIDGET_VIDEO_CAROUSEL: {
+                return [
+                    self::PARAM_VIDEO_LINKS    
                 ];  
             }
         }
