@@ -102576,6 +102576,13 @@ $(function () {
     });
   }
 
+  $(document).on('submit', '[options-form]', function (event) {
+    //event.preventDefault();
+    // remove stup items
+    var stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
+    stub.attr('disabled', 'disabled');
+    return true;
+  });
   $(document).on('click', '#submit_modal_form', function () {
     $('form#modal-form').submit();
   });
@@ -102587,7 +102594,9 @@ $(function () {
       return false;
     }
 
-    MODAL_FORM_LOCK = true;
+    MODAL_FORM_LOCK = true; // let stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
+    // stub.attr('disabled', 'disabled');
+
     var form = $(this);
     var formData = new FormData(form[0]);
     $.ajax({
@@ -102722,6 +102731,11 @@ $(function () {
     var block1 = $(this).closest('.widget-item');
     var block2 = block1.next();
     block2.insertBefore(block1);
+  });
+  $(document).on('click', '[option-add]', function () {
+    var wrap = $(this).closest('[options-container]');
+    var answersWrap = $('[answers-list]', wrap);
+    answersWrap.append($('[item-option-stub]', wrap).html());
   });
 }); //require('./functions');
 

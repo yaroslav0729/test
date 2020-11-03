@@ -174,13 +174,29 @@ received parameters
                 @break
 
                 @case(\App\Models\WidgetParameters::PARAM_VIDEO_LINKS)
-                    <div class="form-group">
+                    <div class="form-group" options-container>
+
+                        <div class="btn btn-info mb-3" option-add><i class="fas fa-link"></i> Add link</div>
+
+                        <div class="d-none" item-option-stub stub-fields>
+                            <div class="input-group mb-3" >
+                                <input 
+                                    name="{{ $inputName }}[]" 
+                                    type="text"
+                                    class="form-control" 
+                                    placeholder="add link here..."
+                                    value=""
+                                />
+                            </div>
+                        </div>
+
                         @php
                             if (isset($parameters[$param])) {
                                 $videoLinks = $parameters[$param];
                             }
                         @endphp
                         
+                        <div answers-list>
                         @isset($videoLinks)
                             @foreach ($videoLinks as $link)
                             <div class="input-group mb-3">
@@ -194,6 +210,7 @@ received parameters
                             </div>
                             @endforeach
                         @endisset
+                        </div>
                     </div>
                 @break
 

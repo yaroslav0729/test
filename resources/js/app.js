@@ -55,6 +55,16 @@ $(function () {
         });   
     }
 
+    $(document).on('submit', '[options-form]', function (event) {
+        //event.preventDefault();
+
+        // remove stup items
+        let stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
+        stub.attr('disabled', 'disabled');
+
+        return true
+    });
+
     $(document).on('click', '#submit_modal_form', function() {
         $('form#modal-form').submit()
     });
@@ -69,6 +79,9 @@ $(function () {
         }
 
         MODAL_FORM_LOCK = true;
+
+        // let stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
+        // stub.attr('disabled', 'disabled');
 
         var form = $(this);
         var formData = new FormData(form[0]);
@@ -218,6 +231,12 @@ $(function () {
         let block2 = block1.next()
 
         block2.insertBefore(block1);   
+    });
+
+    $(document).on('click', '[option-add]', function () {
+        let wrap = $(this).closest('[options-container]');
+        let answersWrap = $('[answers-list]', wrap);
+        answersWrap.append($('[item-option-stub]', wrap).html());
     });
 })
 
