@@ -43,6 +43,25 @@ received parameters
                             />
                         </div>
                     @break
+
+                @case(\App\Models\WidgetParameters::PARAM_TITLE)
+                    @php
+                        $inputName = $inputName . \App\Models\WidgetParameters::PARAM_TITLE;
+                    @endphp
+                    <div class="input-group mb-3">
+                        <input 
+                            name="{{ $inputName }}" 
+                            type="text" 
+                            class="form-control" 
+                            placeholder="{{ \App\Models\WidgetParameters::PARAM_LABELS[\App\Models\WidgetParameters::PARAM_TITLE] }}"
+                            @isset($parameters[\App\Models\WidgetParameters::PARAM_TITLE]) 
+                                value="{{ $parameters[\App\Models\WidgetParameters::PARAM_TITLE] }}" 
+                            @endisset
+                        />
+                    </div>
+                    
+                @break
+
                 @case(\App\Models\WidgetParameters::PARAM_HTML)
                         @php
                             $inputName = $inputName . \App\Models\WidgetParameters::PARAM_HTML;
@@ -95,6 +114,24 @@ received parameters
                             placeholder="{{ \App\Models\WidgetParameters::PARAM_LABELS[\App\Models\WidgetParameters::PARAM_BG_IMAGE] }}"
                             @isset($parameters[\App\Models\WidgetParameters::PARAM_BG_IMAGE]) 
                                 value="{{ $parameters[\App\Models\WidgetParameters::PARAM_BG_IMAGE] }}" 
+                            @endisset
+                        />
+                    </div>
+                    
+                @break
+
+                @case(\App\Models\WidgetParameters::PARAM_LINK)
+                    @php
+                        $inputName = $inputName . \App\Models\WidgetParameters::PARAM_LINK;
+                    @endphp
+                    <div class="input-group mb-3">
+                        <input 
+                            name="{{ $inputName }}" 
+                            type="text" 
+                            class="form-control" 
+                            placeholder="{{ \App\Models\WidgetParameters::PARAM_LABELS[\App\Models\WidgetParameters::PARAM_LINK] }}"
+                            @isset($parameters[\App\Models\WidgetParameters::PARAM_LINK]) 
+                                value="{{ $parameters[\App\Models\WidgetParameters::PARAM_LINK] }}" 
                             @endisset
                         />
                     </div>

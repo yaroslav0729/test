@@ -13,6 +13,8 @@ class WidgetParameters
     const PARAM_OPEN_TEXT = 500;
     const PARAM_BG_IMAGE = 600;
     const PARAM_REFERENCE = 700;
+    const PARAM_LINK = 800;
+    const PARAM_TITLE = 900;
 
     const PARAM_LABELS = [
         self::PARAM_EMPTY => 'No parameters',
@@ -22,7 +24,9 @@ class WidgetParameters
         self::PARAM_PAGES_QUANT => 'Pages quantity',
         self::PARAM_OPEN_TEXT => 'Opening text',
         self::PARAM_BG_IMAGE => 'Background image',
-        self::PARAM_REFERENCE => 'Reference'
+        self::PARAM_REFERENCE => 'Reference',
+        self::PARAM_LINK => 'link',
+        self::PARAM_TITLE => 'Title',
     ];
 
     static public function getAvailableParameters($widget)
@@ -51,6 +55,15 @@ class WidgetParameters
                     self::PARAM_OPEN_TEXT,
                     self::PARAM_REFERENCE
                 ];
+            }
+            case Widget::WIDGET_PREVIEW_PAGE: {
+                return [
+                    self::PARAM_TITLE,
+                    self::PARAM_OPEN_TEXT,
+                    self::PARAM_REFERENCE,
+                    self::PARAM_BG_IMAGE,
+                    self::PARAM_LINK
+                ];  
             }
         }
     }
