@@ -78,6 +78,11 @@ class WidgetParameters
                     self::PARAM_EMPTY,
                 ];  
             }
+            case Widget::WIDGET_BACK_LINK: {
+                return [
+                    self::PARAM_EMPTY,
+                ];  
+            }
         }
     }
 }

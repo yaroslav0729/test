@@ -1,9 +1,5 @@
 <section class="blog-article-head">
     <div class="wrap">
-        <div class="mb-4">
-            <a href="{{ route('index') }}" class="btn-back"><i class="far fa-arrow-left"></i> BACK</a>
-        </div>
-
         <div class="row">
             <div class="col-5 article-text">
                 <h1>{{ $post->name }}</h1>
