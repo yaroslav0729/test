@@ -5,7 +5,6 @@ use App\Models\Widget;
 
 class WidgetParameters
 {
-    const PARAM_EMPTY = 0;
     const PARAM_HTML = 100;
     const PARAM_GROUP = 200;
     const PARAM_ELEMENTS_QUANT = 300;
@@ -18,7 +17,6 @@ class WidgetParameters
     const PARAM_READ_STRING = 1000;
 
     const PARAM_LABELS = [
-        self::PARAM_EMPTY => 'No parameters',
         self::PARAM_HTML => 'Html',
         self::PARAM_GROUP => 'Group',
         self::PARAM_ELEMENTS_QUANT => 'Elements quantity',
@@ -70,17 +68,14 @@ class WidgetParameters
             }
             case Widget::WIDGET_JOIN_CAUSE: {
                 return [
-                    self::PARAM_EMPTY,
                 ];  
             }
             case Widget::WIDGET_DISCOVER: {
                 return [
-                    self::PARAM_EMPTY,
                 ];  
             }
             case Widget::WIDGET_BACK_LINK: {
                 return [
-                    self::PARAM_EMPTY,
                 ];  
             }
         }

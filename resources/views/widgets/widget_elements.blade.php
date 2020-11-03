@@ -14,6 +14,29 @@ received parameters
 
     <div class="">
 
+        @empty($availableParameters)
+            <label class="mb-2">No parameters in this widget</label>
+
+            @php
+                $inputName = "";
+
+                if (!isset($itemId)) {
+                    $itemId = "new-" . \Illuminate\Support\Str::random(20);
+                }
+
+                $inputName = "widget_param_" . $itemId . "_" . $widgetId . "_0";
+
+            @endphp
+
+            <div class="form-group">
+                <input 
+                    name="{{ $inputName }}" 
+                    type="hidden" 
+                    value="" 
+                />
+            </div>
+        @endempty
+
         @foreach ($availableParameters as $param)
 
             @if ($param !== \App\Models\WidgetParameters::PARAM_HTML)
@@ -31,18 +54,6 @@ received parameters
             @endphp
 
             @switch($param)
-                    @case(\App\Models\WidgetParameters::PARAM_EMPTY)
-                        @php
-                            $inputName = $inputName . \App\Models\WidgetParameters::PARAM_EMPTY;
-                        @endphp
-                        <div class="form-group">
-                            <input 
-                                name="{{ $inputName }}" 
-                                type="hidden" 
-                                value="" 
-                            />
-                        </div>
-                    @break
 
                 @case(\App\Models\WidgetParameters::PARAM_TITLE)
                     @php
