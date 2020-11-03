@@ -1,6 +1,6 @@
 <?php include "_header.php";?>
 
-<section class="main-page-header style-1" style="display: none">
+<section class="main-page-header style-1" style="display: none1">
     <div class="wrap">
         <div class="body">
             <div class="left">
@@ -17,7 +17,7 @@
     </div>
 </section>
 
-<section class="main-page-header style-2" style="display: none">
+<section class="main-page-header style-2" style="display: none1">
     <div class="wrap">
         <div class="body">
             <div class="left">
@@ -34,7 +34,7 @@
     </div>
 </section>
 
-<section class="main-page-header style-3" style="background-image: url('img/content/main-page-header-3.jpg'); display: none">
+<section class="main-page-header style-3" style="background-image: url('img/content/main-page-header-3.jpg'); display: none1">
     <div class="row">
         <div class="col-6">
             <div class="donate-progress">
