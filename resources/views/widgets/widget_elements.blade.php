@@ -120,6 +120,25 @@ received parameters
                     
                 @break
 
+                @case(\App\Models\WidgetParameters::PARAM_READ_STRING)
+                    @php
+                        $inputName = $inputName . \App\Models\WidgetParameters::PARAM_READ_STRING;
+                    @endphp
+                    <div class="input-group mb-3">
+                        <input 
+                            name="{{ $inputName }}" 
+                            type="text" 
+                            class="form-control" 
+                            placeholder="{{ \App\Models\WidgetParameters::PARAM_LABELS[\App\Models\WidgetParameters::PARAM_READ_STRING] }}"
+                            @isset($parameters[\App\Models\WidgetParameters::PARAM_READ_STRING]) 
+                                value="{{ $parameters[\App\Models\WidgetParameters::PARAM_READ_STRING] }}" 
+                            @endisset
+                        />
+                    </div>
+                    
+                @break
+
+
                 @case(\App\Models\WidgetParameters::PARAM_LINK)
                     @php
                         $inputName = $inputName . \App\Models\WidgetParameters::PARAM_LINK;

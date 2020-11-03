@@ -15,6 +15,7 @@ class WidgetParameters
     const PARAM_ADDITIONAL_TEXT = 700;
     const PARAM_LINK = 800;
     const PARAM_TITLE = 900;
+    const PARAM_READ_STRING = 1000;
 
     const PARAM_LABELS = [
         self::PARAM_EMPTY => 'No parameters',
@@ -27,6 +28,7 @@ class WidgetParameters
         self::PARAM_ADDITIONAL_TEXT => 'Reference',
         self::PARAM_LINK => 'link',
         self::PARAM_TITLE => 'Title',
+        self::PARAM_READ_STRING => 'Read additional text',
     ];
 
     static public function getAvailableParameters($widget)
@@ -46,6 +48,7 @@ class WidgetParameters
             }
             case Widget::WIDGET_BLOG_ARTICLE_HEADER: {
                 return [
+                    self::PARAM_READ_STRING,
                     self::PARAM_MAIN_TEXT,
                     self::PARAM_BG_IMAGE
                 ];

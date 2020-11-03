@@ -8,7 +8,11 @@
             <div class="col-5 article-text">
                 <h1>{{ $post->name }}</h1>
                 <div class="date">
-                    <span>7min read</span>
+                    <span>
+                        @isset($parameters[\App\Models\WidgetParameters::PARAM_READ_STRING])
+                            {{ $parameters[\App\Models\WidgetParameters::PARAM_READ_STRING] }}
+                        @endisset  
+                    </span>
                     <i></i>{{ date('d F Y', strtotime($post->container->published_at)) }}
                 </div>
                 <p>
