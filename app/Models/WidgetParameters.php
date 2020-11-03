@@ -65,6 +65,16 @@ class WidgetParameters
                     self::PARAM_LINK
                 ];  
             }
+            case Widget::WIDGET_JOIN_CAUSE: {
+                return [
+                    self::PARAM_EMPTY,
+                ];  
+            }
+            case Widget::WIDGET_DISCOVER: {
+                return [
+                    self::PARAM_EMPTY,
+                ];  
+            }
         }
     }
 }

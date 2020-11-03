@@ -9,6 +9,8 @@ class Widget
     const WIDGET_BLOG_ARTICLE_HEADER = 300;
     const WIDGET_QUOTE = 400;
     const WIDGET_PREVIEW_PAGE = 500;
+    const WIDGET_JOIN_CAUSE = 600;
+    const WIDGET_DISCOVER = 700;
 
     const WIDGET_LABELS = [
         self::WIDGET_RICH_TEXT => 'Rich text',
@@ -16,5 +18,7 @@ class Widget
         self::WIDGET_BLOG_ARTICLE_HEADER => 'Blog article header',
         self::WIDGET_QUOTE => 'Quote',
         self::WIDGET_PREVIEW_PAGE => 'Preview page',
+        self::WIDGET_JOIN_CAUSE => 'Join the cause',
+        self::WIDGET_DISCOVER => 'Discover more'
     ];
 }
