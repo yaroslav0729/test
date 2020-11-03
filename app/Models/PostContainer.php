@@ -45,7 +45,6 @@ class PostContainer extends Model
         return self::POST_STATUS[$this->status];
     }
 
-
     public function removeOldPosts()
     {
         $limit = Config('app.POST_HISTORY_QUANTITY');

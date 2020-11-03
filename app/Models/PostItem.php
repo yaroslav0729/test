@@ -22,10 +22,16 @@ class PostItem extends Model
         'parameters' => 'array',
     ];
 
+    public function post()
+    {
+        return $this->belongsTo('App\Models\Post');
+    }
+
     public function render()
     {
         return view('widgets.' . $this->widget_id, [
-            'parameters' => $this->parameters
+            'parameters' => $this->parameters,
+            'post' => $this->post
         ]);
     }
 

@@ -13,6 +13,7 @@ use App\Http\Requests\PostRequest;
 use App\Http\Requests\Admin\WidgetAddRequest;
 use App\Models\PostItem;
 use Illuminate\Support\Facades\Validator;
+Use \Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -198,6 +199,11 @@ class PostController extends Controller
     {
         $postContainer = PostContainer::findOrFail($id);
         $postContainer->status = $request->status;
+
+        if ((int)$postContainer->status === PostContainer::POST_STATUS_PUBLICHED) {
+            $postContainer->published_at = Carbon::now();
+        } 
+
         $postContainer->save();
 
         return redirect()->route('admin.post.index')->with('status', 'Post status changed successfully!');
