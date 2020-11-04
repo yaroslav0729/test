@@ -1,6 +1,6 @@
-/* @import 'tailwindcss/base';
+@import 'tailwindcss/base';
 @import 'tailwindcss/components';
-@import 'tailwindcss/utilities'; */
+@import 'tailwindcss/utilities';
 /* @import '@fortawesome/fontawesome-free/css/all.css'; */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import '../libs/fontawesome-pro-5.14.0/css/all.css';

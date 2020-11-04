@@ -19,6 +19,7 @@ mix.js('resources/js/app.js', 'public/js')
     ])
     .postCss('resources/css/app_admin.css', 'public/css', [
         require('postcss-import'),
+        require('tailwindcss'),
     ])
     .postCss('resources/css/admin_styles.css', 'public/css', [
     ])

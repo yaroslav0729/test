@@ -10,15 +10,14 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app_admin.css') }}">
         <script src="{{ asset('js/admin.js') }}""></script>
         <link rel="stylesheet" href="{{ asset('css/admin_styles.css') }}">
+        @livewireStyles
         @yield('head')
     </head>
     <body class="font-sans antialiased">
-        <div class="wrapper">
-
-            @include('parts.header')
+        <div class="wrapper" style="margin: 0; padding:0">
 
             <div class="d-flex">
                 @include('parts.user_left_menu')
@@ -27,9 +26,10 @@
                 </div>
             </div>
             
-            @include('parts.footer')
         </div>
 
         @yield('scripts')
+
+        @livewireScripts
     </body>
 </html>
