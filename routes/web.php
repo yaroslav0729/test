@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\PostGroupController;
@@ -20,7 +21,7 @@ use App\Models\User;
 */
 
 Route::get('/', [PostController::class, 'index'])->name('index');
-
+Route::get('/sitemap.xml', [SitemapController::class, 'sitemap']);
 
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_ADMIN ]], function () {
     Route::prefix('admin')->group(function () {
