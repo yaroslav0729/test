@@ -14702,4 +14702,14 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .contacts .social a:hover {
   color: #F7796A;
+}
+.videoWrapper {
+    background: #aaa;
+}
+.videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 } 
