@@ -38,7 +38,7 @@
         @yield('head')
     </head>
     <body class="font-sans antialiased">
-        <div class="wrapper">
+        <div class="wrapper" id="app">
             @include('parts.header')
             @yield('content')
             @include('parts.footer')
