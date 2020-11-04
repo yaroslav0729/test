@@ -55,16 +55,6 @@ $(function () {
         });   
     }
 
-    $(document).on('submit', '[options-form]', function (event) {
-        //event.preventDefault();
-
-        // remove stup items
-        let stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
-        stub.attr('disabled', 'disabled');
-
-        return true
-    });
-
     $(document).on('click', '#submit_modal_form', function() {
         $('form#modal-form').submit()
     });
@@ -79,9 +69,6 @@ $(function () {
         }
 
         MODAL_FORM_LOCK = true;
-
-        // let stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
-        // stub.attr('disabled', 'disabled');
 
         var form = $(this);
         var formData = new FormData(form[0]);
@@ -212,6 +199,8 @@ $(function () {
         initWysiwyg()
     });
 
+    //~~~~~~~~~~~~~~~~~~ Widget buttons (up, down, delete) ~~~~~~~~~~~~~
+
     $(document).on('click', '.widget_buttons [btn-delete]', function () {
         
         let el = $(this).closest('.widget-item')
@@ -233,11 +222,43 @@ $(function () {
         block2.insertBefore(block1);   
     });
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~ Options ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('submit', '[options-form]', function (event) {
+        //event.preventDefault();
+
+        // remove stup items
+        let stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
+        stub.attr('disabled', 'disabled');
+
+        return true
+    });
+
     $(document).on('click', '[option-add]', function () {
         let wrap = $(this).closest('[options-container]');
         let answersWrap = $('[answers-list]', wrap);
         answersWrap.append($('[item-option-stub]', wrap).html());
     });
+
+    $(document).on('click', '[option-delete]', function () {
+        let wrap = $(this).closest('.option').remove();
+    });
+
+    $(document).on('click', '[option-up]', function () {
+        let block1 = $(this).closest('.option');
+        let block2 = block1.prev()
+
+        block1.insertBefore(block2);
+    });
+
+    $(document).on('click', '[option-down]', function () {
+        let block1 = $(this).closest('.option');
+        let block2 = block1.next()
+
+        block2.insertBefore(block1); 
+    });
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 })
 
 //require('./functions');

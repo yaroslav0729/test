@@ -102587,13 +102587,6 @@ $(function () {
     });
   }
 
-  $(document).on('submit', '[options-form]', function (event) {
-    //event.preventDefault();
-    // remove stup items
-    var stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
-    stub.attr('disabled', 'disabled');
-    return true;
-  });
   $(document).on('click', '#submit_modal_form', function () {
     $('form#modal-form').submit();
   });
@@ -102605,9 +102598,7 @@ $(function () {
       return false;
     }
 
-    MODAL_FORM_LOCK = true; // let stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
-    // stub.attr('disabled', 'disabled');
-
+    MODAL_FORM_LOCK = true;
     var form = $(this);
     var formData = new FormData(form[0]);
     $.ajax({
@@ -102727,7 +102718,8 @@ $(function () {
     itemsElement.append($(this).html());
     $(this).html('');
     Object(_admin_parts_init_tiny_mce__WEBPACK_IMPORTED_MODULE_1__["initWysiwyg"])();
-  });
+  }); //~~~~~~~~~~~~~~~~~~ Widget buttons (up, down, delete) ~~~~~~~~~~~~~
+
   $(document).on('click', '.widget_buttons [btn-delete]', function () {
     var el = $(this).closest('.widget-item');
     console.log('btn-delete click', el.html());
@@ -102742,12 +102734,33 @@ $(function () {
     var block1 = $(this).closest('.widget-item');
     var block2 = block1.next();
     block2.insertBefore(block1);
+  }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~ Options ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('submit', '[options-form]', function (event) {
+    //event.preventDefault();
+    // remove stup items
+    var stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
+    stub.attr('disabled', 'disabled');
+    return true;
   });
   $(document).on('click', '[option-add]', function () {
     var wrap = $(this).closest('[options-container]');
     var answersWrap = $('[answers-list]', wrap);
     answersWrap.append($('[item-option-stub]', wrap).html());
   });
+  $(document).on('click', '[option-delete]', function () {
+    var wrap = $(this).closest('.option').remove();
+  });
+  $(document).on('click', '[option-up]', function () {
+    var block1 = $(this).closest('.option');
+    var block2 = block1.prev();
+    block1.insertBefore(block2);
+  });
+  $(document).on('click', '[option-down]', function () {
+    var block1 = $(this).closest('.option');
+    var block2 = block1.next();
+    block2.insertBefore(block1);
+  }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }); //require('./functions');
 
 /***/ }),

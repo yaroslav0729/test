@@ -179,7 +179,7 @@ received parameters
                         <div class="btn btn-info mb-3" option-add><i class="fas fa-link"></i> Add link</div>
 
                         <div class="d-none" item-option-stub stub-fields>
-                            <div class="input-group mb-3" >
+                            <div class="input-group mb-3 option" >
                                 <input 
                                     name="{{ $inputName }}[]" 
                                     type="text"
@@ -187,6 +187,11 @@ received parameters
                                     placeholder="add link here..."
                                     value=""
                                 />
+                                <div class="option_buttons">
+                                    <button type="button" option-down class="btn btn-info"><i class="fas fa-arrow-down"></i></button>
+                                    <button type="button" option-up class="btn btn-info"><i class="fas fa-arrow-up"></i></button>
+                                    <button type="button" option-delete class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                </div>
                             </div>
                         </div>
 
@@ -199,7 +204,7 @@ received parameters
                         <div answers-list>
                         @isset($videoLinks)
                             @foreach ($videoLinks as $link)
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-3 option">
                                 <input 
                                     name="{{ $inputName }}[]" 
                                     type="text"
@@ -208,9 +213,9 @@ received parameters
                                     value="{{ $link }}" 
                                 />
                                 <div class="option_buttons">
-                                    <button type="button" btn-down class="btn btn-info"><i class="fas fa-arrow-down"></i></button>
-                                    <button type="button" btn-up class="btn btn-info"><i class="fas fa-arrow-up"></i></button>
-                                    <button type="button" btn-delete class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                    <button type="button" option-down class="btn btn-info"><i class="fas fa-arrow-down"></i></button>
+                                    <button type="button" option-up class="btn btn-info"><i class="fas fa-arrow-up"></i></button>
+                                    <button type="button" option-delete class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                             </div>
                             @endforeach
