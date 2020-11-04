@@ -2,7 +2,13 @@
     <div class="top-bar">
         <div class="wrap">
             <div class="row align-items-center">
-                <div class="col-6"><a href="#" class="logo"><span></span> Islamic Help</a></div>
+                <div class="col-6">
+                    <a href="#" class="logo">
+                        <span>
+                            <img src="/img/logo.png" width="35" height="35" style="margin: 8px 0 0 8px" />
+                        </span> Islamic Help
+                    </a>
+                </div>
                 <div class="col-6 text-right">
                     <div class="phone">020 5000 2400 <i class="fal fa-phone"></i></div>
                     <div class="basket" data-toggle="modal" data-target="#cartModal"><i class="fal fa-shopping-cart"></i> <span>£50.00</span></div>

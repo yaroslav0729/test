@@ -3,7 +3,11 @@
         <div class="wrap">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <a href="#" class="logo"><span></span></a>
+                    <a href="#" class="logo">
+                        <span>
+                            <img src="/img/logo.png" width="35" height="35" style="margin: 8px 0 0 8px" />
+                        </span>
+                    </a>
                     <ul class="d-flex justify-content-between">
                         <li><a href="#" class="open-head-menu">our story</a></li>
                         <li><a href="#">Projects</a></li>
