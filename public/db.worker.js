@@ -99,7 +99,7 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./resources/assets/vendor/MediaManager/js/webworkers/db.js":
 /*!*******************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/babel-loader/lib??ref--13-0!./resources/assets/vendor/MediaManager/js/webworkers/db.js ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/babel-loader/lib??ref--14-0!./resources/assets/vendor/MediaManager/js/webworkers/db.js ***!
   \*******************************************************************************************************************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

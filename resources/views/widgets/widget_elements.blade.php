@@ -207,6 +207,11 @@ received parameters
                                     placeholder="{{ \App\Models\WidgetParameters::PARAM_LABELS[$param] }}"
                                     value="{{ $link }}" 
                                 />
+                                <div class="option_buttons">
+                                    <button type="button" btn-down class="btn btn-info"><i class="fas fa-arrow-down"></i></button>
+                                    <button type="button" btn-up class="btn btn-info"><i class="fas fa-arrow-up"></i></button>
+                                    <button type="button" btn-delete class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                </div>
                             </div>
                             @endforeach
                         @endisset
