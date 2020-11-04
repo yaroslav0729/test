@@ -12559,7 +12559,6 @@ input[type='number'].color-danger + .input-group .btn {
   bottom: 0;
   left: 0;
   right: 0;
-  width: 1080px;
 }
 @media screen and (max-width: 1200px) {
   .blog-article-head h1:after {
