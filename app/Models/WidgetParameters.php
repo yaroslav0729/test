@@ -70,6 +70,9 @@ class WidgetParameters
             }
             case Widget::WIDGET_JOIN_CAUSE: {
                 return [
+                    self::PARAM_TITLE,
+                    self::PARAM_HTML,
+                    self::PARAM_BG_IMAGE
                 ];  
             }
             case Widget::WIDGET_DISCOVER: {
