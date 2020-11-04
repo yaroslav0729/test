@@ -73,8 +73,6 @@ class Post extends Model
             }    
         }
 
-        $this->removeOldWidgets(array_keys($saveData));
-
         $ordering = 0;
 
         foreach ($saveData as $postItemId => $postData) {
@@ -98,10 +96,5 @@ class Post extends Model
         if ($newWidgets !== []) {
             $this->widgets()->saveMany($newWidgets);
         }
-    }
-
-    protected function removeOldWidgets($ids)
-    {
-        PostItem::where('post_id', $this->id)->whereNotIn('id', $ids)->delete();
     }
 }
