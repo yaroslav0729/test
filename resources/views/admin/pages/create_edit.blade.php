@@ -102,7 +102,7 @@
 
             <hr>
 
-            <h2>Template parameters:</h2>
+            <h2 class="pt-4 pb-4">Template parameters:</h2>
 
             <div id="page_parameters"
                 @isset($pageInstance)
