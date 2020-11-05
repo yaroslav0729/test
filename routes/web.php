@@ -1,11 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\PostController as AdminPostController;
-use App\Http\Controllers\Admin\PostGroupController;
+use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\MediaController;
 
 use App\Models\User;
@@ -20,19 +19,18 @@ use App\Models\User;
 |
 */
 
-Route::get('/', [PostController::class, 'index'])->name('index');
+Route::get('/', [PageController::class, 'index'])->name('index');
 Route::get('/sitemap.xml', [SitemapController::class, 'sitemap']);
 
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_ADMIN ]], function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.index');
 
-        Route::resource('post', AdminPostController::class, ['as' => 'admin']);
-        Route::resource('post_group', PostGroupController::class, ['as' => 'admin']);
-        Route::get('/preview_version/{id}', [AdminPostController::class, 'preview'])->name('admin.post.preview');
-        Route::get('/post_history/{id}', [AdminPostController::class, 'history'])->name('admin.post.history');
-        Route::post('/restore_post/{id}', [AdminPostController::class, 'restore'])->name('admin.post.restore');
-        Route::post('/save_status/{id}', [AdminPostController::class, 'saveStatus'])->name('admin.post.save_status');
+        Route::resource('pages', AdminPageController::class, ['as' => 'admin']);
+        Route::get('/preview_version/{id}', [AdminPageController::class, 'preview'])->name('admin.pages.preview');
+        Route::get('/post_history/{id}', [AdminPageController::class, 'history'])->name('admin.pages.history');
+        Route::post('/restore_post/{id}', [AdminPageController::class, 'restore'])->name('admin.pages.restore');
+        Route::post('/save_status/{id}', [AdminPageController::class, 'saveStatus'])->name('admin.pages.save_status');
 
         Route::prefix('users')->group(function () {
             Route::get('edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
@@ -40,8 +38,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
             Route::delete('delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
         });
 
-        Route::get('/modal/get_widget_modal', [AdminPostController::class, 'getWidgetModal'])->name('admin.modal.getWidgetModal');
-        Route::post('/modal/add_widget', [AdminPostController::class, 'addWidget'])->name('admin.modal.add-widget');
+        Route::get('/modal/get_widget_modal', [AdminPageController::class, 'getWidgetModal'])->name('admin.modal.getWidgetModal');
+        Route::post('/modal/add_widget', [AdminPageController::class, 'addWidget'])->name('admin.modal.add-widget');
     
         Route::get('media/show-form-test', [MediaController::class, 'showForm']);
         Route::post('media/upload_mce', [MediaController::class, 'upload']);
@@ -56,4 +54,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/{slug}', [PostController::class, 'showFromSlug']);
+Route::get('/{slug}', [PageController::class, 'showFromSlug']);

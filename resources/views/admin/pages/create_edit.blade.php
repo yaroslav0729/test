@@ -1,0 +1,111 @@
+@php
+    if (isset($page)) {
+
+        $pageInstance = $page->actual_page_instance;
+        if (isset($pageInstance)) {
+            $pageTitle = 'Edit page id: ' . $page->id;
+            $actionRoute = route('admin.pages.update', ['page' => $page->id]);
+            $name = $pageInstance->name;
+            $slug = $pageInstance->slug;
+            $title = $pageInstance->title;
+            $description = $pageInstance->description;
+            $keywords = $pageInstance->keywords;
+        } else {
+            die('no page for this container');
+        }
+        
+    } else {
+        $pageTitle = 'Create page:';
+        $actionRoute = route('admin.pages.store');
+        $name = old('name');
+        $slug = old('slug');
+        $title = old('title');
+        $description = old('description');
+        $keywords = old('keywords');
+    }
+@endphp
+
+@extends('layouts.admin')
+
+@section('content')
+
+<div id="admin_content" class="bg-gray-100 flex-auto">
+    
+    @if ($errors->any())
+        <div class="p-3">
+            <div class="alert alert-danger" role="alert">
+                <strong class="font-weight-bold">Validation errors:</strong>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
+
+    <form action="{{ $actionRoute }}" method="post" class="pb-3" options-form>
+            @csrf
+
+            @isset($pageInstance)
+                @method('PUT')
+            @endisset
+
+            <h1>{{ $pageTitle }}</h1> 
+
+            <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" class="form-control" type="text" value="{{ $name }}" />
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="slug">Url name</label>
+                        <input required id="slug" name="slug" class="form-control" type="text" value="{{ $slug }}" />
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input id="title" name="title" class="form-control" type="text" value="{{ $title }}" />
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" name="description" id="description">{{ $description }}</textarea>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="keywords">Keywords</label>
+                        <textarea class="form-control" rows="2" name="keywords" id="keywords">{{ $keywords }}</textarea>
+                    </div>
+                </div>
+
+                
+            </div>
+            <hr>
+
+            <h2>Page content</h2>
+
+            <div id="response-content" class="d-none">
+            </div>
+
+            <button class="btn btn-info" type="submit">
+                <i class="far fa-save"></i> Submit
+            </button>
+
+        </form>
+
+</div>
+
+@endsection
+
+@section('scripts')
+
+@endsection

@@ -12,7 +12,7 @@ use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\TwitterCard;
 use Artesaos\SEOTools\Facades\JsonLd;
 
-class PostController extends Controller
+class PageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,10 +26,10 @@ class PostController extends Controller
 
     public function showFromSlug($slug)
     {
-        $post = Post::where('slug', $slug)
+        $page = PostInstance::where('slug', $slug)
                 ->where('actual', true)
-                ->whereHas('container', function(Builder $query) {
-                    $query->where('status', PostContainer::POST_STATUS_PUBLICHED);   
+                ->whereHas('page', function(Builder $query) {
+                    $query->where('status', Page::POST_STATUS_PUBLICHED);   
                 })
                 ->firstOrFail();
 
@@ -42,6 +42,6 @@ class PostController extends Controller
         OpenGraph::setUrl(url()->current());
         OpenGraph::addProperty('type', 'articles');
 
-        return view('post', compact('post'));
+        return view('page', compact('page'));
     }
 }

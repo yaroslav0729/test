@@ -82,7 +82,7 @@ class User extends Authenticatable
 
     public function posts()
     {
-        return $this->hasMany('App\Models\Post')->where('actual', true);
+        return $this->hasMany('App\Models\PostInstance')->where('actual', true);
     }
 
     public function getRoleNameAttribute()

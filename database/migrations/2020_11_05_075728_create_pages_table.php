@@ -15,7 +15,7 @@ class CreatePagesTable extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->integer('status')->default(App\Models\PostContainer::POST_STATUS_PUBLICHED);
+            $table->integer('status')->default(App\Models\Page::POST_STATUS_EDITED);
             $table->date('published_at')->nullable();
             $table->timestamps();
         });
