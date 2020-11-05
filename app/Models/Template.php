@@ -9,16 +9,16 @@ class Template
 
     const ALL_TEMPLATES = [
         self::BLOG_PAGE,
-        self::EVENT_PAGE
+        self::EVENT_PAGE,
     ];
 
     public static function getLabel($type)
     {
         switch ($type) {
-            case self::BLOG_PAGE: return "Blog page";
-            case self::EVENT_PAGE: return "Event page";
-            
-            default: return "Unknown template type";
+            case self::BLOG_PAGE:return "Blog page";
+            case self::EVENT_PAGE:return "Event page";
+
+            default:return "Unknown template type";
         }
     }
 }

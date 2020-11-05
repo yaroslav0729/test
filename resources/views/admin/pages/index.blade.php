@@ -28,6 +28,7 @@
               <tr>
                 <th class="px-4 py-2">Id</th>
                 <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Template</th>
                 <th class="px-4 py-2">Url name</th>
                 <th class="px-4 py-2">Author</th>
                 <th class="px-4 py-2">Status</th>
@@ -46,6 +47,7 @@
                       <tr>
                           <td class="border px-4 py-2">{{ $page->id }}</td>
                           <td class="border px-4 py-2">{{ $pageInstance->name }}</td>
+                          <td class="border px-4 py-2">{{ $pageInstance->template_name }}</td>
                           <td class="border px-4 py-2"><a href="{{ url($pageInstance->slug) }}" target="_blank">{{ $pageInstance->slug }}</a></td>
                           <td class="border px-4 py-2">@isset($pageInstance->author){{ $pageInstance->author->name }} @else No author @endisset</td>
                           <td class="border px-4 py-2">

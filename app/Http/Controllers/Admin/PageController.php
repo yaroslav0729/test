@@ -156,7 +156,7 @@ class PageController extends Controller
         $pageInstance->actual = true;
         $pageInstance->save();
 
-        $page->removeOldPosts();
+        $page->removeOldHistory();
 
         return redirect()->route('admin.pages.index')->with('status', 'Page updated!');
     }

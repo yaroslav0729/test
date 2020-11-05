@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
+use Config;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Post;
-use Config;
 
 class Page extends Model
 {
@@ -38,17 +37,18 @@ class Page extends Model
         return self::POST_STATUS[$this->status];
     }
 
-    public function removeOldPosts()
+    public function removeOldHistory()
     {
         $limit = Config('app.POST_HISTORY_QUANTITY');
         $ids = PageInstance::where('page_id', $this->id)->orderBy('id', 'desc')->limit($limit)->pluck('id')->toArray();
-        
+
         $actualId = $this->actual_page_instance->id;
 
-        if (!in_array($actualId, $ids))
+        if (!in_array($actualId, $ids)) {
             array_push($ids, $actualId);
+        }
 
-            PageInstance::where('page_id', $this->id)
-                ->whereNotIn('id', $ids)->delete();
+        PageInstance::where('page_id', $this->id)
+            ->whereNotIn('id', $ids)->delete();
     }
 }
