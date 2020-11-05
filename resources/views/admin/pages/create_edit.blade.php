@@ -102,15 +102,19 @@
 
             <hr>
 
-            <h2>Page content</h2>
+            <h2>Template parameters:</h2>
 
-            <div id="response-content" class="d-none">
+            <div id="page_parameters">
+                @if(isset($pageInstance))
+                    {{ $pageInstance->renderTemplateParametersForm() }}
+                @endif
             </div>
+
+            <hr>
 
             <button class="btn btn-info" type="submit">
                 <i class="far fa-save"></i> Submit
             </button>
-
         </form>
 
 </div>

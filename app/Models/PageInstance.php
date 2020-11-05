@@ -22,6 +22,10 @@ class PageInstance extends Model
         'parameters',
     ];
 
+    protected $casts = [
+        'parameters' => 'array',
+    ];
+
     public function page()
     {
         return $this->belongsTo('App\Models\Page', 'page_id');
@@ -35,5 +39,16 @@ class PageInstance extends Model
     public function getTemplateNameAttribute()
     {
         return Template::getLabel($this->template);
+    }
+
+    public function renderTemplateParametersForm()
+    {
+        if ($this->template) {
+            return view('templates.form.' . $this->template, [
+                'parameters' => $this->parameters
+            ]);
+        } else {
+            return null;
+        }
     }
 }
