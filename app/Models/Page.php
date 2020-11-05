@@ -10,16 +10,16 @@ class Page extends Model
 {
     use HasFactory;
 
-    const POST_STATUS_MOVED_TO_TRASH = 0;
-    const POST_STATUS_EDITED = 1;
-    const POST_STATUS_PUBLICHED = 2;
-    const POST_STATUS_NOT_PUBLICHED = 3;
+    const PAGE_STATUS_MOVED_TO_TRASH = 0;
+    const PAGE_STATUS_EDITED = 1;
+    const PAGE_STATUS_PUBLICHED = 2;
+    const PAGE_STATUS_NOT_PUBLICHED = 3;
 
     const POST_STATUS = [
-        self::POST_STATUS_MOVED_TO_TRASH => 'Moved to trash',
-        self::POST_STATUS_EDITED => 'Edited',
-        self::POST_STATUS_PUBLICHED => 'Published',
-        self::POST_STATUS_NOT_PUBLICHED => 'Not published',
+        self::PAGE_STATUS_MOVED_TO_TRASH => 'Moved to trash',
+        self::PAGE_STATUS_EDITED => 'Edited',
+        self::PAGE_STATUS_PUBLICHED => 'Published',
+        self::PAGE_STATUS_NOT_PUBLICHED => 'Not published',
     ];
 
     public function pageInstances()

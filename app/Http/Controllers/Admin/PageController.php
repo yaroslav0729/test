@@ -180,7 +180,7 @@ class PageController extends Controller
         $page = Page::findOrFail($id);
         $page->status = $request->status;
 
-        if ((int)$page->status === Page::POST_STATUS_PUBLICHED) {
+        if ((int)$page->status === Page::PAGE_STATUS_PUBLICHED) {
             $page->published_at = Carbon::now();
         } 
 
@@ -189,27 +189,27 @@ class PageController extends Controller
         return redirect()->route('admin.pages.index')->with('status', 'Page status changed successfully!');
     }
 
-    public function getWidgetModal()
-    {
-        $modalView = view('admin.modals.add_widget')->render();
+    // public function getWidgetModal()
+    // {
+    //     $modalView = view('admin.modals.add_widget')->render();
 
-        return response()->json([
-            'html' => $modalView,
-            'status' => 'success',
-        ]); 
-    }
+    //     return response()->json([
+    //         'html' => $modalView,
+    //         'status' => 'success',
+    //     ]); 
+    // }
 
-    public function addWidget(WidgetAddRequest $request)
-    {
-        $widgetId = (int)$request->input('widget_id');
+    // public function addWidget(WidgetAddRequest $request)
+    // {
+    //     $widgetId = (int)$request->input('widget_id');
 
-        $widget = new PostItem(['widget_id' => $widgetId]);
-        $widgetHtml = $widget->renderWithElements()->render();
+    //     $widget = new PostItem(['widget_id' => $widgetId]);
+    //     $widgetHtml = $widget->renderWithElements()->render();
 
-        return response()->json([
-            'content' => $widgetHtml
-        ], 200); 
-    }
+    //     return response()->json([
+    //         'content' => $widgetHtml
+    //     ], 200); 
+    // }
 
     protected function _validateSlug($request, $id = null)
     {

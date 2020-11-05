@@ -29,7 +29,7 @@ class PageController extends Controller
         $page = PostInstance::where('slug', $slug)
                 ->where('actual', true)
                 ->whereHas('page', function(Builder $query) {
-                    $query->where('status', Page::POST_STATUS_PUBLICHED);   
+                    $query->where('status', Page::PAGE_STATUS_PUBLICHED);   
                 })
                 ->firstOrFail();
 

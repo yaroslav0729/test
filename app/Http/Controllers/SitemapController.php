@@ -34,7 +34,7 @@ class SitemapController extends Controller
         // add every post to the sitemap
         $posts = Post::where('actual', true)
                         ->whereHas('container', function(Builder $query) {
-                            $query->where('status', PostContainer::POST_STATUS_PUBLICHED);   
+                            $query->where('status', PostContainer::PAGE_STATUS_PUBLICHED);   
                         })->get();
 
 		foreach ($posts as $post) {
