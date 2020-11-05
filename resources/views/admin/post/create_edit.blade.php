@@ -3,7 +3,7 @@
 
         $post = $postContainer->actual_post;
         if (isset($post)) {
-            $pageTitle = 'Edit post id: ' . $postContainer->id;
+            $pageTitle = 'Edit page id: ' . $postContainer->id;
             $actionRoute = route('admin.post.update', ['post' => $postContainer->id]);
             $name = $post->name;
             $slug = $post->slug;
@@ -15,7 +15,7 @@
         }
         
     } else {
-        $pageTitle = 'Create post:';
+        $pageTitle = 'Create page:';
         $actionRoute = route('admin.post.store');
         $name = old('name');
         $slug = old('slug');
