@@ -39,6 +39,8 @@ $(function () {
 
     function templateResponse(response) {
         $('#page_parameters').html(response.html);
+
+        initWysiwyg()
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
