@@ -44,7 +44,7 @@
         </div>
     @endif
 
-    <form action="{{ $actionRoute }}" method="post" class="pb-3" options-form>
+    <form action="{{ $actionRoute }}" method="post" class="pb-3">
             @csrf
 
             @isset($pageInstance)
@@ -104,7 +104,11 @@
 
             <h2>Template parameters:</h2>
 
-            <div id="page_parameters">
+            <div id="page_parameters"
+                @isset($pageInstance)
+                    data-current_page_instance_id={{ $pageInstance->id}}
+                @endisset
+            >
                 @if(isset($pageInstance))
                     {{ $pageInstance->renderTemplateParametersForm() }}
                 @endif

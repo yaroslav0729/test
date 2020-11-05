@@ -189,27 +189,24 @@ class PageController extends Controller
         return redirect()->route('admin.pages.index')->with('status', 'Page status changed successfully!');
     }
 
-    // public function getWidgetModal()
-    // {
-    //     $modalView = view('admin.modals.add_widget')->render();
+    public function getTemplateForm($templateId, Request $request)
+    {
+        $template = view('templates.form.' . $templateId)->render();
 
-    //     return response()->json([
-    //         'html' => $modalView,
-    //         'status' => 'success',
-    //     ]); 
-    // }
+        $currentId = $request->input('current_page_instance_id');
+        if ($currentId) {
+            $pageInstance = PageInstance::where('id', $currentId)->firstOrFail();
 
-    // public function addWidget(WidgetAddRequest $request)
-    // {
-    //     $widgetId = (int)$request->input('widget_id');
+            if ((int)$templateId === $pageInstance->template) {
+                $template = $pageInstance->renderTemplateParametersForm()->render();    
+            } 
+        } 
 
-    //     $widget = new PostItem(['widget_id' => $widgetId]);
-    //     $widgetHtml = $widget->renderWithElements()->render();
-
-    //     return response()->json([
-    //         'content' => $widgetHtml
-    //     ], 200); 
-    // }
+        return response()->json([
+            'html' => $template,
+            'status' => 'success',
+        ]); 
+    }
 
     protected function _validateSlug($request, $id = null)
     {

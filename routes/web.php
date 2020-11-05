@@ -38,10 +38,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
             Route::delete('delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
         });
 
-        Route::get('/modal/get_widget_modal', [AdminPageController::class, 'getWidgetModal'])->name('admin.modal.getWidgetModal');
-        Route::post('/modal/add_widget', [AdminPageController::class, 'addWidget'])->name('admin.modal.add-widget');
-    
-        Route::get('media/show-form-test', [MediaController::class, 'showForm']);
+        Route::get('/get_template_form/{templateId}', [AdminPageController::class, 'getTemplateForm'])->name('admin.get_template_form');
+
         Route::post('media/upload_mce', [MediaController::class, 'upload']);
 
         // MediaManager

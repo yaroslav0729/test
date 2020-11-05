@@ -1,0 +1,264 @@
+window._ = require('lodash');
+window.Popper = require('popper.js').default;
+
+window.$ = window.jQuery = require('jquery');
+require('bootstrap');
+
+require('tinymce');
+
+import Swiper from 'swiper';
+window.Swiper = Swiper
+
+require('bootstrap-input-spinner');
+
+import { initWysiwyg } from './admin_parts/init_tiny-mce';
+
+window.Vue = require('vue')
+
+require('../assets/vendor/MediaManager/js/manager')
+
+$(function () {
+
+    new Vue({
+        el: '#app'
+    })
+
+    initWysiwyg()
+
+    $(document).on('click', '[modal-call]', modalCall);
+
+    function modalCall(event)
+    {
+        event.preventDefault();   
+
+        var data = {};
+
+        $.each($(this).data(), function (key, value) {
+            data[key] = value;
+        });
+
+        modalRequest($(this).attr('path'), data);
+    }
+
+    function modalRequest(url, data)
+    {
+        $.get(url, data, showModalResponse, 'json');
+    }
+
+    function showModalResponse(response) 
+    {
+        $('#modal-wrap').html(response.html);
+        $('#modal-wrap').modal({
+            show: true,
+            keyboard: false,
+            backdrop: 'static'
+        });   
+    }
+
+    $(document).on('click', '#submit_modal_form', function() {
+        $('form#modal-form').submit()
+    });
+
+    var MODAL_FORM_LOCK = false
+
+    $(document).on('submit', '#modal-form', function (event) {
+        event.preventDefault();
+
+        if (MODAL_FORM_LOCK) {
+            return false;
+        }
+
+        MODAL_FORM_LOCK = true;
+
+        var form = $(this);
+        var formData = new FormData(form[0]);
+
+        $.ajax({
+            url     : form.attr('action'),
+            type    : form.attr('method'),
+            data    : formData,
+            processData: false,
+            contentType: false,
+            success : function (response, textStatus, jqXHR)
+            {
+                MODAL_FORM_LOCK = false;
+
+                if ('content' in response) {
+                    let element = $('#response-content');
+                    element.html(response.content);
+                    element.trigger('process');
+                    $('#modal-wrap').modal('hide');
+
+                    return;
+                }
+
+                if (response.trigger_click) {
+                    $('#modal-wrap').modal('hide');
+                    $(response.trigger_click).trigger('click');
+                    return;
+                }
+
+                if (response.blank) {
+                    var win = window.open(response.blank, '_blank');
+                }
+
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                    return;
+                }
+
+                if (response.html) {
+                    showModalResponse(response);
+                    return;
+                }
+
+                if (response.messageSuccess) {
+                    $('#modal-message-success').html(response.messageSuccess);
+                    $('#modal-message-success').closest('div').show();
+                    $('#modal-wrap').animate({ scrollTop: 0 }, 'slow');
+                    return;
+                }
+
+                window.location.reload();
+            },
+            error: function(response)
+            {
+                MODAL_FORM_LOCK = false;
+
+                if (response.status === 422) {
+
+                    // Hide previous errors
+                    $('#modal-errors').closest('div').hide();
+                    $('*', form).removeClass('is-invalid');
+                    $('.invalid-feedback', form).removeClass('d-block');
+
+                    let message = '';
+                    let showed = [];
+                    let control, feedback, controlMessages;
+
+                    $.each(response.responseJSON.errors, function (field, errors) {
+
+                        // Field can be dotted (array-input)
+                        let original = field;
+                        let parts = original.split('.');
+                        if (parts.length > 1) {
+                            field = parts.shift() + '[' + parts.join('][') + ']';
+                        }
+
+                        // Try to find field with error container.
+                        control = $('[name="' + field + '"]', form);
+                        feedback = $('.invalid-feedback', control.parents('div.form-group'));
+                        if (!feedback.length) {
+                            feedback = $('[data-error="'+original+'"]');
+                        }
+                        controlMessages = [];
+
+                        $.each(errors, function (i, error) {
+
+                            if (feedback.length) {
+                                controlMessages[controlMessages.length] = error;
+
+                            } else {
+                                if (showed.indexOf(error) < 0) {
+                                    message += '<li>'+error+'</li>';
+                                    showed[showed.length] = error;
+                                }
+                            }
+                        });
+
+                        if (control.length) {
+                            control.addClass('is-invalid');
+                        }
+
+                        if (feedback.length && controlMessages.length) {
+                            feedback.html(controlMessages.join('<br>'));
+                            feedback.addClass('d-block');
+                        }
+                    });
+
+                    if (message) {
+                        $('#modal-errors').html(message);
+                        $('#modal-errors').closest('div').show();
+                    }
+
+                    $('#modal-wrap').animate({ scrollTop: 0 }, 'slow');
+
+
+                } else {
+                    $('#modal-wrap').modal('hide');
+                }
+            }
+        })
+    })
+
+    $(document).on('process', '#response-content', function () {
+        let itemsElement = $('#widget-items-wrapper');
+        itemsElement.append($(this).html());
+        $(this).html('')
+
+        initWysiwyg()
+    });
+
+    //~~~~~~~~~~~~~~~~~~ Widget buttons (up, down, delete) ~~~~~~~~~~~~~
+
+    $(document).on('click', '.widget_buttons [btn-delete]', function () {
+        
+        let el = $(this).closest('.widget-item')
+        console.log('btn-delete click', el.html())
+        el.remove()
+    });
+
+    $(document).on('click', '.widget_buttons [btn-up]', function () {
+        let block1 = $(this).closest('.widget-item');
+        let block2 = block1.prev()
+
+        block1.insertBefore(block2);
+    });
+
+    $(document).on('click', '.widget_buttons [btn-down]', function () {
+        let block1 = $(this).closest('.widget-item');
+        let block2 = block1.next()
+
+        block2.insertBefore(block1);   
+    });
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~ Options ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('submit', '[options-form]', function (event) {
+        //event.preventDefault();
+
+        // remove stup items
+        let stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
+        stub.attr('disabled', 'disabled');
+
+        return true
+    });
+
+    $(document).on('click', '[option-add]', function () {
+        let wrap = $(this).closest('[options-container]');
+        let answersWrap = $('[answers-list]', wrap);
+        answersWrap.append($('[item-option-stub]', wrap).html());
+    });
+
+    $(document).on('click', '[option-delete]', function () {
+        let wrap = $(this).closest('.option').remove();
+    });
+
+    $(document).on('click', '[option-up]', function () {
+        let block1 = $(this).closest('.option');
+        let block2 = block1.prev()
+
+        block1.insertBefore(block2);
+    });
+
+    $(document).on('click', '[option-down]', function () {
+        let block1 = $(this).closest('.option');
+        let block2 = block1.next()
+
+        block2.insertBefore(block1); 
+    });
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+})
+
+//require('./functions');
