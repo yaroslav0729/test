@@ -1,23 +1,80 @@
 @php
 
-    $value1 = "";
-    $value2 = "";
+    $minRead = "";
+    $headerText="";
+    $articleHtml = "";
+    $previewPageTitle = "";
+    $previewPageText1 = "";
+    $previewPageText2 = "";
+    $previewPageLink = "";
+    $previewPageImage = "";
 
-    if (isset($parameters['param1'])) {
-        $value1 = $parameters['param1'];    
+    if (isset($parameters['min_read'])) {
+        $minRead = $parameters['min_read'];    
     }
 
-    if (isset($parameters['param2'])) {
-        $value2 = $parameters['param2'];    
+    if (isset($parameters['hdr_text'])) {
+        $headerText = $parameters['hdr_text'];    
+    }
+
+    if (isset($parameters['article_html'])) {
+        $articleHtml = $parameters['article_html'];    
+    }
+
+    if (isset($parameters['preview_page_title'])) {
+        $previewPageTitle = $parameters['preview_page_title'];    
+    }
+
+    if (isset($parameters['preview_page_text1'])) {
+        $previewPageText1 = $parameters['preview_page_text1'];    
+    }
+
+    if (isset($parameters['preview_page_text2'])) {
+        $previewPageText2 = $parameters['preview_page_text2'];    
+    }
+
+    if (isset($parameters['preview_page_link'])) {
+        $previewPageLink = $parameters['preview_page_link'];    
+    }
+
+    if (isset($parameters['preview_page_image'])) {
+        $previewPageImage = $parameters['preview_page_image'];    
     }
 
 @endphp
 
 <div class="form-group">
-    <label>Parameter 1</label>
-    <input class="form-control" name="parameters[param1]" value="{{ $value1 }}" />
+    <label>Min read parameter:</label>
+    <input class="form-control" name="parameters[min_read]" value="{{ $minRead }}" />
 </div>
 <div class="form-group">
-    <label>Parameter 2</label>
-    <input class="form-control" name="parameters[param2]" value="{{ $value2 }}" />
+    <label>Header text</label>
+    <textarea class="form-control" name="parameters[hdr_text]">{{ $headerText }}</textarea>
+</div>
+<div class="form-group">
+    <label>Article html</label>
+    <textarea wysiwyg-editor class="form-control" id="article_html" name="parameters[article_html]">{{ $articleHtml }}</textarea>
+</div>
+
+<hr>
+
+<div class="form-group">
+    <label>Preview page title:</label>
+    <input class="form-control" name="parameters[preview_page_title]" value="{{ $previewPageTitle }}" />
+</div>
+<div class="form-group">
+    <label>Preview page text1:</label>
+    <textarea class="form-control" name="parameters[preview_page_text1]">{{ $previewPageText1 }}</textarea>
+</div>
+<div class="form-group">
+    <label>Preview page text2:</label>
+    <textarea class="form-control" name="parameters[preview_page_text2]">{{ $previewPageText2 }}</textarea>
+</div>
+<div class="form-group">
+    <label>Preview page link:</label>
+    <input class="form-control" name="parameters[preview_page_link]" value="{{ $previewPageLink }}" />
+</div>
+<div class="form-group">
+    <label>Preview page image:</label>
+    <input class="form-control" name="parameters[preview_page_image]" value="{{ $previewPageImage }}" />
 </div>
