@@ -175,16 +175,6 @@ header {
   right: 0;
   z-index: 10;
 }
-header .ico-search {
-  display: inline-block;
-  background: url(../img/ico-search.svg) no-repeat;
-  background-size: contain;
-  width: 20px;
-  height: 20px;
-  position: relative;
-  top: -2px;
-  vertical-align: middle;
-}
 header .top-bar {
   padding: 30px 100px 33px 113px;
 }
@@ -215,16 +205,17 @@ header .top-bar .basket {
   margin-left: 43px;
   position: relative;
 }
-header .top-bar .phone i {
-  display: inline-block;
-  background: url(../img/ico-Phone.png) no-repeat;
-  background-size: contain;
-  width: 25px;
-  height: 25px;
+header .top-bar .phone i,
+header .top-bar .basket i {
+  font-size: 25px;
+  vertical-align: middle;
+}
+header .top-bar .phone .fa-phone,
+header .top-bar .basket .fa-phone {
+  transform: rotate(93deg);
   position: relative;
   top: -2px;
   margin-left: 10px;
-  vertical-align: middle;
 }
 header .basket {
   display: inline-block;
@@ -234,14 +225,10 @@ header .basket {
   cursor: pointer;
 }
 header .basket i {
-  display: inline-block;
-  background: url(../img/shopping-cart.svg) no-repeat;
-  background-size: contain;
-  width: 35px;
-  height: 29px;
-  position: relative;
-  top: -2px;
+  font-size: 25px;
   vertical-align: middle;
+  position: relative;
+  z-index: 2;
 }
 header .basket span {
   display: block;
@@ -1164,13 +1151,13 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .main-page-header.style-1 .body > .left,
 .main-page-header.style-2 .body > .left {
-  flex: 1 1 50%;
+  flex: 1 1 56%;
   background: #fff;
   padding: 60px 20px 55px 60px;
 }
 .main-page-header.style-1 .body > .right,
 .main-page-header.style-2 .body > .right {
-  flex: 1 1 50%;
+  flex: 1 1 44%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -1750,8 +1737,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .current-projects-list .wrap {
   border-bottom: 4px solid #101525;
-  padding: 0 46px;
-  margin: 0 -60px;
+  padding: 0 45px;
 }
 .current-projects-list .item {
   display: block;
@@ -1972,34 +1958,6 @@ input[type='number'].color-danger + .input-group .btn {
   left: -80px;
   right: 0;
   bottom: 0;
-}
-.whats-new .item .stat {
-  transform-origin: 50% 50%;
-  display: inline-block;
-  border-radius: 50%;
-  height: 46px;
-  width: 46px;
-  background: #F8F8F8 url(../img/ico-power.svg) no-repeat 50% 50%;
-  background-size: 23px 23px;
-  position: absolute;
-  bottom: 17px;
-  right: 15px;
-  vertical-align: middle;
-  margin-left: 10px;
-}
-.whats-new .item .stat span {
-  color: #101525;
-  font-size: 12px;
-  line-height: 18px;
-  text-align: center;
-  display: block;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -8px;
-}
-.whats-new .item .stat span:after {
-  display: none;
 }
 .join-cause {
   background: #EEF3F0;
@@ -2294,7 +2252,6 @@ input[type='number'].color-danger + .input-group .btn {
   bottom: 0;
   left: 0;
   right: 0;
-  width: 1080px;
 }
 @media screen and (max-width: 1200px) {
   .blog-article-head h1:after {

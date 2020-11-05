@@ -41,7 +41,7 @@
                 <div class="row mb-3">
                     <div class="col-12 text-right"><b>14</b></div>
                     <div class="col-6">
-                        £2'642 / £10'000 raised</div>
+                        £2'642 / £10'000 RAISED</div>
                     <div class="col-6 text-right">DAY TO GO</div>
                 </div>
                 <div class="line green"><div style="width: 40%"></div></div>
@@ -69,7 +69,7 @@
                 <div class="row mb-3">
                     <div class="col-12 text-right"><b>14</b></div>
                     <div class="col-6">
-                        £2'642 / £10'000 raised</div>
+                        £2'642 / £10'000 RAISED</div>
                     <div class="col-6 text-right">DAY TO GO</div>
                 </div>
                 <div class="line red"><div style="width: 40%"></div></div>
@@ -273,7 +273,7 @@
                         <div class="col-6">
                             <div class="pl-4 pr-4">
                                 <p class="font-size-16 text-uppercase mb-0"><b>Event title 20chara.</b></p>
-                                <p class="font-size-16 mb-0">Critical event info, 60 char lorem ametional, jaan vella...</p>
+                                <p class="font-size-16 mb-0">Critical event info,<br>60 char lorem ametional,<br>jaan vella...</p>
                             </div>
                         </div>
                     </div>
@@ -292,7 +292,7 @@
                         <div class="col-6">
                             <div class="pl-4 pr-4">
                                 <p class="font-size-16 text-uppercase mb-0"><b>MISSION: 24/09/2020</b></p>
-                                <p class="font-size-16 mb-0">Critical mission info, 60 char lorem sit amet, demi vella...</p>
+                                <p class="font-size-16 mb-0">Critical mission info,<br>60 char lorem sit amet,<br>demi vella...</p>
                             </div>
                         </div>
                     </div>
@@ -431,6 +431,7 @@
                             <p class="font-size-18 mb-0"><b>Article Video placement 30ch</b></p>
                             <p class="font-size-16 mb-4">Subtitle capture copy placed here, 40ch...</p>
                             <div class="date">April 06, 2020 BY AHMED SALEM </div>
+                            <div class="stat"><span>1.2k</span></div>
                         </div>
                     </div>
                 </div>

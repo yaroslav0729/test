@@ -6,8 +6,8 @@
                 <div class="row align-items-center">
                     <div class="col-6"><a href="#" class="logo"><span></span> Islamic Help</a></div>
                     <div class="col-6 text-right">
-                        <div class="phone">020 5000 2400 <i class="fal fa-phone"></i></div>
-                        <div class="basket" data-toggle="modal" data-target="#cartModal"><i class="fal fa-shopping-cart"></i> <span>£50.00</span></div>
+                        <div class="phone">020 5000 2400 <i></i></div>
+                        <div class="basket" data-toggle="modal" data-target="#cartModal"><i></i> <span>£50.00</span></div>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                             <li><a href="#">Get Involved</a></li>
                             <li><a href="#">newsroom</a></li>
                             <li><a href="#">appeals</a></li>
-                            <li><a href="#"><i class="fas fa-search"></i></a></li>
+                            <li><a href="#"><i class="ico-search"></i></a></li>
                         </ul>
                     </div>
                     <div class="col-4 text-right">
@@ -46,7 +46,7 @@
                     </ul>
                 </div>
                 <div class="col-3 text-right">
-                    <a href="#" class="search-btn"><i class="fas fa-search"></i></a>
+                    <a href="#" class="search-btn"><i class="ico-search"></i></a>
                 </div>
             </div>
 
