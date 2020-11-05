@@ -4,7 +4,7 @@
     
 <div id="admin_content" class="bg-gray-100 flex-auto h-screen">
     <div class="p-5 pb-8">
-        <h1>Posts:</h1>
+        <h1>Pages:</h1>
 
         @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -28,7 +28,7 @@
               <tr>
                 <th class="px-4 py-2">Id</th>
                 <th class="px-4 py-2">Name</th>
-                <th class="px-4 py-2">Slug</th>
+                <th class="px-4 py-2">Url name</th>
                 <th class="px-4 py-2">Author</th>
                 <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Created at</th>

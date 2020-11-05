@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
-                        <label for="slug">Slug</label>
+                        <label for="slug">Url name</label>
                         <input required id="slug" name="slug" class="form-control" type="text" value="{{ $slug }}" />
                     </div>
                 </div>
