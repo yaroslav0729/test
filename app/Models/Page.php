@@ -23,14 +23,14 @@ class Page extends Model
         self::POST_STATUS_NOT_PUBLICHED => 'Not published',
     ];
 
-    public function page_instances()
+    public function pageInstances()
     {
         return $this->hasMany('App\Models\PageInstance');
     }
 
     public function getActualPageInstanceAttribute()
     {
-        return $this->page_instances()->where('actual', true)->first();
+        return $this->pageInstances()->where('actual', true)->first();
     }
 
     public function getStatusNameAttribute()
@@ -43,10 +43,10 @@ class Page extends Model
         $limit = Config('app.POST_HISTORY_QUANTITY');
         $ids = PageInstance::where('page_id', $this->id)->orderBy('id', 'desc')->limit($limit)->pluck('id')->toArray();
         
-        $actualPostId = $this->actual_page_instance->id;
+        $actualId = $this->actual_page_instance->id;
 
-        if (!in_array($actualPostId, $ids))
-            array_push($ids, $actualPostId);
+        if (!in_array($actualId, $ids))
+            array_push($ids, $actualId);
 
             PageInstance::where('page_id', $this->id)
                 ->whereNotIn('id', $ids)->delete();

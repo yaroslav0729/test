@@ -18,6 +18,8 @@ class PageInstance extends Model
         'title',
         'description',
         'keywords',
+        'template',
+        'parameters'
     ];
 
     // public function groups()

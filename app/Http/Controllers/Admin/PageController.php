@@ -74,7 +74,7 @@ class PageController extends Controller
     {
         $pageInstance = PageInstance::where('id', $id)->firstOrFail();
 
-        return view('admin.pages.history_post', [
+        return view('admin.pages.history_page', [
             'pageInstance' => $pageInstance,
         ]);
     }
@@ -103,7 +103,7 @@ class PageController extends Controller
     public function history($id)
     {
         $page = Page::where('id', $id)->firstOrFail();
-        $pageInstances = $page->page_instances()->orderBy('id', 'desc')->get();
+        $pageInstances = $page->pageInstances()->orderBy('id', 'desc')->get();
 
         return view('admin.pages.history_index', ['pageInstances' => $pageInstances]);
     }

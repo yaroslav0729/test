@@ -86,9 +86,20 @@
                         <textarea class="form-control" rows="2" name="keywords" id="keywords">{{ $keywords }}</textarea>
                     </div>
                 </div>
-
-                
             </div>
+
+            <div class="form-group">
+                <label for="template">Template</label>
+                <select name="template" class="form-control">
+                    <option value="0">No template selected</option>
+                    @foreach (\App\Models\Template::ALL_TEMPLATES as $template)
+                        <option value="{{ $template }}"
+                        @if(isset($pageInstance->template) && ($pageInstance->template === $template)) selected @endif
+                        >{{ \App\Models\Template::getLabel($template) }}</option>    
+                    @endforeach
+                </select>
+            </div>
+
             <hr>
 
             <h2>Page content</h2>
