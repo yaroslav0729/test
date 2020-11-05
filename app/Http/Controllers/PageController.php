@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Models\PostContainer;
+use App\Models\Page;
+use App\Models\PageInstance;
 use Illuminate\Database\Eloquent\Builder;
 
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -26,22 +26,22 @@ class PageController extends Controller
 
     public function showFromSlug($slug)
     {
-        $page = PostInstance::where('slug', $slug)
+        $pageInstance = PageInstance::where('slug', $slug)
                 ->where('actual', true)
                 ->whereHas('page', function(Builder $query) {
                     $query->where('status', Page::PAGE_STATUS_PUBLICHED);   
                 })
                 ->firstOrFail();
 
-        SEOMeta::setTitle($post->title);
-        SEOMeta::setDescription($post->description);
+        SEOMeta::setTitle($pageInstance->title);
+        SEOMeta::setDescription($pageInstance->description);
         SEOMeta::setCanonical(url()->current());
 
-        OpenGraph::setTitle($post->title);
-        OpenGraph::setDescription($post->description);
+        OpenGraph::setTitle($pageInstance->title);
+        OpenGraph::setDescription($pageInstance->description);
         OpenGraph::setUrl(url()->current());
         OpenGraph::addProperty('type', 'articles');
 
-        return view('page', compact('page'));
+        return view('page', compact('pageInstance'));
     }
 }

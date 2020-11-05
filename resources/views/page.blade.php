@@ -2,6 +2,6 @@
 
 @section('content')
     
-    <div>Page id: {{ $pageInstance->id }} will be here</div>
+    {!! $pageInstance->renderTemplate() !!}
 
 @endsection

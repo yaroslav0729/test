@@ -51,4 +51,15 @@ class PageInstance extends Model
             return null;
         }
     }
+
+    public function renderTemplate()
+    {
+        if ($this->template) {
+            return view('templates.presentation.' . $this->template, [
+                'parameters' => $this->parameters
+            ]);
+        } else {
+            return null;
+        }
+    }
 }
