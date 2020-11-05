@@ -3,7 +3,7 @@
 
         $post = $postContainer->actual_post;
         if (isset($post)) {
-            $pageTitle = 'Edit post id: ' . $postContainer->id;
+            $pageTitle = 'Edit page id: ' . $postContainer->id;
             $actionRoute = route('admin.post.update', ['post' => $postContainer->id]);
             $name = $post->name;
             $slug = $post->slug;
@@ -15,7 +15,7 @@
         }
         
     } else {
-        $pageTitle = 'Create post:';
+        $pageTitle = 'Create page:';
         $actionRoute = route('admin.post.store');
         $name = old('name');
         $slug = old('slug');
@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
-                        <label for="slug">Slug</label>
+                        <label for="slug">Url name</label>
                         <input required id="slug" name="slug" class="form-control" type="text" value="{{ $slug }}" />
                     </div>
                 </div>
