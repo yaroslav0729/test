@@ -48,7 +48,13 @@
                           <td class="border px-4 py-2">{{ $page->id }}</td>
                           <td class="border px-4 py-2">{{ $pageInstance->name }}</td>
                           <td class="border px-4 py-2">{{ $pageInstance->template_name }}</td>
-                          <td class="border px-4 py-2"><a href="{{ url($pageInstance->slug) }}" target="_blank">{{ $pageInstance->slug }}</a></td>
+                          <td class="border px-4 py-2">
+                            @if ($pageInstance->page->status === \App\Models\Page::PAGE_STATUS_PUBLICHED)
+                              <a href="{{ url($pageInstance->slug) }}" target="_blank">{{ $pageInstance->slug }}</a>
+                            @else
+                              {{ $pageInstance->slug }}
+                            @endif
+                          </td>
                           <td class="border px-4 py-2">@isset($pageInstance->author){{ $pageInstance->author->name }} @else No author @endisset</td>
                           <td class="border px-4 py-2">
 
