@@ -8,3 +8,25 @@
 @import '../libs/fontawesome-pro-5.14.0/css/all.css';
 @import '../../public/css/styles.css';
 @import 'app_additional_styles.css'; 
+
+.blockquote {
+ background: #E9F6F8
+}
+.blockquote em {
+        color: #2CAABB;
+        font-family: 'IBM Plex Serif', serif;
+        font-size: 25px;
+        font-style: italic;
+        font-weight: 700;
+        line-height: 45px;
+        display: block;
+        margin-bottom: 13px;
+}
+
+.blockquote div {
+    color: #2CAABB;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    line-height: 15px;
+}
