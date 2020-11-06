@@ -12,7 +12,7 @@
 
 @section('content')
 
-<div id="admin_content" class="bg-gray-100 flex-auto">
+<div id="admin_content" class="flex-auto">
     
     @if ($errors->any())
         <div class="p-3">

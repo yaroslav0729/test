@@ -2,6 +2,7 @@
 
     $minRead = "";
     $headerText="";
+    $headerVideo = "";
     $articleHtml = "";
     $previewPageTitle = "";
     $previewPageText1 = "";
@@ -15,6 +16,10 @@
 
     if (isset($parameters['hdr_text'])) {
         $headerText = $parameters['hdr_text'];    
+    }
+
+    if (isset($parameters['hdr_video'])) {
+        $headerVideo = $parameters['hdr_video'];    
     }
 
     if (isset($parameters['article_html'])) {
@@ -66,7 +71,12 @@
             </div>
             <div class="col-1"></div>
             <div class="col-6">
-                <div class="img-video" style="background-image: url(img/content/blog-video-1.jpg)"><i class="fas fa-play-circle"></i></div>
+                <div class="img-video videoWrapper" style="background: #555">
+                    @empty($headerVideo) 
+                        <i class="fas fa-play-circle"></i>
+                    @endempty
+                    <iframe width="1280" height="720" src="{{ $headerVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
 

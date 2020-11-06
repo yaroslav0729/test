@@ -29,7 +29,7 @@
 
 @section('content')
 
-<div id="admin_content" class="bg-gray-100 flex-auto">
+<div id="admin_content" class="flex-auto">
     
     @if ($errors->any())
         <div class="p-3">
@@ -55,35 +55,35 @@
 
             <div class="form-group">
             <label for="name">Name</label>
-            <input id="name" name="name" class="form-control" type="text" value="{{ $name }}" />
+            <input id="name" name="name" placeholder="Name of page" class="form-control" type="text" value="{{ $name }}" />
             </div>
 
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <label for="slug">Url name</label>
-                        <input required id="slug" name="slug" class="form-control" type="text" value="{{ $slug }}" />
+                        <input required id="slug" placeholder="Url of page" name="slug" class="form-control" type="text" value="{{ $slug }}" />
                     </div>
                 </div>
 
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input id="title" name="title" class="form-control" type="text" value="{{ $title }}" />
+                        <input id="title" name="title" placeholder="Title of page" class="form-control" type="text" value="{{ $title }}" />
                     </div>
                 </div>
 
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" name="description" id="description">{{ $description }}</textarea>
+                        <textarea class="form-control" placeholder="SEO - Description" name="description" id="description">{{ $description }}</textarea>
                     </div>
                 </div>
 
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <label for="keywords">Keywords</label>
-                        <textarea class="form-control" rows="2" name="keywords" id="keywords">{{ $keywords }}</textarea>
+                        <textarea class="form-control" rows="2" placeholder="SEO - Keywords" name="keywords" id="keywords">{{ $keywords }}</textarea>
                     </div>
                 </div>
             </div>
