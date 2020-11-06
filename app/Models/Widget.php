@@ -9,14 +9,14 @@ class Widget
 
     const ALL_WIDGETS = [
         self::WIDGET_QUOTE,
-        self::WIDGET_VIDEO_CAROUSEL
+        self::WIDGET_VIDEO_CAROUSEL,
     ];
 
     public static function getWidgetName($widget)
     {
         switch ($widget) {
-            case self::WIDGET_QUOTE:  return 'quote';
-            case self::WIDGET_VIDEO_CAROUSEL:  return 'video-carousel';
+            case self::WIDGET_QUOTE:return 'quote';
+            case self::WIDGET_VIDEO_CAROUSEL:return 'video-carousel';
         }
     }
 
@@ -40,7 +40,7 @@ class Widget
 
             $widgetName = self::getWidgetName($widgetId);
             $widgetStart = "{" . $widgetName . "|";
-   
+
             foreach ($htmlParts as $part) {
                 $pos = strpos($part, $widgetStart);
 
@@ -50,14 +50,14 @@ class Widget
                     $widgetCode = substr($part, $pos) . "}";
 
                     $widgetHtml = view('widgets.' . $widgetName, [
-                        'parameters' => $widgetParameters
+                        'parameters' => $widgetParameters,
                     ])->render();
 
                     $widgets[] = [
                         'id' => $widgetId,
                         'code' => $widgetCode,
                         'parameters' => $widgetParameters,
-                        'html' => $widgetHtml
+                        'html' => $widgetHtml,
                     ];
                 }
             }
