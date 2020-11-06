@@ -4,7 +4,7 @@
     $value2 = "";
 
     if (isset($parameters['param3'])) {
-        $value1 = $parameters['param4'];    
+        $value1 = $parameters['param3'];    
     }
 
     if (isset($parameters['param3'])) {
@@ -14,9 +14,9 @@
 @endphp
 <div class="container p-3">
     <div class="form-group">
-        <h1>Parameter 3: {{ $value1 }}</h1>
+        <p>Parameter 3: {{ $value1 }}</p>
     </div>
     <div class="form-group">
-        <h2>Parameter 4: {{ $value2 }}</h2>
+        <p>Parameter 4: {{ $value2 }}</p>
     </div>
 </div>

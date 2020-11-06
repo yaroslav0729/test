@@ -42,6 +42,9 @@ class PageController extends Controller
         OpenGraph::setUrl(url()->current());
         OpenGraph::addProperty('type', 'articles');
 
-        return view('page', compact('pageInstance'));
+        $html = $pageInstance->renderTemplate()->render();
+        $html = \App\Models\Widget::replaceMonikers($html);
+ 
+        return view('page', compact('html'));
     }
 }

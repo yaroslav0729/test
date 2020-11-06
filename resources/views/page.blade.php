@@ -2,6 +2,6 @@
 
 @section('content')
     
-    {!! $pageInstance->renderTemplate() !!}
+    {!! $html !!}
 
 @endsection
