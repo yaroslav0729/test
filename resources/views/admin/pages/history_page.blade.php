@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
-                        <label for="slug">Slug</label>
+                        <label for="slug">Url name</label>
                         <input readonly required id="slug" name="slug" class="form-control" type="text" value="{{ $slug }}" />
                     </div>
                 </div>
@@ -73,14 +73,20 @@
                     </div>
                 </div>
 
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="keywords">Template</label>
+                    <input readonly class="form-control" value="{{ $pageInstance->template_name }}">
+                    </div>
+                </div>
+
                 
             </div>
             <hr>
 
-            <h2>Page content</h2>
+            <h2>Template parameters</h2>
 
-            <div id="response-content" class="d-none">
-            </div>
+            {{ $pageInstance->renderTemplateParametersForm() }}
 
         @if(!$pageInstance->actual)
             <form action="{{ $actionRoute }}" method="post">
