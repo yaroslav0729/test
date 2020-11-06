@@ -201,6 +201,14 @@ header {
     background: #fff;
     position: fixed;top:0; left: 0; right: 0;
     z-index: 10;
+    .ico-search {
+        display: inline-block;
+        background: url(../img/ico-search.svg) no-repeat;
+        background-size: contain;
+        width: 20px; height: 20px;
+        position: relative; top: -2px;
+        vertical-align: middle;
+    }
     .top-bar {
         padding: 30px 100px 33px 113px;
         .logo {
@@ -228,14 +236,16 @@ header {
             display: inline-block;
             margin-left: 43px;
             position: relative;
+        }
+        .phone {
             i {
-                font-size: 25px;
-                vertical-align: middle;
-            }
-            .fa-phone {
-                transform: rotate(93deg);
+                display: inline-block;
+                background: url(../img/ico-Phone.png) no-repeat;
+                background-size: contain;
+                width: 25px; height: 25px;
                 position: relative; top: -2px;
                 margin-left: 10px;
+                vertical-align: middle;
             }
         }
     }
@@ -246,10 +256,12 @@ header {
         position: relative;
         cursor: pointer;
         i {
-            font-size: 25px;
+            display: inline-block;
+            background: url(../img/shopping-cart.svg) no-repeat;
+            background-size: contain;
+            width: 35px; height: 29px;
+            position: relative; top: -2px;
             vertical-align: middle;
-            position: relative;
-            z-index: 2;
         }
         span {
             display: block;
@@ -989,12 +1001,12 @@ input[type='number'].color-danger  + .input-group {
             position: relative;
             display: flex;
             & > .left {
-                flex: 1 1 56%;
+                flex: 1 1 50%;
                 background: #fff;
                 padding: 60px 20px 55px 60px;
             }
             & > .right {
-                flex: 1 1 44%;
+                flex: 1 1 50%;
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: 50% 50%;
@@ -1484,7 +1496,8 @@ input[type='number'].color-danger  + .input-group {
     margin-bottom: 145px;
     .wrap {
         border-bottom: 4px solid #101525;
-        padding: 0 45px;
+        padding: 0 46px;
+        margin: 0 -60px;
     }
     .item {
         display: block;
@@ -1675,6 +1688,27 @@ input[type='number'].color-danger  + .input-group {
                     background: #101525;
                     position: absolute; left: -80px; right: 0; bottom: 0;
                 }
+            }
+        }
+        .stat {
+            transform-origin: 50% 50%;
+            display: inline-block;
+            border-radius: 50%;
+            height: 46px; width: 46px;
+            background: #F8F8F8 url(../img/ico-power.svg) no-repeat 50% 50%;
+            background-size: 23px 23px;
+            position: absolute; bottom: 17px; right: 15px;
+            vertical-align: middle;
+            margin-left: 10px;
+            span {
+                color: #101525;
+                font-size: 12px;
+                line-height: 18px;
+                text-align: center;
+                display: block;
+                position: absolute;
+                left: 0; right: 0; bottom: -8px;
+                &:after {display: none}
             }
         }
     }
@@ -1912,7 +1946,7 @@ input[type='number'].color-danger  + .input-group {
             height: 4px;
             background: #101525;
             position: absolute; bottom: 0; left: 0; right: 0;
-            //width: 1080px;
+            width: 1080px;
             @media screen  and (max-width: 1200px) {
                 display: none;
             }
