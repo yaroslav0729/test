@@ -46,7 +46,7 @@
 <section class="blog-article-head">
     <div class="wrap">
         <div class="mb-4">
-            <a href="#" class="btn-back"><i class="far fa-arrow-left"></i> BACK</a>
+            @include('templates.parts.back_btn')
         </div>
 
         <div class="row">
