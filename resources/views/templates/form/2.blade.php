@@ -83,57 +83,57 @@
 
 <div class="form-group">
     <label>Preview text:</label>
-    <textarea class="form-control" name="parameters[preview_text]" placeholder="Insert preview text">{{ $previewText }}</textarea>
+    <textarea class="form-control" required name="parameters[preview_text]" placeholder="Insert preview text">{{ $previewText }}</textarea>
 </div>
 
 <div class="form-group">
     <label>Preview position:</label>
-    <input class="form-control" name="parameters[preview_position]" placeholder="Insert preview position name" value="{{ $previewPosition }}" />
+    <input class="form-control" required name="parameters[preview_position]" placeholder="Insert preview position name" value="{{ $previewPosition }}" />
 </div>
 
 <div class="form-group">
     <label>Preview image:</label>
-    <input class="form-control" name="parameters[preview_image]" value="{{ $previewImage }}" placeholder="Insert preview image path" />
+    <input class="form-control" required name="parameters[preview_image]" value="{{ $previewImage }}" placeholder="Insert preview image path" />
 </div>
 
 <div class="form-group">
     <label>Event date text:</label>
-    <input class="form-control" name="parameters[event_date_text]" placeholder="Insert event date text" value="{{ $eventDateText }}" />
+    <input class="form-control" required name="parameters[event_date_text]" placeholder="Insert event date text" value="{{ $eventDateText }}" />
 </div>
 
 <div class="form-group">
     <label>Event time text:</label>
-    <input class="form-control" name="parameters[event_time_text]" placeholder="Insert event time text" value="{{ $eventTimeText }}" />
+    <input class="form-control" required name="parameters[event_time_text]" placeholder="Insert event time text" value="{{ $eventTimeText }}" />
 </div>
 
 <div class="form-group">
     <label>Event link text:</label>
-    <input class="form-control" name="parameters[event_link_text]" placeholder="Insert event link text" value="{{ $eventLinkText }}" />
+    <input class="form-control" required name="parameters[event_link_text]" placeholder="Insert event link text" value="{{ $eventLinkText }}" />
 </div>
 
 <div class="form-group">
     <label>Event link:</label>
-    <input class="form-control" name="parameters[event_link]" placeholder="Insert event link" value="{{ $eventLink }}" />
+    <input class="form-control" required name="parameters[event_link]" placeholder="Insert event link" value="{{ $eventLink }}" />
 </div>
 
 <div class="form-group">
     <label>Event details entry:</label>
-    <input class="form-control" name="parameters[event_details_entry]" placeholder="Insert event details entry" value="{{ $eventDetailsEntry }}" />
+    <input class="form-control" required name="parameters[event_details_entry]" placeholder="Insert event details entry" value="{{ $eventDetailsEntry }}" />
 </div>
 
 <div class="form-group">
     <label>Event details organiser:</label>
-    <input class="form-control" name="parameters[event_details_organiser]" placeholder="Insert event details organiser" value="{{ $eventDetailsOrganiser }}" />
+    <input class="form-control" required name="parameters[event_details_organiser]" placeholder="Insert event details organiser" value="{{ $eventDetailsOrganiser }}" />
 </div>
 
 <div class="form-group">
     <label>Event details speaker:</label>
-    <input class="form-control" name="parameters[event_details_speaker]" placeholder="Insert event details speaker" value="{{ $eventDetailsSpeaker }}" />
+    <input class="form-control" required name="parameters[event_details_speaker]" placeholder="Insert event details speaker" value="{{ $eventDetailsSpeaker }}" />
 </div>
 
 <div class="form-group">
     <label>Event details contact:</label>
-    <input class="form-control" name="parameters[event_details_contact]" placeholder="Insert event details contact" value="{{ $eventDetailsContact }}" />
+    <input class="form-control" required name="parameters[event_details_contact]" placeholder="Insert event details contact" value="{{ $eventDetailsContact }}" />
 </div>
 
 <div class="form-group">
@@ -143,10 +143,10 @@
 
 <div class="form-group">
     <label>Information title:</label>
-    <input class="form-control" name="parameters[information_title]" placeholder="Insert information title" value="{{ $informationTitle }}" />
+    <input class="form-control" required name="parameters[information_title]" placeholder="Insert information title" value="{{ $informationTitle }}" />
 </div>
 
 <div class="form-group">
     <label>Information text:</label>
-    <textarea class="form-control" id="information_text" placeholder="Insert information text" name="parameters[information_text]">{{ $informationText }}</textarea>
+    <textarea class="form-control" required id="information_text" placeholder="Insert information text" name="parameters[information_text]">{{ $informationText }}</textarea>
 </div>

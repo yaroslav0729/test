@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Models\PageInstance;
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\PageCreateEditRequest;
 use App\Http\Requests\Admin\WidgetAddRequest;
 use App\Models\PostItem;
 use Illuminate\Support\Facades\Validator;
@@ -42,7 +42,7 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(PageCreateEditRequest $request)
     {
         $validator = $this->_validateSlug($request);
 
@@ -51,7 +51,9 @@ class PageController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        
+
+        $templateValidator = $this->_validateTemplate($request);
+
         $page = Page::create();
         $data = $request->all();
         $data['page_id'] = $page->id;
@@ -130,7 +132,7 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PageCreateEditRequest $request, $id)
     {
         $validator = $this->_validateSlug($request, $id);
 
@@ -139,6 +141,8 @@ class PageController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
+        $templateValidator = $this->_validateTemplate($request);
         
         $page = Page::findOrFail($id);
         $oldPage = $page->actual_page_instance;
@@ -225,5 +229,11 @@ class PageController extends Controller
         }
 
         return $validator;
+    }
+
+    protected function _validateTemplate(Request $request)
+    {
+        $validationRules = \App\Models\Template::getValidationRules((int)$request->template);
+        $validatedData = $request->validate($validationRules);
     }
 }

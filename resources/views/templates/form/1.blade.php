@@ -50,15 +50,15 @@
 
 <div class="form-group">
     <label>Min read parameter:</label>
-    <input class="form-control" name="parameters[min_read]" placeholder="X min read text" value="{{ $minRead }}" />
+    <input class="form-control" required name="parameters[min_read]" placeholder="X min read text" value="{{ $minRead }}" />
 </div>
 <div class="form-group">
     <label>Header text</label>
-    <textarea class="form-control" name="parameters[hdr_text]" placeholder="Insert header text">{{ $headerText }}</textarea>
+    <textarea class="form-control" required name="parameters[hdr_text]" placeholder="Insert header text">{{ $headerText }}</textarea>
 </div>
 <div class="form-group">
     <label>Header video:</label>
-    <input class="form-control" name="parameters[hdr_video]" placeholder="Insert youtube video link" value="{{ $headerVideo }}" />
+    <input class="form-control" required name="parameters[hdr_video]" placeholder="Insert youtube video link" value="{{ $headerVideo }}" />
 </div>
 <div class="form-group">
     <label>Article html</label>
@@ -69,21 +69,21 @@
 
 <div class="form-group">
     <label>Preview page title:</label>
-    <input class="form-control" name="parameters[preview_page_title]" placeholder="Insert preview page title" value="{{ $previewPageTitle }}" />
+    <input class="form-control" required name="parameters[preview_page_title]" placeholder="Insert preview page title" value="{{ $previewPageTitle }}" />
 </div>
 <div class="form-group">
     <label>Preview page text1:</label>
-    <textarea class="form-control" name="parameters[preview_page_text1]" placeholder="Insert preview page text">{{ $previewPageText1 }}</textarea>
+    <textarea class="form-control" required name="parameters[preview_page_text1]" placeholder="Insert preview page text">{{ $previewPageText1 }}</textarea>
 </div>
 <div class="form-group">
     <label>Preview page text2:</label>
-    <textarea class="form-control" name="parameters[preview_page_text2]" placeholder="Insert preview page text2">{{ $previewPageText2 }}</textarea>
+    <textarea class="form-control" required name="parameters[preview_page_text2]" placeholder="Insert preview page text2">{{ $previewPageText2 }}</textarea>
 </div>
 <div class="form-group">
     <label>Preview page link:</label>
-    <input class="form-control" name="parameters[preview_page_link]" placeholder="Insert preview page link" value="{{ $previewPageLink }}" />
+    <input class="form-control" required name="parameters[preview_page_link]" placeholder="Insert preview page link" value="{{ $previewPageLink }}" />
 </div>
 <div class="form-group">
     <label>Preview page image:</label>
-    <input class="form-control" name="parameters[preview_page_image]" placeholder="Path to preview image" value="{{ $previewPageImage }}" />
+    <input class="form-control" required name="parameters[preview_page_image]" placeholder="Path to preview image" value="{{ $previewPageImage }}" />
 </div>

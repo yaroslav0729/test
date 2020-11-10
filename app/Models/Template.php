@@ -24,4 +24,57 @@ class Template
             default:return "Unknown template type";
         }
     }
+
+    public static function getValidationRules($template)
+    {
+        $rules = [];
+
+        switch ($template) {
+            case self::BLOG_PAGE: {
+
+                $rules = [
+                    'parameters.min_read' => 'required',
+                    'parameters.hdr_text' => 'required',
+                    'parameters.hdr_video' => 'required',
+                    'parameters.preview_page_title' => 'required',
+                    'parameters.preview_page_text1' => 'required',
+                    'parameters.preview_page_text2' => 'required',
+                    'parameters.preview_page_link' => 'required',
+                    'parameters.preview_page_image' => 'required',
+                ];
+
+                break;
+            }
+            case self::EVENT_PAGE: {
+
+                $rules = [
+                    'parameters.preview_text' => 'required',
+                    'parameters.preview_position' => 'required',
+                    'parameters.preview_image' => 'required',
+                    'parameters.event_date_text' => 'required',
+                    'parameters.event_time_text' => 'required',
+                    'parameters.event_link' => 'required',
+                    'parameters.event_details_entry' => 'required',
+                    'parameters.event_details_organiser' => 'required',
+                    'parameters.event_details_speaker' => 'required',
+                    'parameters.event_details_contact' => 'required',
+                    'parameters.information_title' => 'required',
+                    'parameters.information_text' => 'required',
+                ];
+
+                break;
+            }
+            case self::TEST_PAGE: {
+
+                $rules = [
+                    'parameters.param3' => 'required',
+                    'parameters.param4' => 'required',
+                ];
+
+                break;
+            }
+        }
+
+        return $rules;
+    }
 }
