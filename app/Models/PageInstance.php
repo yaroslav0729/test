@@ -41,6 +41,11 @@ class PageInstance extends Model
         return Template::getLabel($this->template);
     }
 
+    public function getIsPublishedAttribute()
+    {
+        return ($this->page->status === \App\Models\Page::PAGE_STATUS_PUBLICHED);
+    }
+
     public function renderTemplateParametersForm()
     {
         if ($this->template) {

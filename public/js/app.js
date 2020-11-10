@@ -102543,6 +102543,26 @@ $(function () {
   function templateResponse(response) {
     $('#page_parameters').html(response.html);
     Object(_admin_parts_init_tiny_mce__WEBPACK_IMPORTED_MODULE_1__["initWysiwyg"])();
+  } //~~~~~~~~~~~~~~~~~~~~~~~~~~ Video-carousel widget ~~~~~~~~~~~~~~~~
+
+
+  $(document).on('click', '.blog-video .view-more', nextVideoClickHandler);
+
+  function nextVideoClickHandler() {
+    var paramsBlock = $(this).next('.blog-video-parameters');
+    var iframeBlock = $(this).closest('.blog-video');
+    var current = parseInt(paramsBlock.data('current'));
+    var linksLenght = paramsBlock.find('li').length;
+    current++;
+
+    if (current >= linksLenght) {
+      current = 0;
+    }
+
+    paramsBlock.data('current', current);
+    var link = paramsBlock.find('li:eq(' + current + ')').text();
+    link = "https://www.youtube.com/embed/" + link;
+    iframeBlock.find('iframe').attr('src', link);
   } //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 }); //require('./functions');

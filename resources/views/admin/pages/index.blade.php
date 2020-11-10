@@ -49,7 +49,7 @@
                           <td class="border px-4 py-2">{{ $pageInstance->name }}</td>
                           <td class="border px-4 py-2">{{ $pageInstance->template_name }}</td>
                           <td class="border px-4 py-2">
-                            @if ($pageInstance->page->status === \App\Models\Page::PAGE_STATUS_PUBLICHED)
+                            @if ($pageInstance->is_published)
                               <a href="{{ url($pageInstance->slug) }}" target="_blank">{{ $pageInstance->slug }}</a>
                             @else
                               {{ $pageInstance->slug }}

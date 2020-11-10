@@ -49,7 +49,7 @@ class Widget
                     $widgetParameters = explode('|', $paramStr);
                     $widgetCode = substr($part, $pos) . "}";
 
-                    $widgetHtml = view('widgets.' . $widgetName, [
+                    $widgetHtml = view('widgets.' . $widgetId, [
                         'parameters' => $widgetParameters,
                     ])->render();
 

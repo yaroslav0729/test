@@ -43,6 +43,29 @@ $(function () {
         initWysiwyg()
     }
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~ Video-carousel widget ~~~~~~~~~~~~~~~~
+
+    $(document).on('click', '.blog-video .view-more', nextVideoClickHandler);
+
+    function nextVideoClickHandler() {
+        let paramsBlock = $(this).next('.blog-video-parameters');
+        let iframeBlock = $(this).closest('.blog-video');
+
+        let current = parseInt(paramsBlock.data('current'))
+        let linksLenght = paramsBlock.find('li').length
+
+        current++
+        if (current>=linksLenght) {
+            current = 0    
+        }
+
+        paramsBlock.data('current', current)
+
+        let link = paramsBlock.find('li:eq(' + current + ')').text()
+        link = "https://www.youtube.com/embed/" + link
+        iframeBlock.find('iframe').attr('src', link)
+    }
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 })
 
