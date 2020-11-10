@@ -10,6 +10,8 @@ class Page extends Model
 {
     use HasFactory;
 
+    const TYPE_INDEX_PAGE = 1;
+
     const PAGE_STATUS_MOVED_TO_TRASH = 0;
     const PAGE_STATUS_EDITED = 1;
     const PAGE_STATUS_PUBLICHED = 2;
@@ -35,6 +37,11 @@ class Page extends Model
     public function getStatusNameAttribute()
     {
         return self::POST_STATUS[$this->status];
+    }
+
+    public function scopeIndex($query)
+    {
+        return $query->where('type', self::TYPE_INDEX_PAGE);
     }
 
     public function removeOldHistory()
