@@ -21,7 +21,24 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('pages.home');
+        //return view('pages.home');
+
+        $indexPage = Page::index()->first();
+        $pageInstance = $indexPage->actual_page_instance; 
+
+        SEOMeta::setTitle($pageInstance->title);
+        SEOMeta::setDescription($pageInstance->description);
+        SEOMeta::setCanonical(url()->current());
+
+        OpenGraph::setTitle($pageInstance->title);
+        OpenGraph::setDescription($pageInstance->description);
+        OpenGraph::setUrl(url()->current());
+        OpenGraph::addProperty('type', 'articles');
+
+        $html = $pageInstance->renderTemplate()->render();
+        $html = \App\Models\Widget::replaceMonikers($html);
+
+        return view('page', compact('html'));
     }
 
     public function showFromSlug($slug)
