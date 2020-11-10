@@ -55,7 +55,7 @@
 
             <div class="form-group">
             <label for="name">Name</label>
-            <input id="name" name="name" placeholder="Name of page" class="form-control" type="text" value="{{ $name }}" />
+            <input id="name" name="name" required placeholder="Name of page" class="form-control" type="text" value="{{ $name }}" />
             </div>
 
             <div class="row">
@@ -69,7 +69,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input id="title" name="title" placeholder="Title of page" class="form-control" type="text" value="{{ $title }}" />
+                        <input id="title" required name="title" placeholder="Title of page" class="form-control" type="text" value="{{ $title }}" />
                     </div>
                 </div>
 

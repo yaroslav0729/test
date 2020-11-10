@@ -68,8 +68,8 @@ class Template
             case self::TEST_PAGE: {
 
                 $rules = [
-                    'parameters.param3' => 'required',
-                    'parameters.param4' => 'required',
+                    //'parameters.param3' => 'required',
+                    //'parameters.param4' => 'required',
                 ];
 
                 break;

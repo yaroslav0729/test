@@ -24,6 +24,7 @@ class PageCreateEditRequest extends FormRequest
     public function rules()
     {
         return [
+            'name' => 'required',
             'template' => 'required|integer|gt:0' // greater than 0
         ];
     }
