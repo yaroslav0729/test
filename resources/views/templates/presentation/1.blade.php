@@ -2,6 +2,7 @@
 
     $minRead = "";
     $headerText="";
+    $writtenBy="";
     $headerVideo = "";
     $articleHtml = "";
     $previewPageTitle = "";
@@ -16,6 +17,10 @@
 
     if (isset($parameters['hdr_text'])) {
         $headerText = $parameters['hdr_text'];    
+    }
+
+    if (isset($parameters['written_by'])) {
+        $writtenBy = $parameters['written_by'];    
     }
 
     if (isset($parameters['hdr_video'])) {
@@ -66,7 +71,7 @@
                 </p>
                 <div class="author">
                     <div class="img" style="background-image: url(img/content/Avatar1.jpg)"></div>
-                    <span>written by <span>|</span> {{ $pageInstance->author->name }}</span>
+                    <span>written by <span>|</span> {{ $writtenBy }} {{-- $pageInstance->author->name --}}</span>
                 </div>
             </div>
             <div class="col-1"></div>

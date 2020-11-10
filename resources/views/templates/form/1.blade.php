@@ -2,6 +2,7 @@
 
     $minRead = "";
     $headerText="";
+    $writtenBy="";
     $headerVideo = "";
     $articleHtml = "";
     $previewPageTitle = "";
@@ -16,6 +17,10 @@
 
     if (isset($parameters['hdr_text'])) {
         $headerText = $parameters['hdr_text'];    
+    }
+
+    if (isset($parameters['written_by'])) {
+        $writtenBy = $parameters['written_by'];    
     }
 
     if (isset($parameters['hdr_video'])) {
@@ -55,6 +60,10 @@
 <div class="form-group">
     <label>Header text</label>
     <textarea class="form-control" required name="parameters[hdr_text]" placeholder="Insert header text">{{ $headerText }}</textarea>
+</div>
+<div class="form-group">
+    <label>Written by:</label>
+    <input class="form-control" required name="parameters[written_by]" placeholder="Written by" value="{{ $writtenBy }}" />
 </div>
 <div class="form-group">
     <label>Header video:</label>

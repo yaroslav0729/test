@@ -35,6 +35,7 @@ class Template
                 $rules = [
                     'parameters.min_read' => 'required',
                     'parameters.hdr_text' => 'required',
+                    'parameters.written_by' => 'required',
                     'parameters.hdr_video' => 'required',
                     'parameters.preview_page_title' => 'required',
                     'parameters.preview_page_text1' => 'required',
