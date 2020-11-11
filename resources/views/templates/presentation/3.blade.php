@@ -12,6 +12,7 @@ $longtermLink = "";
 $emergencyLink = "";
 $volunteeringLink = "";
 $sadiqahLink = "";
+$relatedPages = [];
 
 
 if (isset($parameters['hdr_type'])) {
@@ -293,39 +294,9 @@ if (isset($parameters['our_work_sadiqah_link'])) {
     </div>
 </section>
 
-<section class="current-projects-list">
-    <div class="wrap">
-        <div class="row">
-            <div class="col-4">
-                <a href="#" class="item">
-                    <span class="img" style="background-image: url(img/content/current-projects-list-1.jpg)"></span>
-                    <span class="descr">
-                        <span class="name font-size-16"><b>TITLE Critical 20.Ch</b></span>
-                        <span class="text font-size-16">Critical campaign info, 60 char lorem sit amet, demis vella...</span>
-                    </span>
-                </a>
-            </div>
-            <div class="col-4">
-                <a href="#" class="item">
-                    <span class="img" style="background-image: url(img/content/current-projects-list-2.jpg)"></span>
-                    <span class="descr">
-                        <span class="name font-size-16"><b>TITLE Critical 20.Ch</b></span>
-                        <span class="text font-size-16">Critical campaign info, 60 char lorem sit amet, demis vella...</span>
-                    </span>
-                </a>
-            </div>
-            <div class="col-4">
-                <a href="#" class="item">
-                    <span class="img" style="background-image: url(img/content/current-projects-list-3.jpg)"></span>
-                    <span class="descr">
-                        <span class="name font-size-16"><b>TITLE Critical 20.Ch</b></span>
-                        <span class="text font-size-16">Critical campaign info, 60 char lorem sit amet, demis vella...</span>
-                    </span>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+@include('modules.presentation.related_pages', [
+    'parameters' => $parameters
+])
 
 <section class="lets-join">
     <div class="wrap">

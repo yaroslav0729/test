@@ -6,6 +6,7 @@ use App\Models\Template;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Models\Category;
 
 class PageInstance extends Model
 {
@@ -16,6 +17,8 @@ class PageInstance extends Model
         'author_id',
         'name',
         'slug',
+        'preview_text',
+        'preview_img',
         'title',
         'description',
         'keywords',
@@ -66,9 +69,12 @@ class PageInstance extends Model
 
     public function renderTemplateParametersForm()
     {
+        $categories = Category::all();
+
         if ($this->template) {
             return view('templates.form.' . $this->template, [
-                'parameters' => $this->parameters
+                'parameters' => $this->parameters,
+                'categories' => $categories
             ]);
         } else {
             return null;

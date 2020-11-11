@@ -7,6 +7,8 @@
             $actionRoute = route('admin.pages.update', ['page' => $page->id]);
             $name = $pageInstance->name;
             $slug = $pageInstance->slug;
+            $previewText = $pageInstance->preview_text;
+            $previewImg = $pageInstance->preview_img;
             $title = $pageInstance->title;
             $description = $pageInstance->description;
             $keywords = $pageInstance->keywords;
@@ -19,6 +21,8 @@
         $actionRoute = route('admin.pages.store');
         $name = old('name');
         $slug = old('slug');
+        $previewText = old('preview_text');
+        $previewImg = old('preview_img');
         $title = old('title');
         $description = old('description');
         $keywords = old('keywords');
@@ -72,6 +76,21 @@
                         <input id="title" required name="title" placeholder="Title of page" class="form-control" type="text" value="{{ $title }}" />
                     </div>
                 </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="preview_text">Preview text</label>
+                        <textarea id="preview_text" name="preview_text" placeholder="Preview text" class="form-control">{{ $previewText }}</textarea>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="preview_img">Preview image</label>
+                        <input id="preview_img" name="preview_img" placeholder="Preview image" class="form-control" type="text" value="{{ $previewImg }}" />
+                    </div>
+                </div>
+
 
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
