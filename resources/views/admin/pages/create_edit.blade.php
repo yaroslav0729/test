@@ -89,6 +89,23 @@
             </div>
 
             <div class="form-group">
+                <label for="groups">Categories</label>
+                <select id="groups" name="categories[]" multiple class="form-control">
+                    @foreach ($categories as $category)
+
+                        @php
+                            $selected = false;
+                            if ((isset($pageInstance)) && (in_array($category->id, $pageInstance->category_ids))) {
+                                $selected = true;
+                            }
+                        @endphp
+
+                        <option value="{{ $category->id }}" @if($selected) selected @endif>{{ $category->name }}</option>   
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="template">Template</label>
                 <select name="template" class="form-control">
                     <option value="0">No template selected</option>

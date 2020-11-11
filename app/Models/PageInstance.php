@@ -32,9 +32,19 @@ class PageInstance extends Model
         return $this->belongsTo('App\Models\Page', 'page_id');
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\Category', 'category_page');
+    }
+
     public function author()
     {
         return $this->belongsTo('App\Models\User', 'author_id');
+    }
+
+    public function getCategoryIdsAttribute()
+    {
+        return $this->categories->pluck('id')->toArray();
     }
 
     public function getTemplateNameAttribute()

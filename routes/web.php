@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MediaController;
 
 use App\Models\User;
@@ -27,6 +28,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         Route::get('/', [UserController::class, 'index'])->name('admin.index');
 
         Route::resource('pages', AdminPageController::class, ['as' => 'admin']);
+        Route::resource('category', CategoryController::class, ['as' => 'admin']);
+        
         Route::get('/preview_version/{id}', [AdminPageController::class, 'preview'])->name('admin.pages.preview');
         Route::get('/post_history/{id}', [AdminPageController::class, 'history'])->name('admin.pages.history');
         Route::post('/restore_post/{id}', [AdminPageController::class, 'restore'])->name('admin.pages.restore');

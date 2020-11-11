@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Models\PageInstance;
+use App\Models\Category;
 use App\Http\Requests\PageCreateEditRequest;
 use App\Http\Requests\Admin\WidgetAddRequest;
 use App\Models\PostItem;
@@ -33,7 +34,11 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.create_edit');
+        $categories = Category::all();
+
+        return view('admin.pages.create_edit', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -60,6 +65,9 @@ class PageController extends Controller
         $pageInstance = PageInstance::create($data);
         $pageInstance->actual = true;
         $pageInstance->author()->associate(auth()->user());
+
+        $cIds = $request->input('categories');
+        $pageInstance->categories()->attach($cIds);
 
         $pageInstance->save();
 
@@ -119,9 +127,11 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::findOrFail($id);
+        $categories = Category::all();
 
         return view('admin.pages.create_edit', [
-            'page' => $page, 
+            'page' => $page,
+            'categories' => $categories 
         ]);
     }
 
@@ -159,6 +169,9 @@ class PageController extends Controller
         $pageInstance->page()->associate($page);
         $pageInstance->actual = true;
         $pageInstance->save();
+
+        $cIds = $request->input('categories');
+        $pageInstance->categories()->attach($cIds);
 
         $page->removeOldHistory();
 
