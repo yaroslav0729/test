@@ -36,6 +36,10 @@ class PageController extends Controller
 
     public function showFromSlug($slug)
     {
+        if ($slug === 'index') {
+            return redirect('/');
+        }
+
         $pageInstance = PageInstance::where('slug', $slug)
             ->where('actual', true)
             ->published()
@@ -53,6 +57,6 @@ class PageController extends Controller
         $html = $pageInstance->renderTemplate()->render();
         $html = \App\Models\Widget::replaceMonikers($html);
 
-        return view('page', compact('html'));
+        return view('page_short_header', compact('html'));
     }
 }

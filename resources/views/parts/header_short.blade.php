@@ -3,7 +3,7 @@
         <div class="wrap">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <a href="#" class="logo">
+                    <a href="{{ route('index') }}" class="logo">
                         <span>
                             <img src="/img/logo.png" width="35" height="35" style="margin: 8px 0 0 8px" />
                         </span>

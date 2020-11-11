@@ -1,6 +1,9 @@
 @php
 
 $hdrType = "";
+$hdrTitle = "";
+$hdrText = "";
+$hdrLearnMoreLink = "";
 $whoVideo = "";
 $whoLink = "";
 $whoTitle = "";
@@ -13,6 +16,18 @@ $sadiqahLink = "";
 
 if (isset($parameters['hdr_type'])) {
     $hdrType = $parameters['hdr_type'];    
+}
+
+if (isset($parameters['hdr_title'])) {
+    $hdrTitle = $parameters['hdr_title'];    
+}
+
+if (isset($parameters['hdr_text'])) {
+    $hdrText = $parameters['hdr_text'];    
+}
+
+if (isset($parameters['hdr_learn_more'])) {
+    $hdrLearnMoreLink = $parameters['hdr_learn_more'];    
 }
 
 if (isset($parameters['who_we_are_wideo'])) {
@@ -56,6 +71,21 @@ if (isset($parameters['our_work_sadiqah_link'])) {
             <option value="{{ $i }}" @if((int)($hdrType) === $i) selected @endif>Type {{ $i }}</option>
         @endfor
     </select>
+</div>
+
+<div class="form-group">
+    <label>Header title:</label>
+    <input class="form-control" required name="parameters[hdr_title]" placeholder="Header title" value="{{ $hdrTitle }}" />
+</div>
+
+<div class="form-group">
+    <label>Header text:</label>
+    <input class="form-control" required name="parameters[hdr_text]" placeholder="Header text" value="{{ $hdrText }}" />
+</div>
+
+<div class="form-group">
+    <label>Header learn more link:</label>
+    <input class="form-control" required name="parameters[hdr_learn_more]" placeholder="Header learn more link" value="{{ $hdrLearnMoreLink }}" />
 </div>
 
 <div class="form-group">
