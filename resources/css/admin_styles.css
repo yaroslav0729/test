@@ -45,7 +45,9 @@ h1 {
     width: 35px;
     text-align: left;
 }
-
+.action_td {
+    min-width: 220px;
+}
 .action_td a:hover {
     text-decoration: none;
 }

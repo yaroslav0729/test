@@ -56,7 +56,7 @@
                             @endif
                           </td>
                           <td class="border px-4 py-2">@isset($pageInstance->author){{ $pageInstance->author->name }} @else No author @endisset</td>
-                          <td class="border px-4 py-2">
+                          <td class="border px-4 py-2" style="min-width: 250px;">
 
                             <form method="post" class="form-inline" action="{{ route('admin.pages.save_status', ['id' => $page->id]) }}">
                               @csrf
