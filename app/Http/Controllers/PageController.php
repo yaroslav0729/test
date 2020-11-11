@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Models\PageInstance;
-use Illuminate\Database\Eloquent\Builder;
-
-use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
-use Artesaos\SEOTools\Facades\TwitterCard;
-use Artesaos\SEOTools\Facades\JsonLd;
+use Artesaos\SEOTools\Facades\SEOMeta;
 
 class PageController extends Controller
 {
@@ -21,10 +16,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        //return view('pages.home');
-
         $indexPage = Page::index()->first();
-        $pageInstance = $indexPage->actual_page_instance; 
+        $pageInstance = $indexPage->actual_page_instance;
 
         SEOMeta::setTitle($pageInstance->title);
         SEOMeta::setDescription($pageInstance->description);
@@ -44,11 +37,9 @@ class PageController extends Controller
     public function showFromSlug($slug)
     {
         $pageInstance = PageInstance::where('slug', $slug)
-                ->where('actual', true)
-                ->whereHas('page', function(Builder $query) {
-                    $query->where('status', Page::PAGE_STATUS_PUBLICHED);   
-                })
-                ->firstOrFail();
+            ->where('actual', true)
+            ->published()
+            ->firstOrFail();
 
         SEOMeta::setTitle($pageInstance->title);
         SEOMeta::setDescription($pageInstance->description);
@@ -61,7 +52,7 @@ class PageController extends Controller
 
         $html = $pageInstance->renderTemplate()->render();
         $html = \App\Models\Widget::replaceMonikers($html);
- 
+
         return view('page', compact('html'));
     }
 }

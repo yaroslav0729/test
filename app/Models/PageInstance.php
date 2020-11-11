@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Template;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class PageInstance extends Model
 {
@@ -44,6 +45,13 @@ class PageInstance extends Model
     public function getIsPublishedAttribute()
     {
         return ($this->page->status === \App\Models\Page::PAGE_STATUS_PUBLICHED);
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->whereHas('page', function(Builder $queryPage) {
+            $queryPage->where('status', Page::PAGE_STATUS_PUBLICHED);   
+        });
     }
 
     public function renderTemplateParametersForm()
