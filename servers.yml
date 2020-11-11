@@ -3,3 +3,9 @@ dev:
   stage: dev
   deploy_path: /home/ubuntu/projects/islamic_help
   branch: dev
+
+prod:
+  hostname: islamic_help_prod
+  stage: dev
+  deploy_path: /home/ubuntu/projects/islamic_help
+  branch: dev
