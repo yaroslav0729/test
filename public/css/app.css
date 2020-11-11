@@ -14756,6 +14756,9 @@ input[type='number'].color-danger + .input-group .btn {
     width: 100%;
     height: 100%;
 }
+.subscribe_news {
+    cursor: pointer;
+}
 .blockquote {
  background: #E9F6F8
 }

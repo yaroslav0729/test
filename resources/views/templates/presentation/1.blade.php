@@ -211,7 +211,6 @@
     </div>
 </section>
 
-
 <section class="join-cause-2">
     <div class="wrap">
         <div>
@@ -224,9 +223,11 @@
                 </div>
                 <div class="col-5 pr-4">
                     <img src="img/content/join-cause-2.jpg" alt="" class="w-100">
-                    <i class="fal fa-plus decor-plus"></i>
+                    <i class="fal fa-plus decor-plus subscribe_news" data-toggle="modal" data-target="#subscription_modal"></i>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+@include('parts.subscription_modal')

@@ -22,4 +22,22 @@ class SubscriptionController extends Controller
 
         return redirect()->route('admin.subscription.index')->with('status', 'Subscriptions deleted successfully!');
     }
+
+    public function subscribe(Request $request)
+    {
+        $email = $request->input('email');
+        $subscriptionExists = Subscription::where('email', $email)->first();
+
+        if ($subscriptionExists) {
+            return response()->json([
+                'message' => 'This email is already exists',
+                'success' => false,
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'You are subscribed successfully',
+            'success' => true,
+        ]); 
+    }
 }

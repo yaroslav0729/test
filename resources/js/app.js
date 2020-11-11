@@ -67,6 +67,30 @@ $(function () {
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('click', '#subscription_modal_sbmt', function() {
+
+        var form = $('#subscription_modal form');
+        var formData = new FormData(form[0]);
+
+        $.ajax({
+            url     : form.attr('action'),
+            type    : form.attr('method'),
+            data    : formData,
+            processData: false,
+            contentType: false,
+            success : function (response, textStatus, jqXHR)
+            {
+                console.log(response)
+            },
+            error: function(response) {
+                console.log(response)
+            }
+        });
+
+    });
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 })
 
 //require('./functions');

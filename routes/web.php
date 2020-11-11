@@ -57,4 +57,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
+
 Route::get('/{slug}', [PageController::class, 'showFromSlug']);
