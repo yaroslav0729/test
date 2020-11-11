@@ -96,3 +96,7 @@
     <label>Preview page image:</label>
     <input class="form-control" required name="parameters[preview_page_image]" placeholder="Path to preview image" value="{{ $previewPageImage }}" />
 </div>
+
+@include('modules.admin.related_pages', [
+    'parameters' => $parameters
+])

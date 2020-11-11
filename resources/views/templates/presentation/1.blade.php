@@ -204,37 +204,9 @@
             </div>
         </div>
 
-        <div class="current-projects-list">
-            <div class="row">
-                <div class="col-4">
-                    <a href="#" class="item">
-                        <span class="img" style="background-image: url(img/content/discover-more-1.jpg)"></span>
-                        <span class="descr">
-                    <span class="name font-size-16">EVENT</span>
-                    <span class="text font-size-16"><b>Critical campaign title, 60 char lorem sit amet, demis.</b></span>
-                </span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a href="#" class="item">
-                        <span class="img" style="background-image: url(img/content/discover-more-2.jpg)"></span>
-                        <span class="descr">
-                    <span class="name font-size-16">PROJECT</span>
-                    <span class="text font-size-16"><b>Critical campaign title, 60 char lorem sit amet, demis.</b></span>
-                </span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a href="#" class="item">
-                        <span class="img" style="background-image: url(img/content/discover-more-3.jpg)"></span>
-                        <span class="descr">
-                    <span class="name font-size-16">ARTICLE</span>
-                    <span class="text font-size-16"><b>Critical campaign title, 60 char lorem sit amet, demis.</b></span>
-                </span>
-                    </a>
-                </div>
-            </div>
-        </div>
+        @include('modules.presentation.related_pages', [
+            'parameters' => $parameters
+        ])
 
     </div>
 </section>
