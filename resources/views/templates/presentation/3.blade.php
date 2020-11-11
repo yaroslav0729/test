@@ -1,9 +1,29 @@
 @php
 
 $hdrType = "";
+$whoVideo = "";
+$whoLink = "";
+$whoTitle = "";
+$whoText = "";
 
 if (isset($parameters['hdr_type'])) {
     $hdrType = (int)$parameters['hdr_type'];    
+}
+
+if (isset($parameters['who_we_are_wideo'])) {
+    $whoVideo = $parameters['who_we_are_wideo'];    
+}
+
+if (isset($parameters['who_we_are_link'])) {
+    $whoLink = $parameters['who_we_are_link'];    
+}
+
+if (isset($parameters['who_we_are_title'])) {
+    $whoTitle = $parameters['who_we_are_title'];    
+}
+
+if (isset($parameters['who_we_are_text'])) {
+    $whoText = $parameters['who_we_are_text'];    
 }
 
 @endphp
@@ -139,7 +159,9 @@ if (isset($parameters['hdr_type'])) {
     <section class="who-we-are">
         <div class="row gutter-5">
             <div class="col-6">
-                <div class="img-video play-tr" style="background-image: url(img/content/Video-placement-1.jpg)"><i class="fas fa-play-circle"></i></div>
+                <div class="img-video play-tr videoWrapper" style="">
+                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/ {{ $whoVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </div>
             <div class="col-6">
                 <div class="pl-5 pr-2 pt-4">
