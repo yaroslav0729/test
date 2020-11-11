@@ -160,7 +160,7 @@ if (isset($parameters['who_we_are_text'])) {
         <div class="row gutter-5">
             <div class="col-6">
                 <div class="img-video play-tr videoWrapper" style="">
-                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/ {{ $whoVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $whoVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
             <div class="col-6">
