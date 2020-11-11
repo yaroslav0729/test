@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/markup/img/ico-search.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/markup/img/shopping-cart.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Islamic-Help.lo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Islamic-Help.lo.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/_header-short-w.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/_header-short-w.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/_header-short.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/_header-short.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/_header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/_header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/less/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/less/styles.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servers.yml" beforeDir="false" afterPath="$PROJECT_DIR$/servers.yml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,28 +13,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-  </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="1602" column="24" lean-forward="true" selection-start-line="1602" selection-start-column="24" selection-end-line="1602" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/markup/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="423" column="53" lean-forward="true" selection-start-line="423" selection-start-column="53" selection-end-line="423" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -95,106 +64,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/donate-today.php" />
-        <option value="$PROJECT_DIR$/css/styles.less" />
-        <option value="$PROJECT_DIR$/public/markup/donate-today.php" />
-        <option value="$PROJECT_DIR$/public/markup/donate-confirm.php" />
-        <option value="$PROJECT_DIR$/public/markup/thank-you.php" />
-        <option value="$PROJECT_DIR$/public/markup/project.php" />
-        <option value="$PROJECT_DIR$/public/markup/project-emerjency.php" />
-        <option value="$PROJECT_DIR$/public/markup/general-content.php" />
-        <option value="$PROJECT_DIR$/public/markup/who-we-are.php" />
-        <option value="$PROJECT_DIR$/public/markup/img/arrow-down-green.svg" />
-        <option value="$PROJECT_DIR$/public/markup/img/arrow-down-yellow.svg" />
-        <option value="$PROJECT_DIR$/public/markup/events-home.php" />
-        <option value="$PROJECT_DIR$/public/markup/img/ico-calendar-w.svg" />
-        <option value="$PROJECT_DIR$/public/markup/events-info.php" />
-        <option value="$PROJECT_DIR$/public/markup/calculator.php" />
-        <option value="$PROJECT_DIR$/public/markup/contac.php" />
-        <option value="$PROJECT_DIR$/public/markup/bloks.php" />
-        <option value="$PROJECT_DIR$/public/markup/blog-article.php" />
-        <option value="$PROJECT_DIR$/public/markup/my-ten-nights.php" />
-        <option value="$PROJECT_DIR$/public/markup/_footer.php" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/_footer.php" />
-        <option value="$PROJECT_DIR$/public/markup/resources.html" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/donate-confirm.php" />
-        <option value="$PROJECT_DIR$/public/markup/payments-details.php" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/payments-details.php" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/thank-you.php" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/_base.php" />
-        <option value="$PROJECT_DIR$/public/markup/_base.php" />
-        <option value="$PROJECT_DIR$/public/markup/img/ico-menu.svg" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/_header.php" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/project.php" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/donate-today.php" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/general-content.php" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/who-we-are.php" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/blog-article.php" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/events-home.php" />
-        <option value="$PROJECT_DIR$/public/markup/img/ico-clock-w.svg" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/events-info.php" />
-        <option value="$PROJECT_DIR$/public/markup/js/functions.js" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/calculator.php" />
-        <option value="$PROJECT_DIR$/public/markup/css/mobile.less" />
-        <option value="$PROJECT_DIR$/public/markup/mobile/index.php" />
-        <option value="$PROJECT_DIR$/public/markup/img/right.svg" />
-        <option value="$PROJECT_DIR$/public/markup/img/check-mark-black-outline.svg" />
-        <option value="$PROJECT_DIR$/public/markup/img/shopping-cart.svg" />
-        <option value="$PROJECT_DIR$/public/markup/_header-short-w.php" />
-        <option value="$PROJECT_DIR$/public/markup/img/ico-search.svg" />
-        <option value="$PROJECT_DIR$/public/markup/_header.php" />
-        <option value="$PROJECT_DIR$/public/markup/_header-short.php" />
-        <option value="$PROJECT_DIR$/public/markup/css/styles.less" />
-        <option value="$PROJECT_DIR$/public/markup/index.php" />
-      </list>
-    </option>
-  </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="825" />
-  </component>
+  <component name="ProjectId" id="1k90JO69r2llzuEoC6i1e8caA6M" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="markup" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public/markup/img" />
@@ -203,6 +86,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Less" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -216,18 +100,7 @@
       <recent name="$PROJECT_DIR$/img" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -243,385 +116,11 @@
       <workItem from="1604401684241" duration="31000" />
       <workItem from="1604405176557" duration="2034000" />
       <workItem from="1604555802706" duration="3147000" />
+      <workItem from="1605097427395" duration="309000" />
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="226204000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="825" extended-state="0" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.22460657" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="0" />
-      <window_info anchor="bottom" id="Database Changes" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.3287858" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info anchor="right" id="Database" order="0" />
-      <window_info anchor="right" id="Commander" order="1" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/markup/project-emerjency.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="252" column="10" lean-forward="true" selection-start-line="206" selection-end-line="252" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/img/ico-calendar.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/img/ico-calendar-w.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/contac.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/blog-article.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="74" column="42" lean-forward="true" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#section#2;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/my-ten-nights.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-          <folding>
-            <element signature="n#style#0;n#section#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/calculator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="271" lean-forward="true" selection-start-line="271" selection-end-line="271" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="6" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/_footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="35" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#footer#0;n#!!top" expanded="true" />
-            <element signature="e#4835#4842#1#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/events-home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="34" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/events-info.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="42" column="20" lean-forward="true" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/who-we-are.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="154" column="9" lean-forward="true" selection-start-line="144" selection-end-line="154" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/bloks.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="162" column="10" lean-forward="true" selection-start-line="96" selection-end-line="162" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#section#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/block.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="248" column="16" selection-start-line="248" selection-start-column="16" selection-end-line="248" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/resources.html" />
-    <entry file="file://$PROJECT_DIR$/public/markup/_footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="169" selection-start-line="164" selection-end-line="169" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/donate-confirm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="25" column="125" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="125" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/payments-details.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="264" column="56" selection-start-line="264" selection-start-column="56" selection-end-line="264" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/payments-details.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/thank-you.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="31" />
-          <folding>
-            <element signature="n#g#0;n#svg#0;n#div#1;n#div#0;n#div#0;n#!!top" />
-            <element signature="n#g#0;n#svg#0;n#div#2;n#div#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/project.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4110">
-          <caret line="274" column="24" selection-start-line="274" selection-start-column="24" selection-end-line="274" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/_base.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="64" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/img/ico-menu.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/_header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="51" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/project.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="231" column="39" lean-forward="true" selection-start-line="231" selection-start-column="39" selection-end-line="231" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/donate-today.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="409" selection-start-line="409" selection-end-line="410" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/donate-today.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="348" column="124" selection-start-line="348" selection-start-column="124" selection-end-line="348" selection-end-column="124" />
-          <folding>
-            <element signature="e#19265#19271#0#HTML" expanded="true" />
-            <element signature="e#19271#19277#0#HTML" expanded="true" />
-            <element signature="e#19277#19283#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/general-content.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/general-content.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="62" lean-forward="true" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
-          <folding>
-            <element signature="n#g#0;n#svg#0;n#div#0;n#div#0;n#section#3;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/_base.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/who-we-are.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="289" column="10" lean-forward="true" selection-start-line="275" selection-end-line="289" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/events-home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="31" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#1;n#!!top" expanded="true" />
-            <element signature="n#g#0;n#svg#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#section#1;n#!!top" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#!!top" expanded="true" />
-            <element signature="n#g#0;n#svg#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/img/ico-clock.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/img/ico-clock-w.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/blog-article.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="182" column="10" lean-forward="true" selection-start-line="87" selection-end-line="182" selection-end-column="10" />
-          <folding>
-            <element signature="n#g#0;n#svg#0;n#div#0;n#div#0;n#section#4;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/events-info.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="146" column="116" lean-forward="true" selection-start-line="146" selection-start-column="116" selection-end-line="146" selection-end-column="116" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#section#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/donate-confirm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="30" lean-forward="true" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="101" column="57" selection-start-line="101" selection-start-column="57" selection-end-line="101" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/calculator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="206" column="48" selection-start-line="206" selection-start-column="48" selection-end-line="206" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/img/arrow-down-yellow.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/img/right.svg" />
-    <entry file="file://$PROJECT_DIR$/public/markup/img/check-mark-white.svg" />
-    <entry file="file://$PROJECT_DIR$/public/markup/mobile/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="193" column="18" lean-forward="true" selection-start-line="193" selection-start-column="18" selection-end-line="193" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/css/mobile.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="653">
-          <caret line="569" column="20" selection-start-line="569" selection-start-column="20" selection-end-line="569" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/img/shopping-cart.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/img/ico-search.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/_header-short-w.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/_header-short.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="79" selection-start-line="14" selection-start-column="79" selection-end-line="14" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/_header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="48" column="51" lean-forward="true" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="1602" column="24" lean-forward="true" selection-start-line="1602" selection-start-column="24" selection-end-line="1602" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="423" column="53" lean-forward="true" selection-start-line="423" selection-start-column="53" selection-end-line="423" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
+    <option name="version" value="3" />
   </component>
 </project>
