@@ -22,7 +22,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pages = Page::paginate(10);
+        $pages = Page::paginate(20);
 
         return view('admin.pages.index', ['pages' => $pages]);
     }
