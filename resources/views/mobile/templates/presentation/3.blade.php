@@ -242,18 +242,7 @@ if (isset($parameters['who_we_are_text'])) {
         <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
         <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
     </div>
-
-    <script>
-        var swiper = new Swiper('.help-info-swiper .swiper-container', {
-            navigation: {
-                nextEl: '.help-info-swiper .swiper-button-next',
-                prevEl: '.help-info-swiper .swiper-button-prev',
-            },
-        });
-    </script>
 </div>
-
-
 
 <section class="current-projects">
     <div class="wrap">
@@ -293,19 +282,6 @@ if (isset($parameters['who_we_are_text'])) {
             <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
             <div class="swiper-pagination"></div>
         </div>
-
-        <script>
-            var swiper = new Swiper('.current-projects .swiper-container', {
-                navigation: {
-                    nextEl: '.current-projects .swiper-button-next',
-                    prevEl: '.current-projects .swiper-button-prev',
-                },
-                pagination: {
-                    el: '.current-projects .swiper-pagination'
-                }
-            });
-        </script>
-
     </div>
 </section>
 
@@ -499,15 +475,6 @@ if (isset($parameters['who_we_are_text'])) {
                 <div class="swiper-pagination"></div>
             </div>
             <br>
-
-            <script>
-                var swiper = new Swiper('.whats-new .swiper-container', {
-                    pagination: {
-                        el: '.whats-new .swiper-pagination'
-                    }
-                });
-            </script>
-
         </div>
     </div>
 </section>
@@ -571,3 +538,5 @@ if (isset($parameters['who_we_are_text'])) {
         </form>
     </div>
 </section>
+
+

@@ -103091,8 +103091,10 @@ $(function () {
 
   $(document).on('click', '#join_the_cause_show_form', function () {
     console.log('show form');
-    $('.join-cause-2').addClass('d-none');
-    $('.join-cause').removeClass('d-none');
+    var mainForm = $('.join-cause-main');
+    var hiddenForm = $('.join-cause-hidden');
+    mainForm.addClass('d-none');
+    hiddenForm.removeClass('d-none');
   });
   $(document).on('click', '#subscription_sbmt', function (e) {
     e.preventDefault();

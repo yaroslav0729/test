@@ -131,7 +131,7 @@
                     </div>
                 </div>
 
-                <script>
+                {{-- <script>
                     var swiper = new Swiper('.projects-group-swiper .swiper-container', {
                         slidesPerView: 3,
                         spaceBetween: 4,
@@ -140,7 +140,7 @@
                             prevEl: '.projects-group-swiper .swiper-button-prev',
                         },
                     });
-                </script>
+                </script> --}}
 
             </div>
             <div class="black-line"></div>
@@ -207,7 +207,7 @@
                     </div>
                 </div>
 
-                <script>
+                {{-- <script>
                     var swiper = new Swiper('.categories-swiper .swiper-container', {
                         slidesPerView: 3,
                         spaceBetween: 4,
@@ -216,7 +216,7 @@
                             prevEl: '.categories-swiper .swiper-button-prev',
                         },
                     });
-                </script>
+                </script> --}}
 
 
             </div>
