@@ -35,6 +35,10 @@ class SubscriptionController extends Controller
             ]);
         }
 
+        $subscription = Subscription::create([
+            'email' => $email
+        ]);
+
         return response()->json([
             'message' => 'You are subscribed successfully',
             'success' => true,

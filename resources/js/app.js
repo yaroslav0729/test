@@ -6,6 +6,8 @@ require('bootstrap');
 
 require('tinymce');
 
+window.toastr  = require ('toastr');
+
 import Swiper from 'swiper';
 window.Swiper = Swiper
 
@@ -81,10 +83,15 @@ $(function () {
             contentType: false,
             success : function (response, textStatus, jqXHR)
             {
-                console.log(response)
+                if (response.success) {
+                    toastr.success(response.message)
+                } else {
+                    toastr.error(response.message)
+                }
             },
             error: function(response) {
                 console.log(response)
+                toastr.error('Unknown error ','Error')
             }
         });
 
