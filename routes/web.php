@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Admin\UserController;
@@ -58,5 +59,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
-
+Route::get('/test', [Controller::class, 'test']);
 Route::get('/{slug}', [PageController::class, 'showFromSlug']);
