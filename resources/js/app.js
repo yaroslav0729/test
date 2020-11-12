@@ -68,11 +68,20 @@ $(function () {
         iframeBlock.find('iframe').attr('src', link)
     }
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //~~~~~~~~~~~~ Join the cause - subscribe form ~~~~~~~~~~~~~~~~~~~
 
-    $(document).on('click', '#subscription_modal_sbmt', function() {
+    $(document).on('click', '#join_the_cause_show_form', function() {
+        console.log('show form')
 
-        var form = $('#subscription_modal form');
+        $('.join-cause-2').addClass('d-none')
+        $('.join-cause').removeClass('d-none')
+    })
+
+    $(document).on('click', '#subscription_sbmt', function(e) {
+
+        e.preventDefault()
+
+        var form = $('#subscription_form');
         var formData = new FormData(form[0]);
 
         $.ajax({
@@ -91,7 +100,7 @@ $(function () {
             },
             error: function(response) {
 
-                if (response.responseJSON.errors['email'][0]) {
+                if (response.responseJSON.errors) {
                     toastr.error(response.responseJSON.errors['email'][0])
                 } else {
                     toastr.error('Unknown error ','Error')

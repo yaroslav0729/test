@@ -103086,11 +103086,17 @@ $(function () {
     var link = paramsBlock.find('li:eq(' + current + ')').text();
     link = "https://www.youtube.com/embed/" + link;
     iframeBlock.find('iframe').attr('src', link);
-  } //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  } //~~~~~~~~~~~~ Join the cause - subscribe form ~~~~~~~~~~~~~~~~~~~
 
 
-  $(document).on('click', '#subscription_modal_sbmt', function () {
-    var form = $('#subscription_modal form');
+  $(document).on('click', '#join_the_cause_show_form', function () {
+    console.log('show form');
+    $('.join-cause-2').addClass('d-none');
+    $('.join-cause').removeClass('d-none');
+  });
+  $(document).on('click', '#subscription_sbmt', function (e) {
+    e.preventDefault();
+    var form = $('#subscription_form');
     var formData = new FormData(form[0]);
     $.ajax({
       url: form.attr('action'),
@@ -103106,7 +103112,7 @@ $(function () {
         }
       },
       error: function error(response) {
-        if (response.responseJSON.errors['email'][0]) {
+        if (response.responseJSON.errors) {
           toastr.error(response.responseJSON.errors['email'][0]);
         } else {
           toastr.error('Unknown error ', 'Error');
