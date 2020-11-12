@@ -11,9 +11,12 @@ use App\Models\Page;
 use App\Models\PageInstance;
 use App\Models\Template;
 
+use Illuminate\Support\Facades\Storage;
+
 class ConvertPages extends Command
 {
     const PARSING_LINK = 'https://www.islamichelp.org.uk/media-centre-sitemap.xml';
+    const MEDIA_CENTER_IMAGE_STORAGE_PATH = '/media-center';
 
     /**
      * The name and signature of the console command.
@@ -52,9 +55,7 @@ class ConvertPages extends Command
         $this->info('Parsing process started');
 
         $response = Http::get(self::PARSING_LINK);
-        $regexp = '#<loc>(.+?)</loc>#su';
-        preg_match_all($regexp, $response->body(), $links);
-        $links = $links[1];
+        $links = $this->getLinksFromXml($response->body());
 
         foreach ($links as $key => $link) {
 
@@ -87,7 +88,15 @@ class ConvertPages extends Command
                 $tag->outertext = '';
             }
 
-            $newsHtml = $document->findOneOrFalse('div#tpl-single-news')->html();
+            $newsBlock = $document->findOneOrFalse('div#tpl-single-news');
+            $newsHtml = $newsBlock->html();
+
+            $images = $this->findAllImages($newsBlock);
+            $images = $this->uploadAll($images);
+
+            if ($images !== []) {
+                dd($images);
+            }
 
             $category = Category::firstOrCreate([
                 'slug' => $category,
@@ -140,6 +149,32 @@ class ConvertPages extends Command
         $this->info('Parsing process complete!!!');
     }
 
+    protected function uploadAll($images)
+    {
+        if ($images !== []) {
+            foreach ($images as $imageUrl) {
+                $this->info('image: ' . $imageUrl);
+                
+                $contents = file_get_contents($imageUrl);
+                $name = substr($imageUrl, strrpos($imageUrl, '/') + 1);
+                Storage::disk('public')->put(self::MEDIA_CENTER_IMAGE_STORAGE_PATH . '/' . $name, $contents);
+
+                $this->info('local image name: ' . $name);
+            }
+        }
+
+        return [];
+    }
+
+    protected function getLinksFromXml($html)
+    {
+        $regexp = '#<loc>(.+?)</loc>#su';
+        preg_match_all($regexp, $html, $links);
+        $links = $links[1];
+
+        return $links;
+    }
+
     protected function searchTitle($html)
     {
         preg_match_all('#<title>(.+?)</title>#su', $html, $res);
@@ -164,10 +199,10 @@ class ConvertPages extends Command
         else return "";  
     }
 
-    protected function findAllImages($document)
+    protected function findAllImages($el)
     {
         $images = [];
-        $imagesOrFalse = $document->findMultiOrFalse('img');
+        $imagesOrFalse = $el->findMultiOrFalse('img');
 
         if ($imagesOrFalse !== false) {
             foreach ($imagesOrFalse as $image) {
