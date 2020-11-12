@@ -103106,8 +103106,11 @@ $(function () {
         }
       },
       error: function error(response) {
-        console.log(response);
-        toastr.error('Unknown error ', 'Error');
+        if (response.responseJSON.errors['email'][0]) {
+          toastr.error(response.responseJSON.errors['email'][0]);
+        } else {
+          toastr.error('Unknown error ', 'Error');
+        }
       }
     });
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

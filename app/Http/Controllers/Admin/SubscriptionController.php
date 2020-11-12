@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subscription;
+use App\Http\Requests\SubscribeRequest;
 
 class SubscriptionController extends Controller
 {
@@ -23,20 +24,10 @@ class SubscriptionController extends Controller
         return redirect()->route('admin.subscription.index')->with('status', 'Subscriptions deleted successfully!');
     }
 
-    public function subscribe(Request $request)
+    public function subscribe(SubscribeRequest $request)
     {
-        $email = $request->input('email');
-        $subscriptionExists = Subscription::where('email', $email)->first();
-
-        if ($subscriptionExists) {
-            return response()->json([
-                'message' => 'This email is already exists',
-                'success' => false,
-            ]);
-        }
-
         $subscription = Subscription::create([
-            'email' => $email
+            'email' => $request->input('email')
         ]);
 
         return response()->json([
