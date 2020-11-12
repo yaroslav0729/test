@@ -7,6 +7,7 @@ class Template
     const BLOG_PAGE = 1;
     const EVENT_PAGE = 2;
     const INDEX_PAGE = 3;
+    const MEDIA_CENTER_PAGE = 4;
     const TEST_PAGE = 100;
 
 
@@ -14,6 +15,7 @@ class Template
         self::BLOG_PAGE,
         self::EVENT_PAGE,
         self::INDEX_PAGE,
+        self::MEDIA_CENTER_PAGE,
         self::TEST_PAGE
     ];
 
@@ -23,6 +25,7 @@ class Template
             case self::BLOG_PAGE:return "Blog page";
             case self::EVENT_PAGE:return "Event page";
             case self::INDEX_PAGE:return "Index page";
+            case self::MEDIA_CENTER_PAGE:return "Media center page";
             case self::TEST_PAGE:return "Test page";
 
             default:return "Unknown template type";
