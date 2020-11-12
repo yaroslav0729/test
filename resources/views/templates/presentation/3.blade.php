@@ -229,7 +229,6 @@ if (isset($parameters['our_work_sadiqah_link'])) {
     </section>
 </div>
 
-
 <section class="our-work">
     <div class="wrap">
         <div class="mb-4">
@@ -237,25 +236,25 @@ if (isset($parameters['our_work_sadiqah_link'])) {
         </div>
         <div class="row">
             <div class="col-3">
-                <a href="#">
+                <a href="{{ $longtermLink }}">
                     <span style="background-image: url(img/ico-leaf.svg)"></span>
                     <p><b>Longterm Projects</b></p>
                 </a>
             </div>
             <div class="col-3">
-                <a href="#">
+                <a href="{{ $emergencyLink }}">
                     <span style="background-image: url(img/ico-alert.svg)"></span>
                     <p><b>Emergency Relief</b></p>
                 </a>
             </div>
             <div class="col-3">
-                <a href="#">
+                <a href="{{ $volunteeringLink }}">
                     <span style="background-image: url(img/ico-motivation.svg)"></span>
                     <p><b>Volunteering</b></p>
                 </a>
             </div>
             <div class="col-3">
-                <a href="#">
+                <a href="{{ $sadiqahLink }}">
                     <span style="background-image: url(img/ico-Saadiqah.svg)"></span>
                     <p><b>Sadiqah</b></p>
                 </a>

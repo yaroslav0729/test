@@ -1,13 +1,34 @@
 @php
 
 $hdrType = "";
+$hdrTitle = "";
+$hdrText = "";
+$hdrLearnMoreLink = "";
 $whoVideo = "";
 $whoLink = "";
 $whoTitle = "";
 $whoText = "";
+$longtermLink = "";
+$emergencyLink = "";
+$volunteeringLink = "";
+$sadiqahLink = "";
+$relatedPages = [];
+
 
 if (isset($parameters['hdr_type'])) {
     $hdrType = (int)$parameters['hdr_type'];    
+}
+
+if (isset($parameters['hdr_title'])) {
+    $hdrTitle = $parameters['hdr_title'];    
+}
+
+if (isset($parameters['hdr_text'])) {
+    $hdrText = $parameters['hdr_text'];    
+}
+
+if (isset($parameters['hdr_learn_more'])) {
+    $hdrLearnMoreLink = $parameters['hdr_learn_more'];    
 }
 
 if (isset($parameters['who_we_are_wideo'])) {
@@ -24,6 +45,22 @@ if (isset($parameters['who_we_are_title'])) {
 
 if (isset($parameters['who_we_are_text'])) {
     $whoText = $parameters['who_we_are_text'];    
+}
+
+if (isset($parameters['our_work_longterm_link'])) {
+    $longtermLink = $parameters['our_work_longterm_link'];    
+}
+
+if (isset($parameters['our_work_emergency_link'])) {
+    $emergencyLink = $parameters['our_work_emergency_link'];    
+}
+
+if (isset($parameters['our_work_volunteering_link'])) {
+    $volunteeringLink = $parameters['our_work_volunteering_link'];    
+}
+
+if (isset($parameters['our_work_sadiqah_link'])) {
+    $sadiqahLink = $parameters['our_work_sadiqah_link'];    
 }
 
 @endphp
@@ -56,10 +93,10 @@ if (isset($parameters['who_we_are_text'])) {
         <div class="body">
             <div class="left">
                 <div class="mb-4">
-                    <a href="#" class="text-underline text-dark"><b>LEARN MORE</b></a>
+                    <a href="{{ $hdrLearnMoreLink }}" class="text-underline text-dark"><b>LEARN MORE</b></a>
                 </div>
-                <div class="title mb-3">Syria in a state of <span class="text-danger">Emergency</span> </div>
-                <p class="mb-5">You can help the children in Syria now,<br>from as little as £3</p>
+                <div class="title mb-3">{!! $hdrTitle !!} </div>
+                <p class="mb-5">{!! $hdrText !!}</p>
                 <a href="#" class="btn btn-danger">Donate now</a>
                 <div class="text-right pt-4 d-block">
                     <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
@@ -77,8 +114,8 @@ if (isset($parameters['who_we_are_text'])) {
     <div class="wrap">
         <div class="body">
             <div class="left bg-info">
-                <div class="title mb-3">Build <span class="text-white">Eco Village</span> shelter</div>
-                <p class="mb-5">Help provide care and aid to homeless<br>and orphan children</p>
+                <div class="title mb-3">{{ $hdrTitle }}</div>
+                <p class="mb-5">{!! $hdrText !!}</p>
                 <a href="#" class="btn btn-dark">Donate now</a>
                 <div class="text-right pt-4 d-block">
                     <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
@@ -96,8 +133,8 @@ if (isset($parameters['who_we_are_text'])) {
     <div class="wrap">
         <div class="body">
             <div class="left bg-info">
-                <div class="title mb-3">Build <span class="text-white">Eco Village</span> shelter</div>
-                <p class="mb-5">Help provide care and aid to homeless<br>and orphan children</p>
+                <div class="title mb-3">{!! $hdrTitle !!}</div>
+                <p class="mb-5">{!! $hdrText !!}</p>
                 <a href="#" class="btn btn-info-light">Donate now</a>
                 <div class="text-right pt-4 d-block">
                     <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
@@ -115,8 +152,8 @@ if (isset($parameters['who_we_are_text'])) {
     <div class="wrap">
         <div class="body">
             <div class="left bg-danger">
-                <div class="title mb-3 text-white">Help the <span class="text-dark">children in Gaza</span> now,</div>
-                <p class="mb-5">Life saving donations packs,<br>from as little as £3</p>
+                <div class="title mb-3 text-white">{!! $hdrTitle !!}</div>
+                <p class="mb-5">{!! $hdrText !!}</p>
                 <a href="#" class="btn btn-danger-middle">Donate now</a>
                 <div class="text-right pt-4 d-block">
                     <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
@@ -214,7 +251,10 @@ if (isset($parameters['who_we_are_text'])) {
 
 <section class="who-we-are">
     <p class="font-size-25 mb-4"><b>Empowering people in need,</b> for two decades:</p>
-    <div class="img-video" style="background-image: url(img/content/Video-placement-1.jpg)"><i class="fas fa-play-circle"></i></div>
+    <div class="img-video play-tr videoWrapper" style="">
+        <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $whoVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    
     <div class="pt-4">
         <div class="mb-4">
             <a href="#" class="text-underline text-dark"><b>WHO WE ARE</b></a>
@@ -480,7 +520,7 @@ if (isset($parameters['who_we_are_text'])) {
 </section>
 
 
-<section class="join-cause">
+{{-- <section class="join-cause">
     <div class="wrap">
         <div class="title text-center">
             <p class="font-size-25"><b>JOIN THE CAUSE</b></p>
@@ -537,6 +577,7 @@ if (isset($parameters['who_we_are_text'])) {
             <button type="submit" ><i class="far fa-chevron-right"></i></button>
         </form>
     </div>
-</section>
+</section> --}}
 
+@include('modules.presentation.join_the_cause_subscribe2')
 
