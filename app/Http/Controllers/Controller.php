@@ -6,7 +6,12 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+
 use voku\helper\HtmlDomParser;
+use App\Models\Category;
+use App\Models\Page;
+use App\Models\PageInstance;
+use App\Models\Template;
 
 use Illuminate\Support\Facades\Http;
 
@@ -40,19 +45,64 @@ class Controller extends BaseController
 
             $h1 = $document->findOneOrFalse('h1')->text();
             $h2 = $document->findOneOrFalse('h2.title_post')->text();
+            $date = $document->findOneOrFalse('div.date')->text();
+            
+            foreach ($document->find('h2.title_post') as $tag) {
+                $tag->outertext = '';
+            }
 
-            echo "link: <a href='$link' target='_blank'>$link</a><br>";
-            echo "category: $category<br>";
-            echo "slug: $slug<br>";
-            echo "<br>";
-            echo "title: $title<br>";
-            echo "description: $description<br>";
-            echo "<br>";
-            echo "h1: $h1<br>";
-            echo "h2: $h2<br>";
-            echo "<br>";
+            foreach ($document->find('div.date') as $tag) {
+                $tag->outertext = '';
+            }
 
-            if ($key === 3) dd('stop');
+            foreach ($document->find('div.archive-news-sidebar') as $tag) {
+                $tag->outertext = '';
+            }
+
+            $newsHtml = $document->findOneOrFalse('div#tpl-single-news')->html();
+
+            $category = Category::firstOrCreate([
+                'slug' => $category,
+                'name' => $category
+            ]);
+
+            $parameters = [];
+            $parameters['main_html'] = $newsHtml;
+
+            $pageInstance = PageInstance::where('slug', $slug)->where('actual', true)->first();
+            
+            if (!isset($pageInstance)) {
+                $page = Page::create([
+                    'status' => Page::PAGE_STATUS_PUBLICHED
+                ]);
+                $pageInstance = PageInstance::create([
+                    'page_id' => $page->id,
+                    'slug' => $slug,
+                    'title' => $title,
+                    'name' => $h1,
+                    'preview_text' => $h2,
+                    'description' => $description,
+                    'keywords' => $keywords,
+                    'template' => Template::MEDIA_CENTER_PAGE,
+                    'parameters' => $parameters,
+                ]);
+
+                $pageInstance->actual = true;
+                $pageInstance->save();
+
+            } else {
+                $pageInstance->update([
+                    'title' => $title,
+                    'name' => $h1,
+                    'preview_text' => $h2,
+                    'description' => $description,
+                    'keywords' => $keywords,
+                    'template' => Template::MEDIA_CENTER_PAGE,
+                    'parameters' => $parameters,
+                ]);
+            }
+
+            if ($key === 3) break;
         }
 
         dd($links);

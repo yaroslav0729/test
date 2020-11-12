@@ -24,6 +24,10 @@ class Page extends Model
         self::PAGE_STATUS_NOT_PUBLICHED => 'Not published',
     ];
 
+    protected $fillable = [
+        'status', 'type'
+    ];
+
     public function pageInstances()
     {
         return $this->hasMany('App\Models\PageInstance');
