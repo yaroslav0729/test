@@ -272,11 +272,15 @@ class ConvertPages extends Command
     {
         $imagesLinks = [];
 
+        $now = Carbon::now();
+        $year = $now->year;
+        $month = $now->month;
+
         if ($images !== []) {
             foreach ($images as $imageUrl) {
                 $contents = file_get_contents($imageUrl);
                 $name = substr($imageUrl, strrpos($imageUrl, '/') + 1);
-                $path = self::MEDIA_CENTER_IMAGE_STORAGE_PATH . '/' . $name;
+                $path = self::MEDIA_CENTER_IMAGE_STORAGE_PATH . '/' . $year . '/' . $month . '/' . $name;
                 Storage::disk('public')->put($path, $contents);
 
                 $imagesLinks[] = [
