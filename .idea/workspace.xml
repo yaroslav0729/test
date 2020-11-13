@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Islamic-Help.lo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Islamic-Help.lo.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servers.yml" beforeDir="false" afterPath="$PROJECT_DIR$/servers.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy.php" beforeDir="false" afterPath="$PROJECT_DIR$/deploy.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +116,7 @@
       <workItem from="1604405176557" duration="2034000" />
       <workItem from="1604555802706" duration="3147000" />
       <workItem from="1605097427395" duration="309000" />
+      <workItem from="1605272086059" duration="123000" />
     </task>
     <servers />
   </component>

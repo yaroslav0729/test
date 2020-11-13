@@ -41,6 +41,7 @@ task('deploy', [
     'artisan:view:clear',
     'artisan:cache:clear',
     'artisan:optimize',
+    'artisan:storage:link',
     'deploy:symlink',
 //    'artisan:queue:restart',
     'deploy:unlock',
