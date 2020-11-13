@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Models\PostContainer;
+use App\Models\Page;
+use App\Models\PageInstance;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,9 +32,9 @@ class SitemapController extends Controller
 		$sitemap->add(URL::to('/'), '2020-01-01T20:00:00+02:00', '1.0', 'daily');
 
         // add every post to the sitemap
-        $posts = Post::where('actual', true)
-                        ->whereHas('container', function(Builder $query) {
-                            $query->where('status', PostContainer::PAGE_STATUS_PUBLICHED);   
+        $posts = PageInstance::where('actual', true)
+                        ->whereHas('page', function(Builder $query) {
+                            $query->where('status', Page::PAGE_STATUS_PUBLICHED);   
                         })->get();
 
 		foreach ($posts as $post) {
