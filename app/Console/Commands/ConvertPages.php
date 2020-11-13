@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use voku\helper\HtmlDomParser;
+use Exception;
 
 class ConvertPages extends Command
 {
@@ -366,8 +367,13 @@ class ConvertPages extends Command
                 $exists = Storage::disk('public')->exists($path);
 
                 if ((!$exists) && ($imageUrl !== "")) {
-                    $contents = file_get_contents($imageUrl);
-                    Storage::disk('public')->put($path, $contents);  
+                    try {
+                        $contents = file_get_contents($imageUrl);
+                        Storage::disk('public')->put($path, $contents);
+    
+                    } catch (Exception $e) {
+                        $this->info('WARNING: file not found: ' . $imageUrl);
+                    }
                 } 
 
                 if ($imageUrl !== "") {
