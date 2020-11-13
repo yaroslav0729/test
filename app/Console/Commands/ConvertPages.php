@@ -268,6 +268,33 @@ class ConvertPages extends Command
         return $images;
     }
 
+    protected function searchMonthYear($imageUrl)
+    {
+        $month = '';
+        $year = '';
+
+        $pos = -1;
+
+        $arr = explode('/', $imageUrl);
+
+        foreach ($arr as $key => $item) {
+            if ($item === 'uploads') {
+                $pos = $key;
+                break;
+            }
+        }
+
+        if (isset($arr[$pos + 1])) {
+            $year = $arr[$pos + 1];
+        }
+        
+        if (isset($arr[$pos + 1])) {
+            $month = $arr[$pos + 2];
+        }
+        
+        return [$month, $year];
+    }
+
     protected function uploadAll($images)
     {
         $imagesLinks = [];
@@ -278,10 +305,24 @@ class ConvertPages extends Command
 
         if ($images !== []) {
             foreach ($images as $imageUrl) {
-                $contents = file_get_contents($imageUrl);
+
+                /* catalogs structure as in link. If not exists - now date */
+                list($linkMonth, $linkYear) = $this->searchMonthYear($imageUrl);
+                
+                if (($linkMonth !== '') && ($linkYear !== '')) {
+                    $year = $linkYear;
+                    $month = $linkMonth;
+                }
+
                 $name = substr($imageUrl, strrpos($imageUrl, '/') + 1);
                 $path = self::MEDIA_CENTER_IMAGE_STORAGE_PATH . '/' . $year . '/' . $month . '/' . $name;
-                Storage::disk('public')->put($path, $contents);
+                
+                $exists = Storage::disk('public')->exists($path);
+
+                if (!$exists) {
+                    $contents = file_get_contents($imageUrl);
+                    Storage::disk('public')->put($path, $contents);  
+                } 
 
                 $imagesLinks[] = [
                     'remote_image' => $imageUrl,
