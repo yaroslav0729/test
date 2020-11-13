@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('header')
+    @include('parts.header')
+@endsection
+
 @section('content')
 <div class="container pt-3 pb-3">
     <div class="row justify-content-center">
