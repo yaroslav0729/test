@@ -26,7 +26,7 @@ class ConvertPages extends Command
      *
      * @var string
      */
-    protected $signature = 'convert:media-center';
+    protected $signature = 'convert:media-center {startIndex?}';
 
     /**
      * The console command description.
@@ -65,6 +65,10 @@ class ConvertPages extends Command
                 continue;
             }
 
+            if (!empty($this->argument('startIndex')) && $key <= $this->argument('startIndex')) {
+                continue;   
+            }
+
             $this->info('parsing link ' . $key . ' from ' . $allCou);
 
             $html = Http::get($link)->body();
@@ -76,9 +80,29 @@ class ConvertPages extends Command
             $title = $this->searchTitle($html);
             $description = $this->searchDescription($html);
             $keywords = $this->searchKeywords($html);
-            $h1 = $document->findOneOrFalse('h1')->text();
-            $h2 = $document->findOneOrFalse('h2.title_post')->text();
-            $date = $document->findOneOrFalse('div.date')->text();
+
+            $h1 = "";
+            $h2 = "";
+            $date = "";
+
+            $el = $document->findOneOrFalse('h1');
+
+            if ($el) {
+                $h1 = $el->text();
+            }
+            
+            $el = $document->findOneOrFalse('h2.title_post');
+
+            if ($el) {
+                $h2 = $el->text();
+            }
+
+            $el = $document->findOneOrFalse('div.date');
+
+            if ($el) {
+                $date = $el->text();
+            }
+
             $date = $this->toNeedfulFormat($date);
 
             $this->removeElementFromDoc('h2.title_post', $document);
