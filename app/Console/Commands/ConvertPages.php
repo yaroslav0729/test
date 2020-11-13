@@ -111,12 +111,12 @@ class ConvertPages extends Command
 
             $this->removeDomainFromLinks($document);
 
-            $el = $document->findOneOrFalse('div#tpl-single-news');
+            $newsBlock = $document->findOneOrFalse('div#tpl-single-news');
 
             $newsHtml = "";
 
-            if ($el) {
-                $newsHtml = $el->html();
+            if ($newsBlock) {
+                $newsHtml = $newsBlock->html();
             }
             
             $images = $this->findAllImages($newsBlock);
