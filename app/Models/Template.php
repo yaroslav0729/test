@@ -8,6 +8,7 @@ class Template
     const EVENT_PAGE = 2;
     const INDEX_PAGE = 3;
     const MEDIA_CENTER_PAGE = 4;
+    const WHO_WE_ARE_PAGE = 5;
     const TEST_PAGE = 100;
 
 
@@ -16,7 +17,8 @@ class Template
         self::EVENT_PAGE,
         self::INDEX_PAGE,
         self::MEDIA_CENTER_PAGE,
-        self::TEST_PAGE
+        self::TEST_PAGE,
+        self::WHO_WE_ARE_PAGE
     ];
 
     public static function getLabel($type)
@@ -27,6 +29,7 @@ class Template
             case self::INDEX_PAGE:return "Index page";
             case self::MEDIA_CENTER_PAGE:return "Media center page";
             case self::TEST_PAGE:return "Test page";
+            case self::WHO_WE_ARE_PAGE:return "Who we are page";
 
             default:return "Unknown template type";
         }
