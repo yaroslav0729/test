@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-4 text-right">
                     <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#foodPack">Donate</a>
-                    <div class="basket" data-toggle="modal" data-target="#cartModal"><i class="fal fa-shopping-cart"></i> <span>£50.00</span></div>
+                    <div class="basket" data-toggle="modal" data-target="#cartModal"><i></i> <span>£50.00</span></div>
                 </div>
             </div>
         </div>
