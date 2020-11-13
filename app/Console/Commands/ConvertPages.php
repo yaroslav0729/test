@@ -116,7 +116,7 @@ class ConvertPages extends Command
             $newsHtml = "";
 
             if ($el) {
-                $newsHtml = $newsBlock->html();
+                $newsHtml = $el->html();
             }
             
             $images = $this->findAllImages($newsBlock);
