@@ -60,4 +60,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 //Route::get('/test', [Controller::class, 'test']);
-Route::get('/{slug}', [PageController::class, 'showFromSlug']);
+Route::get('/{slug}', [PageController::class, 'showFromSlug'])->where('slug', '.*');

@@ -67,6 +67,7 @@ class ConvertPages extends Command
 
             $category = $this->getCategoryFromLink($link);
             $slug = $this->getSlugFromLink($link);
+
             $title = $this->searchTitle($html);
             $description = $this->searchDescription($html);
             $keywords = $this->searchKeywords($html);
@@ -178,8 +179,19 @@ class ConvertPages extends Command
 
     protected function getSlugFromLink($link)
     {
-        $arr = explode('/', $link);
-        $slug = $arr[count($arr) - 2];
+        // $arr = explode('/', $link);
+        // $slug = $arr[count($arr) - 2];
+
+        // return $slug;
+
+        $domain = 'https://www.islamichelp.org.uk' . '/';
+        $slug = str_replace($domain, '', $link);
+
+        $lastSym = substr($slug, strlen($slug) - 1, 1);
+
+        if ($lastSym === '/') {
+            $slug = substr($slug, 0, -1);
+        }
 
         return $slug;
     }
