@@ -117,17 +117,17 @@ class ConvertPages extends Command
 
             if ($newsBlock) {
                 $newsHtml = $newsBlock->html();
+
+                $images = $this->findAllImages($newsBlock);
+                $images = $this->uploadAll($images);
+                $newsHtml = $this->replaceImagesLinks($newsHtml, $images);
+
+                //~~~ replace all images in srcset attribute ~~~
+                $images = $this->findAllImagesSrcset($newsBlock);
+                $images = $this->uploadAll($images);
+                $newsHtml = $this->replaceImagesLinks($newsHtml, $images);
             }
             
-            $images = $this->findAllImages($newsBlock);
-            $images = $this->uploadAll($images);
-            $newsHtml = $this->replaceImagesLinks($newsHtml, $images);
-
-            //~~~ replace all images in srcset attribute ~~~
-            $images = $this->findAllImagesSrcset($newsBlock);
-            $images = $this->uploadAll($images);
-            $newsHtml = $this->replaceImagesLinks($newsHtml, $images);
-
             $category = Category::firstOrCreate([
                 'slug' => $category,
                 'name' => $category,
