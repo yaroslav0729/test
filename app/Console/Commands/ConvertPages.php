@@ -365,15 +365,17 @@ class ConvertPages extends Command
                 
                 $exists = Storage::disk('public')->exists($path);
 
-                if (!$exists) {
+                if ((!$exists) && ($imageUrl !== "")) {
                     $contents = file_get_contents($imageUrl);
                     Storage::disk('public')->put($path, $contents);  
                 } 
 
-                $imagesLinks[] = [
-                    'remote_image' => $imageUrl,
-                    'local_image' => Storage::url($path),
-                ];
+                if ($imageUrl !== "") {
+                    $imagesLinks[] = [
+                        'remote_image' => $imageUrl,
+                        'local_image' => Storage::url($path),
+                    ];
+                }
             }
         }
 
