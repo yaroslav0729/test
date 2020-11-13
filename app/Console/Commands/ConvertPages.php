@@ -56,11 +56,15 @@ class ConvertPages extends Command
         $response = Http::get(self::PARSING_LINK);
         $links = $this->getLinksFromXml($response->body());
 
+        $allCou = count($links);
+
         foreach ($links as $key => $link) {
 
             if ($key === 0) {
                 continue;
             }
+
+            $this->info('parsing link ' . $key . ' from ' . $allCou);
 
             $html = Http::get($link)->body();
             $document = new HtmlDomParser($html);
