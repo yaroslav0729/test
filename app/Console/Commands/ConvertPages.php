@@ -7,10 +7,10 @@ use App\Models\Page;
 use App\Models\PageInstance; // https://github.com/voku/simple_html_dom
 use App\Models\Template;
 use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use voku\helper\HtmlDomParser;
-use Illuminate\Support\Carbon;
 
 class ConvertPages extends Command
 {
@@ -73,10 +73,7 @@ class ConvertPages extends Command
             $h1 = $document->findOneOrFalse('h1')->text();
             $h2 = $document->findOneOrFalse('h2.title_post')->text();
             $date = $document->findOneOrFalse('div.date')->text();
-
-            $date = str_replace('th', '', $date);
-            $date = str_replace(',', '', $date);
-            $date = Carbon::createFromTimestamp(strtotime($date));
+            $date = $this->toNeedfulFormat($date);
 
             $this->removeElementFromDoc('h2.title_post', $document);
             $this->removeElementFromDoc('div.date', $document);
@@ -86,6 +83,11 @@ class ConvertPages extends Command
             $newsHtml = $newsBlock->html();
 
             $images = $this->findAllImages($newsBlock);
+            $images = $this->uploadAll($images);
+            $newsHtml = $this->replaceImagesLinks($newsHtml, $images);
+
+            //~~~ replace all images in srcset attribute ~~~
+            $images = $this->findAllImagesSrcset($newsBlock);
             $images = $this->uploadAll($images);
             $newsHtml = $this->replaceImagesLinks($newsHtml, $images);
 
@@ -102,7 +104,7 @@ class ConvertPages extends Command
             if (!isset($pageInstance)) {
                 $page = Page::create([
                     'status' => Page::PAGE_STATUS_PUBLICHED,
-                    'published_at' => $date
+                    'published_at' => $date,
                 ]);
                 $pageInstance = PageInstance::create([
                     'page_id' => $page->id,
@@ -114,7 +116,7 @@ class ConvertPages extends Command
                     'keywords' => $keywords,
                     'template' => Template::MEDIA_CENTER_PAGE,
                     'parameters' => $parameters,
-                    'html' => $link // save old link
+                    'html' => $link, // save old link
                 ]);
 
                 $pageInstance->actual = true;
@@ -131,7 +133,7 @@ class ConvertPages extends Command
                     'keywords' => $keywords,
                     'template' => Template::MEDIA_CENTER_PAGE,
                     'parameters' => $parameters,
-                    'html' => $link // save old link
+                    'html' => $link, // save old link
                 ]);
 
                 $page = $pageInstance->page;
@@ -148,6 +150,15 @@ class ConvertPages extends Command
         }
 
         $this->info('Parsing process complete!!!');
+    }
+
+    protected function toNeedfulFormat($date)
+    {
+        $date = str_replace('th', '', $date);
+        $date = str_replace(',', '', $date);
+        $date = Carbon::createFromTimestamp(strtotime($date));
+
+        return $date;
     }
 
     protected function removeElementFromDoc($element, $document)
@@ -191,7 +202,6 @@ class ConvertPages extends Command
         } else {
             return "";
         }
-
     }
 
     protected function searchDescription($html)
@@ -203,7 +213,6 @@ class ConvertPages extends Command
         } else {
             return "";
         }
-
     }
 
     protected function searchKeywords($html)
@@ -215,7 +224,6 @@ class ConvertPages extends Command
         } else {
             return "";
         }
-
     }
 
     protected function findAllImages($el)
@@ -226,6 +234,34 @@ class ConvertPages extends Command
         if ($imagesOrFalse !== false) {
             foreach ($imagesOrFalse as $image) {
                 $images[] = $image->getAttribute('src');
+            }
+        }
+
+        return $images;
+    }
+
+    protected function findAllImagesSrcset($el)
+    {
+        $images = [];
+        $srcsets = [];
+
+        $imagesOrFalse = $el->findMultiOrFalse('img');
+
+        if ($imagesOrFalse !== false) {
+            foreach ($imagesOrFalse as $image) {
+                $srcsets[] = $image->getAttribute('srcset');
+            }
+        }
+
+        foreach ($srcsets as $key => $srcset) {
+            $links = explode(', ', $srcset);
+
+            foreach ($links as $linkKey => $link) {
+                $arr = explode(' ', $link);
+
+                if (isset($arr[0])) {
+                    $images[] = $arr[0];
+                }
             }
         }
 
