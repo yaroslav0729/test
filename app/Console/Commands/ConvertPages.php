@@ -83,6 +83,8 @@ class ConvertPages extends Command
             $newsBlock = $document->findOneOrFalse('div#tpl-single-news');
             $newsHtml = $newsBlock->html();
 
+            $newsHtml = $this->replaceDomainInLinks($newsHtml);
+
             $images = $this->findAllImages($newsBlock);
             $images = $this->uploadAll($images);
             $newsHtml = $this->replaceImagesLinks($newsHtml, $images);
@@ -175,6 +177,17 @@ class ConvertPages extends Command
         $category = $arr[count($arr) - 3];
 
         return $category;
+    }
+
+    protected function replaceDomainInLinks($html)
+    {
+        $domainExp = 'href="https://www.islamichelp.org.uk';
+        $html = str_replace($domainExp, 'href="', $html);
+
+        $domainExp = "href='https://www.islamichelp.org.uk";
+        $html = str_replace($domainExp, 'href=\'', $html);
+
+        return $html;
     }
 
     protected function getSlugFromLink($link)
