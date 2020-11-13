@@ -146,9 +146,9 @@ class ConvertPages extends Command
                 $this->info('Page updated: slug ' . $pageInstance->slug);
             }
 
-            if ($key === 3) {
-                break;
-            }
+            // if ($key === 3) {
+            //     break;
+            // }
 
         }
 
@@ -195,7 +195,7 @@ class ConvertPages extends Command
     }
 
     /* replaced by removeDomainFromLinks() */
-    
+
     // protected function replaceDomainInLinks($html)
     // {
     //     $domainExp = 'href="https://www.islamichelp.org.uk';
