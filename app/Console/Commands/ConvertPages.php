@@ -80,10 +80,10 @@ class ConvertPages extends Command
             $this->removeElementFromDoc('div.date', $document);
             $this->removeElementFromDoc('div.archive-news-sidebar', $document);
 
+            $this->removeDomainFromLinks($document);
+
             $newsBlock = $document->findOneOrFalse('div#tpl-single-news');
             $newsHtml = $newsBlock->html();
-
-            $newsHtml = $this->replaceDomainInLinks($newsHtml);
 
             $images = $this->findAllImages($newsBlock);
             $images = $this->uploadAll($images);
@@ -179,16 +179,33 @@ class ConvertPages extends Command
         return $category;
     }
 
-    protected function replaceDomainInLinks($html)
+    protected function removeDomainFromLinks($document)
     {
-        $domainExp = 'href="https://www.islamichelp.org.uk';
-        $html = str_replace($domainExp, 'href="', $html);
+        $domain = "https://www.islamichelp.org.uk";
+        $links = $document->findMulti('a');
 
-        $domainExp = "href='https://www.islamichelp.org.uk";
-        $html = str_replace($domainExp, 'href=\'', $html);
+        foreach ($links as $link) {
+            $href = $link->href;
 
-        return $html;
+            if (strpos($href, $domain) !== false) {
+                $href = str_replace($domain, '', $href);
+                $link->href = $href;
+            }
+        }
     }
+
+    /* replaced by removeDomainFromLinks() */
+    
+    // protected function replaceDomainInLinks($html)
+    // {
+    //     $domainExp = 'href="https://www.islamichelp.org.uk';
+    //     $html = str_replace($domainExp, 'href="', $html);
+
+    //     $domainExp = "href='https://www.islamichelp.org.uk";
+    //     $html = str_replace($domainExp, 'href=\'', $html);
+
+    //     return $html;
+    // }
 
     protected function getSlugFromLink($link)
     {
