@@ -334,7 +334,7 @@ class ConvertPages extends Command
             $year = $arr[$pos + 1];
         }
         
-        if (isset($arr[$pos + 1])) {
+        if (isset($arr[$pos + 2])) {
             $month = $arr[$pos + 2];
         }
         
