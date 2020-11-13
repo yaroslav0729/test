@@ -64,7 +64,7 @@
                 <h1>{{ $pageInstance->name }}</h1>
                 <div class="date">
                     <span>{{ $minRead }}</span>
-                    <i></i>{{ date('d F Y', strtotime($pageInstance->page->published_at)) }}
+                    <i></i>{{ date('d F Y', strtotime($pageInstance->published_at)) }}
                 </div>
                 <p>
                     {{ $headerText }}

@@ -10,6 +10,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use voku\helper\HtmlDomParser;
+use Illuminate\Support\Carbon;
 
 class ConvertPages extends Command
 {
@@ -73,6 +74,10 @@ class ConvertPages extends Command
             $h2 = $document->findOneOrFalse('h2.title_post')->text();
             $date = $document->findOneOrFalse('div.date')->text();
 
+            $date = str_replace('th', '', $date);
+            $date = str_replace(',', '', $date);
+            $date = Carbon::createFromTimestamp(strtotime($date));
+
             $this->removeElementFromDoc('h2.title_post', $document);
             $this->removeElementFromDoc('div.date', $document);
             $this->removeElementFromDoc('div.archive-news-sidebar', $document);
@@ -97,6 +102,7 @@ class ConvertPages extends Command
             if (!isset($pageInstance)) {
                 $page = Page::create([
                     'status' => Page::PAGE_STATUS_PUBLICHED,
+                    'published_at' => $date
                 ]);
                 $pageInstance = PageInstance::create([
                     'page_id' => $page->id,
@@ -108,6 +114,7 @@ class ConvertPages extends Command
                     'keywords' => $keywords,
                     'template' => Template::MEDIA_CENTER_PAGE,
                     'parameters' => $parameters,
+                    'html' => $link // save old link
                 ]);
 
                 $pageInstance->actual = true;
@@ -124,7 +131,12 @@ class ConvertPages extends Command
                     'keywords' => $keywords,
                     'template' => Template::MEDIA_CENTER_PAGE,
                     'parameters' => $parameters,
+                    'html' => $link // save old link
                 ]);
+
+                $page = $pageInstance->page;
+                $page->published_at = $date;
+                $page->save();
 
                 $this->info('Page updated: slug ' . $pageInstance->slug);
             }
@@ -226,14 +238,10 @@ class ConvertPages extends Command
 
         if ($images !== []) {
             foreach ($images as $imageUrl) {
-                $this->info('image: ' . $imageUrl);
-
                 $contents = file_get_contents($imageUrl);
                 $name = substr($imageUrl, strrpos($imageUrl, '/') + 1);
                 $path = self::MEDIA_CENTER_IMAGE_STORAGE_PATH . '/' . $name;
                 Storage::disk('public')->put($path, $contents);
-
-                $this->info('local image name: ' . $name);
 
                 $imagesLinks[] = [
                     'remote_image' => $imageUrl,

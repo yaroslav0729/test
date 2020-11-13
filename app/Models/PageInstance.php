@@ -24,6 +24,7 @@ class PageInstance extends Model
         'keywords',
         'template',
         'parameters',
+        'html'
     ];
 
     protected $casts = [
@@ -43,6 +44,11 @@ class PageInstance extends Model
     public function author()
     {
         return $this->belongsTo('App\Models\User', 'author_id');
+    }
+
+    public function getPublishedAtAttribute()
+    {
+        return $this->page->published_at;
     }
 
     public function getCategoryIdsAttribute()
