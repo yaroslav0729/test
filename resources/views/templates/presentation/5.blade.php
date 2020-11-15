@@ -5,11 +5,17 @@
     $ourValuesDescription = "";
     $ourValuesVideo = "";
 
-    $actionFirstItemName = "";
-    $actionFirstItemPhoto = "";
-    $actionFirstItemSlogan = "";
-    $actionFirstItemTitle = "";
-    $actionFirstItemDescription = "";
+    for ($i=1; $i<=4; $i++){
+        ${'actionName' . $i} = "";
+        ${'actionPhoto' . $i} = "";
+        ${'actionSlogan' . $i} = "";
+        ${'actionTitle' . $i} = "";
+        ${'actionDescription' . $i} = "";
+        ${'actionLearnMoreLink' . $i} = "";
+    }
+
+    $lifeChangingBlockTitle = "";
+    $lifeChangingBlockText = "";
 
     if (isset($parameters['background_image'])) {
         $bgImage = $parameters['background_image'];
@@ -27,26 +33,40 @@
         $ourMissionTitle = $parameters['our_mission_title'];
     }
 
-    if (isset($parameters['action_first_name'])) {
-        $actionFirstItemName = $parameters['action_first_name'];
+    $actionActive = $parameters['action_active'] ?? [];
+
+    for ($i=1; $i<=4; $i++){
+        if (isset($parameters["action_name_{$i}"])) {
+            ${'actionName' . $i} = $parameters["action_name_{$i}"];
+        }
+
+        if (isset($parameters["action_photo_{$i}"])) {
+            ${'actionPhoto' . $i} = $parameters["action_photo_{$i}"];
+        }
+
+        if (isset($parameters["action_slogan_{$i}"])) {
+            ${'actionSlogan' . $i} = $parameters["action_slogan_{$i}"];
+        }
+
+        if (isset($parameters["action_title_{$i}"])) {
+            ${'actionTitle' . $i} = $parameters["action_title_{$i}"];
+        }
+
+        if (isset($parameters["action_description_{$i}"])) {
+            ${'actionDescription' . $i} = $parameters["action_description_{$i}"];
+        }
+
+        if (isset($parameters["action_learn_more_link_{$i}"])) {
+            ${'actionLearnMoreLink' . $i} = $parameters["action_learn_more_link_{$i}"];
+        }
     }
 
-    if (isset($parameters['action_first_photo'])) {
-        $actionFirstItemPhoto = $parameters['action_first_photo'];
+    if (isset($parameters['changing_block_title'])) {
+        $lifeChangingBlockTitle = $parameters['changing_block_title'];
     }
-
-    if (isset($parameters['action_first_slogan'])) {
-        $actionFirstItemSlogan = $parameters['action_first_slogan'];
+    if (isset($parameters['changing_block_text'])) {
+        $lifeChangingBlockText = $parameters['changing_block_text'];
     }
-
-    if (isset($parameters['action_first_title'])) {
-        $actionFirstItemTitle = $parameters['action_first_title'];
-    }
-
-    if (isset($parameters['action_first_description'])) {
-        $actionFirstItemDescription = $parameters['action_first_description'];
-    }
-
 
 @endphp
 
@@ -62,10 +82,13 @@
                 <p class="pr-5">{!! $ourValuesDescription !!}</p>
             </div>
             <div class="col-6">
-{{--                <div class="img-video" style="background-image: url(img/content/our-values-1.jpg)">
-                    <i class="fas fa-play-circle"></i></div>--}}
+                {{--                <div class="img-video" style="background-image: url(img/content/our-values-1.jpg)">
+                                    <i class="fas fa-play-circle"></i></div>--}}
                 <div class="img-video play-tr videoWrapper" style="">
-                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $ourValuesVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $ourValuesVideo }}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -77,82 +100,54 @@
     </div>
 </section>
 
+@empty(!$actionActive)
+    <section class="mb-5">
+        <p class="font-size-20 text-uppercase"><b>Our values in action</b></p>
+        <div class="black-line"></div>
+    </section>
+    <section class="values-action">
+        <div class="row gutter-0">
+            <div class="col-9">
+                <div class="tab-content" id="nav-tabContent">
+                    @for ($i = 1; $i <= 4; $i++)
+                        @if(in_array($i, $actionActive ))
+                            <div class="tab-pane fade show @if($i === 1)active @endif" id="nav-{{ $i }}"
+                                 role="tabpanel">
+                                <div class="row gutter-0">
+                                    <div class="col-6 img" style="background-image: url({{ ${'actionPhoto' . $i} }})">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-6 bg-primary-light text">
+                                        <div>
+                                            <p class="text-1">{!! ${'actionSlogan' . $i} !!}</p>
+                                            <p class="text-2">{!! ${'actionTitle' . $i} !!}</p>
+                                            <p class="text-3">{!! ${'actionDescription' . $i} !!}</p>
+                                            <div><a href="{{ ${'actionLearnMoreLink' . $i} }}"><b>LEARN MORE</b></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endfor
+                </div>
 
-<section class="mb-5">
-    <p class="font-size-20 text-uppercase"><b>Our values in action</b></p>
-    <div class="black-line"></div>
-</section>
-<section class="values-action">
-    <div class="row gutter-0">
-        <div class="col-9">
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-1" role="tabpanel" >
-                    <div class="row gutter-0">
-                        <div class="col-6 img" style="background-image: url(img/content/values-action-1.jpg)">&nbsp;</div>
-                        <div class="col-6 bg-primary-light text">
-                            <div>
-                                <p class="text-1">{!! $actionFirstItemSlogan !!}</p>
-                                <p class="text-2">{!! $actionFirstItemTitle !!}</p>
-                                <p class="text-3">{!! $actionFirstItemDescription !!}</p>
-                                <div><a href="#"><b>LEARN MORE</b></a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-2" role="tabpanel" >
-                    <div class="row gutter-0">
-                        <div class="col-6 img" style="background-image: url(img/content/values-action-2.jpg)">&nbsp;</div>
-                        <div class="col-6 bg-warning text">
-                            <div>
-                                <p class="text-1">Integrity</p>
-                                <p class="text-2">A stat or fact that supports this value, lorem ipsum.</p>
-                                <p class="text-3">Any necessary subcopy can go here natus error sit voluptatem accusantium dolorem laudantium, totam rem aperia.</p>
-                                <div><a href="#"><b>LEARN MORE</b></a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-3" role="tabpanel" >
-                    <div class="row gutter-0">
-                        <div class="col-6 img" style="background-image: url(img/content/values-action-3.jpg)">&nbsp;</div>
-                        <div class="col-6 bg-danger text">
-                            <div>
-                                <p class="text-1">Empowerment</p>
-                                <p class="text-2">A stat or fact that supports this value, lorem ipsum.</p>
-                                <p class="text-3">Any necessary subcopy can go here natus error sit voluptatem accusantium dolorem laudantium, totam rem aperia.</p>
-                                <div><a href="#"><b>LEARN MORE</b></a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-4" role="tabpanel" >
-                    <div class="row gutter-0">
-                        <div class="col-6 img" style="background-image: url(img/content/values-action-4.jpg)">&nbsp;</div>
-                        <div class="col-6 bg-info text">
-                            <div>
-                                <p class="text-1">Understanding</p>
-                                <p class="text-2">A stat or fact that supports this value, lorem ipsum.</p>
-                                <p class="text-3">Any necessary subcopy can go here natus error sit voluptatem accusantium dolorem laudantium, totam rem aperia.</p>
-                                <div><a href="#"><b>LEARN MORE</b></a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+            <div class="col-3 values-action-nav">
+                <div class="nav flex-column nav-pills" id="nav-tab" role="tablist">
+                    @for ($i = 1; $i <= 4; $i++)
+                        @if(in_array($i, $actionActive ))
+                            <a class="nav-link @if($i === 1)active @endif" data-toggle="tab" href="#nav-{{ $i }}"
+                               role="tab"
+                               aria-selected="true">{{ ${'actionName' . $i} }}</a>
+                        @endif
+                    @endfor
+                </div>
 
-
-        </div>
-        <div class="col-3 values-action-nav">
-            <div class="nav flex-column nav-pills" id="nav-tab" role="tablist">
-                <a class="nav-link active"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true">{{ $actionFirstItemName }}</a>
-                <a class="nav-link"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false">TANZANIA</a>
-                <a class="nav-link"  data-toggle="tab" href="#nav-3" role="tab"  aria-selected="false">CAMBODIA</a>
-                <a class="nav-link"  data-toggle="tab" href="#nav-4" role="tab"  aria-selected="false">SYRIA</a>
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
+@endempty
 
 
 <section class="our-story-swiper">
@@ -162,7 +157,8 @@
                 <div class="swiper-slide d-flex align-items-start">
                     <div class="img-box">
                         <div class="bg-warning">
-                            <div class="img" style="background-image: url(img/content/ibrahim-rifath-lFcTDevfr5k-unsplash.jpg)"></div>
+                            <div class="img"
+                                 style="background-image: url(img/content/ibrahim-rifath-lFcTDevfr5k-unsplash.jpg)"></div>
                         </div>
                     </div>
                     <div class="box">
@@ -171,13 +167,19 @@
                             <div class="col-6 text-right"><span>OUR STORY</span></div>
                         </div>
                         <div class="black-line"></div>
-                        <p class="pl-5 pr-5">Perspiciais und omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed consequuntur magni dolores eos qui rati voluptate sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+                        <p class="pl-5 pr-5">Perspiciais und omnis iste natus error sit voluptatem accusantium
+                            doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
+                            quasi architecto beatae vitae dicta sunt explicab. Nemo enim ipsam voluptatem quia voluptas
+                            sit aspernatur aut odit aut fugit, sed consequuntur magni dolores eos qui rati voluptate
+                            sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+                            consectetur, adipisci velit.</p>
                     </div>
                 </div>
                 <div class="swiper-slide d-flex align-items-start">
                     <div class="img-box">
                         <div class="bg-info">
-                            <div class="img" style="background-image: url(img/content/ibrahim-rifath-lFcTDevfr5k-unsplash2.jpg)"></div>
+                            <div class="img"
+                                 style="background-image: url(img/content/ibrahim-rifath-lFcTDevfr5k-unsplash2.jpg)"></div>
                         </div>
                     </div>
                     <div class="box">
@@ -186,7 +188,12 @@
                             <div class="col-6 text-right"><span>TODAY</span></div>
                         </div>
                         <div class="black-line"></div>
-                        <p class="pl-5 pr-5">Perspiciais und omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed consequuntur magni dolores eos qui rati voluptate sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+                        <p class="pl-5 pr-5">Perspiciais und omnis iste natus error sit voluptatem accusantium
+                            doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
+                            quasi architecto beatae vitae dicta sunt explicab. Nemo enim ipsam voluptatem quia voluptas
+                            sit aspernatur aut odit aut fugit, sed consequuntur magni dolores eos qui rati voluptate
+                            sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+                            consectetur, adipisci velit.</p>
                     </div>
                 </div>
             </div>
@@ -228,13 +235,12 @@
 </section>
 
 
-
 <section class="blog-article-body">
     <div class="wrap">
         <div class="body">
-            <h2>General subtitle right here, lorem ipsum exquisite.</h2>
-            <p>Perspiciais und omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed consequuntur magni dolores eos qui rati voluptate sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
-            <p>Perspiciais und omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed consequuntur magni dolores eos qui rati voluptate sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit. Perspiciais und omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit quia voluptas.</p>
+            <h2>{{ $lifeChangingBlockTitle }}</h2>
+            {!! $lifeChangingBlockText !!}
+
         </div>
     </div>
 </section>
@@ -249,7 +255,8 @@
                     <b class="font-size-30 mr-4 text-uppercase">Discover more</b>
                 </div>
                 <div class="col-5 text-right">
-                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i
+                            class="far fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -261,7 +268,8 @@
                         <span class="img" style="background-image: url(img/content/discover-more-1.jpg)"></span>
                         <span class="descr">
                     <span class="name font-size-16">EVENT</span>
-                    <span class="text font-size-16"><b>Critical campaign title, 60 char lorem sit amet, demis.</b></span>
+                    <span
+                        class="text font-size-16"><b>Critical campaign title, 60 char lorem sit amet, demis.</b></span>
                 </span>
                     </a>
                 </div>
@@ -270,7 +278,8 @@
                         <span class="img" style="background-image: url(img/content/discover-more-2.jpg)"></span>
                         <span class="descr">
                     <span class="name font-size-16">PROJECT</span>
-                    <span class="text font-size-16"><b>Critical campaign title, 60 char lorem sit amet, demis.</b></span>
+                    <span
+                        class="text font-size-16"><b>Critical campaign title, 60 char lorem sit amet, demis.</b></span>
                 </span>
                     </a>
                 </div>
@@ -279,7 +288,8 @@
                         <span class="img" style="background-image: url(img/content/discover-more-3.jpg)"></span>
                         <span class="descr">
                     <span class="name font-size-16">ARTICLE</span>
-                    <span class="text font-size-16"><b>Critical campaign title, 60 char lorem sit amet, demis.</b></span>
+                    <span
+                        class="text font-size-16"><b>Critical campaign title, 60 char lorem sit amet, demis.</b></span>
                 </span>
                     </a>
                 </div>
