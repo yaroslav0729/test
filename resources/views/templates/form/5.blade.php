@@ -4,14 +4,24 @@
     $ourMissionTitle = "";
     $ourValuesDescription = "";
     $ourValuesVideo = "";
+    $mapImage = "";
 
-    for ($i=1; $i<=4; $i++){
-        ${'actionName' . $i} = "";
-        ${'actionPhoto' . $i} = "";
-        ${'actionSlogan' . $i} = "";
-        ${'actionTitle' . $i} = "";
-        ${'actionDescription' . $i} = "";
-        ${'actionLearnMoreLink' . $i} = "";
+    $actionName = [];
+    $actionPhoto = [];
+    $actionSlogan = [];
+    $actionTitle = [];
+    $actionDescription = [];
+    $actionLearnMoreLink = [];
+
+    for ($i=1; $i<=3; $i++){
+        ${'storyPhoto' . $i} = "";
+        ${'storyYear' . $i} = "";
+        ${'storyText' . $i} = "";
+    }
+
+    for ($i=1; $i<=2; $i++){
+        ${'lifeChangingPhoto' . $i} = "";
+        ${'lifeChangingPhrase' . $i} = "";
     }
 
     $lifeChangingBlockTitle = "";
@@ -19,6 +29,10 @@
 
     if (isset($parameters['background_image'])) {
         $bgImage = $parameters['background_image'];
+    }
+
+    if (isset($parameters['our_mission_title'])) {
+        $ourMissionTitle = $parameters['our_mission_title'];
     }
 
     if (isset($parameters['our_values_description'])) {
@@ -29,32 +43,57 @@
         $ourValuesVideo = $parameters['our_values_video'];
     }
 
-    if (isset($parameters['our_mission_title'])) {
-        $ourMissionTitle = $parameters['our_mission_title'];
+    if (isset($parameters['map_image'])) {
+        $mapImage = $parameters['map_image'];
     }
 
     $actionActive = $parameters['action_active'] ?? [];
 
     for ($i=1; $i<=4; $i++){
-        if (isset($parameters["action_name_{$i}"])) {
-            ${'actionName' . $i} = $parameters["action_name_{$i}"];
+        if (isset($parameters['action_name_' . $i])) {
+            $actionName[$i] = $parameters['action_name_' . $i];
         }
-        if (isset($parameters["action_photo_{$i}"])) {
-            ${'actionPhoto' . $i} = $parameters["action_photo_{$i}"];
+        if (isset($parameters['action_photo_' .$i])) {
+            $actionPhoto[$i] = $parameters['action_photo_' . $i];
         }
-        if (isset($parameters["action_slogan_{$i}"])) {
-            ${'actionSlogan' . $i} = $parameters["action_slogan_{$i}"];
+        if (isset($parameters['action_slogan_' .$i])) {
+            $actionSlogan[$i] = $parameters['action_slogan_' . $i];
         }
-        if (isset($parameters["action_title_{$i}"])) {
-            ${'actionTitle' . $i} = $parameters["action_title_{$i}"];
+        if (isset($parameters['action_title_' .$i])) {
+            $actionTitle[$i] = $parameters['action_title_' . $i];
         }
-        if (isset($parameters["action_description_{$i}"])) {
-            ${'actionDescription' . $i} = $parameters["action_description_{$i}"];
+        if (isset($parameters['action_description_' .$i])) {
+            $actionDescription[$i] = $parameters['action_description_' . $i];
         }
-        if (isset($parameters["action_learn_more_link_{$i}"])) {
-            ${'actionLearnMoreLink' . $i} = $parameters["action_learn_more_link_{$i}"];
+        if (isset($parameters['action_learn_more_link_' .$i])) {
+            $actionLearnMoreLink[$i] = $parameters['action_learn_more_link_' . $i];
         }
     }
+
+    $storyActive = $parameters['story_active'] ?? [];
+
+    for ($i=1; $i<=3; $i++){
+        if (isset($parameters["story_year_{$i}"])) {
+            ${'storyYear' . $i} = $parameters["story_year_{$i}"];
+        }
+        if (isset($parameters["story_photo_{$i}"])) {
+            ${'storyPhoto' . $i} = $parameters["story_photo_{$i}"];
+        }
+        if (isset($parameters["story_text_{$i}"])) {
+            ${'storyText' . $i} = $parameters["story_text_{$i}"];
+        }
+    }
+
+    for ($i=1; $i<=2; $i++){
+        if (isset($parameters["changing_block_photo_{$i}"])) {
+            ${'lifeChangingPhoto' . $i} = $parameters["changing_block_photo_{$i}"];
+        }
+        if (isset($parameters["changing_block_phrase_{$i}"])) {
+            ${'lifeChangingPhrase' . $i} = $parameters["changing_block_phrase_{$i}"];
+        }
+    }
+
+    $changingActive = $parameters['changing_active'] ?? [];
 
     if (isset($parameters['changing_block_title'])) {
         $lifeChangingBlockTitle = $parameters['changing_block_title'];
@@ -66,7 +105,6 @@
 @endphp
 
 <div class="row">
-    {{--    {{ $actionName1 }}--}}
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Background image:</label>
@@ -87,9 +125,6 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Our values description:</label>
-            {{--            <input class="form-control" required name="parameters[our_values_description]"
-                               placeholder="Our values description"
-                               value="{{ $ourValuesDescription }}"/>--}}
             <textarea class="form-control" required name="parameters[our_values_description]"
                       placeholder="Our values description">{{ $ourValuesDescription }}</textarea>
         </div>
@@ -103,8 +138,17 @@
                    value="{{ $ourValuesVideo }}"/>
         </div>
     </div>
+
+    <div class="col-12 col-lg-6">
+        <div class="form-group">
+            <label>Map image path:</label>
+            <input class="form-control" required name="parameters[map_image]"
+                   placeholder="Insert map image path"
+                   value="{{ $mapImage }}"/>
+        </div>
+    </div>
 </div>
-<div class="form-group">
+<div class="form-group mt-5">
     <label>Our values in Action:</label>
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -136,53 +180,53 @@
                     <div class="col-12 col-lg-6 mt-2">
                         <div class="form-group">
                             <label>Name:</label>
-                            <input class="form-control" required name="parameters[action_name_{{ $i }}]"
+                            <input class="form-control" name="parameters[action_name_{{ $i }}]"
                                    placeholder="Name"
-                                   value="{!! ${'actionName' . $i} !!}"/>
+                                   value="{!! $actionName[$i] !!}"/>
                         </div>
                     </div>
 
                     <div class="col-12 col-lg-6">
                         <div class="form-group">
                             <label>Photo:</label>
-                            <input class="form-control" required name="parameters[action_photo_{{ $i }}]"
+                            <input class="form-control" name="parameters[action_photo_{{ $i }}]"
                                    placeholder="Insert photo path"
-                                   value="{!! ${'actionPhoto' . $i} !!}"/>
+                                   value="{!! $actionPhoto[$i] !!}"/>
                         </div>
                     </div>
 
                     <div class="col-12 col-lg-6">
                         <div class="form-group">
                             <label>Slogan:</label>
-                            <input class="form-control " required name="parameters[action_slogan_{{ $i }}]"
+                            <input class="form-control " name="parameters[action_slogan_{{ $i }}]"
                                    placeholder="Slogan"
-                                   value="{!! ${'actionSlogan' . $i} !!}"/>
+                                   value="{!! $actionSlogan[$i] !!}"/>
                         </div>
                     </div>
 
                     <div class="col-12 col-lg-6">
                         <div class="form-group">
                             <label>Title:</label>
-                            <input class="form-control " required name="parameters[action_title_{{ $i }}]"
+                            <input class="form-control " name="parameters[action_title_{{ $i }}]"
                                    placeholder="Title"
-                                   value="{!! ${'actionTitle' . $i} !!}"/>
+                                   value="{!! $actionTitle[$i] !!}"/>
                         </div>
                     </div>
 
                     <div class="col-12 col-lg-6">
                         <div class="form-group">
                             <label>Description:</label>
-                            <textarea class="form-control" required name="parameters[action_description_{{ $i }}]"
-                                      placeholder="Description">{!! ${'actionDescription' . $i} !!}</textarea>
+                            <textarea class="form-control" name="parameters[action_description_{{ $i }}]"
+                                      placeholder="Description">{!! $actionDescription[$i] !!}</textarea>
                         </div>
                     </div>
 
                     <div class="col-12 col-lg-6">
                         <div class="form-group">
                             <label>Learn more link:</label>
-                            <input class="form-control" required name="parameters[action_learn_more_link_{{ $i }}]"
+                            <input class="form-control" name="parameters[action_learn_more_link_{{ $i }}]"
                                    placeholder="Learn more link"
-                                   value="{!! ${'actionLearnMoreLink' . $i} !!}"/>
+                                   value="{!! $actionLearnMoreLink[$i] !!}"/>
                         </div>
                     </div>
                 </div>
@@ -190,24 +234,115 @@
         @endfor
     </div>
 </div>
-<div class="row">
-    <div class="col-12 col-lg-6">
+
+<div class="form-group mt-5">
+    <label>Our story:</label>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            @for ($i = 1; $i <= 3; $i++)
+                <a class="nav-item nav-link @if($i === 1)active @endif" id="nav-action-tab-{{ $i }}" data-toggle="tab"
+                   href="#nav-story-{{ $i }}"
+                   role="tab" aria-controls="nav-home" aria-selected="true">Block-{{ $i }}</a>
+            @endfor
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        @for ($i = 1; $i <= 3; $i++)
+
+            <div class="tab-pane fade show @if($i === 1)active @endif" id="nav-story-{{ $i }}" role="tabpanel"
+                 aria-labelledby="nav-home-tab">
+                <div class="row mt-3">
+
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" name="parameters[action_active][]" type="checkbox"
+                                   value="{{ $i }}" id="defaultCheck{{ $i }}"
+                                   @if(in_array($i, $storyActive ))checked @endif>
+                            <label class="form-check-label" for="defaultCheck{{ $i }}">
+                                Active block
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 mt-2">
+                        <div class="form-group">
+                            <label>Year:</label>
+                            <input class="form-control" required name="parameters[story_year_{{ $i }}]"
+                                   placeholder="Year"
+                                   value="{!! ${'storyYear' . $i} !!}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Photo:</label>
+                            <input class="form-control" required name="parameters[story_photo_{{ $i }}]"
+                                   placeholder="Insert photo path"
+                                   value="{!! ${'storyPhoto' . $i} !!}"/>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 mt-2">
+                        <div class="form-group">
+                            <label>Text:</label>
+                            <textarea class="form-control" required name="parameters[story_text_{{ $i }}]"
+                                      placeholder="Life changing support text">{!! ${'storyText' . $i} !!}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endfor
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
         <div class="form-group">
             <label>Life changing support title:</label>
             <input class="form-control " required name="parameters[changing_block_title]"
                    placeholder="Life changing support title"
                    value="{{ $lifeChangingBlockTitle }}"/>
         </div>
-    </div>
 
-    <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Life changing support text:</label>
-            <textarea class="form-control" required name="parameters[changing_block_text]"
-                      placeholder="Life changing support text">{!! $lifeChangingBlockText !!}</textarea>
+            <textarea wysiwyg-editor id="main_html" class="form-control" required name="parameters[changing_block_text]"
+                      placeholder="Life changing support text">{{ $lifeChangingBlockText }}</textarea>
         </div>
     </div>
+
 </div>
 
+<div class="row mt-5">
+    @for ($i = 1; $i <= 2; $i++)
+        <div class="col-12 col-lg-6 mt-2">
+            <div class="form-check">
+                <input class="form-check-input" name="parameters[support_active][]" type="checkbox"
+                       value="{{ $i }}" id="defaultCheck{{ $i }}"
+                       @if(in_array($i, $changingActive ))checked @endif>
+                <label class="form-check-label" for="defaultCheck{{ $i }}">
+                    Active block
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Photo:</label>
+                <input class="form-control" required name="parameters[changing_block_photo_{{ $i }}]"
+                       placeholder="Insert photo path"
+                       value="{!! ${'lifeChangingPhoto' . $i} !!}"/>
+            </div>
+            <div class="form-group">
+                <label>Phrase:</label>
+                <input class="form-control" required name="parameters[changing_block_phrase_{{ $i }}]"
+                       placeholder="Phrase"
+                       value="{!! ${'lifeChangingPhrase' . $i} !!}"/>
+            </div>
+        </div>
+    @endfor
+</div>
+
+@include('modules.admin.related_pages', [
+    'parameters' => $parameters
+])
+
+@include('modules.admin.join_the_cause_subscribe', [
+    'parameters' => $parameters
+])
 
 

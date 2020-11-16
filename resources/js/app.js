@@ -8,8 +8,8 @@ require('tinymce');
 
 window.toastr  = require ('toastr');
 
-import Swiper from 'swiper';
-window.Swiper = Swiper
+/*import Swiper from 'swiper';
+window.Swiper = Swiper;*/
 
 require('bootstrap-input-spinner');
 
@@ -25,7 +25,9 @@ $(function () {
         el: '#app'
     })
 
-    initWysiwyg()
+    initWysiwyg();
+    initSwiper();
+
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -58,7 +60,7 @@ $(function () {
 
         current++
         if (current>=linksLenght) {
-            current = 0    
+            current = 0
         }
 
         paramsBlock.data('current', current)
@@ -114,6 +116,24 @@ $(function () {
     });
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-})
+});
+function initSwiper(){
+    $('[swiper-wrapper]').each(function() {
+        let key = '[swiper-wrapper="'+ $(this).attr('swiper-wrapper') +'"]';
+
+        let swiper = new Swiper(key + ' .swiper-container', {
+            loop: function (){
+                return !!$(this).hasClass('loop');
+            },
+            navigation: {
+                nextEl: key + ' .swiper-button-next',
+                prevEl: key + ' .swiper-button-prev',
+            },
+            pagination: {
+                el: key + ' .swiper-pagination'
+            }
+        });
+    })
+}
 
 //require('./functions');
