@@ -2,6 +2,7 @@
     $featuredCompaignLink = "";
     $slideTitle = [];
     $slideText = [];
+    $readMoreLink = [];
     
     if (isset($parameters['feat_camp_link'])) {
         $featuredCompaignLink = $parameters['feat_camp_link'];    
@@ -19,6 +20,12 @@
         } else {
             $slideText[$i] = ""; 
         }
+
+        if (isset($parameters['read_more_link_' . $i])) {
+            $readMoreLink[$i] = $parameters['read_more_link_' . $i];    
+        } else {
+            $readMoreLink[$i] = ""; 
+        }
     }
     
 
@@ -34,7 +41,7 @@
 <ul class="nav nav-tabs" id="currentProjects" role="tablist">
     @for ($i = 0; $i < 4; $i++)
         <li class="nav-item">
-            <a class="nav-link @if($i===0) active @endif" id="tab-slide-{{ $i }}" data-toggle="tab" href="#slide_{{ $i }}" role="tab" aria-controls="tab-slide-{{ $i }}" aria-selected="@if($i===0) true @else false @endif">Slide {{ $i }}</a>
+            <a class="nav-link @if($i===0) active @endif" id="tab-slide-{{ $i }}" data-toggle="tab" href="#slide_{{ $i }}" role="tab" aria-controls="tab-slide-{{ $i }}" aria-selected="@if($i===0) true @else false @endif">Slide {{ $i + 1 }}</a>
         </li>
     @endfor
 </ul>
@@ -43,13 +50,18 @@
         <div class="tab-pane fade @if($i===0) show active @endif" id="slide_{{ $i }}" role="tabpanel" aria-labelledby="tab-slide-{{ $i }}">
             
             <div class="form-group">
-                <label>Slide {{ $i }} title:</label>
-                <input class="form-control" name="parameters[slide_title_{{ $i }}]" placeholder="Slide {{ $i }} title" value="{{ $slideTitle[$i] }}" />
+                <label>Slide {{ $i + 1 }} title:</label>
+                <input class="form-control" name="parameters[slide_title_{{ $i }}]" placeholder="Slide {{ $i + 1 }} title" value="{{ $slideTitle[$i] }}" />
             </div>
 
             <div class="form-group">
-                <label>Slide {{ $i }} text:</label>
-                <textarea class="form-control" name="parameters[slide_text_{{ $i }}]" placeholder="Slide {{ $i }} text">{{ $slideText[$i] }}</textarea>
+                <label>Slide {{ $i + 1 }} text:</label>
+                <textarea class="form-control" name="parameters[slide_text_{{ $i }}]" placeholder="Slide {{ $i + 1 }} text">{{ $slideText[$i] }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Read more {{ $i + 1 }} link:</label>
+                <input class="form-control" name="parameters[read_more_link_{{ $i }}]" placeholder="Read more {{ $i + 1 }} link" value="{{ $readMoreLink[$i] }}" />
             </div>
 
         </div>
