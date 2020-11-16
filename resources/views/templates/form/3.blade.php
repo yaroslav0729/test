@@ -138,6 +138,6 @@ if (isset($parameters['our_work_sadiqah_link'])) {
     <input class="form-control" required name="parameters[our_work_sadiqah_link]" placeholder="Who we are title" value="{{ $sadiqahLink }}" />
 </div>
 
-@include('modules.admin.related_pages', [
+@include('modules.admin.current_projects', [
     'parameters' => $parameters
 ])
