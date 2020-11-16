@@ -6,6 +6,7 @@ $hdrText = "";
 $hdrLearnMoreLink = "";
 $whoVideo = "";
 $whoLink = "";
+$whoLinkText = "";
 $whoTitle = "";
 $whoText = "";
 $longtermLink = "";
@@ -37,6 +38,10 @@ if (isset($parameters['who_we_are_wideo'])) {
 
 if (isset($parameters['who_we_are_link'])) {
     $whoLink = $parameters['who_we_are_link'];    
+}
+
+if (isset($parameters['who_we_are_link_text'])) {
+    $whoLinkText = $parameters['who_we_are_link_text'];    
 }
 
 if (isset($parameters['who_we_are_title'])) {
@@ -203,7 +208,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
             <div class="col-6">
                 <div class="pl-5 pr-2 pt-4">
                     <div class="mb-4">
-                        <a href="#" class="text-underline text-dark"><b>WHO WE ARE</b></a>
+                    <a href="{{ $whoLink }}" class="text-underline text-dark"><b>{{ $whoLinkText }}</b></a>
                     </div>
                     <p class="font-size-30 mb-2"><b>Empowering people in need, for two decades:</b></p>
                     <div class="pr-5">

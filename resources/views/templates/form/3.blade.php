@@ -6,6 +6,7 @@ $hdrText = "";
 $hdrLearnMoreLink = "";
 $whoVideo = "";
 $whoLink = "";
+$whoLinkText = "";
 $whoTitle = "";
 $whoText = "";
 $longtermLink = "";
@@ -36,6 +37,10 @@ if (isset($parameters['who_we_are_wideo'])) {
 
 if (isset($parameters['who_we_are_link'])) {
     $whoLink = $parameters['who_we_are_link'];    
+}
+
+if (isset($parameters['who_we_are_link_text'])) {
+    $whoLinkText = $parameters['who_we_are_link_text'];    
 }
 
 if (isset($parameters['who_we_are_title'])) {
@@ -96,6 +101,11 @@ if (isset($parameters['our_work_sadiqah_link'])) {
 <div class="form-group">
     <label>Who we are link:</label>
     <input class="form-control" required name="parameters[who_we_are_link]" placeholder="Who we are link" value="{{ $whoLink }}" />
+</div>
+
+<div class="form-group">
+    <label>Who we are link text:</label>
+    <input class="form-control" required name="parameters[who_we_are_link_text]" placeholder="Who we are link text" value="{{ $whoLinkText }}" />
 </div>
 
 <div class="form-group">
