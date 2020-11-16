@@ -8,26 +8,54 @@
 
 @endphp
 
-@if(isset($pageInstance->html))
-<div class="container pt-3">
-<a href="{{ $pageInstance->html }}" target="_blank">old page</a>
-</div>
-@endif
+<section class="blog-article-body">
+    <div class="wrap">
+        <div class="body">
 
-<div class="container">
-    <div class="row padding">
-        <div class="col-lg-12">
-            <h1 class="text-center">{!! $pageInstance->name !!}</h1>
+            @if(isset($pageInstance->html))
+                <div class="container pt-3">
+                    <a href="{{ $pageInstance->html }}" target="_blank">old page</a>
+                </div>
+            @endif
+
+            <h1>{!! $pageInstance->name !!}</h1>
             <h2>{!! $pageInstance->preview_text !!}</h2>
             <div class="date pt-4 pb-4">
                 <i class="fas fa-calendar-alt"></i>
                 <span>{{ date('d F Y', strtotime($pageInstance->published_at)) }}</span>
             </div>
+            {!! $mainHtml !!}
+
         </div>
     </div>
+</section>
 
-    {!! $mainHtml !!}
-    
-</div>
+<div class="pt-5"></div>
+
+<section class="blog-article-body">
+    <div class="wrap">
+            <div class="pt-5"></div>
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <div class="author">
+                        <div class="img" style="background-image: url(img/content/Avatar1.jpg)"></div>
+                        <span>written by <span>|</span> jamaila hamid</span>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-7">
+                    <div class="black-line"></div>
+                </div>
+            </div>
+            <div class="pt-5 pb-2"></div>
+        </div>
+</section>
+
+@include('modules.presentation.share_this')
+
+@include('modules.presentation.related_pages', [
+    'parameters' => $parameters
+])
 
 @include('modules.presentation.join_the_cause_subscribe')
+

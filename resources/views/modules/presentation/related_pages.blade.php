@@ -15,7 +15,7 @@
                 <div class="col-4">
                     <a href="#" class="item">
                         @isset($page->preview_img)
-                            <span class="img" style="background-repeat:no-repeat; background-image: url({{ $page->preview_img }})"></span>
+                            <span class="img" style="background-repeat:no-repeat; background-image: url(/{{ $page->preview_img }})"></span>
                         @else
                             <span class="img" style="background: #eee"></span>
                         @endisset

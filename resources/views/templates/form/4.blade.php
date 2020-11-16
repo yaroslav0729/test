@@ -12,3 +12,7 @@
     <label for="main_html">Main content:</label>
     <textarea wysiwyg-editor id="main_html" class="form-control" name="parameters[main_html]" placeholder="Insert main content here">{{ $mainHtml }}</textarea>
 </div>
+
+@include('modules.admin.related_pages', [
+    'parameters' => $parameters
+])

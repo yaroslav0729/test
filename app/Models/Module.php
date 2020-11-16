@@ -14,6 +14,14 @@ class Module
                 $q->where('category_id', $categoryId);
             })->limit(3)->get();
 
+        if (count($pages) === 0) { /* for test template view */
+            $pages = PageInstance::where('actual', true)
+            ->published()
+            ->whereHas('categories', function ($q) {
+                $q->where('category_id', 1);
+            })->limit(3)->get();
+        }
+
         return $pages;
     }
 }
