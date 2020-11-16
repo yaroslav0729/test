@@ -3,6 +3,7 @@
     $slideTitle = [];
     $slideText = [];
     $readMoreLink = [];
+    $slideImage = [];
     
     if (isset($parameters['feat_camp_link'])) {
         $featuredCompaignLink = $parameters['feat_camp_link'];    
@@ -19,6 +20,12 @@
             $slideText[$i] = $parameters['slide_text_' . $i];    
         } else {
             $slideText[$i] = ""; 
+        }
+
+        if (isset($parameters['slide_img_' . $i])) {
+            $slideImage[$i] = $parameters['slide_img_' . $i];    
+        } else {
+            $slideImage[$i] = ""; 
         }
 
         if (isset($parameters['read_more_link_' . $i])) {
@@ -57,6 +64,11 @@
             <div class="form-group">
                 <label>Slide {{ $i + 1 }} text:</label>
                 <textarea class="form-control" name="parameters[slide_text_{{ $i }}]" placeholder="Slide {{ $i + 1 }} text">{{ $slideText[$i] }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Slide {{ $i + 1 }} image:</label>
+                <input class="form-control" name="parameters[slide_img_{{ $i }}]" placeholder="Slide {{ $i + 1 }} image" value="{{ $slideImage[$i] }}" />
             </div>
 
             <div class="form-group">

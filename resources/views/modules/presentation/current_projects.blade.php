@@ -3,6 +3,7 @@
     $slideTitle = [];
     $slideText = [];
     $readMoreLink = [];
+    $slideImage = [];
     
     if (isset($parameters['feat_camp_link'])) {
         $featuredCompaignLink = $parameters['feat_camp_link'];    
@@ -19,6 +20,12 @@
             $slideText[$i] = $parameters['slide_text_' . $i];    
         } else {
             $slideText[$i] = ""; 
+        }
+
+        if (isset($parameters['slide_img_' . $i])) {
+            $slideImage[$i] = $parameters['slide_img_' . $i];    
+        } else {
+            $slideImage[$i] = ""; 
         }
 
         if (isset($parameters['read_more_link_' . $i])) {
@@ -51,7 +58,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="img" style="background-image: url(img/content/current-projects-1.jpg)">
+                    <div class="img" style="background-image: url({{ $slideImage[0] }})">
                         <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -66,7 +73,7 @@
             @for ($i = 1; $i < 4; $i++)
                 <div class="col-4">
                     <a href="#" class="item">
-                        <span class="img" style="background-image: url(img/content/current-projects-list-1.jpg)"></span>
+                        <span class="img" style="background-image: url({{ $slideImage[$i] }})"></span>
                         <span class="descr">
                             <span class="name font-size-16"><b>{{ $slideTitle[$i] }}</b></span>
                             <span class="text font-size-16">{{ $slideText[$i] }}</span>
