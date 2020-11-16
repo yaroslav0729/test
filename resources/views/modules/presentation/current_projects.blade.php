@@ -38,6 +38,8 @@
 
 @endphp
 
+<div class="current-projects-slider">
+
 <section class="current-projects">
     <div class="wrap">
         <div class="title">
@@ -49,17 +51,17 @@
             <div class="row gutter-0">
                 <div class="col-6">
                     <div class="left">
-                        <p class="font-size-30 mb-3"><b>{{ $slideTitle[0] }}</b></p>
-                        <p class="font-size-16 mb-5">{{ $slideText[0] }}</p>
+                        <p class="font-size-30 mb-3 font-weight-bold text-uppercase slide-title">{{ $slideTitle[0] }}</p>
+                        <p class="font-size-16 mb-5 slide-text">{{ $slideText[0] }}</p>
                         <div>
-                            <a href="{{ $readMoreLink[0] }}" class="btn btn-outline-primary mr-4">Read more</a>
+                            <a href="{{ $readMoreLink[0] }}" class="btn btn-outline-primary mr-4 slide-readmore">Read more</a>
                             <a href="#" class="btn btn-primary">Donate now</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="img" style="background-image: url({{ $slideImage[0] }})">
-                        <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+                    <div class="img slide-img" style="background-image: url({{ $slideImage[0] }})">
+                        <a href="#" id="current-proj-next-slide" class="view-more"><i class="far fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -71,12 +73,12 @@
     <div class="wrap">
         <div class="row">
             @for ($i = 1; $i < 4; $i++)
-                <div class="col-4">
+                <div class="col-4 slide_{{ $i }}">
                     <a href="#" class="item">
-                        <span class="img" style="background-image: url({{ $slideImage[$i] }})"></span>
+                        <span class="img slide-img" style="background-image: url({{ $slideImage[$i] }})"></span>
                         <span class="descr">
-                            <span class="name font-size-16"><b>{{ $slideTitle[$i] }}</b></span>
-                            <span class="text font-size-16">{{ $slideText[$i] }}</span>
+                            <span class="name font-weight-bold  font-size-16 slide-title">{{ $slideTitle[$i] }}</span>
+                            <span class="text font-size-16 slide-text">{{ $slideText[$i] }}</span>
                         </span>
                     </a>
                 </div>
@@ -84,3 +86,16 @@
         </div>
     </div>
 </section>
+
+<div class="d-none slider_data">
+    @for ($i = 0; $i < 4; $i++)
+        <div class="slide_{{ $i }}">
+            <div class="slider_data_title">{{ $slideTitle[$i] }}</div>
+            <div class="slider_data_text">{{ $slideText[$i] }}</div>
+            <div class="slider_data_img">{{ $slideImage[$i] }}</div>
+            <div class="slider_data_readmore">{{ $readMoreLink[$i] }}</div>
+        </div>
+    @endfor
+</div>
+
+</div>

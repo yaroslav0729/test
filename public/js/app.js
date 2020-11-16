@@ -103121,6 +103121,50 @@ $(function () {
         }
       }
     });
+  }); //~~~~~~~~~~~~~~~~~ Current projects slider ~~~~~~~~~~~~~~~~~~
+
+  var currentSlide = 0;
+  $(document).on('click', '#current-proj-next-slide', function (e) {
+    e.preventDefault();
+    currentSlide++;
+
+    if (currentSlide >= 4) {
+      currentSlide = 0;
+    }
+
+    var data = [];
+
+    for (var i = 0; i < 4; i++) {
+      var dataEl = $('.slider_data .slide_' + i);
+      var title = dataEl.find('.slider_data_title').text();
+      var text = dataEl.find('.slider_data_text').text();
+      var img = dataEl.find('.slider_data_img').text();
+      var readmore = dataEl.find('.slider_data_readmore').text();
+      data.push({
+        'title': title,
+        'text': text,
+        'img': img,
+        'readmore': readmore
+      });
+    }
+
+    var el1 = $('.current-projects');
+    el1.find('.slide-title').html(data[currentSlide].title);
+    el1.find('.slide-text').html(data[currentSlide].text);
+    el1.find('.slide-img').css('background-image', "url(" + data[currentSlide].img + ")");
+    el1.find('.slide-readmore').attr('href', data[currentSlide].readmore);
+    var dataCou = currentSlide + 1;
+    if (dataCou >= 4) dataCou = 0;
+
+    for (var _i = 1; _i < 4; _i++) {
+      var el2 = $('.current-projects-list .slide_' + _i);
+      dataCou = currentSlide + _i;
+      if (dataCou >= 4) dataCou = dataCou - 4;
+      el2.find('.slide-title').html(data[dataCou].title);
+      el2.find('.slide-text').html(data[dataCou].text);
+      el2.find('.slide-img').css('background-image', "url(" + data[dataCou].img + ")");
+      el2.find('.slide-readmore').attr('href', data[dataCou].readmore);
+    }
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }); //require('./functions');
 
