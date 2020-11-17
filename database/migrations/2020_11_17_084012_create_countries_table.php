@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateCountriesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('countries', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->boolean('enabled')->default(true);
+            $table->timestamps();
+        });
+
+        Schema::table('campaigns', function (Blueprint $table) {
+            $table->foreign('country_id')
+                    ->references('id')->on('countries')
+                    ->onDelete('set null');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('campaigns', function (Blueprint $table) {
+            $table->dropForeign('country_id');
+        });
+
+        Schema::dropIfExists('countries');
+    }
+}

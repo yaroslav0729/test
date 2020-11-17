@@ -20,7 +20,7 @@ class CreateCampaignsTable extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->boolean('is_emergency')->default(false);
-            $table->integer('country_id')->nullable();
+            $table->unsignedBigInteger('country_id')->nullable();
             $table->timestamps();
         });
     }

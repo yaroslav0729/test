@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UserRolesSeeder::class,
-            IndexPageSeeder::class
+            IndexPageSeeder::class,
+            CountriesSeeder::class
         ]);
     }
 }
