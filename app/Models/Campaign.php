@@ -32,8 +32,18 @@ class Campaign extends Model
         return $this->belongsToMany('App\Models\CampaignPrice');
     }
 
+    public function campaign_categories()
+    {
+        return $this->belongsToMany('App\Models\CampaignCategory', 'campaign_campaign_category', 'campaign_id', 'campaign_category_id');
+    }
+
     public function getCampaignPriceIdsAttribute()
     {
         return $this->campaign_prices->pluck('id')->toArray();
+    }
+
+    public function getCampaignCategoriesIdsAttribute()
+    {
+        return $this->campaign_categories->pluck('id')->toArray();
     }
 }

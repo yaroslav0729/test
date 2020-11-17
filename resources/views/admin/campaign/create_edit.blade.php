@@ -93,6 +93,21 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="groups">Campaign categories</label>
+                <select id="groups" name="categories[]" multiple class="form-control">
+                    @foreach (\App\Models\CampaignCategory::all() as $category)
+                        @php
+                            $selected = false;
+                            if ((isset($campaign)) && (in_array($category->id, $campaign->campaign_categories_ids))) {
+                                $selected = true;
+                            }
+                        @endphp
+                        <option value="{{ $category->id }}" @if($selected) selected @endif>{{ $category->name }}</option>   
+                    @endforeach
+                </select>
+            </div>
+
             <button class="btn btn-info" type="submit">
                 Submit
             </button>
