@@ -13,6 +13,16 @@
     $actionDescription = [];
     $actionLearnMoreLink = [];
 
+    for ($i=1; $i<=4; $i++) {
+        $actionActive[$i] = "";
+        $actionName[$i] = "";
+        $actionPhoto[$i] = "";
+        $actionSlogan[$i] = "";
+        $actionTitle[$i] = "";
+        $actionDescription[$i] = "";
+        $actionLearnMoreLink[$i] = "";
+    }
+
     for ($i=1; $i<=3; $i++){
         ${'storyPhoto' . $i} = "";
         ${'storyYear' . $i} = "";
@@ -47,9 +57,10 @@
         $mapImage = $parameters['map_image'];
     }
 
-    $actionActive = $parameters['action_active'] ?? [];
-
     for ($i=1; $i<=4; $i++){
+        if (isset($parameters['action_active_' . $i])) {
+            $actionActive[$i] = $parameters['action_active_' . $i];
+        }
         if (isset($parameters['action_name_' . $i])) {
             $actionName[$i] = $parameters['action_name_' . $i];
         }
@@ -108,7 +119,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Background image:</label>
-            <input class="form-control " required name="parameters[background_image]"
+            <input class="form-control" required name="parameters[background_image]"
                    placeholder="Insert background image path"
                    value="{{ $bgImage }}"/>
         </div>
@@ -117,12 +128,12 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Our mission title:</label>
-            <input class="form-control " required name="parameters[our_mission_title]" placeholder="Our mission title"
+            <input class="form-control" required name="parameters[our_mission_title]" placeholder="Our mission title"
                    value="{{ $ourMissionTitle }}"/>
         </div>
     </div>
 
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-6 mt-5">
         <div class="form-group">
             <label>Our values description:</label>
             <textarea class="form-control" required name="parameters[our_values_description]"
@@ -139,7 +150,7 @@
         </div>
     </div>
 
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-6 mt-5">
         <div class="form-group">
             <label>Map image path:</label>
             <input class="form-control" required name="parameters[map_image]"
@@ -161,16 +172,15 @@
     </nav>
     <div class="tab-content" id="nav-tabContent">
         @for ($i = 1; $i <= 4; $i++)
-
             <div class="tab-pane fade show @if($i === 1)active @endif" id="nav-action-{{ $i }}" role="tabpanel"
                  aria-labelledby="nav-home-tab">
                 <div class="row mt-3">
 
                     <div class="col-12">
                         <div class="form-check">
-                            <input class="form-check-input" name="parameters[action_active][]" type="checkbox"
+                            <input class="form-check-input" name="parameters[action_active_{{ $i }}]" type="checkbox"
                                    value="{{ $i }}" id="defaultCheck{{ $i }}"
-                                   @if(in_array($i, $actionActive ))checked @endif>
+                                   @empty(!$actionActive[$i]) checked @endempty>
                             <label class="form-check-label" for="defaultCheck{{ $i }}">
                                 Active block
                             </label>
@@ -344,5 +354,4 @@
 @include('modules.admin.join_the_cause_subscribe', [
     'parameters' => $parameters
 ])
-
 

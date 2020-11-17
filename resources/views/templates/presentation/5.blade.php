@@ -24,7 +24,6 @@
         ${'lifeChangingPhrase' . $i} = "";
     }
 
-
     $lifeChangingBlockTitle = "";
     $lifeChangingBlockText = "";
 
@@ -115,8 +114,6 @@
                 <p class="pr-5">{!! $ourValuesDescription !!}</p>
             </div>
             <div class="col-6">
-                {{--                <div class="img-video" style="background-image: url(img/content/our-values-1.jpg)">
-                                    <i class="fas fa-play-circle"></i></div>--}}
                 <div class="img-video play-tr videoWrapper" style="">
                     <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $ourValuesVideo }}"
                             frameborder="0"
@@ -148,8 +145,7 @@
                                  role="tabpanel">
                                 <div class="row gutter-0">
                                     <div class="col-6 img"
-                                         style="background-image: url('/img/content/{{ $actionPhoto[$i] }}')">
-                                        &nbsp;
+                                         style="background-image: url('/img/content/{{ $actionPhoto[$i] }}')">                                        &nbsp;
                                     </div>
                                     <div class="col-6 bg-primary-light text">
                                         <div>
@@ -181,7 +177,6 @@
         </div>
     </section>
 @endempty
-
 
 <section class="our-story-swiper" swiper-wrapper="our-story">
     <div class="wrap">
@@ -271,27 +266,4 @@
     </div>
 </section>
 
-
-{{--<section class="join-cause-2">
-    <div class="wrap">
-        <div>
-            <div class="row align-items-center">
-                <div class="col-7">
-                    <div class="title mb-3">
-                        <p class="font-size-30"><b>JOIN THE CAUSE</b></p>
-                    </div>
-                    <p  class="font-size-20 mb-5">There are so many ways to help, make sure you stay in the loop and <a href="#" class="text-underline text-dark">sign up</a> to our Newsletter!</p>
-                </div>
-                <div class="col-5 pr-4">
-                    <img src="img/content/join-cause-2.jpg" alt="" class="w-100">
-                    <i class="fal fa-plus decor-plus"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>--}}
-
 @include('modules.presentation.join_the_cause_subscribe')
-{{--@include('modules.presentation.join_the_cause_subscribe2')--}}
-{{--@include('modules.presentation.related_pages')--}}
-
