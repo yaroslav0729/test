@@ -6,6 +6,7 @@
         $description = $campaign->description;
         $startDate = $campaign->start_date;
         $endDate = $campaign->end_date;
+        $countryId = $campaign->country_id;
     } else {
         $pageTitle = 'Create campaign:';
         $actionRoute = route('admin.campaigns.store');
@@ -13,6 +14,7 @@
         $description = old('description');
         $startDate = old('startDate');
         $endDate = old('endDate');
+        $countryId = null;
     }
 @endphp
 
@@ -52,6 +54,18 @@
             <div class="form-group">
                 <label for="description">description</label><br>
                 <textarea id="description" required class="form-control" name="description">{{ $description }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Country</label><br>
+                <select name="country_id" class="form-control">
+                    <option value="">Not selected</option>
+                    @foreach (\App\Models\Country::getAllEnabled() as $country)
+                      <option value="{{ $country->id }}"
+                      @if($countryId === $country->id) selected @endif
+                      >{{ $country->name }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="form-group">

@@ -12,7 +12,18 @@ class Campaign extends Model
     protected $fillable = [
         'name',
         'description',
+        'country_id',
         'start_date',
         'end_date'
     ];
+
+    public function country()
+    {
+        return $this->belongsTo('App\Models\Country');
+    }
+
+    public function getCountryNameAttribute()
+    {
+        return $this->country->name;
+    }
 }

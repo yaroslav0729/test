@@ -29,6 +29,7 @@
                 <th class="px-4 py-2">Id</th>
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Description</th>
+                <th class="px-4 py-2">Country</th>
                 <th class="px-4 py-2">Created at</th>
                 <th class="px-4 py-2">Action</th>
               </tr>
@@ -40,6 +41,7 @@
                         <td class="border px-4 py-2">{{ $campaign->id }}</td>
                         <td class="border px-4 py-2">{{ $campaign->name }}</td>
                         <td class="border px-4 py-2">{{ $campaign->description }}</td>
+                        <td class="border px-4 py-2">{{ $campaign->country_name }}</td>
                         <td class="border px-4 py-2">{{ $campaign->created_at->format('d/m/Y') }}</td>
                         <td class="border px-4 py-2 action_td">
                           <a href="{{ route('admin.campaigns.edit', ['campaign' => $campaign->id]) }}">

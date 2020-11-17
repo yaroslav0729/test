@@ -208,4 +208,9 @@ class Country extends Model
         "Zambia",
         "Zimbabwe",
     ];
+
+    public static function getAllEnabled()
+    {
+        return self::where('enabled', true)->get();
+    }
 }
