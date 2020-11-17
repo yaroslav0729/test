@@ -6,6 +6,7 @@
         <li><a href="{{ route('admin.pages.index') }}"><i class="fas fa-file-alt"></i>Pages</a></li>
         <li><a href="{{ route('admin.category.index') }}"><i class="fas fa-folder-open"></i>Categories</a></li>
         <li><a href="{{ route('admin.campaigns.index') }}"><i class="far fa-building"></i>Campaigns</a></li>
+        <li><a href="{{ route('admin.campaign_prices.index') }}"><i class="fas fa-dollar-sign"></i>Campaign prices</a></li>
         <li><a href="{{ route('admin.subscription.index') }}"><i class="fas fa-book"></i>Subscriptions</a></li>
         <li><a href="{{ route('media.index') }}"><i class="fas fa-photo-video"></i>Media</a></li>
         <li><a href="#"><i class="fas fa-sliders-h"></i>Settings</a></li>
