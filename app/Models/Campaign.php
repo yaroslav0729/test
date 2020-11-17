@@ -26,4 +26,14 @@ class Campaign extends Model
     {
         return $this->country->name;
     }
+
+    public function campaign_prices()
+    {
+        return $this->belongsToMany('App\Models\CampaignPrice');
+    }
+
+    public function getCampaignPriceIdsAttribute()
+    {
+        return $this->campaign_prices->pluck('id')->toArray();
+    }
 }

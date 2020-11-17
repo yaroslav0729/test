@@ -41,6 +41,10 @@ class CampaignsController extends Controller
     {
         $campaign = Campaign::create($request->all());
 
+        $cPriceIds = $request->input('prices');
+        $campaign->campaign_prices()->attach($cPriceIds);
+        $campaign->save();
+
         return redirect()->route('admin.campaigns.index')->with('status', 'Campaign created successfully!');
     }
 
@@ -79,6 +83,11 @@ class CampaignsController extends Controller
     {
         $campaign = Campaign::findOrFail($id);
         $campaign->update($request->all());
+
+        $cPriceIds = $request->input('prices');
+        $campaign->campaign_prices()->detach();
+        $campaign->campaign_prices()->attach($cPriceIds);
+        $campaign->save();
 
         return redirect()->route('admin.campaigns.index')->with('status', 'Campaign updated!');
     }

@@ -78,6 +78,21 @@
                 <input id="name" required name="end_date" class="form-control" type="date" value="{{ $endDate }}" /><br>
             </div>
 
+            <div class="form-group">
+                <label for="groups">Campaign prices</label>
+                <select id="groups" name="prices[]" multiple class="form-control">
+                    @foreach (\App\Models\CampaignPrice::all() as $price)
+                        @php
+                            $selected = false;
+                            if ((isset($campaign)) && (in_array($price->id, $campaign->campaign_price_ids))) {
+                                $selected = true;
+                            }
+                        @endphp
+                        <option value="{{ $price->id }}" @if($selected) selected @endif>{{ $price->value }} - {{ $price->type_label }}</option>   
+                    @endforeach
+                </select>
+            </div>
+
             <button class="btn btn-info" type="submit">
                 Submit
             </button>
