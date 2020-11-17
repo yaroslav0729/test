@@ -94,7 +94,7 @@ class CampaignsController extends Controller
         $campaign->save();
 
         $categories = $request->input('categories');
-        $campaign->campaign_prices()->detach();
+        $campaign->campaign_categories()->detach();
         $campaign->campaign_categories()->attach($categories);
         $campaign->save();
 

@@ -4,7 +4,7 @@
     
 <div id="admin_content" class="bg-gray-100 flex-auto h-screen">
     <div class="p-5 pb-8">
-        <h1>Campaign categoriess:</h1>
+        <h1>Campaign categories:</h1>
 
         @if (session('status'))
             <div class="alert alert-success" role="alert">

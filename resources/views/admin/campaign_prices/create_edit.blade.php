@@ -7,7 +7,7 @@
         $type = $campaignPrice->type;
 
     } else {
-        $pageTitle = 'Create campaign:';
+        $pageTitle = 'Create campaign price:';
         $actionRoute = route('admin.campaign_prices.store');
         $value = old('value');
         $type = old('type');
