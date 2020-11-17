@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\CreateEditPriceRequest;
 use App\Models\CampaignPrice;
 
 class CampaignPricesController extends Controller
@@ -36,7 +37,7 @@ class CampaignPricesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateEditPriceRequest $request)
     {
         $campaign = CampaignPrice::create($request->all());
 
@@ -74,7 +75,7 @@ class CampaignPricesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateEditPriceRequest $request, $id)
     {
         $campaignPrice = CampaignPrice::findOrFail($id);
         $campaignPrice->update($request->all());
