@@ -1,9 +1,5 @@
 @php
 
-$hdrType = "";
-$hdrTitle = "";
-$hdrText = "";
-$hdrLearnMoreLink = "";
 $whoVideo = "";
 $whoLink = "";
 $whoLinkText = "";
@@ -15,159 +11,156 @@ $volunteeringLink = "";
 $sadiqahLink = "";
 $relatedPages = [];
 
+    $hdrTypeActive = [];
+    $hdrType = [];
+    $hdrLinkText = [];
+    $hdrLearnMoreLink = [];
+    $hdrTitle = [];
+    $hdrText = [];
+    $hdrBgImage = [];
 
-if (isset($parameters['hdr_type'])) {
-    $hdrType = (int)$parameters['hdr_type'];    
-}
+    for ($i=1; $i<=4; $i++) {
+        $hdrTypeActive[$i] = "";
+        $hdrType[$i] = "";
+        $hdrLinkText[$i] = "";
+        $hdrLearnMoreLink[$i] = "";
+        $hdrTitle[$i] = "";
+        $hdrText[$i] = "";
+        $hdrBgImage[$i] = "";
+    }
 
-if (isset($parameters['hdr_title'])) {
-    $hdrTitle = $parameters['hdr_title'];    
-}
-
-if (isset($parameters['hdr_text'])) {
-    $hdrText = $parameters['hdr_text'];    
-}
-
-if (isset($parameters['hdr_learn_more'])) {
-    $hdrLearnMoreLink = $parameters['hdr_learn_more'];    
-}
+    for ($i=1; $i<=4; $i++){
+        if (isset($parameters['hdr_type_active_' . $i])) {
+            $hdrTypeActive[$i] = $parameters['hdr_type_active_' . $i];
+        }
+        if (isset($parameters['hdr_type_' . $i])) {
+            $hdrType[$i] = $parameters['hdr_type_' . $i];
+        }
+        if (isset($parameters['hdr_link_text_' . $i])) {
+            $hdrLinkText[$i] = $parameters['hdr_link_text_' . $i];
+        }
+        if (isset($parameters['hdr_learn_more_link_' .$i])) {
+            $hdrLearnMoreLink[$i] = $parameters['hdr_learn_more_link_' . $i];
+        }
+        if (isset($parameters['hdr_title_' .$i])) {
+            $hdrTitle[$i] = $parameters['hdr_title_' . $i];
+        }
+        if (isset($parameters['hdr_text_' .$i])) {
+            $hdrText[$i] = $parameters['hdr_text_' . $i];
+        }
+        if (isset($parameters['hdr_bg_image_' .$i])) {
+            $hdrBgImage[$i] = $parameters['hdr_bg_image_' . $i];
+        }
+    }
 
 if (isset($parameters['who_we_are_wideo'])) {
-    $whoVideo = $parameters['who_we_are_wideo'];    
+    $whoVideo = $parameters['who_we_are_wideo'];
 }
 
 if (isset($parameters['who_we_are_link'])) {
-    $whoLink = $parameters['who_we_are_link'];    
+    $whoLink = $parameters['who_we_are_link'];
 }
 
 if (isset($parameters['who_we_are_link_text'])) {
-    $whoLinkText = $parameters['who_we_are_link_text'];    
+    $whoLinkText = $parameters['who_we_are_link_text'];
 }
 
 if (isset($parameters['who_we_are_title'])) {
-    $whoTitle = $parameters['who_we_are_title'];    
+    $whoTitle = $parameters['who_we_are_title'];
 }
 
 if (isset($parameters['who_we_are_text'])) {
-    $whoText = $parameters['who_we_are_text'];    
+    $whoText = $parameters['who_we_are_text'];
 }
 
 if (isset($parameters['our_work_longterm_link'])) {
-    $longtermLink = $parameters['our_work_longterm_link'];    
+    $longtermLink = $parameters['our_work_longterm_link'];
 }
 
 if (isset($parameters['our_work_emergency_link'])) {
-    $emergencyLink = $parameters['our_work_emergency_link'];    
+    $emergencyLink = $parameters['our_work_emergency_link'];
 }
 
 if (isset($parameters['our_work_volunteering_link'])) {
-    $volunteeringLink = $parameters['our_work_volunteering_link'];    
+    $volunteeringLink = $parameters['our_work_volunteering_link'];
 }
 
 if (isset($parameters['our_work_sadiqah_link'])) {
-    $sadiqahLink = $parameters['our_work_sadiqah_link'];    
+    $sadiqahLink = $parameters['our_work_sadiqah_link'];
 }
 
 @endphp
 
-@if($hdrType === 1)
-    <section class="main-page-header style-1">
-        <div class="wrap">
-            <div class="body">
-                <div class="left">
-                    <div class="mb-4">
-                        <a href="{{ $hdrLearnMoreLink }}" class="text-underline text-dark"><b>LEARN MORE</b></a>
-                    </div>
-                    <div class="title mb-3">{!! $hdrTitle !!}</div>
-                    <p class="mb-5">{!! $hdrText !!}</p>
-                    <a href="#" class="btn btn-info">Donate now</a>
-                </div>
-                <div class="right" style="background-image: url('img/content/adrianna-van-groningen-NvD9zZ7nn8Q-unsplash.jpg')"></div>
-                <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
-            </div>
-        </div>
-    </section>
-@endif
-
-@if($hdrType === 2)
-    <section class="main-page-header style-2">
-        <div class="wrap">
-            <div class="body">
-                <div class="left">
-                    <div class="mb-4">
-                        <a href="{{ $hdrLearnMoreLink }}" class="text-underline text-dark"><b>LEARN MORE</b></a>
-                    </div>
-                    <div class="title mb-3">{!! $hdrTitle !!}</div>
-                    <p class="mb-5">{!! $hdrText !!}</p>
-                    <a href="#" class="btn btn-danger">Donate now</a>
-                </div>
-                <div class="right" style="background-image: url('img/content/main-page-header-2.jpg')"></div>
-                <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
-            </div>
-        </div>
-    </section>
-@endif
-
-@if($hdrType === 3)
-    <section class="main-page-header style-3" style="background-image: url('img/content/main-page-header-3.jpg');">
-        <div class="row">
-            <div class="col-6">
-                <div class="donate-progress">
-                    <div class="row mb-3">
-                        <div class="col-12 text-right"><b>14</b></div>
-                        <div class="col-6">
-                            £2'642 / £10'000 RAISED</div>
-                        <div class="col-6 text-right">DAY TO GO</div>
-                    </div>
-                    <div class="line green"><div style="width: 40%"></div></div>
+@empty(!$hdrTypeActive)
+    @if(in_array('2', $hdrType))
+        <section class="main-page-header style-3" swiper-wrapper="header1" style="background-image: url('img/content/main-page-header-3.jpg');">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                @for ($i = 1; $i <= 4; $i++)
+                    @if(in_array($i, $hdrTypeActive ))
+                        <div class="swiper-slide">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="donate-progress">
+                                        <div class="row mb-3">
+                                            <div class="col-12 text-right"><b>14</b></div>
+                                            <div class="col-6">
+                                                £2'642 / £10'000 RAISED</div>
+                                            <div class="col-6 text-right">DAY TO GO</div>
+                                        </div>
+                                        <div class="line green"><div style="width: 40%"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="body">
+                                        <div class="mb-4">
+                                            <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
+                                        </div>
+                                        <div class="title mb-3">{!! $hdrTitle[$i] !!}</div>
+                                        <p class="mb-5">{!! $hdrText[$i] !!}</p>
+                                        <a href="#" class="btn btn-info">Donate now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endfor
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
+            <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
+            <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
+        </section>
+    @else
+        <section class="main-page-header style-1 loop" swiper-wrapper="header2">
+            <div class="wrap">
                 <div class="body">
-                    <div class="mb-4">
-                        <a href="{{ $hdrLearnMoreLink }}" class="text-underline text-dark"><b>LEARN MORE</b></a>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                        @for ($i = 1; $i <= 4; $i++)
+                            @if(in_array($i, $hdrTypeActive ))
+                                <div class="swiper-slide">
+                                    <div class="left">
+                                        <div class="mb-4">
+                                            <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
+                                        </div>
+                                        <div class="title mb-3">{!! $hdrTitle[$i] !!}</div>
+                                        <p class="mb-5">{!! $hdrText[$i] !!}</p>
+                                        <a href="#" class="btn btn-info">Donate now</a>
+                                    </div>
+                                    <div class="right" style="background-image: url('img/content/{{ $hdrBgImage[$i] }}')"></div>
+                                    <a href="#" class="view-more swiper-button-next"><i class="far fa-arrow-right"></i></a>
+                                </div>
+                            @endif
+                        @endfor
+                       </div>
                     </div>
-                    <div class="title mb-3">{!! $hdrTitle !!}</div>
-                    <p class="mb-5">{!! $hdrText !!}</p>
-                    <a href="#" class="btn btn-info">Donate now</a>
                 </div>
             </div>
-        </div>
-    </section>
-@endif
-
-@if($hdrType === 4)
-    <section class="main-page-header style-4" style="background-image: url('img/content/main-page-header-4.jpg');">
-        <div class="row">
-            <div class="col-6">
-                <div class="donate-progress">
-                    <div class="row mb-3">
-                        <div class="col-12 text-right"><b>14</b></div>
-                        <div class="col-6">
-                            £2'642 / £10'000 RAISED</div>
-                        <div class="col-6 text-right">DAY TO GO</div>
-                    </div>
-                    <div class="line red"><div style="width: 40%"></div></div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="body">
-                    <div class="mb-4">
-                        <a href="{{ $hdrLearnMoreLink }}" class="text-underline text-white"><b>LEARN MORE</b></a>
-                    </div>
-                    <div class="title mb-3">{!! $hdrTitle !!}</div>
-                    <p class="mb-5">{!! $hdrText !!}</p>
-                    <a href="#" class="btn btn-danger">Donate now</a>
-                </div>
-            </div>
-        </div>
-    </section>
-@endif
-
+        </section>
+    @endif
+@endempty
 
 <div class="wrap">
     <section class="quick-donation">
