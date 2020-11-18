@@ -30,7 +30,7 @@ class Campaign extends Model
 
     public function campaign_prices()
     {
-        return $this->hasMany('App\Models\CampaignPrice');
+        return $this->hasMany('App\Models\CampaignPrice')->orderBy('type')->orderBy('value');
     }
 
     public function campaign_categories()
