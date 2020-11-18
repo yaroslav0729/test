@@ -7,6 +7,7 @@
         $startDate = $campaign->start_date;
         $endDate = $campaign->end_date;
         $countryId = $campaign->country_id;
+        $isEmergency = $campaign->is_emergency;
     } else {
         $pageTitle = 'Create campaign:';
         $actionRoute = route('admin.campaigns.store');
@@ -15,6 +16,7 @@
         $startDate = old('startDate');
         $endDate = old('endDate');
         $countryId = null;
+        $isEmergency = old('isEmergency');
     }
 @endphp
 
@@ -78,6 +80,11 @@
                 <input id="name" required name="end_date" class="form-control" type="date" value="{{ $endDate }}" /><br>
             </div>
 
+            <div class="form-group">
+                <label for="is_emergency">Is emergency</label>
+                <input id="is_emergency" name="is_emergency" type="checkbox" @if($isEmergency) checked @endif /><br>
+            </div>
+
             <div price-container>
                 <label for="groups">Campaign prices</label><br>
                 <button price-add class="btn btn-success mb-3" type="button">Add new price</button>
@@ -98,7 +105,7 @@
                     @isset($campaign)
                         @foreach ($campaign->campaign_prices as $price)
                             <div class="form-group form-inline price">
-                                <input name="prices[{{ $price->id }}]" class="form-control mr-2" type="number" value="{{ $price->value }}">
+                                <input name="prices[{{ $price->id }}]" required class="form-control mr-2" type="number" value="{{ $price->value }}">
                                 <select name="price_types[{{ $price->id }}]" class="form-control mr-2">
                                     @foreach (\App\Models\CampaignPrice::ALL_TYPES as $priceId => $priceLabel)
                                         <option value="{{ $priceId }}" 

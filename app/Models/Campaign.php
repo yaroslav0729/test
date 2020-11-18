@@ -15,7 +15,7 @@ class Campaign extends Model
         'description',
         'country_id',
         'start_date',
-        'end_date'
+        'end_date',
     ];
 
     public function country()
@@ -85,6 +85,19 @@ class Campaign extends Model
                     'campaign_id' => $this->id
                 ]);
             }
+        }
+    }
+
+    public function saveIsEmergency($request)
+    {
+        $isEmergency = $request->input('is_emergency');
+
+        if (($isEmergency === 'on') && (!$this->is_emergency)) {
+            $this->is_emergency = true;
+            $this->save();
+        } else if ($this->is_emergency) {
+            $this->is_emergency = false;
+            $this->save();
         }
     }
 }
