@@ -36,7 +36,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         Route::resource('category', CategoryController::class, ['as' => 'admin']);
         Route::resource('subscription', SubscriptionController::class, ['as' => 'admin']);
         Route::resource('campaigns', CampaignsController::class, ['as' => 'admin']);
-        Route::resource('campaign_prices', CampaignPricesController::class, ['as' => 'admin']);
         Route::resource('campaign_categories', CampaignCategoryController::class, ['as' => 'admin']);
 
         Route::get('/preview_version/{id}', [AdminPageController::class, 'preview'])->name('admin.pages.preview');
