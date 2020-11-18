@@ -90,14 +90,14 @@
                                 <option value="{{ $priceId }}" />{{ $priceLabel }}</option>
                             @endforeach
                         </select>
-                        <button class="btn btn-danger" price-delete title="delete price"><i class="far fa-trash-alt"></i></button>
+                        <button class="btn btn-danger" price-delete title="delete price" type="button"><i class="far fa-trash-alt"></i></button>
                     </div>
                 </div>
 
                 <div class="" price-list>
                     @isset($campaign)
                         @foreach ($campaign->campaign_prices as $price)
-                            <div class="form-group form-inline">
+                            <div class="form-group form-inline price">
                                 <input name="prices[{{ $price->id }}]" class="form-control mr-2" type="number" value="{{ $price->value }}">
                                 <select name="price_types[{{ $price->id }}]" class="form-control mr-2">
                                     @foreach (\App\Models\CampaignPrice::ALL_TYPES as $priceId => $priceLabel)
@@ -106,7 +106,7 @@
                                         />{{ $priceLabel }}</option>
                                     @endforeach
                                 </select>
-                                <button class="btn btn-danger" price-delete title="delete price"><i class="far fa-trash-alt"></i></button>
+                                <button class="btn btn-danger" price-delete title="delete price" type="button"><i class="far fa-trash-alt"></i></button>
                             </div>
                         @endforeach
                     @endisset

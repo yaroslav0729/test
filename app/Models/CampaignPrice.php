@@ -25,6 +25,7 @@ class CampaignPrice extends Model
     protected $fillable = [
         'value',
         'type',
+        'campaign_id'
     ];
 
     public function campaign()

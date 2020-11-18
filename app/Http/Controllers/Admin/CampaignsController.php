@@ -42,8 +42,8 @@ class CampaignsController extends Controller
         $campaign = Campaign::create($request->all());
 
         $prices = $request->input('prices');
-        $campaign->campaign_prices()->attach($prices);
-        $campaign->save();
+        
+        $campaign->updatePrices($request);
 
         $categories = $request->input('categories');
         $campaign->campaign_categories()->attach($categories);
@@ -85,16 +85,11 @@ class CampaignsController extends Controller
      */
     public function update(CampaignCreateEditRequest $request, $id)
     {
-        dd($request->all());
-
         $campaign = Campaign::findOrFail($id);
         $campaign->update($request->all());
 
-        $prices = $request->input('prices');
-        $campaign->campaign_prices()->detach();
-        $campaign->campaign_prices()->attach($prices);
-        $campaign->save();
-
+        $campaign->updatePrices($request);
+        
         $categories = $request->input('categories');
         $campaign->campaign_categories()->detach();
         $campaign->campaign_categories()->attach($categories);
