@@ -29,7 +29,7 @@ class ProjectsPageSeeder extends Seeder
 
             $pageInstance = PageInstance::create([
                 'page_id' =>$page->id,
-                'name' => 'Index page',
+                'name' => 'Projects page',
                 'slug' => 'donate',
                 'template' => Template::PROJECTS_PAGE,
                 'actual' => true
