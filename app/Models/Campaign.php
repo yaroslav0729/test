@@ -29,7 +29,7 @@ class Campaign extends Model
 
     public function campaign_prices()
     {
-        return $this->belongsToMany('App\Models\CampaignPrice');
+        return $this->hasMany('App\Models\CampaignPrice');
     }
 
     public function campaign_categories()

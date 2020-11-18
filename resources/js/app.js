@@ -167,6 +167,27 @@ $(function () {
         
     })
 
+    //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('submit', '[prices-form]', function (event) {
+        //event.preventDefault();
+
+        // remove stup items
+        let stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
+        stub.attr('disabled', 'disabled');
+
+        return true
+    });
+
+    $(document).on('click', '[price-add]', function () {
+        let wrap = $(this).closest('[price-container]');
+        let priceList = $('[price-list]', wrap);
+        priceList.append($('[price-stub]', wrap).html());
+    });
+
+    $(document).on('click', '[price-delete]', function () {
+        let wrap = $(this).closest('.price').remove();
+    });
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 })

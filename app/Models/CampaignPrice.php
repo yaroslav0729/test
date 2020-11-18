@@ -26,4 +26,9 @@ class CampaignPrice extends Model
         'value',
         'type',
     ];
+
+    public function campaign()
+    {
+        return $this->belongsTo('App\Models\Campaign');
+    }
 }

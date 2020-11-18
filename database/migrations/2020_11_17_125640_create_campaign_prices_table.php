@@ -17,7 +17,12 @@ class CreateCampaignPricesTable extends Migration
             $table->id();
             $table->integer('value');
             $table->tinyInteger('type');
+            $table->unsignedBigInteger('campaign_id');
             $table->timestamps();
+
+            $table->foreign('campaign_id')
+                    ->references('id')->on('campaigns')
+                    ->onDelete('cascade');
         });
     }
 

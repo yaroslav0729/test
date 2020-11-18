@@ -103165,6 +103165,22 @@ $(function () {
       el2.find('.slide-img').css('background-image', "url(" + data[dataCou].img + ")");
       el2.find('.slide-readmore').attr('href', data[dataCou].readmore);
     }
+  }); //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('submit', '[prices-form]', function (event) {
+    //event.preventDefault();
+    // remove stup items
+    var stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
+    stub.attr('disabled', 'disabled');
+    return true;
+  });
+  $(document).on('click', '[price-add]', function () {
+    var wrap = $(this).closest('[price-container]');
+    var priceList = $('[price-list]', wrap);
+    priceList.append($('[price-stub]', wrap).html());
+  });
+  $(document).on('click', '[price-delete]', function () {
+    var wrap = $(this).closest('.price').remove();
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }); //require('./functions');
 

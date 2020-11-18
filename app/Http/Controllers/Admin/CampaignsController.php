@@ -85,6 +85,8 @@ class CampaignsController extends Controller
      */
     public function update(CampaignCreateEditRequest $request, $id)
     {
+        dd($request->all());
+
         $campaign = Campaign::findOrFail($id);
         $campaign->update($request->all());
 
