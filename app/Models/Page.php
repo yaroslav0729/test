@@ -63,4 +63,12 @@ class Page extends Model
         PageInstance::where('page_id', $this->id)
             ->whereNotIn('id', $ids)->delete();
     }
+
+    public static function getProjectsUrl()
+    {
+        $page = Page::where('type', self::TYPE_PROJECTS_PAGE)->first();
+        $slug = $page->actual_page_instance->slug;
+
+        return url($slug);
+    }
 }
