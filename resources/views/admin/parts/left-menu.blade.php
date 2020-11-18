@@ -9,7 +9,7 @@
         <li><a href="{{ route('admin.campaign_categories.index') }}"><i class="fas fa-clone"></i></i>Campaign categories</a></li>
         <li><a href="{{ route('admin.subscription.index') }}"><i class="fas fa-book"></i>Subscriptions</a></li>
         <li><a href="{{ route('media.index') }}"><i class="fas fa-photo-video"></i>Media</a></li>
-        <li><a href="#"><i class="fas fa-sliders-h"></i>Settings</a></li>
+        <li><a href="{{ route('admin.settings.index') }}"><i class="fas fa-sliders-h"></i>Settings</a></li>
     </ul>
     <br><br>
 

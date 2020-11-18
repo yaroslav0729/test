@@ -8,6 +8,8 @@ class Template
     const EVENT_PAGE = 2;
     const INDEX_PAGE = 3;
     const MEDIA_CENTER_PAGE = 4;
+    const PROJECTS_PAGE = 5;
+    const PROJECT_PAGE = 6;
     const TEST_PAGE = 100;
 
 
@@ -16,6 +18,8 @@ class Template
         self::EVENT_PAGE,
         self::INDEX_PAGE,
         self::MEDIA_CENTER_PAGE,
+        self::PROJECTS_PAGE,
+        self::PROJECT_PAGE,
         self::TEST_PAGE
     ];
 
@@ -26,8 +30,10 @@ class Template
             case self::EVENT_PAGE:return "Event page";
             case self::INDEX_PAGE:return "Index page";
             case self::MEDIA_CENTER_PAGE:return "Media center page";
+            case self::PROJECTS_PAGE: return "projects page";
+            case self::PROJECT_PAGE: return "Project page";
             case self::TEST_PAGE:return "Test page";
-
+            
             default:return "Unknown template type";
         }
     }

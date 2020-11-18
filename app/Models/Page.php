@@ -11,6 +11,7 @@ class Page extends Model
     use HasFactory;
 
     const TYPE_INDEX_PAGE = 1;
+    const TYPE_PROJECTS_PAGE = 2;
 
     const PAGE_STATUS_MOVED_TO_TRASH = 0;
     const PAGE_STATUS_EDITED = 1;
