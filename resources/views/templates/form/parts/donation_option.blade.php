@@ -25,14 +25,12 @@
             <select name="parameters[amount][{{ $optionKey }}][campaings][]" multiple class="form-control">
                 @foreach (\App\Models\Campaign::allActive()->get() as $campaign)
                 
-                @php
-
-                    if ((isset($donationCampaings)) && (in_array($campaign->id, $donationCampaings))) {
-                        $selected = true;
-                    } else {
-                        $selected = false;
-                    }
-                        
+                    @php
+                        if ((isset($donationCampaings)) && (in_array($campaign->id, $donationCampaings))) {
+                            $selected = true;
+                        } else {
+                            $selected = false;
+                        }
                     @endphp
                 
                 <option value="{{ $campaign->id }}"
