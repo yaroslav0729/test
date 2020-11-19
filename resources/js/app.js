@@ -27,7 +27,6 @@ $(function () {
 
     initWysiwyg();
     initSwiper();
-
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     $(document).on('change', '[name="template"]', selectTemplateRequest);
