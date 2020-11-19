@@ -67,8 +67,13 @@ class Page extends Model
     public static function getProjectsUrl()
     {
         $page = Page::where('type', self::TYPE_PROJECTS_PAGE)->first();
-        $slug = $page->actual_page_instance->slug;
 
+        if ($page) {
+            $slug = $page->actual_page_instance->slug;
+        } else {
+            $slug = "";
+        }
+        
         return url($slug);
     }
 }
