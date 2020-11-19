@@ -16,7 +16,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>Donation text</label><br>
-            <textarea class="form-control" name="parameters[amount][{{ $optionKey }}][text]" placeholder="Enter text here...">@isset($donationText){{ $donationText }}@endisset</textarea>
+            <input name="parameters[amount][{{ $optionKey }}][text]" type="text" placeholder="Enter text here..." value="@isset($donationText){{ $donationText }}@endisset" class="form-control" />
         </div>
     </div>
     <div class="col-md-12">
