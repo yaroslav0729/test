@@ -1,5 +1,5 @@
 @php 
-    if (!isset($optionKey)) $optionKey = '{new}' // will be replaced by js
+    if (!isset($optionKey)) $optionKey = '{new}'; // will be replaced by js
 @endphp
 
 <div class="row border border-secondary option rounded p-2 mb-3">
@@ -24,8 +24,20 @@
             <label>Selected campaigns</label><br>
             <select name="parameters[amount][{{ $optionKey }}][campaings][]" multiple class="form-control">
                 @foreach (\App\Models\Campaign::allActive()->get() as $campaign)
-                  <option value="{{ $campaign->id }}"
-                  >{{ $campaign->name }}</option>
+                
+                @php
+
+                    if ((isset($donationCampaings)) && (in_array($campaign->id, $donationCampaings))) {
+                        $selected = true;
+                    } else {
+                        $selected = false;
+                    }
+                        
+                    @endphp
+                
+                <option value="{{ $campaign->id }}"
+                    @if($selected) selected @endif
+                    >{{ $campaign->name }}</option>
                 @endforeach
             </select>
         </div>
