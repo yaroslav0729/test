@@ -16,7 +16,10 @@
             </div>
         </div>
 
-        @include('modules.presentation.projects_donate', ['parameters' => $parameters])
+        @include('modules.presentation.projects_donate', [
+            'parameters' => $parameters,
+            'useAppeal' => true
+        ])
 
     </div>
 </section>

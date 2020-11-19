@@ -1,4 +1,19 @@
 @php
+
+    $donateImg = "";
+    $donateText = "";
+
+    if (isset($parameters['donate_img'])) {
+        $donateImg = $parameters['donate_img'];    
+    }
+
+    if (isset($parameters['donate_text'])) {
+        $donateText = $parameters['donate_text'];    
+    }
+
+@endphp
+
+@php
  
 $amount = [];
 
@@ -12,7 +27,11 @@ if (isset($parameters['amount'])) {
     <div class="row gutter-0">
         <div class="col-6">
             <div class="media">
-                <img src="img/content/donate-today-1.jpg" alt="" class="w-100">
+                @empty($donateImg)
+                    <img src="img/content/donate-today-1.jpg" alt="" class="w-100">
+                @else
+                    <img src="{{ $donateImg }}" alt="" class="w-100">
+                @endempty
             </div>
         </div>
         <div class="col-6">
@@ -22,7 +41,9 @@ if (isset($parameters['amount'])) {
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                         <a class="nav-link active"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true">Single Donation</a>
                         <a class="nav-link color-info"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false">Monthly Donation</a>
+                        @isset($useAppeal)
                         <a class="nav-link color-red"  data-toggle="tab" href="#nav-3" role="tab"  aria-selected="false">Appeal Donation</a>
+                        @endisset
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -117,6 +138,7 @@ if (isset($parameters['amount'])) {
                             </div>
                         </form>
                     </div>
+                    @isset($useAppeal)
                     <div class="tab-pane fade" id="nav-3" role="tabpanel" >
                         <form action="/">
                             
@@ -160,10 +182,17 @@ if (isset($parameters['amount'])) {
                             </div>
                         </form>
                     </div>
+                    @endisset
                 </div>
             </div>
         </div>
-        <div class="descr"><div>Your subtitle/copy can go here, max of 100ch ut perspi unde omnis iste natus demiour sit voluptatem, abilloum inventore.</div></div>
+        <div class="descr"><div>
+            @empty($donateText)
+                Your subtitle/copy can go here, max of 100ch ut perspi unde omnis iste natus demiour sit voluptatem, abilloum inventore.
+            @else 
+                {{ $donateText }}
+            @endempty
+        </div></div>
 
     </div>
 </div>
