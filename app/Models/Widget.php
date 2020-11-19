@@ -5,7 +5,7 @@ namespace App\Models;
 class Widget
 {
     const WIDGET_QUOTE = 1;
-    const WIDGET_VIDEO_CAROUSEL = 2;
+    const WIDGET_VIDEO_CAROUSEL = 2; // example {video-carousel|0GZSfBuhf6Y|XxkTM5fyabo}
 
     const ALL_WIDGETS = [
         self::WIDGET_QUOTE,
