@@ -7,6 +7,7 @@
         $startDate = $campaign->start_date;
         $endDate = $campaign->end_date;
         $countryId = $campaign->country_id;
+        $isEmergency = $campaign->is_emergency;
     } else {
         $pageTitle = 'Create campaign:';
         $actionRoute = route('admin.campaigns.store');
@@ -15,6 +16,7 @@
         $startDate = old('startDate');
         $endDate = old('endDate');
         $countryId = null;
+        $isEmergency = old('isEmergency');
     }
 @endphp
 
@@ -39,7 +41,7 @@
             </div>
         @endif
 
-        <form action="{{ $actionRoute }}" method="post">
+        <form action="{{ $actionRoute }}" method="post" prices-form>
             @csrf
 
             @isset($campaign)
@@ -79,18 +81,43 @@
             </div>
 
             <div class="form-group">
-                <label for="groups">Campaign prices</label>
-                <select id="groups" name="prices[]" multiple class="form-control">
-                    @foreach (\App\Models\CampaignPrice::all() as $price)
-                        @php
-                            $selected = false;
-                            if ((isset($campaign)) && (in_array($price->id, $campaign->campaign_price_ids))) {
-                                $selected = true;
-                            }
-                        @endphp
-                        <option value="{{ $price->id }}" @if($selected) selected @endif>{{ $price->value }} - {{ $price->type_label }}</option>   
-                    @endforeach
-                </select>
+                <label for="is_emergency">Is emergency</label>
+                <input id="is_emergency" name="is_emergency" type="checkbox" @if($isEmergency) checked @endif /><br>
+            </div>
+
+            <div price-container>
+                <label for="groups">Campaign prices</label><br>
+                <button price-add class="btn btn-success mb-3" type="button">Add new price</button>
+                
+                <div class="d-none" price-stub stub-fields>
+                    <div class="form-group form-inline price">
+                        <input name="prices_new[]" class="form-control mr-2" placeholder="Add price here" type="number" />
+                        <select name="price_types_new[]" class="form-control mr-2">
+                            @foreach (\App\Models\CampaignPrice::ALL_TYPES as $priceId => $priceLabel)
+                                <option value="{{ $priceId }}" />{{ $priceLabel }}</option>
+                            @endforeach
+                        </select>
+                        <button class="btn btn-danger" price-delete title="delete price" type="button"><i class="far fa-trash-alt"></i></button>
+                    </div>
+                </div>
+
+                <div class="" price-list>
+                    @isset($campaign)
+                        @foreach ($campaign->campaign_prices as $price)
+                            <div class="form-group form-inline price">
+                                <input name="prices[{{ $price->id }}]" required class="form-control mr-2" type="number" value="{{ $price->value }}">
+                                <select name="price_types[{{ $price->id }}]" class="form-control mr-2">
+                                    @foreach (\App\Models\CampaignPrice::ALL_TYPES as $priceId => $priceLabel)
+                                        <option value="{{ $priceId }}" 
+                                        @if($price->type === $priceId) selected @endif
+                                        />{{ $priceLabel }}</option>
+                                    @endforeach
+                                </select>
+                                <button class="btn btn-danger" price-delete title="delete price" type="button"><i class="far fa-trash-alt"></i></button>
+                            </div>
+                        @endforeach
+                    @endisset
+                </div>
             </div>
 
             <div class="form-group">

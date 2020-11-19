@@ -25,5 +25,11 @@ class CampaignPrice extends Model
     protected $fillable = [
         'value',
         'type',
+        'campaign_id'
     ];
+
+    public function campaign()
+    {
+        return $this->belongsTo('App\Models\Campaign');
+    }
 }

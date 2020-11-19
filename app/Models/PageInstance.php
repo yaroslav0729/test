@@ -73,6 +73,11 @@ class PageInstance extends Model
         });
     }
 
+    public function scopeActual($query)
+    {
+        return $query->where('actual', true);
+    }
+
     public function renderTemplateParametersForm()
     {
         $categories = Category::all();

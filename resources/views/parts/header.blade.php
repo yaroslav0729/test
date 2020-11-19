@@ -30,7 +30,7 @@
                     </ul>
                 </div>
                 <div class="col-4 text-right">
-                    <a href="#" class="btn btn-danger">Donate</a>
+                    <a href="{{ \App\Models\Page::getProjectsUrl() }}" class="btn btn-danger">Donate</a>
                 </div>
             </div>
         </div>

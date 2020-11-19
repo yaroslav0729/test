@@ -84,7 +84,7 @@
 <section class="event-info-head bg-light">
     <div class="wrap">
         <div class="mb-4">
-            @include('templates.parts.back_btn')
+            @include('templates.presentation.parts.back_btn')
         </div>
 
         <div class="row gutter-0 align-items-center">

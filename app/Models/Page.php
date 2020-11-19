@@ -11,6 +11,7 @@ class Page extends Model
     use HasFactory;
 
     const TYPE_INDEX_PAGE = 1;
+    const TYPE_PROJECTS_PAGE = 2;
 
     const PAGE_STATUS_MOVED_TO_TRASH = 0;
     const PAGE_STATUS_EDITED = 1;
@@ -63,15 +64,11 @@ class Page extends Model
             ->whereNotIn('id', $ids)->delete();
     }
 
-    /**
-     * Change projectName before get
-     *
-     * @param $value
-     * @return string
-     */
-    public function getDescriptionAttribute($value)
+    public static function getProjectsUrl()
     {
-        dd('ddd');
-        return Str::upper($value);
+        $page = Page::where('type', self::TYPE_PROJECTS_PAGE)->first();
+        $slug = $page->actual_page_instance->slug;
+
+        return url($slug);
     }
 }

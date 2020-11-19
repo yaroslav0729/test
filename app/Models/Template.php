@@ -8,9 +8,12 @@ class Template
     const EVENT_PAGE = 2;
     const INDEX_PAGE = 3;
     const MEDIA_CENTER_PAGE = 4;
-    const WHO_WE_ARE_PAGE = 5;
-    const THANK_YOU_DONATE_PAGE = 6;
+    const PROJECTS_PAGE = 5;
+    const PROJECT_PAGE = 6;
     const CONTACT_PAGE = 7;
+    const WHO_WE_ARE_PAGE = 8;
+    const THANK_YOU_DONATE_PAGE = 9;
+
     const TEST_PAGE = 100;
 
 
@@ -22,7 +25,11 @@ class Template
         self::TEST_PAGE,
         self::WHO_WE_ARE_PAGE,
         self::THANK_YOU_DONATE_PAGE,
-        self::CONTACT_PAGE
+        self::CONTACT_PAGE,
+        self::PROJECTS_PAGE,
+        self::PROJECT_PAGE,
+        self::TEST_PAGE
+
     ];
 
     public static function getLabel($type)
@@ -32,6 +39,8 @@ class Template
             case self::EVENT_PAGE:return "Event page";
             case self::INDEX_PAGE:return "Index page";
             case self::MEDIA_CENTER_PAGE:return "Media center page";
+            case self::PROJECTS_PAGE: return "projects page";
+            case self::PROJECT_PAGE: return "Project page";
             case self::TEST_PAGE:return "Test page";
             case self::WHO_WE_ARE_PAGE:return "Who we are page";
             case self::THANK_YOU_DONATE_PAGE:return "Thank you your donation page";

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CampaignPrice;
 
 class Campaign extends Model
 {
@@ -14,7 +15,7 @@ class Campaign extends Model
         'description',
         'country_id',
         'start_date',
-        'end_date'
+        'end_date',
     ];
 
     public function country()
@@ -29,7 +30,7 @@ class Campaign extends Model
 
     public function campaign_prices()
     {
-        return $this->belongsToMany('App\Models\CampaignPrice');
+        return $this->hasMany('App\Models\CampaignPrice')->orderBy('type')->orderBy('value');
     }
 
     public function campaign_categories()
@@ -45,5 +46,58 @@ class Campaign extends Model
     public function getCampaignCategoriesIdsAttribute()
     {
         return $this->campaign_categories->pluck('id')->toArray();
+    }
+
+    public function updatePrices($request)
+    {
+        if ($request->input('prices')) {
+
+            // update existing prices
+
+            $priceIds = array_keys($request->input('prices'));
+            $priceValues = $request->input('prices');
+            $priceTypes = $request->input('price_types');
+
+            $prices = CampaignPrice::whereIn('id', $priceIds)->get();
+
+            foreach ($prices as $price) {
+
+                $price->value = $priceValues[$price->id];
+                $price->type = $priceTypes[$price->id];
+
+                $price->save();
+            }
+
+            // remove deleted on frontend prices
+
+            CampaignPrice::where('campaign_id', $this->id)->whereNotIn('id', $priceIds)->delete();
+        }
+        // create new prices
+
+        $priceValues = $request->input('prices_new');
+        $priceTypes = $request->input('price_types_new');
+
+        if (isset($priceValues)) {
+            foreach ($priceValues as $key => $value) {
+                CampaignPrice::create([
+                    'value' => $value,
+                    'type' => $priceTypes[$key],
+                    'campaign_id' => $this->id
+                ]);
+            }
+        }
+    }
+
+    public function saveIsEmergency($request)
+    {
+        $isEmergency = $request->input('is_emergency');
+
+        if (($isEmergency === 'on') && (!$this->is_emergency)) {
+            $this->is_emergency = true;
+            $this->save();
+        } else if ($this->is_emergency) {
+            $this->is_emergency = false;
+            $this->save();
+        }
     }
 }
