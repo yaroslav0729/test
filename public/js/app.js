@@ -91179,10 +91179,13 @@ $(function () {
   $(document).on('click', '[option-add]', function () {
     var wrap = $(this).closest('[options-container]');
     var optionsList = $('[options-list]', wrap);
-    var html = $('[option-stub]', wrap).html();
-    optionsList.append(html);
-    var len = $('.option', optionsList).length;
+    var html = $('[option-stub]', wrap).html(); //let len = $('.option', optionsList).length // length in current list
+
+    var len = $('.option', '[options-list]').length; // length in all page
+
     console.log(len);
+    html = html.replace(/{new}/gi, len);
+    optionsList.append(html);
   });
   /*
   

@@ -205,11 +205,14 @@ $(function () {
         let wrap = $(this).closest('[options-container]');
         let optionsList = $('[options-list]', wrap);
         let html = $('[option-stub]', wrap).html()
-        optionsList.append(html);
-
-        let len = $('.option', optionsList).length
-        console.log(len)
         
+
+        //let len = $('.option', optionsList).length // length in current list
+        let len = $('.option', '[options-list]').length // length in all page
+        console.log(len)
+
+        html = html.replace(/{new}/gi, len);
+        optionsList.append(html);   
     });
 
     /*

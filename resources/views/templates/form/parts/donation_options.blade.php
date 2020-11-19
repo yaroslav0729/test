@@ -19,7 +19,7 @@ if (isset($parameters['amount_text'])) {
 
 <div options-container>
 
-    <button type="button" option-add class="btn btn-success mb-3">Add ammount</button>
+    <button type="button" option-add class="btn btn-success mb-3 mt-3">Add ammount</button>
     
     <div class="d-none" option-stub stub-fields>
         @include('templates.form.parts.donation_option', ['donationType' => $donationType])
