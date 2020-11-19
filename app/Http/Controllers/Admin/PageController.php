@@ -209,7 +209,7 @@ class PageController extends Controller
 
     public function getTemplateForm($templateId, Request $request)
     {
-        $template = view('templates.form.' . $templateId)->render();
+        $template = view('templates.form.' . $templateId, ['parameters'=> []])->render();
 
         $currentId = $request->input('current_page_instance_id');
         if ($currentId) {
