@@ -16,6 +16,22 @@
         </div>
     </div>
     <div class="col-md-12">
+        <div class="form-group">
+            <label>Selected campaigns</label><br>
+
+            @php 
+                if (!isset($optionKey)) $optionKey = '{new}' // will be replaced by js
+            @endphp
+
+            <select name="parameters[amount_campaigns][{{ $optionKey }}][]" multiple class="form-control">
+                @foreach (\App\Models\Campaign::allActive()->get() as $campaign)
+                  <option value="{{ $campaign->id }}"
+                  >{{ $campaign->name }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="col-md-12">
         <hr>
         <button type="button" option-delete class="btn btn-small btn-danger"><i class="far fa-trash-alt"></i></button>
     </div>    

@@ -103193,8 +103193,17 @@ $(function () {
   $(document).on('click', '[option-add]', function () {
     var wrap = $(this).closest('[options-container]');
     var optionsList = $('[options-list]', wrap);
-    optionsList.append($('[option-stub]', wrap).html());
+    var html = $('[option-stub]', wrap).html();
+    optionsList.append(html);
+    var len = $('.option', optionsList).length;
+    console.log(len);
   });
+  /*
+  
+  html = html.replace(/{key}/gi, $('.card', itemsWrap).length);
+  
+  */
+
   $(document).on('click', '[option-delete]', function () {
     var wrap = $(this).closest('.option').remove();
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

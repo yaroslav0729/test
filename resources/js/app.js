@@ -204,8 +204,18 @@ $(function () {
     $(document).on('click', '[option-add]', function () {
         let wrap = $(this).closest('[options-container]');
         let optionsList = $('[options-list]', wrap);
-        optionsList.append($('[option-stub]', wrap).html());
+        let html = $('[option-stub]', wrap).html()
+        optionsList.append(html);
+
+        let len = $('.option', optionsList).length
+        console.log(len)
     });
+
+    /*
+    
+    html = html.replace(/{key}/gi, $('.card', itemsWrap).length);
+    
+    */
 
     $(document).on('click', '[option-delete]', function () {
         let wrap = $(this).closest('.option').remove();

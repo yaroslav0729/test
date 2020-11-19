@@ -100,4 +100,9 @@ class Campaign extends Model
             $this->save();
         }
     }
+
+    public function scopeAllActive($query)
+    {
+        return $query->where('id', '>', 0);
+    }
 }

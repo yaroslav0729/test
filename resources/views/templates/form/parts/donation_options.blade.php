@@ -31,10 +31,11 @@ if (isset($parameters['amount_text'])) {
                 @include('templates.form.parts.donation_option', [
                     'donationType' => $donationType,
                     'donationValue' => (int)$amount,
-                    'donationText' => $texts[$key]
+                    'donationText' => $texts[$key],
+                    'optionKey' => $key
                 ])  
             @endif
         @endforeach
     </div>
     
-    </div>
+</div>
