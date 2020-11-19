@@ -1,0 +1,28 @@
+<?php
+
+
+namespace App\Helpers;
+
+
+use Illuminate\Support\Str;
+
+class StrHelper
+{
+    /**
+     * Modify string add span with class $className
+     *
+     * @param string $string
+     * @param string $className
+     * @return string
+     */
+    public static function addSpanWithClass(string $string, string $className)
+    {
+        if (!Str::containsAll($string, ['[', ']'])) {
+            return $string;
+        }
+        $strBetween = "<span class={$className}>" . Str::between($string, '[', ']') . "</span>";
+
+        return Str::before($string, '[') . $strBetween . Str::after($string, ']');
+    }
+
+}

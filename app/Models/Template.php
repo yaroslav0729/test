@@ -75,8 +75,30 @@ class Template
             case self::INDEX_PAGE: {
 
                 $rules = [
-                    //'parameters.param3' => 'required',
-                    //'parameters.param4' => 'required',
+                    'parameters.hdr_link_text_1' => 'required_if:parameters.hdr_type_active_1,1',
+                    'parameters.hdr_link_text_2' => 'required_if:parameters.hdr_type_active_2,2',
+                    'parameters.hdr_link_text_3' => 'required_if:parameters.hdr_type_active_3,3',
+                    'parameters.hdr_link_text_4' => 'required_if:parameters.hdr_type_active_4,4',
+
+                    'parameters.hdr_learn_more_link_1' => 'required_if:parameters.hdr_type_active_1,1',
+                    'parameters.hdr_learn_more_link_2' => 'required_if:parameters.hdr_type_active_2,2',
+                    'parameters.hdr_learn_more_link_3' => 'required_if:parameters.hdr_type_active_3,3',
+                    'parameters.hdr_learn_more_link_4' => 'required_if:parameters.hdr_type_active_4,4',
+
+                    'parameters.hdr_title_1' => 'required_if:parameters.hdr_type_active_1,1',
+                    'parameters.hdr_title_2' => 'required_if:parameters.hdr_type_active_2,2',
+                    'parameters.hdr_title_3' => 'required_if:parameters.hdr_type_active_3,3',
+                    'parameters.hdr_title_4' => 'required_if:parameters.hdr_type_active_4,4',
+
+                    'parameters.hdr_text_1' => 'required_if:parameters.hdr_type_active_1,1',
+                    'parameters.hdr_text_2' => 'required_if:parameters.hdr_type_active_2,2',
+                    'parameters.hdr_text_3' => 'required_if:parameters.hdr_type_active_3,3',
+                    'parameters.hdr_text_4' => 'required_if:parameters.hdr_type_active_4,4',
+
+                    'parameters.hdr_bg_image_1' => 'required_if:parameters.hdr_type_active_1,1',
+                    'parameters.hdr_bg_image_2' => 'required_if:parameters.hdr_type_active_2,2',
+                    'parameters.hdr_bg_image_3' => 'required_if:parameters.hdr_type_active_3,3',
+                    'parameters.hdr_bg_image_4' => 'required_if:parameters.hdr_type_active_4,4',
                 ];
 
                 break;

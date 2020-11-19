@@ -12,7 +12,7 @@ $sadiqahLink = "";
 $relatedPages = [];
 
     $hdrTypeActive = [];
-    $hdrType = [];
+    $hdrColorType = "";
     $hdrLinkText = [];
     $hdrLearnMoreLink = [];
     $hdrTitle = [];
@@ -21,7 +21,6 @@ $relatedPages = [];
 
     for ($i=1; $i<=4; $i++) {
         $hdrTypeActive[$i] = "";
-        $hdrType[$i] = "";
         $hdrLinkText[$i] = "";
         $hdrLearnMoreLink[$i] = "";
         $hdrTitle[$i] = "";
@@ -29,12 +28,16 @@ $relatedPages = [];
         $hdrBgImage[$i] = "";
     }
 
+    if (isset($parameters['hdr_color_type'])) {
+        $hdrColorType = $parameters['hdr_color_type'];
+    }
+
+    $hdrTypeValue = $hdrColorType === 'blue' ? 1 : 2;
+
+
     for ($i=1; $i<=4; $i++){
         if (isset($parameters['hdr_type_active_' . $i])) {
             $hdrTypeActive[$i] = $parameters['hdr_type_active_' . $i];
-        }
-        if (isset($parameters['hdr_type_' . $i])) {
-            $hdrType[$i] = $parameters['hdr_type_' . $i];
         }
         if (isset($parameters['hdr_link_text_' . $i])) {
             $hdrLinkText[$i] = $parameters['hdr_link_text_' . $i];
@@ -52,6 +55,11 @@ $relatedPages = [];
             $hdrBgImage[$i] = $parameters['hdr_bg_image_' . $i];
         }
     }
+
+
+if (isset($parameters['who_we_are_wideo'])) {
+    $whoVideo = $parameters['who_we_are_wideo'];
+}
 
 if (isset($parameters['who_we_are_wideo'])) {
     $whoVideo = $parameters['who_we_are_wideo'];
@@ -88,12 +96,15 @@ if (isset($parameters['our_work_volunteering_link'])) {
 if (isset($parameters['our_work_sadiqah_link'])) {
     $sadiqahLink = $parameters['our_work_sadiqah_link'];
 }
+/*
+
+dump($hdrTitle);*/
 
 @endphp
 
 @empty(!$hdrTypeActive)
-    @if(in_array('2', $hdrType))
-        <section class="main-page-header style-3" swiper-wrapper="header1" style="background-image: url('img/content/main-page-header-3.jpg');">
+
+       {{-- <section class="main-page-header style-3" swiper-wrapper="header1" style="background-image: url('img/content/main-page-header-3.jpg');">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                 @for ($i = 1; $i <= 4; $i++)
@@ -131,35 +142,42 @@ if (isset($parameters['our_work_sadiqah_link'])) {
             </div>
             <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
             <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
-        </section>
-    @else
-        <section class="main-page-header style-1 loop" swiper-wrapper="header2">
-            <div class="wrap">
-                <div class="body">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                        @for ($i = 1; $i <= 4; $i++)
-                            @if(in_array($i, $hdrTypeActive ))
-                                <div class="swiper-slide">
-                                    <div class="left">
-                                        <div class="mb-4">
-                                            <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
-                                        </div>
-                                        <div class="title mb-3">{!! $hdrTitle[$i] !!}</div>
-                                        <p class="mb-5">{!! $hdrText[$i] !!}</p>
-                                        <a href="#" class="btn btn-info">Donate now</a>
-                                    </div>
-                                    <div class="right" style="background-image: url('img/content/{{ $hdrBgImage[$i] }}')"></div>
-                                    <a href="#" class="view-more swiper-button-next"><i class="far fa-arrow-right"></i></a>
+        </section>--}}
+
+<section class="main-page-header style-{{ $hdrTypeValue }}" swiper-wrapper="header2" style="display: none1">
+    <div class="wrap">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @for ($i = 1; $i <= 4; $i++)
+                    @if(in_array($i, $hdrTypeActive ))
+                    <div class="swiper-slide">
+                        <div class="body">
+                            <div class="left">
+                                <div class="mb-4">
+                                    <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
                                 </div>
-                            @endif
-                        @endfor
-                       </div>
-                    </div>
-                </div>
+                                {{--<div class="title mb-3">{!! $hdrTitle[$i] !!}</div>--}}
+                                <div class="title mb-3">
+                                    @if($hdrColorType === 'blue')
+                                    {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-info') !!}
+                                    @else
+                                        {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-danger') !!}
+                                    @endif
+                                </div>
+                                <p class="mb-5">{!! $hdrText[$i] !!}</p>
+                                <a href="#" class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate now</a>
+                            </div>
+                            <div class="right" style="background-image: url('img/content/{{ $hdrBgImage[$i] }}')"></div>
+                            <a href="#" class="view-more swiper-button-next"><i class="far fa-arrow-right"></i></a>
+                        </div>
+                     </div>
+                    @endif
+                @endfor
             </div>
-        </section>
-    @endif
+        </div>
+    </div>
+</section>
+
 @endempty
 
 <div class="wrap">

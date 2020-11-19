@@ -92,7 +92,7 @@ class PageController extends Controller
     public function preview($id)
     {
         $pageInstance = PageInstance::where('id', $id)->firstOrFail();
-        
+
         return view('page', compact('pageInstance'));
     }
 
@@ -131,7 +131,7 @@ class PageController extends Controller
 
         return view('admin.pages.create_edit', [
             'page' => $page,
-            'categories' => $categories 
+            'categories' => $categories
         ]);
     }
 
@@ -153,13 +153,13 @@ class PageController extends Controller
         }
 
         $templateValidator = $this->_validateTemplate($request);
-        
+
         $page = Page::findOrFail($id);
         $oldPage = $page->actual_page_instance;
 
         if (isset($oldPage)) {
             $oldPage->actual = false;
-            $oldPage->save();   
+            $oldPage->save();
         }
         $data = $request->all();
         $data['page_id'] = $oldPage->page_id;
@@ -174,6 +174,7 @@ class PageController extends Controller
         $pageInstance->categories()->attach($cIds);
 
         $page->removeOldHistory();
+        //dd($request);
 
         return redirect()->route('admin.pages.index')->with('status', 'Page updated!');
     }
@@ -199,7 +200,7 @@ class PageController extends Controller
 
         if ((int)$page->status === Page::PAGE_STATUS_PUBLICHED) {
             $page->published_at = Carbon::now();
-        } 
+        }
 
         $page->save();
 
@@ -215,14 +216,14 @@ class PageController extends Controller
             $pageInstance = PageInstance::where('id', $currentId)->firstOrFail();
 
             if ((int)$templateId === $pageInstance->template) {
-                $template = $pageInstance->renderTemplateParametersForm()->render();    
-            } 
-        } 
+                $template = $pageInstance->renderTemplateParametersForm()->render();
+            }
+        }
 
         return response()->json([
             'html' => $template,
             'status' => 'success',
-        ]); 
+        ]);
     }
 
     protected function _validateSlug($request, $id = null)

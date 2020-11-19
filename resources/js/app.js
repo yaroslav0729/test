@@ -8,8 +8,8 @@ require('tinymce');
 
 window.toastr  = require ('toastr');
 
-import Swiper from 'swiper';
-window.Swiper = Swiper
+/*import Swiper from 'swiper';
+window.Swiper = Swiper*/
 
 require('bootstrap-input-spinner');
 
@@ -25,7 +25,8 @@ $(function () {
         el: '#app'
     })
 
-    initWysiwyg()
+    initWysiwyg();
+    initSwiper();
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -58,7 +59,7 @@ $(function () {
 
         current++
         if (current>=linksLenght) {
-            current = 0    
+            current = 0
         }
 
         paramsBlock.data('current', current)
@@ -142,12 +143,12 @@ $(function () {
             })
         }
 
-        let el1 = $('.current-projects') 
+        let el1 = $('.current-projects')
 
         el1.find('.slide-title').html(data[currentSlide].title)
-        el1.find('.slide-text').html(data[currentSlide].text) 
-        el1.find('.slide-img').css('background-image', "url(" + data[currentSlide].img + ")") 
-        el1.find('.slide-readmore').attr('href', data[currentSlide].readmore)   
+        el1.find('.slide-text').html(data[currentSlide].text)
+        el1.find('.slide-img').css('background-image', "url(" + data[currentSlide].img + ")")
+        el1.find('.slide-readmore').attr('href', data[currentSlide].readmore)
 
         var dataCou = currentSlide + 1
         if (dataCou >= 4) dataCou = 0;
@@ -159,16 +160,34 @@ $(function () {
             if (dataCou >= 4) dataCou = dataCou - 4;
 
             el2.find('.slide-title').html(data[dataCou].title)
-            el2.find('.slide-text').html(data[dataCou].text) 
-            el2.find('.slide-img').css('background-image', "url(" + data[dataCou].img + ")") 
+            el2.find('.slide-text').html(data[dataCou].text)
+            el2.find('.slide-img').css('background-image', "url(" + data[dataCou].img + ")")
             el2.find('.slide-readmore').attr('href', data[dataCou].readmore)
         }
 
-        
+
     })
 
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-})
+});
+function initSwiper(){
+    $('[swiper-wrapper]').each(function() {
+        let key = '[swiper-wrapper="'+ $(this).attr('swiper-wrapper') +'"]';
+
+        let swiper = new Swiper(key + ' .swiper-container', {
+            loop: function (){
+                return !!$(this).hasClass('loop');
+            },
+            navigation: {
+                nextEl: key + ' .swiper-button-next',
+                prevEl: key + ' .swiper-button-prev',
+            },
+            pagination: {
+                el: key + ' .swiper-pagination'
+            }
+        });
+    })
+}
 
 //require('./functions');

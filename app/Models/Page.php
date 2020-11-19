@@ -62,4 +62,16 @@ class Page extends Model
         PageInstance::where('page_id', $this->id)
             ->whereNotIn('id', $ids)->delete();
     }
+
+    /**
+     * Change projectName before get
+     *
+     * @param $value
+     * @return string
+     */
+    public function getDescriptionAttribute($value)
+    {
+        dd('ddd');
+        return Str::upper($value);
+    }
 }
