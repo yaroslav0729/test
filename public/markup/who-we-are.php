@@ -85,8 +85,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
         <div class="col-3 values-action-nav">
             <div class="nav flex-column nav-pills" id="nav-tab" role="tablist">

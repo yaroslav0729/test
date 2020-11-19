@@ -212,10 +212,12 @@
                 <div class="col-6">
                     <p class="font-size-30"><b>Donate to a project too?</b></p>
                     <p class="font-size-16">You could also join the journey to support our causes that empower those in need each month/single donation 100ch.</p>
+
                 </div>
             </div>
         </div>
     </div>
+
     <div class="wrap">
         <div class="row">
             <div class="col-12 col-md-6 col-lg-6 col-xl-4">
@@ -397,10 +399,10 @@
 
         <div class="text-center mb-4">
             <img src="img/payments-image.png" alt="" class="img-fluid">
+
         </div>
     </div>
 </section>
-
 
 <section class="other-way-give">
     <div class="wrap">
@@ -448,3 +450,4 @@
 </div>
 
 <div class="pt-5"></div>
+

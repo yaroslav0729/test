@@ -69,7 +69,7 @@ class PageInstance extends Model
     public function scopePublished($query)
     {
         return $query->whereHas('page', function(Builder $queryPage) {
-            $queryPage->where('status', Page::PAGE_STATUS_PUBLICHED);   
+            $queryPage->where('status', Page::PAGE_STATUS_PUBLICHED);
         });
     }
 
@@ -80,12 +80,9 @@ class PageInstance extends Model
 
     public function renderTemplateParametersForm()
     {
-        $categories = Category::all();
-
         if ($this->template) {
             return view('templates.form.' . $this->template, [
                 'parameters' => $this->parameters,
-                'categories' => $categories
             ]);
         } else {
             return null;

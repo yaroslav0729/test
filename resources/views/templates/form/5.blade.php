@@ -2,7 +2,7 @@
     <li class="nav-item">
         <a class="nav-link active" id="tab-slide-1" data-toggle="tab" href="#slide_1" role="tab" aria-controls="tab-slide-1" aria-selected="true">Single donation</a>
     </li>
-    <li class="nav-item">    
+    <li class="nav-item">
         <a class="nav-link" id="tab-slide-2" data-toggle="tab" href="#slide_2" role="tab" aria-controls="tab-slide-2" aria-selected="false">Monthly donation</a>
     </li>
     <li class="nav-item">
