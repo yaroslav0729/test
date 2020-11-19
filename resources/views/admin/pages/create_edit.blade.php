@@ -48,7 +48,7 @@
         </div>
     @endif
 
-    <form action="{{ $actionRoute }}" method="post" class="pb-3">
+    <form action="{{ $actionRoute }}" method="post" class="pb-3" options-form>
             @csrf
 
             @isset($pageInstance)

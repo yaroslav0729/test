@@ -56,7 +56,7 @@
 <section class="blog-article-head">
     <div class="wrap">
         <div class="mb-4">
-            @include('templates.parts.back_btn')
+            @include('templates.presentation.parts.back_btn')
         </div>
 
         <div class="article-text">

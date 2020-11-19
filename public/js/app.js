@@ -103182,6 +103182,22 @@ $(function () {
   $(document).on('click', '[price-delete]', function () {
     var wrap = $(this).closest('.price').remove();
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('submit', '[options-form]', function (event) {
+    //event.preventDefault();
+    // remove stup items
+    var stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
+    stub.attr('disabled', 'disabled');
+    return true;
+  });
+  $(document).on('click', '[option-add]', function () {
+    var wrap = $(this).closest('[options-container]');
+    var optionsList = $('[options-list]', wrap);
+    optionsList.append($('[option-stub]', wrap).html());
+  });
+  $(document).on('click', '[option-delete]', function () {
+    var wrap = $(this).closest('.option').remove();
+  }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }); //require('./functions');
 
 /***/ }),
