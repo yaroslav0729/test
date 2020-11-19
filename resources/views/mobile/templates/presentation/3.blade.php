@@ -1,24 +1,179 @@
-<section class="main-page-header style-1" style="display: none1">
+@php
+
+$whoVideo = "";
+$whoLink = "";
+$whoLinkText = "";
+$whoTitle = "";
+$whoText = "";
+$longtermLink = "";
+$emergencyLink = "";
+$volunteeringLink = "";
+$sadiqahLink = "";
+$relatedPages = [];
+$hdrTypeActive = [];
+$hdrColorType = "";
+$hdrLinkText = [];
+$hdrLearnMoreLink = [];
+$hdrTitle = [];
+$hdrText = [];
+$hdrBgImage = [];
+
+ $featuredCompaignLink = "";
+    $slideTitle = [];
+    $slideText = [];
+    $readMoreLink = [];
+    $slideImage = [];
+
+for ($i=1; $i<=4; $i++) {
+    $hdrTypeActive[$i] = "";
+    $hdrLinkText[$i] = "";
+    $hdrLearnMoreLink[$i] = "";
+    $hdrTitle[$i] = "";
+    $hdrText[$i] = "";
+    $hdrBgImage[$i] = "";
+}
+
+if (isset($parameters['hdr_color_type'])) {
+    $hdrColorType = $parameters['hdr_color_type'];
+}
+
+$hdrTypeValue = $hdrColorType === 'blue' ? 1 : 2;
+
+
+for ($i=1; $i<=4; $i++){
+    if (isset($parameters['hdr_type_active_' . $i])) {
+        $hdrTypeActive[$i] = $parameters['hdr_type_active_' . $i];
+    }
+    if (isset($parameters['hdr_link_text_' . $i])) {
+        $hdrLinkText[$i] = $parameters['hdr_link_text_' . $i];
+    }
+    if (isset($parameters['hdr_learn_more_link_' .$i])) {
+        $hdrLearnMoreLink[$i] = $parameters['hdr_learn_more_link_' . $i];
+    }
+    if (isset($parameters['hdr_title_' .$i])) {
+        $hdrTitle[$i] = $parameters['hdr_title_' . $i];
+    }
+    if (isset($parameters['hdr_text_' .$i])) {
+        $hdrText[$i] = $parameters['hdr_text_' . $i];
+    }
+    if (isset($parameters['hdr_bg_image_' .$i])) {
+        $hdrBgImage[$i] = $parameters['hdr_bg_image_' . $i];
+    }
+}
+
+
+if (isset($parameters['who_we_are_video'])) {
+    $whoVideo = $parameters['who_we_are_video'];
+}
+
+if (isset($parameters['who_we_are_video'])) {
+    $whoVideo = $parameters['who_we_are_video'];
+}
+
+if (isset($parameters['who_we_are_link'])) {
+    $whoLink = $parameters['who_we_are_link'];
+}
+
+if (isset($parameters['who_we_are_link_text'])) {
+    $whoLinkText = $parameters['who_we_are_link_text'];
+}
+
+if (isset($parameters['who_we_are_title'])) {
+    $whoTitle = $parameters['who_we_are_title'];
+}
+
+if (isset($parameters['who_we_are_text'])) {
+    $whoText = $parameters['who_we_are_text'];
+}
+
+if (isset($parameters['our_work_longterm_link'])) {
+    $longtermLink = $parameters['our_work_longterm_link'];
+}
+
+if (isset($parameters['our_work_emergency_link'])) {
+    $emergencyLink = $parameters['our_work_emergency_link'];
+}
+
+if (isset($parameters['our_work_volunteering_link'])) {
+    $volunteeringLink = $parameters['our_work_volunteering_link'];
+}
+
+if (isset($parameters['our_work_sadiqah_link'])) {
+    $sadiqahLink = $parameters['our_work_sadiqah_link'];
+}
+
+    if (isset($parameters['feat_camp_link'])) {
+        $featuredCompaignLink = $parameters['feat_camp_link'];
+    }
+
+    for ($i = 0; $i < 4; $i++) {
+        if (isset($parameters['slide_title_' . $i])) {
+            $slideTitle[$i] = $parameters['slide_title_' . $i];
+        } else {
+            $slideTitle[$i] = "";
+        }
+
+        if (isset($parameters['slide_text_' . $i])) {
+            $slideText[$i] = $parameters['slide_text_' . $i];
+        } else {
+            $slideText[$i] = "";
+        }
+
+        if (isset($parameters['slide_img_' . $i])) {
+            $slideImage[$i] = $parameters['slide_img_' . $i];
+        } else {
+            $slideImage[$i] = "";
+        }
+
+        if (isset($parameters['read_more_link_' . $i])) {
+            $readMoreLink[$i] = $parameters['read_more_link_' . $i];
+        } else {
+            $readMoreLink[$i] = "";
+        }
+    }
+
+
+@endphp
+
+@empty(!$hdrTypeActive)
+<section class="main-page-header style-1" style="display: none1" swiper-wrapper="header-mabile-2">
     <div class="wrap">
-        <div class="body">
-            <div class="left">
-                <div class="mb-4">
-                    <a href="#" class="text-underline text-dark"><b>LEARN MORE</b></a>
-                </div>
-                <div class="title mb-3">Build <span class="text-info">Eco Village</span> shelter</div>
-                <p class="mb-3">Help provide care and aid to homeless and orphan children</p>
-                <a href="#" class="btn btn-info">Donate now</a>
-                <div class="text-right pt-4 d-block">
-                    <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
-                    <div class="black-line"></div>
-                </div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @for ($i = 1; $i <= 4; $i++)
+                    @if(in_array($i, $hdrTypeActive ))
+                        <div class="swiper-slide">
+                             <div class="body">
+                                <div class="left">
+                                    <div class="mb-4">
+                                        <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
+                                    </div>
+                                    <div class="title mb-3">
+                                        @if($hdrColorType === 'blue')
+                                            {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-info') !!}
+                                        @else
+                                            {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-danger') !!}
+                                        @endif
+                                    </div>
+                                    <p class="mb-3">{!! $hdrText[$i] !!}</p>
+                                    <a href="#" class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate now</a>
+                                    <div class="text-right pt-4 d-block">
+                                        <a href="#" class="view-more swiper-button-next"><i class="far fa-arrow-right"></i></a>
+                                        <div class="black-line"></div>
+                                    </div>
+                                </div>
+                                <div class="right" style="background-image: url('img/content/{{ $hdrBgImage[$i] }}')"></div>
+                            </div>
+                        </div>
+                    @endif
+                @endfor
             </div>
-            <div class="right" style="background-image: url('img/content/adrianna-van-groningen-NvD9zZ7nn8Q-unsplash.jpg')"></div>
         </div>
     </div>
 </section>
+@endempty
 
-<section class="main-page-header style-2" style="display: none">
+{{--<section class="main-page-header style-2" style="display: none">
     <div class="wrap">
         <div class="body">
             <div class="left">
@@ -36,61 +191,11 @@
             <div class="right" style="background-image: url('img/content/main-page-header-2.jpg')"></div>
         </div>
     </div>
-</section>
-
-<section class="main-page-header style-2" style="display: none">
-    <div class="wrap">
-        <div class="body">
-            <div class="left bg-info">
-                <div class="title mb-3">Build <span class="text-white">Eco Village</span> shelter</div>
-                <p class="mb-5">Help provide care and aid to homeless<br>and orphan children</p>
-                <a href="#" class="btn btn-dark">Donate now</a>
-                <div class="text-right pt-4 d-block">
-                    <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
-                    <div class="black-line"></div>
-                </div>
-            </div>
-            <div class="right" style="background-image: url('img/content/main-page-header-3.jpg')"></div>
-        </div>
-    </div>
-</section>
-
-<section class="main-page-header style-1" style="display: none">
-    <div class="wrap">
-        <div class="body">
-            <div class="left bg-info">
-                <div class="title mb-3">Build <span class="text-white">Eco Village</span> shelter</div>
-                <p class="mb-5">Help provide care and aid to homeless<br>and orphan children</p>
-                <a href="#" class="btn btn-info-light">Donate now</a>
-                <div class="text-right pt-4 d-block">
-                    <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
-                    <div class="black-line"></div>
-                </div>
-            </div>
-            <div class="right" style="background-image: url('img/content/main-page-header-3.jpg')"></div>
-        </div>
-    </div>
-</section>
-
-<section class="main-page-header style-1" style="display: none">
-    <div class="wrap">
-        <div class="body">
-            <div class="left bg-danger">
-                <div class="title mb-3 text-white">Help the <span class="text-dark">children in Gaza</span> now,</div>
-                <p class="mb-5">Life saving donations packs,<br>from as little as £3</p>
-                <a href="#" class="btn btn-danger-middle">Donate now</a>
-                <div class="text-right pt-4 d-block">
-                    <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
-                    <div class="black-line"></div>
-                </div>
-            </div>
-            <div class="right" style="background-image: url('img/content/main-page-header-4.jpg')"></div>
-        </div>
-    </div>
-</section>
+</section>--}}
 
 <div class="wrap">
-    <button class="btn btn-primary-dark w-100 br-0 btn-modal-quick-donation" >Quick Donation <i class="far fa-plus"></i></button>
+    <button class="btn btn-primary-dark w-100 br-0 btn-modal-quick-donation" >Quick Donation
+        <i class="far fa-plus"></i></button>
     <script>
         $(function() {
             $('.btn-modal-quick-donation').on('click', function () {
@@ -101,7 +206,6 @@
             })
         } );
     </script>
-
 
     <div class="modal-quick-donation">
         <div class="img" style="background-image: url(img/content/m-quick-donation.jpg)">
@@ -173,13 +277,20 @@
 
 
 <section class="who-we-are">
-    <p class="font-size-25 mb-4"><b>Empowering people in need,</b> for two decades:</p>
-    <div class="img-video" style="background-image: url(img/content/Video-placement-1.jpg)"><i class="fas fa-play-circle"></i></div>
+    <p class="font-size-25 mb-4">{!! $whoTitle !!}</p>
+    <div class="img-video play-tr videoWrapper" style="">
+        <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $whoVideo }}"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+
+    </div>
+   {{-- <div class="img-video" style="background-image: url(img/content/Video-placement-1.jpg)"><i class="fas fa-play-circle"></i></div>--}}
     <div class="pt-4">
         <div class="mb-4">
-            <a href="#" class="text-underline text-dark"><b>WHO WE ARE</b></a>
+            <a href="{{ $whoLink }}" class="text-underline text-dark"><b>{{ $whoLinkText }}</b></a>
         </div>
-        <p class="font-size-16">Some supporting information here on your values and goals, 125 ch. lorem ipsum dolor sit amet, consectetur rehederit in volu. </p>
+        <p class="font-size-16">{!! $whoText !!}</p>
     </div>
 </section>
 
@@ -213,9 +324,7 @@
     </script>
 </div>
 
-
-
-<section class="current-projects">
+<section class="current-projects" swiper-wrapper="slider-mobile-1">
     <div class="wrap">
         <div class="title">
             <span>Current Projects</span>
@@ -224,48 +333,25 @@
 
         <div class="swiper-container">
             <div class="swiper-wrapper">
+                @for ($i = 0; $i < 4; $i++)
                 <div class="swiper-slide">
                     <div class="body">
                         <div class="left">
-                            <p class="font-size-20 mb-3"><b>BUILD WATER WELLS, SAVE LIVES</b></p>
-                            <p class="font-size-15 mb-2">Critical campaign info, 125 ch. lorem ipsum dolor sit amet, demis vella consectetur desmet velit esse cillum dolore eu nulla.</p>
+                            <p class="font-size-20 mb-3"><b>{!! $slideTitle[$i] !!}</b></p>
+                            <p class="font-size-15 mb-2">{!! $slideText[$i] !!}</p>
                             <div>
                                 <a href="#" class="btn btn-warning">Donate now</a>
                             </div>
                         </div>
-                        <div class="img" style="background-image: url(img/content/current-projects-1.jpg)"></div>
+                        <div class="img" style="background-image: url('img/content/{{ $slideImage[$i] }}')"></div>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="body">
-                        <div class="left">
-                            <p class="font-size-20 mb-3"><b>BUILD WATER WELLS, SAVE LIVES</b></p>
-                            <p class="font-size-15 mb-2">Critical campaign info, 125 ch. lorem ipsum dolor sit amet, demis vella consectetur desmet velit esse cillum dolore eu nulla.</p>
-                            <div>
-                                <a href="#" class="btn btn-warning">Donate now</a>
-                            </div>
-                        </div>
-                        <div class="img" style="background-image: url(img/content/current-projects-1.jpg)"></div>
-                    </div>
-                </div>
+                @endfor
             </div>
             <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
             <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
             <div class="swiper-pagination"></div>
         </div>
-
-        <script>
-            var swiper = new Swiper('.current-projects .swiper-container', {
-                navigation: {
-                    nextEl: '.current-projects .swiper-button-next',
-                    prevEl: '.current-projects .swiper-button-prev',
-                },
-                pagination: {
-                    el: '.current-projects .swiper-pagination'
-                }
-            });
-        </script>
-
     </div>
 </section>
 
