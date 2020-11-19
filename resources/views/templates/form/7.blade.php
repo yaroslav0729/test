@@ -160,14 +160,3 @@
         ])
     </div>
 </div>
-
-
-{{--
-@include('modules.admin.related_pages', [
-    'parameters' => $parameters
-])
-
-@include('modules.admin.join_the_cause_subscribe', [
-    'parameters' => $parameters
-])
---}}

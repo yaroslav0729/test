@@ -169,7 +169,10 @@ class Template
                     'parameters.foreign_office_title' => 'required',
                     'parameters.head_office_text' => 'required',
                     'parameters.contact_email' => 'email:rfc',
-                    'parameters.instagram_link' => 'email:rfc',
+                    'parameters.instagram_link' => 'required',
+                    'parameters.facebook_link' => 'required',
+                    'parameters.youtube_link' => 'required',
+                    'parameters.twitter_link' => 'required',
                 ];
 
                 break;

@@ -91225,11 +91225,11 @@ function initSwiper() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app_admin.css */"./resources/css/app_admin.css");
-module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app_admin.css */"./resources/css/app_admin.css");
+module.exports = __webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
 
 
 /***/ })
