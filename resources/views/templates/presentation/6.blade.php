@@ -1,9 +1,19 @@
 @php
 
     $mainHtml = "";
+    $importantInfoTitle = "";
+    $importantInfo = "";
 
     if (isset($parameters['main_html'])) {
         $mainHtml = $parameters['main_html'];    
+    }
+
+    if (isset($parameters['important_title'])) {
+        $importantInfoTitle = $parameters['important_title'];    
+    }
+
+    if (isset($parameters['important_text'])) {
+        $importantInfo = $parameters['important_text'];    
     }
 
 @endphp
@@ -235,10 +245,10 @@
 <section class="join-cause">
     <div class="wrap">
         <div class="title mb-5">
-            <p class="font-size-30"><b>Important information / please note CTA</b></p>
+            <p class="font-size-30"><b>{{ $importantInfoTitle }}</b></p>
         </div>
         <p class="font-size-20">
-            Perspiciais und omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed consequuntur magni dolores eos qui rati voluptate sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.
+            {{ $importantInfo }}
         </p>
     </div>
 </section>
