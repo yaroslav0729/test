@@ -33,4 +33,8 @@
     <textarea class="form-control" placeholder="Insert important info text" name="parameters[important_text]">{{ $importantInfo }}</textarea>
 </div>
 
-@include('modules.admin.projects_donate', ['parameters' => $parameters])
+@include('modules.admin.projects_donate')
+
+@include('modules.admin.what_happens_so_far')
+
+@include('modules.admin.we_still_need_support')
