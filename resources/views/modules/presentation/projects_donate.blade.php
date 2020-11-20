@@ -31,6 +31,14 @@ foreach ($amount as $key => $item) {
         }
         $campaignsCountries[$key] = $campaigns; 
     }
+
+    if ((isset($item['type'])) && ((int)$item['type']) === \App\Models\CampaignPrice::TYPE_SINGLE) {
+        $useSingleTab = true;
+    }
+
+    if ((isset($item['type'])) && ((int)$item['type']) === \App\Models\CampaignPrice::TYPE_MONTHLY) {
+        $useMonthlyTab = true;
+    }
 }
 
 @endphp
@@ -51,14 +59,19 @@ foreach ($amount as $key => $item) {
 
                 <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        @isset($useSingleTab)
                         <a class="nav-link active"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true">Single Donation</a>
+                        @endisset
+                        @isset($useMonthlyTab)
                         <a class="nav-link color-info"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false">Monthly Donation</a>
+                        @endisset
                         @isset($useAppeal)
                         <a class="nav-link color-red"  data-toggle="tab" href="#nav-3" role="tab"  aria-selected="false">Appeal Donation</a>
                         @endisset
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
+                    @isset($useSingleTab)
                     <div class="tab-pane fade show active" id="nav-1" role="tabpanel" >
                         <form action="/">
 
@@ -96,6 +109,8 @@ foreach ($amount as $key => $item) {
                             </div>
                         </form>
                     </div>
+                    @endisset 
+                    @isset($useMonthlyTab)
                     <div class="tab-pane fade" id="nav-2" role="tabpanel" >
                         <form action="/">
 
@@ -133,6 +148,7 @@ foreach ($amount as $key => $item) {
                             </div>
                         </form>
                     </div>
+                    @endisset 
                     @isset($useAppeal)
                     <div class="tab-pane fade" id="nav-3" role="tabpanel" >
                         <form action="/">
