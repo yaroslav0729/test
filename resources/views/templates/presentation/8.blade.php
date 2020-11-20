@@ -6,12 +6,21 @@
     $ourValuesVideo = "";
     $mapImage = "";
 
-    $actionName = [];
-    $actionPhoto = [];
-    $actionSlogan = [];
-    $actionTitle = [];
-    $actionDescription = [];
-    $actionLearnMoreLink = [];
+    for ($i=1; $i<=4; $i++) {
+        $actionActive[$i] = "";
+        $actionName[$i] = "";
+        $actionPhoto[$i] = "";
+        $actionSlogan[$i] = "";
+        $actionTitle[$i] = "";
+        $actionDescription[$i] = "";
+        $actionLearnMoreLink[$i] = "";
+    }
+
+    $colorNameClass = [
+        1 => 'bg-primary-light',
+        2 => 'bg-warning',
+        3 => 'bg-danger',
+        4 => 'bg-info' ];
 
     for ($i=1; $i<=3; $i++){
         ${'storyPhoto' . $i} = "";
@@ -47,10 +56,11 @@
         $mapImage = $parameters['map_image'];
     }
 
-    $actionActive = $parameters['action_active'] ?? [];
-
-      for ($i=1; $i<=4; $i++){
-         if (isset($parameters['action_name_' . $i])) {
+    for ($i=1; $i<=4; $i++){
+        if (isset($parameters['action_active_' . $i])) {
+            $actionActive[$i] = $parameters['action_active_' . $i];
+        }
+        if (isset($parameters['action_name_' . $i])) {
             $actionName[$i] = $parameters['action_name_' . $i];
         }
         if (isset($parameters['action_photo_' .$i])) {
@@ -96,6 +106,7 @@
     if (isset($parameters['changing_block_title'])) {
         $lifeChangingBlockTitle = $parameters['changing_block_title'];
     }
+
     if (isset($parameters['changing_block_text'])) {
         $lifeChangingBlockText = $parameters['changing_block_text'];
     }
@@ -106,6 +117,7 @@
     <div>OUR MISSION</div>
     <h1>{!! $ourMissionTitle !!}</h1>
 </section>
+
 <section class="our-values mt-n5">
     <div class="box">
         <div class="row gutter-0 align-items-center">
@@ -123,8 +135,8 @@
             </div>
         </div>
     </div>
-
 </section>
+
 <section class="gw-map-btn">
     <div style="background-image: url('img/{{ $mapImage }}')">
         <a href="#" class="btn btn-info">View Global Work</a>
@@ -148,7 +160,7 @@
                                     <div class="col-6 img"
                                          style="background-image: url('/img/content/{{ $actionPhoto[$i] }}')">                                        &nbsp;
                                     </div>
-                                    <div class="col-6 bg-primary-light text">
+                                    <div class="col-6 {{ $colorNameClass[$i] }} text">
                                         <div>
                                             <p class="text-1">{!! $actionSlogan[$i] !!}</p>
                                             <p class="text-2">{!! $actionTitle[$i] !!}</p>
@@ -173,7 +185,6 @@
                         @endif
                     @endfor
                 </div>
-
             </div>
         </div>
     </section>
@@ -198,7 +209,7 @@
                                 <div class="col-6 text-right"><span>OUR STORY</span></div>
                             </div>
                             <div class="black-line"></div>
-                            <p class="pl-5 pr-5">{!!  ${'storyText' . $i}  !!}</p>
+                            <p class="pl-5 pr-5">{!! ${'storyText' . $i} !!}</p>
                         </div>
                     </div>
                 @endfor
@@ -213,6 +224,7 @@
 <section class="mb-5">
     <p class="font-size-45"><b>Life changing support.</b></p>
 </section>
+
 <section class="promo-project-swiper loop" swiper-wrapper="our-support">
     <div class="wrap">
         <div class="swiper-container">
@@ -241,7 +253,7 @@
     <div class="wrap">
         <div class="body">
             <h2>{{ $lifeChangingBlockTitle }}</h2>
-{!! $lifeChangingBlockText !!}
+            {!! $lifeChangingBlockText !!}
         </div>
     </div>
 </section>

@@ -1,16 +1,15 @@
 @php
 
-$whoVideo = "";
-$whoLink = "";
-$whoLinkText = "";
-$whoTitle = "";
-$whoText = "";
-$longtermLink = "";
-$emergencyLink = "";
-$volunteeringLink = "";
-$sadiqahLink = "";
-$relatedPages = [];
-
+    $whoVideo = "";
+    $whoLink = "";
+    $whoLinkText = "";
+    $whoTitle = "";
+    $whoText = "";
+    $longtermLink = "";
+    $emergencyLink = "";
+    $volunteeringLink = "";
+    $sadiqahLink = "";
+    $relatedPages = [];
     $hdrTypeActive = [];
     $hdrColorType = "";
     $hdrLinkText = [];
@@ -57,126 +56,126 @@ $relatedPages = [];
     }
 
 
-if (isset($parameters['who_we_are_wideo'])) {
-    $whoVideo = $parameters['who_we_are_wideo'];
-}
+    if (isset($parameters['who_we_are_video'])) {
+        $whoVideo = $parameters['who_we_are_video'];
+    }
 
-if (isset($parameters['who_we_are_wideo'])) {
-    $whoVideo = $parameters['who_we_are_wideo'];
-}
+    if (isset($parameters['who_we_are_video'])) {
+        $whoVideo = $parameters['who_we_are_video'];
+    }
 
-if (isset($parameters['who_we_are_link'])) {
-    $whoLink = $parameters['who_we_are_link'];
-}
+    if (isset($parameters['who_we_are_link'])) {
+        $whoLink = $parameters['who_we_are_link'];
+    }
 
-if (isset($parameters['who_we_are_link_text'])) {
-    $whoLinkText = $parameters['who_we_are_link_text'];
-}
+    if (isset($parameters['who_we_are_link_text'])) {
+        $whoLinkText = $parameters['who_we_are_link_text'];
+    }
 
-if (isset($parameters['who_we_are_title'])) {
-    $whoTitle = $parameters['who_we_are_title'];
-}
+    if (isset($parameters['who_we_are_title'])) {
+        $whoTitle = $parameters['who_we_are_title'];
+    }
 
-if (isset($parameters['who_we_are_text'])) {
-    $whoText = $parameters['who_we_are_text'];
-}
+    if (isset($parameters['who_we_are_text'])) {
+        $whoText = $parameters['who_we_are_text'];
+    }
 
-if (isset($parameters['our_work_longterm_link'])) {
-    $longtermLink = $parameters['our_work_longterm_link'];
-}
+    if (isset($parameters['our_work_longterm_link'])) {
+        $longtermLink = $parameters['our_work_longterm_link'];
+    }
 
-if (isset($parameters['our_work_emergency_link'])) {
-    $emergencyLink = $parameters['our_work_emergency_link'];
-}
+    if (isset($parameters['our_work_emergency_link'])) {
+        $emergencyLink = $parameters['our_work_emergency_link'];
+    }
 
-if (isset($parameters['our_work_volunteering_link'])) {
-    $volunteeringLink = $parameters['our_work_volunteering_link'];
-}
+    if (isset($parameters['our_work_volunteering_link'])) {
+        $volunteeringLink = $parameters['our_work_volunteering_link'];
+    }
 
-if (isset($parameters['our_work_sadiqah_link'])) {
-    $sadiqahLink = $parameters['our_work_sadiqah_link'];
-}
-/*
-
-dump($hdrTitle);*/
+    if (isset($parameters['our_work_sadiqah_link'])) {
+        $sadiqahLink = $parameters['our_work_sadiqah_link'];
+    }
 
 @endphp
 
 @empty(!$hdrTypeActive)
 
-       {{-- <section class="main-page-header style-3" swiper-wrapper="header1" style="background-image: url('img/content/main-page-header-3.jpg');">
+    {{-- <section class="main-page-header style-3" swiper-wrapper="header1" style="background-image: url('img/content/main-page-header-3.jpg');">
+         <div class="swiper-container">
+             <div class="swiper-wrapper">
+             @for ($i = 1; $i <= 4; $i++)
+                 @if(in_array($i, $hdrTypeActive ))
+                     <div class="swiper-slide">
+                         <div class="row">
+                             <div class="col-6">
+                                 <div class="donate-progress">
+                                     <div class="row mb-3">
+                                         <div class="col-12 text-right"><b>14</b></div>
+                                         <div class="col-6">
+                                             £2'642 / £10'000 RAISED</div>
+                                         <div class="col-6 text-right">DAY TO GO</div>
+                                     </div>
+                                     <div class="line green"><div style="width: 40%"></div></div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="row">
+                             <div class="col-6">
+                                 <div class="body">
+                                     <div class="mb-4">
+                                         <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
+                                     </div>
+                                     <div class="title mb-3">{!! $hdrTitle[$i] !!}</div>
+                                     <p class="mb-5">{!! $hdrText[$i] !!}</p>
+                                     <a href="#" class="btn btn-info">Donate now</a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 @endif
+             @endfor
+             </div>
+         </div>
+         <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
+         <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
+     </section>--}}
+<section class="main-page-header style-{{ $hdrTypeValue }}" swiper-wrapper="header2" style="display: none1">
+        <div class="wrap">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                @for ($i = 1; $i <= 4; $i++)
-                    @if(in_array($i, $hdrTypeActive ))
-                        <div class="swiper-slide">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="donate-progress">
-                                        <div class="row mb-3">
-                                            <div class="col-12 text-right"><b>14</b></div>
-                                            <div class="col-6">
-                                                £2'642 / £10'000 RAISED</div>
-                                            <div class="col-6 text-right">DAY TO GO</div>
-                                        </div>
-                                        <div class="line green"><div style="width: 40%"></div></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="body">
+                    @for ($i = 1; $i <= 4; $i++)
+                        @if(in_array($i, $hdrTypeActive ))
+                            <div class="swiper-slide">
+                                <div class="body">
+                                    <div class="left">
                                         <div class="mb-4">
-                                            <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
+                                            <a href="{{ $hdrLearnMoreLink[$i] }}"
+                                               class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
                                         </div>
-                                        <div class="title mb-3">{!! $hdrTitle[$i] !!}</div>
+                                        <div class="title mb-3">
+                                            @if($hdrColorType === 'blue')
+                                                {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-info') !!}
+                                            @else
+                                                {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-danger') !!}
+                                            @endif
+                                        </div>
                                         <p class="mb-5">{!! $hdrText[$i] !!}</p>
-                                        <a href="#" class="btn btn-info">Donate now</a>
+                                        <a href="#"
+                                           class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate
+                                            now</a>
                                     </div>
+                                    <div class="right"
+                                         style="background-image: url('img/content/{{ $hdrBgImage[$i] }}')"></div>
+                                    <a href="#" class="view-more swiper-button-next"><i class="far fa-arrow-right"></i></a>
                                 </div>
                             </div>
-                        </div>
-                    @endif
-                @endfor
+                        @endif
+                    @endfor
                 </div>
             </div>
-            <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
-            <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
-        </section>--}}
-
-<section class="main-page-header style-{{ $hdrTypeValue }}" swiper-wrapper="header2" style="display: none1">
-    <div class="wrap">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                @for ($i = 1; $i <= 4; $i++)
-                    @if(in_array($i, $hdrTypeActive ))
-                    <div class="swiper-slide">
-                        <div class="body">
-                            <div class="left">
-                                <div class="mb-4">
-                                    <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
-                                </div>
-                                {{--<div class="title mb-3">{!! $hdrTitle[$i] !!}</div>--}}
-                                <div class="title mb-3">
-                                    @if($hdrColorType === 'blue')
-                                    {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-info') !!}
-                                    @else
-                                        {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-danger') !!}
-                                    @endif
-                                </div>
-                                <p class="mb-5">{!! $hdrText[$i] !!}</p>
-                                <a href="#" class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate now</a>
-                            </div>
-                            <div class="right" style="background-image: url('img/content/{{ $hdrBgImage[$i] }}')"></div>
-                            <a href="#" class="view-more swiper-button-next"><i class="far fa-arrow-right"></i></a>
-                        </div>
-                     </div>
-                    @endif
-                @endfor
-            </div>
         </div>
-    </div>
-</section>
+    </section>
+
 
 @endempty
 
@@ -203,7 +202,9 @@ dump($hdrTitle);*/
                     <input type="text" class="form-control" placeholder="£  Enter amount">
                 </div>
             </div>
-            <div class="col-2"><button  type="submit" class="btn btn-danger">Donate now</button></div>
+            <div class="col-2">
+                <button type="submit" class="btn btn-danger">Donate now</button>
+            </div>
         </div>
     </section>
 </div>
@@ -213,17 +214,20 @@ dump($hdrTitle);*/
         <div class="row gutter-5">
             <div class="col-6">
                 <div class="img-video play-tr videoWrapper" style="">
-                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $whoVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $whoVideo }}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                 </div>
             </div>
             <div class="col-6">
                 <div class="pl-5 pr-2 pt-4">
                     <div class="mb-4">
-                    <a href="{{ $whoLink }}" class="text-underline text-dark"><b>{{ $whoLinkText }}</b></a>
+                        <a href="{{ $whoLink }}" class="text-underline text-dark"><b>{{ $whoLinkText }}</b></a>
                     </div>
-                    <p class="font-size-30 mb-2"><b>Empowering people in need, for two decades:</b></p>
+                    <p class="font-size-30 mb-2"><b>{!! $whoTitle !!}</b></p>
                     <div class="pr-5">
-                        <p class="font-size-16 pr-5">Some supporting information here on your values and goals, 125 ch. lorem ipsum dolor sit amet, consectetur rehederit in volu. </p>
+                        <p class="font-size-16 pr-5">{!! $whoText !!}</p>
                     </div>
                 </div>
             </div>
@@ -279,10 +283,11 @@ dump($hdrTitle);*/
     </div>
 </section>
 
-
-
-
 @include('modules.presentation.current_projects', [
+    'parameters' => $parameters
+])
+
+@include('modules.presentation.related_pages', [
     'parameters' => $parameters
 ])
 
@@ -306,7 +311,8 @@ dump($hdrTitle);*/
                         <div class="col-6">
                             <div class="pl-4 pr-4">
                                 <p class="font-size-16 text-uppercase mb-0"><b>Event title 20chara.</b></p>
-                                <p class="font-size-16 mb-0">Critical event info,<br>60 char lorem ametional,<br>jaan vella...</p>
+                                <p class="font-size-16 mb-0">Critical event info,<br>60 char lorem ametional,<br>jaan
+                                    vella...</p>
                             </div>
                         </div>
                     </div>
@@ -320,12 +326,14 @@ dump($hdrTitle);*/
                 <div class="item">
                     <div class="row gutter-0 align-items-center">
                         <div class="col-6">
-                            <div class="img-video" style="background-image: url(img/content/lets-join-2.jpg)"><i class="fas fa-play-circle"></i></div>
+                            <div class="img-video" style="background-image: url(img/content/lets-join-2.jpg)"><i
+                                    class="fas fa-play-circle"></i></div>
                         </div>
                         <div class="col-6">
                             <div class="pl-4 pr-4">
                                 <p class="font-size-16 text-uppercase mb-0"><b>MISSION: 24/09/2020</b></p>
-                                <p class="font-size-16 mb-0">Critical mission info,<br>60 char lorem sit amet,<br>demi vella...</p>
+                                <p class="font-size-16 mb-0">Critical mission info,<br>60 char lorem sit amet,<br>demi
+                                    vella...</p>
                             </div>
                         </div>
                     </div>
@@ -336,7 +344,9 @@ dump($hdrTitle);*/
 
                 <div class="pl-5 pr-5">
                     <div class="pl-5 pr-5">
-                        <svg class="decor-wave style-danger mb-2" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+                        <svg class="decor-wave style-danger mb-2" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                             width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000"
+                             preserveAspectRatio="xMidYMid meet">
                             <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
                                fill="#000000" stroke="none">
                                 <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
@@ -379,7 +389,8 @@ dump($hdrTitle);*/
                             </g>
                         </svg>
                         <p class="font-size-20 mb-3"><b>#FUNDRAISEMYSELF</b></p>
-                        <p class="font-size-16 mb-4">Feeling inspired to help? Starting a campaign takes minutes, no time at all to save lives! 90ch.</p>
+                        <p class="font-size-16 mb-4">Feeling inspired to help? Starting a campaign takes minutes, no
+                            time at all to save lives! 90ch.</p>
                         <a href="#" class="btn btn-outline-warning">More info</a>
                     </div>
                 </div>
@@ -388,17 +399,19 @@ dump($hdrTitle);*/
     </div>
 </section>
 
-
 <section class="widget-about-project">
     <div class="row gutter-0">
-        <div class="col-6"><a href="#" class="view-more text-underline">VIEW ALL PROJECTS <i class="far fa-arrow-up"></i></a></div>
+        <div class="col-6"><a href="#" class="view-more text-underline">VIEW ALL PROJECTS <i
+                    class="far fa-arrow-up"></i></a></div>
     </div>
     <div class="row gutter-0">
         <div class="col-6 img" style="background-image: url(img/content/widget-about-project-1.jpg)"></div>
         <div class="col-6 descr d-flex align-items-center">
             <div>
-                <p class="font-size-30 text-uppercase" style="font-weight: 100"><b>help orphans</b> & the environment</p>
-                <p class="font-size-16" style="font-weight: 700">Critical campaign info, 60 ch. lorem ipsum dolor sit ametas.</p>
+                <p class="font-size-30 text-uppercase" style="font-weight: 100"><b>help orphans</b> & the environment
+                </p>
+                <p class="font-size-16" style="font-weight: 700">Critical campaign info, 60 ch. lorem ipsum dolor sit
+                    ametas.</p>
                 <a href="#" class="text-underline ">LEARN MORE</a>
             </div>
         </div>
@@ -408,7 +421,9 @@ dump($hdrTitle);*/
 <section class="whats-new">
     <div class="wrap">
         <div class="title">
-            <svg class="decor-wave d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+            <svg class="decor-wave d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                 width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000"
+                 preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
                    fill="#000000" stroke="none">
                     <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
@@ -450,7 +465,8 @@ dump($hdrTitle);*/
     -16z"/>
                 </g>
             </svg>
-            <b>WHAT'S NEW <i class="far fa-arrow-right"></i></b>  <a href="#" class="text-underline text-uppercase"><b>visit newsroom</b></a>
+            <b>WHAT'S NEW <i class="far fa-arrow-right"></i></b> <a href="#" class="text-underline text-uppercase"><b>visit
+                    newsroom</b></a>
         </div>
         <div>
             <div class="row gutter-5">
@@ -463,7 +479,7 @@ dump($hdrTitle);*/
                         <div class="descr">
                             <p class="font-size-18 mb-0"><b>Article Video placement 30ch</b></p>
                             <p class="font-size-16 mb-4">Subtitle capture copy placed here, 40ch...</p>
-                            <div class="date">April 06, 2020 BY AHMED SALEM </div>
+                            <div class="date">April 06, 2020 BY AHMED SALEM</div>
                             <div class="stat"><span>1.2k</span></div>
                         </div>
                     </div>
@@ -479,7 +495,7 @@ dump($hdrTitle);*/
                         <div class="descr">
                             <p class="font-size-18 mb-0"><b>Article Video placement 30ch</b></p>
                             <p class="font-size-16 mb-4">Subtitle capture copy placed here, 40ch...</p>
-                            <div class="date">April 06, 2020 BY AHMED SALEM </div>
+                            <div class="date">April 06, 2020 BY AHMED SALEM</div>
                         </div>
                     </div>
                     <div class="item">
@@ -490,13 +506,15 @@ dump($hdrTitle);*/
                         <div class="descr">
                             <p class="font-size-18 mb-0"><b>Article Video placement 30ch</b></p>
                             <p class="font-size-16 mb-4">Subtitle capture copy placed here, 40ch...</p>
-                            <div class="date">April 06, 2020 BY AHMED SALEM </div>
+                            <div class="date">April 06, 2020 BY AHMED SALEM</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="text-right pt-4">
-                <svg class="decor-wave style-white d-inline-block size-20" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+                <svg class="decor-wave style-white d-inline-block size-20" version="1.0"
+                     xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt"
+                     viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
                        fill="#000000" stroke="none">
                         <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0

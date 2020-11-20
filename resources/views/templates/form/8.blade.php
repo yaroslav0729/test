@@ -6,13 +6,6 @@
     $ourValuesVideo = "";
     $mapImage = "";
 
-    $actionName = [];
-    $actionPhoto = [];
-    $actionSlogan = [];
-    $actionTitle = [];
-    $actionDescription = [];
-    $actionLearnMoreLink = [];
-
     for ($i=1; $i<=4; $i++) {
         $actionActive[$i] = "";
         $actionName[$i] = "";
@@ -141,7 +134,7 @@
         </div>
     </div>
 
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-6 mt-5">
         <div class="form-group">
             <label>Our values video:</label>
             <input class="form-control" required name="parameters[our_values_video]"
@@ -150,7 +143,7 @@
         </div>
     </div>
 
-    <div class="col-12 col-lg-6 mt-5">
+    <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Map image path:</label>
             <input class="form-control" required name="parameters[map_image]"
@@ -159,6 +152,7 @@
         </div>
     </div>
 </div>
+
 <div class="form-group mt-5">
     <label>Our values in Action:</label>
     <nav>
@@ -175,7 +169,6 @@
             <div class="tab-pane fade show @if($i === 1)active @endif" id="nav-action-{{ $i }}" role="tabpanel"
                  aria-labelledby="nav-home-tab">
                 <div class="row mt-3">
-
                     <div class="col-12">
                         <div class="form-check">
                             <input class="form-check-input" name="parameters[action_active_{{ $i }}]" type="checkbox"
@@ -258,11 +251,9 @@
     </nav>
     <div class="tab-content" id="nav-tabContent">
         @for ($i = 1; $i <= 3; $i++)
-
             <div class="tab-pane fade show @if($i === 1)active @endif" id="nav-story-{{ $i }}" role="tabpanel"
                  aria-labelledby="nav-home-tab">
                 <div class="row mt-3">
-
                     <div class="col-12">
                         <div class="form-check">
                             <input class="form-check-input" name="parameters[action_active][]" type="checkbox"
@@ -277,13 +268,13 @@
                     <div class="col-12 col-lg-6 mt-2">
                         <div class="form-group">
                             <label>Year:</label>
-                            <input class="form-control" required name="parameters[story_year_{{ $i }}]"
+                            <input class="form-control" name="parameters[story_year_{{ $i }}]"
                                    placeholder="Year"
                                    value="{!! ${'storyYear' . $i} !!}"/>
                         </div>
                         <div class="form-group">
                             <label>Photo:</label>
-                            <input class="form-control" required name="parameters[story_photo_{{ $i }}]"
+                            <input class="form-control" name="parameters[story_photo_{{ $i }}]"
                                    placeholder="Insert photo path"
                                    value="{!! ${'storyPhoto' . $i} !!}"/>
                         </div>
@@ -292,7 +283,7 @@
                     <div class="col-12 col-lg-6 mt-2">
                         <div class="form-group">
                             <label>Text:</label>
-                            <textarea class="form-control" required name="parameters[story_text_{{ $i }}]"
+                            <textarea class="form-control" name="parameters[story_text_{{ $i }}]"
                                       placeholder="Life changing support text">{!! ${'storyText' . $i} !!}</textarea>
                         </div>
                     </div>
@@ -306,14 +297,14 @@
     <div class="col-12">
         <div class="form-group">
             <label>Life changing support title:</label>
-            <input class="form-control " required name="parameters[changing_block_title]"
+            <input class="form-control" required name="parameters[changing_block_title]"
                    placeholder="Life changing support title"
                    value="{{ $lifeChangingBlockTitle }}"/>
         </div>
 
         <div class="form-group">
             <label>Life changing support text:</label>
-            <textarea wysiwyg-editor id="main_html" class="form-control" required name="parameters[changing_block_text]"
+            <textarea wysiwyg-editor id="main_html" class="form-control" name="parameters[changing_block_text]"
                       placeholder="Life changing support text">{{ $lifeChangingBlockText }}</textarea>
         </div>
     </div>

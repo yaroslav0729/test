@@ -117,6 +117,11 @@ class Template
                     'parameters.hdr_bg_image_2' => 'required_if:parameters.hdr_type_active_2,2',
                     'parameters.hdr_bg_image_3' => 'required_if:parameters.hdr_type_active_3,3',
                     'parameters.hdr_bg_image_4' => 'required_if:parameters.hdr_type_active_4,4',
+
+                    'parameters.who_we_are_link_text' => 'required|max:125',
+                    'parameters.who_we_are_title' => 'required',
+                    'parameters.who_we_are_video' => 'required',
+                    'parameters.who_we_are_link' => 'required',
                 ];
 
                 break;
@@ -169,7 +174,10 @@ class Template
                     'parameters.foreign_office_title' => 'required',
                     'parameters.head_office_text' => 'required',
                     'parameters.contact_email' => 'email:rfc',
-                    'parameters.instagram_link' => 'email:rfc',
+                    'parameters.instagram_link' => 'required',
+                    'parameters.facebook_link' => 'required',
+                    'parameters.youtube_link' => 'required',
+                    'parameters.twitter_link' => 'required',
                 ];
 
                 break;

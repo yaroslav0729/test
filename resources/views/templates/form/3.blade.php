@@ -53,8 +53,8 @@
     }
 
 
-    if (isset($parameters['who_we_are_wideo'])) {
-        $whoVideo = $parameters['who_we_are_wideo'];
+    if (isset($parameters['who_we_are_video'])) {
+        $whoVideo = $parameters['who_we_are_video'];
     }
 
     if (isset($parameters['who_we_are_link'])) {
@@ -175,7 +175,7 @@
     <div class="col-12 col-lg-6 mt-5">
         <div class="form-group">
             <label>Who we are video:</label>
-            <input class="form-control" required name="parameters[who_we_are_wideo]" placeholder="Who we are video"
+            <input class="form-control" required name="parameters[who_we_are_video]" placeholder="Who we are video"
                    value="{{ $whoVideo }}"/>
         </div>
     </div>
@@ -191,7 +191,7 @@
     <div class="form-group col-12 col-lg-6">
         <label>Who we are link text:</label>
         <input class="form-control" required name="parameters[who_we_are_link_text]" placeholder="Who we are link text"
-               value="{{ $whoLinkText }}"/>
+               value="{{ $whoLinkText }}" maxlength="125"/>
     </div>
 
     <div class="form-group col-12 col-lg-6">
@@ -205,7 +205,8 @@
         <textarea class="form-control" required name="parameters[who_we_are_text]"
                   placeholder="Insert Who we are text">{{ $whoText }}</textarea>
     </div>
-
+</div>
+<div class="row col-12 mt-5">
     <div class="form-group col-12 col-lg-6">
         <label>Our work Longterm projects link:</label>
         <input class="form-control" required name="parameters[our_work_longterm_link]" placeholder="Longterm projects"
