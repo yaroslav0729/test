@@ -216,7 +216,6 @@
             </div>
         </div>
         <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
-        <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
         <div class="swiper-pagination"></div>
     </div>
 </section>
