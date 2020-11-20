@@ -91187,14 +91187,15 @@ $(function () {
     html = html.replace(/{new}/gi, len);
     optionsList.append(html);
   });
-  /*
-  
-  html = html.replace(/{key}/gi, $('.card', itemsWrap).length);
-  
-  */
-
   $(document).on('click', '[option-delete]', function () {
     var wrap = $(this).closest('.option').remove();
+  }); //~ donate-module - show countries dropdown if click on amount ~
+
+  $(document).on('click', '[select-amount]', function () {
+    var amountId = $(this).data('amount_id');
+    $('[amount-countries]').addClass('d-none');
+    var countriesEl = $('[amount-countries][data-countries_amount_id="' + amountId + '"]');
+    countriesEl.removeClass('d-none');
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 });
 

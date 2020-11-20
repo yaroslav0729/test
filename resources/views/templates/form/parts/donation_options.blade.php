@@ -39,10 +39,10 @@ if (isset($parameters['amount'])) {
                     $text = "";
                 }
 
-                if (isset($amount['campaings'])) {
-                    $campaings = $amount['campaings'];
+                if (isset($amount['campaigns'])) {
+                    $campaigns = $amount['campaigns'];
                 } else {
-                    $campaings = [];
+                    $campaigns = [];
                 }
 
             @endphp
@@ -52,7 +52,7 @@ if (isset($parameters['amount'])) {
                     'donationType' => $donationType,
                     'donationValue' => $value,
                     'donationText' => $text,
-                    'donationCampaings' => $campaings,
+                    'donationCampaigns' => $campaigns,
                     'optionKey' => $key
                 ])  
             @endif

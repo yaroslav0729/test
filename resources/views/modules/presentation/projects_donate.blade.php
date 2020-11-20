@@ -21,6 +21,18 @@ if (isset($parameters['amount'])) {
     $amount = $parameters['amount'];  
 }
 
+$campaignsCountries = [];
+
+foreach ($amount as $key => $item) {
+    if (isset($item['campaigns'])) {
+        $campaigns = [];
+        foreach ($item['campaigns'] as $campId) {
+            $campaigns[$campId] = \App\Models\Campaign::getCountryNameByCampaignId($campId);
+        }
+        $campaignsCountries[$key] = $campaigns; 
+    }
+}
+
 @endphp
 
 <div class="body">
@@ -50,18 +62,9 @@ if (isset($parameters['amount'])) {
                     <div class="tab-pane fade show active" id="nav-1" role="tabpanel" >
                         <form action="/">
 
-                            @foreach ($amount as $item)
-                                @if(isset($item['type']) && ((int)$item['type'] === \App\Models\CampaignPrice::TYPE_SINGLE))
-                                    <label class="item">
-                                        <input type="radio" name="r1">
-                                        <span class="d-flex align-items-center">
-                                            <span><span>£<b>@isset($item['value']) {{ $item['value'] }} @endisset</b></span><span>JUST ONCE</span></span>
-                                            <span>@isset($item['text']) {{ $item['text'] }} @endisset</span>
-                                        </span>
-                                    </label>
-                                @endif 
-                            @endforeach
-                            
+                            @include('modules.presentation.parts.donate_options',[
+                                'donateOptionsType' => \App\Models\CampaignPrice::TYPE_SINGLE
+                            ])                        
 
                             <div class="pt-3"></div>
                             <div class="row gutter-5">
@@ -96,17 +99,9 @@ if (isset($parameters['amount'])) {
                     <div class="tab-pane fade" id="nav-2" role="tabpanel" >
                         <form action="/">
 
-                            @foreach ($amount as $item)
-                                @if(isset($item['type']) && ((int)$item['type'] === \App\Models\CampaignPrice::TYPE_MONTHLY))
-                                    <label class="item">
-                                        <input type="radio" name="r1">
-                                        <span class="d-flex align-items-center">
-                                            <span><span>£<b>@isset($item['value']) {{ $item['value'] }} @endisset</b></span><span>JUST ONCE</span></span>
-                                            <span>@isset($item['text']) {{ $item['text'] }} @endisset</span>
-                                        </span>
-                                    </label>
-                                @endif 
-                            @endforeach
+                            @include('modules.presentation.parts.donate_options',[
+                                'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY
+                            ])
 
                             <div class="pt-3"></div>
                             <div class="row gutter-5">

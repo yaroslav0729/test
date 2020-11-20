@@ -215,14 +215,17 @@ $(function () {
         optionsList.append(html);   
     });
 
-    /*
-    
-    html = html.replace(/{key}/gi, $('.card', itemsWrap).length);
-    
-    */
-
     $(document).on('click', '[option-delete]', function () {
         let wrap = $(this).closest('.option').remove();
+    });
+
+    //~ donate-module - show countries dropdown if click on amount ~
+
+    $(document).on('click', '[select-amount]', function () {
+        let amountId = $(this).data('amount_id')
+        $('[amount-countries]').addClass('d-none')
+        let countriesEl = $('[amount-countries][data-countries_amount_id="' + amountId +'"]');
+        countriesEl.removeClass('d-none')
     });
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
