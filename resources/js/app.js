@@ -228,7 +228,17 @@ $(function () {
         countriesEl.removeClass('d-none')
     });
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //~~~~~~~~~~~~~~~~~~ change map in the who we are page ~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('click', '#btn-view-global-work', function (event) {
+        event.preventDefault()
+
+        let mapBlock = $(this).parent();
+        let altSrc = $(mapBlock).attr('alt-src');
+        $(mapBlock).attr('style', 'background-image: url("' + altSrc + '")');
+        this.remove();
+    });
+
 });
 function initSwiper(){
     $('[swiper-wrapper]').each(function() {
