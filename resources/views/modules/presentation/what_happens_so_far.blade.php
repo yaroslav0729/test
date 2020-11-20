@@ -27,6 +27,12 @@
         $volunteers = $parameters['what_happens_volunteers'];    
     }
 
+    $bgImage = "";
+
+    if (isset($parameters['what_happens_img'])) {
+        $bgImage = $parameters['what_happens_img'];    
+    }
+
 @endphp
 
 <section class="whats-happened-far">
@@ -68,7 +74,11 @@
                 </div>
             </div>
             <div class="col-5">
+                @empty($bgImage)
                 <img src="img/content/project-2.jpg" alt="">
+                @else
+                <img src="{{ $bgImage }}" alt="">
+                @endempty
             </div>
         </div>
     </div>

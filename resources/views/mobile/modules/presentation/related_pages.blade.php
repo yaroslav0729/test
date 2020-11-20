@@ -30,10 +30,10 @@
     </div>
 </div>
 
-{{-- <script>
+<script>
     var swiper = new Swiper('.current-projects-swiper .swiper-container', {
         pagination: {
             el: '.current-projects-swiper .swiper-pagination'
         }
     });
-</script> --}}
+</script>

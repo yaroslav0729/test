@@ -56,11 +56,11 @@ if (isset($parameters['still_need_text3'])) {
             </div>
             <div class="item active-color-info">
                 <div>£<b>{{ $digit2 }}</b></div>
-                {{ $text1 }}
+                {{ $text2 }}
             </div>
             <div class="item active-color-danger">
                 <div>£<b>{{ $digit3 }}</b></div>
-                {{ $text1 }}
+                {{ $text3 }}
             </div>
         </div>
     </div>
