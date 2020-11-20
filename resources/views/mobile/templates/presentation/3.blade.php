@@ -343,7 +343,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                                 <a href="#" class="btn btn-warning">Donate now</a>
                             </div>
                         </div>
-                        <div class="img" style="background-image: url('img/content/{{ $slideImage[$i] }}')"></div>
+                        <div class="img" style="background-image: url('{{ $slideImage[$i] }}')"></div>
                     </div>
                 </div>
                 @endfor

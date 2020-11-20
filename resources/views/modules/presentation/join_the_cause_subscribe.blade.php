@@ -44,7 +44,7 @@
                         @if ($image === "")
                             <img src="img/content/join-cause-2.jpg" alt="" class="w-100">
                         @else
-                            <img src="img/content/{{ $image }}" alt="" class="w-100">
+                            <img src="{{ $image }}" alt="" class="w-100">
                         @endif
                     <i class="fal fa-plus decor-plus subscribe_news" id="join_the_cause_show_form"></i>
                 </div>
