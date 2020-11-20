@@ -12,4 +12,8 @@ npm-debug.log
 yarn-error.log
 servers.yml
 /.idea
-.idea
+.idea/
+docker-compose.yaml
+Dockerfile
+etc/
+storage/mysql/

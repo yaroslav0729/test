@@ -181,7 +181,9 @@ return [
         //
         Spatie\Permission\PermissionServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
-        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
+
+        App\Providers\StrHelperServiceProvider::class,
 
     ],
 
@@ -242,6 +244,8 @@ return [
         'JsonLd'        => Artesaos\SEOTools\Facades\JsonLd::class,
         'JsonLdMulti'   => Artesaos\SEOTools\Facades\JsonLdMulti::class,
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
+
+        'StrHelper' => App\Helpers\StrHelper::class,
     ],
 
 ];

@@ -16,190 +16,10 @@
             </div>
         </div>
 
-        <div class="body">
-            <div class="row gutter-0">
-                <div class="col-6">
-                    <div class="media">
-                        <img src="img/content/donate-today-1.jpg" alt="" class="w-100">
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="donate-today-sheet">
-
-                        <nav>
-                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                <a class="nav-link active"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true">Single Donation</a>
-                                <a class="nav-link color-info"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false">Monthly Donation</a>
-                                <a class="nav-link color-red"  data-toggle="tab" href="#nav-3" role="tab"  aria-selected="false">Appeal Donation</a>
-                            </div>
-                        </nav>
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-1" role="tabpanel" >
-                                <form action="/">
-                                    <label class="item">
-                                        <input type="radio" name="r1">
-                                        <span class="d-flex align-items-center">
-                                            <span><span>£<b>30</b></span><span>JUST ONCE</span></span>
-                                            <span>This donation could give a child a food and a blanket, to keep them warm this winter 90ch.</span>
-                                        </span>
-                                    </label>
-                                    <label class="item">
-                                        <input type="radio" name="r1">
-                                        <span class="d-flex align-items-center">
-                                            <span><span>£<b>50</b></span><span>JUST ONCE</span></span>
-                                            <span>This donation could give a child a food and a blanket, to keep them warm this winter 90ch.</span>
-                                        </span>
-                                    </label>
-                                    <label class="item">
-                                        <input type="radio" name="r1">
-                                        <span class="d-flex align-items-center">
-                                            <span><span>£<b>100</b></span><span>JUST ONCE</span></span>
-                                            <span>This donation could give a child a food and a blanket, to keep them warm this winter 90ch.</span>
-                                        </span>
-                                    </label>
-                                    <div class="pt-3"></div>
-                                    <div class="row gutter-5">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option value="1">General Charity</option>
-                                                    <option value="1">General Charity 2</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="£  Enter amount">
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option value="1">GPB</option>
-                                                    <option value="2">USD</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pt-3"></div>
-                                    <div class="text-center">
-                                        <button class="btn btn-danger border-white btn-submit">Donate</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="tab-pane fade" id="nav-2" role="tabpanel" >
-                                <form action="/">
-                                    <label class="item active-color-info">
-                                        <input type="radio" name="r1">
-                                        <span class="d-flex align-items-center">
-                                            <span><span>£<b>30</b></span><span>JUST ONCE</span></span>
-                                            <span>This donation could give a child a food and a blanket, to keep them warm this winter 90ch.</span>
-                                        </span>
-                                    </label>
-                                    <label class="item active-color-info">
-                                        <input type="radio" name="r1">
-                                        <span class="d-flex align-items-center">
-                                            <span><span>£<b>50</b></span><span>JUST ONCE</span></span>
-                                            <span>This donation could give a child a food and a blanket, to keep them warm this winter 90ch.</span>
-                                        </span>
-                                    </label>
-                                    <label class="item active-color-info">
-                                        <input type="radio" name="r1">
-                                        <span class="d-flex align-items-center">
-                                            <span><span>£<b>100</b></span><span>JUST ONCE</span></span>
-                                            <span>This donation could give a child a food and a blanket, to keep them warm this winter 90ch.</span>
-                                        </span>
-                                    </label>
-                                    <div class="pt-3"></div>
-                                    <div class="row gutter-5">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option value="1">General Charity</option>
-                                                    <option value="1">General Charity 2</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="£  Enter amount">
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option value="1">GPB</option>
-                                                    <option value="2">USD</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pt-3"></div>
-                                    <div class="text-center">
-                                        <button class="btn btn-info border-white btn-submit">Donate</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="tab-pane fade" id="nav-3" role="tabpanel" >
-                                <form action="/">
-                                    <label class="item active-color-red">
-                                        <input type="radio" name="r1">
-                                        <span class="d-flex align-items-center">
-                                            <span><span>£<b>30</b></span><span>JUST ONCE</span></span>
-                                            <span>This donation could give a child a food and a blanket, to keep them warm this winter 90ch.</span>
-                                        </span>
-                                    </label>
-                                    <label class="item active-color-red">
-                                        <input type="radio" name="r1">
-                                        <span class="d-flex align-items-center">
-                                            <span><span>£<b>50</b></span><span>JUST ONCE</span></span>
-                                            <span>This donation could give a child a food and a blanket, to keep them warm this winter 90ch.</span>
-                                        </span>
-                                    </label>
-                                    <label class="item active-color-red">
-                                        <input type="radio" name="r1">
-                                        <span class="d-flex align-items-center">
-                                            <span><span>£<b>100</b></span><span>JUST ONCE</span></span>
-                                            <span>This donation could give a child a food and a blanket, to keep them warm this winter 90ch.</span>
-                                        </span>
-                                    </label>
-                                    <div class="pt-3"></div>
-                                    <div class="row gutter-5">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option value="1">General Charity</option>
-                                                    <option value="1">General Charity 2</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="£  Enter amount">
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option value="1">GPB</option>
-                                                    <option value="2">USD</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pt-3"></div>
-                                    <div class="text-center">
-                                        <button class="btn btn-danger border-white btn-submit">Donate</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="descr"><div>Your subtitle/copy can go here, max of 100ch ut perspi unde omnis iste natus demiour sit voluptatem, abilloum inventore.</div></div>
-
-            </div>
-        </div>
+        @include('modules.presentation.projects_donate', [
+            'parameters' => $parameters,
+            'useAppeal' => true
+        ])
 
     </div>
 </section>
@@ -212,10 +32,12 @@
                 <div class="col-6">
                     <p class="font-size-30"><b>Donate to a project too?</b></p>
                     <p class="font-size-16">You could also join the journey to support our causes that empower those in need each month/single donation 100ch.</p>
+
                 </div>
             </div>
         </div>
     </div>
+
     <div class="wrap">
         <div class="row">
             <div class="col-12 col-md-6 col-lg-6 col-xl-4">
@@ -397,10 +219,10 @@
 
         <div class="text-center mb-4">
             <img src="img/payments-image.png" alt="" class="img-fluid">
+
         </div>
     </div>
 </section>
-
 
 <section class="other-way-give">
     <div class="wrap">
@@ -448,3 +270,4 @@
 </div>
 
 <div class="pt-5"></div>
+

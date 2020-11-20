@@ -1,17 +1,9 @@
 @php
 
 $amounts = [];
-$types = [];
-$texts = [];
 
 if (isset($parameters['amount'])) {
     $amounts = $parameters['amount'];
-}
-if (isset($parameters['amount_type'])) {
-    $types = $parameters['amount_type'];
-}
-if (isset($parameters['amount_text'])) {
-    $texts = $parameters['amount_text'];
 }
 
 @endphp
@@ -19,7 +11,7 @@ if (isset($parameters['amount_text'])) {
 
 <div options-container>
 
-    <button type="button" option-add class="btn btn-success mb-3">Add ammount</button>
+    <button type="button" option-add class="btn btn-success mb-3 mt-3">Add ammount</button>
     
     <div class="d-none" option-stub stub-fields>
         @include('templates.form.parts.donation_option', ['donationType' => $donationType])
@@ -27,14 +19,44 @@ if (isset($parameters['amount_text'])) {
     
     <div options-list>
         @foreach ($amounts as $key => $amount)
-            @if($donationType === (int)$types[$key])
+
+            @php
+                if (isset($amount['value'])) {
+                    $value = (int)$amount['value'];
+                } else {
+                    $value = 0;
+                }
+
+                if (isset($amount['type'])) {
+                    $type = (int)$amount['type'];
+                } else {
+                    $type = 0;
+                }
+
+                if (isset($amount['text'])) {
+                    $text = $amount['text'];
+                } else {
+                    $text = "";
+                }
+
+                if (isset($amount['campaigns'])) {
+                    $campaigns = $amount['campaigns'];
+                } else {
+                    $campaigns = [];
+                }
+
+            @endphp
+
+            @if($donationType === $type)
                 @include('templates.form.parts.donation_option', [
                     'donationType' => $donationType,
-                    'donationValue' => (int)$amount,
-                    'donationText' => $texts[$key]
+                    'donationValue' => $value,
+                    'donationText' => $text,
+                    'donationCampaigns' => $campaigns,
+                    'optionKey' => $key
                 ])  
             @endif
         @endforeach
     </div>
     
-    </div>
+</div>

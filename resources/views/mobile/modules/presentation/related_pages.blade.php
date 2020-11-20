@@ -1,14 +1,14 @@
 @php
     $relPageCatId = "";
-    
+
     if (isset($parameters['rel_page_category'])) {
-        $relPageCatId = (int)$parameters['rel_page_category'];    
+        $relPageCatId = (int)$parameters['rel_page_category'];
     }
 
     $relatedPages = \App\Models\Module::getRelatedPages($relPageCatId);
 @endphp
 
-<div class="current-projects-list current-projects-swiper">
+<div class="current-projects-list current-projects-swiper" swiper-wrapper="related">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             @foreach ($relatedPages as $page)

@@ -32,7 +32,6 @@ class EventServiceProvider extends ServiceProvider
 
     /**
      * "ctf0/package-changelog".
-     *  Вщялось после композер инсталл
      */
     public static function postAutoloadDump(\Composer\Script\Event $event)
     {

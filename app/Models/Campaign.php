@@ -100,4 +100,20 @@ class Campaign extends Model
             $this->save();
         }
     }
+
+    public function scopeAllActive($query)
+    {
+        return $query->where('id', '>', 0); // not finished yet
+    }
+
+    public static function getCountryNameByCampaignId($id)
+    {
+        $campaign = self::where('id', $id)->first();
+
+        if (isset($campaign)) {
+            return $campaign->country_name;
+        } else {
+            return "";
+        }
+    }
 }

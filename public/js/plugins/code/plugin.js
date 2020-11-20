@@ -196,7 +196,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/node_modules/tinymce/plugins/code/plugin.js */"./node_modules/tinymce/plugins/code/plugin.js");
+module.exports = __webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/node_modules/tinymce/plugins/code/plugin.js */"./node_modules/tinymce/plugins/code/plugin.js");
 
 
 /***/ })
