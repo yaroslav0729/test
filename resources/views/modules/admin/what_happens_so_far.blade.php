@@ -27,6 +27,12 @@
         $volunteers = $parameters['what_happens_volunteers'];    
     }
 
+    $bgImage = "";
+
+    if (isset($parameters['what_happens_img'])) {
+        $bgImage = $parameters['what_happens_img'];    
+    }
+
 @endphp
 
 <h3 class="text-center">What happens module:</h3>
@@ -39,6 +45,11 @@
 <div class="form-group">
     <label>What happens text</label>
     <textarea class="form-control" required name="parameters[what_happens_text]" placeholder="Insert what happens  text">{{ $moduleText }}</textarea>
+</div>
+
+<div class="form-group">
+    <label>What happens image:</label>
+    <input class="form-control" name="parameters[what_happens_img]" placeholder="Insert what happens image" value="{{ $bgImage }}" />
 </div>
 
 <div class="form-group">

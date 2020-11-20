@@ -27,6 +27,12 @@
         $volunteers = $parameters['what_happens_volunteers'];    
     }
 
+    $bgImage = "";
+
+    if (isset($parameters['what_happens_img'])) {
+        $bgImage = $parameters['what_happens_img'];    
+    }
+
 @endphp
 
 <section class="whats-happened-far">
@@ -46,7 +52,13 @@
             <p>{{ $moduleText }}</p>
             @endisset
         </div>
+
+        @empty($bgImage)
         <img src="img/content/project-2.jpg" alt="" class="w-100">
+        @else
+        <img src="{{ $bgImage }}" alt="" class="w-100">
+        @endempty
+
         <div class="help-info-swiper">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
