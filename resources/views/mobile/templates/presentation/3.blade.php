@@ -162,7 +162,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                                         <div class="black-line"></div>
                                     </div>
                                 </div>
-                                <div class="right" style="background-image: url('img/content/{{ $hdrBgImage[$i] }}')"></div>
+                                <div class="right" style="background-image: url('{{ $hdrBgImage[$i] }}')"></div>
                             </div>
                         </div>
                     @endif

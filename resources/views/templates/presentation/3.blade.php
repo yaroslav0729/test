@@ -165,7 +165,7 @@
                                             now</a>
                                     </div>
                                     <div class="right"
-                                         style="background-image: url('img/content/{{ $hdrBgImage[$i] }}')"></div>
+                                         style="background-image: url('{{ $hdrBgImage[$i] }}')"></div>
                                     <a href="#" class="view-more swiper-button-next"><i class="far fa-arrow-right"></i></a>
                                 </div>
                             </div>
