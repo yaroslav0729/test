@@ -97,7 +97,7 @@ foreach ($amount as $key => $item) {
                                 <div class="col-2">
                                     <div class="form-group">
                                         <select class="form-control">
-                                            <option value="1">GPB</option>
+                                            <option value="1">GBP</option>
                                             <option value="2">USD</option>
                                         </select>
                                     </div>
@@ -136,7 +136,7 @@ foreach ($amount as $key => $item) {
                                 <div class="col-2">
                                     <div class="form-group">
                                         <select class="form-control">
-                                            <option value="1">GPB</option>
+                                            <option value="1">GBP</option>
                                             <option value="2">USD</option>
                                         </select>
                                     </div>
@@ -181,7 +181,7 @@ foreach ($amount as $key => $item) {
                                 <div class="col-2">
                                     <div class="form-group">
                                         <select class="form-control">
-                                            <option value="1">GPB</option>
+                                            <option value="1">GBP</option>
                                             <option value="2">USD</option>
                                         </select>
                                     </div>
