@@ -19,7 +19,7 @@
         </div>
         <div class="pt-5"></div>
 
-        @include('modules.presentation.projects_donate', ['parameters' => $parameters])
+        @include('modules.presentation.projects_donate')
 
     </div>
 </section>
