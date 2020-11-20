@@ -5,9 +5,9 @@
     $ourValuesDescription = "";
     $ourValuesVideo = "";
     $mapImage = "";
+    $mapAlternativeImage = "";
 
     for ($i=1; $i<=4; $i++) {
-        $actionActive[$i] = "";
         $actionName[$i] = "";
         $actionPhoto[$i] = "";
         $actionSlogan[$i] = "";
@@ -49,6 +49,12 @@
     if (isset($parameters['map_image'])) {
         $mapImage = $parameters['map_image'];
     }
+
+    if (isset($parameters['map_alt_image'])) {
+        $mapAlternativeImage = $parameters['map_alt_image'];
+    }
+
+     $actionActive = $parameters['action_active'] ?? [];
 
     for ($i=1; $i<=4; $i++){
         if (isset($parameters['action_active_' . $i])) {
@@ -151,6 +157,15 @@
                    value="{{ $mapImage }}"/>
         </div>
     </div>
+
+    <div class="col-12 col-lg-6">
+        <div class="form-group">
+            <label>Map alternative image path:</label>
+            <input class="form-control" required name="parameters[map_alt_image]"
+                   placeholder="Insert map alternative image path"
+                   value="{{ $mapAlternativeImage }}"/>
+        </div>
+    </div>
 </div>
 
 <div class="form-group mt-5">
@@ -160,7 +175,7 @@
             @for ($i = 1; $i <= 4; $i++)
                 <a class="nav-item nav-link @if($i === 1)active @endif" id="nav-action-tab-{{ $i }}" data-toggle="tab"
                    href="#nav-action-{{ $i }}"
-                   role="tab" aria-controls="nav-home" aria-selected="true">Block-{{ $i }}</a>
+                   role="tab" aria-controls="nav-home" aria-selected="true">Slide {{ $i }}</a>
             @endfor
         </div>
     </nav>
@@ -171,11 +186,11 @@
                 <div class="row mt-3">
                     <div class="col-12">
                         <div class="form-check">
-                            <input class="form-check-input" name="parameters[action_active_{{ $i }}]" type="checkbox"
+                            <input class="form-check-input" name="parameters[action_active][]" type="checkbox"
                                    value="{{ $i }}" id="defaultCheck{{ $i }}"
-                                   @empty(!$actionActive[$i]) checked @endempty>
+                                   @if(in_array($i, $actionActive ))checked @endif>
                             <label class="form-check-label" for="defaultCheck{{ $i }}">
-                                Active block
+                                Active slide
                             </label>
                         </div>
                     </div>
@@ -245,7 +260,7 @@
             @for ($i = 1; $i <= 3; $i++)
                 <a class="nav-item nav-link @if($i === 1)active @endif" id="nav-action-tab-{{ $i }}" data-toggle="tab"
                    href="#nav-story-{{ $i }}"
-                   role="tab" aria-controls="nav-home" aria-selected="true">Block-{{ $i }}</a>
+                   role="tab" aria-controls="nav-home" aria-selected="true">Slide {{ $i }}</a>
             @endfor
         </div>
     </nav>
@@ -256,11 +271,11 @@
                 <div class="row mt-3">
                     <div class="col-12">
                         <div class="form-check">
-                            <input class="form-check-input" name="parameters[action_active][]" type="checkbox"
+                            <input class="form-check-input" name="parameters[story_active][]" type="checkbox"
                                    value="{{ $i }}" id="defaultCheck{{ $i }}"
                                    @if(in_array($i, $storyActive ))checked @endif>
                             <label class="form-check-label" for="defaultCheck{{ $i }}">
-                                Active block
+                                Active slide
                             </label>
                         </div>
                     </div>
@@ -315,14 +330,14 @@
     @for ($i = 1; $i <= 2; $i++)
         <div class="col-12 col-lg-6 mt-2">
             <div class="form-check">
-                <input class="form-check-input" name="parameters[support_active][]" type="checkbox"
+                <input class="form-check-input" name="parameters[changing_active][]" type="checkbox"
                        value="{{ $i }}" id="defaultCheck{{ $i }}"
                        @if(in_array($i, $changingActive ))checked @endif>
                 <label class="form-check-label" for="defaultCheck{{ $i }}">
-                    Active block
+                    Active slide
                 </label>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label>Photo:</label>
                 <input class="form-control" required name="parameters[changing_block_photo_{{ $i }}]"
                        placeholder="Insert photo path"
@@ -338,10 +353,15 @@
     @endfor
 </div>
 
-@include('modules.admin.related_pages', [
-    'parameters' => $parameters
-])
+<div class="row mt-5">
+    <div class="col-12">
+        @include('modules.admin.related_pages', [
+            'parameters' => $parameters
+        ])
 
-@include('modules.admin.join_the_cause_subscribe', [
-    'parameters' => $parameters
-])
+        @include('modules.admin.join_the_cause_subscribe', [
+            'parameters' => $parameters
+        ])
+    </div>
+</div>
+

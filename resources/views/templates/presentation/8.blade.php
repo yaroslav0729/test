@@ -5,9 +5,11 @@
     $ourValuesDescription = "";
     $ourValuesVideo = "";
     $mapImage = "";
+    $mapAlternativeImage = "";
+
+    $storyActive = $parameters['story_active'] ?? [];
 
     for ($i=1; $i<=4; $i++) {
-        $actionActive[$i] = "";
         $actionName[$i] = "";
         $actionPhoto[$i] = "";
         $actionSlogan[$i] = "";
@@ -56,6 +58,12 @@
         $mapImage = $parameters['map_image'];
     }
 
+    if (isset($parameters['map_alt_image'])) {
+        $mapAlternativeImage = $parameters['map_alt_image'];
+    }
+
+    $actionActive = $parameters['action_active'] ?? [];
+
     for ($i=1; $i<=4; $i++){
         if (isset($parameters['action_active_' . $i])) {
             $actionActive[$i] = $parameters['action_active_' . $i];
@@ -103,6 +111,8 @@
         }
     }
 
+    $changingActive = $parameters['changing_active'] ?? [];
+
     if (isset($parameters['changing_block_title'])) {
         $lifeChangingBlockTitle = $parameters['changing_block_title'];
     }
@@ -113,7 +123,7 @@
 
 @endphp
 
-<section class="who-we-are-head" style="background-image: url('/img/content/{{ $bgImage }}');">
+<section class="who-we-are-head" style="background-image: url('{{ $bgImage }}');">
     <div>OUR MISSION</div>
     <h1>{!! $ourMissionTitle !!}</h1>
 </section>
@@ -138,8 +148,8 @@
 </section>
 
 <section class="gw-map-btn">
-    <div style="background-image: url('img/{{ $mapImage }}')">
-        <a href="#" class="btn btn-info">View Global Work</a>
+    <div style="background-image: url({{ $mapImage }})" alt-src="{{ $mapAlternativeImage }}">
+        <a href="#" id="btn-view-global-work" class="btn btn-info">View Global Work</a>
     </div>
 </section>
 
@@ -158,7 +168,7 @@
                                  role="tabpanel">
                                 <div class="row gutter-0">
                                     <div class="col-6 img"
-                                         style="background-image: url('/img/content/{{ $actionPhoto[$i] }}')">                                        &nbsp;
+                                         style="background-image: url('{{ $actionPhoto[$i] }}')">                                        &nbsp;
                                     </div>
                                     <div class="col-6 {{ $colorNameClass[$i] }} text">
                                         <div>
@@ -190,16 +200,18 @@
     </section>
 @endempty
 
+@empty(!$storyActive)
 <section class="our-story-swiper" swiper-wrapper="our-story">
     <div class="wrap">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 @for ($i = 1; $i <= 3; $i++)
+                    @if(in_array($i, $storyActive ))
                     <div class="swiper-slide d-flex align-items-start">
                         <div class="img-box">
                             <div class="bg-warning">
                                 <div class="img"
-                                     style="background-image: url('/img/content/{{ ${'storyPhoto' . $i} }}')"></div>
+                                     style="background-image: url('{{ ${'storyPhoto' . $i} }}')"></div>
                             </div>
                         </div>
                         <div class="box">
@@ -212,6 +224,7 @@
                             <p class="pl-5 pr-5">{!! ${'storyText' . $i} !!}</p>
                         </div>
                     </div>
+                    @endif
                 @endfor
             </div>
         </div>
@@ -219,19 +232,22 @@
         <div class="swiper-pagination"></div>
     </div>
 </section>
+@endempty
 
 <section class="mb-5">
     <p class="font-size-45"><b>Life changing support.</b></p>
 </section>
 
+@empty(!$changingActive)
 <section class="promo-project-swiper" swiper-wrapper="our-support">
     <div class="wrap bg-primary-light">
         <div class="swiper-container">
             <div class="swiper-wrapper">
             @for ($i = 1; $i <= 2; $i++)
+                @if(in_array($i, $changingActive ))
                 <div class="swiper-slide">
                     <div class="row gutter-0 align-content-center">
-                        <div class="col-6 img" style="background-image: url('/img/content/{{ ${'lifeChangingPhoto' . $i} }}')">
+                        <div class="col-6 img" style="background-image: url('{{ ${'lifeChangingPhoto' . $i} }}')">
                             <a href="#" class="btn btn-info">Donate to this project &nbsp;&nbsp;<i class="fas fa-plus"></i></a>
                         </div>
                         <div class="col-6 text">
@@ -239,12 +255,14 @@
                         </div>
                     </div>
                 </div>
+                @endif
             @endfor
             </div>
             <a href="#" class="next swiper-button-next"><i class="far fa-arrow-right"></i></a>
         </div>
     </div>
 </section>
+@endempty
 
 <section class="blog-article-body">
     <div class="wrap">
