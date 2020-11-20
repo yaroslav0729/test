@@ -2,50 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Helpers/StrHelper.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Providers/StrHelperServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/mobile.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/Global-work.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mobile/layouts/main.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mobile/parts/footer.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mobile/parts/styles.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mobile/templates/presentation/5.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mobile/templates/presentation/6.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mobile/templates/presentation/8.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mobile/templates/presentation/9.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/admin/important_information.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/admin/projects_donate.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/admin/we_still_need_support.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/admin/what_happens_so_far.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/presentation/important_information.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/presentation/parts/donate_options.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/presentation/projects_donate.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/presentation/we_still_need_support.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/presentation/what_happens_so_far.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/parts/head.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/parts/styles.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/form/6.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/form/7.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/form/8.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/form/9.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/presentation/6.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/presentation/7.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/presentation/8.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/templates/presentation/9.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Campaign.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Campaign.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Page.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Page.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/PageInstance.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PageInstance.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Template.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Template.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Widget.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Widget.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/vendor/MediaManager/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/vendor/MediaManager/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/audio.worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/audio.worker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/admin_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/admin_styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app_admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app_admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/db.worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/db.worker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/icons/default/icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/icons/default/icons.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/plugins/code/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/plugins/code/plugin.js" afterDir="false" />
@@ -56,22 +20,13 @@
       <change beforePath="$PROJECT_DIR$/public/js/plugins/lists/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/plugins/lists/plugin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/plugins/media/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/plugins/media/plugin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/plugins/table/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/plugins/table/plugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/skins/content/default/content.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/skins/content/default/content.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/skins/ui/oxide/content.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/skins/ui/oxide/content.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/skins/ui/oxide/skin.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/skins/ui/oxide/skin.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/themes/silver/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/themes/silver/theme.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/who-we-are.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/who-we-are.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mobile/modules/presentation/related_pages.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mobile/modules/presentation/related_pages.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mobile/templates/presentation/3.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mobile/templates/presentation/3.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/modules/admin/related_pages.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modules/admin/related_pages.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/templates/form/3.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/form/3.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/templates/form/5.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/form/5.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/templates/form/parts/donation_option.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/form/parts/donation_option.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/templates/form/parts/donation_options.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/form/parts/donation_options.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/templates/presentation/5.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/presentation/5.blade.php" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,20 +37,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/markup/mobile/_base.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Providers/EventServiceProvider.php">
+        <entry file="file://$PROJECT_DIR$/public/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+            <state relative-caret-position="192">
+              <caret line="1124" column="45" selection-start-line="1124" selection-start-column="45" selection-end-line="1124" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -112,13 +58,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>who-we-are-head</find>
-      <find>gw-map-btn</find>
-      <find>LEARN MOR</find>
-      <find>swiper</find>
-      <find>mission-impossible</find>
-      <find>border-radius</find>
-      <find>place</find>
       <find>event-info-head</find>
       <find>date</find>
       <find>event-info-descr</find>
@@ -142,10 +81,19 @@
       <find>Subtitle capture copy placed here, 40ch...</find>
       <find>share</find>
       <find>whats-new</find>
+      <find>our-support</find>
+      <find>swiper-wrapper</find>
+      <find>promo-project-swiper</find>
+      <find>values-action</find>
+      <find>next</find>
+      <find>values-action</find>
+      <find>main-</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/public/markup/mobile</dir>
       <dir>$PROJECT_DIR$/public/markup</dir>
+      <dir>$PROJECT_DIR$/resources/views</dir>
+      <dir>$PROJECT_DIR$/resources</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -155,6 +103,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
+        <option value="$PROJECT_DIR$/resources/js/app.js" />
+        <option value="$PROJECT_DIR$/resources/views/templates/presentation/8.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/mobile/templates/presentation/8.blade.php" />
+        <option value="$PROJECT_DIR$/public/css/mobile.less" />
+        <option value="$PROJECT_DIR$/public/css/styles.less" />
       </list>
     </option>
   </component>
@@ -290,6 +243,11 @@
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
     </include_path>
   </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="823" />
+  </component>
   <component name="ProjectId" id="1k90JO69r2llzuEoC6i1e8caA6M" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -299,7 +257,97 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="styles.less" type="620a8d5e:NestingTreeNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="markup" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="presentation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="presentation" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
     </panes>
   </component>
@@ -312,7 +360,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/markup/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/css" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -321,15 +369,15 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/css" />
       <recent name="$PROJECT_DIR$/public/markup/img" />
       <recent name="$PROJECT_DIR$/public/markup/mobile" />
       <recent name="$PROJECT_DIR$/public/img" />
       <recent name="$PROJECT_DIR$/public/markup" />
-      <recent name="$PROJECT_DIR$/img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -343,6 +391,12 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner scope="XML" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
@@ -362,28 +416,28 @@
       <workItem from="1604555802706" duration="3147000" />
       <workItem from="1605097427395" duration="309000" />
       <workItem from="1605272086059" duration="123000" />
+      <workItem from="1605873248037" duration="5260000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221000" />
+    <option name="totallyTimeSpent" value="6172000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="825" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1440" height="823" extended-state="0" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.23891273" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.20958512" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="npm" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.23601638" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.1874145" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.3287858" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.32831737" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
@@ -395,20 +449,62 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/Providers/EventServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="32" column="7" lean-forward="true" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/who-we-are.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="158" column="36" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/mobile/_base.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
+        <state relative-caret-position="593">
           <caret line="40" selection-start-line="40" selection-end-line="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/EventServiceProvider.php">
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+        <state relative-caret-position="267">
+          <caret line="239" column="14" lean-forward="true" selection-start-line="239" selection-start-column="14" selection-end-line="239" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/templates/presentation/8.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="226" column="36" selection-start-line="226" selection-start-column="16" selection-end-line="226" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/mobile/templates/presentation/8.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="148" column="67" selection-start-line="148" selection-start-column="63" selection-end-line="148" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/mobile.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="1214" column="8" selection-start-line="1214" selection-start-column="8" selection-end-line="1214" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/styles.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="1124" column="45" selection-start-line="1124" selection-start-column="45" selection-end-line="1124" selection-end-column="45" />
         </state>
       </provider>
     </entry>

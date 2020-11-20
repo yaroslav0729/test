@@ -225,23 +225,23 @@
 </section>
 
 <section class="promo-project-swiper" swiper-wrapper="our-support">
-    <div class="wrap">
+    <div class="wrap bg-primary-light">
         <div class="swiper-container">
             <div class="swiper-wrapper">
             @for ($i = 1; $i <= 2; $i++)
                 <div class="swiper-slide">
-                    <div class="row gutter-0">
+                    <div class="row gutter-0 align-content-center">
                         <div class="col-6 img" style="background-image: url('/img/content/{{ ${'lifeChangingPhoto' . $i} }}')">
                             <a href="#" class="btn btn-info">Donate to this project &nbsp;&nbsp;<i class="fas fa-plus"></i></a>
                         </div>
-                        <div class="col-6 text bg-primary-light">
-                            {{ ${'lifeChangingPhrase' . $i} }}
-                            <a href="#" class="next swiper-button-next"><i class="far fa-arrow-right"></i></a>
+                        <div class="col-6 text">
+                            <div>{{ ${'lifeChangingPhrase' . $i} }}</div>
                         </div>
                     </div>
                 </div>
             @endfor
             </div>
+            <a href="#" class="next swiper-button-next"><i class="far fa-arrow-right"></i></a>
         </div>
     </div>
 </section>

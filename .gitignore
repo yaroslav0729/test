@@ -17,3 +17,5 @@ docker-compose.yaml
 Dockerfile
 etc/
 storage/mysql/
+public/css/styles.css.map
+public/js/app.js.LICENSE.txt
