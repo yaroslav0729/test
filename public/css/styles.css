@@ -1309,6 +1309,14 @@ input[type='number'].color-danger + .input-group .btn {
 .main-page-header.style-4 .body a {
   color: #fff;
 }
+.main-page-header .swiper-container .view-more {
+  margin-top: 0;
+  top: auto;
+  text-decoration: none !important;
+}
+.main-page-header .swiper-container .view-more:after {
+  display: none;
+}
 .quick-donation {
   margin: -90px 120px 90px;
   border-radius: 5px;
