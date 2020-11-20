@@ -54,7 +54,7 @@
 
 @endphp
 
-<section class="who-we-are-head" style="background-image: url('img/{{ $bgImage }}');">
+<section class="who-we-are-head" style="background-image: url({{ $bgImage }});">
     <div>SAY HELLO</div>
     <h1>Get in touch</h1>
 </section>
