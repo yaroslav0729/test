@@ -25,7 +25,7 @@
         <tr>
             <td class="border px-2 py-2">Projects page</td>
             <td class="border px-2 py-2">
-                <a href="{{ route('admin.pages.edit', ['page' => $indexPage->page->id]) }}">
+                <a href="{{ route('admin.pages.edit', ['page' => $projectsPage->page->id]) }}">
                     <button class="btn btn-info action-btn" type="submit" title="Edit page">
                         <i class="fas fa-edit"></i>
                     </button>
