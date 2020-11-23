@@ -239,6 +239,18 @@ $(function () {
         this.remove();
     });
 
+    //~~~~~~~~~~~~~~~~~~ Project tiles ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('click', '.donate-projects-list .add', function () {
+        
+        let popupKey = $(this).data('popup')
+        let popup = $('.tiles-popup_' + popupKey)
+
+        $('[tiles-popup]').addClass('d-none')
+
+        popup.removeClass('d-none')
+    });
+
 });
 function initSwiper(){
     $('[swiper-wrapper]').each(function() {
