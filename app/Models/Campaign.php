@@ -5,10 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\CampaignPrice;
+use Carbon\Carbon;
 
 class Campaign extends Model
 {
     use HasFactory;
+
+    const STATUS_ACTIVE = "Active";
+    const STATUS_NOT_STARTED = "Not started";
+    const STATUS_FINISHED = "Finished";
 
     protected $fillable = [
         'name',
@@ -101,19 +106,36 @@ class Campaign extends Model
         }
     }
 
-    public function scopeAllActive($query)
+    public function getStatusAttribute($query)
     {
-        return $query->where('id', '>', 0); // not finished yet
+        $company = $this;
+        $nowDate = Carbon::now()->toDateTimeString();
+
+        if ($nowDate < $this->start_date) return self::STATUS_NOT_STARTED;
+        if ($nowDate < $this->end_date) return self::STATUS_ACTIVE;
+        if ($nowDate > $this->end_date) return self::STATUS_FINISHED; 
     }
 
-    public static function getCountryNameByCampaignId($id)
+    public function scopeActive($query)
     {
-        $campaign = self::where('id', $id)->first();
+        $nowDate = Carbon::now()->toDateTimeString();
+
+        return $query->where('start_date', '<', $nowDate)
+                    ->where('end_date', '>', $nowDate);
+    }
+
+    public static function getCountryNameForPrice($campId, $value, $type)
+    {
+        $campaign = self::where('id', $campId)->active()->
+                whereHas('campaign_prices', function ($q) use ($value, $type) {
+                    $q->where('value', $value)
+                    ->where('type', $type);
+                })->first();
 
         if (isset($campaign)) {
             return $campaign->country_name;
         } else {
-            return "";
+            return null;
         }
     }
 }

@@ -27,7 +27,10 @@ foreach ($amount as $key => $item) {
     if (isset($item['campaigns'])) {
         $campaigns = [];
         foreach ($item['campaigns'] as $campId) {
-            $campaigns[$campId] = \App\Models\Campaign::getCountryNameByCampaignId($campId);
+            $campName = \App\Models\Campaign::getCountryNameForPrice($campId, $item['value'], $item['type']);
+            
+            if (isset($campName))
+            $campaigns[$campId] = $campName;
         }
         $campaignsCountries[$key] = $campaigns; 
     }
