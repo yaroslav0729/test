@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Template;
 use Config;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,7 +28,7 @@ class Page extends Model
     ];
 
     protected $fillable = [
-        'status', 'type'
+        'status', 'type',
     ];
 
     public function pageInstances()
@@ -73,7 +75,16 @@ class Page extends Model
         } else {
             $slug = "";
         }
-        
+
         return url($slug);
+    }
+
+    public static function getAllProjects()
+    {
+        $pages = Page::whereHas('pageInstances', function (Builder $query) {
+            $query->where('template', Template::PROJECT_PAGE);
+        })->get();
+
+        return $pages;
     }
 }
