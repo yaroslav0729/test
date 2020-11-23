@@ -124,6 +124,12 @@ class Campaign extends Model
                     ->where('end_date', '>', $nowDate);
     }
 
+    public function scopeEmergency($query)
+    {
+        return $query->where('is_emergency', true);
+                    
+    }
+
     public static function getCountryNameForPrice($campId, $value, $type)
     {
         $campaign = self::where('id', $campId)->active()->

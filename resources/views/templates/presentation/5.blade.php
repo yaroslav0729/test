@@ -24,7 +24,6 @@
     </div>
 </section>
 
-
 <section class="donate-projects-list">
     <div class="title">
         <div class="wrap">
@@ -38,7 +37,32 @@
         </div>
     </div>
 
-    @include('modules.presentation.projects_tiles')
+    {{-- Single donate projects --}}
+    @php
+        $sProjects = \App\Models\Page::getSingleProjects();
+    @endphp
+
+    <div class="filter_projects_single" filter-projects>
+        @include('modules.presentation.projects_tiles', ['projects' => $sProjects])
+    </div>
+
+    {{-- Monthly donate projects --}}
+    @php
+        $mProjects = \App\Models\Page::getMonthlyProjects();
+    @endphp
+
+    <div class="filter_projects_monthly d-none" filter-projects>
+        @include('modules.presentation.projects_tiles', ['projects' => $mProjects])
+    </div>
+
+    {{-- Appeal donate projects --}}
+    @php
+        $aProjects = \App\Models\Page::getAppealProjects();
+    @endphp
+
+    <div class="filter_projects_appeal d-none" filter-projects>
+        @include('modules.presentation.projects_tiles', ['projects' => $aProjects])
+    </div>
 
 </section>
 

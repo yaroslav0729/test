@@ -1,5 +1,5 @@
 <div class="form d-none tiles-popup_{{ $popupKey }}" tiles-popup>
-    <i class="fal fa-check"></i>
+    <i class="fal fa-check close"></i>
     <div class="name">Environmental sustainabilty</div>
     <form action="/">
         <div class="form-group">

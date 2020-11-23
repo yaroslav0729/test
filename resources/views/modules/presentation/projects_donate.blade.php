@@ -63,13 +63,13 @@ foreach ($amount as $key => $item) {
                 <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                         @isset($useSingleTab)
-                        <a class="nav-link active"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true">Single Donation</a>
+                        <a class="nav-link active"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true" donate-filter data-filter="single">Single Donation</a>
                         @endisset
                         @isset($useMonthlyTab)
-                        <a class="nav-link color-info"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false">Monthly Donation</a>
+                        <a class="nav-link color-info"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false" donate-filter data-filter="monthly">Monthly Donation</a>
                         @endisset
                         @isset($useAppeal)
-                        <a class="nav-link color-red"  data-toggle="tab" href="#nav-3" role="tab"  aria-selected="false">Appeal Donation</a>
+                        <a class="nav-link color-red"  data-toggle="tab" href="#nav-3" role="tab"  aria-selected="false" donate-filter data-filter="appeal">Appeal Donation</a>
                         @endisset
                     </div>
                 </nav>

@@ -1,10 +1,6 @@
 <div class="wrap">
     <div class="row">
 
-        @php
-            $projects = \App\Models\Page::getAllProjects();
-        @endphp
-
         @foreach ($projects as $projKey => $project)
 
             @php
@@ -28,8 +24,6 @@
             </div>
 
         @endforeach
-
-        
 
         {{-- <div class="col-12 col-md-6 col-lg-6 col-xl-4">
             <div class="item selected">

@@ -91212,6 +91212,15 @@ $(function () {
     $('[tiles-popup]').addClass('d-none');
     popup.removeClass('d-none');
   });
+  $(document).on('click', '[tiles-popup] .close', function () {
+    $('[tiles-popup]').addClass('d-none');
+  }); //~~~~~~~~~~~~~~~~ Project tiles filters ~~~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('click', '[donate-filter]', function () {
+    var filter = $(this).data('filter');
+    $('[filter-projects]').addClass('d-none');
+    $('.filter_projects_' + filter).removeClass('d-none');
+  });
 });
 
 function initSwiper() {
