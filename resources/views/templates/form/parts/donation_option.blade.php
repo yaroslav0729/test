@@ -23,7 +23,7 @@
         <div class="form-group">
             <label>Selected campaigns</label><br>
             <select name="parameters[amount][{{ $optionKey }}][campaigns][]" multiple class="form-control">
-                @foreach (\App\Models\Campaign::allActive()->get() as $campaign)
+                @foreach (\App\Models\Campaign::Active()->get() as $campaign)
                 
                     @php
                         if ((isset($donationCampaigns)) && (in_array($campaign->id, $donationCampaigns))) {
