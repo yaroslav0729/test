@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                                 <div class="descr">
-                                    <div class="name"><b>SPONSOR AN ORPHAN</b></div>
+                                    <div class="name"><b>{{ $projInstance->name }}</b></div>
                                     <div class="text-right"><a target="_blank" href="{{ url('/' . $projInstance->slug) }}" class="text-uppercase text-underline text-dark">LEARN MORE</a></div>
                                 </div>
                             </div>
