@@ -91278,6 +91278,7 @@ $(function () {
     options = JSON.parse(options);
     options = options[type];
     var campaigns = null;
+    if (options === undefined) return;
 
     for (var i = 0; i < options.length; i++) {
       if (options[i]['price'] === price) {
@@ -91317,6 +91318,7 @@ $(function () {
     options = JSON.parse(options);
     options = options[type];
     var campaigns = null;
+    if (options === undefined) return;
 
     for (var i = 0; i < options.length; i++) {
       if (options[i]['price'] === price) {
@@ -91335,10 +91337,12 @@ $(function () {
     var campEl = $(element).closest('.form').find('[tiles-campaigns]');
     campEl.html(campSelectHtml);
 
-    if (Object.keys(campaigns).length < 2) {
-      campEl.addClass('d-none');
-    } else {
-      campEl.removeClass('d-none');
+    if (campaigns !== null) {
+      if (Object.keys(campaigns).length < 2) {
+        campEl.addClass('d-none');
+      } else {
+        campEl.removeClass('d-none');
+      }
     }
   }
 });
