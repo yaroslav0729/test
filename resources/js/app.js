@@ -266,14 +266,32 @@ $(function () {
         $('.filter_projects_' + filter).removeClass('d-none')
     });
 
-    $(document).on('change', '[tiles-options]', function () {
+    $(document).on('change', '[tiles-options-type]', function () {
         
         let key = $(this).data('key')
         let val = $(this).val()
-        $('.tiles-popup_' + key + ' [tiles-option]').addClass('d-none')
+        $('.tiles-popup_' + key + ' [tiles-option-price]').addClass('d-none')
 
         $('.tiles_options_' + val +  '_' + key).removeClass('d-none')
     });
+
+    $(document).on('change', '[tiles-form-options]', function () {
+        
+        let form = $(this).closest('form')
+        let type = form.find('select[name="type"]').val()
+        let price = form.find('select[name="price_' + type + '"]').val()
+
+        let data = {}
+        data['type'] = type
+        data['price'] = price
+
+        console.log(data)
+    });
+
+    function getCampaignsResilt(response) {
+        console.log(response)
+    }
+
 
 
 });

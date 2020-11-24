@@ -1,18 +1,47 @@
 @php
 
-$singlePrices = \App\Models\Project::getSinglePrices($project);
-$monthlyPrices = \App\Models\Project::getMonthlyPrices($project);
+$projectOptions = \App\Models\Project::getProjectOptions($project);
+
+$singlePrices = [];
+$monthlyPrices = [];
+$campaigns = [];
+$categories = [];
+
+if (isset($projectOptions['single'])) {
+
+    $index = 0;
+
+    foreach ($projectOptions['single'] as $key => $option) {
+        $singlePrices[] = $option['price'];
+        if ($index === 0) {
+            $campaigns = $option['campaigns'];
+            $index++;
+        }
+    }
+
+    foreach ($campaigns as $campId => $campaign) {
+        $categories = $campaign['categories'];
+    }
+}
+
+if (isset($projectOptions['monthly'])) {
+    foreach ($projectOptions['monthly'] as $key => $price) {
+        $monthlyPrices[] = $price['price'];
+    }
+}
 
 @endphp
-
 
 <div class="form d-none tiles-popup_{{ $popupKey }}" tiles-popup>
     <i class="fal fa-check close"></i>
     <div class="name">Environmental sustainabilty</div>
+
+    <div class="project_popup_options alert alert-warning d-none">{{ json_encode($projectOptions) }}</div>
+
     <form action="/">
 
         <div class="form-group">
-            <select class="form-control" tiles-options data-key={{ $popupKey }}>
+            <select name="type" class="form-control" tiles-options-type tiles-form-options data-key={{ $popupKey }}>
                 @if(count($singlePrices))
                 <option value="single">Single donation</option>
                 @endif
@@ -23,8 +52,8 @@ $monthlyPrices = \App\Models\Project::getMonthlyPrices($project);
         </div>
 
         @if(count($singlePrices))
-        <div class="form-group tiles_options_single_{{ $popupKey }}" tiles-option>
-            <select class="form-control">
+        <div class="form-group tiles_options_single_{{ $popupKey }}" tiles-option-price>
+            <select name="price_single" class="form-control" tiles-form-options>
                 @foreach ($singlePrices as $price)
                     <option value="{{ $price }}"><b>£ {{ $price }}</b></option>     
                 @endforeach
@@ -33,19 +62,28 @@ $monthlyPrices = \App\Models\Project::getMonthlyPrices($project);
         @endif
 
         @if(count($monthlyPrices))
-        <div class="form-group tiles_options_monthly_{{ $popupKey }} d-none" tiles-option>
-            <select class="form-control">
+        <div class="form-group tiles_options_monthly_{{ $popupKey }} d-none" tiles-option-price >
+            <select name="price_monthly" class="form-control" tiles-form-options>
                 @foreach ($monthlyPrices as $price)
                     <option value="{{ $price }}"><b>£ {{ $price }}</b></option>     
                 @endforeach
             </select>
         </div>
         @endif
+
+        <div class="form-group">
+            <select class="form-control">
+                @foreach ($campaigns as $campId => $campaign)
+                    <option value="{{ $campId }}">{{ $campaign['name'] }}</option>
+                @endforeach
+            </select>
+        </div>
         
         <div class="form-group">
             <select class="form-control">
-                <option value="1">Category 1</option>
-                <option value="1">Category 2</option>
+                @foreach ($categories as $category)
+                    <option value="1">{{ $category }}</option>
+                @endforeach
             </select>
         </div>
         <div class="text-center pt-3">

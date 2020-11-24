@@ -98,7 +98,7 @@ class Project
         }
     }
 
-    public static function getSinglePrices($project)
+    public static function getProjectOptions($project)
     {
         $pageInstance = $project->actual_page_instance;
 
@@ -108,60 +108,45 @@ class Project
             $amount = $pageInstance->parameters['amount'];  
         }
 
-        $prices = [];
+        $options = [];
+
         foreach ($amount as $price) {
-            if ((isset($price['type'])) && ((int)$price['type'] === \App\Models\CampaignPrice::TYPE_SINGLE)) {
+            if (isset($price['type'])) {
                 
+                $campaignsNames = [];
+
                 if (isset($price['campaigns'])) {
                     foreach ($price['campaigns'] as $campaignId) {
-                        
-                        $priceExists = self::isPriceExists($campaignId, $price['value'], $price['type']);
 
-                        if ($priceExists) {
-                            $prices[] =  $price['value'];
-                            break;
-                        }
-                        
+                        $campCategories = \App\Models\Campaign::where('id', $campaignId)->first()->campaign_categories->pluck('name')->toArray();
+
+                        $campName = \App\Models\Campaign::getCountryNameForPrice($campaignId, $price['value'], $price['type']);
+
+                        if (isset($campName)) {
+                            $campaignsNames[$campaignId]['name'] = $campName;
+                            $campaignsNames[$campaignId]['categories'] = $campCategories;
+                        }  
                     }
                 }
+
+                $type = '';
                 
+                if ((int)$price['type'] === \App\Models\CampaignPrice::TYPE_SINGLE) {
+                    $type = 'single';
+                } else if ((int)$price['type'] === \App\Models\CampaignPrice::TYPE_MONTHLY) {
+                    $type = 'monthly';
+                }
+                
+                if (count($campaignsNames)) {
+                    $options[$type][] = [
+                        'price' => $price['value'],
+                        'campaigns' => $campaignsNames
+                    ];
+                }
                 
             }
         }
 
-        //~~~ check prices in campaigns
-
-        return $prices;
-    }
-
-    public static function getMonthlyPrices($project)
-    {
-        $pageInstance = $project->actual_page_instance;
-
-        $amount = [];
-
-        if (isset($pageInstance->parameters['amount'])) {
-            $amount = $pageInstance->parameters['amount'];  
-        }
-
-        $prices = [];
-        foreach ($amount as $price) {
-            if ((isset($price['type'])) && ((int)$price['type'] === \App\Models\CampaignPrice::TYPE_MONTHLY)) {
-                if (isset($price['campaigns'])) {
-                    foreach ($price['campaigns'] as $campaignId) {
-                        
-                        $priceExists = self::isPriceExists($campaignId, $price['value'], $price['type']);
-
-                        if ($priceExists) {
-                            $prices[] =  $price['value'];
-                            break;
-                        }
-                        
-                    }
-                }
-            }
-        }
-
-        return $prices;
+        return $options;
     }
 }

@@ -91221,12 +91221,25 @@ $(function () {
     $('[filter-projects]').addClass('d-none');
     $('.filter_projects_' + filter).removeClass('d-none');
   });
-  $(document).on('change', '[tiles-options]', function () {
+  $(document).on('change', '[tiles-options-type]', function () {
     var key = $(this).data('key');
     var val = $(this).val();
-    $('.tiles-popup_' + key + ' [tiles-option]').addClass('d-none');
+    $('.tiles-popup_' + key + ' [tiles-option-price]').addClass('d-none');
     $('.tiles_options_' + val + '_' + key).removeClass('d-none');
   });
+  $(document).on('change', '[tiles-form-options]', function () {
+    var form = $(this).closest('form');
+    var type = form.find('select[name="type"]').val();
+    var price = form.find('select[name="price_' + type + '"]').val();
+    var data = {};
+    data['type'] = type;
+    data['price'] = price;
+    console.log(data);
+  });
+
+  function getCampaignsResilt(response) {
+    console.log(response);
+  }
 });
 
 function initSwiper() {
