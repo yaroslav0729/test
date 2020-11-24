@@ -62,6 +62,9 @@ class PageController extends Controller
         $page = Page::create();
         $data = $request->all();
         $data['page_id'] = $page->id;
+        if (isset($data['parameters']['amount'])) {
+            $data['parameters']['amount'] = $this->replaceKeys($data['parameters']['amount']);
+        }
         $pageInstance = PageInstance::create($data);
         $pageInstance->actual = true;
         $pageInstance->author()->associate(auth()->user());
@@ -142,6 +145,17 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    protected function replaceKeys($amount) {
+
+        $amountNew = [];
+
+        foreach ($amount as $price) {
+            $amountNew[] = $price;  
+        }
+
+        return $amountNew;
+    }
+    
     public function update(PageCreateEditRequest $request, $id)
     {
         $validator = $this->_validateSlug($request, $id);
@@ -164,6 +178,9 @@ class PageController extends Controller
         $data = $request->all();
         $data['page_id'] = $oldPage->page_id;
         $data['author_id'] = $oldPage->author_id;
+        if (isset($data['parameters']['amount'])) {
+            $data['parameters']['amount'] = $this->replaceKeys($data['parameters']['amount']);
+        }
 
         $pageInstance = PageInstance::create($data);
         $pageInstance->page()->associate($page);

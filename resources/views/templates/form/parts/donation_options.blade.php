@@ -21,6 +21,8 @@ if (isset($parameters['amount'])) {
         @foreach ($amounts as $key => $amount)
 
             @php
+
+
                 if (isset($amount['value'])) {
                     $value = (int)$amount['value'];
                 } else {
