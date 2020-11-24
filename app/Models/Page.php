@@ -128,8 +128,31 @@ class Page extends Model
         return $collectedPages;   
     }
 
+    public static function getSinglePrices($amount)
+    {
+        $prices = [];
+        foreach ($amount as $price) {
+            if ((isset($price['type'])) && ((int)$price['type'] === \App\Models\CampaignPrice::TYPE_SINGLE)) {
+                $prices[] =  $price['value']; 
+            }
+        }
 
-    protected static function getFilteredProjects($projFilter)
+        return $prices;
+    }
+
+    public static function getMonthlyPrices($amount)
+    {
+        $prices = [];
+        foreach ($amount as $price) {
+            if ((isset($price['type'])) && ((int)$price['type'] === \App\Models\CampaignPrice::TYPE_MONTHLY)) {
+                $prices[] =  $price['value']; 
+            }
+        }
+
+        return $prices;
+    }
+
+    protected static function getFilteredProjects($projType)
     {
         $pages = self::getAllProjects();
         $parameters = [];
@@ -143,7 +166,7 @@ class Page extends Model
 
             if (isset($parameters['amount'])) {
                 foreach ($parameters['amount'] as $price) {
-                    if ((isset($price['type'])) && ((int)$price['type'] === $projFilter)) {
+                    if ((isset($price['type'])) && ((int)$price['type'] === $projType)) {
                         $collectedPages[] = $page;
                         break;
                     }

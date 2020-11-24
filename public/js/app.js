@@ -91221,6 +91221,12 @@ $(function () {
     $('[filter-projects]').addClass('d-none');
     $('.filter_projects_' + filter).removeClass('d-none');
   });
+  $(document).on('change', '[tiles-options]', function () {
+    var key = $(this).data('key');
+    var val = $(this).val();
+    $('.tiles-popup_' + key + ' [tiles-option]').addClass('d-none');
+    $('.tiles_options_' + val + '_' + key).removeClass('d-none');
+  });
 });
 
 function initSwiper() {

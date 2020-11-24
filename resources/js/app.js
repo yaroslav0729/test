@@ -266,6 +266,15 @@ $(function () {
         $('.filter_projects_' + filter).removeClass('d-none')
     });
 
+    $(document).on('change', '[tiles-options]', function () {
+        
+        let key = $(this).data('key')
+        let val = $(this).val()
+        $('.tiles-popup_' + key + ' [tiles-option]').addClass('d-none')
+
+        $('.tiles_options_' + val +  '_' + key).removeClass('d-none')
+    });
+
 
 });
 function initSwiper(){
