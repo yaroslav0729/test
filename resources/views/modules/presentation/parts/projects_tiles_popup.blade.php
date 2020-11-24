@@ -4,23 +4,11 @@ $projectOptions = \App\Models\Project::getProjectOptions($project);
 
 $singlePrices = [];
 $monthlyPrices = [];
-$campaigns = [];
-$categories = [];
 
 if (isset($projectOptions['single'])) {
 
-    $index = 0;
-
     foreach ($projectOptions['single'] as $key => $option) {
         $singlePrices[] = $option['price'];
-        if ($index === 0) {
-            $campaigns = $option['campaigns'];
-            $index++;
-        }
-    }
-
-    foreach ($campaigns as $campId => $campaign) {
-        $categories = $campaign['categories'];
     }
 }
 
@@ -74,18 +62,14 @@ if (isset($projectOptions['monthly'])) {
         @endif
 
         <div class="form-group">
-            <select class="form-control" tiles-campaigns>
-                @foreach ($campaigns as $campId => $campaign)
-                    <option value="{{ $campId }}">{{ $campaign['name'] }}</option>
-                @endforeach
+            <select name="campaign" class="form-control" tiles-campaigns>
+                {{-- will be filled in js --}}
             </select>
         </div>
         
         <div class="form-group">
-            <select class="form-control">
-                @foreach ($categories as $category)
-                    <option value="1">{{ $category }}</option>
-                @endforeach
+            <select name="category" class="form-control" tiles-categories>
+                {{-- will be filled in js --}}
             </select>
         </div>
         <div class="text-center pt-3">
