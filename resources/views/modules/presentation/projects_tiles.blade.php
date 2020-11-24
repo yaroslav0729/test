@@ -15,7 +15,7 @@
                         @if($tileCou === 0)
 
                         <div class="swiper-slide">
-                            <div class="wrap">
+                            <div class="">
                                 <div class="row">
 
                         @endif
@@ -56,8 +56,8 @@
 
             
         </div>
-        <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
-        <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
     </div>
 </div>

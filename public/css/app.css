@@ -14240,6 +14240,31 @@ input[type='number'].color-danger + .input-group .btn {
 .subscribe_news {
     cursor: pointer;
 }
+.current-projects-list .swiper-button-next, .current-projects-list .swiper-button-prev {
+    color: #F7796A; 
+}
+.current-projects-list .swiper-wrapper {
+    padding-bottom: 50px;
+}
+.current-projects-list .swiper-pagination {
+    padding-bottom: 30px;
+}
+.current-projects-list .swiper-pagination-bullet {
+    height: 8px;
+    width: 120px;
+    background-color: #888;
+    border-radius: 0;
+    margin: 0 10px;
+}
+.current-projects-list .swiper-pagination-bullet-active{
+    background-color: #F7796A;
+}
+.current-projects-list .wrap {
+    padding-bottom: 50px;
+}
+.current-projects-list .swiper-container {
+    border-bottom: 4px solid #101525;
+}
 .toast-title{font-weight:700}
 .toast-message{-ms-word-wrap:break-word;word-wrap:break-word}
 .toast-message a,.toast-message label{color:#FFF}
