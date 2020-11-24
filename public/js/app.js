@@ -91014,6 +91014,21 @@ function initWysiwyg() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_parts_init_tiny_mce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./admin_parts/init_tiny-mce */ "./resources/js/admin_parts/init_tiny-mce.js");
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
@@ -91231,10 +91246,32 @@ $(function () {
     var form = $(this).closest('form');
     var type = form.find('select[name="type"]').val();
     var price = form.find('select[name="price_' + type + '"]').val();
-    var data = {};
-    data['type'] = type;
-    data['price'] = price;
-    console.log(data);
+    var options = $(this).closest('.form').find('.project_popup_options').html();
+    options = JSON.parse(options);
+    options = options[type];
+    var campaigns = null;
+
+    for (var i = 0; i < options.length; i++) {
+      if (options[i]['price'] === price) {
+        campaigns = options[i]['campaigns'];
+        break;
+      }
+    }
+
+    var campNames = [];
+    var campSelectHtml = '';
+
+    if (campaigns !== null) {
+      for (var campaigIndex in campaigns) {
+        var optName = campaigns[campaigIndex]['name'];
+        campNames.push(_defineProperty({}, campaigIndex, optName));
+        campSelectHtml = campSelectHtml + '<option value="' + campaigIndex + '">' + optName + '</option>';
+      }
+    } //console.log(campSelectHtml)
+
+
+    var campEl = $(this).closest('.form').find('[tiles-campaigns]');
+    campEl.html(campSelectHtml);
   });
 
   function getCampaignsResilt(response) {

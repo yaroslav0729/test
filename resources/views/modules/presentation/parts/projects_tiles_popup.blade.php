@@ -36,7 +36,9 @@ if (isset($projectOptions['monthly'])) {
     <i class="fal fa-check close"></i>
     <div class="name">Environmental sustainabilty</div>
 
-    <div class="project_popup_options alert alert-warning d-none">{{ json_encode($projectOptions) }}</div>
+    <div class="project_popup_options alert alert-warning d-none">
+        {{ json_encode($projectOptions) }}
+    </div>
 
     <form action="/">
 
@@ -72,7 +74,7 @@ if (isset($projectOptions['monthly'])) {
         @endif
 
         <div class="form-group">
-            <select class="form-control">
+            <select class="form-control" tiles-campaigns>
                 @foreach ($campaigns as $campId => $campaign)
                     <option value="{{ $campId }}">{{ $campaign['name'] }}</option>
                 @endforeach

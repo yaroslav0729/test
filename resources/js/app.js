@@ -281,11 +281,33 @@ $(function () {
         let type = form.find('select[name="type"]').val()
         let price = form.find('select[name="price_' + type + '"]').val()
 
-        let data = {}
-        data['type'] = type
-        data['price'] = price
+        let options = $(this).closest('.form').find('.project_popup_options').html()
+        options = JSON.parse(options)
+        options = options[type]
 
-        console.log(data)
+        let campaigns = null;
+        for (let i=0;i<options.length; i++) {
+            if (options[i]['price'] === price) {
+                campaigns = options[i]['campaigns'];
+                break; 
+            }
+        }
+
+        let campNames = []
+        let campSelectHtml = ''
+        if (campaigns !== null) {
+            
+            for (var campaigIndex in campaigns) {
+                let optName = campaigns[campaigIndex]['name']
+                campNames.push({ [campaigIndex]: optName})
+                campSelectHtml = campSelectHtml + '<option value="' + campaigIndex +  '">' + optName  + '</option>'
+            }  
+        }
+
+        //console.log(campSelectHtml)
+
+        let campEl = $(this).closest('.form').find('[tiles-campaigns]')
+        campEl.html(campSelectHtml)
     });
 
     function getCampaignsResilt(response) {
