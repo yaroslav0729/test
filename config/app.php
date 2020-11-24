@@ -184,7 +184,6 @@ return [
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
 
         App\Providers\StrHelperServiceProvider::class,
-
     ],
 
     /*

@@ -39,7 +39,7 @@
 
     {{-- Single donate projects --}}
     @php
-        $sProjects = \App\Models\Page::getSingleProjects();
+        $sProjects = \App\Models\Project::getSingleProjects();
     @endphp
 
     <div class="filter_projects_single" filter-projects>
@@ -48,7 +48,7 @@
 
     {{-- Monthly donate projects --}}
     @php
-        $mProjects = \App\Models\Page::getMonthlyProjects();
+        $mProjects = \App\Models\Project::getMonthlyProjects();
     @endphp
 
     <div class="filter_projects_monthly d-none" filter-projects>
@@ -57,7 +57,7 @@
 
     {{-- Appeal donate projects --}}
     @php
-        $aProjects = \App\Models\Page::getAppealProjects();
+        $aProjects = \App\Models\Project::getAppealProjects();
     @endphp
 
     <div class="filter_projects_appeal d-none" filter-projects>

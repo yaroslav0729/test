@@ -1,15 +1,7 @@
 @php
 
-$pageInstance = $project->actual_page_instance;
-
-$amount = [];
-
-if (isset($pageInstance->parameters['amount'])) {
-    $amount = $pageInstance->parameters['amount'];  
-}
-
-$singlePrices = \App\Models\Page::getSinglePrices($amount);
-$monthlyPrices = \App\Models\Page::getMonthlyPrices($amount);
+$singlePrices = \App\Models\Project::getSinglePrices($project);
+$monthlyPrices = \App\Models\Project::getMonthlyPrices($project);
 
 @endphp
 
@@ -18,6 +10,17 @@ $monthlyPrices = \App\Models\Page::getMonthlyPrices($amount);
     <i class="fal fa-check close"></i>
     <div class="name">Environmental sustainabilty</div>
     <form action="/">
+
+        <div class="form-group">
+            <select class="form-control" tiles-options data-key={{ $popupKey }}>
+                @if(count($singlePrices))
+                <option value="single">Single donation</option>
+                @endif
+                @if(count($monthlyPrices))
+                <option value="monthly">Monthly donation</option>
+                @endif
+            </select>
+        </div>
 
         @if(count($singlePrices))
         <div class="form-group tiles_options_single_{{ $popupKey }}" tiles-option>
@@ -38,18 +41,7 @@ $monthlyPrices = \App\Models\Page::getMonthlyPrices($amount);
             </select>
         </div>
         @endif
-
-
-        <div class="form-group">
-            <select class="form-control" tiles-options data-key={{ $popupKey }}>
-                @if(count($singlePrices))
-                <option value="single">Single donation</option>
-                @endif
-                @if(count($monthlyPrices))
-                <option value="monthly">Monthly donation</option>
-                @endif
-            </select>
-        </div>
+        
         <div class="form-group">
             <select class="form-control">
                 <option value="1">Category 1</option>
