@@ -71,7 +71,7 @@ foreach ($amount as $key => $item) {
                         <a class="nav-link active"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true" donate-filter data-filter="single">Single Donation</a>
                         @endisset
                         @isset($useMonthlyTab)
-                        <a class="nav-link color-info"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false" donate-filter data-filter="monthly">Monthly Donation</a>
+                        <a class="nav-link color-info @empty($useSingleTab) active @endempty"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false" donate-filter data-filter="monthly">Monthly Donation</a>
                         @endisset
                         @isset($useAppeal)
                         <a class="nav-link color-red"  data-toggle="tab" href="#nav-3" role="tab"  aria-selected="false" donate-filter data-filter="appeal">Appeal Donation</a>
@@ -115,7 +115,7 @@ foreach ($amount as $key => $item) {
                     </div>
                     @endisset 
                     @isset($useMonthlyTab)
-                    <div class="tab-pane fade" id="nav-2" role="tabpanel" >
+                    <div class="tab-pane fade @empty($useSingleTab) show active @endempty" id="nav-2" role="tabpanel" >
                         <form action="/">
 
                             @include('modules.presentation.parts.donate_options',[
