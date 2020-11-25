@@ -91258,8 +91258,14 @@ $(function () {
 
     var categEl = $(element).closest('form').find('select[name="categories"]');
     categEl.html(categHtml);
-  } //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  }
 
+  $(document).on('change', 'select[name="currency"]', function () {
+    var sign = $(this).find('option:selected').data('sign');
+    console.log(sign);
+    $('object.currency_sign').text(sign);
+    $('input[name="amount"]').attr('placeholder', sign + '  Enter amount');
+  }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 });
 
 /***/ }),
