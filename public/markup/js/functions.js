@@ -130,5 +130,13 @@ $(function() {
         step: 1,
     });
 
+
+    $('footer .menu > li > a').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).parent().toggleClass('open');
+        console.log($(this).text())
+    })
+
 } );
 

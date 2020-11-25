@@ -8,8 +8,8 @@
     <div class="wrap">
         <div class="row">
             <div class="col-8">
-                <ul class="menu d-flex justify-content-between">
-                    <li class="open">
+                <ul class="menu d-flex align-items-start">
+                    <li>
                         <a href="#">DONATE</a>
                         <ul class="sub-menu">
                             <li><a href="#">Donate now</a></li>
@@ -18,9 +18,35 @@
                             <li><a href="#">Zakat Calculator</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">make a difference</a></li>
-                    <li><a href="#">our work</a></li>
-                    <li><a href="#">say hello</a></li>
+                    <li>
+                        <a href="#">make a difference</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Events</a></li>
+                            <li><a href="#">Volunteer</a></li>
+                            <li><a href="#">Vacancies</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">our work</a>
+                        <ul class="sub-menu">
+                            <li><a href="https://www.islamichelp.org.uk/coronavirus/">Coronavirus Appeal</a></li>
+                            <li><a href="https://www.islamichelp.org.uk/ramadan-food-packs/">Ramadan Food Packs</a></li>
+                            <li><a href="https://www.islamichelp.org.uk/umrah-for-orphans/">Umrah for Orphans</a></li>
+                            <li><a href="https://www.islamichelp.org.uk/what-we-do/development-projects/water-and-sanitation/">Donate a water pump</a></li>
+                            <li><a href="https://www.islamichelp.org.uk/sponsor-disabled-children/">Disabled Children sponsorships</a></li>
+                            <li><a href="https://www.islamichelp.org.uk/what-we-do/development-projects/orphan-sponsorship/">Sponsor an orphan</a></li>
+                            <li><a href="https://www.islamichelp.org.uk/sustainable-livelihoods/">Sustainable livelihoods</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">say hello</a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="mailto:info@islamichelp.org.uk">Email us:<br>info@islamichelp.org.uk</a>
+                            </li>
+                            <li><a href="tel:0121%20446%205682">Call us: 0121 446 5682</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <div class="col-1"></div>
