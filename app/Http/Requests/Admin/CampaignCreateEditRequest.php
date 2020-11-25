@@ -28,6 +28,7 @@ class CampaignCreateEditRequest extends FormRequest
             'description' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
+            'country_id' => 'required'
         ];
     }
 }

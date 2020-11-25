@@ -30,7 +30,12 @@ class Campaign extends Model
 
     public function getCountryNameAttribute()
     {
-        return $this->country->name;
+        if (isset($this->country)) {
+            return $this->country->name;
+        }
+        else {
+            return "";
+        }
     }
 
     public function campaign_prices()
