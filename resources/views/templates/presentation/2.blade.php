@@ -1,83 +1,86 @@
 @php
 
-    $previewText = "";
     $previewPosition = "";
-    $previewImage = "";
 
     $eventDateText = "";
     $eventTimeText = "";
     $eventLink = "";
     $eventLinkText = "";
+    $eventEndSaleDate = "";
 
-    $eventDetailsEntry = "";
+/*    $eventDetailsEntry = "";*/
+    $eventEntryPrice = "";
     $eventDetailsOrganiser = "";
     $eventDetailsSpeaker = "";
     $eventDetailsContact = "";
 
-    $mainHtml = "";
-
     $informationTitle ="";
     $informationText ="";
 
-    if (isset($parameters['preview_text'])) {
-        $previewText = $parameters['preview_text'];    
-    }
+    $importantInformationTitle = "";
+    $importantInformationText = "";
 
     if (isset($parameters['preview_position'])) {
-        $previewPosition = $parameters['preview_position'];    
-    }
-
-    if (isset($parameters['preview_image'])) {
-        $previewImage = $parameters['preview_image'];    
+        $previewPosition = $parameters['preview_position'];
     }
 
     if (isset($parameters['event_date_text'])) {
-        $eventDateText = $parameters['event_date_text'];    
+        $eventDateText = $parameters['event_date_text'];
     }
 
     if (isset($parameters['event_time_text'])) {
-        $eventTimeText = $parameters['event_time_text'];    
+        $eventTimeText = $parameters['event_time_text'];
+    }
+
+    if (isset($parameters['event_end_sale_date'])) {
+        $eventEndSaleDate = $parameters['event_end_sale_date'];
     }
 
     if (isset($parameters['event_link'])) {
-        $eventLink = $parameters['event_link'];    
+        $eventLink = $parameters['event_link'];
     }
 
     if (isset($parameters['event_link_text'])) {
-        $eventLinkText = $parameters['event_link_text'];    
+        $eventLinkText = $parameters['event_link_text'];
+    }
+
+    if (isset($parameters['event_entry_price'])) {
+        $eventEntryPrice = $parameters['event_entry_price'];
     }
 
     if (isset($parameters['event_details_entry'])) {
-        $eventDetailsEntry = $parameters['event_details_entry'];    
-    }
-
-    if (isset($parameters['event_details_entry'])) {
-        $eventDetailsEntry = $parameters['event_details_entry'];    
+        $eventDetailsEntry = $parameters['event_details_entry'];
     }
 
     if (isset($parameters['event_details_organiser'])) {
-        $eventDetailsOrganiser = $parameters['event_details_organiser'];    
+        $eventDetailsOrganiser = $parameters['event_details_organiser'];
     }
 
     if (isset($parameters['event_details_speaker'])) {
-        $eventDetailsSpeaker = $parameters['event_details_speaker'];    
+        $eventDetailsSpeaker = $parameters['event_details_speaker'];
     }
 
     if (isset($parameters['event_details_contact'])) {
-        $eventDetailsContact = $parameters['event_details_contact'];    
-    }
-
-    if (isset($parameters['main_html'])) {
-        $mainHtml = $parameters['main_html'];    
+        $eventDetailsContact = $parameters['event_details_contact'];
     }
 
     if (isset($parameters['information_title'])) {
-        $informationTitle = $parameters['information_title'];    
+        $informationTitle = $parameters['information_title'];
     }
 
     if (isset($parameters['information_text'])) {
-        $informationText = $parameters['information_text'];    
+        $informationText = $parameters['information_text'];
     }
+
+    if (isset($parameters['important_information_title'])) {
+        $importantInformationTitle = $parameters['important_information_title'];
+    }
+
+    if (isset($parameters['important_information_text'])) {
+        $importantInformationText = $parameters['important_information_text'];
+    }
+
+    $event = $pageInstance->page->event;
 
 @endphp
 
@@ -91,15 +94,21 @@
             <div class="col-7">
                 <div class="box">
                     <div class="text-right">
-                    <span class="place"><i class="fal fa-map-marker-alt"></i> <span class="text-dark">{{ $previewPosition }}</span></span>
+                        <span class="place"><i class="fal fa-map-marker-alt"></i>
+                            <span class="text-dark">{{ $event->location }}</span>
+                        </span>
                     </div>
-                    <h1>{{ $pageInstance->name }}</h1>
-                    <p>{{ $previewText }}</p>
-                    <span class="date">Oct<span>26</span></span>
+                    <h1>{{ $event->name }}</h1>
+                    <p>{{ $pageInstance->preview_text }}</p>
+                    <span class="date">{{ $event->start_date->format('M') }}
+                        <span>
+                            {{ $event->start_date->format('d') }}
+                        </span>
+                    </span>
                 </div>
             </div>
             <div class="col-5">
-            <img src="{{ $previewImage }}" alt="" class="w-100">
+            <img src="{{ $pageInstance->preview_img }}" alt="" class="w-100">
             </div>
         </div>
     </div>
@@ -110,8 +119,13 @@
         <div class="top">
             <div class="row align-items-center">
                 <div class="col-6">
-                    <b><i></i>{{ $eventDateText }}</b>
-                    <b>{{ $eventTimeText }}</b>
+                    <b><i></i>{{ $event->start_date->format('l jS, F Y') }}</b>
+                    <b>
+                        {{ \Carbon\Carbon::parse($event->start_time)->format('h:ia') }}
+                        @isset($event->end_time)
+                             - {{ \Carbon\Carbon::parse($event->end_time)->format('h:ia') }}
+                        @endisset
+                    </b>
                 </div>
                 <div class="col-6 text-right">
                     <a href="{{ $eventLink }}">{{ $eventLinkText }}</a>
@@ -126,7 +140,13 @@
                         <div class="title"><b>event details</b></div>
                         <div>
                             <div><b>Event entry:</b></div>
-                            <div class="text-danger"><b>{{ $eventDetailsEntry }}</b></div>
+                            <div class="text-danger"><b>
+                                @if($event->entry_type === \App\Models\Event::ENTRY_PAID)
+                                    £{{ $eventEntryPrice }}
+                                @else
+                                    {{ \App\Models\Event::ALL_TYPES_ENTRY[$event->entry_type] }}
+                                @endif
+                                </b></div>
                         </div>
                         <div class="line"></div>
                         <div>
@@ -150,14 +170,20 @@
                     <div>
                         <div class="title"><b>register here</b> (Seats available)</div>
                         <div class="row align-items-center">
-                            <div class="col-7"><b class="text-uppercase">Mon, 26 October 2020, 10:00 - 12:30 GMT</b></div>
-                            <div class="col-5 text-right text-secondary">Sales end 27 October</div>
+                            <div class="col-7"><b class="text-uppercase">
+                                    {{ $event->start_date->shortEnglishDayOfWeek }},
+                                    {{ $event->start_date->format('j F Y') }},
+                                    {{ \Carbon\Carbon::parse($event->start_time)->format('h:i') }}
+                                    @isset($event->end_time)
+                                        - {{ \Carbon\Carbon::parse($event->end_time)->format('h:i') }}
+                                    @endisset GMT</b></div>
+                            <div class="col-5 text-right text-secondary">Sales end {{ $event->start_date->format('j F') }}</div>
                         </div>
                         <div class="line"></div>
                         <div class="row align-items-center">
                             <div class="col-7">
                                 <div><b>Female Seating</b></div>
-                                <div>FREE</div>
+                                <div>{{ $event->entry }}</div>
                             </div>
                             <div class="col-5 text-right">
                                 <input type="number" value="1" min="0" max="1000" step="1"/>
@@ -167,7 +193,7 @@
                         <div class="row align-items-center">
                             <div class="col-7">
                                 <div><b>Male Seating</b></div>
-                                <div>FREE</div>
+                                <div>{{ $event->entry }}</div>
                             </div>
                             <div class="col-5 text-right">
                                 <input type="number" value="1" min="0" max="1000" step="1"/>
@@ -188,12 +214,11 @@
     </div>
 </section>
 
-
 <section class="blog-article-body">
     <div class="wrap">
         <div class="body">
             <h2>{{ $informationTitle }}</h2>
-            {!! $mainHtml !!}
+            {!! $informationText !!}
         </div>
     </div>
 </section>
@@ -202,62 +227,17 @@
 
 <div class="pt-5"></div>
 
-
 <section class="join-cause">
     <div class="wrap">
         <div class="title mb-5">
-        <p class="font-size-30"><b>{{ $informationTitle }}</b></p>
+        <p class="font-size-30"><b>{{ $importantInformationTitle }}</b></p>
         </div>
         <p class="font-size-20">
-            {{ $informationText }}
+            {{ $importantInformationText }}
         </p>
     </div>
 </section>
 
-<section class="discover-more">
-    <div class="wrap">
-        <div class="title">
-            <div class="row">
-                <div class="col-7">
-                    <b class="font-size-30 mr-4 text-uppercase">Related topics</b>
-                </div>
-                <div class="col-5 text-right">
-                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="far fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <div class="current-projects-list">
-            <div class="row">
-                <div class="col-4">
-                    <a href="#" class="item">
-                        <span class="img" style="background-image: url(img/content/discover-more-1.jpg)"></span>
-                        <span class="descr">
-                    <span class="name font-size-16">EVENT</span>
-                    <span class="text font-size-16"><b>Critical campaign title, 60 char lorem sit amet, demis.</b></span>
-                </span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a href="#" class="item">
-                        <span class="img" style="background-image: url(img/content/discover-more-2.jpg)"></span>
-                        <span class="descr">
-                    <span class="name font-size-16">PROJECT</span>
-                    <span class="text font-size-16"><b>Critical campaign title, 60 char lorem sit amet, demis.</b></span>
-                </span>
-                    </a>
-                </div>
-                <div class="col-4">
-                    <a href="#" class="item">
-                        <span class="img" style="background-image: url(img/content/discover-more-3.jpg)"></span>
-                        <span class="descr">
-                    <span class="name font-size-16">ARTICLE</span>
-                    <span class="text font-size-16"><b>Critical campaign title, 60 char lorem sit amet, demis.</b></span>
-                </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
+@include('modules.presentation.related_page_expanded', [
+    'parameters' => $parameters
+])

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Event;
+use App\Models\Template;
 use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Models\PageInstance;
@@ -20,9 +22,13 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pages = Page::paginate(20);
+        if ($request->get('filter') === 'events') {
+            $pages = Page::getAllEvents()->paginate(20);
+        } else {
+            $pages = Page::paginate(20);
+        }
 
         return view('admin.pages.index', ['pages' => $pages]);
     }
@@ -73,6 +79,10 @@ class PageController extends Controller
         $pageInstance->categories()->attach($cIds);
 
         $pageInstance->save();
+
+        if ((int)$pageInstance->template === Template::EVENT_PAGE) {
+            $event = Event::updateOrCreate(['page_id'=> $page->id], $data);
+        }
 
         return redirect()->route('admin.pages.index')->with('status', 'Page created!');
     }
@@ -150,12 +160,12 @@ class PageController extends Controller
         $amountNew = [];
 
         foreach ($amount as $price) {
-            $amountNew[] = $price;  
+            $amountNew[] = $price;
         }
 
         return $amountNew;
     }
-    
+
     public function update(PageCreateEditRequest $request, $id)
     {
         $validator = $this->_validateSlug($request, $id);
@@ -191,6 +201,10 @@ class PageController extends Controller
         $pageInstance->categories()->attach($cIds);
 
         $page->removeOldHistory();
+
+        if ((int)$pageInstance->template === Template::EVENT_PAGE) {
+            $event = Event::updateOrCreate(['page_id'=> $page->id], $data);
+        }
 
         return redirect()->route('admin.pages.index')->with('status', 'Page updated!');
     }

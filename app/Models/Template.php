@@ -13,6 +13,7 @@ class Template
     const CONTACT_PAGE = 7;
     const WHO_WE_ARE_PAGE = 8;
     const THANK_YOU_DONATE_PAGE = 9;
+    const EVENTS_PAGE = 10;
 
     const TEST_PAGE = 100;
 
@@ -28,7 +29,7 @@ class Template
         self::CONTACT_PAGE,
         self::PROJECTS_PAGE,
         self::PROJECT_PAGE,
-        self::TEST_PAGE
+        self::EVENTS_PAGE
 
     ];
 
@@ -45,6 +46,7 @@ class Template
             case self::WHO_WE_ARE_PAGE:return "Who we are page";
             case self::THANK_YOU_DONATE_PAGE:return "Thank you your donation page";
             case self::CONTACT_PAGE:return "Contact page";
+            case self::EVENTS_PAGE:return "Events page";
 
             default:return "Unknown template type";
         }
@@ -74,11 +76,14 @@ class Template
             case self::EVENT_PAGE: {
 
                 $rules = [
-                    'parameters.preview_text' => 'required',
                     'parameters.preview_position' => 'required',
-                    'parameters.preview_image' => 'required',
-                    'parameters.event_date_text' => 'required',
-                    'parameters.event_time_text' => 'required',
+                    'parameters.event_type_participate' => 'required',
+                    'parameters.event_start_date' => 'required|date',
+                    'parameters.event_start_time' => 'required|date_format:H:i',
+                    'parameters.event_end_date' => 'nullable|date|after_or_equal:parameters.event_start_date',
+                    'parameters.event_end_time' => 'nullable|date_format:H:i|after:parameters.event_start_time',
+                    'parameters.event_end_sale_date' => 'required|date|before:parameters.event_start_date',
+                    'parameters.event_entry_price' => 'nullable|numeric|min:1',
                     'parameters.event_link' => 'required',
                     'parameters.event_details_entry' => 'required',
                     'parameters.event_details_organiser' => 'required',
@@ -178,6 +183,15 @@ class Template
                     'parameters.facebook_link' => 'required',
                     'parameters.youtube_link' => 'required',
                     'parameters.twitter_link' => 'required',
+                ];
+
+                break;
+            }
+
+            case self::EVENTS_PAGE: {
+
+                $rules = [
+                    'parameters.per_page' => 'numeric|min:1',
                 ];
 
                 break;
