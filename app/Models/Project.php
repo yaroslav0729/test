@@ -98,10 +98,40 @@ class Project
         }
     }
 
-    public static function getProjectOptions($project)
+    public static function getProjectCampaignsCateg($pageInstance)
     {
-        $pageInstance = $project->actual_page_instance;
+        $amount = [];
 
+        if (isset($pageInstance->parameters['amount'])) {
+            $amount = $pageInstance->parameters['amount'];  
+        }
+
+        $campaignsNames = [];
+
+        foreach ($amount as $price) {
+            if (isset($price['type'])) {
+                
+                if (isset($price['campaigns'])) {
+                    foreach ($price['campaigns'] as $campaignId) {
+
+                        $campCategories = \App\Models\Campaign::where('id', $campaignId)->first()->campaign_categories->pluck('name')->toArray();
+
+                        $campName = \App\Models\Campaign::getCountryNameForPrice($campaignId, $price['value'], $price['type']);
+
+                        if (isset($campName)) {
+                            $campaignsNames[$campaignId]['name'] = $campName;
+                            $campaignsNames[$campaignId]['categories'] = $campCategories;
+                        }  
+                    }
+                }                
+            }
+        }
+
+        return $campaignsNames;
+    }
+
+    public static function getProjectOptions($pageInstance)
+    {
         $amount = [];
 
         if (isset($pageInstance->parameters['amount'])) {

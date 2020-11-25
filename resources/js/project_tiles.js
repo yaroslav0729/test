@@ -82,7 +82,7 @@ $(function () {
         }
 
         for (var categoryIndex in categories) {
-            category = categories[categoryIndex]
+            let category = categories[categoryIndex]
             categHtml = categHtml + '<option value="' + category +  '">' + category  + '</option>'
         }
 

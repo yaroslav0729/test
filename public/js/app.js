@@ -91196,8 +91196,12 @@ $(function () {
   $(document).on('click', '[select-amount]', function () {
     var amountId = $(this).data('amount_id');
     $('[amount-countries]').addClass('d-none');
-    var countriesEl = $('[amount-countries][data-countries_amount_id="' + amountId + '"]');
+    var countriesEl = $('[amount-countries][data-amount_id="' + amountId + '"]');
     countriesEl.removeClass('d-none');
+    changeDonateCategDropdown(countriesEl);
+  });
+  $(document).on('change', '[amount-countries]', function () {
+    changeDonateCategDropdown(this);
   }); //~~~~~~~~~~~~~~~~~~ change map in the who we are page ~~~~~~~~~~~~~~~~~~~~
 
   $(document).on('click', '#btn-view-global-work', function (event) {
@@ -91206,7 +91210,25 @@ $(function () {
     var altSrc = $(mapBlock).attr('alt-src');
     $(mapBlock).attr('style', 'background-image: url("' + altSrc + '")');
     this.remove();
-  }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+  });
+
+  function changeDonateCategDropdown(element) {
+    var campaign = $(element).find('select[name="campaign"]').val();
+    var options = $('#donate_module_options').html();
+    options = JSON.parse(options);
+    var categories = options[campaign]['categories'];
+    console.log(campaign);
+    var categHtml = '';
+
+    for (var categoryIndex in categories) {
+      var category = categories[categoryIndex];
+      categHtml = categHtml + '<option value="' + category + '">' + category + '</option>';
+    }
+
+    var categEl = $(element).closest('form').find('select[name="categories"]');
+    categEl.html(categHtml);
+  } //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
 });
 
 function initSwiper() {
@@ -91296,7 +91318,7 @@ $(function () {
     }
 
     for (var categoryIndex in categories) {
-      category = categories[categoryIndex];
+      var category = categories[categoryIndex];
       categHtml = categHtml + '<option value="' + category + '">' + category + '</option>';
     }
 

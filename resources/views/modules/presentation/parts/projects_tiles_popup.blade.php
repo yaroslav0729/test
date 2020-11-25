@@ -1,6 +1,7 @@
 @php
 
-$projectOptions = \App\Models\Project::getProjectOptions($project);
+$projPageInstance = $project->actual_page_instance;
+$projectOptions = \App\Models\Project::getProjectOptions($projPageInstance);
 
 $singlePrices = [];
 $monthlyPrices = [];

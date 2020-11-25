@@ -1,5 +1,7 @@
 @php
 
+    $campaignCategories = \App\Models\Project::getProjectCampaignsCateg($pageInstance);
+
     $donateImg = "";
     $donateText = "";
 
@@ -47,6 +49,9 @@ foreach ($amount as $key => $item) {
 @endphp
 
 <div class="body">
+    <div id="donate_module_options" class="alert alert-warning d-none">
+        {{ json_encode($campaignCategories) }}
+    </div>
     <div class="row gutter-0">
         <div class="col-6">
             <div class="media">
@@ -86,9 +91,8 @@ foreach ($amount as $key => $item) {
                             <div class="row gutter-5">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="1">General Charity</option>
-                                            <option value="1">General Charity 2</option>
+                                        <select class="form-control" name="categories">
+                                            {{-- will be replaced by js --}}
                                         </select>
                                     </div>
                                 </div>
@@ -125,9 +129,8 @@ foreach ($amount as $key => $item) {
                             <div class="row gutter-5">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="1">General Charity</option>
-                                            <option value="1">General Charity 2</option>
+                                        <select class="form-control" name="categories">
+                                            {{-- will be replaced by js --}}
                                         </select>
                                     </div>
                                 </div>
