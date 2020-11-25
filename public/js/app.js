@@ -91033,7 +91033,9 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 __webpack_require__(/*! ../assets/vendor/MediaManager/js/manager */ "./resources/assets/vendor/MediaManager/js/manager.js");
 
-__webpack_require__(/*! ./project_tiles.js */ "./resources/js/project_tiles.js");
+__webpack_require__(/*! ./parts/project_tiles.js */ "./resources/js/parts/project_tiles.js");
+
+__webpack_require__(/*! ./parts/donate_module.js */ "./resources/js/parts/donate_module.js");
 
 $(function () {
   new Vue({
@@ -91189,17 +91191,6 @@ $(function () {
   });
   $(document).on('click', '[option-delete]', function () {
     var wrap = $(this).closest('.option').remove();
-  }); //~ donate-module - show countries dropdown if click on amount ~
-
-  $(document).on('click', '[select-amount]', function () {
-    var amountId = $(this).data('amount_id');
-    $('[amount-countries]').addClass('d-none');
-    var countriesEl = $('[amount-countries][data-amount_id="' + amountId + '"]');
-    countriesEl.removeClass('d-none');
-    changeDonateCategDropdown(countriesEl);
-  });
-  $(document).on('change', '[amount-countries]', function () {
-    changeDonateCategDropdown(this);
   }); //~~~~~~~~~~~~~~~~~~ change map in the who we are page ~~~~~~~~~~~~~~~~~~~~
 
   $(document).on('click', '#btn-view-global-work', function (event) {
@@ -91208,24 +91199,7 @@ $(function () {
     var altSrc = $(mapBlock).attr('alt-src');
     $(mapBlock).attr('style', 'background-image: url("' + altSrc + '")');
     this.remove();
-  });
-
-  function changeDonateCategDropdown(element) {
-    var campaign = $(element).find('select[name="campaign"]').val();
-    var options = $('#donate_module_options').html();
-    options = JSON.parse(options);
-    var categories = options[campaign]['categories'];
-    var categHtml = '';
-
-    for (var categoryIndex in categories) {
-      var category = categories[categoryIndex];
-      categHtml = categHtml + '<option value="' + category + '">' + category + '</option>';
-    }
-
-    var categEl = $(element).closest('form').find('select[name="categories"]');
-    categEl.html(categHtml);
-  } //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
+  }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 });
 
 function initSwiper() {
@@ -91248,10 +91222,52 @@ function initSwiper() {
 
 /***/ }),
 
-/***/ "./resources/js/project_tiles.js":
-/*!***************************************!*\
-  !*** ./resources/js/project_tiles.js ***!
-  \***************************************/
+/***/ "./resources/js/parts/donate_module.js":
+/*!*********************************************!*\
+  !*** ./resources/js/parts/donate_module.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  //~~~~~~~~~~~~ show countries dropdown if click on amount ~~~~
+  $(document).on('click', '[select-amount]', function () {
+    var amountId = $(this).data('amount_id');
+    $('[amount-countries]').addClass('d-none');
+    var countriesEl = $('[amount-countries][data-amount_id="' + amountId + '"]');
+    countriesEl.removeClass('d-none');
+    var price = $(this).find('input[name="price"]').val();
+    $(this).closest('form').find('input[name="amount"]').val(price);
+    changeDonateCategDropdown(countriesEl);
+  });
+  $(document).on('change', '[amount-countries]', function () {
+    changeDonateCategDropdown(this);
+  });
+
+  function changeDonateCategDropdown(element) {
+    var campaign = $(element).find('select[name="campaign"]').val();
+    var options = $('#donate_module_options').html();
+    options = JSON.parse(options);
+    var categories = options[campaign]['categories'];
+    var categHtml = '';
+
+    for (var categoryIndex in categories) {
+      var category = categories[categoryIndex];
+      categHtml = categHtml + '<option value="' + category + '">' + category + '</option>';
+    }
+
+    var categEl = $(element).closest('form').find('select[name="categories"]');
+    categEl.html(categHtml);
+  } //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+});
+
+/***/ }),
+
+/***/ "./resources/js/parts/project_tiles.js":
+/*!*********************************************!*\
+  !*** ./resources/js/parts/project_tiles.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 

@@ -19,7 +19,8 @@ window.Vue = require('vue')
 
 require('../assets/vendor/MediaManager/js/manager')
 
-require('./project_tiles.js')
+require('./parts/project_tiles.js')
+require('./parts/donate_module.js')
 
 $(function () {
 
@@ -219,21 +220,6 @@ $(function () {
         let wrap = $(this).closest('.option').remove();
     });
 
-    //~ donate-module - show countries dropdown if click on amount ~
-
-    $(document).on('click', '[select-amount]', function () {
-        let amountId = $(this).data('amount_id')
-        $('[amount-countries]').addClass('d-none')
-        let countriesEl = $('[amount-countries][data-amount_id="' + amountId +'"]');
-        countriesEl.removeClass('d-none')
-
-        changeDonateCategDropdown(countriesEl)
-    });
-
-    $(document).on('change', '[amount-countries]', function () {
-        changeDonateCategDropdown(this)
-    });
-
     //~~~~~~~~~~~~~~~~~~ change map in the who we are page ~~~~~~~~~~~~~~~~~~~~
 
     $(document).on('click', '#btn-view-global-work', function (event) {
@@ -244,26 +230,6 @@ $(function () {
         $(mapBlock).attr('style', 'background-image: url("' + altSrc + '")');
         this.remove();
     });
-
-    function changeDonateCategDropdown(element)
-    {
-        let campaign = $(element).find('select[name="campaign"]').val()
-
-        let options = $('#donate_module_options').html()
-        options = JSON.parse(options)
-
-        let categories = options[campaign]['categories']
-
-        let categHtml = ''
-
-        for (var categoryIndex in categories) {
-            let category = categories[categoryIndex]
-            categHtml = categHtml + '<option value="' + category +  '">' + category  + '</option>'
-        }
-
-        let categEl = $(element).closest('form').find('select[name="categories"]')
-        categEl.html(categHtml)   
-    }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 

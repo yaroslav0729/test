@@ -98,7 +98,7 @@ foreach ($amount as $key => $item) {
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="£  Enter amount">
+                                        <input name="amount" type="text" class="form-control" placeholder="£  Enter amount">
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -136,7 +136,7 @@ foreach ($amount as $key => $item) {
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="£  Enter amount">
+                                        <input name="amount" type="text" class="form-control" placeholder="£  Enter amount">
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -181,7 +181,7 @@ foreach ($amount as $key => $item) {
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="£  Enter amount">
+                                        <input name="amount" type="text" class="form-control" placeholder="£  Enter amount">
                                     </div>
                                 </div>
                                 <div class="col-2">
