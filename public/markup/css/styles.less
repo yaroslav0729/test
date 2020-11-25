@@ -119,13 +119,15 @@ footer {
     .menu {
         display: block;
         padding: 0;
-        margin: 0 0 230px;
+        margin: 0 0 40px;
         font-size: 0;
         & > li {
             display: inline-block;
             vertical-align: top;
             padding: 12px 0;
             position: relative;
+            margin-bottom: 15px;
+            width: 25%;
             &:after {
                 content: "";
                 display: block;
@@ -133,7 +135,7 @@ footer {
                 height: 4px;
                 background: #fff;
                 position: absolute;
-                left: 0; bottom: 0;
+                left: 0; bottom: 10px;
             }
             & > a {
                 font-size: 15px;
@@ -147,7 +149,7 @@ footer {
             }
             &.open {
                 .sub-menu {
-                    display: block;
+                    max-height: 1000px;
                     &:after {
                         content: "";
                         display: block;
@@ -155,26 +157,28 @@ footer {
                         height: 4px;
                         background: #F7796A;
                         position: absolute;
-                        left: 0; bottom: -20px;
+                        left: 0; bottom: -10px;
                     }
                 }
                 &:after {display: none}
             }
             .sub-menu {
-                display: none;
+                max-height: 0;
                 padding: 0;
-                margin: 0;
-                position: absolute;
-                left: 0; top: 62px;
+                margin: 20px 0 0;
+                overflow: hidden;
+                //position: absolute;
+                //left: 0; top: 62px;
                 width: 100%;
                 li {
                     display: block;
+                    margin: 10px 0;
                     a {
                         color: #FFF;
                         font-size: 15px;
                         font-weight: 500;
-                        line-height: 40px;
-                        white-space: nowrap;
+                        line-height: 1.5;
+                        white-space: normal;
                     }
                 }
             }
@@ -680,6 +684,10 @@ header {
     line-height: 1;
     padding: 17px 14px;
     border-radius: 5px;
+    &-red {
+        background: #FF5D4A;
+        border-color: #FF5D4A;
+    }
     &-danger {
         background: #F97866;
         border-color: #F97866;
@@ -747,6 +755,7 @@ header {
 
 .bg {
     &-info {background-color: #2caabb !important;}
+    &-red {background-color: #FF5D4A !important;}
     &-danger {background-color: #F97866 !important;}
     &-danger-light {background-color: #FFF6F3 !important;}
     &-warning {background-color: #F5C15D !important;}
@@ -760,6 +769,7 @@ header {
 .text {
     &-info {color: #2caabb  !important;}
     &-dark {color: #101525  !important;}
+    &-red {color: #FF5D4A !important;}
     &-danger {color: #F97866 !important;}
     &-secondary {color: #9496B0 !important;}
 }
@@ -1116,6 +1126,14 @@ input[type='number'].color-danger  + .input-group {
         .body {
             background: #E6604E;
             .title, p, a {color: #fff}
+        }
+    }
+    .swiper-container {
+        .view-more {
+            margin-top: 0;
+            top: auto;
+            text-decoration: none !important;
+            &:after {display: none}
         }
     }
 
@@ -3341,39 +3359,11 @@ input[type='number'].color-danger  + .input-group {
 
 .promo-project-swiper {
     margin-bottom: 50px;
-    overflow: hidden;
+    //overflow: hidden;
     .wrap {
         border-top: 4px solid #101525;
         border-bottom: 4px solid #101525;
-    }
-    .btn {
-        position: absolute; left: 0; bottom: 18px;
-        border-radius: 0 5px 5px 0;
-    }
-    .img {
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
         position: relative;
-    }
-    .prev, .next {
-        background: #101525;
-        width: 60px; height: 60px;
-        position: absolute; bottom: 0px; right: 0;
-        text-align: center;
-        font-size: 30px;
-        line-height: 60px;
-        color: #fff;
-        &:hover {background: #F7796A !important;}
-    }
-    .prev {right: auto; left: 0;}
-
-    .text {
-        padding: 100px 94px;
-        color: #101525;
-        font-size: 30px;
-        font-weight: 900;
-        line-height: 44px;
         &:before {
             background: inherit;
             content: "";
@@ -3382,6 +3372,45 @@ input[type='number'].color-danger  + .input-group {
             width: 1500px;
             z-index: -1;
         }
+    }
+    .btn {
+        position: absolute; left: 0; bottom: 18px;
+        border-radius: 0 5px 5px 0;
+    }
+
+    .img {
+        min-height: 330px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        position: relative;
+    }
+    .prev, .next {
+        background: #101525;
+        width: 60px; height: 60px;
+        top: auto;
+        margin-top: 0;
+        position: absolute; bottom: 0px; right: 0;
+        text-align: center;
+        font-size: 30px;
+        line-height: 60px;
+        color: #fff;
+        text-decoration: none !important;
+        cursor: pointer;
+        &:hover {background: #F7796A !important;}
+        &:after {display: none}
+    }
+    .prev {right: auto; left: 0;}
+
+    .text {
+        display: flex;
+        align-items: center;
+        padding: 100px 94px;
+        color: #101525;
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 44px;
+
     }
 }
 
@@ -3949,6 +3978,42 @@ input[type='number'].color-danger  + .input-group {
             font-size: 23px;
             color: #000;
             &:hover {color: #F7796A}
+        }
+    }
+}
+
+
+////// Phase 2
+.head-mission-impossible {
+    padding: 110px 180px 59px;
+    .wrap {
+        padding: 50px;
+        position: relative;
+        min-height: 550px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+    }
+    .text {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        line-height: 30px;
+        border-bottom: 4px solid #fff;
+        max-width: 811px;
+    }
+
+    .decor-text {
+        color: #fff;
+        font-size: 200px;
+        font-weight: 900;
+        line-height: 153px;
+        position: absolute; bottom: 3px; right: -22px; left: -78px;
+        span {
+            display: inline-block;
+            &:last-child {
+                float: right;}
         }
     }
 }

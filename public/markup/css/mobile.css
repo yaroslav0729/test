@@ -1135,6 +1135,7 @@
   font-size: 30px;
   border: 0;
   position: relative;
+  display: block;
 }
 .mobile-template .promo-project-swiper .text .btn {
   margin-top: 30px;
@@ -1245,10 +1246,14 @@
   padding: 60px 0;
 }
 .mobile-template .values-action .swiper-slide > i {
-  font-size: 30px;
+  font-size: 25px;
   position: absolute;
   right: 30px;
   top: 30px;
+  color: #000;
+}
+.mobile-template .values-action .swiper-slide > i:after {
+  display: none;
 }
 .mobile-template .values-action .swiper-slide .text {
   padding: 0 30px;

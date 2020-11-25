@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/markup/img/content/head-mission-impossible.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/vendor/MediaManager/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/vendor/MediaManager/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/audio.worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/audio.worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/admin_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/admin_styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app_admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app_admin.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
@@ -20,10 +22,17 @@
       <change beforePath="$PROJECT_DIR$/public/js/plugins/lists/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/plugins/lists/plugin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/plugins/media/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/plugins/media/plugin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/plugins/table/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/plugins/table/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/skins/content/default/content.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/skins/content/default/content.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/skins/ui/oxide/content.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/skins/ui/oxide/content.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/skins/ui/oxide/skin.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/skins/ui/oxide/skin.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/themes/silver/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/themes/silver/theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/_footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/_footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/css/mobile.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/mobile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/css/mobile.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/mobile.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/css/mobile.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/mobile.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/js/functions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,11 +46,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="10" lean-forward="true" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="136" column="24" selection-start-line="136" selection-start-column="24" selection-end-line="136" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="1124" column="45" selection-start-line="1124" selection-start-column="45" selection-end-line="1124" selection-end-column="45" />
+            <state relative-caret-position="366">
+              <caret line="168" column="33" selection-start-line="168" selection-start-column="33" selection-end-line="168" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="152" column="29" lean-forward="true" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/markup/_footer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -58,13 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>event-info-head</find>
-      <find>date</find>
-      <find>event-info-descr</find>
-      <find>.calc</find>
-      <find>calculator</find>
-      <find>br-5</find>
-      <find>widget-about-project</find>
       <find>lets-join</find>
       <find>decor-wave</find>
       <find>fill</find>
@@ -86,8 +127,15 @@
       <find>promo-project-swiper</find>
       <find>values-action</find>
       <find>next</find>
-      <find>values-action</find>
       <find>main-</find>
+      <find>cover</find>
+      <find>.text</find>
+      <find>F8F8F8</find>
+      <find>FF5D4A</find>
+      <find>-danger</find>
+      <find>sub</find>
+      <find>sub-menu</find>
+      <find>footer</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/public/markup/mobile</dir>
@@ -107,6 +155,10 @@
         <option value="$PROJECT_DIR$/resources/views/templates/presentation/8.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/templates/presentation/8.blade.php" />
         <option value="$PROJECT_DIR$/public/css/mobile.less" />
+        <option value="$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php" />
+        <option value="$PROJECT_DIR$/public/markup/css/styles.less" />
+        <option value="$PROJECT_DIR$/public/markup/_footer.php" />
+        <option value="$PROJECT_DIR$/public/markup/js/functions.js" />
         <option value="$PROJECT_DIR$/public/css/styles.less" />
       </list>
     </option>
@@ -291,6 +343,20 @@
             <path>
               <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
               <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="markup" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="markup" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -371,10 +437,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/css" />
-      <recent name="$PROJECT_DIR$/public/markup/img" />
-      <recent name="$PROJECT_DIR$/public/markup/mobile" />
-      <recent name="$PROJECT_DIR$/public/img" />
+      <recent name="$PROJECT_DIR$/public/markup/css" />
+      <recent name="$PROJECT_DIR$/public/markup/img/content" />
       <recent name="$PROJECT_DIR$/public/markup" />
+      <recent name="$PROJECT_DIR$/public/markup/img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -421,16 +487,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6172000" />
+    <option name="totallyTimeSpent" value="10504000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="823" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.20958512" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.20958512" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="npm" order="3" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.1874145" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.1874145" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
@@ -501,10 +568,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/css/mobile.less">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="10" lean-forward="true" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/_footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="152" column="29" lean-forward="true" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="136" column="24" selection-start-line="136" selection-start-column="24" selection-end-line="136" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/styles.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="1124" column="45" selection-start-line="1124" selection-start-column="45" selection-end-line="1124" selection-end-column="45" />
+        <state relative-caret-position="366">
+          <caret line="168" column="33" selection-start-line="168" selection-start-column="33" selection-end-line="168" selection-end-column="33" />
         </state>
       </provider>
     </entry>

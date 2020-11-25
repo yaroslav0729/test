@@ -76,7 +76,7 @@ footer .copy span {
 footer .menu {
   display: block;
   padding: 0;
-  margin: 0 0 230px;
+  margin: 0 0 40px;
   font-size: 0;
 }
 footer .menu > li {
@@ -84,6 +84,8 @@ footer .menu > li {
   vertical-align: top;
   padding: 12px 0;
   position: relative;
+  margin-bottom: 15px;
+  width: 25%;
 }
 footer .menu > li:after {
   content: "";
@@ -93,7 +95,7 @@ footer .menu > li:after {
   background: #fff;
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 10px;
 }
 footer .menu > li > a {
   font-size: 15px;
@@ -108,7 +110,7 @@ footer .menu > li > a:hover {
   color: #F7796A;
 }
 footer .menu > li.open .sub-menu {
-  display: block;
+  max-height: 1000px;
 }
 footer .menu > li.open .sub-menu:after {
   content: "";
@@ -118,29 +120,28 @@ footer .menu > li.open .sub-menu:after {
   background: #F7796A;
   position: absolute;
   left: 0;
-  bottom: -20px;
+  bottom: -10px;
 }
 footer .menu > li.open:after {
   display: none;
 }
 footer .menu > li .sub-menu {
-  display: none;
+  max-height: 0;
   padding: 0;
-  margin: 0;
-  position: absolute;
-  left: 0;
-  top: 62px;
+  margin: 20px 0 0;
+  overflow: hidden;
   width: 100%;
 }
 footer .menu > li .sub-menu li {
   display: block;
+  margin: 10px 0;
 }
 footer .menu > li .sub-menu li a {
   color: #FFF;
   font-size: 15px;
   font-weight: 500;
-  line-height: 40px;
-  white-space: nowrap;
+  line-height: 1.5;
+  white-space: normal;
 }
 footer.style-2 .social a,
 footer.style-3 .social a {
@@ -743,6 +744,10 @@ header.only-menu .down-bar.bg-white {
   padding: 17px 14px;
   border-radius: 5px;
 }
+.btn-red {
+  background: #FF5D4A;
+  border-color: #FF5D4A;
+}
 .btn-danger {
   background: #F97866;
   border-color: #F97866;
@@ -809,6 +814,9 @@ header.only-menu .down-bar.bg-white {
 .bg-info {
   background-color: #2caabb !important;
 }
+.bg-red {
+  background-color: #FF5D4A !important;
+}
 .bg-danger {
   background-color: #F97866 !important;
 }
@@ -838,6 +846,9 @@ header.only-menu .down-bar.bg-white {
 }
 .text-dark {
   color: #101525  !important;
+}
+.text-red {
+  color: #FF5D4A !important;
 }
 .text-danger {
   color: #F97866 !important;
@@ -4457,5 +4468,41 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .contacts .social a:hover {
   color: #F7796A;
+}
+.head-mission-impossible {
+  padding: 110px 180px 59px;
+}
+.head-mission-impossible .wrap {
+  padding: 50px;
+  position: relative;
+  min-height: 550px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.head-mission-impossible .text {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 30px;
+  border-bottom: 4px solid #fff;
+  max-width: 811px;
+}
+.head-mission-impossible .decor-text {
+  color: #fff;
+  font-size: 200px;
+  font-weight: 900;
+  line-height: 153px;
+  position: absolute;
+  bottom: 3px;
+  right: -22px;
+  left: -78px;
+}
+.head-mission-impossible .decor-text span {
+  display: inline-block;
+}
+.head-mission-impossible .decor-text span:last-child {
+  float: right;
 }
 /*# sourceMappingURL=styles.css.map */
