@@ -91232,10 +91232,16 @@ function initSwiper() {
 $(function () {
   //~~~~~~~~~~~~ show countries dropdown if click on amount ~~~~
   $(document).on('click', '[select-amount]', function () {
+    var form = $(this).closest('form');
     var amountId = $(this).data('amount_id');
     $('[amount-countries]').addClass('d-none');
-    var countriesEl = $('[amount-countries][data-amount_id="' + amountId + '"]');
-    countriesEl.removeClass('d-none');
+    var countriesEl = $(form).find(' [amount-countries][data-amount_id="' + amountId + '"]');
+    var countOpt = $('option', countriesEl).length;
+
+    if (countOpt > 1) {
+      countriesEl.removeClass('d-none');
+    }
+
     var price = $(this).find('input[name="price"]').val();
     $(this).closest('form').find('input[name="amount"]').val(price);
     changeDonateCategDropdown(countriesEl);

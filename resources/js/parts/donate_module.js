@@ -3,11 +3,17 @@ $(function () {
     //~~~~~~~~~~~~ show countries dropdown if click on amount ~~~~
 
     $(document).on('click', '[select-amount]', function () {
+
+        let form = $(this).closest('form')
         let amountId = $(this).data('amount_id')
         $('[amount-countries]').addClass('d-none')
-        let countriesEl = $('[amount-countries][data-amount_id="' + amountId +'"]');
-        countriesEl.removeClass('d-none')
+        let countriesEl = $(form).find(' [amount-countries][data-amount_id="' + amountId +'"]');
+        let countOpt = $('option', countriesEl).length
 
+        if (countOpt > 1) {
+            countriesEl.removeClass('d-none')
+        }
+        
         let price = $(this).find('input[name="price"]').val()
         $(this).closest('form').find('input[name="amount"]').val(price)
 
