@@ -73,7 +73,6 @@ $(function () {
     //~~~~~~~~~~~~ Join the cause - subscribe form ~~~~~~~~~~~~~~~~~~~
 
     $(document).on('click', '#join_the_cause_show_form', function() {
-        console.log('show form')
 
         let mainForm =  $('.join-cause-main')
         let hiddenForm = $('.join-cause-hidden')
@@ -211,7 +210,6 @@ $(function () {
 
         //let len = $('.option', optionsList).length // length in current list
         let len = $('.option', '[options-list]').length // length in all page
-        console.log(len)
 
         html = html.replace(/{new}/gi, len);
         optionsList.append(html);   
@@ -255,8 +253,6 @@ $(function () {
         options = JSON.parse(options)
 
         let categories = options[campaign]['categories']
-
-        console.log(campaign)
 
         let categHtml = ''
 

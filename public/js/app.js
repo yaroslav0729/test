@@ -91078,7 +91078,6 @@ $(function () {
 
 
   $(document).on('click', '#join_the_cause_show_form', function () {
-    console.log('show form');
     var mainForm = $('.join-cause-main');
     var hiddenForm = $('.join-cause-hidden');
     mainForm.addClass('d-none');
@@ -91185,7 +91184,6 @@ $(function () {
 
     var len = $('.option', '[options-list]').length; // length in all page
 
-    console.log(len);
     html = html.replace(/{new}/gi, len);
     optionsList.append(html);
   });
@@ -91217,7 +91215,6 @@ $(function () {
     var options = $('#donate_module_options').html();
     options = JSON.parse(options);
     var categories = options[campaign]['categories'];
-    console.log(campaign);
     var categHtml = '';
 
     for (var categoryIndex in categories) {
