@@ -5,6 +5,10 @@
 
             @if(count($campaignsCountries[$amountKey])>0)
 
+            @if((isset($isEmergency)) && ($isEmergency === true))
+                @php $class = 'active-color-red' @endphp
+            @endif
+
             <label class="item @isset($class) {{ $class }} @endisset" select-amount data-amount_id={{ $amountKey }}>
                 <input type="radio" name="price" value="{{ $item['value'] }}">
                 <span class="d-flex align-items-center">

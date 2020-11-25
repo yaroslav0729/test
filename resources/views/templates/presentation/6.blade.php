@@ -6,12 +6,14 @@
         $mainHtml = $parameters['main_html'];    
     }
 
+    $isEmergency = \App\Models\Project::isEmergency($pageInstance);
+
 @endphp
 
 <div class="pt-4"></div>
 <div class="pt-5"></div>
 
-<section class="donate-today blue-gradient">
+<section class="donate-today @if($isEmergency) red-gradient @else blue-gradient @endif">
     <div class="wrap">
         <div class="title mb-5">
             <p class="font-size-40"><b>{{ $pageInstance->name }}</b></p>
