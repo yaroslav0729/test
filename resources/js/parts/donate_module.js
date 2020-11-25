@@ -48,4 +48,13 @@ $(function () {
     });
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('click', '[select-appeal-tab]', function () {
+        $('[appeal-tab]').addClass('d-none')
+
+        let tabClass = $(this).data('tab')
+        $('div.' + tabClass).removeClass('d-none')
+    });
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 })

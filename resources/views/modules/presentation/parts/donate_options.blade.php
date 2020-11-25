@@ -5,10 +5,20 @@
 
             @if(count($campaignsCountries[$amountKey])>0)
 
-            <label class="item" select-amount data-amount_id={{ $amountKey }}>
+            <label class="item @isset($class) {{ $class }} @endisset" select-amount data-amount_id={{ $amountKey }}>
                 <input type="radio" name="price" value="{{ $item['value'] }}">
                 <span class="d-flex align-items-center">
-                    <span><span><object class="currency_sign">£</object><b>@isset($item['value']) {{ $item['value'] }} @endisset</b></span><span>JUST ONCE</span></span>
+                    <span>
+                        <span>
+                            <object class="currency_sign">£</object>
+                            <b>@isset($item['value']) {{ $item['value'] }} @endisset</b>
+                        </span>
+                    @if($donateOptionsType === \App\Models\CampaignPrice::TYPE_SINGLE)
+                        <span>JUST ONCE</span>
+                    @elseif($donateOptionsType === \App\Models\CampaignPrice::TYPE_MONTHLY)
+                        <span>MONTH</span>
+                    @endif
+                </span>
                     <span>@isset($item['text']) {{ $item['text'] }} @endisset</span>
                 </span>
             </label>

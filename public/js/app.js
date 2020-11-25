@@ -91266,6 +91266,12 @@ $(function () {
     $('object.currency_sign').text(sign);
     $('input[name="amount"]').attr('placeholder', sign + '  Enter amount');
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('click', '[select-appeal-tab]', function () {
+    $('[appeal-tab]').addClass('d-none');
+    var tabClass = $(this).data('tab');
+    $('div.' + tabClass).removeClass('d-none');
+  }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 });
 
 /***/ }),

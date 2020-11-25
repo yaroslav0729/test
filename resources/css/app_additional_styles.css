@@ -37,6 +37,17 @@
 .current-projects-list .swiper-container {
     border-bottom: 4px solid #101525;
 }
+.btn_appeal_tab {
+    height: 40px;
+    line-height: 20px;
+    padding: 5px 0 5px 0;
+    width: calc(50% - 5px);
+    margin:0;
+}
+.btn_appeal_tab:hover {
+    background-color: #F97866;
+    border: 1px solid #F97866;
+}
 
 
 

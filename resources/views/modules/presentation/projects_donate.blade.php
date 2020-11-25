@@ -119,7 +119,8 @@ foreach ($amount as $key => $item) {
                         <form action="/">
 
                             @include('modules.presentation.parts.donate_options',[
-                                'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY
+                                'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY,
+                                'class' => 'active-color-info'
                             ])
 
                             <div class="pt-3"></div>
@@ -152,24 +153,32 @@ foreach ($amount as $key => $item) {
                     @isset($useAppeal)
                     <div class="tab-pane fade" id="nav-3" role="tabpanel" >
                         <form action="/">
-                            
-                            @foreach ($amount as $item)
-                                <label class="item">
-                                    <input type="radio" name="r1">
-                                    <span class="d-flex align-items-center">
-                                        <span><span>£<b>@isset($item['value']) {{ $item['value'] }} @endisset</b></span><span>JUST ONCE</span></span>
-                                        <span>@isset($item['text']) {{ $item['text'] }} @endisset</span>
-                                    </span>
-                                </label>
-                            @endforeach
+
+                            <div class="pb-2">
+                            <button type="button" select-appeal-tab data-tab="tab_single" class="btn btn-danger btn_appeal_tab">Single</button>
+                            <button type="button" select-appeal-tab data-tab="tab_monthly" class="btn btn-danger btn_appeal_tab">Regular</button>
+                            </div>
+
+                            <div class="tab_single" appeal-tab>
+                            @include('modules.presentation.parts.donate_options',[
+                                'donateOptionsType' => \App\Models\CampaignPrice::TYPE_SINGLE,
+                                'class' => 'active-color-red'
+                            ])
+                            </div>
+
+                            <div class="tab_monthly d-none" appeal-tab>
+                            @include('modules.presentation.parts.donate_options',[
+                                'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY,
+                                'class' => 'active-color-red'
+                            ])
+                            </div>
 
                             <div class="pt-3"></div>
                             <div class="row gutter-5">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="1">General Charity</option>
-                                            <option value="1">General Charity 2</option>
+                                        <select class="form-control" name="categories">
+                                            {{-- will be replaced by js --}}
                                         </select>
                                     </div>
                                 </div>
