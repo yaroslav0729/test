@@ -2,11 +2,13 @@
     if (isset($pGroup)) {
         $pageTitle = 'Edit post group id: ' . $pGroup->id;
         $actionRoute = route('admin.category.update', ['category' => $pGroup->id]);
+        
         $name = $pGroup->name;
         $slug = $pGroup->slug;
     } else {
         $pageTitle = 'Create post group:';
         $actionRoute = route('admin.category.store');
+        
         $name = old('name');
         $slug = old('slug');
     }
@@ -41,10 +43,10 @@
             @endisset
 
             <label for="name">Name</label><br>
-            <input id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $name }}" /><br>
+            <input id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ old('name', $pGroup->name ?? null) }}" /><br>
             
             <label for="slug">Slug</label><br>
-            <input id="slug" name="slug" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ $slug }}" /><br>
+            <input id="slug" name="slug" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" value="{{ old('slug', $pGroup->slug ?? null) }}" /><br>
             
             <br><br>
             <button class="btn btn-info" type="submit">
