@@ -136,7 +136,7 @@
 <div class="row mt-lg-5">
     <div class="col-12 col-lg-6">
         <div class="form-group">
-            <label>Event start date:</label>
+            <label>Event start date (GMT):</label>
             <input type="date" class="form-control" required name="parameters[event_start_date]"
                    placeholder="Choice start event date" value="{{ $eventStartDate }}"/>
         </div>
@@ -144,7 +144,7 @@
 
     <div class="col-12 col-lg-6">
         <div class="form-group">
-            <label>Event start time (00:00 - 24:00):</label>
+            <label>Event start time (GMT 00:00 - 24:00):</label>
             <input type="time" class="form-control" required name="parameters[event_start_time]"
                    placeholder="Insert start event time" value="{{ $eventStartTime }}"/>
         </div>
@@ -152,7 +152,7 @@
 
     <div class="col-12 col-lg-6">
         <div class="form-group">
-            <label>Event end date:</label>
+            <label>Event end date (GMT):</label>
             <input type="date" class="form-control" name="parameters[event_end_date]"
                    placeholder="Choice start event date" value="{{ $eventEndDate }}"/>
         </div>
@@ -160,7 +160,7 @@
 
     <div class="col-12 col-lg-6">
         <div class="form-group">
-            <label>Event end time (00:00 - 24:00):</label>
+            <label>Event end time (GMT 00:00 - 24:00):</label>
             <input type="time" class="form-control" name="parameters[event_end_time]"
                    placeholder="Insert start event time" value="{{ $eventEndTime }}"/>
         </div>
@@ -168,7 +168,7 @@
 
     <div class="col-12 col-lg-6">
         <div class="form-group">
-            <label>Event sale and date:</label>
+            <label>Event sales end on (GMT):</label>
             <input type="date" class="form-control" required name="parameters[event_end_sale_date]"
                    placeholder="Choice start event date" value="{{ $eventEndSaleDate }}"/>
         </div>

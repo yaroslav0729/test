@@ -127,7 +127,7 @@
         </div>
     </section>
 
-    <section class="events-home-search-form view-btn">
+    <section id="events" class="events-home-search-form">
         <div class="wrap">
             <form action="{{ url($pageInstance->slug) }}">
                 <div class="row gutter-30">
