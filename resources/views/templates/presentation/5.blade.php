@@ -1,9 +1,42 @@
+@php
+
+    $mainTitle = "";
+
+    if (isset($parameters['main_title'])) {
+        $mainTitle = $parameters['main_title'];    
+    }
+
+    $afterTitleText = "";
+
+    if (isset($parameters['after_text'])) {
+        $afterTitleText = $parameters['after_text'];    
+    }
+
+    $donateToProjTitle = "";
+
+    if (isset($parameters['donate_to_title'])) {
+        $donateToProjTitle = $parameters['donate_to_title'];    
+    }
+
+    $donateToProjText = "";
+
+    if (isset($parameters['donate_to_text'])) {
+        $donateToProjText = $parameters['donate_to_text'];    
+    }
+
+@endphp
+
+
 <section class="donate-today">
     <div class="wrap">
         <div class="title">
             <div class="row align-items-center">
                 <div class="col-6">
-                    <p class="font-size-60"><b>Donate today</b></p>
+                    @empty($mainTitle)
+                        <p class="font-size-60"><b>Donate today</b></p>
+                    @else
+                        <p class="font-size-60"><b>{{ $mainTitle }}</b></p>
+                    @endempty
                 </div>
                 <div class="col-6 text-right">
                     <a href="#" class="text-underline text-uppercase text-dark"><b>calculate my zakat</b></a>
@@ -11,7 +44,12 @@
             </div>
             <div class="row mb-5">
                 <div class="col-6">
-                    <p class="font-size-16">Make your donation here of which 100ch ut perspiciatis unde omnis iste natus demiour sit voluptatem.</p>
+                    @empty($afterTitleText)
+                        <p class="font-size-16">Make your donation here of which 100ch ut perspiciatis unde omnis iste natus demiour sit voluptatem.</p>
+                    @else
+                        <p class="font-size-16">{{ $afterTitleText }}</p>
+                    @endempty
+                    
                 </div>
             </div>
         </div>
@@ -29,8 +67,18 @@
         <div class="wrap">
             <div class="row">
                 <div class="col-6">
-                    <p class="font-size-30"><b>Donate to a project too?</b></p>
-                    <p class="font-size-16">You could also join the journey to support our causes that empower those in need each month/single donation 100ch.</p>
+                    @empty($donateToProjTitle)
+                        <p class="font-size-30"><b>Donate to a project too?</b></p>
+                    @else
+                        <p class="font-size-30"><b>{{ $donateToProjTitle }}</b></p>
+                    @endempty
+
+                    @empty($donateToProjText)
+                        <p class="font-size-16">You could also join the journey to support our causes that empower those in need each month/single donation 100ch.</p>
+                    @else
+                        <p class="font-size-16">{{ $donateToProjText }}</p>
+                    @endempty
+                    
 
                 </div>
             </div>
