@@ -1,5 +1,7 @@
 @php
 
+    $campaignCategories = \App\Models\Project::getProjectCampaignsCateg($pageInstance);
+
     $donateImg = "";
     $donateText = "";
 
@@ -10,6 +12,8 @@
     if (isset($parameters['donate_text'])) {
         $donateText = $parameters['donate_text'];    
     }
+
+    if (!isset($isEmergency)) $isEmergency = false;
 
 @endphp
 
@@ -27,7 +31,10 @@ foreach ($amount as $key => $item) {
     if (isset($item['campaigns'])) {
         $campaigns = [];
         foreach ($item['campaigns'] as $campId) {
-            $campaigns[$campId] = \App\Models\Campaign::getCountryNameByCampaignId($campId);
+            $campName = \App\Models\Campaign::getCountryNameForPrice($campId, $item['value'], $item['type']);
+            
+            if (isset($campName))
+            $campaigns[$campId] = $campName;
         }
         $campaignsCountries[$key] = $campaigns; 
     }
@@ -45,7 +52,7 @@ foreach ($amount as $key => $item) {
 
 <div class="body">
     <div class="media">
-        @empty($donateText)
+        @empty($donateImg)
         <img src="img/content/donate-today-1.jpg" alt="" class="w-100">
         @else
         <img src="{{ $donateImg }}" alt="" class="w-100"> 
