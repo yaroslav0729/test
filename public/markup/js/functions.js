@@ -135,7 +135,6 @@ $(function() {
         e.preventDefault();
         e.stopPropagation();
         $(this).parent().toggleClass('open');
-        console.log($(this).text())
     })
 
 } );
