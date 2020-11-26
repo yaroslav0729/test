@@ -105,6 +105,10 @@ foreach ($amount as $key => $item) {
                             {{-- will be replaced by js --}}
                         </select>
                     </div>
+                    <div class="form-group">
+                        @include('modules.presentation.parts.currency_selector')
+                    </div>
+
                     <div class="pt-3"></div>
                     <div class="text-center">
                         <button class="btn btn-info border-white btn-submit w-100">Donate</button>
@@ -130,6 +134,9 @@ foreach ($amount as $key => $item) {
                         <select class="form-control" name="categories">
                             {{-- will be replaced by js --}}
                         </select>
+                    </div>
+                    <div class="form-group">
+                        @include('modules.presentation.parts.currency_selector')
                     </div>
                     <div class="pt-3"></div>
                     <div class="text-center">
@@ -170,6 +177,9 @@ foreach ($amount as $key => $item) {
                         <select class="form-control" name="categories">
                             {{-- will be replaced by js --}}
                         </select>
+                    </div>
+                    <div class="form-group">
+                        @include('modules.presentation.parts.currency_selector')
                     </div>
                     <div class="pt-3"></div>
                     <div class="text-center">

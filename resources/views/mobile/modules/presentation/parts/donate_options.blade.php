@@ -11,7 +11,9 @@
             <label class="item @isset($class) {{ $class }} @endisset" select-amount data-amount_id={{ $amountKey }}>
                 <input type="radio" name="price" value="{{ $item['value'] }}">
                 <span class="d-flex align-items-center">
-                    <span><span>£<b>@isset($item['value']) {{ $item['value'] }} @endisset</b></span></span>
+                    <span><span>
+                        <object class="currency_sign">£</object>
+                        <b>@isset($item['value']) {{ $item['value'] }} @endisset</b></span></span>
                     <span>@isset($item['text']) {{ $item['text'] }} @endisset</span>
                 </span>
             </label>
