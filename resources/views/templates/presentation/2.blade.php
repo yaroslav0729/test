@@ -8,7 +8,6 @@
     $eventLinkText = "";
     $eventEndSaleDate = "";
 
-/*    $eventDetailsEntry = "";*/
     $eventEntryPrice = "";
     $eventDetailsOrganiser = "";
     $eventDetailsSpeaker = "";
@@ -16,9 +15,6 @@
 
     $informationTitle ="";
     $informationText ="";
-
-    $importantInformationTitle = "";
-    $importantInformationText = "";
 
     if (isset($parameters['preview_position'])) {
         $previewPosition = $parameters['preview_position'];
@@ -70,14 +66,6 @@
 
     if (isset($parameters['information_text'])) {
         $informationText = $parameters['information_text'];
-    }
-
-    if (isset($parameters['important_information_title'])) {
-        $importantInformationTitle = $parameters['important_information_title'];
-    }
-
-    if (isset($parameters['important_information_text'])) {
-        $importantInformationText = $parameters['important_information_text'];
     }
 
     $event = $pageInstance->page->event;
@@ -227,16 +215,9 @@
 
 <div class="pt-5"></div>
 
-<section class="join-cause">
-    <div class="wrap">
-        <div class="title mb-5">
-        <p class="font-size-30"><b>{{ $importantInformationTitle }}</b></p>
-        </div>
-        <p class="font-size-20">
-            {{ $importantInformationText }}
-        </p>
-    </div>
-</section>
+@include('modules.presentation.important_information', [
+    'parameters' => $parameters
+])
 
 @include('modules.presentation.related_page_expanded', [
     'parameters' => $parameters

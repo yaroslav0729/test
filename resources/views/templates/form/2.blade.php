@@ -18,9 +18,6 @@
     $eventDetailsSpeaker = "";
     $eventDetailsContact = "";
 
-    $informationTitle = "";
-    $informationText = "";
-
     $importantInformationTitle = "";
     $importantInformationText = "";
 
@@ -94,14 +91,6 @@
 
     if (isset($parameters['information_text'])) {
         $informationText = $parameters['information_text'];
-    }
-
-    if (isset($parameters['important_information_title'])) {
-        $importantInformationTitle = $parameters['important_information_title'];
-    }
-
-    if (isset($parameters['important_information_text'])) {
-        $importantInformationText = $parameters['important_information_text'];
     }
 
 @endphp
@@ -248,20 +237,11 @@
     </div>
 </div>
 
-<div class="row mt-lg-5">
-    <div class="col-12 col-lg-6">
-        <div class="form-group">
-            <label>Important information title:</label>
-            <input class="form-control" required name="parameters[important_information_title]"
-                   placeholder="Important information title" value="{{ $importantInformationTitle }}"/>
-        </div>
-    </div>
-    <div class="col-12 col-lg-6">
-        <div class="form-group">
-            <label>Important information text:</label>
-            <textarea class="form-control" required name="parameters[important_information_text]"
-                      placeholder="Important information text">{{ $importantInformationText }}</textarea>
-        </div>
+<div class="row mt-5">
+    <div class="col-12">
+        @include('modules.admin.important_information', [
+            'parameters' => $parameters
+        ])
     </div>
 </div>
 
