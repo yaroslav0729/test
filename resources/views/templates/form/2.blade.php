@@ -18,8 +18,8 @@
     $eventDetailsSpeaker = "";
     $eventDetailsContact = "";
 
-    $importantInformationTitle = "";
-    $importantInformationText = "";
+    $informationTitle ="";
+    $informationText ="";
 
     if (isset($parameters['preview_position'])) {
         $previewPosition = $parameters['preview_position'];
