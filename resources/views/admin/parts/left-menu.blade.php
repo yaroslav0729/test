@@ -4,6 +4,7 @@
         <li><a href="{{ route('dashboard') }}"><i class="far fa-list-alt"></i>User dashboard</a></li>
         <li><a href="{{ route('admin.index') }}"><i class="fas fa-user-friends"></i>Users</a></li>
         <li><a href="{{ route('admin.pages.index') }}"><i class="fas fa-file-alt"></i>Pages</a></li>
+        <li><a href="{{ route('admin.pages.index', ['filter' => 'events']) }}"><i class="fas fa-file-alt"></i>Events</a></li>
         <li><a href="{{ route('admin.category.index') }}"><i class="fas fa-folder-open"></i>Categories</a></li>
         <li><a href="{{ route('admin.campaigns.index') }}"><i class="far fa-building"></i>Campaigns</a></li>
         <li><a href="{{ route('admin.campaign_categories.index') }}"><i class="fas fa-clone"></i></i>Campaign categories</a></li>

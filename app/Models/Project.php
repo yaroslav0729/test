@@ -98,10 +98,40 @@ class Project
         }
     }
 
-    public static function getProjectOptions($project)
+    public static function getProjectCampaignsCateg($pageInstance)
     {
-        $pageInstance = $project->actual_page_instance;
+        $amount = [];
 
+        if (isset($pageInstance->parameters['amount'])) {
+            $amount = $pageInstance->parameters['amount'];  
+        }
+
+        $campaignsNames = [];
+
+        foreach ($amount as $price) {
+            if (isset($price['type'])) {
+                
+                if (isset($price['campaigns'])) {
+                    foreach ($price['campaigns'] as $campaignId) {
+
+                        $campCategories = Campaign::where('id', $campaignId)->first()->campaign_categories->pluck('name')->toArray();
+
+                        $campName = Campaign::getCountryNameForPrice($campaignId, $price['value'], $price['type']);
+
+                        if (isset($campName)) {
+                            $campaignsNames[$campaignId]['name'] = $campName;
+                            $campaignsNames[$campaignId]['categories'] = $campCategories;
+                        }  
+                    }
+                }                
+            }
+        }
+
+        return $campaignsNames;
+    }
+
+    public static function getProjectOptions($pageInstance)
+    {
         $amount = [];
 
         if (isset($pageInstance->parameters['amount'])) {
@@ -118,9 +148,9 @@ class Project
                 if (isset($price['campaigns'])) {
                     foreach ($price['campaigns'] as $campaignId) {
 
-                        $campCategories = \App\Models\Campaign::where('id', $campaignId)->first()->campaign_categories->pluck('name')->toArray();
+                        $campCategories = Campaign::where('id', $campaignId)->first()->campaign_categories->pluck('name')->toArray();
 
-                        $campName = \App\Models\Campaign::getCountryNameForPrice($campaignId, $price['value'], $price['type']);
+                        $campName = Campaign::getCountryNameForPrice($campaignId, $price['value'], $price['type']);
 
                         if (isset($campName)) {
                             $campaignsNames[$campaignId]['name'] = $campName;
@@ -131,9 +161,9 @@ class Project
 
                 $type = '';
                 
-                if ((int)$price['type'] === \App\Models\CampaignPrice::TYPE_SINGLE) {
+                if ((int)$price['type'] === CampaignPrice::TYPE_SINGLE) {
                     $type = 'single';
-                } else if ((int)$price['type'] === \App\Models\CampaignPrice::TYPE_MONTHLY) {
+                } else if ((int)$price['type'] === CampaignPrice::TYPE_MONTHLY) {
                     $type = 'monthly';
                 }
                 
@@ -148,5 +178,34 @@ class Project
         }
 
         return $options;
+    }
+
+    public static function isEmergency($pageInstance)
+    {
+        $parameters = $pageInstance->parameters;
+        $amount = [];
+        
+        if (isset($parameters['amount'])) {
+            $amount = $parameters['amount'];
+        }
+        
+        $campaignIds = [];
+
+        foreach ($amount as $price) {
+            if (isset($price['campaigns'])) {
+                foreach ($price['campaigns'] as $campaign) {
+                    $campaignIds[] = $campaign;
+                }
+            }
+        }
+
+        $campaignIds = array_unique($campaignIds);
+        $emergencyCount = Campaign::whereIn('id', $campaignIds)->emergency()->count();
+        
+        if ($emergencyCount) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

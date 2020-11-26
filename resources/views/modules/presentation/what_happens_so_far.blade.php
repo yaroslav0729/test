@@ -33,6 +33,8 @@
         $bgImage = $parameters['what_happens_img'];    
     }
 
+    if (!isset($isEmergency)) $isEmergency = false;
+
 @endphp
 
 <section class="whats-happened-far">
@@ -47,15 +49,15 @@
                 <div class="tl">{{ $moduleTitle }}</div>
                 @endisset
 
-                <div class="text bg-info">
+                <div class="text @if($isEmergency) bg-dark @else bg-info @endif">
                     @empty($moduleText)
                     <p>180 Characters perspiciais und omnis iste natus error sit volup tatem accusantium dis doloremque laudantium, totam annum rem aperiam, eaque ipsa quae ab illomsi inventore veritatis.</p>
                     @else 
                     <p>{{ $moduleText }}</p>
                     @endisset
                     <div class="info">
-                        <div class="bg bg-danger-light"></div>
-                        <div class="rectangle bg-danger"></div>
+                        <div class="bg @if($isEmergency) bg-danger @else bg-danger-light @endif"></div>
+                        <div class="rectangle @if($isEmergency) bg-warning @else bg-danger @endif"></div>
                         <div class="help-info">
                             <div>
                                 <span>{{ $peopleHelped }}k</span>

@@ -19,7 +19,8 @@ window.Vue = require('vue')
 
 require('../assets/vendor/MediaManager/js/manager')
 
-require('./project_tiles.js')
+require('./parts/project_tiles.js')
+require('./parts/donate_module.js')
 
 $(function () {
 
@@ -73,7 +74,6 @@ $(function () {
     //~~~~~~~~~~~~ Join the cause - subscribe form ~~~~~~~~~~~~~~~~~~~
 
     $(document).on('click', '#join_the_cause_show_form', function() {
-        console.log('show form')
 
         let mainForm =  $('.join-cause-main')
         let hiddenForm = $('.join-cause-hidden')
@@ -211,7 +211,6 @@ $(function () {
 
         //let len = $('.option', optionsList).length // length in current list
         let len = $('.option', '[options-list]').length // length in all page
-        console.log(len)
 
         html = html.replace(/{new}/gi, len);
         optionsList.append(html);   
@@ -219,15 +218,6 @@ $(function () {
 
     $(document).on('click', '[option-delete]', function () {
         let wrap = $(this).closest('.option').remove();
-    });
-
-    //~ donate-module - show countries dropdown if click on amount ~
-
-    $(document).on('click', '[select-amount]', function () {
-        let amountId = $(this).data('amount_id')
-        $('[amount-countries]').addClass('d-none')
-        let countriesEl = $('[amount-countries][data-countries_amount_id="' + amountId +'"]');
-        countriesEl.removeClass('d-none')
     });
 
     //~~~~~~~~~~~~~~~~~~ change map in the who we are page ~~~~~~~~~~~~~~~~~~~~

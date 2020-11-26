@@ -79,4 +79,30 @@ class Page extends Model
 
         return url($slug);
     }
+
+    public static function getAllProjects()
+    {
+        $pages = Page::whereHas('pageInstances', function (Builder $query) {
+            $query->where('template', Template::PROJECT_PAGE);
+        })->get();
+
+        return $pages;
+    }
+
+    public static function getAllEvents()
+    {
+        $pages = Page::whereHas('pageInstances', function (Builder $query) {
+            $query->where(['template'=> Template::EVENT_PAGE, 'actual' => 1]);
+        });
+
+        return $pages;
+    }
+
+    /**
+     * Get the Event for the Page.
+     */
+    public function event()
+    {
+        return $this->hasOne('App\Models\Event');
+    }
 }

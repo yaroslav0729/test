@@ -1,5 +1,7 @@
 @php
 
+    $campaignCategories = \App\Models\Project::getProjectCampaignsCateg($pageInstance);
+
     $donateImg = "";
     $donateText = "";
 
@@ -10,6 +12,8 @@
     if (isset($parameters['donate_text'])) {
         $donateText = $parameters['donate_text'];    
     }
+
+    if (!isset($isEmergency)) $isEmergency = false;
 
 @endphp
 
@@ -47,6 +51,9 @@ foreach ($amount as $key => $item) {
 @endphp
 
 <div class="body">
+    <div id="donate_module_options" class="alert alert-warning d-none">
+        {{ json_encode($campaignCategories) }}
+    </div>
     <div class="row gutter-0">
         <div class="col-6">
             <div class="media">
@@ -63,10 +70,10 @@ foreach ($amount as $key => $item) {
                 <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                         @isset($useSingleTab)
-                        <a class="nav-link active"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true" donate-filter data-filter="single">Single Donation</a>
+                        <a class="nav-link active @if($isEmergency) color-red @endif"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true" donate-filter data-filter="single">Single Donation</a>
                         @endisset
                         @isset($useMonthlyTab)
-                        <a class="nav-link color-info"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false" donate-filter data-filter="monthly">Monthly Donation</a>
+                        <a class="nav-link @if($isEmergency) color-red @else color-info @endif @empty($useSingleTab) active @endempty"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false" donate-filter data-filter="monthly">Monthly Donation</a>
                         @endisset
                         @isset($useAppeal)
                         <a class="nav-link color-red"  data-toggle="tab" href="#nav-3" role="tab"  aria-selected="false" donate-filter data-filter="appeal">Appeal Donation</a>
@@ -86,23 +93,19 @@ foreach ($amount as $key => $item) {
                             <div class="row gutter-5">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="1">General Charity</option>
-                                            <option value="1">General Charity 2</option>
+                                        <select class="form-control" name="categories">
+                                            {{-- will be replaced by js --}}
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="£  Enter amount">
+                                        <input name="amount" type="text" class="form-control" placeholder="£  Enter amount">
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="1">GBP</option>
-                                            <option value="2">USD</option>
-                                        </select>
+                                        @include('modules.presentation.parts.currency_selector')
                                     </div>
                                 </div>
                             </div>
@@ -114,40 +117,37 @@ foreach ($amount as $key => $item) {
                     </div>
                     @endisset 
                     @isset($useMonthlyTab)
-                    <div class="tab-pane fade" id="nav-2" role="tabpanel" >
+                    <div class="tab-pane fade @empty($useSingleTab) show active @endempty" id="nav-2" role="tabpanel" >
                         <form action="/">
 
                             @include('modules.presentation.parts.donate_options',[
-                                'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY
+                                'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY,
+                                'class' => 'active-color-info'
                             ])
 
                             <div class="pt-3"></div>
                             <div class="row gutter-5">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="1">General Charity</option>
-                                            <option value="1">General Charity 2</option>
+                                        <select class="form-control" name="categories">
+                                            {{-- will be replaced by js --}}
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="£  Enter amount">
+                                        <input name="amount" type="text" class="form-control" placeholder="£  Enter amount">
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="1">GBP</option>
-                                            <option value="2">USD</option>
-                                        </select>
+                                        @include('modules.presentation.parts.currency_selector')
                                     </div>
                                 </div>
                             </div>
                             <div class="pt-3"></div>
                             <div class="text-center">
-                                <button class="btn btn-info border-white btn-submit">Donate</button>
+                                <button class="btn @if($isEmergency) btn-danger @else btn-info @endif border-white btn-submit">Donate</button>
                             </div>
                         </form>
                     </div>
@@ -155,38 +155,43 @@ foreach ($amount as $key => $item) {
                     @isset($useAppeal)
                     <div class="tab-pane fade" id="nav-3" role="tabpanel" >
                         <form action="/">
-                            
-                            @foreach ($amount as $item)
-                                <label class="item">
-                                    <input type="radio" name="r1">
-                                    <span class="d-flex align-items-center">
-                                        <span><span>£<b>@isset($item['value']) {{ $item['value'] }} @endisset</b></span><span>JUST ONCE</span></span>
-                                        <span>@isset($item['text']) {{ $item['text'] }} @endisset</span>
-                                    </span>
-                                </label>
-                            @endforeach
+
+                            <div class="pb-2">
+                            <button type="button" select-appeal-tab data-tab="tab_single" class="btn btn-danger btn_appeal_tab">Single</button>
+                            <button type="button" select-appeal-tab data-tab="tab_monthly" class="btn btn-danger btn_appeal_tab">Regular</button>
+                            </div>
+
+                            <div class="tab_single" appeal-tab>
+                            @include('modules.presentation.parts.donate_options',[
+                                'donateOptionsType' => \App\Models\CampaignPrice::TYPE_SINGLE,
+                                'class' => 'active-color-red'
+                            ])
+                            </div>
+
+                            <div class="tab_monthly d-none" appeal-tab>
+                            @include('modules.presentation.parts.donate_options',[
+                                'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY,
+                                'class' => 'active-color-red'
+                            ])
+                            </div>
 
                             <div class="pt-3"></div>
                             <div class="row gutter-5">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="1">General Charity</option>
-                                            <option value="1">General Charity 2</option>
+                                        <select class="form-control" name="categories">
+                                            {{-- will be replaced by js --}}
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="£  Enter amount">
+                                        <input name="amount" type="text" class="form-control" placeholder="£  Enter amount">
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="form-group">
-                                        <select class="form-control">
-                                            <option value="1">GBP</option>
-                                            <option value="2">USD</option>
-                                        </select>
+                                        @include('modules.presentation.parts.currency_selector')
                                     </div>
                                 </div>
                             </div>
