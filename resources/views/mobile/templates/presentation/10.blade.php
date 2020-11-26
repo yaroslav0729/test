@@ -1,23 +1,43 @@
 @php
 
-    $keywordName = Request::get('name');
-    $keywordLocation = Request::get('location');
-
-     if (!empty($keywordName) || !empty($keywordLocation)) {
-         $events = \App\Models\Event::whereDate('start_date', '>=', now())
-            ->where('name', 'LIKE', "%$keywordName%")
-            ->where('location', 'LIKE', "%$keywordLocation%")
-            ->orderBy('start_date')->paginate(5);
-    } else {
-        $events = \App\Models\Event::whereDate('start_date', '>=', now())->orderBy('start_date')->paginate(1);
+    if (isset($parameters['per_page'])) {
+        $perPage = (int)$parameters['per_page'] > 0 ? (int)$parameters['per_page'] : 6;
     }
 
-    $eventsForSlide = $events->count() < 3 ? \App\Models\Event::whereDate('start_date', '>=', now())->orderBy('start_date')->take(3)->get() : $events->take(3);
+    $keywordName = Request::get('name');
+    $keywordLocation = Request::get('location');
+    $keywordType = Request::get('type');
+    $keywordTypeParticipate = Request::get('participate');
+    $keywordDate = Request::get('date');
 
-    $count = $eventsForSlide->count();
-    $eventsForSlide->each(function ($item) {
-       $item->page->getActualPageInstanceAttribute();
-    });
+    $query = \App\Models\Event::whereDate('start_date', '>=', now());
+
+    if (!empty($keywordName) || !empty($keywordLocation)) {
+         $query->where('name', 'LIKE', "%$keywordName%")
+         ->where('location', 'LIKE', "%$keywordLocation%");
+    }
+
+    $validator = Illuminate\Support\Facades\Validator::make(['date' => $keywordDate], [
+        'date' => 'date',
+    ]);
+
+    if (!$validator->fails()) {
+         $query->whereDate('start_date', '=', $keywordDate)
+         ->orWhereNotNull('end_date')
+         ->whereDate('start_date', '<=', $keywordDate)
+         ->whereDate('end_date', '>=', $keywordDate);
+    }
+
+    if (!empty($keywordType)) {
+        $query->where('entry_type', $keywordType);
+    }
+
+    if (!empty($keywordTypeParticipate)) {
+        $query->where('event_type', $keywordTypeParticipate);
+    }
+
+    $events = $query->orderBy('start_date')->paginate($perPage);
+    $eventsForSlide = $events->count() < 3 ? \App\Models\Event::whereDate('start_date', '>=', now())->orderBy('start_date')->take(3)->get() : $events->take(3);
 
 @endphp
 
@@ -106,16 +126,34 @@
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
-                    <select class="form-control">
-                        <option value="1">EVENT TYPE</option>
-                    </select>
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn form-control dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            EVENT TYPE
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            @foreach (\App\Models\Event::ALL_TYPES_ENTRY as $typeId => $typeLabel)
+                                <a class="dropdown-item"
+                                   href="{{ url($pageInstance->slug) . '?type=' . $typeId }}">{{ $typeLabel }}</a>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
-                    <select class="form-control">
-                        <option value="1">LIVE EVENTS</option>
-                    </select>
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn form-control dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            LIVE EVENTS
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            @foreach (\App\Models\Event::ALL_TYPE_EVENT as $typeId => $typeEvent)
+                                <a class="dropdown-item"
+                                   href="{{ url($pageInstance->slug) . '?participate=' . $typeId }}">{{ $typeEvent }}</a>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -125,7 +163,13 @@
             <div class="item">
                 <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}" class="img d-block"
                    style="background-image: url({{ $event->page->getActualPageInstanceAttribute()->preview_img }})">
-                    <span class="price">{{ $event->entry }}</span>
+                    <span class="price">
+                     @if($event->entry_type === \App\Models\Event::ENTRY_PAID)
+                            £{{ $event->page->getActualPageInstanceAttribute()->parameters['event_entry_price'] }}
+                        @else
+                            {{ \App\Models\Event::ALL_TYPES_ENTRY[$event->entry_type] }}
+                        @endif
+                    </span>
                 </a>
                 <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}" class="tl d-block">
                     {{ $event->name }}</a>
@@ -146,34 +190,10 @@
     </div>
 </section>
 
-<section class="mission-impossible">
-    <div class="title">Mission Impossible</div>
-    <div class="wrap">
-        <div class="body">
-            <div class="text bg-danger">
-                <div class="tl">Applications for MP 2020 deployments are open!</div>
-            </div>
-            <div class="img" style="background-image: url(img/content/mission-impossible-1.jpg)">&nbsp;</div>
-            <div class="text-center bg-danger-light">
-                <a href="#" class="btn btn-danger-light view-more">Learn more</a>
-            </div>
-        </div>
-    </div>
-</section>
+@include('modules.presentation.islamic_help_needs_you', [
+    'parameters' => $parameters
+])
 
-@include('modules.presentation.join_the_cause_subscribe')
-{{--<section class="join-cause pb-0 with-glyph">
-    <div class="wrap">
-        <div class="title text-center">
-            <p class="font-size-25"><b>Join the cause!</b></p>
-        </div>
-        <p class="font-size-20 mb-4  text-center">
-            There are so many ways to help, stay in the loop with our Newsletter.
-        </p>
-        <form action="/" class="d-flex mb-4">
-            <input type="text" placeholder="Your email address" class="flex-grow-1">
-            <button type="submit"><i class="far fa-chevron-right"></i></button>
-        </form>
-        <div class="img" style="background-image: url(img/content/join-cause-2.jpg)"></div>
-    </div>
-</section>--}}
+@include('modules.presentation.join_the_cause_subscribe3', [
+    'parameters' => $parameters
+])
