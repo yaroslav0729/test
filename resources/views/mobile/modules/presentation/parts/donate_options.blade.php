@@ -1,23 +1,31 @@
 @foreach ($amount as $amountKey => $item)
     @if(isset($item['type']) && ((int)$item['type'] === $donateOptionsType))
 
-        <label class="item">
-            <input type="radio" name="r1">
-            <span class="d-flex align-items-center">
-                <span><span>£<b>@isset($item['value']) {{ $item['value'] }} @endisset</b></span></span>
-                <span>@isset($item['text']) {{ $item['text'] }} @endisset</span>
-            </span>
-        </label>
-        
         @isset($campaignsCountries[$amountKey])
-            <div class="form-group d-none" amount-countries data-countries_amount_id={{ $amountKey }}>
-                <select class="form-control">
-                    <option>Country</option>
+            @if(count($campaignsCountries[$amountKey])>0)
+
+            @if((isset($isEmergency)) && ($isEmergency === true))
+                @php $class = 'active-color-red' @endphp
+            @endif
+
+            <label class="item @isset($class) {{ $class }} @endisset" select-amount data-amount_id={{ $amountKey }}>
+                <input type="radio" name="price" value="{{ $item['value'] }}">
+                <span class="d-flex align-items-center">
+                    <span><span>£<b>@isset($item['value']) {{ $item['value'] }} @endisset</b></span></span>
+                    <span>@isset($item['text']) {{ $item['text'] }} @endisset</span>
+                </span>
+            </label>
+
+            @endif
+
+            <div class="form-group d-none" amount-countries data-amount_id={{ $amountKey }}>
+                <select class="form-control" name="campaign">
                     @foreach ($campaignsCountries[$amountKey] as $campId => $campName)
                         <option value="{{ $campId }}">{{ $campName }}</option>   
                     @endforeach
                 </select>
             </div>
+
         @endisset
     @endif 
 @endforeach

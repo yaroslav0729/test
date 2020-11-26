@@ -51,6 +51,9 @@ foreach ($amount as $key => $item) {
 @endphp
 
 <div class="body">
+    <div id="donate_module_options" class="alert alert-warning d-none">
+        {{ json_encode($campaignCategories) }}
+    </div>
     <div class="media">
         @empty($donateImg)
         <img src="img/content/donate-today-1.jpg" alt="" class="w-100">
@@ -77,6 +80,9 @@ foreach ($amount as $key => $item) {
                 @isset($useMonthlyTab)
                 <a class="nav-link color-info"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false">Monthly</a>
                 @endisset
+                @isset($useAppeal)
+                <a class="nav-link color-red"  data-toggle="tab" href="#nav-3" role="tab"  aria-selected="false">Appeal</a>
+                @endisset
             </div>
         </nav>
 
@@ -92,12 +98,11 @@ foreach ($amount as $key => $item) {
 
                     <div class="pt-3"></div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="£  Enter amount">
+                        <input name="amount" type="text" class="form-control" placeholder="£  Enter amount">
                     </div>
                     <div class="form-group">
-                        <select class="form-control">
-                            <option value="1">General Charity</option>
-                            <option value="1">General Charity 2</option>
+                        <select class="form-control" name="categories">
+                            {{-- will be replaced by js --}}
                         </select>
                     </div>
                     <div class="pt-3"></div>
@@ -113,17 +118,57 @@ foreach ($amount as $key => $item) {
                 <form action="/">
 
                     @include('modules.presentation.parts.donate_options',[
-                        'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY
+                        'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY,
+                        'class' => 'active-color-info'
                     ])
 
                     <div class="pt-3"></div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="£  Enter amount">
+                        <input name="amount" type="text" class="form-control" placeholder="£  Enter amount">
                     </div>
                     <div class="form-group">
-                        <select class="form-control">
-                            <option value="1">General Charity</option>
-                            <option value="1">General Charity 2</option>
+                        <select class="form-control" name="categories">
+                            {{-- will be replaced by js --}}
+                        </select>
+                    </div>
+                    <div class="pt-3"></div>
+                    <div class="text-center">
+                        <button class="btn btn-info border-white btn-submit w-100">Donate</button>
+                    </div>
+                </form>
+            </div>
+            @endisset
+
+            @isset($useAppeal)
+            <div class="tab-pane fade" id="nav-3" role="tabpanel" >
+                <form action="/">
+
+                    <div class="pb-2">
+                        <button type="button" select-appeal-tab data-tab="tab_single" class="btn btn-danger btn_appeal_tab">Single</button>
+                        <button type="button" select-appeal-tab data-tab="tab_monthly" class="btn btn-danger btn_appeal_tab">Regular</button>
+                    </div>
+
+                    <div class="tab_single" appeal-tab>
+                        @include('modules.presentation.parts.donate_options',[
+                            'donateOptionsType' => \App\Models\CampaignPrice::TYPE_SINGLE,
+                            'class' => 'active-color-red'
+                        ])
+                    </div>
+
+                    <div class="tab_monthly d-none" appeal-tab>
+                        @include('modules.presentation.parts.donate_options',[
+                            'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY,
+                            'class' => 'active-color-red'
+                        ])
+                    </div>
+
+                    <div class="pt-3"></div>
+                    <div class="form-group">
+                        <input name="amount" type="text" class="form-control" placeholder="£  Enter amount">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="categories">
+                            {{-- will be replaced by js --}}
                         </select>
                     </div>
                     <div class="pt-3"></div>
