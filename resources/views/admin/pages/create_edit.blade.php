@@ -1,32 +1,34 @@
 @php
-    if (isset($page)) {
+    $pageInstance = $page->actual_page_instance ?? null;
 
-        $pageInstance = $page->actual_page_instance;
-        if (isset($pageInstance)) {
-            $pageTitle = 'Edit page id: ' . $page->id;
-            $actionRoute = route('admin.pages.update', ['page' => $page->id]);
-            $name = $pageInstance->name;
-            $slug = $pageInstance->slug;
-            $previewText = $pageInstance->preview_text;
-            $previewImg = $pageInstance->preview_img;
-            $title = $pageInstance->title;
-            $description = $pageInstance->description;
-            $keywords = $pageInstance->keywords;
-        } else {
-            die('no page for this container');
-        }
-        
+if (isset($page)) {
+
+    if (isset($pageInstance)) {
+        $pageTitle = 'Edit page id: ' . $page->id;
+        $actionRoute = route('admin.pages.update', ['page' => $page->id]);
+        $name = $pageInstance->name;
+        $slug = $pageInstance->slug;
+        $previewText = $pageInstance->preview_text;
+        $previewImg = $pageInstance->preview_img;
+        $title = $pageInstance->title;
+        $description = $pageInstance->description;
+        $keywords = $pageInstance->keywords;
     } else {
-        $pageTitle = 'Create page:';
-        $actionRoute = route('admin.pages.store');
-        $name = old('name');
-        $slug = old('slug');
-        $previewText = old('preview_text');
-        $previewImg = old('preview_img');
-        $title = old('title');
-        $description = old('description');
-        $keywords = old('keywords');
+        die('no page for this container');
     }
+
+} else {
+    $pageTitle = 'Create page:';
+    $actionRoute = route('admin.pages.store');
+    $name = old('name');
+    $slug = old('slug');
+    $previewText = old('preview_text');
+    $previewImg = old('preview_img');
+    $title = old('title');
+    $description = old('description');
+    $keywords = old('keywords');
+}
+
 @endphp
 
 @extends('layouts.admin')
@@ -34,7 +36,7 @@
 @section('content')
 
 <div id="admin_content" class="flex-auto">
-    
+
     @if ($errors->any())
         <div class="p-3">
             <div class="alert alert-danger" role="alert">
@@ -48,14 +50,19 @@
         </div>
     @endif
 
-    <form action="{{ $actionRoute }}" method="post" class="pb-3" options-form>
+    <div class="alert alert-danger" style="display: none;">
+        <ul id="modal-errors">
+        </ul>
+    </div>
+
+    <form action="{{ $actionRoute }}" method="post" class="pb-3" modal-form>
             @csrf
 
             @isset($pageInstance)
                 @method('PUT')
             @endisset
 
-            <h1>{{ $pageTitle }}</h1> 
+            <h1>{{ $pageTitle }}</h1>
 
             <div class="form-group">
             <label for="name">Name</label>
@@ -119,7 +126,7 @@
                             }
                         @endphp
 
-                        <option value="{{ $category->id }}" @if($selected) selected @endif>{{ $category->name }}</option>   
+                        <option value="{{ $category->id }}" @if($selected) selected @endif>{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -130,8 +137,8 @@
                     <option value="0">No template selected</option>
                     @foreach (\App\Models\Template::ALL_TEMPLATES as $template)
                         <option value="{{ $template }}"
-                        @if(isset($pageInstance->template) && ($pageInstance->template === $template)) selected @endif
-                        >{{ \App\Models\Template::getLabel($template) }}</option>    
+                        @if((int)old('template', $pageInstance->template ?? 0) === $template) selected @endif
+                        >{{ \App\Models\Template::getLabel($template) }}</option>
                     @endforeach
                 </select>
             </div>

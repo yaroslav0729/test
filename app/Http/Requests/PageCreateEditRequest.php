@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Page;
+use App\Models\Template;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PageCreateEditRequest extends FormRequest
@@ -23,9 +25,30 @@ class PageCreateEditRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $page = $this->route('page');
+
+        if ($page instanceof Page) {
+            $slug = 'required|string|max:255|page_slug:' . $page->id;
+
+        } else {
+            $slug = 'required|string|max:255|page_slug';
+        }
+
+        $rules = [
             'name' => 'required',
-            'template' => 'required|integer|gt:0' // greater than 0
+            'template' => 'required|integer|gt:0', // greater than 0
+            'slug' => $slug,
+        ];
+
+        $rules = array_merge($rules, Template::getValidationRules((int)$this->input('template')));
+
+        return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+            'slug.page_slug' => 'The slug must be unique to publish',
         ];
     }
 }

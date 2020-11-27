@@ -22,10 +22,150 @@ require('../assets/vendor/MediaManager/js/manager')
 require('./parts/project_tiles.js')
 require('./parts/donate_module.js')
 
+var MODAL_FORM_LOCK = false
+
 $(function () {
 
     new Vue({
         el: '#app'
+    })
+
+    $(document).on('submit', '[modal-form]', function (event) {
+        event.preventDefault();
+
+        if (MODAL_FORM_LOCK) {
+            return false;
+        }
+
+        MODAL_FORM_LOCK = true;
+
+        let stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
+        stub.attr('disabled', 'disabled');
+
+        $('#modal-errors').closest('div').hide();
+        $('#modal-message-success').closest('div').hide();
+        $('[data-error].text-danger,.invalid-feedback', this).hide();
+
+        var form = $(this);
+        var formData = new FormData(form[0]);
+
+        $.ajax({
+            url     : form.attr('action'),
+            type    : form.attr('method'),
+            data    : formData,
+            processData: false,
+            contentType: false,
+            success : function (response, textStatus, jqXHR)
+            {
+                stub.removeAttr('disabled');
+                MODAL_FORM_LOCK = false;
+
+                if ('content' in response) {
+                    let element = $('#response-content');
+                    element.html(response.content);
+                    element.trigger('process');
+                    $('#modal-wrap').modal('hide');
+
+                    return;
+                }
+
+                if (response.trigger_click) {
+                    $('#modal-wrap').modal('hide');
+                    $(response.trigger_click).trigger('click');
+                    return;
+                }
+
+                if (response.blank) {
+                    var win = window.open(response.blank, '_blank');
+                }
+
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                    return;
+                }
+
+                /*if (response.html) {
+                    showModalResponse(response);
+                    return;
+                }*/
+
+                if (response.messageSuccess) {
+                    $('#modal-message-success').html(response.messageSuccess);
+                    $('#modal-message-success').closest('div').show();
+                    $('#modal-wrap').animate({ scrollTop: 0 }, 'slow');
+                    return;
+                }
+
+                window.location.reload();
+            },
+            error: function(response)
+            {
+                stub.removeAttr('disabled');
+                MODAL_FORM_LOCK = false;
+
+                if (response.status === 422) {
+
+                    // Hide previous errors
+                    $('#modal-errors').closest('div').hide();
+                    $('*', form).removeClass('is-invalid');
+                    $('.invalid-feedback', form).removeClass('d-block');
+
+                    let message = '';
+                    let showed = [];
+                    let control, feedback, controlMessages;
+
+                    $.each(response.responseJSON.errors, function (field, errors) {
+
+                        // Field can be dotted (array-input)
+                        let original = field;
+                        let parts = original.split('.');
+                        if (parts.length > 1) {
+                            field = parts.shift() + '[' + parts.join('][') + ']';
+                        }
+
+                        // Try to find field with error container.
+                        control = $('[name="' + field + '"]', form);
+                        feedback = $('.invalid-feedback', control.parents('div.form-group'));
+                        if (!feedback.length) {
+                            feedback = $('[data-error="'+original+'"]');
+                        }
+                        controlMessages = [];
+
+                        $.each(errors, function (i, error) {
+
+                            if (feedback.length) {
+                                controlMessages[controlMessages.length] = error;
+
+                            } else {
+                                if (showed.indexOf(error) < 0) {
+                                    message += '<li>'+error+'</li>';
+                                    showed[showed.length] = error;
+                                }
+                            }
+                        });
+
+                        if (control.length) {
+                            control.addClass('is-invalid');
+                        }
+
+                        if (feedback.length && controlMessages.length) {
+                            feedback.html(controlMessages.join('<br>'));
+                            feedback.addClass('d-block');
+                        }
+                    });
+
+                    if (message) {
+                        $('#modal-errors').html(message);
+                        $('#modal-errors').closest('div').show();
+                    }
+
+                    $('html, body').animate({ scrollTop: 0 }, 100);
+
+                } else {
+                    $('#modal-wrap').modal('hide');
+                }
+            }
+        })
     })
 
     initWysiwyg();

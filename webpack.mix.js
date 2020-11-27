@@ -12,10 +12,8 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    //.less('resources/less/styles.less', 'public/css')
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
-        //require('tailwindcss'),
     ])
     .postCss('resources/css/app_admin.css', 'public/css', [
         require('postcss-import'),
@@ -50,17 +48,8 @@ mix.js('resources/js/app.js', 'public/js')
             }]
         }
     })
-  //   mix.webpackConfig({
-  //   resolve: {
-  //     modules: [
-  //       path.resolve('./resources/assets'),
-  //       path.resolve('./node_modules')
-  //     ]
-  //   }
-  // })
-    .version();
 
-//mix.js('resources/js/admin.js', 'public/js');
+    .version();
 
 // MediaManager
 mix.sass('resources/assets/vendor/MediaManager/sass/manager.scss', 'public/assets/vendor/MediaManager/style.css')
