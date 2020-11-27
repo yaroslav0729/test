@@ -2,11 +2,9 @@
     if (isset($campaignCategory)) {
         $pageTitle = 'Edit campaign category id: ' . $campaignCategory->id;
         $actionRoute = route('admin.campaign_categories.update', ['campaign_category' => $campaignCategory->id]);
-        $name = $campaignCategory->name;
     } else {
         $pageTitle = 'Create campaign category:';
         $actionRoute = route('admin.campaign_categories.store');
-        $name = old('name');
     }
 @endphp
 
@@ -40,7 +38,7 @@
 
             <div class="form-group">
                 <label for="name">Name</label><br>
-                <input id="name" required name="name" class="form-control" type="text" value="{{ $name }}" /><br>
+                <input id="name" required name="name" class="form-control" type="text" value="{{ old('name', $campaignCategory->name ?? null) }}" /><br>
             </div>
 
             <button class="btn btn-info" type="submit">

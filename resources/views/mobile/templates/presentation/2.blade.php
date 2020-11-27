@@ -13,9 +13,6 @@
     $eventDetailsSpeaker = "";
     $eventDetailsContact = "";
 
-    $informationTitle = "";
-    $informationText = "";
-
     $importantInformationTitle = "";
     $importantInformationText = "";
 
@@ -77,14 +74,6 @@
 
     if (isset($parameters['information_text'])) {
         $informationText = $parameters['information_text'];
-    }
-
-    if (isset($parameters['important_information_title'])) {
-        $importantInformationTitle = $parameters['important_information_title'];
-    }
-
-    if (isset($parameters['important_information_text'])) {
-        $importantInformationText = $parameters['important_information_text'];
     }
 
     $event = $pageInstance->page()->first()->event()->first();
@@ -202,28 +191,11 @@
     </div>
 </section>
 
-<section class="blog-article-body">
-    <div class="wrap">
-        <div class="body">
-            <h2>{{ $informationTitle }}</h2>
-            {!! $informationText !!}
-            <div class="pt-4"></div>
-        </div>
-    </div>
-</section>
+@include('modules.presentation.important_information', [
+    'parameters' => $parameters
+])
 
 @include('modules.presentation.share_this')
-
-<section class="join-cause">
-    <div class="wrap">
-        <div class="title mb-4">
-            <p class="font-size-16"><b class="text-uppercase">{{ $importantInformationTitle }}</b></p>
-        </div>
-        <p class="font-size-16">
-            {{ $importantInformationText }}
-        </p>
-    </div>
-</section>
 
 @include('modules.presentation.related_page_expanded', [
     'parameters' => $parameters

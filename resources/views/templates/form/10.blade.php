@@ -18,3 +18,12 @@
         </div>
     </div>
 </div>
+
+
+@include('modules.admin.islamic_help_needs_you', [
+    'parameters' => $parameters
+])
+
+@include('modules.admin.join_the_cause_subscribe', [
+    'parameters' => $parameters
+])

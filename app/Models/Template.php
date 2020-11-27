@@ -7,7 +7,7 @@ class Template
     const BLOG_PAGE = 1;
     const EVENT_PAGE = 2;
     const INDEX_PAGE = 3;
-    const MEDIA_CENTER_PAGE = 4;
+    const COMMON_CONTENT_PAGE = 4;
     const PROJECTS_PAGE = 5;
     const PROJECT_PAGE = 6;
     const CONTACT_PAGE = 7;
@@ -22,7 +22,7 @@ class Template
         self::BLOG_PAGE,
         self::EVENT_PAGE,
         self::INDEX_PAGE,
-        self::MEDIA_CENTER_PAGE,
+        self::COMMON_CONTENT_PAGE,
         self::TEST_PAGE,
         self::WHO_WE_ARE_PAGE,
         self::THANK_YOU_DONATE_PAGE,
@@ -39,7 +39,7 @@ class Template
             case self::BLOG_PAGE:return "Blog page";
             case self::EVENT_PAGE:return "Event page";
             case self::INDEX_PAGE:return "Index page";
-            case self::MEDIA_CENTER_PAGE:return "Media center page";
+            case self::COMMON_CONTENT_PAGE:return "Common content page";
             case self::PROJECTS_PAGE: return "projects page";
             case self::PROJECT_PAGE: return "Project page";
             case self::TEST_PAGE:return "Test page";

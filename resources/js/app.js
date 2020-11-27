@@ -207,13 +207,13 @@ $(function () {
         let wrap = $(this).closest('[options-container]');
         let optionsList = $('[options-list]', wrap);
         let html = $('[option-stub]', wrap).html()
-        
+
 
         //let len = $('.option', optionsList).length // length in current list
         let len = $('.option', '[options-list]').length // length in all page
 
         html = html.replace(/{new}/gi, len);
-        optionsList.append(html);   
+        optionsList.append(html);
     });
 
     $(document).on('click', '[option-delete]', function () {
@@ -231,9 +231,33 @@ $(function () {
         this.remove();
     });
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+    //~~~~~~~~~~~~~~~~~~ toggle search button on the Events page ~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('input', '#events input', function (event) {
+        const section = $('#events');
+        const inputs = $('#events input');
+
+        areElementsEmpty('#events input') === true ? $(section).removeClass('view-btn') : $(section).addClass('view-btn')
+    });
+
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 });
+
+/**
+ * Check all elements are empty
+ *
+ * @param selector
+ * @returns {boolean}
+ */
+function areElementsEmpty(selector)
+{
+    return ($(selector).filter(function() {
+        return $(this).val() !== '';
+    }).length === 0)
+}
+
 function initSwiper(){
     $('[swiper-wrapper]').each(function() {
         let key = '[swiper-wrapper="'+ $(this).attr('swiper-wrapper') +'"]';

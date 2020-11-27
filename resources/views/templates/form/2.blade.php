@@ -18,11 +18,8 @@
     $eventDetailsSpeaker = "";
     $eventDetailsContact = "";
 
-    $informationTitle = "";
-    $informationText = "";
-
-    $importantInformationTitle = "";
-    $importantInformationText = "";
+    $informationTitle ="";
+    $informationText ="";
 
     if (isset($parameters['preview_position'])) {
         $previewPosition = $parameters['preview_position'];
@@ -96,14 +93,6 @@
         $informationText = $parameters['information_text'];
     }
 
-    if (isset($parameters['important_information_title'])) {
-        $importantInformationTitle = $parameters['important_information_title'];
-    }
-
-    if (isset($parameters['important_information_text'])) {
-        $importantInformationText = $parameters['important_information_text'];
-    }
-
 @endphp
 <div class="row">
     <div class="col-12 col-lg-6">
@@ -147,7 +136,7 @@
 <div class="row mt-lg-5">
     <div class="col-12 col-lg-6">
         <div class="form-group">
-            <label>Event start date:</label>
+            <label>Event start date (GMT):</label>
             <input type="date" class="form-control" required name="parameters[event_start_date]"
                    placeholder="Choice start event date" value="{{ $eventStartDate }}"/>
         </div>
@@ -155,7 +144,7 @@
 
     <div class="col-12 col-lg-6">
         <div class="form-group">
-            <label>Event start time (00:00 - 24:00):</label>
+            <label>Event start time (GMT 00:00 - 24:00):</label>
             <input type="time" class="form-control" required name="parameters[event_start_time]"
                    placeholder="Insert start event time" value="{{ $eventStartTime }}"/>
         </div>
@@ -163,7 +152,7 @@
 
     <div class="col-12 col-lg-6">
         <div class="form-group">
-            <label>Event end date:</label>
+            <label>Event end date (GMT):</label>
             <input type="date" class="form-control" name="parameters[event_end_date]"
                    placeholder="Choice start event date" value="{{ $eventEndDate }}"/>
         </div>
@@ -171,7 +160,7 @@
 
     <div class="col-12 col-lg-6">
         <div class="form-group">
-            <label>Event end time (00:00 - 24:00):</label>
+            <label>Event end time (GMT 00:00 - 24:00):</label>
             <input type="time" class="form-control" name="parameters[event_end_time]"
                    placeholder="Insert start event time" value="{{ $eventEndTime }}"/>
         </div>
@@ -179,7 +168,7 @@
 
     <div class="col-12 col-lg-6">
         <div class="form-group">
-            <label>Event sale and date:</label>
+            <label>Event sales end on (GMT):</label>
             <input type="date" class="form-control" required name="parameters[event_end_sale_date]"
                    placeholder="Choice start event date" value="{{ $eventEndSaleDate }}"/>
         </div>
@@ -248,20 +237,11 @@
     </div>
 </div>
 
-<div class="row mt-lg-5">
-    <div class="col-12 col-lg-6">
-        <div class="form-group">
-            <label>Important information title:</label>
-            <input class="form-control" required name="parameters[important_information_title]"
-                   placeholder="Important information title" value="{{ $importantInformationTitle }}"/>
-        </div>
-    </div>
-    <div class="col-12 col-lg-6">
-        <div class="form-group">
-            <label>Important information text:</label>
-            <textarea class="form-control" required name="parameters[important_information_text]"
-                      placeholder="Important information text">{{ $importantInformationText }}</textarea>
-        </div>
+<div class="row mt-5">
+    <div class="col-12">
+        @include('modules.admin.important_information', [
+            'parameters' => $parameters
+        ])
     </div>
 </div>
 

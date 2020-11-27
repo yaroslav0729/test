@@ -1,22 +1,10 @@
 @php
     if (isset($campaign)) {
         $pageTitle = 'Edit campaign id: ' . $campaign->id;
-        $actionRoute = route('admin.campaigns.update', ['campaign' => $campaign->id]);
-        $name = $campaign->name;
-        $description = $campaign->description;
-        $startDate = $campaign->start_date;
-        $endDate = $campaign->end_date;
-        $countryId = $campaign->country_id;
-        $isEmergency = $campaign->is_emergency;
+        $actionRoute = route('admin.campaigns.update', ['campaign' => $campaign->id]);    
     } else {
         $pageTitle = 'Create campaign:';
         $actionRoute = route('admin.campaigns.store');
-        $name = old('name');
-        $description = old('description');
-        $startDate = old('startDate');
-        $endDate = old('endDate');
-        $countryId = null;
-        $isEmergency = old('isEmergency');
     }
 @endphp
 
@@ -50,12 +38,12 @@
 
             <div class="form-group">
                 <label for="name">Name</label><br>
-                <input id="name" required name="name" class="form-control" type="text" value="{{ $name }}" /><br>
+                <input id="name" required name="name" class="form-control" type="text" value="{{ old('name', $campaign->name ?? null) }}" /><br>
             </div>
 
             <div class="form-group">
                 <label for="description">description</label><br>
-                <textarea id="description" required class="form-control" name="description">{{ $description }}</textarea>
+                <textarea id="description" required class="form-control" name="description">{{ old('description', $campaign->description ?? null) }}</textarea>
             </div>
 
             <div class="form-group">
@@ -64,7 +52,7 @@
                     <option value="">Not selected</option>
                     @foreach (\App\Models\Country::getAllEnabled() as $country)
                       <option value="{{ $country->id }}"
-                      @if($countryId === $country->id) selected @endif
+                      @if(old('countryId', $campaign->country_id ?? null) === $country->id) selected @endif
                       >{{ $country->name }}</option>
                     @endforeach
                 </select>
@@ -72,17 +60,17 @@
 
             <div class="form-group">
                 <label for="name">Start date</label><br>
-                <input id="name" required name="start_date" class="form-control" type="date" value="{{ $startDate }}" /><br>
+                <input id="name" required name="start_date" class="form-control" type="date" value="{{ old('start_date', $campaign->start_date ?? null) }}" /><br>
             </div>
 
             <div class="form-group">
                 <label for="name">End date</label><br>
-                <input id="name" required name="end_date" class="form-control" type="date" value="{{ $endDate }}" /><br>
+                <input id="name" required name="end_date" class="form-control" type="date" value="{{ old('end_date', $campaign->end_date ?? null) }}" /><br>
             </div>
 
             <div class="form-group">
                 <label for="is_emergency">Is emergency</label>
-                <input id="is_emergency" name="is_emergency" type="checkbox" @if($isEmergency) checked @endif /><br>
+                <input id="is_emergency" name="is_emergency" type="checkbox" @if(old('is_emergency', $campaign->is_emergency ?? null)) checked @endif /><br>
             </div>
 
             <div price-container>
