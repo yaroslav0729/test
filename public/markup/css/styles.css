@@ -836,6 +836,11 @@ header.only-menu .down-bar.bg-white {
   margin: 0 5px;
   transform: scale(1.4);
 }
+.btn.btn-lg {
+  font-size: 25px;
+  padding: 23px 20px;
+  min-width: 180px;
+}
 .bg-info {
   background-color: #2caabb !important;
 }
@@ -4665,15 +4670,12 @@ input[type='number'].color-danger + .input-group .btn {
   transform: translateY(-50%);
   z-index: 1;
 }
-.how-does-work .item div:nth-child(1) {
-  color: #F7796A;
-  font-size: 45px;
-  font-weight: 500;
-  letter-spacing: 2.25px;
-  line-height: 1;
-  margin-bottom: 10px;
+.how-does-work .item img {
+  width: 60px;
+  display: block;
+  margin-bottom: 20px;
 }
-.how-does-work .item div:nth-child(2) {
+.how-does-work .item div {
   font-size: 20px;
   font-weight: 900;
   letter-spacing: 1px;
@@ -4681,12 +4683,20 @@ input[type='number'].color-danger + .input-group .btn {
   text-transform: uppercase;
   margin-bottom: 15px;
 }
+.how-does-work .item .num {
+  color: #F7796A;
+  font-size: 45px;
+  font-weight: 500;
+  letter-spacing: 2.25px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
 .how-does-work .item p {
   font-size: 16px;
   font-weight: 500;
   line-height: 30px;
 }
-.how-does-work:after {
+.how-does-work.with-lines:after {
   content: "";
   display: block;
   background: url(../img/Line-styling.png) no-repeat;
@@ -4866,5 +4876,82 @@ input[type='number'].color-danger + .input-group .btn {
   line-height: 30px;
   margin: 0;
   text-transform: uppercase;
+}
+.head-Volunteer form {
+  padding-left: 42px;
+  padding-right: 130px;
+}
+.head-Volunteer form .title {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 70px;
+}
+.head-Volunteer form .title span {
+  color: #F7796A;
+  font-weight: 200;
+}
+.head-Volunteer form input,
+.head-Volunteer form textarea {
+  color: #101525;
+  font-size: 40px;
+  font-weight: 100;
+  line-height: 1.3;
+  border: 0;
+  border-bottom: 1px solid #101525;
+  background: transparent;
+  padding: 10px 0;
+  width: 100%;
+  margin: 0 0 154px;
+}
+.head-Volunteer form input::-webkit-input-placeholder,
+.head-Volunteer form textarea::-webkit-input-placeholder {
+  color: #101525;
+  font-style: normal;
+  opacity: 1 !important;
+  transition: opacity 0.3s;
+}
+.head-Volunteer form input:-moz-placeholder,
+.head-Volunteer form textarea:-moz-placeholder {
+  color: #101525;
+  font-style: normal;
+  opacity: 1 !important;
+  transition: opacity 0.3s;
+}
+.head-Volunteer form input::-moz-placeholder,
+.head-Volunteer form textarea::-moz-placeholder {
+  color: #101525;
+  font-style: normal;
+  opacity: 1 !important;
+  transition: opacity 0.3s;
+}
+.head-Volunteer form input:-ms-input-placeholder,
+.head-Volunteer form textarea:-ms-input-placeholder {
+  color: #101525;
+  font-style: normal;
+  opacity: 1 !important;
+  transition: opacity 0.3s;
+}
+.head-Volunteer form input:focus::-webkit-input-placeholder,
+.head-Volunteer form textarea:focus::-webkit-input-placeholder {
+  opacity: 0 !important;
+  transition: opacity 0.3s;
+}
+.head-Volunteer form input:focus::-moz-placeholder,
+.head-Volunteer form textarea:focus::-moz-placeholder {
+  opacity: 0 !important;
+  transition: opacity 0.3s;
+}
+.head-Volunteer form input:focus:-moz-placeholder,
+.head-Volunteer form textarea:focus:-moz-placeholder {
+  opacity: 0 !important;
+  transition: opacity 0.3s;
+}
+.head-Volunteer form input:focus:-ms-input-placeholder,
+.head-Volunteer form textarea:focus:-ms-input-placeholder {
+  opacity: 0 !important;
+  transition: opacity 0.3s;
+}
+.head-Volunteer form .field {
+  padding-left: 55px;
 }
 /*# sourceMappingURL=styles.css.map */

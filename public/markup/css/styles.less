@@ -762,6 +762,11 @@ header {
         margin: 0 5px;
         transform: scale(1.4);
     }
+    &.btn-lg {
+        font-size: 25px;
+        padding: 23px 20px;
+        min-width: 180px;
+    }
 }
 
 .bg {
@@ -4141,21 +4146,26 @@ input[type='number'].color-danger  + .input-group {
         }
     }
     .item {
-        div:nth-child(1) {
-            color: #F7796A;
-            font-size: 45px;
-            font-weight: 500;
-            letter-spacing: 2.25px;
-            line-height: 1;
-            margin-bottom: 10px;
+        img {
+            width: 60px;
+            display: block;
+            margin-bottom: 20px;
         }
-        div:nth-child(2) {
+        div {
             font-size: 20px;
             font-weight: 900;
             letter-spacing: 1px;
             line-height: 1.5;
             text-transform: uppercase;
             margin-bottom: 15px;
+        }
+        .num {
+            color: #F7796A;
+            font-size: 45px;
+            font-weight: 500;
+            letter-spacing: 2.25px;
+            line-height: 1;
+            margin-bottom: 10px;
         }
         p {
             font-size: 16px;
@@ -4164,7 +4174,7 @@ input[type='number'].color-danger  + .input-group {
         }
     }
 
-    &:after {
+    &.with-lines:after {
         content: "";
         display: block;
         background: url(../img/Line-styling.png) no-repeat;
@@ -4340,5 +4350,34 @@ input[type='number'].color-danger  + .input-group {
             margin: 0;
             text-transform: uppercase;
         }
+    }
+    form {
+        padding-left: 42px;
+        padding-right: 130px;
+
+        .title {
+            font-size: 30px;
+            font-weight: 900;
+            line-height: 70px;
+            span {
+                color: #F7796A;
+                font-weight: 200;
+            }
+        }
+        input, textarea {
+            color: #101525;
+            //font-family: "Noto Sans JP";
+            font-size: 40px;
+            font-weight: 100;
+            line-height: 1.3;
+            border: 0;
+            border-bottom: 1px solid #101525;
+            background: transparent;
+            padding: 10px 0;
+            width:  100%;
+            .placeholder(#101525);
+            margin: 0 0 154px;
+        }
+        .field {padding-left: 55px;}
     }
 }

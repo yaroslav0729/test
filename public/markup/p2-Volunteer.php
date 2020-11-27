@@ -22,7 +22,7 @@
 </section>
 
 
-<section class="how-does-work">
+<section class="how-does-work with-lines">
     <div class="title">
         <p>Why should I volunteer?</p>
         <span>Find the mission you love</span>
@@ -30,21 +30,21 @@
     <div class="row">
         <div class="col pr-0 pr-md-5">
             <div class="item">
-                <div>01</div>
+                <div class="num">01</div>
                 <div>be part of change</div>
                 <p>160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
             </div>
         </div>
         <div class="col pl-0 pr-0 pl-md-5  pr-0 pr-md-5">
             <div class="item">
-                <div>02</div>
+                <div class="num">02</div>
                 <div>use your skills</div>
                 <p>160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
             </div>
         </div>
         <div class="col">
             <div class="item pl-0 pl-md-5">
-                <div>03</div>
+                <div class="num">03</div>
                 <div>make a difference</div>
                 <p>160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
             </div>
