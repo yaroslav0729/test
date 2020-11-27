@@ -689,6 +689,7 @@ header {
     padding: 17px 14px;
     border-radius: 5px;
     &-red {
+        color: #fff;
         background: #FF5D4A;
         border-color: #FF5D4A;
     }
@@ -1310,6 +1311,15 @@ input[type='number'].color-danger  + .input-group {
         &:nth-child(2) span:nth-child(1):before {background-color: #2CAABB;}
         &:nth-child(3) span:nth-child(1):before {background-color: #F5C15D;}
         &:nth-child(4) span:nth-child(1):before {background-color: #3A7BF5;}
+    }
+}
+.bg-danger-light .help-info-grid {
+    & > div {
+        box-shadow: 0 18px 20px 0 rgba(223,185,181,0.3);
+        background-color: #FED4C2;
+        &:nth-child(1) {background-color: transparent}
+        &:nth-child(2), &:nth-child(3) {background-color: #ffffff;}
+        &.margin-top {transform: translateY(-50%);}
     }
 }
 
@@ -4103,6 +4113,7 @@ input[type='number'].color-danger  + .input-group {
     padding-top: 100px;
     padding-bottom: 100px;
     overflow: hidden;
+    position: relative;
     .title {
         position: relative;
         margin-bottom: 60px;
@@ -4151,6 +4162,20 @@ input[type='number'].color-danger  + .input-group {
             font-weight: 500;
             line-height: 30px;
         }
+    }
+
+    &:after {
+        content: "";
+        display: block;
+        background: url(../img/Line-styling.png) no-repeat;
+        background-size: contain;
+        height: 504px;
+        width: 504px;
+        position: absolute;
+        z-index: -1;
+        left: calc(~'200px');
+        top: 200px;
+        opacity: 0.03;
     }
 }
 
@@ -4260,6 +4285,60 @@ input[type='number'].color-danger  + .input-group {
                 &:first-child {width: 50%}
                 &:last-child {width: 50%}
             }
+        }
+    }
+}
+
+.head-Volunteer {
+    padding: 55px 150px 48px 180px;
+    h1 {
+        font-size: 70px;
+        font-weight: 900;
+        line-height: 70px;
+        margin: 0 0 64px;
+        padding-top: 44px;
+    }
+    &:before {
+        content: "";
+        display: block;
+        background: url(../img/Line-styling.png) no-repeat;
+        background-size: contain;
+        height: 357px;
+        width: 357px;
+        position: absolute;
+        z-index: -1;
+        left: 10px;
+        bottom: 50px;
+        opacity: 0.03;
+    }
+    &:after {
+        content: "";
+        display: block;
+        background: url(../img/Line-styling.png) no-repeat;
+        background-size: contain;
+        height: 357px;
+        width: 357px;
+        position: absolute;
+        z-index: -1;
+        right: 30px;
+        bottom: -240px;
+        opacity: 0.03;
+    }
+    .box {
+        position: relative;
+        z-index: 2;
+        padding-left: 120px;
+        padding-right: 120px;
+        margin: 0 -95px 0 -115px;
+        margin-top: -270px;
+        margin-bottom: 90px;
+        p {
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            line-height: 30px;
+            margin: 0;
+            text-transform: uppercase;
         }
     }
 }
