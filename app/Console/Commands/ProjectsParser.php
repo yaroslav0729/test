@@ -9,6 +9,7 @@ use App\Models\Campaign;
 use \App\Models\Country;
 use \App\Models\CampaignPrice;
 use Carbon\Carbon;
+use App\Models\CampaignCategory;
 
 class ProjectsParser extends Command
 {
@@ -123,6 +124,7 @@ class ProjectsParser extends Command
                 }
 
                 $this->updateCampaignPrices($copyCampaign, $campaignOptions);
+                $this->updateCampaignCategories($copyCampaign);
                 
                 $this->info($infoString);
                 Log::channel('parser')->info($infoString);
@@ -144,6 +146,31 @@ class ProjectsParser extends Command
         $this->logPosts($posts, 'Projects ids: ');
         
         $this->info('count posts:' . count($posts));
+    }
+
+    protected function updateCampaignCategories($campaign)
+    {
+        $wpCategories = $this->wpConnection->table('wp_term_relationships')
+                        ->where('object_id', $campaign->wp_id)
+                        ->join('wp_term_taxonomy', 'wp_term_relationships.term_taxonomy_id', '=', 'wp_term_taxonomy.term_taxonomy_id')
+                        ->join('wp_terms', 'wp_terms.term_id', '=', 'wp_term_taxonomy.term_id')
+                        ->select('wp_terms.name')
+                        ->get();
+
+        $wpNames = [];
+        foreach ($wpCategories as $wpCategory) {
+            $wpNames[] = $wpCategory->name;
+        }
+        
+        $categories = CampaignCategory::whereIn('name', $wpNames)->get();
+
+        $campaign->campaign_categories()->detach();
+        $campaign->campaign_categories()->attach($categories);
+        $campaign->save();
+
+        $infoString = 'Update campaign categories: [' . implode(', ', $wpNames) . ']';
+        //$this->info($infoString);
+        Log::channel('parser')->info($infoString);
     }
 
     protected function updateCampaignPrices($campaign, $campaignOptions)
@@ -170,6 +197,8 @@ class ProjectsParser extends Command
 
                 $typeStr = $priceType === CampaignPrice::TYPE_SINGLE ? 'single' : 'monthly';
                 $infoString = 'price created => value: ' . $option->meta_value . ', type: ' . $typeStr;
+                
+                //$this->info($infoString);
                 Log::channel('parser')->info($infoString);
             }
         }
