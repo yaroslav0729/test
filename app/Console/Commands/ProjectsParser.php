@@ -55,6 +55,7 @@ class ProjectsParser extends Command
 
         if ($campaignsOption) {
             $this->parseCampaigns();
+            $this->parseEmergencyCampaigns();
         } else {
             $this->parseProjects();
         }
@@ -62,10 +63,22 @@ class ProjectsParser extends Command
         $this->info('Parsing complete!');
     }
 
-    protected function parseCampaigns()
+    protected function parseEmergencyCampaigns($emergency = false)
     {
+        return $this->parseCampaigns(true);
+    }
+
+
+    protected function parseCampaigns($emergency = false)
+    {
+        if ($emergency) {
+            $table = 'emergency-campaigns';
+        } else {
+            $table = 'campaigns';
+        }
+
         $campaigns = $this->wpConnection->table('wp_posts')
-                        ->where('post_type', 'campaigns')->get();
+                        ->where('post_type', $table)->get();
 
         $this->logPosts($campaigns, 'Campaigns ids: ');
 
@@ -90,6 +103,7 @@ class ProjectsParser extends Command
                         'start_date' => $this->formatDate($campaigns[$campKey]->meta_start_date),
                         'end_date' => $this->formatDate($campaigns[$campKey]->meta_end_date),
                         'country_id' => $this->getCountryId($campaigns[$campKey]->meta_country),
+                        'is_emergency' => $emergency
                     ]);
 
                     $infoString = $campKey . ': Campaign updated => id: ' . $copyCampaign->id . ', wp_id: ' . $copyCampaign->wp_id;
@@ -100,7 +114,8 @@ class ProjectsParser extends Command
                         'start_date' => $this->formatDate($campaigns[$campKey]->meta_start_date),
                         'end_date' => $this->formatDate($campaigns[$campKey]->meta_end_date),
                         'country_id' => $this->getCountryId($campaigns[$campKey]->meta_country),
-                        'wp_id' => $campaign->ID
+                        'wp_id' => $campaign->ID,
+                        'is_emergency' => $emergency
                     ]);
 
                     $infoString = $campKey . ': New campaign created => id: ' . $copyCampaign->id . ', wp_id: ' . $copyCampaign->wp_id;

@@ -21,6 +21,7 @@ class Campaign extends Model
         'country_id',
         'start_date',
         'end_date',
+        'is_emergency',
         'wp_id'
     ];
 
