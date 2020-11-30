@@ -393,57 +393,99 @@ $(function () {
     //~~~~~~~~~~~~~~~~~~ toggle value currency on the Calculator page ~~~~~~~~~~~~~~~~~~~~
 
     $(document).on('click', '#btn-calculate', function () {
-
         const totalAssets = $('#total-assets');
-        const zakatPayable = $('#zakat-payable');
+        const zakatPayable = $('.zakat-payable');
 
         let debitCollection = $('.debit-money');
         let creditCollection = $('.credit-money');
-        let metalPrice = $('#currency').val();
+        let metalPrice = isNaN(+($('#currency').val())) ? 0 : +($('#currency').val());
 
-        let zakat;
-        let asset;
+        let zakat = 0;
 
         let debit = multiplyVal(debitCollection);
         let credit = multiplyVal(creditCollection);
 
-        asset = debit - credit;
+        let asset = debit - credit;
 
         $(totalAssets).addClass('bg-primary-light');
-        const divPayable = $(totalAssets).find('.money-val').addClass('text-info');
-        $(divPayable).find('b').html('£' + asset);
+        const divAssets = $(totalAssets).find('.money-val').addClass('text-info');
+        $(divAssets).find('b').html('£' + convertMonetary(asset.toFixed(2)));
 
         const divZakat = $(zakatPayable).find('.money-val');
 
         if (asset > metalPrice) {
-            zakat = (asset) * 0.025;
-            $(zakatPayable).addClass('bg-danger-light');
+            zakat = asset * 0.025;
+
+            $('#zakat-pay').addClass('bg-danger-light');
             $(divZakat).addClass('text-danger');
-            $(divZakat).find('b').html('£' + zakat.toFixed(2));
+
+            $('#total-zakat').find('.money-val').addClass('text-danger');
+            $(divZakat).find('b').html('£' + convertMonetary(zakat.toFixed(2)));
+
         } else {
+            $('#zakat-pay').removeClass('bg-danger-light');
+
+            $(divZakat).removeClass('text-danger');
             $(divZakat).find('b').html('£0.00');
         }
     });
 
-    //~~~~~~~~~~~~~~~~~~ toggle value currency on the Calculator page ~~~~~~~~~~~~~~~~~~~~
+    //~~~~~~~~~~~~~~~~~~ Set empty and clear Class for input fields ~~~~~~~~~~~~~~~~~~~~
 
     $(document).on('click', '#btn-reset', function () {
         const totalAssets = $('#total-assets');
-        const zakatPayable = $('#zakat-payable');
+        const zakatPayable = $('.zakat-payable');
 
+        let debitCollection = $('.debit-money');
+        let creditCollection = $('.credit-money');
+
+        $('#total-zakat').find('.money-val').removeClass('text-danger');
         $(totalAssets).removeClass('bg-primary-light');
+        $('#zakat-pay').removeClass('bg-danger-light');
+
         const divVal = $(totalAssets).find('.money-val').removeClass('text-info');
         $(divVal).find('b').html('£0.00');
-
-        $(zakatPayable).removeClass('bg-danger-light');
         const divZakat = $(zakatPayable).find('.money-val').removeClass('text-danger');
         $(divZakat).find('b').html('£0.00');
+
+        setElementsInputEmpty(debitCollection);
+        setElementsInputEmpty(creditCollection);
+
+        //~~~~~~~~~~~~~~~~~~ Set input collection empty~~~~~~~~~~~~~~~~~~~~
+        function setElementsInputEmpty(selector)
+        {
+            $(selector).filter(function() {
+                return $(this).val() !== '';
+            }).val('');
+        }
+
+    });
+
+
+//~~~~~~~~~~~~~~~~~~ Open dropdown menu 'What do I need'  ~~~~~~~~~~~~~~~~~~~~
+    $(document).on('click', '.calculator .title .toggle-title', function () {
+        $(this).toggleClass('open');
+        $('.calculator .title .bottom').toggleClass('open');
+    });
+
+
+//~~~~~~~~~~~~~~~~~~ Close dropdown menu 'What do I need'  ~~~~~~~~~~~~~~~~~~~~
+    $(document).on('click', '.calculator .title .bottom .toggle-title', function () {
+        $('.calculator .title .top .toggle-title').removeClass('open');
+        $('.calculator .title .bottom').removeClass('open');
     });
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 });
 
+
+//~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
+function convertMonetary(value) {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+}
+
+//~~~~~~~~~~~~~~~~~~ Summarizes input fields ~~~~~~~~~~~~~~~~~~~~
 function multiplyVal(collection)
 {
     let sum = 0;

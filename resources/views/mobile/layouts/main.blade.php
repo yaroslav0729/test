@@ -5,7 +5,7 @@
 </head>
 <body class="mobile-template">
 
-<div class="wrapper">
+<div class="wrapper" id="app">
     <!--style-1 - default-->
     <!--style-2 - donate-->
     <!--style-3 - thank you-->
@@ -113,7 +113,6 @@
             </div>
         </div>
 
-
         <!-- level 3-->
         <div style="display: none" class="level-3">
             <div class="title">Change a Child's Life</div>
@@ -135,9 +134,6 @@
                 </ul>
             </div>
         </div>
-
-
-
     </div>
     @yield('content')
     @include('parts.footer')
