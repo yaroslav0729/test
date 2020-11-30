@@ -60,15 +60,22 @@ class PageParser extends Command
     protected function parseProjects()
     {
         $posts = $this->wpConnection->table('wp_posts')
+                        ->where('ID', 18219)
                         ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
                         ->where('wp_posts.post_type', 'page')
-                        ->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
-                        ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php')
+                        ->where(function($query) {
+                            $query->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
+                            ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php');
+                        })
                         ->get();
 
         foreach ($posts as $pageKey => $project) {
 
             $copyProject = Page::where('wp_id', $project->ID)->first();
+
+            $projectOptions =  $this->wpConnection->table('wp_postmeta')
+                                ->where('post_id', $project->ID)
+                                ->get();
 
             if ($copyProject) {
 
@@ -110,11 +117,54 @@ class PageParser extends Command
                 $infoString = $pageKey . ': Project created => id: ' . $copyProject->id . ', wp_id: ' . $copyProject->wp_id;
             }
 
+            $this->updateProjectPrices($copyProjectInstance, $projectOptions);
+
             $this->info($infoString);
             Log::channel('parser')->info($infoString);
         }
 
 
         $this->info('count posts:' . count($posts));
+    }
+
+    protected function updateProjectPrices($projectInstance, $projectOptions)
+    {
+        $amount = [];
+
+        foreach ($projectOptions as $option) {
+
+            $priceType = null;
+            if (strpos($option->meta_key, '_single_price')!== false) {
+                $priceType = CampaignPrice::TYPE_SINGLE;  
+            }
+            if (strpos($option->meta_key, '_month_price')!== false) {
+                $priceType = CampaignPrice::TYPE_MONTHLY;  
+            }
+
+            if ((isset($priceType)) && (intval($option->meta_value) !== 0)) {
+                
+                $amount[] = [
+                    'value' => $option->meta_value,
+                    'type' => $priceType,
+                    'text' => '',
+                    'campaigns' => []
+                ];
+
+            
+                $typeStr = $priceType === CampaignPrice::TYPE_SINGLE ? 'single' : 'monthly';
+                $infoString = 'project price created => value: ' . $option->meta_value . ', type: ' . $typeStr;
+                
+                $this->info($infoString);
+                Log::channel('parser')->info($infoString);
+            }
+        }
+
+        if (count($amount)) {
+            $parameters = $projectInstance->parameters;
+            $parameters['amount'] = $amount;
+            $projectInstance->parameters = $parameters;
+            $projectInstance->save();
+        }
+        
     }
 }
