@@ -11,17 +11,16 @@ use \App\Models\CampaignPrice;
 use Carbon\Carbon;
 use App\Models\CampaignCategory;
 
-class ProjectsParser extends Command
+class CampaignsParser extends Command
 {
     /**
      * The name and signature of the console command.
      *
-     * php artisan parse:projects
-     * php artisan parse:projects --campaigns
+     * php artisan parse:campaigns
      * 
      * @var string
      */
-    protected $signature = 'parse:projects {--campaigns}';
+    protected $signature = 'parse:campaigns';
 
     protected $wpConnection;
 
@@ -49,18 +48,12 @@ class ProjectsParser extends Command
      */
     public function handle()
     {
-        $this->info('Parse projects command started.');
-
-        $campaignsOption = $this->option('campaigns');
-        
+        $this->info('Campaigns parser command started.');
         $this->wpConnection = DB::connection('wp');
 
-        if ($campaignsOption) {
-            $this->parseCampaigns();
-            $this->parseEmergencyCampaigns();
-        } else {
-            $this->parseProjects();
-        }
+        $this->parseCampaigns();
+        $this->info('//--- emergency projects ---');
+        $this->parseEmergencyCampaigns();
 
         $this->info('Parsing complete!');
     }
@@ -81,8 +74,6 @@ class ProjectsParser extends Command
 
         $campaigns = $this->wpConnection->table('wp_posts')
                         ->where('post_type', $table)->get();
-
-        $this->logPosts($campaigns, 'Campaigns ids: ');
 
         foreach ($campaigns as $campKey => $campaign) {
             $campaignOptions =  $this->wpConnection->table('wp_postmeta')
@@ -134,19 +125,7 @@ class ProjectsParser extends Command
         $this->info('count posts:' . count($campaigns));
     }
 
-    protected function parseProjects()
-    {
-        $posts = $this->wpConnection->table('wp_posts')
-                        ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
-                        ->where('wp_posts.post_type', 'page')
-                        ->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
-                        ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php')
-                        ->get();
-        
-        $this->logPosts($posts, 'Projects ids: ');
-        
-        $this->info('count posts:' . count($posts));
-    }
+    
 
     protected function updateCampaignCategories($campaign)
     {
@@ -237,15 +216,5 @@ class ProjectsParser extends Command
         }
 
         return null;
-    }
-
-    protected function logPosts($posts, $infoString) {
-        $ids = [];
-
-        foreach ($posts as $post) {
-            $ids[] = $post->ID;
-        }    
-
-        Log::channel('parser')->info($infoString . '[' . implode(', ', $ids) . ']');  
     }
 }
