@@ -381,9 +381,78 @@ $(function () {
     });
 
 
+    //~~~~~~~~~~~~~~~~~~ toggle value currency on the Calculator page ~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('change', '#currency', function () {
+        let btnCurrency = $('#btn-currency');
+        let value = $(this).val();
+
+        $(btnCurrency).html('£' + value);
+    });
+
+    //~~~~~~~~~~~~~~~~~~ toggle value currency on the Calculator page ~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('click', '#btn-calculate', function () {
+
+        const totalAssets = $('#total-assets');
+        const zakatPayable = $('#zakat-payable');
+
+        let debitCollection = $('.debit-money');
+        let creditCollection = $('.credit-money');
+        let metalPrice = $('#currency').val();
+
+        let zakat;
+        let asset;
+
+        let debit = multiplyVal(debitCollection);
+        let credit = multiplyVal(creditCollection);
+
+        asset = debit - credit;
+
+        $(totalAssets).addClass('bg-primary-light');
+        const divPayable = $(totalAssets).find('.money-val').addClass('text-info');
+        $(divPayable).find('b').html('£' + asset);
+
+        const divZakat = $(zakatPayable).find('.money-val');
+
+        if (asset > metalPrice) {
+            zakat = (asset) * 0.025;
+            $(zakatPayable).addClass('bg-danger-light');
+            $(divZakat).addClass('text-danger');
+            $(divZakat).find('b').html('£' + zakat.toFixed(2));
+        } else {
+            $(divZakat).find('b').html('£0.00');
+        }
+    });
+
+    //~~~~~~~~~~~~~~~~~~ toggle value currency on the Calculator page ~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('click', '#btn-reset', function () {
+        const totalAssets = $('#total-assets');
+        const zakatPayable = $('#zakat-payable');
+
+        $(totalAssets).removeClass('bg-primary-light');
+        const divVal = $(totalAssets).find('.money-val').removeClass('text-info');
+        $(divVal).find('b').html('£0.00');
+
+        $(zakatPayable).removeClass('bg-danger-light');
+        const divZakat = $(zakatPayable).find('.money-val').removeClass('text-danger');
+        $(divZakat).find('b').html('£0.00');
+    });
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 });
+
+function multiplyVal(collection)
+{
+    let sum = 0;
+    collection.each(function (){
+        sum += $(this).val() === '' ? 0 : parseFloat($(this).val());
+    });
+
+    return sum;
+}
 
 /**
  * Check all elements are empty

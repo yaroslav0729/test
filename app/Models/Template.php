@@ -203,7 +203,39 @@ class Template
             case self::CALCULATOR_PAGE: {
 
                 $rules = [
+                    'parameters.tab_calc_title' => 'required',
+                    'parameters.tab_what_zakat_title' => 'required',
 
+                    'parameters.price_silver' => 'numeric|min:1',
+                    'parameters.price_gold' => 'numeric|min:1',
+
+                    'parameters.w_i_zakat_title' => 'required',
+                    'parameters.w_i_zakat_text' => 'required',
+                    'parameters.w_i_obligatory_title' => 'required',
+                    'parameters.w_i_obligatory_text' => 'required',
+
+                    'parameters.w_i_donate_title' => 'required',
+                    'parameters.w_i_donate_text' => 'required',
+                    'parameters.w_i_receive_title' => 'required',
+                    'parameters.w_i_receive_text' => 'required',
+
+                    'parameters.w_i_calc_title' => 'required',
+                    'parameters.w_i_calc_text' => 'required',
+                    'parameters.w_i_nisaab_title' => 'required',
+                    'parameters.w_i_nisaab_text' => 'required',
+
+                    'parameters.w_i_should_title' => 'required',
+                    'parameters.w_i_should_text' => 'required',
+                    'parameters.w_i_gold_title' => 'required',
+                    'parameters.w_i_gold_text' => 'required',
+
+                    'parameters.w_i_silver_title' => 'required',
+                    'parameters.w_i_silver_text' => 'required',
+
+                    'parameters.dropdown_title' => 'required',
+                    'parameters.dropdown_text' => 'required',
+                    'parameters.dropdown_link_title' => 'required',
+                    'parameters.dropdown_link' => 'required',
                 ];
 
                 break;
