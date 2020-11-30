@@ -10,6 +10,9 @@ use \App\Models\Country;
 use \App\Models\CampaignPrice;
 use Carbon\Carbon;
 use App\Models\CampaignCategory;
+use App\Models\Page;
+use App\Models\PageInstance;
+use App\Models\Template;
 
 class PageParser extends Command
 {
@@ -49,7 +52,7 @@ class PageParser extends Command
         $this->info('Pages parser command started.');
         $this->wpConnection = DB::connection('wp');
 
-
+        $this->parseProjects();
 
         $this->info('Parsing complete!');
     }
@@ -62,9 +65,56 @@ class PageParser extends Command
                         ->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
                         ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php')
                         ->get();
-        
-        $this->logPosts($posts, 'Projects ids: ');
-        
+
+        foreach ($posts as $pageKey => $project) {
+
+            $copyProject = Page::where('wp_id', $project->ID)->first();
+
+            if ($copyProject) {
+
+                $copyProjectInstance = $copyProject->actual_page_instance;
+
+                if (!isset($copyProjectInstance)) {
+                    dd($copyProject->id);
+                }
+                
+                $copyProjectInstance->update([
+                    'name' => $project->post_title,
+                    'slug' => $project->post_name,
+                    'title' => $project->post_title,
+                    'description' => 'parsed project page wp_id: ' . $project->ID,
+                    'template' => Template::PROJECT_PAGE,
+                ]);
+
+                $infoString = $pageKey . ': Project updated => id: ' . $copyProject->id . ', wp_id: ' . $copyProject->wp_id;
+
+            } else {
+
+                $copyProject = Page::create([
+                    'wp_id' => $project->ID,
+                    'status' => Page::PAGE_STATUS_PUBLICHED
+                ]);
+
+                $copyProjectInstance = PageInstance::create([
+                    'name' => $project->post_title,
+                    'slug' => $project->post_name,
+                    'title' => $project->post_title,
+                    'description' => 'parsed project page wp_id: ' . $project->ID,
+                    'page_id' => $copyProject->id,
+                    'template' => Template::PROJECT_PAGE,
+                ]);
+
+                $copyProjectInstance->actual = true;
+                $copyProjectInstance->save();
+
+                $infoString = $pageKey . ': Project created => id: ' . $copyProject->id . ', wp_id: ' . $copyProject->wp_id;
+            }
+
+            $this->info($infoString);
+            Log::channel('parser')->info($infoString);
+        }
+
+
         $this->info('count posts:' . count($posts));
     }
 }
