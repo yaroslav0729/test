@@ -7,6 +7,7 @@ use DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Campaign;
 use \App\Models\Country;
+use \App\Models\CampaignPrice;
 use Carbon\Carbon;
 
 class ProjectsParser extends Command
@@ -121,6 +122,7 @@ class ProjectsParser extends Command
                     $infoString = $campKey . ': New campaign created => id: ' . $copyCampaign->id . ', wp_id: ' . $copyCampaign->wp_id;
                 }
 
+                $this->updateCampaignPrices($copyCampaign, $campaignOptions);
                 
                 $this->info($infoString);
                 Log::channel('parser')->info($infoString);
@@ -142,6 +144,37 @@ class ProjectsParser extends Command
         $this->logPosts($posts, 'Projects ids: ');
         
         $this->info('count posts:' . count($posts));
+    }
+
+    protected function updateCampaignPrices($campaign, $campaignOptions)
+    {
+        CampaignPrice::where('campaign_id', $campaign->id)->delete();
+
+        foreach ($campaignOptions as $option) {
+
+            $priceType = null;
+            if (strpos($option->meta_key, 'prices_single_')!== false) {
+                $priceType = CampaignPrice::TYPE_SINGLE;  
+            }
+            if (strpos($option->meta_key, 'prices_monthly_')!== false) {
+                $priceType = CampaignPrice::TYPE_MONTHLY;  
+            }
+
+            if ((isset($priceType)) && (intval($option->meta_value) !== 0)) {
+                
+                CampaignPrice::create([
+                    'value' => $option->meta_value,
+                    'type' => $priceType, 
+                    'campaign_id' => $campaign->id
+                ]);
+
+                $typeStr = $priceType === CampaignPrice::TYPE_SINGLE ? 'single' : 'monthly';
+                $infoString = 'price created => value: ' . $option->meta_value . ', type: ' . $typeStr;
+                Log::channel('parser')->info($infoString);
+            }
+        }
+
+
     }
 
     protected function formatDate($date)
