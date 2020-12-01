@@ -54,15 +54,15 @@
 
 <div class="form-group">
     <label>What happens people helped:</label>
-    <input class="form-control" type="number" name="parameters[what_happens_people_helped]" placeholder="Insert people helped quantity" value="{{ $peopleHelped }}" />
+    <input class="form-control" type="text" name="parameters[what_happens_people_helped]" placeholder="Insert people helped quantity" value="{{ $peopleHelped }}" />
 </div>
 
 <div class="form-group">
     <label>What happens countries:</label>
-    <input class="form-control" type="number" name="parameters[what_happens_countries]" placeholder="Insert countries quantity" value="{{ $countries }}" />
+    <input class="form-control" type="text" name="parameters[what_happens_countries]" placeholder="Insert countries quantity" value="{{ $countries }}" />
 </div>
 
 <div class="form-group">
     <label>What happens volunteers:</label>
-    <input class="form-control" type="number" name="parameters[what_happens_volunteers]" placeholder="Insert volunteers quantity" value="{{ $volunteers }}" />
+    <input class="form-control" type="text" name="parameters[what_happens_volunteers]" placeholder="Insert volunteers quantity" value="{{ $volunteers }}" />
 </div>

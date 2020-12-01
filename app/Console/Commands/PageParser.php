@@ -60,7 +60,7 @@ class PageParser extends Command
     protected function parseProjects()
     {
         $posts = $this->wpConnection->table('wp_posts')
-                        //->where('ID', 18219)
+                        //->where('ID', 18266)
                         ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
                         ->where('wp_posts.post_type', 'page')
                         ->where(function($query) {
@@ -114,6 +114,7 @@ class PageParser extends Command
             }
 
             $this->updateProjectPrices($copyProjectInstance, $projectOptions);
+            $this->updateProjectTemplateParams($copyProjectInstance, $projectOptions);
 
             $this->info($infoString);
             Log::channel('parser')->info($infoString);
@@ -121,6 +122,37 @@ class PageParser extends Command
 
 
         $this->info('count posts:' . count($posts));
+    }
+
+    protected function updateProjectTemplateParams($projectInstance, $projectOptions)
+    {
+        $parameters = $projectInstance->parameters;
+    
+        $parameters['donate_text'] = $this->getOption($projectOptions, 'featured_image_text');
+
+        $parameters['still_need_digit1'] = $this->getOption($projectOptions, 'donation_boxes_0_donate_today_0_donate_price');
+        $parameters['still_need_digit2'] = $this->getOption($projectOptions, 'donation_boxes_0_donate_today_1_donate_price');
+        $parameters['still_need_digit3'] = $this->getOption($projectOptions, 'donation_boxes_0_donate_today_2_donate_price');
+
+        $parameters['still_need_text1'] = $this->getOption($projectOptions, 'donation_boxes_0_donate_today_0_donate_text');
+        $parameters['still_need_text2'] = $this->getOption($projectOptions, 'donation_boxes_0_donate_today_1_donate_text');
+        $parameters['still_need_text3'] = $this->getOption($projectOptions, 'donation_boxes_0_donate_today_2_donate_text');
+
+        $parameters['what_happens_people_helped'] = $this->getOption($projectOptions, 'counter_box_1_value');
+        $parameters['what_happens_countries'] = $this->getOption($projectOptions, 'counter_box_2_value');
+        $parameters['what_happens_volunteers'] = $this->getOption($projectOptions, 'counter_box_3_value');
+
+        $projectInstance->parameters = $parameters;
+        $projectInstance->save();
+    }
+
+    protected function getOption($options, $optName)
+    {
+        foreach ($options as $option) {
+            if ($option->meta_key === $optName) return $option->meta_value;
+        }
+
+        return "";
     }
 
     protected function updateProjectPrices($projectInstance, $projectOptions)

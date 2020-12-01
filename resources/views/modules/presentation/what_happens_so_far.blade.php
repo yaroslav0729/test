@@ -60,7 +60,7 @@
                         <div class="rectangle @if($isEmergency) bg-warning @else bg-danger @endif"></div>
                         <div class="help-info">
                             <div>
-                                <span>{{ $peopleHelped }}k</span>
+                                <span>{{ $peopleHelped }}</span>
                                 <span>People helped</span>
                             </div>
                             <div>
