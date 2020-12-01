@@ -60,7 +60,7 @@ class PageParser extends Command
     protected function parseProjects()
     {
         $posts = $this->wpConnection->table('wp_posts')
-                        //->where('ID', 18266)
+                        //->where('ID', 18187)
                         ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
                         ->where('wp_posts.post_type', 'page')
                         ->where(function($query) {
@@ -120,7 +120,6 @@ class PageParser extends Command
             Log::channel('parser')->info($infoString);
         }
 
-
         $this->info('count posts:' . count($posts));
     }
 
@@ -138,9 +137,6 @@ class PageParser extends Command
         $parameters['still_need_text2'] = $this->getOption($projectOptions, 'donation_boxes_0_donate_today_1_donate_text');
         $parameters['still_need_text3'] = $this->getOption($projectOptions, 'donation_boxes_0_donate_today_2_donate_text');
 
-        $parameters['what_happens_people_helped'] = $this->getOption($projectOptions, 'counter_box_1_value');
-        $parameters['what_happens_countries'] = $this->getOption($projectOptions, 'counter_box_2_value');
-        $parameters['what_happens_volunteers'] = $this->getOption($projectOptions, 'counter_box_3_value');
         $parameters['proj_heading'] = $this->getOption($projectOptions, 'heading');
 
         $hdr1 = $this->getOption($projectOptions, 'pro_heading_1');
@@ -164,7 +160,17 @@ class PageParser extends Command
 
         $parameters['important_title'] = $this->getOption($projectOptions, 'cta_heading'); // mobile - cta_mobile_heading
         $parameters['important_text'] = $this->getOption($projectOptions, 'cta_detail_text'); // mobile - cta_mobile_detail_text
+        $parameters['what_happens_title'] = $this->getOption($projectOptions, 'ih_help_result_heading'); // mobile - cta_mobile_detail_text
+        $parameters['what_happens_text'] = $this->getOption($projectOptions, 'ih_help_result_text'); // mobile - cta_mobile_detail_text
 
+        $parameters['what_happens_block1_title'] = $this->getOption($projectOptions, 'counter_box_1_value');
+        $parameters['what_happens_block2_title'] = $this->getOption($projectOptions, 'counter_box_2_value');
+        $parameters['what_happens_block3_title'] = $this->getOption($projectOptions, 'counter_box_3_value');
+        
+        $parameters['what_happens_block1_text'] = $this->getOption($projectOptions, 'counter_box_1_text');
+        $parameters['what_happens_block2_text'] = $this->getOption($projectOptions, 'counter_box_2_text');
+        $parameters['what_happens_block3_text'] = $this->getOption($projectOptions, 'counter_box_3_text');
+        
         $projectInstance->parameters = $parameters;
         $projectInstance->save();
     }

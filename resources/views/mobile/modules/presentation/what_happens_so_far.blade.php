@@ -11,20 +11,36 @@
         $moduleText = $parameters['what_happens_text'];    
     }
 
-    $peopleHelped = "";
-    $countries = "";
-    $volunteers = "";
+    $infoBlock1 = "";
+    $infoBlock2 = "";
+    $infoBlock3 = "";
 
-    if (isset($parameters['what_happens_people_helped'])) {
-        $peopleHelped = $parameters['what_happens_people_helped'];    
+    if (isset($parameters['what_happens_block1_title'])) {
+        $infoBlock1 = $parameters['what_happens_block1_title'];    
     }
 
-    if (isset($parameters['what_happens_countries'])) {
-        $countries = $parameters['what_happens_countries'];    
+    if (isset($parameters['what_happens_block2_title'])) {
+        $infoBlock2 = $parameters['what_happens_block2_title'];    
     }
 
-    if (isset($parameters['what_happens_volunteers'])) {
-        $volunteers = $parameters['what_happens_volunteers'];    
+    if (isset($parameters['what_happens_block3_title'])) {
+        $infoBlock3 = $parameters['what_happens_block3_title'];    
+    }
+
+    $infoBlockText1 = "";
+    $infoBlockText2 = "";
+    $infoBlockText3 = "";
+
+    if (isset($parameters['what_happens_block1_text'])) {
+        $infoBlockText1 = $parameters['what_happens_block1_text'];    
+    }
+
+    if (isset($parameters['what_happens_block2_text'])) {
+        $infoBlockText2 = $parameters['what_happens_block2_text'];    
+    }
+
+    if (isset($parameters['what_happens_block3_text'])) {
+        $infoBlockText3 = $parameters['what_happens_block3_text'];    
     }
 
     $bgImage = "";
@@ -63,16 +79,16 @@
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <span>{{ $peopleHelped }}k</span>
-                        <span>People helped</span>
+                        <span>{{ $infoBlock1 }}</span>
+                        <span>{{ $infoBlockText1 }}</span>
                     </div>
                     <div class="swiper-slide">
-                        <span>{{ $countries }}</span>
-                        <span>Countries</span>
+                        <span>{{ $infoBlock2 }}</span>
+                        <span>{{ $infoBlockText2 }}</span>
                     </div>
                     <div class="swiper-slide">
-                        <span>{{ $volunteers }}</span>
-                        <span>Volunteers this year</span>
+                        <span>{{ $infoBlock3 }}</span>
+                        <span>{{ $infoBlockText3 }}</span>
                     </div>
                 </div>
                 <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
