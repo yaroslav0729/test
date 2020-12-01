@@ -2,17 +2,17 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use DB;
-use Illuminate\Support\Facades\Log;
 use App\Models\Campaign;
-use \App\Models\Country;
-use \App\Models\CampaignPrice;
-use Carbon\Carbon;
-use App\Models\CampaignCategory;
 use App\Models\Page;
 use App\Models\PageInstance;
 use App\Models\Template;
+use Carbon\Carbon;
+use DB;
+use Exception;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use \App\Models\CampaignPrice;
 
 class PageParser extends Command
 {
@@ -20,10 +20,12 @@ class PageParser extends Command
      * The name and signature of the console command.
      *
      * php artisan parse:page
-     * 
+     *
      * @var string
      */
     protected $signature = 'parse:page';
+
+    const PROJECTS_PATH = 'projects';
 
     /**
      * The console command description.
@@ -60,27 +62,27 @@ class PageParser extends Command
     protected function parseProjects()
     {
         $posts = $this->wpConnection->table('wp_posts')
-                        //->where('ID', 18187)
-                        ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
-                        ->where('wp_posts.post_type', 'page')
-                        ->where(function($query) {
-                            $query->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
-                            ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php');
-                        })
-                        ->get();
+        //->where('ID', 18187)
+            ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
+            ->where('wp_posts.post_type', 'page')
+            ->where(function ($query) {
+                $query->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
+                    ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php');
+            })
+            ->get();
 
         foreach ($posts as $pageKey => $project) {
 
             $copyProject = Page::where('wp_id', $project->ID)->first();
 
-            $projectOptions =  $this->wpConnection->table('wp_postmeta')
-                                ->where('post_id', $project->ID)
-                                ->get();
+            $projectOptions = $this->wpConnection->table('wp_postmeta')
+                ->where('post_id', $project->ID)
+                ->get();
 
             if ($copyProject) {
 
                 $copyProjectInstance = $copyProject->actual_page_instance;
-                
+
                 $copyProjectInstance->update([
                     'name' => $project->post_title,
                     'slug' => $project->post_name,
@@ -95,7 +97,7 @@ class PageParser extends Command
 
                 $copyProject = Page::create([
                     'wp_id' => $project->ID,
-                    'status' => Page::PAGE_STATUS_PUBLICHED
+                    'status' => Page::PAGE_STATUS_PUBLICHED,
                 ]);
 
                 $copyProjectInstance = PageInstance::create([
@@ -126,7 +128,7 @@ class PageParser extends Command
     protected function updateProjectTemplateParams($projectInstance, $projectOptions)
     {
         $parameters = $projectInstance->parameters;
-    
+
         $parameters['donate_text'] = $this->getOption($projectOptions, 'featured_image_text');
 
         $parameters['still_need_digit1'] = $this->getOption($projectOptions, 'donation_boxes_0_donate_today_0_donate_price');
@@ -166,19 +168,95 @@ class PageParser extends Command
         $parameters['what_happens_block1_title'] = $this->getOption($projectOptions, 'counter_box_1_value');
         $parameters['what_happens_block2_title'] = $this->getOption($projectOptions, 'counter_box_2_value');
         $parameters['what_happens_block3_title'] = $this->getOption($projectOptions, 'counter_box_3_value');
-        
+
         $parameters['what_happens_block1_text'] = $this->getOption($projectOptions, 'counter_box_1_text');
         $parameters['what_happens_block2_text'] = $this->getOption($projectOptions, 'counter_box_2_text');
         $parameters['what_happens_block3_text'] = $this->getOption($projectOptions, 'counter_box_3_text');
-        
+
+        $featuredImageId = $this->getOption($projectOptions, 'featured_image');
+        $parameters['donate_img'] = $this->getWpImage($featuredImageId);
+
         $projectInstance->parameters = $parameters;
         $projectInstance->save();
+    }
+
+    protected function searchMonthYear($imageUrl)
+    {
+        $month = '';
+        $year = '';
+
+        $pos = -1;
+
+        $arr = explode('/', $imageUrl);
+
+        foreach ($arr as $key => $item) {
+            if ($item === 'uploads') {
+                $pos = $key;
+                break;
+            }
+        }
+
+        if (isset($arr[$pos + 1])) {
+            $year = $arr[$pos + 1];
+        }
+
+        if (isset($arr[$pos + 2])) {
+            $month = $arr[$pos + 2];
+        }
+
+        return [$month, $year];
+    }
+
+    protected function getWpImage($wpImageId)
+    {
+        $img = $this->wpConnection->table('wp_postmeta')
+            ->where('post_id', $wpImageId)
+            ->where('meta_key', '_wp_attached_file')->first();
+
+        $imageUrl = 'https://www.islamichelp.org.uk/wp-content/uploads/';
+
+        $now = Carbon::now();
+        $year = $now->year;
+        $month = $now->month;
+
+        if (isset($img)) {
+            $imageUrl = $imageUrl . $img->meta_value;
+
+            list($linkMonth, $linkYear) = $this->searchMonthYear($imageUrl);
+
+            if (($linkMonth !== '') && ($linkYear !== '')) {
+                $year = $linkYear;
+                $month = $linkMonth;
+            }
+
+            $name = substr($imageUrl, strrpos($imageUrl, '/') + 1);
+            $path = self::PROJECTS_PATH . '/' . $year . '/' . $month . '/' . $name;
+
+            $exists = Storage::disk('public')->exists($path);
+
+            if ((!$exists) && ($imageUrl !== "")) {
+                try {
+                    $contents = file_get_contents($imageUrl);
+                    Storage::disk('public')->put($path, $contents);
+
+                } catch (Exception $e) {
+                    $this->info('WARNING: file not found: ' . $imageUrl);
+                }
+            }
+
+            return Storage::url($path);
+        }
+
+        return "";
     }
 
     protected function getOption($options, $optName)
     {
         foreach ($options as $option) {
-            if ($option->meta_key === $optName) return $option->meta_value;
+            if ($option->meta_key === $optName) {
+                return $option->meta_value;
+            }
+
         }
 
         return "";
@@ -191,11 +269,11 @@ class PageParser extends Command
         foreach ($projectOptions as $option) {
 
             $priceType = null;
-            if (strpos($option->meta_key, '_single_price')!== false) {
-                $priceType = CampaignPrice::TYPE_SINGLE;  
+            if (strpos($option->meta_key, '_single_price') !== false) {
+                $priceType = CampaignPrice::TYPE_SINGLE;
             }
-            if (strpos($option->meta_key, '_month_price')!== false) {
-                $priceType = CampaignPrice::TYPE_MONTHLY;  
+            if (strpos($option->meta_key, '_month_price') !== false) {
+                $priceType = CampaignPrice::TYPE_MONTHLY;
             }
 
             if ((isset($priceType)) && (intval($option->meta_value) !== 0)) {
@@ -207,19 +285,18 @@ class PageParser extends Command
                 if (isset($priceKey)) {
                     $priceText = $this->searchPriceText($projectOptions, $priceType, $priceKey);
                     $priceCampaigns = $this->searchPriceCampaigns($projectOptions, $priceType, $priceKey);
-                } 
+                }
 
                 $amount[] = [
                     'value' => $option->meta_value,
                     'type' => $priceType,
                     'text' => $priceText,
-                    'campaigns' => $priceCampaigns
+                    'campaigns' => $priceCampaigns,
                 ];
 
-            
                 $typeStr = $priceType === CampaignPrice::TYPE_SINGLE ? 'single' : 'monthly';
                 $infoString = 'project price created => value: ' . $option->meta_value . ', type: ' . $typeStr;
-                
+
                 //$this->info($infoString);
                 Log::channel('parser')->info($infoString);
             }
@@ -235,16 +312,18 @@ class PageParser extends Command
 
     protected function searchKey($keyStr)
     {
-        $keyArr = explode('_', $keyStr); 
+        $keyArr = explode('_', $keyStr);
 
         if (isset($keyArr[4])) {
 
             $key = intval($keyArr[4]);
 
-            if (($key === 0) && ($keyArr[4] !== '0')) return null;
+            if (($key === 0) && ($keyArr[4] !== '0')) {
+                return null;
+            }
 
             return $key;
-        } 
+        }
 
         return null;
     }
@@ -263,8 +342,8 @@ class PageParser extends Command
         foreach ($projectOptions as $option) {
             $metaKey = $option->meta_key;
             $metaValue = $option->meta_value;
-            
-            if ((strpos($metaKey, $keyPattern1) === 0) &&  
+
+            if ((strpos($metaKey, $keyPattern1) === 0) &&
                 (strpos($metaKey, $keyPattern2)) &&
                 (strpos($metaValue, $keyPattern3)) === 0) {
 
