@@ -180,6 +180,7 @@ class PageParser extends Command
         $parameters['what_happens_img'] = $this->getWpImage($whatHappensImage);
 
         $projectInstance->parameters = $parameters;
+        $projectInstance->preview_img = $parameters['donate_img'];
         $projectInstance->save();
     }
 
