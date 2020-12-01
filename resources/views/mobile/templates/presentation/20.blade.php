@@ -138,7 +138,6 @@
         $btnLink = $parameters['w_i_btn_link'];
     }
 
-
     if (isset($parameters['dropdown_title'])) {
         $dropdownWhatDoINeedTitle = $parameters['dropdown_title'];
     }
@@ -169,28 +168,20 @@
     <div class="wrap">
         <div class="title">
             <div class="top">
-                <div class="row align-items-center">
-                    <div class="col-6">
-                        <b>Your Zakat Calculator</b>
-                    </div>
-                    <div class="col-6 text-right">
-                        <div class="toggle-title">
-                            <div>{{ $dropdownWhatDoINeedTitle }} <i class="far fa-chevron-down"></i></div>
-                            <div><i class="fal fa-times"></i></div>
-                        </div>
-                    </div>
+                <b>Your Zakat Calculator</b>
+                <div class="toggle-title">
+                    <div>{{ $dropdownWhatDoINeedTitle }} <i class="far fa-chevron-down"></i></div>
                 </div>
             </div>
             <div class="bottom">
                 <div class="line"></div>
-                <div class="font-size-16"><b>{{ $dropdownWhatDoINeedTitle }}</b></div>
-                <div class="pt-5"></div>
+                <div class="font-size-14 mb-3"><b>{{ $dropdownWhatDoINeedTitle }}</b></div>
                 <div>
                     <p>{!! $dropdownWhatDoINeedText !!}</p>
                 </div>
-                <div class="pt-5"></div>
-                <div class="text-right">
-                    <a href="{{ $dropdownLink }}" class="text-underline font-size-16 text-white"><b>{{ $dropdownLinkTitle }}</b></a>
+                <div class="pt-4"></div>
+                <div>
+                    <span class="toggle-title font-size-14 text-white"><i class="far fa-chevron-up mr-2"></i> CLOSE</span>
                 </div>
             </div>
         </div>
@@ -207,8 +198,7 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="tab-1" role="tabpanel" >
                 <div class="row align-items-end gutter-5">
-                    <div class="col-3"></div>
-                    <div class="col-5">
+                    <div class="col-7">
                         <div class="form-group mb-0">
                             <label><b>Base value of nisaab</b></label>
                             <select class="form-control" id="currency">
@@ -217,155 +207,108 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-1"><button id="btn-currency" class="btn btn-primary h-form-control">£{{ $priceSilver }}</button></div>
+                    <div class="col-5"><button id="btn-currency" class="btn btn-primary h-form-control">£{{ $priceSilver }}</button></div>
                 </div>
                 <div class="pt-5"></div>
 
                 <div>Enter below, your <b>total</b> assets from the past lunar year, that apply to you. </div>
                 <div class="line"></div>
-                <div class="text-right text-uppercase"><b>your assets</b></div>
+                <div class="text-uppercase"><b>your assets</b></div>
                 <div class="pt-5"></div>
 
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5">
-                        <div class="form-group">
-                            <label><b>value of gold</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <span class="input-symbol">£</span>
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <div class="form-group">
-                            <label><b>value of silver</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label><b>value of gold</b></label>
+                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <small>*Some helper text right here, to assure user of correct decision making.</small>
                 </div>
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5">
-                        <div class="form-group">
-                            <label><b>Cash in hand / in bank accounts</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <div class="form-group">
-                            <label><b>cash deposited for future purpose</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <small>*E.g. Saving for Hajj</small>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label><b>value of silver</b></label>
+                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <small>*Some helper text right here, to assure user of correct decision making.</small>
                 </div>
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5">
-                        <div class="form-group">
-                            <label><b>Given out in loans</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <div class="form-group">
-                            <label><b>other investments</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <small>*E.g. Business investments, shares, saving certificates, pensions funded by money in ones possesssion</small>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label><b>Cash in hand / in bank accounts</b></label>
+                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <small>*Some helper text right here, to assure user of correct decision making.</small>
+                </div>
+                <div class="form-group">
+                    <label><b>cash deposited for future purpose</b></label>
+                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <small>*E.g. Saving for Hajj</small>
+                </div>
+                <div class="form-group">
+                    <label><b>Given out in loans</b></label>
+                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <small>*Some helper text right here, to assure user of correct decision making.</small>
+                </div>
+                <div class="form-group">
+                    <label><b>other investments</b></label>
+                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <small>*E.g. Business investments, shares, saving certificates, pensions funded by money in ones possesssion</small>
                 </div>
 
                 <div class="pt-5"></div>
                 <div class="line"></div>
-                <div class="text-right text-uppercase"><b>Trade goods</b></div>
+                <div class="text-uppercase"><b>Trade goods</b></div>
                 <div class="pt-5"></div>
-
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5">
-                        <div class="form-group">
-                            <label><b>value of stock</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label><b>value of stock</b></label>
+                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <small>*Some helper text right here, to assure user of correct decision making.</small>
                 </div>
 
                 <div class="pt-5"></div>
                 <div class="line"></div>
-                <div class="text-right text-uppercase"><b>Liabilities</b></div>
+                <div class="text-uppercase"><b>Liabilities</b></div>
                 <div class="pt-5"></div>
-
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5">
-                        <div class="form-group">
-                            <label><b>Borrowed money / items bought on credit</b></label>
-                            <input type="number" class="form-control credit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <div class="form-group">
-                            <label><b>wages due to employees</b></label>
-                            <input type="number" class="form-control credit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label><b>Borrowed money / items bought on credit</b></label>
+                    <input type="number" class="form-control credit-money" placeholder="£ 0.00">
+                    <small>*Some helper text right here, to assure user of correct decision making.</small>
                 </div>
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5">
-                        <div class="form-group">
-                            <label><b>taxes / rent / utility bills due immediately</b></label>
-                            <input type="number" class="form-control credit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label><b>wages due to employees</b></label>
+                    <input type="number" class="form-control credit-money" placeholder="£ 0.00">
+                    <small>*Some helper text right here, to assure user of correct decision making.</small>
+                </div>
+                <div class="form-group">
+                    <label><b>taxes / rent / utility bills due immediately</b></label>
+                    <input type="number" class="form-control credit-money" placeholder="£ 0.00">
+                    <small>*Some helper text right here, to assure user of correct decision making.</small>
                 </div>
                 <div class="pt-5"></div>
 
                 <div class="calc">
                     <div class="line"></div>
                     <div class="pt-5"></div>
-                    <div class="font-size-30 mb-4 text-center"><b>Calculate my Zakat</b></div>
-                    <div class="text-center mb-5">
+                    <div class="font-size-25 mb-5 text-center"><b>Calculate my Zakat</b></div>
+                    <div class="text-center mb-3 position-relative">
                         <button id="btn-reset" class="btn btn-secondary mr-1">Reset</button>
-                        <button id="btn-calculate" class="btn btn-info ml-1">Calculate now</button>
+                        <button id="btn-calculate" class="btn btn-info ml-1">Calculated</button>
                     </div>
                     <div class="item" id="total-assets">
-                        <b>Total Assets</b>
-                        <div class="row align-items-center gutter-0">
-                            <div class="col-6">For your lunar year</div>
-                            <div class="col-6 text-right font-size-30 money-val"><b>£0.00</b></div>
-                        </div>
+                        <div><b>Total Assets</b><br>
+                            For your lunar year</div>
+                        <div class="text-right font-size-20 money-val"><b>£0.00</b></div>
                     </div>
                     <div class="item zakat-payable" id="zakat-pay">
-                        <b>Zakat Payable</b>
-                        <div class="row align-items-center gutter-0">
-                            <div class="col-6">For your lunar year</div>
-                            <div class="col-6 text-right font-size-30 money-val"><b>£0.00</b></div>
-                        </div>
+                        <div><b>Zakat Payable</b><br>
+                            For your lunar year</div>
+                        <div class="text-right font-size-20 money-val"><b>£0.00</b></div>
                     </div>
                 </div>
 
-                <div class="down bg-danger-light zakat-payable">
-                    <div class="row align-items-center">
-                        <div class="col-6">
-                            <div class="total">
-                                ZAKAT TOTAL
-                                <div class="d-inline money-val">
-                                    <b>£0.00</b>
-                                </div>
+                <div class="down">
+                    <div class="bg-danger-light pt-4 pb-4 pl-4 pr-4 mb-4 zakat-payable">
+                        <div class="total">
+                            ZAKAT TOTAL
+                            <div class="d-inline money-val">
+                                <b>£0.00</b>
                             </div>
                         </div>
-                        <div class="col-6 text-right">
-                            <a href="#" class="btn btn-danger">Donate my Zakat</a>
-                        </div>
+                    </div>
+                    <div class="pl-4 pr-4">
+                        <a href="#" class="btn btn-danger w-100">Donate my Zakat</a>
                     </div>
                 </div>
             </div>
@@ -401,23 +344,25 @@
                     <div class="pt-5"></div>
                 </div>
 
-                <div class="bg-primary-light p-5 mb-2 br-5">
+                <div class="bg-primary-light p-4 mb-3 ml-n4 mr-n4">
                     <p class="font-size-20"><b>{{ $whatIsGoldTitle }}</b></p>
                     <div class="line"></div>
-                    <p class="font-size-16">{!! $whatIsGoldText !!}</p>
+                    <p class="font-size-16">{!! $whatIsGoldText !!}
+                    </p>
                 </div>
 
-                <div class="bg-primary-light p-5 mb-2 br-5">
+                <div class="bg-primary-light p-4 mb-3 ml-n4 mr-n4">
                     <p class="font-size-20"><b>{{ $whatIsSilverTitle }}</b></p>
                     <div class="line"></div>
-                    <p class="font-size-16">{{ $whatIsSilverText }}</p>
+                    <p class="font-size-16">{!! $whatIsSilverText !!}
+                    </p>
                 </div>
-
                 <div class="pt-5"></div>
                 <div class="text-center">
                     <a href="{{ $btnLink }}" class="btn btn-info">{{ $btnTitle }}</a>
                 </div>
             </div>
         </div>
+
     </div>
 </section>
