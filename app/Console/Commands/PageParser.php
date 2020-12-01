@@ -60,7 +60,7 @@ class PageParser extends Command
     protected function parseProjects()
     {
         $posts = $this->wpConnection->table('wp_posts')
-                        ->where('ID', 18219)
+                        //->where('ID', 18219)
                         ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
                         ->where('wp_posts.post_type', 'page')
                         ->where(function($query) {
@@ -142,11 +142,13 @@ class PageParser extends Command
             }
 
             if ((isset($priceType)) && (intval($option->meta_value) !== 0)) {
+
+                $priceText = $this->searchPriceText($projectOptions, $priceType, $option->meta_key);
                 
                 $amount[] = [
                     'value' => $option->meta_value,
                     'type' => $priceType,
-                    'text' => '',
+                    'text' => $priceText,
                     'campaigns' => []
                 ];
 
@@ -154,7 +156,7 @@ class PageParser extends Command
                 $typeStr = $priceType === CampaignPrice::TYPE_SINGLE ? 'single' : 'monthly';
                 $infoString = 'project price created => value: ' . $option->meta_value . ', type: ' . $typeStr;
                 
-                $this->info($infoString);
+                //$this->info($infoString);
                 Log::channel('parser')->info($infoString);
             }
         }
@@ -165,6 +167,32 @@ class PageParser extends Command
             $projectInstance->parameters = $parameters;
             $projectInstance->save();
         }
-        
+    }
+
+    protected function searchPriceText($projectOptions, $priceType, $keyStr)
+    {
+        $keyArr = explode('_', $keyStr);
+
+        if (isset($keyArr[1])) {
+
+            $key = intval($keyArr[1]);
+
+            if (($key === 0) && ($keyArr[1] !== '0')) return "";
+
+            $type = $priceType === CampaignPrice::TYPE_SINGLE ? 'single' : 'month';
+
+            $metaKey = 'donation_' . $key . '_' . $type . '_donation_' . $key . '_' . $type . '_text';
+
+            foreach ($projectOptions as $option) {
+                if ($option->meta_key === $metaKey) {
+                    return $option->meta_value;
+                }
+            }
+
+            return "";
+
+        } else {
+            return "";
+        }
     }
 }
