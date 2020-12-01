@@ -6,7 +6,18 @@
         $mainHtml = $parameters['main_html'];    
     }
 
+    $projHeading = "";
+
+    if (isset($parameters['proj_heading'])) {
+        $projHeading = $parameters['proj_heading'];    
+    }
+
 @endphp
+
+<div class="form-group">
+    <label>Project heading:</label>
+    <input class="form-control" name="parameters[proj_heading]" placeholder="Insert project heading" value="{{ $projHeading }}" />
+</div>
 
 <div class="form-group">
     <label>Main page content</label>

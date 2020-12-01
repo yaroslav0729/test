@@ -141,6 +141,26 @@ class PageParser extends Command
         $parameters['what_happens_people_helped'] = $this->getOption($projectOptions, 'counter_box_1_value');
         $parameters['what_happens_countries'] = $this->getOption($projectOptions, 'counter_box_2_value');
         $parameters['what_happens_volunteers'] = $this->getOption($projectOptions, 'counter_box_3_value');
+        $parameters['proj_heading'] = $this->getOption($projectOptions, 'heading');
+
+        $hdr1 = $this->getOption($projectOptions, 'pro_heading_1');
+        $hdr2 = $this->getOption($projectOptions, 'pro_heading_2');
+        $hdr3 = $this->getOption($projectOptions, 'pro_heading_3');
+        $p1 = $this->getOption($projectOptions, 'pro_paragraph_1');
+        $p2 = $this->getOption($projectOptions, 'pro_paragraph_2');
+        $p3 = $this->getOption($projectOptions, 'pro_paragraph_3');
+        $videoLink = $this->getOption($projectOptions, 'pro_video_id');
+
+        $hdr1 = "<h2>$hdr1</h2>";
+        $hdr2 = "<h2>$hdr2</h2>";
+        $hdr3 = "<h2>$hdr3</h2>";
+        $p1 = "<p>$p1</p>";
+        $p2 = "<p>$p2</p>";
+        $p3 = "<p>$p3</p>";
+        $videoLink = "{video-carousel|$videoLink}";
+        $mainHtml = $hdr1 . $p1 . $hdr2 . $p2 . $videoLink . $hdr3 . $p3;
+
+        $parameters['main_html'] = $mainHtml;
 
         $projectInstance->parameters = $parameters;
         $projectInstance->save();
