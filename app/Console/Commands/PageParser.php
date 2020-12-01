@@ -62,7 +62,7 @@ class PageParser extends Command
     protected function parseProjects()
     {
         $posts = $this->wpConnection->table('wp_posts')
-        //->where('ID', 18187)
+            //->where('ID', 18187)
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
             ->where('wp_posts.post_type', 'page')
             ->where(function ($query) {
@@ -175,6 +175,9 @@ class PageParser extends Command
 
         $featuredImageId = $this->getOption($projectOptions, 'featured_image');
         $parameters['donate_img'] = $this->getWpImage($featuredImageId);
+
+        $whatHappensImage = $this->getOption($projectOptions, 'ih_help_result_image');
+        $parameters['what_happens_img'] = $this->getWpImage($whatHappensImage);
 
         $projectInstance->parameters = $parameters;
         $projectInstance->save();
