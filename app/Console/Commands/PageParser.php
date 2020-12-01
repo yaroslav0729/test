@@ -80,10 +80,6 @@ class PageParser extends Command
             if ($copyProject) {
 
                 $copyProjectInstance = $copyProject->actual_page_instance;
-
-                if (!isset($copyProjectInstance)) {
-                    dd($copyProject->id);
-                }
                 
                 $copyProjectInstance->update([
                     'name' => $project->post_title,
@@ -192,9 +188,32 @@ class PageParser extends Command
         return null;
     }
 
-    protected function searchPriceCampaigns($projectOptions, $priceType, $keyStr)
+    protected function searchPriceCampaigns($projectOptions, $priceType, $key)
     {
+        $type1 = $priceType === CampaignPrice::TYPE_SINGLE ? 'single' : 'monthly';
+        $type2 = $priceType === CampaignPrice::TYPE_SINGLE ? 'single' : 'mobthly'; // mobthly - mistake in WP key
 
+        $keyPattern1 = 'donation_0_' . $type1 . '_donation_' . $key . '_' . $type2 . 'add_campaign_countries_';
+        $keyPattern2 = $type1 . 'campaign_id';
+        $keyPattern3 = '#donate-';
+
+        $campaignsMeta = [];
+
+        foreach ($projectOptions as $option) {
+            $metaKey = $option->meta_key;
+            $metaValue = $option->meta_value;
+            
+            if ((strpos($metaKey, $keyPattern1) === 0) &&  
+                (strpos($metaKey, $keyPattern2)) &&
+                (strpos($metaValue, $keyPattern3)) === 0) {
+
+                $campaignsMeta[] = substr($metaValue, 8);
+            }
+        }
+
+        $campaigns = Campaign::whereIn('wp_id', $campaignsMeta)->pluck('id');
+
+        return $campaigns;
     }
 
     protected function searchPriceText($projectOptions, $priceType, $key)
