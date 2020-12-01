@@ -162,6 +162,9 @@ class PageParser extends Command
 
         $parameters['main_html'] = $mainHtml;
 
+        $parameters['important_title'] = $this->getOption($projectOptions, 'cta_heading'); // mobile - cta_mobile_heading
+        $parameters['important_text'] = $this->getOption($projectOptions, 'cta_detail_text'); // mobile - cta_mobile_detail_text
+
         $projectInstance->parameters = $parameters;
         $projectInstance->save();
     }
