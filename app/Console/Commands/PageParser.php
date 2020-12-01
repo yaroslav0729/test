@@ -143,13 +143,20 @@ class PageParser extends Command
 
             if ((isset($priceType)) && (intval($option->meta_value) !== 0)) {
 
-                $priceText = $this->searchPriceText($projectOptions, $priceType, $option->meta_key);
-                
+                $priceKey = $this->searchKey($option->meta_key);
+                $priceText = "";
+                $priceCampaigns = [];
+
+                if (isset($priceKey)) {
+                    $priceText = $this->searchPriceText($projectOptions, $priceType, $priceKey);
+                    $priceCampaigns = $this->searchPriceCampaigns($projectOptions, $priceType, $priceKey);
+                } 
+
                 $amount[] = [
                     'value' => $option->meta_value,
                     'type' => $priceType,
                     'text' => $priceText,
-                    'campaigns' => []
+                    'campaigns' => $priceCampaigns
                 ];
 
             
@@ -169,30 +176,40 @@ class PageParser extends Command
         }
     }
 
-    protected function searchPriceText($projectOptions, $priceType, $keyStr)
+    protected function searchKey($keyStr)
     {
-        $keyArr = explode('_', $keyStr);
+        $keyArr = explode('_', $keyStr); 
 
-        if (isset($keyArr[1])) {
+        if (isset($keyArr[4])) {
 
-            $key = intval($keyArr[1]);
+            $key = intval($keyArr[4]);
 
-            if (($key === 0) && ($keyArr[1] !== '0')) return "";
+            if (($key === 0) && ($keyArr[4] !== '0')) return null;
 
-            $type = $priceType === CampaignPrice::TYPE_SINGLE ? 'single' : 'month';
+            return $key;
+        } 
 
-            $metaKey = 'donation_' . $key . '_' . $type . '_donation_' . $key . '_' . $type . '_text';
+        return null;
+    }
 
-            foreach ($projectOptions as $option) {
-                if ($option->meta_key === $metaKey) {
-                    return $option->meta_value;
-                }
+    protected function searchPriceCampaigns($projectOptions, $priceType, $keyStr)
+    {
+
+    }
+
+    protected function searchPriceText($projectOptions, $priceType, $key)
+    {
+        $type1 = $priceType === CampaignPrice::TYPE_SINGLE ? 'single' : 'month';
+        $type2 = $priceType === CampaignPrice::TYPE_SINGLE ? 'single' : 'monthly';
+
+        $metaKey = 'donation_0_' . $type2 . '_donation_' . $key . '_' . $type1 . '_text';
+
+        foreach ($projectOptions as $option) {
+            if ($option->meta_key === $metaKey) {
+                return $option->meta_value;
             }
-
-            return "";
-
-        } else {
-            return "";
         }
+
+        return "";
     }
 }
