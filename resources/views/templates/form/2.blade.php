@@ -192,7 +192,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Event price:</label>
-            <input class="form-control" name="parameters[event_entry_price]"
+            <input type="number" class="form-control" name="parameters[event_entry_price]"
                    placeholder="Insert entry price" value="{{ $eventEntryPrice }}"/>
         </div>
     </div>

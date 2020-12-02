@@ -14,6 +14,7 @@ class Template
     const WHO_WE_ARE_PAGE = 8;
     const THANK_YOU_DONATE_PAGE = 9;
     const EVENTS_PAGE = 10;
+    const CALCULATOR_PAGE = 20;
 
     const TEST_PAGE = 100;
 
@@ -29,7 +30,8 @@ class Template
         self::CONTACT_PAGE,
         self::PROJECTS_PAGE,
         self::PROJECT_PAGE,
-        self::EVENTS_PAGE
+        self::EVENTS_PAGE,
+        self::CALCULATOR_PAGE
 
     ];
 
@@ -40,13 +42,14 @@ class Template
             case self::EVENT_PAGE:return "Event page";
             case self::INDEX_PAGE:return "Index page";
             case self::COMMON_CONTENT_PAGE:return "Common content page";
-            case self::PROJECTS_PAGE: return "projects page";
+            case self::PROJECTS_PAGE: return "Projects page";
             case self::PROJECT_PAGE: return "Project page";
             case self::TEST_PAGE:return "Test page";
             case self::WHO_WE_ARE_PAGE:return "Who we are page";
             case self::THANK_YOU_DONATE_PAGE:return "Thank you your donation page";
             case self::CONTACT_PAGE:return "Contact page";
             case self::EVENTS_PAGE:return "Events page";
+            case self::CALCULATOR_PAGE:return "Zakat calculator page";
 
             default:return "Unknown template type";
         }
@@ -192,6 +195,47 @@ class Template
 
                 $rules = [
                     'parameters.per_page' => 'numeric|min:1',
+                ];
+
+                break;
+            }
+
+            case self::CALCULATOR_PAGE: {
+
+                $rules = [
+                    'parameters.tab_calc_title' => 'required',
+                    'parameters.tab_what_zakat_title' => 'required',
+
+                    'parameters.price_silver' => 'numeric|min:1',
+                    'parameters.price_gold' => 'numeric|min:1',
+
+                    'parameters.w_i_zakat_title' => 'required',
+                    'parameters.w_i_zakat_text' => 'required',
+                    'parameters.w_i_obligatory_title' => 'required',
+                    'parameters.w_i_obligatory_text' => 'required',
+
+                    'parameters.w_i_donate_title' => 'required',
+                    'parameters.w_i_donate_text' => 'required',
+                    'parameters.w_i_receive_title' => 'required',
+                    'parameters.w_i_receive_text' => 'required',
+
+                    'parameters.w_i_calc_title' => 'required',
+                    'parameters.w_i_calc_text' => 'required',
+                    'parameters.w_i_nisaab_title' => 'required',
+                    'parameters.w_i_nisaab_text' => 'required',
+
+                    'parameters.w_i_should_title' => 'required',
+                    'parameters.w_i_should_text' => 'required',
+                    'parameters.w_i_gold_title' => 'required',
+                    'parameters.w_i_gold_text' => 'required',
+
+                    'parameters.w_i_silver_title' => 'required',
+                    'parameters.w_i_silver_text' => 'required',
+
+                    'parameters.dropdown_title' => 'required',
+                    'parameters.dropdown_text' => 'required',
+                    'parameters.dropdown_link_title' => 'required',
+                    'parameters.dropdown_link' => 'required',
                 ];
 
                 break;

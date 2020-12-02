@@ -48,22 +48,11 @@ class PageController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param PageCreateEditRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(PageCreateEditRequest $request)
     {
-        $validator = $this->_validateSlug($request);
-
-        if (count($validator->errors())) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $templateValidator = $this->_validateTemplate($request);
 
         $page = Page::create();
         $data = $request->all();
@@ -83,8 +72,11 @@ class PageController extends Controller
         if ((int)$pageInstance->template === Template::EVENT_PAGE) {
             $event = Event::updateOrCreate(['page_id'=> $page->id], $data);
         }
+        session()->flash('status', 'Page created!');
 
-        return redirect()->route('admin.pages.index')->with('status', 'Page created!');
+        return response()->json([
+            'redirect' => route('admin.pages.index'),
+        ]);
     }
 
     /**
@@ -166,19 +158,13 @@ class PageController extends Controller
         return $amountNew;
     }
 
-    public function update(PageCreateEditRequest $request, $id)
+    /**
+     * @param PageCreateEditRequest $request
+     * @param Page $page
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(PageCreateEditRequest $request, Page $page)
     {
-        $validator = $this->_validateSlug($request, $id);
-
-        if (count($validator->errors())) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $templateValidator = $this->_validateTemplate($request);
-
-        $page = Page::findOrFail($id);
         $oldPage = $page->actual_page_instance;
 
         if (isset($oldPage)) {
@@ -206,7 +192,10 @@ class PageController extends Controller
             $event = Event::updateOrCreate(['page_id'=> $page->id], $data);
         }
 
-        return redirect()->route('admin.pages.index')->with('status', 'Page updated!');
+        session()->flash('status', 'Page updated!');
+        return response()->json([
+            'redirect' => route('admin.pages.index'),
+        ]);
     }
 
     /**
@@ -254,30 +243,5 @@ class PageController extends Controller
             'html' => $template,
             'status' => 'success',
         ]);
-    }
-
-    protected function _validateSlug($request, $id = null)
-    {
-        $validator = Validator::make($request->all(), []);
-        $slug = $request->input('slug');
-        $pageInstances = PageInstance::where('slug', $slug)
-                            ->where('actual', true);
-
-        if (isset($id)) {
-            $pageInstances = $pageInstances->where('page_id', '<>', $id);
-        }
-        $pageInstances = $pageInstances->get();
-
-        if (count($pageInstances)) {
-            $validator->errors()->add('slug', 'The slug must be unique to publish');
-        }
-
-        return $validator;
-    }
-
-    protected function _validateTemplate(Request $request)
-    {
-        $validationRules = \App\Models\Template::getValidationRules((int)$request->template);
-        $validatedData = $request->validate($validationRules);
     }
 }

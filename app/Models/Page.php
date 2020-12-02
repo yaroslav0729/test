@@ -29,7 +29,7 @@ class Page extends Model
     ];
 
     protected $fillable = [
-        'status', 'type',
+        'status', 'type', 'wp_id'
     ];
 
     public function pageInstances()

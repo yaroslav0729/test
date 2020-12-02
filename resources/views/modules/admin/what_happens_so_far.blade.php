@@ -11,20 +11,36 @@
         $moduleText = $parameters['what_happens_text'];    
     }
 
-    $peopleHelped = "";
-    $countries = "";
-    $volunteers = "";
+    $infoBlock1 = "";
+    $infoBlock2 = "";
+    $infoBlock3 = "";
 
-    if (isset($parameters['what_happens_people_helped'])) {
-        $peopleHelped = $parameters['what_happens_people_helped'];    
+    if (isset($parameters['what_happens_block1_title'])) {
+        $infoBlock1 = $parameters['what_happens_block1_title'];    
     }
 
-    if (isset($parameters['what_happens_countries'])) {
-        $countries = $parameters['what_happens_countries'];    
+    if (isset($parameters['what_happens_block2_title'])) {
+        $infoBlock2 = $parameters['what_happens_block2_title'];    
     }
 
-    if (isset($parameters['what_happens_volunteers'])) {
-        $volunteers = $parameters['what_happens_volunteers'];    
+    if (isset($parameters['what_happens_block3_title'])) {
+        $infoBlock3 = $parameters['what_happens_block3_title'];    
+    }
+
+    $infoBlockText1 = "";
+    $infoBlockText2 = "";
+    $infoBlockText3 = "";
+
+    if (isset($parameters['what_happens_block1_text'])) {
+        $infoBlockText1 = $parameters['what_happens_block1_text'];    
+    }
+
+    if (isset($parameters['what_happens_block2_text'])) {
+        $infoBlockText2 = $parameters['what_happens_block2_text'];    
+    }
+
+    if (isset($parameters['what_happens_block3_text'])) {
+        $infoBlockText3 = $parameters['what_happens_block3_text'];    
     }
 
     $bgImage = "";
@@ -53,16 +69,31 @@
 </div>
 
 <div class="form-group">
-    <label>What happens people helped:</label>
-    <input class="form-control" type="number" name="parameters[what_happens_people_helped]" placeholder="Insert people helped quantity" value="{{ $peopleHelped }}" />
+    <label>What happens block1 title:</label>
+    <input class="form-control" type="text" name="parameters[what_happens_block1_title]" placeholder="Insert value" value="{{ $infoBlock1 }}" />
 </div>
 
 <div class="form-group">
-    <label>What happens countries:</label>
-    <input class="form-control" type="number" name="parameters[what_happens_countries]" placeholder="Insert countries quantity" value="{{ $countries }}" />
+    <label>What happens block1 text:</label>
+    <input class="form-control" type="text" name="parameters[what_happens_block1_text]" placeholder="Insert value" value="{{ $infoBlockText1 }}" />
 </div>
 
 <div class="form-group">
-    <label>What happens volunteers:</label>
-    <input class="form-control" type="number" name="parameters[what_happens_volunteers]" placeholder="Insert volunteers quantity" value="{{ $volunteers }}" />
+    <label>What happens block2 title:</label>
+    <input class="form-control" type="text" name="parameters[what_happens_block2_title]" placeholder="Insert value" value="{{ $infoBlock2 }}" />
+</div>
+
+<div class="form-group">
+    <label>What happens block2 text:</label>
+    <input class="form-control" type="text" name="parameters[what_happens_block2_text]" placeholder="Insert value" value="{{ $infoBlockText2 }}" />
+</div>
+
+<div class="form-group">
+    <label>What happens block3 title:</label>
+    <input class="form-control" type="text" name="parameters[what_happens_block3_title]" placeholder="Insert value" value="{{ $infoBlock3 }}" />
+</div>
+
+<div class="form-group">
+    <label>What happens block3 text:</label>
+    <input class="form-control" type="text" name="parameters[what_happens_block3_text]" placeholder="Insert value" value="{{ $infoBlockText3 }}" />
 </div>

@@ -6,6 +6,12 @@
         $mainHtml = $parameters['main_html'];    
     }
 
+    $projHeading = "";
+
+    if (isset($parameters['proj_heading'])) {
+        $projHeading = $parameters['proj_heading'];    
+    }
+
     $isEmergency = \App\Models\Project::isEmergency($pageInstance);
 
 @endphp
@@ -16,7 +22,14 @@
 <section class="donate-today @if($isEmergency) red-gradient @else blue-gradient @endif">
     <div class="wrap">
         <div class="title mb-5">
-            <p class="font-size-40"><b>{{ $pageInstance->name }}</b></p>
+            <p class="font-size-40">
+                @empty($projHeading)
+                <b>{{ $pageInstance->name }}</b>
+                @else
+                <b>{{ $projHeading}}</b>
+                @endempty
+                
+            </p>
             <i class="far fa-arrow-down"></i>
         </div>
         <div class="pt-5"></div>
