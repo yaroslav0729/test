@@ -29,6 +29,8 @@ if (isset($page)) {
     $keywords = old('keywords');
 }
 
+//dd($pageInstance->parameters['amount']);
+
 @endphp
 
 @extends('layouts.admin')
