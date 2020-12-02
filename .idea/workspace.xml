@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/markup/img/ico-apply-online.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/markup/img/ico-email.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/markup/img/ico-post.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/markup/p2-Volunteer-step.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/markup/_header-newsroom.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/markup/p2-Newsroom.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/p2-Volunteer.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/p2-Volunteer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/js/functions.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,20 +21,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="531">
-              <caret line="4378" column="29" selection-start-line="4378" selection-start-column="29" selection-end-line="4378" selection-end-column="29" />
+            <state relative-caret-position="259">
+              <caret line="397" column="26" selection-start-line="397" selection-start-column="26" selection-end-line="397" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/markup/p2-Volunteer-step.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/markup/p2-Newsroom.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+            <state relative-caret-position="15">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#section#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#2;n#section#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#2;n#div#2;n#section#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#div#2;n#section#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#1;n#div#0;n#section#3;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#a#0;n#div#1;n#div#0;n#div#1;n#div#0;n#section#3;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#a#0;n#div#2;n#div#1;n#div#0;n#section#3;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -54,24 +60,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>main-</find>
-      <find>F8F8F8</find>
-      <find>FF5D4A</find>
-      <find>-danger</find>
-      <find>sub</find>
-      <find>sub-menu</find>
-      <find>footer</find>
-      <find>&quot;line</find>
-      <find>line</find>
-      <find>black-line</find>
-      <find>.btn</find>
-      <find>place</find>
       <find>&quot;place</find>
       <find>video</find>
       <find>8k</find>
       <find>FED4C2</find>
       <find>latest</find>
-      <find>.bg</find>
       <find>our-latest-mission</find>
       <find>&lt;svg</find>
       <find>decor-wave</find>
@@ -83,13 +76,26 @@
       <find>how-does-work</find>
       <find>.btn</find>
       <find>arrow</find>
+      <find>blog-article-head</find>
+      <find>no-brd</find>
+      <find>-line</find>
+      <find>paginat</find>
+      <find>gutt</find>
+      <find>cove</find>
+      <find>.btn</find>
+      <find>newsroom-list</find>
+      <find>popula</find>
+      <find>current-projects-list</find>
       <find>.text</find>
+      <find>.bg</find>
+      <find>plus</find>
+      <find>top-bar</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/public/markup/mobile</dir>
-      <dir>$PROJECT_DIR$/public/markup</dir>
       <dir>$PROJECT_DIR$/resources/views</dir>
       <dir>$PROJECT_DIR$/resources</dir>
+      <dir>$PROJECT_DIR$/public/markup</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -105,11 +111,13 @@
         <option value="$PROJECT_DIR$/public/css/mobile.less" />
         <option value="$PROJECT_DIR$/public/markup/_footer.php" />
         <option value="$PROJECT_DIR$/public/css/styles.less" />
-        <option value="$PROJECT_DIR$/public/markup/js/functions.js" />
         <option value="$PROJECT_DIR$/public/markup/p2-Volunteer.php" />
         <option value="$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php" />
-        <option value="$PROJECT_DIR$/public/markup/css/styles.less" />
         <option value="$PROJECT_DIR$/public/markup/p2-Volunteer-step.php" />
+        <option value="$PROJECT_DIR$/public/markup/_header-newsroom.php" />
+        <option value="$PROJECT_DIR$/public/markup/js/functions.js" />
+        <option value="$PROJECT_DIR$/public/markup/p2-Newsroom.php" />
+        <option value="$PROJECT_DIR$/public/markup/css/styles.less" />
       </list>
     </option>
   </component>
@@ -282,18 +290,12 @@
               <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="markup" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
@@ -356,7 +358,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/markup/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/markup" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -366,13 +368,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/markup/img" />
       <recent name="$PROJECT_DIR$/public/markup" />
+      <recent name="$PROJECT_DIR$/public/markup/img" />
       <recent name="$PROJECT_DIR$/public/css" />
       <recent name="$PROJECT_DIR$/public/markup/img/content" />
       <recent name="$PROJECT_DIR$/public/markup/css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/markup/img/content" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -417,7 +420,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41599000" />
+    <option name="totallyTimeSpent" value="55339000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="823" extended-state="0" />
@@ -530,13 +533,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="128" column="16" lean-forward="true" selection-start-line="128" selection-start-column="16" selection-end-line="128" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/donate-today.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -572,13 +568,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/blog-article.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="217" column="10" lean-forward="true" selection-start-line="200" selection-end-line="217" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/img/Line-styling.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -591,13 +580,6 @@
     <entry file="file://$PROJECT_DIR$/public/markup/img/ico-post.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="141" column="32" selection-start-line="141" selection-start-column="32" selection-end-line="141" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/p2-Volunteer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -605,24 +587,81 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/p2-Volunteer-step.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/blog-article.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="10" lean-forward="true" selection-start-line="2" selection-end-line="28" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/events-home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="299" column="13" lean-forward="true" selection-start-line="285" selection-start-column="8" selection-end-line="299" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="333" column="10" lean-forward="true" selection-start-line="288" selection-end-line="333" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="213" column="88" lean-forward="true" selection-start-line="213" selection-start-column="54" selection-end-line="213" selection-end-column="88" />
+        <state relative-caret-position="246">
+          <caret line="279" column="99" lean-forward="true" selection-start-line="279" selection-start-column="72" selection-end-line="279" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/img/ico-menu.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="141" column="52" lean-forward="true" selection-start-line="141" selection-start-column="52" selection-end-line="141" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/p2-Newsroom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#2;n#section#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#2;n#section#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#2;n#div#2;n#section#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#div#2;n#section#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#1;n#div#0;n#section#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#div#1;n#div#0;n#div#1;n#div#0;n#section#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#div#2;n#div#1;n#div#0;n#section#3;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/_header-newsroom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="58" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="58" />
+          <folding>
+            <element signature="n#style#0;n#svg#0;n#div#1;n#div#0;n#div#0;n#div#0;n#header#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="4378" column="29" selection-start-line="4378" selection-start-column="29" selection-end-line="4378" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/p2-Volunteer-step.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+        <state relative-caret-position="259">
+          <caret line="397" column="26" selection-start-line="397" selection-start-column="26" selection-end-line="397" selection-end-column="26" />
         </state>
       </provider>
     </entry>
