@@ -33,4 +33,13 @@ class Currency extends Model
             ]
         ];
     }
+
+    public static function getSignFromCode($code)
+    {
+        foreach (self::getAllCurrencies() as $currency) {
+            if ($currency['code'] === $code) return $currency['sign'];
+        }
+
+        return "";
+    }
 }
