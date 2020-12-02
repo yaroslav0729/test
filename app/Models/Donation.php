@@ -11,6 +11,18 @@ class Donation extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'value',
+        'type',
+        'currency',
+        'campaign_id',
+        'user_id',
+        'email',
+        'note',
+        'wp_id',
+        'created_at'
+    ];
+
     public function getTypeNameAttribute()
     {
         if (isset(CampaignPrice::ALL_TYPES[$this->type])) {
