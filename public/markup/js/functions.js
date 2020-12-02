@@ -137,5 +137,10 @@ $(function() {
         $(this).parent().toggleClass('open');
     })
 
+
+    $('header .top-bar .ico-menu').on('click', function () {
+        $('header .expand-bar').toggleClass('open');
+    })
+
 } );
 
