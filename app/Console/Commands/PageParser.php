@@ -62,7 +62,7 @@ class PageParser extends Command
     protected function parseProjects()
     {
         $posts = $this->wpConnection->table('wp_posts')
-            //->where('ID', 18187)
+            //->where('ID', 17903)
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
             ->where('wp_posts.post_type', 'page')
             ->where(function ($query) {
@@ -180,6 +180,8 @@ class PageParser extends Command
         $parameters['what_happens_img'] = $this->getWpImage($whatHappensImage);
 
         $projectInstance->parameters = $parameters;
+        $projectInstance->title = $this->getOption($projectOptions, '_yoast_wpseo_title');
+        $projectInstance->description = $this->getOption($projectOptions, '_yoast_wpseo_metadesc');
         $projectInstance->preview_img = $parameters['donate_img'];
         $projectInstance->save();
     }
