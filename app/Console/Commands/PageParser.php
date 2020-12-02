@@ -62,7 +62,7 @@ class PageParser extends Command
     protected function parseProjects()
     {
         $posts = $this->wpConnection->table('wp_posts')
-            //->where('ID', 17066)
+            //->where('ID', 6129)
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
             ->where('wp_posts.post_type', 'page')
             ->where(function ($query) {
@@ -353,15 +353,17 @@ class PageParser extends Command
 
             if ((strpos($metaKey, $keyPattern1) === 0) &&
                 (strpos($metaKey, $keyPattern2)) &&
-                (strpos($metaValue, $keyPattern3)) === 0) {
+                (strpos($metaValue, $keyPattern3)) !== false) {
 
-                $campaignsMeta[] = substr($metaValue, 8);
+                $pos = strpos($metaValue, $keyPattern3);
+                $campaignsMeta[] = substr($metaValue, $pos + 8);
             }
 
             if ((strpos($metaKey, $keyPattern4) === 0) &&
-                (strpos($metaValue, $keyPattern3)) === 0) {
+                (strpos($metaValue, $keyPattern3)) !== false) {
 
-                $campaignsMeta[] = substr($metaValue, 8);
+                $pos = strpos($metaValue, $keyPattern3);
+                $campaignsMeta[] = substr($metaValue, $pos + 8);
             }
         }
 

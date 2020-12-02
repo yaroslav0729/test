@@ -16,7 +16,7 @@ class CampaignsController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::paginate(10);
+        $campaigns = Campaign::paginate(25);
 
         return view('admin.campaign.index', compact('campaigns'));
     }

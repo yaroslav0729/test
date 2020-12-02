@@ -42,7 +42,7 @@ class Template
             case self::EVENT_PAGE:return "Event page";
             case self::INDEX_PAGE:return "Index page";
             case self::COMMON_CONTENT_PAGE:return "Common content page";
-            case self::PROJECTS_PAGE: return "projects page";
+            case self::PROJECTS_PAGE: return "Projects page";
             case self::PROJECT_PAGE: return "Project page";
             case self::TEST_PAGE:return "Test page";
             case self::WHO_WE_ARE_PAGE:return "Who we are page";
