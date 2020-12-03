@@ -1,21 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
-    
+
 <div id="admin_content" class="bg-gray-100 flex-auto h-screen">
     <div class="p-5 pb-8">
         <h1>Donations:</h1>
-
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-              <div class="flex">
-                <div>
-                  <p class="font-weight-bold">Success</p>
-                  <p class="text-sm">{{ session('status') }}</p>
-                </div>
-              </div>
-            </div>
-        @endif
 
         <table class="table-auto mb-3">
             <thead>

@@ -1,7 +1,7 @@
 @php
     if (isset($campaign)) {
         $pageTitle = 'Edit campaign id: ' . $campaign->id;
-        $actionRoute = route('admin.campaigns.update', ['campaign' => $campaign->id]);    
+        $actionRoute = route('admin.campaigns.update', ['campaign' => $campaign->id]);
     } else {
         $pageTitle = 'Create campaign:';
         $actionRoute = route('admin.campaigns.store');
@@ -15,19 +15,6 @@
 <div id="admin_content" class="bg-gray-100 flex-auto h-screen">
     <div class="p-5 pb-8 lg:w-1/2">
         <h1>{{ $pageTitle }}</h1>
-
-        @if ($errors->any())
-            <div class="p-3">
-                <div class="alert alert-danger" role="alert">
-                    <strong class="font-weight-bold">Validation errors:</strong>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        @endif
 
         <form action="{{ $actionRoute }}" method="post" prices-form>
             @csrf
@@ -76,7 +63,7 @@
             <div price-container>
                 <label for="groups">Campaign prices</label><br>
                 <button price-add class="btn btn-success mb-3" type="button">Add new price</button>
-                
+
                 <div class="d-none" price-stub stub-fields>
                     <div class="form-group form-inline price">
                         <input name="prices_new[]" class="form-control mr-2" placeholder="Add price here" type="number" />
@@ -96,7 +83,7 @@
                                 <input name="prices[{{ $price->id }}]" required class="form-control mr-2" type="number" value="{{ $price->value }}">
                                 <select name="price_types[{{ $price->id }}]" class="form-control mr-2">
                                     @foreach (\App\Models\CampaignPrice::ALL_TYPES as $priceId => $priceLabel)
-                                        <option value="{{ $priceId }}" 
+                                        <option value="{{ $priceId }}"
                                         @if($price->type === $priceId) selected @endif
                                         />{{ $priceLabel }}</option>
                                     @endforeach
@@ -118,7 +105,7 @@
                                 $selected = true;
                             }
                         @endphp
-                        <option value="{{ $category->id }}" @if($selected) selected @endif>{{ $category->name }}</option>   
+                        <option value="{{ $category->id }}" @if($selected) selected @endif>{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>

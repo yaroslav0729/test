@@ -1,21 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
-    
+
 <div id="admin_content" class="flex-auto h-screen">
     <div class="p-5 pb-8">
         <h1>Pages:</h1>
-
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-              <div class="flex">
-                <div>
-                  <p class="font-weight-bold">Success</p>
-                  <p class="text-sm">{{ session('status') }}</p>
-                </div>
-              </div>
-            </div>
-        @endif
 
         <a href="{{ route('admin.pages.create') }}">
           <button class="btn btn-success mt-3 mb-3" type="button" title="Create post">
@@ -40,7 +29,7 @@
 
                 @foreach ($pages as $page)
                   @php
-                    $pageInstance = $page->actual_page_instance; 
+                    $pageInstance = $page->actual_page_instance;
 
                   @endphp
                     @if($pageInstance)
@@ -88,12 +77,12 @@
 
                               @csrf
                               @method('DELETE')
-      
+
                               <button class="btn btn-danger action-btn" type="submit" title="Delete post" onclick="return confirm('Are you sure want to delete?')">
                                 <i class="fas fa-trash-alt"></i>
                               </button>
                           </form>
-                          
+
                           </td>
                       </tr>
                     @endif

@@ -12,7 +12,7 @@
 
         {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
         <link rel="stylesheet" href="{{ asset('css/app_admin.css') }}">
-        <script src="{{ mix('js/app.js') }}""></script>
+        <script src="{{ mix('js/app.js') }}"></script>
         {{-- <script src="{{ asset('js/admin.js') }}""></script> --}}
         <link rel="stylesheet" href="{{ mix('css/admin_styles.css') }}">
         @yield('head')
@@ -23,16 +23,16 @@
             <div class="d-flex h-100" id="app">
                 @include('admin.parts.left-menu')
                 <div class="flex-grow-1 p-4">
-                    @yield('content')
+                    @include('admin.parts.messages-block')
+                          @yield('content')
                 </div>
             </div>
-            
         </div>
 
-        <!-- Modal -->
+              <!-- Modal -->
         <div class="modal fade" id="modal-wrap" tabindex="-1" aria-labelledby="myExtraLargeModalLabel" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
-                {{-- @include('admin.modals.add_widget') --}}
+                      {{-- @include('admin.modals.add_widget') --}}
             </div>
         </div>
 
