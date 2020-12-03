@@ -475,6 +475,13 @@ $(function () {
         $('.calculator .title .bottom').removeClass('open');
     });
 
+
+//~~~~~~~~~~~~~~~~~~ Set disabled input link if group ~~~~~~~~~~~~~~~~~~~~
+    $(document).on('change', '#create-menu-item #is_group', function () {
+        $('#create-menu-item #link').prop("disabled", this.checked );
+    });
+
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 });
