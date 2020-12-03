@@ -73,6 +73,8 @@ class ConvertDonationHistory extends Command
                     'value' => $donation->amount,
                     'type' => $donation->period === 0 ? CampaignPrice::TYPE_SINGLE : CampaignPrice::TYPE_MONTHLY,
                     'email' => $donation->email,
+                    'campaign_id' => null,
+                    'campaign_category_id' => $this->getCampaignCategoryId($donation->type),
                     'note' => $donation->message,
                 ]);
 
@@ -153,5 +155,26 @@ class ConvertDonationHistory extends Command
 
             if ($donationKey === 3) break;
         }
+    }
+
+    protected function getCampaignCategoryId($wpType) 
+    {
+        $categName = '';
+
+        switch ($wpType) {
+            case 10: $categName = 'General Charity';
+            case 11: $categName = 'Sadaqah/Lillah';
+            case 12: $categName = 'Fitrana';
+            case 13: $categName = 'Zakah';
+            case 14: $categName = 'Fidyah';
+            case 15: $categName = 'Kaffarah';
+            case 16: $categName = 'Interest';
+        }
+
+        $categ = CampaignCategory::where('name', $categName)->first();
+
+        if (isset($categ)) return $categ->id;
+
+        return null;
     }
 }
