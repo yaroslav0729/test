@@ -1560,7 +1560,9 @@ footer {
 
   .explore-past-missions {
 	padding-top: 50px;
-	padding-bottom: 80px;
+	padding-bottom: 60px;
+	.decor-wave {margin-left: -300px;}
+	.item {box-shadow: none}
 	.swiper-pagination {
 	  position: relative;
 	  text-align: center;
@@ -1577,7 +1579,10 @@ footer {
 		&.swiper-pagination-bullet-active {background: #fff}
 	  }
 	}
-
+	&.bg-danger-light .swiper-pagination .swiper-pagination-bullet {
+	  background: #FED4C2;
+	  &.swiper-pagination-bullet-active {background: #FF5D4A}
+	}
   }
 
   .experience-lifetime {
@@ -1591,6 +1596,7 @@ footer {
 
   .our-latest-mission {
 	padding: 40px 0 72px;
+	overflow: hidden;
 	.title {
 	  margin: 0 30px 20px;
 	  padding: 10px 0 0;
@@ -1619,4 +1625,48 @@ footer {
 	  }
 	}
   }
+
+  .head-Volunteer {
+	position: relative;
+	padding-top: 30px;
+	&:before {
+	  width: 200px; height: 200px;
+	  bottom: auto; top: 60px; left: auto; right: 10px;
+	}
+	&:after {
+	  display: none;
+	}
+	h1 {
+	  font-size: 40px;
+	  line-height: 45px;
+	  margin-bottom: 30px;
+	  padding: 0;
+	}
+	img {
+	  width: calc(~"100% + 60px") !important;
+	  margin-left: -30px;
+	}
+	.box {
+	  margin: -137px 0 0;
+	  padding: 38px 20px 57px;
+	}
+	& + .how-does-work {
+	  position: relative;
+	  &:before {
+		content: "";
+		display: block;
+		background: url(../img/Line-styling.png) no-repeat;
+		background-size: contain;
+		height: 250px;
+		width: 250px;
+		position: absolute;
+		z-index: -1;
+		right: -40px;
+		top: 0px;
+		opacity: 0.03;
+		transform: rotate(45deg);
+	  }
+	}
+  }
+
 }
