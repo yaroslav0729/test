@@ -1693,6 +1693,9 @@ input[type='number'].color-danger + .input-group .btn {
 .help-info-swiper .swiper-container .swiper-slide:nth-child(3) span:nth-child(1):before {
   background-color: #E3EFFE;
 }
+.help-info-swiper .swiper-container .swiper-slide:nth-child(4) span:nth-child(1):before {
+  background-color: #3A7BF5;
+}
 .help-info-swiper .swiper-button-prev,
 .help-info-swiper .swiper-button-next {
   font-size: 35px;
