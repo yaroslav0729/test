@@ -11,17 +11,7 @@ class Donation extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'value',
-        'type',
-        'currency',
-        'campaign_id',
-        'user_id',
-        'email',
-        'note',
-        'wp_id',
-        'created_at'
-    ];
+    protected $guarded = ['id'];
 
     public function getTypeNameAttribute()
     {
@@ -45,5 +35,10 @@ class Donation extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function order()
+    {
+        return $this->belongsTo('App\Models\Order');
     }
 }
