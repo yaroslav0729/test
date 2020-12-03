@@ -34,7 +34,7 @@ class CreateOrdersTable extends Migration
             $table->boolean('do_email')->default(false);
             $table->string('pay_with')->nullable();
             $table->string('order_id')->nullable();
-            $table->unsignedBigInteger('wp_id');
+            $table->unsignedBigInteger('wp_id')->nullable();
             $table->timestamps();
         });
 
