@@ -26,7 +26,7 @@ $(function () {
 
     function changeDonateCategDropdown(element)
     {
-        let campaign = $(element).find('select[name="campaign"]').val()
+        let campaign = $(element).find('select[name="campaigns"]').val()
 
         let options = $('#donate_module_options').html()
         options = JSON.parse(options)

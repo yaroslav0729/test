@@ -91037,9 +91037,141 @@ __webpack_require__(/*! ./parts/project_tiles.js */ "./resources/js/parts/projec
 
 __webpack_require__(/*! ./parts/donate_module.js */ "./resources/js/parts/donate_module.js");
 
+__webpack_require__(/*! ./parts/cart.js */ "./resources/js/parts/cart.js");
+
+var MODAL_FORM_LOCK = false;
 $(function () {
   new Vue({
     el: '#app'
+  });
+  $(document).on('submit', '[modal-form]', function (event) {
+    event.preventDefault();
+
+    if (MODAL_FORM_LOCK) {
+      return false;
+    }
+
+    MODAL_FORM_LOCK = true;
+    var stub = $('[stub-fields] input, [stub-fields] select, [stub-fields] textarea', this);
+    stub.attr('disabled', 'disabled');
+    $('#modal-errors').closest('div').hide();
+    $('#modal-message-success').closest('div').hide();
+    $('[data-error].text-danger,.invalid-feedback', this).hide();
+    var form = $(this);
+    var formData = new FormData(form[0]);
+    $.ajax({
+      url: form.attr('action'),
+      type: form.attr('method'),
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function success(response, textStatus, jqXHR) {
+        stub.removeAttr('disabled');
+        MODAL_FORM_LOCK = false;
+
+        if ('content' in response) {
+          var element = $('#response-content');
+          element.html(response.content);
+          element.trigger('process');
+          $('#modal-wrap').modal('hide');
+          return;
+        }
+
+        if (response.trigger_click) {
+          $('#modal-wrap').modal('hide');
+          $(response.trigger_click).trigger('click');
+          return;
+        }
+
+        if (response.blank) {
+          var win = window.open(response.blank, '_blank');
+        }
+
+        if (response.redirect) {
+          window.location.href = response.redirect;
+          return;
+        }
+        /*if (response.html) {
+            showModalResponse(response);
+            return;
+        }*/
+
+
+        if (response.messageSuccess) {
+          $('#modal-message-success').html(response.messageSuccess);
+          $('#modal-message-success').closest('div').show();
+          $('#modal-wrap').animate({
+            scrollTop: 0
+          }, 'slow');
+          return;
+        }
+
+        window.location.reload();
+      },
+      error: function error(response) {
+        stub.removeAttr('disabled');
+        MODAL_FORM_LOCK = false;
+
+        if (response.status === 422) {
+          // Hide previous errors
+          $('#modal-errors').closest('div').hide();
+          $('*', form).removeClass('is-invalid');
+          $('.invalid-feedback', form).removeClass('d-block');
+          var message = '';
+          var showed = [];
+          var control, feedback, controlMessages;
+          $.each(response.responseJSON.errors, function (field, errors) {
+            // Field can be dotted (array-input)
+            var original = field;
+            var parts = original.split('.');
+
+            if (parts.length > 1) {
+              field = parts.shift() + '[' + parts.join('][') + ']';
+            } // Try to find field with error container.
+
+
+            control = $('[name="' + field + '"]', form);
+            feedback = $('.invalid-feedback', control.parents('div.form-group'));
+
+            if (!feedback.length) {
+              feedback = $('[data-error="' + original + '"]');
+            }
+
+            controlMessages = [];
+            $.each(errors, function (i, error) {
+              if (feedback.length) {
+                controlMessages[controlMessages.length] = error;
+              } else {
+                if (showed.indexOf(error) < 0) {
+                  message += '<li>' + error + '</li>';
+                  showed[showed.length] = error;
+                }
+              }
+            });
+
+            if (control.length) {
+              control.addClass('is-invalid');
+            }
+
+            if (feedback.length && controlMessages.length) {
+              feedback.html(controlMessages.join('<br>'));
+              feedback.addClass('d-block');
+            }
+          });
+
+          if (message) {
+            $('#modal-errors').html(message);
+            $('#modal-errors').closest('div').show();
+          }
+
+          $('html, body').animate({
+            scrollTop: 0
+          }, 100);
+        } else {
+          $('#modal-wrap').modal('hide');
+        }
+      }
+    });
   });
   Object(_admin_parts_init_tiny_mce__WEBPACK_IMPORTED_MODULE_0__["initWysiwyg"])();
   initSwiper(); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -91199,8 +91331,106 @@ $(function () {
     var altSrc = $(mapBlock).attr('alt-src');
     $(mapBlock).attr('style', 'background-image: url("' + altSrc + '")');
     this.remove();
-  }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-});
+  }); //~~~~~~~~~~~~~~~~~~ toggle search button on the Events page ~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('input', '#events input', function (event) {
+    var section = $('#events');
+    var inputs = $('#events input');
+    areElementsEmpty('#events input') === true ? $(section).removeClass('view-btn') : $(section).addClass('view-btn');
+  }); //~~~~~~~~~~~~~~~~~~ toggle value currency on the Calculator page ~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('change', '#currency', function () {
+    var btnCurrency = $('#btn-currency');
+    var value = $(this).val();
+    $(btnCurrency).html('£' + value);
+  }); //~~~~~~~~~~~~~~~~~~ toggle value currency on the Calculator page ~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('click', '#btn-calculate', function () {
+    var totalAssets = $('#total-assets');
+    var zakatPayable = $('.zakat-payable');
+    var debitCollection = $('.debit-money');
+    var creditCollection = $('.credit-money');
+    var metalPrice = isNaN(+$('#currency').val()) ? 0 : +$('#currency').val();
+    var zakat = 0;
+    var debit = multiplyVal(debitCollection);
+    var credit = multiplyVal(creditCollection);
+    var asset = debit - credit;
+    $(totalAssets).addClass('bg-primary-light');
+    var divAssets = $(totalAssets).find('.money-val').addClass('text-info');
+    $(divAssets).find('b').html('£' + convertMonetary(asset.toFixed(2)));
+    var divZakat = $(zakatPayable).find('.money-val');
+
+    if (asset > metalPrice) {
+      zakat = asset * 0.025;
+      $('#zakat-pay').addClass('bg-danger-light');
+      $(divZakat).addClass('text-danger');
+      $('#total-zakat').find('.money-val').addClass('text-danger');
+      $(divZakat).find('b').html('£' + convertMonetary(zakat.toFixed(2)));
+    } else {
+      $('#zakat-pay').removeClass('bg-danger-light');
+      $(divZakat).removeClass('text-danger');
+      $(divZakat).find('b').html('£0.00');
+    }
+  }); //~~~~~~~~~~~~~~~~~~ Set empty and clear Class for input fields ~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('click', '#btn-reset', function () {
+    var totalAssets = $('#total-assets');
+    var zakatPayable = $('.zakat-payable');
+    var debitCollection = $('.debit-money');
+    var creditCollection = $('.credit-money');
+    $('#total-zakat').find('.money-val').removeClass('text-danger');
+    $(totalAssets).removeClass('bg-primary-light');
+    $('#zakat-pay').removeClass('bg-danger-light');
+    var divVal = $(totalAssets).find('.money-val').removeClass('text-info');
+    $(divVal).find('b').html('£0.00');
+    var divZakat = $(zakatPayable).find('.money-val').removeClass('text-danger');
+    $(divZakat).find('b').html('£0.00');
+    setElementsInputEmpty(debitCollection);
+    setElementsInputEmpty(creditCollection); //~~~~~~~~~~~~~~~~~~ Set input collection empty~~~~~~~~~~~~~~~~~~~~
+
+    function setElementsInputEmpty(selector) {
+      $(selector).filter(function () {
+        return $(this).val() !== '';
+      }).val('');
+    }
+  }); //~~~~~~~~~~~~~~~~~~ Open dropdown menu 'What do I need'  ~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('click', '.calculator .title .toggle-title', function () {
+    $(this).toggleClass('open');
+    $('.calculator .title .bottom').toggleClass('open');
+  }); //~~~~~~~~~~~~~~~~~~ Close dropdown menu 'What do I need'  ~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('click', '.calculator .title .bottom .toggle-title', function () {
+    $('.calculator .title .top .toggle-title').removeClass('open');
+    $('.calculator .title .bottom').removeClass('open');
+  }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+}); //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
+
+function convertMonetary(value) {
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+} //~~~~~~~~~~~~~~~~~~ Summarizes input fields ~~~~~~~~~~~~~~~~~~~~
+
+
+function multiplyVal(collection) {
+  var sum = 0;
+  collection.each(function () {
+    sum += $(this).val() === '' ? 0 : parseFloat($(this).val());
+  });
+  return sum;
+}
+/**
+ * Check all elements are empty
+ *
+ * @param selector
+ * @returns {boolean}
+ */
+
+
+function areElementsEmpty(selector) {
+  return $(selector).filter(function () {
+    return $(this).val() !== '';
+  }).length === 0;
+}
 
 function initSwiper() {
   $('[swiper-wrapper]').each(function () {
@@ -91219,6 +91449,40 @@ function initSwiper() {
     });
   });
 } //require('./functions');
+
+/***/ }),
+
+/***/ "./resources/js/parts/cart.js":
+/*!************************************!*\
+  !*** ./resources/js/parts/cart.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  $(document).on('click', '[donate-btn]', function (e) {
+    e.preventDefault(); //toastr.success('message')
+
+    var form = $(this).closest('form');
+    var amount = form.find('input[name="amount"]').val();
+
+    if (Number.isNaN(parseInt(amount))) {
+      toastr.warning('Select amount first, please!');
+      return;
+    }
+
+    var modal = $('#donate_modal');
+    modal.find('input[name="amount"]').val(amount);
+    var checkedEL = form.find('input[name="price"]:checked').closest('[select-amount]');
+    var amountId = checkedEL.data('amount_id');
+    var countries = $('[amount-countries][data-amount_id="' + amountId + '"] select').html();
+    console.log(countries);
+    modal.find('select[name="campaigns"]').html(countries);
+    var categories = form.find('select[name="categories"]').html();
+    modal.find('select[name="categories"]').html(categories);
+    modal.modal('show');
+  });
+});
 
 /***/ }),
 
@@ -91251,7 +91515,7 @@ $(function () {
   });
 
   function changeDonateCategDropdown(element) {
-    var campaign = $(element).find('select[name="campaign"]').val();
+    var campaign = $(element).find('select[name="campaigns"]').val();
     var options = $('#donate_module_options').html();
     options = JSON.parse(options);
     var categories = options[campaign]['categories'];
