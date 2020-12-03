@@ -25,6 +25,8 @@ class PageParser extends Command
      */
     protected $signature = 'parse:page';
 
+    protected $wpConnection;
+
     const PROJECTS_PATH = 'projects';
 
     /**

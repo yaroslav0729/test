@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\CampaignPricesController;
 use App\Http\Controllers\Admin\CampaignCategoryController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\DonationController;
 
 use App\Models\User;
 /*
@@ -38,6 +39,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         Route::resource('subscription', SubscriptionController::class, ['as' => 'admin']);
         Route::resource('campaigns', CampaignsController::class, ['as' => 'admin']);
         Route::resource('campaign_categories', CampaignCategoryController::class, ['as' => 'admin']);
+
+        Route::resource('donations', DonationController::class, ['as' => 'admin'])->only([
+            'index', 'show'
+        ]);
 
         Route::get('/preview_version/{id}', [AdminPageController::class, 'preview'])->name('admin.pages.preview');
         Route::get('/post_history/{id}', [AdminPageController::class, 'history'])->name('admin.pages.history');

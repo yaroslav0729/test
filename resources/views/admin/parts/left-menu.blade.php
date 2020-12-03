@@ -8,6 +8,7 @@
         <li><a href="{{ route('admin.category.index') }}"><i class="fas fa-folder-open"></i>Categories</a></li>
         <li><a href="{{ route('admin.campaigns.index') }}"><i class="far fa-building"></i>Campaigns</a></li>
         <li><a href="{{ route('admin.campaign_categories.index') }}"><i class="fas fa-clone"></i></i>Campaign categories</a></li>
+        <li><a href="{{ route('admin.donations.index') }}"><i class="far fa-usd-circle"></i></i>Donations</a></li>
         <li><a href="{{ route('admin.subscription.index') }}"><i class="fas fa-book"></i>Subscriptions</a></li>
         <li><a href="{{ route('media.index') }}"><i class="fas fa-photo-video"></i>Media</a></li>
         <li><a href="{{ route('admin.settings.index') }}"><i class="fas fa-sliders-h"></i>Settings</a></li>
