@@ -74,6 +74,7 @@ class ConvertDonationHistory extends Command
                     'type' => $donation->period === 0 ? CampaignPrice::TYPE_SINGLE : CampaignPrice::TYPE_MONTHLY,
                     'email' => $donation->email,
                     'campaign_id' => null,
+                    'currency' => 'GBP',
                     'campaign_category_id' => $this->getCampaignCategoryId($donation->type),
                     'note' => $donation->message,
                 ]);
@@ -84,6 +85,8 @@ class ConvertDonationHistory extends Command
                     'value' => $donation->amount,
                     'type' => $donation->period === 0 ? CampaignPrice::TYPE_SINGLE : CampaignPrice::TYPE_MONTHLY,
                     'email' => $donation->email,
+                    'currency' => 'GBP',
+                    'campaign_category_id' => $this->getCampaignCategoryId($donation->type),
                     'note' => $donation->message,
                     'wp_id' => $donation->id,
                 ]);
