@@ -1,111 +1,47 @@
 <?php include "_header.php"; ?>
 
-<section class="head-mission-impossible">
-    <div class="wrap" style="background-image: url(img/content/head-mission-impossible.jpg)">
-        <div class="text">EMPOWER PEOPLE IN NEED</div>
-        <div class="decor-text">
-            <span class="text-red">Mission</span>
-            <span>Possible</span>
-        </div>
+<section class="head-Volunteer">
+    <h1>Volunteer<br>& help empower communities.</h1>
+    <img src="img/content/Volunteer1.jpg" alt="" class="w-100">
+    <div class="box text-center">
+        <p class="font-size-12 text-uppercase mb-4"><b>Latest mission</b></p>
+        <p class="font-size-30 font-weight-light text-uppercase mb-0">Tanzania</p>
+        <p class="font-size-16 text-uppercase mb-4"><b>20th August 2020</b></p>
+        <a href="#" class="btn btn-primary">Apply now</a>
     </div>
 </section>
 
-<section class="pt-3 pb-3 pl-4 pr-4">
-    <p class="font-size-16 mb-0"><b>THE NEXT STEP TO<br>VOLUNTEERING, MAKE IMPACTS<br>TO GLOBAL COMMUNITIES.</b></p>
-</section>
 
-<section class="swiper-mission-impossible">
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="img" style="background-image: url(img/content/swiper-mission-impossible.jpg)"></div>
-            </div>
-            <div class="swiper-slide">
-                <div class="img" style="background-image: url(img/content/swiper-mission-impossible.jpg)"></div>
-            </div>
-            <div class="swiper-slide">
-                <div class="img" style="background-image: url(img/content/swiper-mission-impossible.jpg)"></div>
-            </div>
-            <div class="swiper-slide">
-                <div class="img" style="background-image: url(img/content/swiper-mission-impossible.jpg)"></div>
-            </div>
-            <div class="swiper-slide">
-                <div class="img" style="background-image: url(img/content/swiper-mission-impossible.jpg)"></div>
-            </div>
-        </div>
-    </div>
-    <script>
-        var swiper = new Swiper('.swiper-mission-impossible .swiper-container', {
-            slidesPerView: 3,
-            centeredSlides: true,
-            loop: true,
-            spaceBetween: 0
-        });
-    </script>
-</section>
-
-
-<section class="so-all-about bg-light">
-    <div class="red-line"></div>
+<section class="how-does-work pt-4">
     <div class="title">
-        <p>So what's this  all about?</p>
+        <p>Why should I volunteer?</p>
+        <span>Find the mission you love</span>
     </div>
-    <div class="bg-red p-4">
-        <p class="font-size-16 text-white mb-0">455 characters und omnis iste natus error sit voluptatem accusantim doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed conseuntur magni dolores eos qui rati voluptate sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+    <div class="item">
+        <div class="num">01</div>
+        <div>be part of change</div>
+        <p>160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
     </div>
-    <img src="img/content/so-all-about.jpg" alt="" class="w-100">
-
-    <div class="help-info-swiper">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <span>8.2k</span>
-                    <span>Meals provided</span>
-                </div>
-                <div class="swiper-slide">
-                    <span>10.1k</span>
-                    <span>Children educated</span>
-                </div>
-                <div class="swiper-slide">
-                    <span>6.6k</span>
-                    <span>People empowered</span>
-                </div>
-                <div class="swiper-slide">
-                    <span>8k</span>
-                    <span>Wells built</span>
-                </div>
-            </div>
-            <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
-            <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
-        </div>
-
-        <script>
-            var swiper = new Swiper('.help-info-swiper .swiper-container', {
-                navigation: {
-                    nextEl: '.help-info-swiper .swiper-button-next',
-                    prevEl: '.help-info-swiper .swiper-button-prev',
-                },
-            });
-        </script>
+    <div class="item">
+        <div class="num">02</div>
+        <div>use your skills</div>
+        <p>160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
     </div>
-
-    <div class="pt-3"></div>
-    <div class="pl-4 pr-4">
-        <div class="box bg-red text-center">
-            <p class="text-white font-size-12 text-uppercase mb-4"><b>Latest mission</b></p>
-            <p class="text-white font-size-30 font-weight-light text-uppercase mb-0">Tanzania</p>
-            <p class="text-white font-size-16 text-uppercase mb-4"><b>20th August 2020</b></p>
-            <a href="#" class="btn btn-outline-primary border-white">Apply now</a>
-        </div>
+    <div class="item pl-0 pl-md-5">
+        <div class="num">03</div>
+        <div>make a difference</div>
+        <p>160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
     </div>
 </section>
 
-<section class="how-does-work bg-light">
-    <div class="title">
-        <svg class="decor-wave size-25 style-danger" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
-            <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
-               fill="#000000" stroke="none">
-                <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
+<section class="explore-past-missions bg-danger-light">
+    <div class="row">
+        <div class="col-12">
+            <p class="font-size-30 mb-3"><b>Explore past Projects</b></p>
+            <p class="font-size-16 mb-5">210 Characters undos omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. </p>
+            <svg class="decor-wave size-40 style-danger" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                    <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
     -86 3 -99 26 -135 63 -94 129 -129 263 -139 246 -18 368 -100 648 -439 168
     -205 344 -382 451 -455 104 -71 240 -135 362 -168 94 -26 113 -28 300 -28 185
     0 207 2 298 27 125 33 278 107 389 187 94 67 262 234 368 365 185 230 310 359
@@ -141,37 +77,9 @@
     0 -207 -2 -298 -27 -119 -32 -260 -97 -364 -169 -115 -79 -255 -219 -444 -444
     -287 -343 -383 -414 -601 -444 -94 -13 -211 -1 -302 30 -124 42 -250 154 -466
     415 -253 306 -401 438 -596 532 -152 73 -274 103 -439 109 -117 5 -134 3 -175
-    -16z"/>
-            </g>
-        </svg>
-        <p>How does it work?</p>
-        <span>Find the mission you love</span>
-    </div>
-    <div class="item">
-        <div class="num">01</div>
-        <div>FIrst you do this</div>
-        <p>160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
-    </div>
-    <div class="item">
-        <div class="num">02</div>
-        <div>Then this</div>
-        <p>160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
-    </div>
-    <div class="item pl-0 pl-md-5">
-        <div class="num">03</div>
-        <div>relief here we come</div>
-        <p>160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
-    </div>
-</section>
-
-<section class="explore-past-missions bg-red">
-    <div class="row">
-        <div class="col-12">
-            <p class="font-size-30 text-white mb-3"><b>Explore past Missions</b></p>
-            <p class="font-size-16 text-white mb-5">210 Characters undos omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. </p>
-            <div class="pt-0">
-                <a href="#" class="btn btn-outline-primary border-white">Donate now</a>
-            </div>
+    -16z"></path>
+                </g>
+            </svg>
         </div>
         <div class="col-12">
             <div class="pt-5"></div>
@@ -179,13 +87,13 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="item">
-                            <img src="img/content/explore-past-missions1.jpg" alt="">
+                            <img src="img/content/explore-past-missions3.jpg" alt="">
                             <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> Tanzania, africa</span></span>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="item">
-                            <img src="img/content/explore-past-missions2.jpg" alt="">
+                            <img src="img/content/explore-past-missions4.jpg" alt="">
                             <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> kashmir, India</span></span>
                         </div>
                     </div>
@@ -206,42 +114,59 @@
                     }
                 });
             </script>
-
         </div>
     </div>
 </section>
 
 
-<section class="experience-lifetime">
-    <p class="font-size-30 mb-0"><b>Experience of a lifetime</b></p>
-    <p class="font-size-16 mb-5 text-danger">Hear from past Mission Possible Volunteers</p>
-    <p class="font-size-40 mb-1 text-danger">JAN 20TH</p>
-    <p class="font-size-16 mb-3"><b>FATMA ALANI'S STORY</b></p>
-    <div class="pr-0 pr-md-5">
-        <p class="font-size-16 mb-5">"160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi."</p>
-    </div>
-
-    <div class="img-video" style="background-image: url(img/content/experience-lifetime.jpg)"><i class="fas fa-play-circle"></i></div>
-</section>
-
-
-<section class="be-part-possible bg-red">
-    <div class="">
-        <p class="font-size-30 text-white mb-3"><b>Be part of the Possible</b></p>
-        <p class="font-size-16 text-white mb-5">210 Characters undos omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. </p>
-        <div class="pt-0">
-            <a href="#" class="btn btn-outline-primary border-white">Apply now</a>
+<section class="be-part-possible bg-danger-light pt-0">
+    <div class="help-info-swiper red pl-0 pr-0">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <span>8.2k</span>
+                    <span>Meals provided</span>
+                </div>
+                <div class="swiper-slide">
+                    <span>10.1k</span>
+                    <span>Children educated</span>
+                </div>
+                <div class="swiper-slide">
+                    <span>6.6k</span>
+                    <span>People empowered</span>
+                </div>
+                <div class="swiper-slide">
+                    <span>8k</span>
+                    <span>Wells built</span>
+                </div>
+            </div>
+            <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
+            <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
         </div>
+
+        <script>
+            var swiper = new Swiper('.help-info-swiper .swiper-container', {
+                navigation: {
+                    nextEl: '.help-info-swiper .swiper-button-next',
+                    prevEl: '.help-info-swiper .swiper-button-prev',
+                },
+            });
+        </script>
+    </div>
+    <div class="pt-5"></div>
+
+    <p class="font-size-30 mb-3"><b>Interested? Volunteer today</b></p>
+    <p class="font-size-16 mb-5">210 Characters undos omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. </p>
+    <div class="pt-0">
+        <a href="#" class="btn btn-red">Volunteer now!</a>
     </div>
 </section>
 
 <section class="our-latest-mission">
-    <div class="title">Our latest Mission</div>
-    <div class="bg-blue">
+    <div class="title">Have you<br>heard of...</div>
+    <div class="bg-red">
         <div class="text">
-            <p class="text-white font-size-12 mb-3 text-uppercase"><b>Deployments</b></p>
-            <div class="tl text-white">Tanzania</div>
-            <p class="text-white font-size-16 mb-4 text-uppercase"><b>20th August 2020</b></p>
+            <div class="tl text-white mb-4 font-size-50">Mission Possible</div>
             <svg class="decor-wave size-25 style-white opacity-20 mb-4" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
                    fill="#000000" stroke="none">
@@ -288,9 +213,11 @@
         </div>
     </div>
     <div class="img" style="background-image: url(img/content/mission-impossible-1.jpg)">
-        <a href="#" class="btn btn-blue view-more">Apply now</a>
+        <a href="#" class="btn btn-danger-light view-more">Learn more</a>
     </div>
 </section>
+
+<div class="pt-4 pb-3"></div>
 
 <section class="discover-more bg-danger-light">
     <div class="wrap">
@@ -340,6 +267,9 @@
         </script>
     </div>
 </section>
+
+
+
 
 <?php include "_footer.php";?>
 

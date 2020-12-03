@@ -1624,7 +1624,13 @@
 }
 .mobile-template .explore-past-missions {
   padding-top: 50px;
-  padding-bottom: 80px;
+  padding-bottom: 60px;
+}
+.mobile-template .explore-past-missions .decor-wave {
+  margin-left: -300px;
+}
+.mobile-template .explore-past-missions .item {
+  box-shadow: none;
 }
 .mobile-template .explore-past-missions .swiper-pagination {
   position: relative;
@@ -1644,6 +1650,12 @@
 .mobile-template .explore-past-missions .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: #fff;
 }
+.mobile-template .explore-past-missions.bg-danger-light .swiper-pagination .swiper-pagination-bullet {
+  background: #FED4C2;
+}
+.mobile-template .explore-past-missions.bg-danger-light .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #FF5D4A;
+}
 .mobile-template .experience-lifetime {
   padding: 50px 30px 0;
 }
@@ -1655,6 +1667,7 @@
 }
 .mobile-template .our-latest-mission {
   padding: 40px 0 72px;
+  overflow: hidden;
 }
 .mobile-template .our-latest-mission .title {
   margin: 0 30px 20px;
@@ -1683,5 +1696,51 @@
   left: 50%;
   bottom: 0;
   transform: translate(-50%, 50%);
+}
+.mobile-template .head-Volunteer {
+  position: relative;
+  padding-top: 30px;
+}
+.mobile-template .head-Volunteer:before {
+  width: 200px;
+  height: 200px;
+  bottom: auto;
+  top: 60px;
+  left: auto;
+  right: 10px;
+}
+.mobile-template .head-Volunteer:after {
+  display: none;
+}
+.mobile-template .head-Volunteer h1 {
+  font-size: 40px;
+  line-height: 45px;
+  margin-bottom: 30px;
+  padding: 0;
+}
+.mobile-template .head-Volunteer img {
+  width: calc(100% + 60px) !important;
+  margin-left: -30px;
+}
+.mobile-template .head-Volunteer .box {
+  margin: -137px 0 0;
+  padding: 38px 20px 57px;
+}
+.mobile-template .head-Volunteer + .how-does-work {
+  position: relative;
+}
+.mobile-template .head-Volunteer + .how-does-work:before {
+  content: "";
+  display: block;
+  background: url(../img/Line-styling.png) no-repeat;
+  background-size: contain;
+  height: 250px;
+  width: 250px;
+  position: absolute;
+  z-index: -1;
+  right: -40px;
+  top: 0px;
+  opacity: 0.03;
+  transform: rotate(45deg);
 }
 /*# sourceMappingURL=mobile.css.map */
