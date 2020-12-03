@@ -59,7 +59,10 @@
             <img src="img/content/so-all-about.jpg" alt="" class="w-100">
         </div>
         <div class="col-6 bg-red pl-5 pr-5 d-flex align-items-center">
-            <p class="font-size-16 text-white  pl-5 pr-5 mb-0">455 characters und omnis iste natus error sit voluptatem accusantim doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed conseuntur magni dolores eos qui rati voluptate sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+            <div>
+                <p class="font-size-16 text-white  pl-5 pr-5">Mission Possible is our flagship volunteering programme and the humanitarian experience of a lifetime. A life-changing venture for volunteers and beneficiaries, it gives young people the opportunity to experience day-to-day humanitarian work on the ground.</p>
+                <p class="font-size-16 text-white  pl-5 pr-5 mb-0">As well as directly delivering aid, volunteers encounter the daily heart-breaking realities that face aid workers, including interviewing potential beneficiaries and deciding – based on needs criteria – certain aid allocations.</p>
+            </div>
         </div>
     </div>
     <div class="pt-3"></div>
@@ -127,21 +130,21 @@
             <div class="item">
                 <div class="num">01</div>
                 <div>FIrst you do this</div>
-                <p>160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
+                <p>Your journey to changing your life and those of people in need starts when you sign up. We’ll give you all the support you need to reach your fundraising target</p>
             </div>
         </div>
         <div class="col pl-0 pr-0 pl-md-5  pr-0 pr-md-5">
             <div class="item">
                 <div class="num">02</div>
                 <div>Then this</div>
-                <p>160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
+                <p>You’ll receive all the training you need for your mission, with awareness sessions on international development and briefings on your deployment and what to exp</p>
             </div>
         </div>
         <div class="col">
             <div class="item pl-0 pl-md-5">
                 <div class="num">03</div>
                 <div>relief here we come</div>
-                <p>160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
+                <p>Prepared and ready, you’ll take part in a 10-day overseas deployment with like-minded volunteers to directly deliver the aid you have raised funds for.</p>
             </div>
         </div>
     </div>
@@ -151,7 +154,7 @@
     <div class="row">
         <div class="col-12 col-md-4 pr-5">
             <p class="font-size-40 text-white mb-3"><b>Explore past Missions</b></p>
-            <p class="font-size-16 text-white mb-5">210 Characters undos omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. </p>
+            <p class="font-size-16 text-white mb-5">The first Mission Possible deployment was to Mafia Island in Tanzania in 2009. Since then, annual deployments have delivered aid and support thousands of people in some of the country’s poorest communities.</p>
             <div class="pt-0">
                 <a href="#" class="btn btn-outline-primary border-white">Donate now</a>
             </div>
@@ -179,15 +182,20 @@
 <section class="experience-lifetime">
     <div class="row">
         <div class="col-12 col-md-6">
-            <div class="img-video" style="background-image: url(img/content/experience-lifetime.jpg)"><i class="fas fa-play-circle"></i></div>
+            <div class="img-video videoWrapper" style="">
+                <iframe width="1280" height="720" src="https://www.youtube.com/embed/YMxBCe1axQ8"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
         </div>
         <div class="col-12 col-md-6 pl-5 pt-3 pb-3">
             <p class="font-size-40 mb-0"><b>Experience of a lifetime</b></p>
             <p class="font-size-16 mb-5 text-danger">Hear from past Mission Possible Volunteers</p>
             <p class="font-size-45 mb-1 text-danger">JAN 20TH</p>
-            <p class="font-size-20 mb-3"><b>FATMA ALANI'S STORY</b></p>
+            <p class="font-size-20 mb-3"><b>NAZIA CHOUDHRY</b></p>
             <div class="pr-0 pr-md-5">
-                <p class="font-size-16 mb-5">"160 characters und omnis iste natus error sit volupt accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi."</p>
+                <p class="font-size-16 mb-5">“I had come on this journey to help as many people as possible but I had also come with the intent to push myself out of my comfort zone…”</p>
             </div>
         </div>
     </div>
@@ -218,7 +226,7 @@
         </div>
         <div class="col-12 col-md-6 pl-5">
             <p class="font-size-40 text-white mb-3"><b>Be part of the Possible</b></p>
-            <p class="font-size-16 text-white mb-5">210 Characters undos omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. </p>
+            <p class="font-size-16 text-white mb-5">Mission Possible has improved the quality of life for approx. 60,000 people in need in Tanzania, and tens of thousands more have benefited indirectly through aid activities aligned towards achieving Millennium</p>
             <div class="pt-0">
                 <a href="#" class="btn btn-outline-primary border-white">Apply now</a>
             </div>
@@ -234,7 +242,7 @@
         <div class="col-7 bg-blue">
             <div class="text">
                 <div class="tl text-white">Tanzania</div>
-                <p class="text-white font-size-20 mb-4 text-uppercase"><b>Deployments 2oth August 2020</b></p>
+                <p class="text-white font-size-20 mb-4 text-uppercase"><b>Deployments 20th August 2020</b></p>
                 <svg class="decor-wave size-25 style-white opacity-20 mb-4" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
                        fill="#000000" stroke="none">

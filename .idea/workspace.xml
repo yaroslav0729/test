@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/markup/mobile/p2-Volunteer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/markup/mobile/p2-Volunteer-step.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/mobile.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/mobile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/mobile.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/mobile.css.map" afterDir="false" />
@@ -10,8 +10,7 @@
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/markup/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/mobile/_header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/mobile/_header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/mobile/p2-Mission-Impossible.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/mobile/p2-Mission-Impossible.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,25 +23,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/markup/css/mobile.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="1663" column="17" selection-start-line="1663" selection-start-column="17" selection-end-line="1663" selection-end-column="17" />
+            <state relative-caret-position="222">
+              <caret line="1644" column="8" selection-start-line="1644" selection-start-column="8" selection-end-line="1644" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/markup/mobile/p2-Volunteer-step.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#a#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#a#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/markup/mobile/p2-Volunteer.php">
+        <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="30" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="30" />
-              <folding>
-                <element signature="n#svg#0;n#div#0;n#div#0;n#section#2;n#!!top" />
-                <element signature="n#svg#0;n#div#0;n#div#1;n#section#4;n#!!top" />
-                <element signature="n#style#0;n#div#2;n#section#4;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="456">
+              <caret line="4477" column="52" selection-start-line="4477" selection-start-column="52" selection-end-line="4477" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -59,11 +67,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cove</find>
-      <find>.btn</find>
-      <find>newsroom-list</find>
-      <find>popula</find>
-      <find>current-projects-list</find>
       <find>.text</find>
       <find>.bg</find>
       <find>plus</find>
@@ -89,12 +92,18 @@
       <find>FF5D4A</find>
       <find>.font</find>
       <find>head-Volunteer</find>
+      <find>video</find>
+      <find>.videoWrapper</find>
+      <find>.head-Volunteer</find>
+      <find>head-Volunteer</find>
+      <find>form</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/resources/views</dir>
       <dir>$PROJECT_DIR$/resources</dir>
       <dir>$PROJECT_DIR$/public/markup</dir>
       <dir>$PROJECT_DIR$/public/markup/mobile</dir>
+      <dir>$PROJECT_DIR$/public/css</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -111,7 +120,6 @@
         <option value="$PROJECT_DIR$/public/markup/_footer.php" />
         <option value="$PROJECT_DIR$/public/css/styles.less" />
         <option value="$PROJECT_DIR$/public/markup/p2-Volunteer.php" />
-        <option value="$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php" />
         <option value="$PROJECT_DIR$/public/markup/p2-Volunteer-step.php" />
         <option value="$PROJECT_DIR$/public/markup/_header-newsroom.php" />
         <option value="$PROJECT_DIR$/public/markup/js/functions.js" />
@@ -119,9 +127,11 @@
         <option value="$PROJECT_DIR$/public/markup/mobile/_base.php" />
         <option value="$PROJECT_DIR$/public/markup/mobile/p2-Mission-Impossible.php" />
         <option value="$PROJECT_DIR$/public/markup/mobile/_header.php" />
-        <option value="$PROJECT_DIR$/public/markup/css/styles.less" />
         <option value="$PROJECT_DIR$/public/markup/mobile/p2-Volunteer.php" />
+        <option value="$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php" />
+        <option value="$PROJECT_DIR$/public/markup/css/styles.less" />
         <option value="$PROJECT_DIR$/public/markup/css/mobile.less" />
+        <option value="$PROJECT_DIR$/public/markup/mobile/p2-Volunteer-step.php" />
       </list>
     </option>
   </component>
@@ -431,7 +441,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71140000" />
+    <option name="totallyTimeSpent" value="74568000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="823" extended-state="0" />
@@ -588,13 +598,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/p2-Volunteer-step.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/blog-article.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -606,13 +609,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
           <caret line="299" column="13" lean-forward="true" selection-start-line="285" selection-start-column="8" selection-end-line="299" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="333" column="10" lean-forward="true" selection-start-line="288" selection-end-line="333" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -700,13 +696,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="4440" column="5" lean-forward="true" selection-start-line="4428" selection-start-column="4" selection-end-line="4440" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/mobile/p2-Volunteer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -719,10 +708,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/p2-Volunteer-step.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="27" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/p2-Mission-Impossible.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="181" column="37" lean-forward="true" selection-start-line="181" selection-start-column="37" selection-end-line="181" selection-end-column="37" />
+          <folding>
+            <element signature="n#g#0;n#svg#0;n#div#0;n#section#3;n#!!top" />
+            <element signature="n#g#0;n#svg#0;n#div#0;n#div#0;n#div#1;n#section#7;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="4477" column="52" selection-start-line="4477" selection-start-column="52" selection-end-line="4477" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/css/mobile.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="1663" column="17" selection-start-line="1663" selection-start-column="17" selection-end-line="1663" selection-end-column="17" />
+        <state relative-caret-position="222">
+          <caret line="1644" column="8" selection-start-line="1644" selection-start-column="8" selection-end-line="1644" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/mobile/p2-Volunteer-step.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
