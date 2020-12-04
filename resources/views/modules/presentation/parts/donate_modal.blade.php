@@ -5,7 +5,7 @@
         <form action="{{ route('cart.add') }}" method="POST">
           @csrf
         <div class="modal-header">
-          <h5 class="modal-title" id="donate_modalLabel">@isset($projHeading) {{ $projHeading}} @else Donate now @endisset</h5>
+          <h5 class="modal-title" id="donate_modalLabel">@empty($projHeading) Donate now @else {{ $projHeading }} @endisset</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -36,7 +36,7 @@
             <div class="col-sm-9">
             <select class="form-control" name="period">
               <option value="{{ \App\Models\CampaignPrice::TYPE_SINGLE }}">Single</option>
-                <option value="{{ \App\Models\CampaignPrice::TYPE_MONTHLY }}">Monthly</option>
+              <option value="{{ \App\Models\CampaignPrice::TYPE_MONTHLY }}">Monthly</option>
             </select>
             </div>
           </div>

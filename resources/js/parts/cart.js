@@ -74,8 +74,12 @@ $(function () {
         countryId = $('[amount-countries][data-amount_id="' + amountId +  '"] select').val()
         modal.find('input[name="campaigns"]').val(countryId)
 
-        let categories = form.find('select[name="categories"]').html()
-        modal.find('select[name="categories"]').html(categories)
+        let categoriesEl = form.find('select[name="categories"]')
+        let modalCategEl = modal.find('select[name="categories"]')
+
+        modalCategEl.html(categoriesEl.html())
+        let selectedCateg = categoriesEl.val()
+        modalCategEl.find('option[value="' + selectedCateg + '"]').attr('selected','selected')
 
         modal.modal('show')
     });

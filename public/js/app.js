@@ -91516,8 +91516,11 @@ $(function () {
     var amountId = checkedEL.data('amount_id');
     countryId = $('[amount-countries][data-amount_id="' + amountId + '"] select').val();
     modal.find('input[name="campaigns"]').val(countryId);
-    var categories = form.find('select[name="categories"]').html();
-    modal.find('select[name="categories"]').html(categories);
+    var categoriesEl = form.find('select[name="categories"]');
+    var modalCategEl = modal.find('select[name="categories"]');
+    modalCategEl.html(categoriesEl.html());
+    var selectedCateg = categoriesEl.val();
+    modalCategEl.find('option[value="' + selectedCateg + '"]').attr('selected', 'selected');
     modal.modal('show');
   });
 });
