@@ -29,7 +29,7 @@
             @endif
 
             <div class="form-group d-none" amount-countries data-amount_id={{ $amountKey }}>
-                <select class="form-control" name="campaign">
+                <select class="form-control" name="campaigns">
                     @foreach ($campaignsCountries[$amountKey] as $campId => $campName)
                         <option value="{{ $campId }}">{{ $campName }}</option>   
                     @endforeach

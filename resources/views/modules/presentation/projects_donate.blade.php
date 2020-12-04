@@ -111,7 +111,9 @@ foreach ($amount as $key => $item) {
                             </div>
                             <div class="pt-3"></div>
                             <div class="text-center">
-                                <button class="btn btn-danger border-white btn-submit">Donate</button>
+                                <button type="button" class="btn btn-danger border-white btn-submit"
+                                donate-btn
+                                >Donate</button>
                             </div>
                         </form>
                     </div>
@@ -147,7 +149,9 @@ foreach ($amount as $key => $item) {
                             </div>
                             <div class="pt-3"></div>
                             <div class="text-center">
-                                <button class="btn @if($isEmergency) btn-danger @else btn-info @endif border-white btn-submit">Donate</button>
+                                <button type="button" class="btn @if($isEmergency) btn-danger @else btn-info @endif border-white btn-submit"
+                                donate-btn
+                                >Donate</button>
                             </div>
                         </form>
                     </div>
@@ -197,7 +201,9 @@ foreach ($amount as $key => $item) {
                             </div>
                             <div class="pt-3"></div>
                             <div class="text-center">
-                                <button class="btn btn-danger border-white btn-submit">Donate</button>
+                                <button type="button" class="btn btn-danger border-white btn-submit"
+                                donate-btn
+                                >Donate</button>
                             </div>
                         </form>
                     </div>
@@ -214,4 +220,6 @@ foreach ($amount as $key => $item) {
         </div></div>
 
     </div>
+
+    @include('modules.presentation.parts.donate_modal')
 </div>

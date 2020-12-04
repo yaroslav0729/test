@@ -21,7 +21,7 @@
 
 <section class="donate-today @if($isEmergency) red-gradient @else blue-gradient @endif">
     <div class="wrap">
-        <div class="title mb-5">
+        <div class="title mb-5" project-title>
             <p class="font-size-40">
                 @empty($projHeading)
                 <b>{{ $pageInstance->name }}</b>

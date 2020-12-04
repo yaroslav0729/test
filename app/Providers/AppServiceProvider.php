@@ -6,6 +6,7 @@ use App\Models\PageInstance;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use App\Models\CartItem;
 
 class AppServiceProvider extends ServiceProvider
 {

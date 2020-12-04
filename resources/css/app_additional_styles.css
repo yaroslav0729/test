@@ -48,6 +48,7 @@
     background-color: #F97866;
     border: 1px solid #F97866;
 }
+#donate_modal label {text-transform: none; font-weight: bold; font-size: 14px; padding-top: 20px;}
 
 
 

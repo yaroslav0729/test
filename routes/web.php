@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\CampaignCategoryController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\DonationController;
+use App\Http\Controllers\CartController;
 
 use App\Models\User;
 /*
@@ -80,6 +81,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::prefix('cart')->group(function () {
+    Route::post('/add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/remove/{itemId}', [CartController::class, 'remove'])->name('cart.remove');
+});
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 //Route::get('/test', [Controller::class, 'test']);

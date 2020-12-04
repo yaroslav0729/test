@@ -36,7 +36,7 @@ class Campaign extends Model
             return $this->country->name;
         }
         else {
-            return "";
+            return $this->name . " - no country selected";
         }
     }
 

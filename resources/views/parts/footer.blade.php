@@ -34,4 +34,4 @@
         </div>
     </footer>
 
-    @include('parts.modal_card')
+    @include('parts.modal_cart')
