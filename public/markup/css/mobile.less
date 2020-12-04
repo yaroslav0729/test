@@ -140,6 +140,7 @@ header {
   background: #E3EFFE;
   .top-bar {
 	padding: 14px 12px;
+	box-shadow: 0 18px 35px 0 rgba(104,110,117,0.1);
 	.logo {
 	  font-size: 16px;
 	  span {
@@ -1683,5 +1684,75 @@ footer {
 	  }
 	}
   }
+
+  .newsroom-tabs {
+	padding: 36px 20px 0;
+	.general-content-tabs {
+	  margin-bottom: 21px;
+	  .nav-tabs .nav-link {
+		font-size: 12px;
+		padding: 10px 5px;
+	  }
+	}
+  }
+  .newsroom-list {
+	padding: 40px 20px 40px;
+	background: #F5F5F7;
+	&:before {display: none}
+	.title {
+	  margin: 0 0 35px;
+	  span {font-size: 60px;}
+	  i {font-size: 25px;}
+	  & > div {
+		position: relative;
+		bottom: 0;
+		margin-bottom: 45px;
+		&:nth-child(2) {margin-bottom: 0}
+		.btn {
+		  right: 0;
+		  margin: 0 5px;
+		  padding: 20px 20px;
+		}
+	  }
+	}
+	.item {
+	  padding: 10px 0 10px 20px;
+	  margin-right: 30px;
+	  .img {
+		width: 100px; height: 100px;
+		right: -30px;
+	  }
+	  .tl {
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 20px;
+		margin-top: 10px;
+	  }
+	  .date {
+		font-size: 10px;
+		font-weight: 500;
+		letter-spacing: 0.63px;
+		line-height: 1.7;
+	  }
+	}
+  }
+
+  .popular-topic-list {
+	background: #F5F5F7;
+	padding: 20px 20px 30px;
+	.current-projects-list {margin-bottom: 0;}
+	.title {
+	  font-size: 20px;
+	  letter-spacing: 1px;
+	  line-height: 30px;
+	  text-align: center;
+	  padding: 0;
+	  margin: 0 0 39px;
+	}
+	.item .descr {
+	  span:first-child {margin-bottom: 5px}
+	}
+  }
+
 
 }
