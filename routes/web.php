@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MenuItemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PageController;
@@ -48,6 +49,15 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         Route::get('/post_history/{id}', [AdminPageController::class, 'history'])->name('admin.pages.history');
         Route::post('/restore_post/{id}', [AdminPageController::class, 'restore'])->name('admin.pages.restore');
         Route::post('/save_status/{id}', [AdminPageController::class, 'saveStatus'])->name('admin.pages.save_status');
+
+        Route::prefix('menu')->group(function (){
+            Route::get('/{menuSlug}', [MenuItemController::class, 'index'])->name('admin.menu_items.index');
+            Route::post('/{menuSlug}', [MenuItemController::class, 'store'])->name('admin.menu_items.store');
+            Route::match(['get', 'post'], '/{menuSlug}/create', [MenuItemController::class, 'create'])->name('admin.menu_items.create');
+            Route::match(['get', 'post'],'/{menuSlug}/{id}', [MenuItemController::class, 'edit'])->name('admin.menu_items.edit');
+            Route::put('/{menuSlug}/{id}', [MenuItemController::class, 'update'])->name('admin.menu_items.update');
+            Route::delete('/{menuSlug}/{id}', [MenuItemController::class, 'destroy'])->name('admin.menu_items.destroy');
+        });
 
         Route::prefix('users')->group(function () {
             Route::get('edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');

@@ -1,21 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
-    
+
 <div id="admin_content" class="bg-gray-100 flex-auto h-screen">
     <div class="p-5 pb-8">
         <h1>Campaigns:</h1>
-
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-              <div class="flex">
-                <div>
-                  <p class="font-weight-bold">Success</p>
-                  <p class="text-sm">{{ session('status') }}</p>
-                </div>
-              </div>
-            </div>
-        @endif
 
         <a href="{{ route('admin.campaigns.create') }}">
           <button class="btn btn-success mt-3 mb-3" type="button" title="Create campaign">
@@ -55,11 +44,11 @@
 
                             @csrf
                             @method('DELETE')
-    
+
                             <button class="btn btn-danger action-btn" type="submit" title="Delete campaign" onclick="return confirm('Are you sure want to delete?')">
                               <i class="fas fa-trash-alt"></i>
                             </button>
-    
+
                         </form>
                         </td>
                     </tr>

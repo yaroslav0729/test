@@ -39,19 +39,6 @@ if (isset($page)) {
 
 <div id="admin_content" class="flex-auto">
 
-    @if ($errors->any())
-        <div class="p-3">
-            <div class="alert alert-danger" role="alert">
-                <strong class="font-weight-bold">Validation errors:</strong>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    @endif
-
     <div class="alert alert-danger" style="display: none;">
         <ul id="modal-errors">
         </ul>
