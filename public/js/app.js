@@ -91460,6 +91460,10 @@ function initSwiper() {
 /***/ (function(module, exports) {
 
 $(function () {
+  $(document).on('click', '#cartModal .btn-remove', function (e) {
+    e.preventDefault();
+    $(this).closest('form').submit();
+  });
   $(document).on('click', '[donate-btn]', function (e) {
     e.preventDefault(); //toastr.success('message')
 

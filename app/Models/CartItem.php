@@ -24,4 +24,45 @@ class CartItem extends Model
             $model->cart_item_id = $randomStr;
         });    
     }
+
+    public function campaign()
+    {
+        return $this->hasOne('App\Models\Campaign');
+    }
+
+    public function campaign_category()
+    {
+        return $this->belongsTo('App\Models\CampaignCategory');
+    }
+
+    public static function getCart()
+    {
+        $cartItems = session()->get('cart');
+
+        if (is_array($cartItems)) {
+            
+            return \App\Models\CartItem::whereIn('cart_item_id', $cartItems)->get();
+        }
+        
+        return [];
+    }
+
+    public static function getCartSum()
+    {
+        $cartItems = session()->get('cart');
+
+        if (is_array($cartItems)) {
+            
+            $items = \App\Models\CartItem::whereIn('cart_item_id', $cartItems)->get();
+        
+            $sum = 0;
+            foreach ($items as $item) {
+                $sum = $sum + $item->amount;    
+            }
+
+            return $sum;
+        }
+        
+        return 0;
+    }
 }

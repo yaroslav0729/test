@@ -1,3 +1,9 @@
+@php
+
+$cartSum = \App\Models\CartItem::getCartSum(); 
+
+@endphp
+
 <header  class="only-menu">
     <div class="down-bar">
         <div class="wrap">
@@ -19,7 +25,11 @@
                 </div>
                 <div class="col-4 text-right">
                     <a href="{{ \App\Models\Page::getProjectsUrl() }}" class="btn btn-danger" data-toggle="modal" data-target="#foodPack">Donate</a>
-                    <div class="basket" data-toggle="modal" data-target="#cartModal"><i></i> <span>£50.00</span></div>
+                    <div class="basket" data-toggle="modal" data-target="#cartModal"><i></i> 
+                        @if($cartSum > 0)
+                            <span>£{{ $cartSum }}</span>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

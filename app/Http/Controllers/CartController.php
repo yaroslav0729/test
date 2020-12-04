@@ -25,18 +25,43 @@ class CartController extends Controller
         
         $period = $request->period;
 
-        CartItem::create([
+        $cartItem = CartItem::create([
             'amount' => $amount,
             'campaign_id' => $campaignId,
             'campaign_category_id' => $categoryId,
             'period' => $period
         ]);
 
+        $this->sessionCartPut($cartItem->cart_item_id);
+
         return redirect()->back();
     }
 
-    public function remove()
+    public function remove(Request $request, $itemId)
     {
-        return "remove"; 
+        CartItem::where('cart_item_id', $itemId)->delete();
+
+        $this->sessionCartDelete($itemId);
+
+        return redirect()->back(); 
+    }
+
+    protected function sessionCartPut($itemId)
+    {
+        $cart = session()->get('cart');
+        $cart[] = $itemId;
+        session()->put('cart', $cart);
+    }
+
+    protected function sessionCartDelete($itemId)
+    {
+        $cart = session()->get('cart');
+        $key = array_search($itemId, $cart);
+
+        if ($key !== false) {
+            unset($cart[$key]);
+        }
+
+        session()->put('cart', $cart);
     }
 }

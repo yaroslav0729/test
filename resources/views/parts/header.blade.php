@@ -1,3 +1,9 @@
+@php
+
+$cartSum = \App\Models\CartItem::getCartSum(); 
+
+@endphp
+
 <header>
     <div class="top-bar">
         <div class="wrap">
@@ -11,7 +17,11 @@
                 </div>
                 <div class="col-6 text-right">
                     <div class="phone">020 5000 2400 <i></i></div>
-                    <div class="basket" data-toggle="modal" data-target="#cartModal"><i></i> <span>£50.00</span></div>
+                    <div class="basket" data-toggle="modal" data-target="#cartModal"><i></i> 
+                        @if($cartSum > 0)
+                            <span>£{{ $cartSum }}</span>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
