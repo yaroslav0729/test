@@ -223,7 +223,7 @@ class PageController extends Controller
 
         $page->save();
 
-        return redirect()->route('admin.pages.index')->with('status', 'Page status changed successfully!');
+        return redirect()->back()->with('status', 'Page status changed successfully!');
     }
 
     public function getTemplateForm($templateId, Request $request)

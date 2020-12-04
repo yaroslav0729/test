@@ -17,11 +17,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                 </div>
                 <div class="col-6 text-right">
                     <div class="phone">020 5000 2400 <i></i></div>
-                    <div class="basket" data-toggle="modal" data-target="#cartModal"><i></i> 
-                        @if($cartSum > 0)
-                            <span>£{{ $cartSum }}</span>
-                        @endif
-                    </div>
+                    @include('parts.basket')
                 </div>
             </div>
         </div>

@@ -19,12 +19,7 @@
           </div>
 
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Select the country:</label>
-            <div class="col-sm-9">
-            <select class="form-control" name="campaigns">
-                {{-- will be replaced by js --}}
-            </select>
-            </div>
+            <input type="hidden" name="campaigns" value="" />
           </div>
 
           <div class="form-group row">

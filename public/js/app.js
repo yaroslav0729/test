@@ -91472,6 +91472,13 @@ $(function () {
         if (response.success) {
           var newCart = $('.modal-body', response.cart_html);
           $('#cartModal .modal-body').html(newCart.html());
+          $('.basket #sum').text(response.sum);
+
+          if (response.sum > 0) {
+            $('.basket span').removeClass('d-none');
+          } else {
+            $('.basket span').addClass('d-none');
+          }
         }
       },
       error: function error(response) {
@@ -91481,19 +91488,17 @@ $(function () {
   }
 
   $(document).on('click', '#cartModal .btn-remove', function (e) {
-    e.preventDefault(); //var form = $(this).closest('form')
-    //form.submit()
+    e.preventDefault();
+    var form = $(this).closest('form'); //form.submit()
 
-    var form = $(this).closest('form');
     sendFormAndRefreshCard(form);
-  }); // $(document).on('submit', '#donate_modal', function (e) {
-  //     e.preventDefault()
-  //     console.log('submit')
-  //     var form = $(this)
-  //     sendFormAndRefreshCard(form)
-  //     $('#donate_modal').modal('hide');
-  // })
-
+  });
+  $(document).on('submit', '#donate_modal form', function (e) {
+    e.preventDefault();
+    var form = $(this);
+    sendFormAndRefreshCard(form);
+    $('#donate_modal').modal('hide');
+  });
   $(document).on('click', '[donate-btn]', function (e) {
     e.preventDefault(); //toastr.success('message')
 
@@ -91509,8 +91514,8 @@ $(function () {
     modal.find('input[name="amount"]').val(amount);
     var checkedEL = form.find('input[name="price"]:checked').closest('[select-amount]');
     var amountId = checkedEL.data('amount_id');
-    var countries = $('[amount-countries][data-amount_id="' + amountId + '"] select').html();
-    modal.find('select[name="campaigns"]').html(countries);
+    countryId = $('[amount-countries][data-amount_id="' + amountId + '"] select').val();
+    modal.find('input[name="campaigns"]').val(countryId);
     var categories = form.find('select[name="categories"]').html();
     modal.find('select[name="categories"]').html(categories);
     modal.modal('show');

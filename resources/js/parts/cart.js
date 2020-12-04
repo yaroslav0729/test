@@ -16,6 +16,14 @@ $(function () {
 
                     let newCart = $('.modal-body', response.cart_html)
                     $('#cartModal .modal-body').html(newCart.html())
+
+                    $('.basket #sum').text(response.sum)
+
+                    if (response.sum > 0) {
+                        $('.basket span').removeClass('d-none')
+                    } else {
+                        $('.basket span').addClass('d-none')
+                    }
                 }
             },
             error: function(response) {
@@ -28,24 +36,21 @@ $(function () {
     $(document).on('click', '#cartModal .btn-remove', function (e) {
         e.preventDefault()
 
-        //var form = $(this).closest('form')
-        //form.submit()
-
         var form = $(this).closest('form')
+
+        //form.submit()
         sendFormAndRefreshCard(form)
     })
 
-    // $(document).on('submit', '#donate_modal', function (e) {
-    //     e.preventDefault()
+    $(document).on('submit', '#donate_modal form', function (e) {
+        e.preventDefault()
 
-    //     console.log('submit')
+        var form = $(this)
 
-    //     var form = $(this)
+        sendFormAndRefreshCard(form)
 
-    //     sendFormAndRefreshCard(form)
-
-    //     $('#donate_modal').modal('hide');
-    // })
+        $('#donate_modal').modal('hide');
+    })
 
     $(document).on('click', '[donate-btn]', function (e) {
         e.preventDefault()
@@ -66,9 +71,8 @@ $(function () {
         let checkedEL = form.find('input[name="price"]:checked').closest('[select-amount]')
         let amountId = checkedEL.data('amount_id')
 
-        let countries = $('[amount-countries][data-amount_id="' + amountId +  '"] select').html()
-        
-        modal.find('select[name="campaigns"]').html(countries)
+        countryId = $('[amount-countries][data-amount_id="' + amountId +  '"] select').val()
+        modal.find('input[name="campaigns"]').val(countryId)
 
         let categories = form.find('select[name="categories"]').html()
         modal.find('select[name="categories"]').html(categories)
