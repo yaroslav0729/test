@@ -91460,10 +91460,40 @@ function initSwiper() {
 /***/ (function(module, exports) {
 
 $(function () {
+  function sendFormAndRefreshCard(form) {
+    var formData = new FormData(form[0]);
+    $.ajax({
+      url: form.attr('action'),
+      type: form.attr('method'),
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function success(response, textStatus, jqXHR) {
+        if (response.success) {
+          var newCart = $('.modal-body', response.cart_html);
+          $('#cartModal .modal-body').html(newCart.html());
+        }
+      },
+      error: function error(response) {
+        toastr.error('Unknown error ', 'Error');
+      }
+    });
+  }
+
   $(document).on('click', '#cartModal .btn-remove', function (e) {
-    e.preventDefault();
-    $(this).closest('form').submit();
-  });
+    e.preventDefault(); //var form = $(this).closest('form')
+    //form.submit()
+
+    var form = $(this).closest('form');
+    sendFormAndRefreshCard(form);
+  }); // $(document).on('submit', '#donate_modal', function (e) {
+  //     e.preventDefault()
+  //     console.log('submit')
+  //     var form = $(this)
+  //     sendFormAndRefreshCard(form)
+  //     $('#donate_modal').modal('hide');
+  // })
+
   $(document).on('click', '[donate-btn]', function (e) {
     e.preventDefault(); //toastr.success('message')
 
@@ -91480,7 +91510,6 @@ $(function () {
     var checkedEL = form.find('input[name="price"]:checked').closest('[select-amount]');
     var amountId = checkedEL.data('amount_id');
     var countries = $('[amount-countries][data-amount_id="' + amountId + '"] select').html();
-    console.log(countries);
     modal.find('select[name="campaigns"]').html(countries);
     var categories = form.find('select[name="categories"]').html();
     modal.find('select[name="categories"]').html(categories);
@@ -91536,7 +91565,6 @@ $(function () {
 
   $(document).on('change', 'select[name="currency"]', function () {
     var sign = $(this).find('option:selected').data('sign');
-    console.log(sign);
     $('object.currency_sign').text(sign);
     $('input[name="amount"]').attr('placeholder', sign + '  Enter amount');
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
