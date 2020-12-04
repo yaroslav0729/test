@@ -155,8 +155,6 @@ class ConvertDonationHistory extends Command
 
             $this->info($infoString);
             Log::channel('parser')->info($infoString);
-
-            if ($donationKey === 3) break;
         }
     }
 
