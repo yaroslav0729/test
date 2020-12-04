@@ -26,7 +26,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                             <div class="row">
                                 <div class="col-8">
                                     <p class="font-size-20 mb-0"><b>{{ $cartItem->campaign_category->name }}</b></p>
-                                    <p class="font-size-20 mb-0">Single payment</p>
+                                <p class="font-size-20 mb-0">{{ (int)$cartItem->period === \App\Models\CampaignPrice::TYPE_SINGLE ? 'Single' : 'Monthly' }} payment</p>
                                 </div>
                                 <div class="col-4 text-right">
                                     <form action="{{ route('cart.remove', ['itemId' => $cartItem->cart_item_id]) }}" method="POST">

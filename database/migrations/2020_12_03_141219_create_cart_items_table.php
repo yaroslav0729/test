@@ -18,7 +18,7 @@ class CreateCartItemsTable extends Migration
             $table->float('amount')->unsigned();
             $table->unsignedBigInteger('campaign_id')->nullable();
             $table->unsignedBigInteger('campaign_category_id')->nullable();
-            $table->string('period');
+            $table->unsignedInteger('period')->nullable();
             $table->string('cart_item_id')->nullable();
             $table->timestamps();
 
