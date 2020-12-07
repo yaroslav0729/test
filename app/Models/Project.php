@@ -130,9 +130,11 @@ class Project
         return $campaignsNames;
     }
 
-    public static function getProjectOptions($pageInstance)
+    public static function getProjectOptions($id)
     {
         $amount = [];
+
+        $pageInstance = PageInstance::find($id);
 
         if (isset($pageInstance->parameters['amount'])) {
             $amount = $pageInstance->parameters['amount'];  

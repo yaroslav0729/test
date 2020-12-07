@@ -24,6 +24,10 @@
         $donateToProjText = $parameters['donate_to_text'];    
     }
 
+    $sProjects = \App\Models\Project::getSingleProjects();
+    $mProjects = \App\Models\Project::getMonthlyProjects();
+    $aProjects = \App\Models\Project::getAppealProjects();
+
 @endphp
 
 
@@ -85,25 +89,13 @@
         </div>
     </div>
 
-    @php
-        $sProjects = \App\Models\Project::getSingleProjects();
-    @endphp
-
     <div class="filter_projects_single" filter-projects>
         @include('modules.presentation.projects_tiles', ['projects' => $sProjects])
     </div>
 
-    @php
-        $mProjects = \App\Models\Project::getMonthlyProjects();
-    @endphp
-
     <div class="filter_projects_monthly d-none" filter-projects>
         @include('modules.presentation.projects_tiles', ['projects' => $mProjects])
     </div>
-
-    @php
-        $aProjects = \App\Models\Project::getAppealProjects();
-    @endphp
 
     <div class="filter_projects_appeal d-none" filter-projects>
         @include('modules.presentation.projects_tiles', ['projects' => $aProjects])

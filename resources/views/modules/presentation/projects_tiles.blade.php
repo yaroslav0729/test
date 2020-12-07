@@ -24,9 +24,9 @@
                             <div class="item">
                                 <div class="img" style="background-image: url({{ $projInstance->preview_img }})">
                                     <div class="top-bar">
-                                        <div class="add" data-popup="{{ $projKey }}"><i class="far fa-plus"></i></div>
+                                        <div class="add" data-id="{{ $projInstance->id}} "><i class="far fa-plus"></i></div>
                                         
-                                        @include('modules.presentation.parts.projects_tiles_popup', ['popupKey' => $projKey])
+                                        @include('modules.presentation.parts.projects_tiles_popup', ['popupKey' => $projInstance->id])
                                     </div>
                                 </div>
                                 <div class="descr">

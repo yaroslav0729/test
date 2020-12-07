@@ -91608,17 +91608,58 @@ $(function () {
 $(function () {
   //~~~~~~~~~~~~~~~~~~ Project tiles ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   $(document).on('click', '.donate-projects-list .add', function () {
-    var popupKey = $(this).data('popup');
-    var popup = $('.tiles-popup_' + popupKey);
+    var projId = $(this).data('id');
+    var popup = $('.tiles-popup_' + projId);
     $('[tiles-popup]').addClass('d-none');
-    var el = $('.tiles-popup_' + popupKey + ' form');
+    var el = $('.tiles-popup_' + projId + ' form');
+    var options = [];
+    options = getPopupOptions(projId);
+    popup.find('.project_popup_options').text(JSON.stringify(options));
+    restoreOptions(el, options);
     changeCampaignsDropdown(el);
     changeCategoriesDropdown(el);
     popup.removeClass('d-none');
   });
   $(document).on('click', '[tiles-popup] .close', function () {
     $('[tiles-popup]').addClass('d-none');
-  }); //~~~~~~~~~~~~~~~~ Project tiles filters ~~~~~~~~~~~~~~~~~~~~~~
+  });
+
+  function restoreOptions(el, options) {
+    var htmlOptions = '';
+    options.single.forEach(function (item, i, arr) {
+      htmlOptions = htmlOptions + '<option value=' + item.price + '>' + item.price + '</option>';
+    });
+    el.find('select[name="price_single"]').html(htmlOptions);
+    htmlOptions = '';
+    options.monthly.forEach(function (item, i, arr) {
+      htmlOptions = htmlOptions + '<option value=' + item.price + '>' + item.price + '</option>';
+    });
+    el.find('select[name="price_monthly"]').html(htmlOptions);
+    var firstPrice = options.single[0].campaigns;
+    htmlOptions = '';
+
+    for (key in firstPrice) {
+      htmlOptions = htmlOptions + '<option value=' + key + '>' + firstPrice[key].name + '</option>';
+    }
+
+    el.find('select[name="campaign"]').html(htmlOptions);
+  }
+
+  function getPopupOptions(projId) {
+    var url = '/api/get_proj_options/' + projId;
+    var options = [];
+    $.ajax({
+      async: false,
+      type: 'GET',
+      url: url,
+      success: function success(response) {
+        options = response.popup_options;
+      },
+      error: function error(e) {}
+    });
+    return options;
+  } //~~~~~~~~~~~~~~~~ Project tiles filters ~~~~~~~~~~~~~~~~~~~~~~
+
 
   $(document).on('click', '[donate-filter]', function () {
     var filter = $(this).data('filter');
