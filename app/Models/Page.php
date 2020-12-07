@@ -85,15 +85,6 @@ class Page extends Model
         return url($slug);
     }
 
-    public static function getAllProjects()
-    {
-        $pages = Page::whereHas('pageInstances', function (Builder $query) {
-            $query->where('template', Template::PROJECT_PAGE);
-        })->get();
-
-        return $pages;
-    }
-
     public static function getAllEvents()
     {
         $pages = Page::whereHas('pageInstances', function (Builder $query) {

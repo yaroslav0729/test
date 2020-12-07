@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\Category;
+use App\Models\CampaignPrice;
 
 class PageInstance extends Model
 {
@@ -26,6 +27,84 @@ class PageInstance extends Model
         'parameters',
         'html'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::updating(function($model){
+            $model->is_single = self::isSingleParam($model->parameters);
+            $model->is_monthly = self::isMonthlyParam($model->parameters);
+            $model->is_appeal = self::isAppealParam($model->parameters);
+        });
+    }
+
+    public function refreshParams()
+    {
+        $this->is_single = self::isSingleParam($this->parameters);
+        $this->is_monthly = self::isMonthlyParam($this->parameters);
+        $this->is_appeal = self::isAppealParam($this->parameters);
+
+        $this->save();
+    }
+
+    protected static function isSingleParam($parameters)
+    {
+        if (isset($parameters['amount'])) {
+            foreach ($parameters['amount'] as $price) {
+                if ((isset($price['type'])) && ((int)$price['type'] === CampaignPrice::TYPE_SINGLE)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    protected static function isMonthlyParam($parameters)
+    {
+        if (isset($parameters['amount'])) {
+            foreach ($parameters['amount'] as $price) {
+                if ((isset($price['type'])) && ((int)$price['type'] === CampaignPrice::TYPE_MONTHLY)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    protected static function isAppealParam($parameters)
+    {
+        if (isset($parameters['amount'])) {
+            foreach ($parameters['amount'] as $price) {
+                if (isset($price['campaigns'])) {
+                    $campaigns = Campaign::whereIn('id', $price['campaigns'])->emergency()->get();
+                    if (count($campaigns)) {
+                        return true;
+                    }
+                    
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function scopeSingle($query)
+    {
+        return $query->where('is_single', true);
+    }
+
+    public function scopeMonthly($query)
+    {
+        return $query->where('is_monthly', true);
+    }
+
+    public function scopeAppeal($query)
+    {
+        return $query->where('is_appeal', true);
+    }
 
     protected $casts = [
         'parameters' => 'array',
