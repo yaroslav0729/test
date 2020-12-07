@@ -47,6 +47,11 @@ class Page extends Model
         return self::POST_STATUS[$this->status];
     }
 
+    public function scopePublished($query)
+    {
+        return $query->where('status', self::PAGE_STATUS_PUBLICHED);    
+    }
+
     public function scopeIndex($query)
     {
         return $query->where('type', self::TYPE_INDEX_PAGE);

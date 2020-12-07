@@ -12,9 +12,9 @@ class Project
 {
     public static function getAllProjects()
     {
-        $pages = \App\Models\Page::whereHas('pageInstances', function (Builder $query) {
-            $query->where('template', Template::PROJECT_PAGE)->published();
-        })->get();
+        $pages = Page::whereHas('pageInstances', function (Builder $query) {
+            $query->where('template', Template::PROJECT_PAGE);
+        })->published()->get();
 
         return $pages;
     }

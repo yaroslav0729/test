@@ -66,12 +66,12 @@ class PageInstance extends Model
         return ($this->page->status === \App\Models\Page::PAGE_STATUS_PUBLICHED);
     }
 
-    public function scopePublished($query)
-    {
-        return $query->whereHas('page', function(Builder $queryPage) {
-            $queryPage->where('status', Page::PAGE_STATUS_PUBLICHED);
-        });
-    }
+    // public function scopePublished($query)
+    // {
+    //     return $query->whereHas('page', function(Builder $queryPage) {
+    //         $queryPage->where('status', Page::PAGE_STATUS_PUBLICHED);
+    //     });
+    // }
 
     public function scopeActual($query)
     {

@@ -6,6 +6,7 @@ use App\Models\Page;
 use App\Models\PageInstance;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Illuminate\Database\Eloquent\Builder;
 
 class PageController extends Controller
 {
@@ -42,7 +43,9 @@ class PageController extends Controller
 
         $pageInstance = PageInstance::where('slug', $slug)
             ->where('actual', true)
-            ->published()
+            ->whereHas('page', function(Builder $queryPage) {
+                $queryPage->published();
+            })
             ->firstOrFail();
 
         SEOMeta::setTitle($pageInstance->title);
