@@ -17,6 +17,9 @@ $(function () {
                     let newCart = $('.modal-body', response.cart_html)
                     $('#cartModal .modal-body').html(newCart.html())
 
+                    let newCartDonate = $(response.cart_donate)
+                    $('.about-donation').html(newCartDonate.html())
+
                     $('.basket #sum').text(response.sum)
 
                     if (response.sum > 0) {
@@ -34,6 +37,15 @@ $(function () {
     }
 
     $(document).on('click', '#cartModal .btn-remove', function (e) {
+        e.preventDefault()
+
+        var form = $(this).closest('form')
+
+        //form.submit()
+        sendFormAndRefreshCard(form)
+    })
+
+    $(document).on('click', '.about-donation .btn-remove', function (e) {
         e.preventDefault()
 
         var form = $(this).closest('form')

@@ -91403,6 +91403,10 @@ $(function () {
   $(document).on('click', '.calculator .title .bottom .toggle-title', function () {
     $('.calculator .title .top .toggle-title').removeClass('open');
     $('.calculator .title .bottom').removeClass('open');
+  }); //~~~~~~~~~~~~~~~~~~ Set disabled input link if group ~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('change', '#create-menu-item #is_group', function () {
+    $('#create-menu-item #link').prop("disabled", this.checked);
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }); //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
 
@@ -91472,6 +91476,8 @@ $(function () {
         if (response.success) {
           var newCart = $('.modal-body', response.cart_html);
           $('#cartModal .modal-body').html(newCart.html());
+          var newCartDonate = $(response.cart_donate);
+          $('.about-donation').html(newCartDonate.html());
           $('.basket #sum').text(response.sum);
 
           if (response.sum > 0) {
@@ -91488,6 +91494,12 @@ $(function () {
   }
 
   $(document).on('click', '#cartModal .btn-remove', function (e) {
+    e.preventDefault();
+    var form = $(this).closest('form'); //form.submit()
+
+    sendFormAndRefreshCard(form);
+  });
+  $(document).on('click', '.about-donation .btn-remove', function (e) {
     e.preventDefault();
     var form = $(this).closest('form'); //form.submit()
 

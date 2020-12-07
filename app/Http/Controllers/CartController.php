@@ -39,6 +39,7 @@ class CartController extends Controller
                 'message' => 'Success message',
                 'success' => true,
                 'cart_html' => view('parts.modal_cart')->render(),
+                'cart_donate' => view('modules.presentation.donation_page_cart')->render(),
                 'sum' => CartItem::getCartSum(),
             ]); 
         }
@@ -56,6 +57,7 @@ class CartController extends Controller
                 'message' => 'Success message',
                 'success' => true,
                 'cart_html' => view('parts.modal_cart')->render(),
+                'cart_donate' => view('modules.presentation.donation_page_cart')->render(),
                 'sum' => CartItem::getCartSum(),
             ]); 
         }
