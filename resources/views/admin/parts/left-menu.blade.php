@@ -14,7 +14,6 @@
         <li><a href="{{ route('admin.donations.index') }}"><i class="far fa-usd-circle"></i>Donations</a></li>
         <li><a href="{{ route('admin.subscription.index') }}"><i class="fas fa-book"></i>Subscriptions</a></li>
         <li><a href="{{ route('media.index') }}"><i class="fas fa-photo-video"></i>Media</a></li>
-        <li><a href="{{ route('admin.settings.index') }}"><i class="fas fa-sliders-h"></i>Settings</a></li>
     </ul>
     <br><br>
 

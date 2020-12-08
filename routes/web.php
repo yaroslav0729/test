@@ -65,9 +65,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
             Route::post('update/{id}', [UserController::class, 'update'])->name('admin.user.update');
             Route::delete('delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
         });
-
-        Route::get('/settings', [SettingsController::class, 'index'])->name('admin.settings.index');
-
+        
         Route::get('/get_template_form/{templateId}', [AdminPageController::class, 'getTemplateForm'])->name('admin.get_template_form');
 
         Route::post('media/upload_mce', [MediaController::class, 'upload']);
