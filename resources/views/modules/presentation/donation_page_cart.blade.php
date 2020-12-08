@@ -71,6 +71,11 @@ $cartSum = \App\Models\CartItem::getCartSum();
                 @endforeach
             @endisset
 
+            <form action="{{ route('cart.clear') }}" method="POST">
+                @csrf
+                <a id="clear_all_btn"><i class="fal fa-times"></i> Remove all items</a>
+            </form>
+
             <div class="pt-4"></div>
             <div class="down-bar">
                 <div class="row align-items-center">
@@ -84,10 +89,10 @@ $cartSum = \App\Models\CartItem::getCartSum();
             </div>
         </div>
 
-
         <div class="text-center mb-4">
             <img src="img/payments-image.png" alt="" class="img-fluid">
-
         </div>
+
+        
     </div>
 </section>

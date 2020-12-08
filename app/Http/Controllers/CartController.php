@@ -66,6 +66,29 @@ class CartController extends Controller
         return redirect()->back(); 
     }
 
+    public function clear()
+    {
+        $itemIds = session()->get('cart');
+
+        CartItem::whereIn('cart_item_id', $itemIds)->delete();
+
+        foreach ($itemIds as $itemId) {
+            $this->sessionCartDelete($itemId);
+        }
+        
+        if (request()->ajax()) {
+            return response()->json([
+                'message' => 'Success message',
+                'success' => true,
+                'cart_html' => view('parts.modal_cart')->render(),
+                'cart_donate' => view('modules.presentation.donation_page_cart')->render(),
+                'sum' => CartItem::getCartSum(),
+            ]); 
+        }
+
+        return redirect()->back(); 
+    }
+
     protected function sessionCartPut($itemId)
     {
         $cart = session()->get('cart');

@@ -52,5 +52,18 @@
 #add_to_cart_popup {display: none}
 a #add_to_cart_popup{color:#101525}
 #add_to_cart_popup .period{text-transform: capitalize;}
-
+a#clear_all_btn {
+display: inline-block;
+color: #101525;
+font-size: 15px;
+font-weight: 500;
+letter-spacing: 1px;
+line-height: 22px;
+opacity: .5;
+text-transform: uppercase;
+}
+a#clear_all_btn:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
 

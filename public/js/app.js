@@ -91560,6 +91560,12 @@ $(function () {
 
     sendFormAndRefreshCard(form);
   });
+  $(document).on('click', '#clear_all_btn', function (e) {
+    e.preventDefault();
+    var form = $(this).closest('form'); //form.submit()
+
+    sendFormAndRefreshCard(form);
+  });
   $(document).on('click', '.about-donation .btn-remove', function (e) {
     e.preventDefault();
     var form = $(this).closest('form'); //form.submit()
