@@ -14,6 +14,7 @@ use App\Http\Requests\Admin\WidgetAddRequest;
 use App\Models\PostItem;
 use Illuminate\Support\Facades\Validator;
 Use \Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 class PageController extends Controller
 {
@@ -24,13 +25,30 @@ class PageController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->get('filter') === 'events') {
-            $pages = Page::getAllEvents()->paginate(20);
-        } else {
-            $pages = Page::paginate(20);
+        $templateFilter = $request->get('template');
+        $nameFilter = $request->get('search_name');
+
+        $pages = Page::whereHas('pageInstances');
+
+        if (isset($templateFilter) && ($templateFilter !== '0')) {
+            $pages = $pages->whereHas('pageInstances', function (Builder $query) use ($templateFilter) {
+                $query->where('template', $templateFilter);
+            });
+        } 
+
+        if (!empty($nameFilter)) {
+            $pages = $pages->whereHas('pageInstances', function (Builder $query) use ($nameFilter) {
+                $query->where('name', 'like',  '%' . $nameFilter . '%');
+            });
         }
 
-        return view('admin.pages.index', ['pages' => $pages]);
+        $pages = $pages->paginate(10);
+
+        return view('admin.pages.index', [
+            'pages' => $pages,
+            'templateFilter' => $templateFilter,
+            'nameFilter' => $nameFilter
+        ]);
     }
 
     /**

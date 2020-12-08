@@ -6,6 +6,30 @@
     <div class="p-5 pb-8">
         <h1>Pages:</h1>
 
+        <form action="{{ route('admin.pages.index') }}" method="get">
+          <div class="row">
+            <div class="form-group col-6">
+              <label>Filter name:</label>
+              <input class="form-control" @if(!empty($nameFilter)) value="{{ $nameFilter }}" @endif name="search_name" type="text" />
+            </div>
+            <div class="form-group col-6">
+              <label>Filter template:</label>
+              <select name="template" class="form-control">
+                <option value="0">Not selected</option>
+                @foreach (\App\Models\Template::ALL_TEMPLATES as $template)
+                    <option value="{{ $template }}"
+                    @if((!empty($templateFilter)) && ((int)$templateFilter === $template))
+                    selected
+                    @endif
+                    >{{ \App\Models\Template::getLabel($template) }}</option>
+                @endforeach
+              </select>
+            </div>
+            </div>
+          <button class="btn btn-primary">Filter</button>
+          <a href="{{ route('admin.pages.index') }}"><button class="btn btn-info" type="button">Clear all filters</button></a>
+        </form>
+
         <a href="{{ route('admin.pages.create') }}">
           <button class="btn btn-success mt-3 mb-3" type="button" title="Create post">
             <i class="far fa-plus-square mr-2"></i>Create
@@ -90,7 +114,7 @@
 
             </tbody>
           </table>
-          {{ $pages->links() }}
+          {{ $pages->appends(request()->except('page'))->links() }}
     </div>
 </div>
 
