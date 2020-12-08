@@ -91465,6 +91465,18 @@ $(function () {
   $(document).on('change', '#create-menu-item #is_group', function () {
     $('#create-menu-item #link').prop("disabled", this.checked);
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  $('.toggle-manual-address').on('click', function (e) {
+    e.preventDefault();
+    $('.manual-address').toggle();
+  });
+  $(function () {
+    $('.toggle-view-donation-info').on('click', function (e) {
+      e.preventDefault();
+      $('.toggle-view-donation').toggleClass('open');
+      $('.donated-page .info-col').toggleClass('hide');
+    });
+  }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }); //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
 
 function convertMonetary(value) {

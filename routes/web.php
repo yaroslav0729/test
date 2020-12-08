@@ -86,6 +86,8 @@ Route::prefix('cart')->group(function () {
     Route::post('/add', [CartController::class, 'add'])->name('cart.add');
     Route::post('/remove/{itemId}', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
+    Route::get('/payment', [CartController::class, 'paymentForm'])->name('cart.payment');
+    Route::post('/payment', [CartController::class, 'order'])->name('cart.order');
 });
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');

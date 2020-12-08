@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\CampaignCategory;
 use App\Models\CartItem;
 use App\Models\CampaignPrice;
+use App\Models\Donation;
+use App\Models\Order;
 
 class CartController extends Controller
 {
@@ -68,13 +70,7 @@ class CartController extends Controller
 
     public function clear()
     {
-        $itemIds = session()->get('cart');
-
-        CartItem::whereIn('cart_item_id', $itemIds)->delete();
-
-        foreach ($itemIds as $itemId) {
-            $this->sessionCartDelete($itemId);
-        }
+        $this->clearCart();
         
         if (request()->ajax()) {
             return response()->json([
@@ -87,6 +83,45 @@ class CartController extends Controller
         }
 
         return redirect()->back(); 
+    }
+
+    protected function clearCart()
+    {
+        $itemIds = session()->get('cart');
+
+        CartItem::whereIn('cart_item_id', $itemIds)->delete();
+
+        session()->put('cart', []);
+    }
+
+    public function paymentForm()
+    {
+        return view('pages.payment');
+    }
+
+    public function order(Request $request)
+    {
+        $order = Order::create($request->all());
+
+        $cartIds = session()->get('cart');
+        $cartItems = CartItem::whereIn('cart_item_id', $cartIds)->get();
+
+        foreach ($cartItems as $cartItem) {
+            Donation::create([
+                'value' => $cartItem->amount,
+                'order_id' => $order->id,
+                'type' => $cartItem->period,
+                'currency' => 'GBP',
+                'campaign_id' => $cartItem->campaign_id,
+                'campaign_category_id' => $cartItem->campaign_category_id,
+                'user_id' => null, //auth()->user ? auth()->user->id : null,
+                'email' => $order->email,
+            ]);
+        }
+
+        $this->clearCart();
+
+        return redirect('/donate')->with('success', 'Order created successfully');
     }
 
     protected function sessionCartPut($itemId)

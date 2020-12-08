@@ -30,6 +30,13 @@
 
 @endphp
 
+@if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+@endif
 
 <section class="donate-today">
     <div class="wrap">
