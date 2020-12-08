@@ -91533,6 +91533,25 @@ function initSwiper() {
 /***/ (function(module, exports) {
 
 $(function () {
+  $(document).on('click', '[tiles-popup] .btn_sbmt', function (e) {
+    e.preventDefault();
+    var form = $(this).closest('form');
+    var type = form.find('select[name="period"]').val();
+    var price;
+
+    if (type === 'single') {
+      price = form.find('select[name="price_single"]').val();
+    } else {
+      price = form.find('select[name="price_monthly"]').val();
+    }
+
+    form.find('input[name="amount"]').val(price); //form.submit()
+
+    sendFormAndRefreshCard(form);
+    $('[tiles-popup]').addClass('d-none');
+    $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
+  });
+
   function sendFormAndRefreshCard(form) {
     var formData = new FormData(form[0]);
     var lastAmount = form.find('input[name="amount"]').val();
@@ -91686,7 +91705,10 @@ $(function () {
   !*** ./resources/js/parts/project_tiles.js ***!
   \*********************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+var _require = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),
+    data = _require.data;
 
 $(function () {
   //~~~~~~~~~~~~~~~~~~ Project tiles ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -91725,7 +91747,7 @@ $(function () {
       htmlOptions = htmlOptions + '<option value=' + key + '>' + firstPrice[key].name + '</option>';
     }
 
-    el.find('select[name="campaign"]').html(htmlOptions);
+    el.find('select[name="campaigns"]').html(htmlOptions);
   }
 
   function getPopupOptions(projId) {
@@ -91764,9 +91786,9 @@ $(function () {
 
   function changeCategoriesDropdown(element) {
     var form = $(element).closest('form');
-    var type = form.find('select[name="type"]').val();
+    var type = form.find('select[name="period"]').val();
     var price = form.find('select[name="price_' + type + '"]').val();
-    var campaign = form.find('select[name="campaign"]').val();
+    var campaign = form.find('select[name="campaigns"]').val();
     var options = $(element).closest('.form').find('.project_popup_options').html();
     options = JSON.parse(options);
     options = options[type];
@@ -91805,7 +91827,7 @@ $(function () {
 
   function changeCampaignsDropdown(element) {
     var form = $(element).closest('form');
-    var type = form.find('select[name="type"]').val();
+    var type = form.find('select[name="period"]').val();
     var price = form.find('select[name="price_' + type + '"]').val();
     var options = $(element).closest('.form').find('.project_popup_options').html();
     options = JSON.parse(options);

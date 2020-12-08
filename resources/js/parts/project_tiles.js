@@ -1,3 +1,5 @@
+const { data } = require("jquery");
+
 $(function () {
 
     //~~~~~~~~~~~~~~~~~~ Project tiles ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -51,7 +53,7 @@ $(function () {
             htmlOptions = htmlOptions + '<option value=' + key + '>' + firstPrice[key].name + '</option>'
         }
 
-        el.find('select[name="campaign"]').html(htmlOptions)
+        el.find('select[name="campaigns"]').html(htmlOptions)
     }
 
     function getPopupOptions(projId) {
@@ -105,9 +107,9 @@ $(function () {
     function changeCategoriesDropdown(element)
     {
         let form = $(element).closest('form')
-        let type = form.find('select[name="type"]').val()
+        let type = form.find('select[name="period"]').val()
         let price = form.find('select[name="price_' + type + '"]').val()
-        let campaign = form.find('select[name="campaign"]').val()
+        let campaign = form.find('select[name="campaigns"]').val()
 
         let options = $(element).closest('.form').find('.project_popup_options').html()
         options = JSON.parse(options)
@@ -150,7 +152,7 @@ $(function () {
     function changeCampaignsDropdown(element)
     {
         let form = $(element).closest('form')
-        let type = form.find('select[name="type"]').val()
+        let type = form.find('select[name="period"]').val()
         let price = form.find('select[name="price_' + type + '"]').val()
 
         let options = $(element).closest('.form').find('.project_popup_options').html()

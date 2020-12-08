@@ -12,9 +12,10 @@ $projPageInstance = $project->actual_page_instance;
         
     </div>
 
-    <form action="/">
+    <form action="{{ route('cart.add') }}" method="post">
+        @csrf
         <div class="form-group">
-            <select name="type" class="form-control" tiles-options-type tiles-form-options data-key={{ $popupKey }}>
+            <select name="period" class="form-control" tiles-options-type tiles-form-options data-key={{ $popupKey }}>
                 <option value="single">Single donation</option>
                 <option value="monthly">Monthly donation</option>
             </select>
@@ -32,19 +33,21 @@ $projPageInstance = $project->actual_page_instance;
             </select>
         </div>
 
+        <input type="hidden" name="amount" >
+
         <div class="form-group">
-            <select name="campaign" class="form-control" tiles-campaigns>
+            <select name="campaigns" class="form-control" tiles-campaigns>
                 {{-- will be filled in js --}}
             </select>
         </div>
         
         <div class="form-group">
-            <select name="category" class="form-control" tiles-categories>
+            <select name="categories" class="form-control" tiles-categories>
                 {{-- will be filled in js --}}
             </select>
         </div>
         <div class="text-center pt-3">
-            <a href="#" class="btn btn-danger">Add donation</a>
+            <a href="#" class="btn_sbmt btn btn-danger">Add donation</a>
         </div>
     </form>
 </div>

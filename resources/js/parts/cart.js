@@ -1,5 +1,27 @@
 $(function () {
 
+    $(document).on('click', '[tiles-popup] .btn_sbmt', function (e) {
+        e.preventDefault()
+
+        let form = $(this).closest('form')
+        
+        let type = form.find('select[name="period"]').val()
+        let price
+
+        if (type === 'single') {
+            price = form.find('select[name="price_single"]').val()
+        } else {
+            price = form.find('select[name="price_monthly"]').val()
+        }
+
+        form.find('input[name="amount"]').val(price)
+
+        //form.submit()
+        sendFormAndRefreshCard(form)
+        $('[tiles-popup]').addClass('d-none')
+        $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
+    });
+
     function sendFormAndRefreshCard(form)
     {
         var formData = new FormData(form[0]);
