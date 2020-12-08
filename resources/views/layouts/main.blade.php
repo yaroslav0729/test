@@ -9,6 +9,7 @@
             @yield('content')
             @include('parts.footer')
         </div>
+        @include('templates.presentation.parts.add_to_cart_popup')
         @yield('scripts')
     </body>
 </html>

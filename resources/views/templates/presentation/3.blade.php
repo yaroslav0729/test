@@ -176,38 +176,9 @@
         </div>
     </section>
 
-
 @endempty
 
-<div class="wrap">
-    <section class="quick-donation">
-        <div class="row gutter-5 align-items-center">
-            <div class="col-2 text-center"><b>Quick Donation</b></div>
-            <div class="col-3">
-                <div class="form-group">
-                    <select class="form-control">
-                        <option value="0">Single donation</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="form-group">
-                    <select class="form-control">
-                        <option value="0">General Charity</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="£  Enter amount">
-                </div>
-            </div>
-            <div class="col-2">
-                <button type="submit" class="btn btn-danger">Donate now</button>
-            </div>
-        </div>
-    </section>
-</div>
+@include('modules.presentation.quick_donation')
 
 <div class="wrap">
     <section class="who-we-are">

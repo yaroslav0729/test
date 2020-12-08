@@ -152,7 +152,5 @@
     </div>
 </section>
 
-@include('templates.presentation.parts.add_to_cart_popup')
-
 <div class="pt-5"></div>
 
