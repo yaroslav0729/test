@@ -42,6 +42,10 @@ $(function () {
         });
     }
 
+    $(document).on('click', '#cartModal a.btn_checkout', function (e) {
+        $('#cartModal').modal('hide');
+    })
+
     $(document).on('click', '#cartModal .btn-remove', function (e) {
         e.preventDefault()
 

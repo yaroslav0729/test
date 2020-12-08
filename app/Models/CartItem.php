@@ -41,7 +41,16 @@ class CartItem extends Model
 
         if (is_array($cartItems)) {
             
-            return \App\Models\CartItem::whereIn('cart_item_id', $cartItems)->get();
+            $items = \App\Models\CartItem::whereIn('cart_item_id', $cartItems)->get();
+        
+            $itemsCollected = [];
+
+            foreach ($items as $item) {
+                $uniqKey = $item['amount'] . '_' . $item['period'] . '_' . $item['campaign_id'] . '_' . $item['campaign_category_id'];
+                $itemsCollected[$uniqKey][] = $item;
+            }
+
+            return $itemsCollected;
         }
         
         return [];
