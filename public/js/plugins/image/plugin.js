@@ -101,7 +101,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
  * For LGPL see License.txt in the project root for license information.
  * For commercial licenses see https://www.tiny.cloud/
  *
- * Version: 5.5.1 (2020-10-01)
+ * Version: 5.6.0 (2020-11-18)
  */
 (function () {
   'use strict';
@@ -305,8 +305,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return r;
   };
 
+  var get = function get(xs, i) {
+    return i >= 0 && i < xs.length ? Optional.some(xs[i]) : Optional.none();
+  };
+
   var head = function head(xs) {
-    return xs.length === 0 ? Optional.none() : Optional.some(xs[0]);
+    return get(xs, 0);
   };
 
   var findMap = function findMap(arr, f) {
@@ -1063,10 +1067,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return isString(item.value) ? item.value : '';
   };
 
+  var getText = function getText(item) {
+    if (isString(item.text)) {
+      return item.text;
+    } else if (isString(item.title)) {
+      return item.title;
+    } else {
+      return '';
+    }
+  };
+
   var sanitizeList = function sanitizeList(list, extractValue) {
     var out = [];
     global$4.each(list, function (item) {
-      var text = isString(item.text) ? item.text : isString(item.title) ? item.title : '';
+      var text = getText(item);
 
       if (item.menu !== undefined) {
         var items = sanitizeList(item.menu, extractValue);
@@ -1831,6 +1845,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         blob: file,
         blobUri: blobUri,
         name: file.name ? file.name.replace(/\.[^\.]+$/, '') : null,
+        filename: file.name,
         base64: dataUrl.split(',')[1]
       });
     };

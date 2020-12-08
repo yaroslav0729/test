@@ -35,8 +35,8 @@
             <label class="col-sm-3 col-form-label">Period:</label>
             <div class="col-sm-9">
             <select class="form-control" name="period">
-              <option value="{{ \App\Models\CampaignPrice::TYPE_SINGLE }}">Single</option>
-              <option value="{{ \App\Models\CampaignPrice::TYPE_MONTHLY }}">Monthly</option>
+              <option value="single">Single</option>
+              <option value="monthly">Monthly</option>
             </select>
             </div>
           </div>

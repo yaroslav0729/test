@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CampaignCategory;
 use App\Models\CartItem;
+use App\Models\CampaignPrice;
 
 class CartController extends Controller
 {
@@ -23,7 +24,7 @@ class CartController extends Controller
             }
         }
         
-        $period = $request->period;
+        $period = array_search($request->period, CampaignPrice::ALL_TYPES);
 
         $cartItem = CartItem::create([
             'amount' => $amount,

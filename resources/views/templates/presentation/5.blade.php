@@ -143,12 +143,7 @@
     </div>
 </section>
 
-
-<div class="added-to-cart-snackbar">
-    <i class="fal fa-shopping-cart"></i>
-    <div class="price">£250</div>
-    <span>This Monthly Donation has been added to your cart!</span>
-</div>
+@include('templates.presentation.parts.add_to_cart_popup')
 
 <div class="pt-5"></div>
 

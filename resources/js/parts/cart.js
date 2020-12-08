@@ -4,6 +4,12 @@ $(function () {
     {
         var formData = new FormData(form[0]);
 
+        let lastAmount = form.find('input[name="amount"]').val()
+        let lastPeriod = form.find('select[name="period"]').val()
+
+        $('#add_to_cart_popup .amount').text(lastAmount)
+        $('#add_to_cart_popup .period').text(lastPeriod)
+
         $.ajax({
             url     : form.attr('action'),
             type    : form.attr('method'),
@@ -62,6 +68,9 @@ $(function () {
         sendFormAndRefreshCard(form)
 
         $('#donate_modal').modal('hide');
+
+        $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
+        
     })
 
     $(document).on('click', '[donate-btn]', function (e) {

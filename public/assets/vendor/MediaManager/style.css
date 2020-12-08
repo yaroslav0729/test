@@ -1638,7 +1638,6 @@ a[target=_blank] {
   font-family: var(--plyr-font-family, inherit);
   font-variant-numeric: tabular-nums;
   font-weight: var(--plyr-font-weight-regular, 400);
-  height: 100%;
   line-height: var(--plyr-line-height, 1.7);
   max-width: 100%;
   min-width: 200px;
@@ -2061,6 +2060,7 @@ a.plyr__control::before {
   display: block;
   height: calc((var(--plyr-range-thumb-active-shadow-width, 3px) * 2) + var(--plyr-range-thumb-height, 13px));
   margin: 0;
+  min-width: 0;
   padding: 0;
   transition: box-shadow 0.3s ease;
   width: 100%;
@@ -2231,7 +2231,7 @@ a.plyr__control::before {
   margin-right: var(--plyr-control-spacing, 10px);
 }
 
-@media (max-width: calc(768px - 1)) {
+@media (max-width: calc(768px - 1px)) {
   .plyr__time + .plyr__time {
     display: none;
   }
