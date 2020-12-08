@@ -52,7 +52,7 @@
                     </div>
                     <div class="text-right">
                         <label class="checkbox rPos">
-                            <input type="checkbox"><span><i class="fal fa-check"></i></span>
+                            <input type="checkbox" value="1" name="do_email"><span><i class="fal fa-check"></i></span>
                             <b>Stay up to date, suscribe to our Newsletter!</b>
                         </label>
                     </div>
@@ -68,7 +68,7 @@
                 <div class="col-5">
                     <div class="form-group">
                         <label><b>Postcode</b></label>
-                         <input type="text" class="form-control" name="postcode" placeholder="Enter postcode...">
+                         <input type="text" class="form-control" name="post_code" placeholder="Enter postcode...">
                     </div>
                     <div class="text-right">
                         <a href="#" class="toggle-manual-address font-size-12 text-dark">OR ENTER MANUALLY  <i class="far fa-chevron-down"></i></a>
@@ -117,7 +117,7 @@
                     <div class="col-5">
                         <div class="form-group">
                             <label><b>COUNTRY</b></label>
-                            <select class="form-control">
+                            <select class="form-control" name="country">
                                 @foreach (\App\Models\Country::getAllEnabled() as $country)
                                     <option value="{{ $country->id }}">{{ $country->name }}</option>    
                                 @endforeach
@@ -154,7 +154,7 @@
                     <div class="form-group">
                         <div class="pt-5"></div>
                         <label><b>NOTE</b> (ON BEHALF OF)</label>
-                        <textarea rows="1" name="note" class="form-control"></textarea>
+                        <textarea rows="1" name="notes" class="form-control"></textarea>
                     </div>
                 </div>
             </div>
