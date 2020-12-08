@@ -85,6 +85,21 @@ class Page extends Model
         return url($slug);
     }
 
+    public static function getZakatUrl()
+    {
+        $page = Page::whereHas('pageInstances', function (Builder $query) {
+            $query->where('template', Template::CALCULATOR_PAGE);
+        })->published()->first();
+
+        if ($page) {
+            $slug = $page->actual_page_instance->slug;
+        } else {
+            $slug = "";
+        }
+
+        return url($slug);
+    }
+
     public static function getAllEvents()
     {
         $pages = Page::whereHas('pageInstances', function (Builder $query) {
