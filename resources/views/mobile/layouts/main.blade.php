@@ -141,6 +141,17 @@
             </div>
         </div>
     </div>
+
+    @if (\Session::has('success'))
+        <div class="container p-3">
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+        </div>
+    @endif
+
     @yield('content')
     @include('parts.footer')
 </div><!--wrapper-->

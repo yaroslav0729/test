@@ -6,6 +6,17 @@
     <body class="font-sans antialiased">
         <div class="wrapper" id="app">
             @yield('header')
+
+            @if (\Session::has('success'))
+                <div class="container p-3">
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{!! \Session::get('success') !!}</li>
+                        </ul>
+                    </div>
+                </div>
+            @endif
+
             @yield('content')
             @include('parts.footer')
         </div>
