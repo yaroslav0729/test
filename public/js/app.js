@@ -91533,7 +91533,15 @@ function initSwiper() {
 /***/ (function(module, exports) {
 
 $(function () {
-  $(document).on('click', '.quick-donation .btn_sbmt', function (e) {
+  $(function () {
+    $('.btn-modal-quick-donation').on('click', function () {
+      $('.modal-quick-donation').show();
+      $('.modal-quick-donation .close').on('click', function () {
+        $('.modal-quick-donation').hide();
+      });
+    });
+  });
+  $(document).on('click', '[quick-donation] .btn_sbmt', function (e) {
     e.preventDefault();
     var form = $(this).closest('form');
     sendFormAndRefreshCard(form); //form.submit()

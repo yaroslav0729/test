@@ -3,7 +3,7 @@ $categories = \App\Models\CampaignCategory::all();
 @endphp
 
 <div class="wrap">
-    <section class="quick-donation">
+    <section class="quick-donation" quick-donation>
         <form action="{{ route('cart.add') }}" method="post">
             @csrf
             <div class="row gutter-5 align-items-center">

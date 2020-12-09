@@ -11,19 +11,25 @@
     <!--style-3 - thank you-->
     <!--style-4 - project-->
  {{--   @yield('header')--}}
+
+@php
+    $cartSum = \App\Models\CartItem::getCartSum(); 
+@endphp
+
     <header>
         <div class="top-bar">
             <div class="wrap">
                 <div class="row align-items-center">
                     <div class="col-6"><a href="#" class="logo"><span></span> Islamic Help</a></div>
                     <div class="col-6 text-right">
-                        <a href="#" class="basket"><i class=""></i><span></span></a>
+                        <a href="{{ url('/donate#about-donation') }}" class="basket"><i class=""></i>
+                            @if($cartSum !== 0) <span></span> @endif
+                        </a>
                         <span class="open-head-menu"></span>
                     </div>
                 </div>
             </div>
         </div>
-
     </header>
 
     <div class="header-menu" level="0">
