@@ -23,7 +23,7 @@
                     <div class="col-6"><a href="#" class="logo"><span></span> Islamic Help</a></div>
                     <div class="col-6 text-right">
                         <a href="{{ url('/donate#about-donation') }}" class="basket"><i class=""></i>
-                            @if($cartSum !== 0) <span></span> @endif
+                            <span class="@if($cartSum === 0) d-none @endif"></span>
                         </a>
                         <span class="open-head-menu"></span>
                     </div>
