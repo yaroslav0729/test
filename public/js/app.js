@@ -91422,11 +91422,14 @@ $(function () {
       $('#zakat-pay').addClass('bg-danger-light');
       $(divZakat).addClass('text-danger');
       $('#total-zakat').find('.money-val').addClass('text-danger');
-      $(divZakat).find('b').html('£' + convertMonetary(zakat.toFixed(2)));
+      var zakatValue = convertMonetary(zakat.toFixed(2));
+      $(divZakat).find('b').html('£' + zakatValue);
+      $(divZakat).find('input[name="zakat_value"]').val(zakatValue);
     } else {
       $('#zakat-pay').removeClass('bg-danger-light');
       $(divZakat).removeClass('text-danger');
       $(divZakat).find('b').html('£0.00');
+      $(divZakat).find('input[name="zakat_value"]').val(0);
     }
   }); //~~~~~~~~~~~~~~~~~~ Set empty and clear Class for input fields ~~~~~~~~~~~~~~~~~~~~
 
@@ -91533,6 +91536,41 @@ function initSwiper() {
 /***/ (function(module, exports) {
 
 $(function () {
+  $(document).on('click', '[zakat-donate-btn]', function (e) {
+    e.preventDefault();
+    var amount = $('input[name="zakat_value"]').val();
+    $.ajax({
+      url: '/cart/add',
+      type: 'post',
+      dataType: 'json',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        amount: amount,
+        note: "Zakat calculator donation"
+      },
+      success: function success(response, textStatus, jqXHR) {
+        if (response.success) {
+          var newCart = $('.modal-body', response.cart_html);
+          $('#cartModal .modal-body').html(newCart.html());
+          var newCartDonate = $(response.cart_donate);
+          $('.about-donation').html(newCartDonate.html());
+          $('.basket #sum').text(response.sum);
+
+          if (response.sum > 0) {
+            $('.basket span').removeClass('d-none');
+          } else {
+            $('.basket span').addClass('d-none');
+          }
+        }
+      },
+      error: function error(response) {
+        toastr.error('Unknown error ', 'Error');
+      }
+    });
+    console.log('donate zakat btn click', amount);
+  });
   $(function () {
     $('.btn-modal-quick-donation').on('click', function () {
       $('.modal-quick-donation').show();

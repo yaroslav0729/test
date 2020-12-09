@@ -17,7 +17,7 @@ class CartController extends Controller
 
         $amount = $request->amount;
         $campaignId = $request->campaigns;
-        
+
         if (isset($request->categories)) {
             $category = CampaignCategory::where('name', $request->categories)->first();
             
@@ -26,13 +26,20 @@ class CartController extends Controller
             }
         }
         
-        $period = array_search($request->period, CampaignPrice::ALL_TYPES);
+        if (isset($request->period)) {
+            $period = array_search($request->period, CampaignPrice::ALL_TYPES);
+        } else {
+            $period = CampaignPrice::TYPE_SINGLE;
+        }
 
+        $note = $request->note;
+        
         $cartItem = CartItem::create([
             'amount' => $amount,
             'campaign_id' => $campaignId,
             'campaign_category_id' => $categoryId,
-            'period' => $period
+            'period' => $period,
+            'note' => $note
         ]);
 
         $this->sessionCartPut($cartItem->cart_item_id);
@@ -116,6 +123,7 @@ class CartController extends Controller
                 'campaign_category_id' => $cartItem->campaign_category_id,
                 'user_id' => null, //auth()->user ? auth()->user->id : null,
                 'email' => $order->email,
+                'note' => $cartItem->note,
             ]);
         }
 

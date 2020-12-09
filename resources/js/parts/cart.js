@@ -1,5 +1,51 @@
 $(function () {
 
+    $(document).on('click', '[zakat-donate-btn]', function (e) {
+        e.preventDefault()
+
+        let amount = $('input[name="zakat_value"]').val()
+
+        $.ajax({
+            url     : '/cart/add',
+            type    : 'post',
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data    : {
+                amount: amount,
+                note: "Zakat calculator donation"
+            },
+            success : function (response, textStatus, jqXHR)
+            {
+                if (response.success) {
+
+                    let newCart = $('.modal-body', response.cart_html)
+                    $('#cartModal .modal-body').html(newCart.html())
+
+                    let newCartDonate = $(response.cart_donate)
+                    $('.about-donation').html(newCartDonate.html())
+
+                    $('.basket #sum').text(response.sum)
+
+                    if (response.sum > 0) {
+                        $('.basket span').removeClass('d-none')
+                    } else {
+                        $('.basket span').addClass('d-none')
+                    }
+                }
+            },
+            error: function(response) {
+
+                toastr.error('Unknown error ','Error')
+            }
+
+        });
+        
+        console.log('donate zakat btn click', amount)
+    });
+
+
     $(function() {
         $('.btn-modal-quick-donation').on('click', function () {
             $('.modal-quick-donation').show();
