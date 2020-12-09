@@ -153,6 +153,7 @@
     @endif
 
     @yield('content')
+    @include('templates.presentation.parts.add_to_cart_popup')
     @include('parts.footer')
 </div><!--wrapper-->
 </body>

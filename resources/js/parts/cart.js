@@ -14,6 +14,8 @@ $(function () {
         let form = $(this).closest('form')
         sendFormAndRefreshCard(form)
         //form.submit()
+
+        $('.modal-quick-donation').hide(); // mobile version
         $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
     });
 
