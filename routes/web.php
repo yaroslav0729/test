@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\DonationController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaymentController;
 
 use App\Models\User;
 /*
@@ -86,6 +87,11 @@ Route::prefix('cart')->group(function () {
     Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
     Route::get('/payment', [CartController::class, 'paymentForm'])->name('cart.payment');
     Route::post('/payment', [CartController::class, 'order'])->name('cart.order');
+});
+
+Route::prefix('paypal')->group(function () {
+    Route::get('/payment_success', [PaymentController::class, 'paypalPaymentSuccess'])->name('paypal.payment.success');
+    Route::get('/payment_cancel', [PaymentController::class, 'paypalPaymentCancel'])->name('paypal.payment.cancel');  
 });
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
