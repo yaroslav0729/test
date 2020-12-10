@@ -43,6 +43,8 @@ class PaymentController extends Controller
         $subject = 'Thank you for donation';
         $emailFrom = env('MAIL_FROM_ADDRESS');
 
+        if (empty($emailTo)) return;
+
         Mail::to($emailTo)->send(new ThankYouDonation($order, $subject, $emailTo, $emailFrom));
     }
 
