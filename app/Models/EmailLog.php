@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class EmailLog extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'email_to', 'subject', 'body'
+    ];
 }
