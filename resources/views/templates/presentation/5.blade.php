@@ -42,7 +42,7 @@
                     @endempty
                 </div>
                 <div class="col-6 text-right">
-                    <a href="{{ \App\Models\Page::getZakatUrl() }}" class="text-underline text-uppercase text-dark"><b>calculate my zakat</b></a>
+                    <a href="{{ \App\Models\Page::getSinglePageUrl(\App\Models\Template::CALCULATOR_PAGE) }}" class="text-underline text-uppercase text-dark"><b>calculate my zakat</b></a>
                 </div>
             </div>
             <div class="row mb-5">

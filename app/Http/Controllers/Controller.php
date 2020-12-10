@@ -8,23 +8,14 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Carbon;
 
-use App\Services\Paypal;
-
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests; 
 
-    public function createOrder()
+    public function test()
     {
-        $response = Paypal::createOrder(100, "GBP", 'test order');
-
-        dd($response);
+        dd('ok');
     }
 
-    public function getOrder($orderId)
-    {
-        $response = Paypal::getOrder($orderId);
-
-        dd($response);
-    }
+    
 }

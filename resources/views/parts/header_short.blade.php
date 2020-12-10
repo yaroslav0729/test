@@ -18,7 +18,7 @@
                     </ul>
                 </div>
                 <div class="col-4 text-right">
-                    <a href="{{ \App\Models\Page::getProjectsUrl() }}" class="btn btn-danger" data-toggle="modal" data-target="#foodPack">Donate</a>
+                    <a href="{{ \App\Models\Page::getSinglePageUrl(\App\Models\Template::PROJECTS_PAGE) }}" class="btn btn-danger" data-toggle="modal" data-target="#foodPack">Donate</a>
                     @include('parts.basket')
                 </div>
             </div>

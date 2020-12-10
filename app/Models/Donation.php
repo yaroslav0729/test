@@ -11,6 +11,10 @@ class Donation extends Model
 {
     use HasFactory;
 
+    const STATUS_PROCESSING = 0;
+    const STATUS_COMPLETE = 1;
+    const STATUS_CANCELED = 2;
+
     protected $guarded = ['id'];
 
     public function getTypeNameAttribute()

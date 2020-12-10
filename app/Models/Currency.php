@@ -34,6 +34,13 @@ class Currency extends Model
         ];
     }
 
+    public static function getCode($currency)
+    {
+        $currencies = self::getAllCurrencies();
+
+        return $currencies[$currency]['code'];
+    }
+
     public static function getSignFromCode($code)
     {
         foreach (self::getAllCurrencies() as $currency) {

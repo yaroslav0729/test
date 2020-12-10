@@ -25,8 +25,8 @@ class Paypal
                 ],
             ]],
             "application_context" => [
-                "cancel_url" => route('paypal.payment.success'),
-                "return_url" => route('paypal.payment.cancel'),
+                "cancel_url" => route('paypal.payment.cancel'),
+                "return_url" => route('paypal.payment.success'),
             ],
         ];
 
@@ -48,7 +48,7 @@ class Paypal
         $clientId = config('paypal.PAYPAL_CLIENT_ID');
         $clientSecret = config('paypal.PAYPAL_CLIENT_SECRET');
         $environment = new SandboxEnvironment($clientId, $clientSecret);
-        
+
         return new PayPalHttpClient($environment);
     }
 }

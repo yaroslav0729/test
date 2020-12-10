@@ -71,6 +71,7 @@ class ConvertDonationHistory extends Command
             if ($copyDonation) {
                 $copyDonation->update([
                     'value' => $donation->amount,
+                    'status' => $donation->status,
                     'type' => $donation->period === 0 ? CampaignPrice::TYPE_SINGLE : CampaignPrice::TYPE_MONTHLY,
                     'email' => $donation->email,
                     'campaign_id' => null,
@@ -83,6 +84,7 @@ class ConvertDonationHistory extends Command
             } else {
                 $copyDonation = Donation::create([
                     'value' => $donation->amount,
+                    'status' => $donation->status,
                     'type' => $donation->period === 0 ? CampaignPrice::TYPE_SINGLE : CampaignPrice::TYPE_MONTHLY,
                     'email' => $donation->email,
                     'currency' => 'GBP',

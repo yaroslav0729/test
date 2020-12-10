@@ -72,26 +72,13 @@ class Page extends Model
             ->whereNotIn('id', $ids)->delete();
     }
 
-    public static function getProjectsUrl()
+    public static function getSinglePageUrl($template)
     {
-        $page = Page::where('type', self::TYPE_PROJECTS_PAGE)->first();
-
-        if ($page) {
-            $slug = $page->actual_page_instance->slug;
-        } else {
-            $slug = "";
-        }
-
-        return url($slug);
-    }
-
-    public static function getZakatUrl()
-    {
-        $page = Page::whereHas('pageInstances', function (Builder $query) {
-            $query->where('template', Template::CALCULATOR_PAGE);
+        $page = Page::whereHas('pageInstances', function (Builder $query) use ($template) {
+            $query->where('template', $template);
         })->published()->first();
 
-        if ($page) {
+        if (($page) && (isset($page->actual_page_instance))) {
             $slug = $page->actual_page_instance->slug;
         } else {
             $slug = "";

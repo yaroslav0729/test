@@ -36,7 +36,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                     </ul>
                 </div>
                 <div class="col-4 text-right">
-                    <a href="{{ \App\Models\Page::getProjectsUrl() }}" class="btn btn-danger">Donate</a>
+                    <a href="{{ \App\Models\Page::getSinglePageUrl(\App\Models\Template::PROJECTS_PAGE) }}" class="btn btn-danger">Donate</a>
                 </div>
             </div>
         </div>

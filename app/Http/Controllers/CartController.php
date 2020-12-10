@@ -8,6 +8,8 @@ use App\Models\CartItem;
 use App\Models\CampaignPrice;
 use App\Models\Donation;
 use App\Models\Order;
+use App\Models\Currency;
+use App\Services\Paypal;
 
 class CartController extends Controller
 {
@@ -113,7 +115,12 @@ class CartController extends Controller
         $cartIds = session()->get('cart');
         $cartItems = CartItem::whereIn('cart_item_id', $cartIds)->get();
 
+        $sum = 0;
+
         foreach ($cartItems as $cartItem) {
+
+            $sum = $sum + $cartItem->amount;
+
             Donation::create([
                 'value' => $cartItem->amount,
                 'order_id' => $order->id,
@@ -129,7 +136,25 @@ class CartController extends Controller
 
         $this->clearCart();
 
-        return redirect('/donate')->with('success', 'Order created successfully');
+        $response = null;
+        $payLink = null;
+
+        $order->pay_with = $request->pay_method;
+
+        if ($request->pay_method === 'paypal') {
+            $response = Paypal::createOrder($sum, 'GBP', 'Order id: ' . $order->id);
+        
+            $order->order_id = $response->result->id;
+            $payLink = $response->result->links[1]->href;
+
+            $order->save();
+        }
+
+        if (empty($payLink)) {
+            die('Bad request');
+        }
+
+        return redirect($payLink);
     }
 
     protected function sessionCartPut($itemId)
