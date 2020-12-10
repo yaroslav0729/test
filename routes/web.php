@@ -96,5 +96,5 @@ Route::prefix('paypal')->group(function () {
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 
-//Route::get('/test', [Controller::class, 'test']);
+Route::get('/test', [Controller::class, 'test']);
 Route::get('/{slug}', [PageController::class, 'showFromSlug'])->where('slug', '.*');

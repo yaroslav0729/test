@@ -17,6 +17,16 @@ class Donation extends Model
 
     protected $guarded = ['id'];
 
+    protected static function getStatusLabel($status)
+    {
+        switch ($status) {
+            case self::STATUS_PROCESSING:  return "processing";
+            case self::STATUS_COMPLETE: return "complete";
+            case self::STATUS_CANCELED: return "canceled";
+
+        }
+    }
+
     public function getTypeNameAttribute()
     {
         if (isset(CampaignPrice::ALL_TYPES[$this->type])) {
@@ -24,6 +34,11 @@ class Donation extends Model
         }
 
         return "";
+    }
+
+    public function getStatusNameAttribute()
+    {
+        return self::getStatusLabel($this->status);
     }
 
     public function getCurrrencySignAttribute()

@@ -128,7 +128,7 @@ class CartController extends Controller
                 'currency' => 'GBP',
                 'campaign_id' => $cartItem->campaign_id,
                 'campaign_category_id' => $cartItem->campaign_category_id,
-                'user_id' => null, //auth()->user ? auth()->user->id : null,
+                'user_id' => auth()->user() ? auth()->user()->id : null,
                 'email' => $order->email,
                 'note' => $cartItem->note,
             ]);

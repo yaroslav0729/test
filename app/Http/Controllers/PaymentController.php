@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Order;
 use App\Models\Donation;
-use App\Models\Template;
+use App\Models\Order;
 use App\Models\Page;
+use App\Models\Template;
+use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
@@ -17,7 +17,7 @@ class PaymentController extends Controller
 
         $order = Order::where('order_id', $orderId)->firstOrFail();
 
-        foreach($order->donations as $donation) {
+        foreach ($order->donations as $donation) {
             $donation->status = Donation::STATUS_COMPLETE;
             $donation->save();
         }
@@ -36,6 +36,13 @@ class PaymentController extends Controller
         $orderId = $request->get('token');
         $payerID = $request->get('PayerID');
 
-        dd('order id:' . $orderId . ' canceled');
+        $order = Order::where('order_id', $orderId)->firstOrFail();
+
+        foreach ($order->donations as $donation) {
+            $donation->status = Donation::STATUS_CANCELED;
+            $donation->save();
+        }
+
+        die('order id:' . $orderId . ' has been canceled');
     }
 }
