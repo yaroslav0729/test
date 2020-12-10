@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         Route::resource('email_logs', EmailLogController::class, ['as' => 'admin'])->only([
             'index', 'show', 'destroy',
         ]);
+        Route::get('/email_logs/show_email/{email_log}', [EmailLogController::class, 'showEmail'])->name('admin.email_logs.show_email');
 
         Route::get('/preview_version/{id}', [AdminPageController::class, 'preview'])->name('admin.pages.preview');
         Route::get('/post_history/{id}', [AdminPageController::class, 'history'])->name('admin.pages.history');
@@ -98,5 +99,5 @@ Route::prefix('paypal')->group(function () {
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 
-Route::get('/test', [Controller::class, 'test']);
+//Route::get('/test', [Controller::class, 'test']);
 Route::get('/{slug}', [PageController::class, 'showFromSlug'])->where('slug', '.*');

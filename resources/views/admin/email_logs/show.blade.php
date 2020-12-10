@@ -7,6 +7,9 @@
 <p><b>Subject:</b> {{ $emailLog->subject }}</p>
 
 <p><b>Email body:</b></p>
-{!! $emailLog->body !!}
+
+<a href="{{ route('admin.email_logs.show_email', ['email_log' => $emailLog->id]) }}" target="_blank">
+Show email body
+</a>
 
 @endsection

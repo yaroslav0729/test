@@ -30,6 +30,11 @@ class EmailLogController extends Controller
         return view('admin.email_logs.show', compact('emailLog'));
     }
 
+    public function showEmail(EmailLog $emailLog)
+    {
+        return view('admin.email_logs.show_email', compact('emailLog'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
