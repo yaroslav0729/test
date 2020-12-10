@@ -21,7 +21,7 @@ class Controller extends BaseController
     {
         $order = Order::findOrFail(90);
 
-        //return view('mail.thank_you_donation', ['order' => $order]);
+        return view('mail.thank_you_donation', ['order' => $order]);
 
         $emailTo = $order->email;
         $subject = 'Thank you for donation';

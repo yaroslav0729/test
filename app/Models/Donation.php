@@ -51,6 +51,11 @@ class Donation extends Model
         return $this->belongsTo('App\Models\Campaign');
     }
 
+    public function campaign_category()
+    {
+        return $this->belongsTo('App\Models\CampaignCategory');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');

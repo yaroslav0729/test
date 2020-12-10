@@ -52,7 +52,7 @@ table{font-weight: 500;}
         <table class="table table-bordered">
             <thead>
               <tr>
-                <td colspan="3">Total amount: <span class="text-danger">$300</span></td>
+              <td colspan="3">Total amount: <span class="text-danger">£{{  $order->sum }}</span></td>
               </tr>
             </thead>
             <tbody>
@@ -61,11 +61,21 @@ table{font-weight: 500;}
                 <td>Detail</td>
                 <td>Donation amount</td>
               </tr>
-              <tr>
-                <td><span class="text-success">Single</span></td>
-                <td><span class="text-success">Company</span></td>
-                <td><span class="text-danger">$25</span></td>
-              </tr>
+
+              @isset($order->donations)
+                @foreach ($order->donations as $donation)
+                    <tr>
+                        <td><span class="text-success">{{ $donation->type_name }} donation</span></td>
+                        <td>
+                            <span class="text-success">
+                                {{ $donation->campaign ? $donation->campaign->name : 'no campaign' }}<br>
+                                {{ $donation->campaign_category ? $donation->campaign_category->name : 'no campaign' }}
+                            </span></td>
+                        <td><span class="text-danger">£{{ $donation->value }}</span></td>
+                    </tr>
+                @endforeach
+              @endisset
+              
             </tbody>
           </table>
         </div>
