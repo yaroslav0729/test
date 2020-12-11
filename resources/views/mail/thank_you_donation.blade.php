@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
 <style>
@@ -18,7 +17,7 @@ body {font-family: 'Roboto', sans-serif; font-weight: 300}
 #logo {
     width:220px; 
     height: 220px;
-    background: url('/img/logo.png') no-repeat;
+    background: url('{{ url('/') }}/img/logo.png') no-repeat;
     background-size:220px;
     margin: 0 auto 0 auto;
     text-align: center
@@ -31,6 +30,7 @@ h1{font-weight: 500; margin: 20px 0 30px 0; text-align: center}
 #main {border-left: 2px solid #ddd; border-right: 2px solid #ddd;}
 table{font-weight: 500;}
 </style>
+@include('mail.parts.bootstrap_styles')
 </head>
 <body>
     <div class="container" id="header">

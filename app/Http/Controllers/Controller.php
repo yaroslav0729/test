@@ -14,6 +14,10 @@ class Controller extends BaseController
 
     public function test()
     {
+        // $order = \App\Models\Order::findOrFail(100);
+        // return view('mail.thank_you_donation', ['order' => $order]);
+        // dd($order);
+
         dd('ok');
     }
 
