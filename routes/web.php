@@ -91,6 +91,8 @@ Route::prefix('cart')->group(function () {
     Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
     Route::get('/payment', [CartController::class, 'paymentForm'])->name('cart.payment');
     Route::post('/payment', [CartController::class, 'order'])->name('cart.order');
+    Route::post('/refresh_quantity', [CartController::class, 'refreshQuantity'])->name('cart.quantity');
+
 });
 
 Route::prefix('paypal')->group(function () {
@@ -100,5 +102,5 @@ Route::prefix('paypal')->group(function () {
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 
-//Route::get('/test', [Controller::class, 'test']);
+Route::get('/test', [CartController::class, 'test']);
 Route::get('/{slug}', [PageController::class, 'showFromSlug'])->where('slug', '.*');

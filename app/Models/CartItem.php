@@ -35,6 +35,36 @@ class CartItem extends Model
         return $this->belongsTo('App\Models\CampaignCategory');
     }
 
+    // public function createSameItems($quantity)
+    // {
+    //     for ($i = 0; $i < $quantity; $i++) {
+    //         self::create()
+    //     }
+    // }
+
+    public function removeSameItems($quantity)
+    {
+        
+    }
+
+    public function getSameItems()
+    {
+        $cartItems = session()->get('cart');
+        $items = self::whereIn('cart_item_id', $cartItems)->get();
+
+        $itemsCollected = [];
+
+        foreach ($items as $item) {
+            if (($item->amount === $this->amount) &&
+                ($item->campaign_id === $this->campaign_id) &&
+                ($item->campaign_category_id === $this->campaign_category_id))
+
+                $itemsCollected[] = $item; 
+        }
+
+        return $itemsCollected;
+    }
+
     public static function getCart()
     {
         $cartItems = session()->get('cart');

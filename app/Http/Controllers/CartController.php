@@ -175,4 +175,43 @@ class CartController extends Controller
 
         session()->put('cart', $cart);
     }
+
+    public function test()
+    {
+        $this->refreshItemQuantity(62, 3);
+
+        dd('ok');
+    }
+
+    protected function refreshItemQuantity($cartItemId, $quantity)
+    {
+        $needItem = CartItem::findOrFail($cartItemId);
+
+        $sameItems = $needItem->getSameItems();
+
+        if (count($sameItems) > $quantity) {
+            $needItem->createSameItems(count($sameItems) - $quantity);
+        } else if (count($sameItems) > $quantity) {
+            $needItem->removeSameItems($quantity - count($sameItems));
+        }
+
+        dd('test');
+    }
+
+    public function refreshQuantity(Request $request)
+    {
+        $data = $request->get('data');
+
+        foreach ($data as $item) {
+            $this->refreshItemQuantity($item->id, $item->quantity);
+        }
+
+
+        return response()->json([
+            'success' => true,
+            'cart_html' => view('parts.modal_cart')->render(),
+            'cart_donate' => view('modules.presentation.donation_page_cart')->render(),
+            'sum' => CartItem::getCartSum(),
+        ]);
+    }
 }
