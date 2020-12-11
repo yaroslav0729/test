@@ -71,7 +71,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                                         <table class="w-100">
                                             <tr>
                                                 <td><p class="font-size-20 mb-0">{{ (int)$cartItem[0]->period === \App\Models\CampaignPrice::TYPE_SINGLE ? 'Single' : 'Monthly' }} payment</p></td>
-                                                <td><input type="number" value="{{ count($cartItem) }}" min="0" max="1000" step="1" class="color-danger"/></td>
+                                                <td><input type="number" data-id="{{ $cartItem[0]->id }}" value="{{ count($cartItem) }}" min="0" max="1000" step="1" class="color-danger"/></td>
                                                 <td class="text-right"><p class="font-size-20 mb-0"><b>£{{ $cartItem[0]->amount }}</b></p></td>
                                             </tr>
                                         </table>

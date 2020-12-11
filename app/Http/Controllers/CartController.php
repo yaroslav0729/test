@@ -176,36 +176,36 @@ class CartController extends Controller
         session()->put('cart', $cart);
     }
 
-    public function test()
-    {
-        $this->refreshItemQuantity(62, 3);
-
-        dd('ok');
-    }
-
     protected function refreshItemQuantity($cartItemId, $quantity)
     {
         $needItem = CartItem::findOrFail($cartItemId);
-
         $sameItems = $needItem->getSameItems();
 
-        if (count($sameItems) > $quantity) {
-            $needItem->createSameItems(count($sameItems) - $quantity);
+        if ($quantity > count($sameItems)) {
+            $newItemIds = $needItem->createSameItems($quantity - count($sameItems));
+
+            foreach ($newItemIds as $cartId) {
+                $this->sessionCartPut($cartId);
+            }
+
         } else if (count($sameItems) > $quantity) {
-            $needItem->removeSameItems($quantity - count($sameItems));
+            $deletedItemIds = $needItem->removeSameItems(count($sameItems) - $quantity);
+
+            foreach ($deletedItemIds as $cartId) {
+                $this->sessionCartDelete($cartId);
+            }            
         }
 
-        dd('test');
+        $sameItems = $needItem->getSameItems();
     }
 
     public function refreshQuantity(Request $request)
     {
-        $data = $request->get('data');
+        $cart = $request->get('cart');
 
-        foreach ($data as $item) {
-            $this->refreshItemQuantity($item->id, $item->quantity);
+        foreach ($cart as $item) {
+            $this->refreshItemQuantity($item['id'], $item['quantity']);
         }
-
 
         return response()->json([
             'success' => true,

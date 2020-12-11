@@ -91537,22 +91537,25 @@ function initSwiper() {
 
 $(function () {
   var cartTimeout;
-  var popupCartTimeout;
-  cartModal;
   $(document).on('change', '#cartModal input[type="number"]', function (e) {
     e.preventDefault();
-    clearTimeout(popupCartTimeout);
-    popupCartTimeout = setTimeout(updatePopupCart, 1000);
+    clearTimeout(cartTimeout);
+    cartTimeout = setTimeout(updatePopupCart, 1000);
+  });
+  $(document).on('change', '#about-donation input[type="number"]', function (e) {
+    e.preventDefault();
+    clearTimeout(cartTimeout);
+    cartTimeout = setTimeout(updateAboutCart, 1000);
   });
 
-  function updatePopupCart() {
-    var cartEl = $('#cartModal');
+  function updateAboutCart() {
+    var cartEl = $('#about-donation');
     var numbers = cartEl.find('input[type="number"]');
-    var data = [];
+    var cart = [];
     numbers.each(function () {
       var quant = $(this).val();
       var id = $(this).data('id');
-      data.push({
+      cart.push({
         id: id,
         quantity: quant
       });
@@ -91564,10 +91567,45 @@ $(function () {
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      data: data,
+      data: {
+        cart: cart
+      },
       success: function success(response, textStatus, jqXHR) {
         if (response.success) {
-          console.log(response);
+          refreshCardAddHtml(response);
+        }
+      },
+      error: function error(response) {
+        toastr.error('Unknown error ', 'Error');
+      }
+    });
+  }
+
+  function updatePopupCart() {
+    var cartEl = $('#cartModal');
+    var numbers = cartEl.find('input[type="number"]');
+    var cart = [];
+    numbers.each(function () {
+      var quant = $(this).val();
+      var id = $(this).data('id');
+      cart.push({
+        id: id,
+        quantity: quant
+      });
+    });
+    $.ajax({
+      url: '/cart/refresh_quantity',
+      type: 'post',
+      dataType: 'json',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        cart: cart
+      },
+      success: function success(response, textStatus, jqXHR) {
+        if (response.success) {
+          refreshCardAddHtml(response);
         }
       },
       error: function error(response) {

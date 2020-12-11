@@ -1,29 +1,33 @@
 $(function () {
 
     var cartTimeout;
-    var popupCartTimeout;
-
-    cartModal
 
     $(document).on('change', '#cartModal input[type="number"]', function (e) {
         e.preventDefault()
 
-        clearTimeout(popupCartTimeout);
-        popupCartTimeout = setTimeout(updatePopupCart, 1000);
+        clearTimeout(cartTimeout);
+        cartTimeout = setTimeout(updatePopupCart, 1000);
     });
 
-    function updatePopupCart()
+    $(document).on('change', '#about-donation input[type="number"]', function (e) {
+        e.preventDefault()
+
+        clearTimeout(cartTimeout);
+        cartTimeout = setTimeout(updateAboutCart, 1000);
+    });
+
+    function updateAboutCart()
     {
-        let cartEl = $('#cartModal')
+        let cartEl = $('#about-donation')
         let numbers = cartEl.find('input[type="number"]')
 
-        let data = []
+        let cart = []
 
         numbers.each(function () {
             let quant = $(this).val()
             let id = $(this).data('id')
 
-            data.push({id: id, quantity: quant})
+            cart.push({id: id, quantity: quant})
         });
 
         $.ajax({
@@ -33,11 +37,50 @@ $(function () {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data    : data,
+            data    : {
+                cart: cart
+            },
             success : function (response, textStatus, jqXHR)
             {
                 if (response.success) {
-                    console.log(response)
+                    refreshCardAddHtml(response)
+                }
+            },
+            error: function(response) {
+
+                toastr.error('Unknown error ','Error')
+            }
+        });
+    }
+
+    function updatePopupCart()
+    {
+        let cartEl = $('#cartModal')
+        let numbers = cartEl.find('input[type="number"]')
+
+        let cart = []
+
+        numbers.each(function () {
+            let quant = $(this).val()
+            let id = $(this).data('id')
+
+            cart.push({id: id, quantity: quant})
+        });
+
+        $.ajax({
+            url     : '/cart/refresh_quantity',
+            type    : 'post',
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data    : {
+                cart: cart
+            },
+            success : function (response, textStatus, jqXHR)
+            {
+                if (response.success) {
+                    refreshCardAddHtml(response)
                 }
             },
             error: function(response) {
