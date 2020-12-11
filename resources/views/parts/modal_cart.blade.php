@@ -1,7 +1,7 @@
 @php
 
 $cart = \App\Models\CartItem::getCart();
-$cartSum = \App\Models\CartItem::getCartSum(); 
+$cartSum = \App\Models\CartItem::getCartSum();
 
 @endphp
 
@@ -49,7 +49,9 @@ $cartSum = \App\Models\CartItem::getCartSum();
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-8"><p class="font-size-20 mb-0"><b>£ {{ $cartItem[0]->amount }}</b></p></div>
-                                    <div class="col-4 text-right"><input type="number" value="{{ count($cartItem) }}" min="0" max="1000" step="1" class="color-danger"/></div>
+                                    <div class="col-4 text-right">
+                                        <input type="number" data-id="{{ $cartItem[0]->id }}" value="{{ count($cartItem) }}" min="1" max="1000" step="1" class="color-danger"/>
+                                    </div>
                                 </div>
                             </div>
                         @endisset   

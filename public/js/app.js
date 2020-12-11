@@ -91536,6 +91536,84 @@ function initSwiper() {
 /***/ (function(module, exports) {
 
 $(function () {
+  var cartTimeout;
+  $(document).on('change', '#cartModal input[type="number"]', function (e) {
+    e.preventDefault();
+    clearTimeout(cartTimeout);
+    cartTimeout = setTimeout(updatePopupCart, 1000);
+  });
+  $(document).on('change', '#about-donation input[type="number"]', function (e) {
+    e.preventDefault();
+    clearTimeout(cartTimeout);
+    cartTimeout = setTimeout(updateAboutCart, 1000);
+  });
+
+  function updateAboutCart() {
+    var cartEl = $('#about-donation');
+    var numbers = cartEl.find('input[type="number"]');
+    var cart = [];
+    numbers.each(function () {
+      var quant = $(this).val();
+      var id = $(this).data('id');
+      cart.push({
+        id: id,
+        quantity: quant
+      });
+    });
+    $.ajax({
+      url: '/cart/refresh_quantity',
+      type: 'post',
+      dataType: 'json',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        cart: cart
+      },
+      success: function success(response, textStatus, jqXHR) {
+        if (response.success) {
+          refreshCardAddHtml(response);
+        }
+      },
+      error: function error(response) {
+        toastr.error('Unknown error ', 'Error');
+      }
+    });
+  }
+
+  function updatePopupCart() {
+    var cartEl = $('#cartModal');
+    var numbers = cartEl.find('input[type="number"]');
+    var cart = [];
+    numbers.each(function () {
+      var quant = $(this).val();
+      var id = $(this).data('id');
+      cart.push({
+        id: id,
+        quantity: quant
+      });
+    });
+    $.ajax({
+      url: '/cart/refresh_quantity',
+      type: 'post',
+      dataType: 'json',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        cart: cart
+      },
+      success: function success(response, textStatus, jqXHR) {
+        if (response.success) {
+          refreshCardAddHtml(response);
+        }
+      },
+      error: function error(response) {
+        toastr.error('Unknown error ', 'Error');
+      }
+    });
+  }
+
   $(document).on('click', '[zakat-donate-btn]', function (e) {
     e.preventDefault();
     var amount = $('input[name="zakat_value"]').val();
@@ -91552,24 +91630,13 @@ $(function () {
       },
       success: function success(response, textStatus, jqXHR) {
         if (response.success) {
-          var newCart = $('.modal-body', response.cart_html);
-          $('#cartModal .modal-body').html(newCart.html());
-          var newCartDonate = $(response.cart_donate);
-          $('.about-donation').html(newCartDonate.html());
-          $('.basket #sum').text(response.sum);
-
-          if (response.sum > 0) {
-            $('.basket span').removeClass('d-none');
-          } else {
-            $('.basket span').addClass('d-none');
-          }
+          refreshCardAddHtml(response);
         }
       },
       error: function error(response) {
         toastr.error('Unknown error ', 'Error');
       }
     });
-    console.log('donate zakat btn click', amount);
   });
   $(function () {
     $('.btn-modal-quick-donation').on('click', function () {
@@ -91607,6 +91674,20 @@ $(function () {
     $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
   });
 
+  function refreshCardAddHtml(response) {
+    var newCart = $('.modal-body', response.cart_html);
+    $('#cartModal .modal-body').html(newCart.html());
+    var newCartDonate = $(response.cart_donate);
+    $('.about-donation').html(newCartDonate.html());
+    $('.basket #sum').text(response.sum);
+
+    if (response.sum > 0) {
+      $('.basket span').removeClass('d-none');
+    } else {
+      $('.basket span').addClass('d-none');
+    }
+  }
+
   function sendFormAndRefreshCard(form) {
     var formData = new FormData(form[0]);
     var lastAmount = form.find('input[name="amount"]').val();
@@ -91621,17 +91702,7 @@ $(function () {
       contentType: false,
       success: function success(response, textStatus, jqXHR) {
         if (response.success) {
-          var newCart = $('.modal-body', response.cart_html);
-          $('#cartModal .modal-body').html(newCart.html());
-          var newCartDonate = $(response.cart_donate);
-          $('.about-donation').html(newCartDonate.html());
-          $('.basket #sum').text(response.sum);
-
-          if (response.sum > 0) {
-            $('.basket span').removeClass('d-none');
-          } else {
-            $('.basket span').addClass('d-none');
-          }
+          refreshCardAddHtml(response);
         }
       },
       error: function error(response) {
