@@ -10,6 +10,6 @@ class EmailLog extends Model
     use HasFactory;
 
     protected $fillable = [
-        'email_to', 'subject', 'body'
+        'email_to', 'email_from', 'subject', 'body'
     ];
 }
