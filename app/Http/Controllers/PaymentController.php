@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ThankYouDonation;
 use App\Models\Donation;
 use App\Models\Order;
 use App\Models\Page;
 use App\Models\Template;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ThankYouDonation;
-use App\Models\EmailLog;
 
 class PaymentController extends Controller
 {
@@ -43,7 +41,9 @@ class PaymentController extends Controller
         $subject = 'Thank you for donation';
         $emailFrom = env('MAIL_FROM_ADDRESS');
 
-        if (empty($emailTo)) return;
+        if (empty($emailTo)) {
+            return;
+        }
 
         Mail::to($emailTo)->send(new ThankYouDonation($order, $subject, $emailTo, $emailFrom));
     }

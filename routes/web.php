@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
             'index', 'show', 'destroy',
         ]);
         Route::get('/email_logs/show_email/{email_log}', [EmailLogController::class, 'showEmail'])->name('admin.email_logs.show_email');
+        Route::post('/email_logs/resend/{email_log}', [EmailLogController::class, 'resend'])->name('admin.email_logs.resend');
 
         Route::get('/preview_version/{id}', [AdminPageController::class, 'preview'])->name('admin.pages.preview');
         Route::get('/post_history/{id}', [AdminPageController::class, 'history'])->name('admin.pages.history');

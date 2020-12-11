@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Mail\ResendEmail;
 use App\Models\EmailLog;
+use Illuminate\Support\Facades\Mail;
 
 class EmailLogController extends Controller
 {
@@ -46,5 +47,17 @@ class EmailLogController extends Controller
         $emailLog->delete();
 
         return redirect()->route('admin.email_logs.index')->with('status', 'Email log deleted successfully!');
+    }
+
+    public function resend(EmailLog $emailLog)
+    {
+        $emailTo = $emailLog->email_to;
+        $subject = $emailLog->subject;
+        $emailFrom = $emailLog->email_from;
+        $body = $emailLog->body;
+
+        Mail::to($emailTo)->send(new ResendEmail($emailFrom, $subject, $body));
+
+        return redirect()->route('admin.email_logs.index')->with('status', 'Email resent successfully!');
     }
 }

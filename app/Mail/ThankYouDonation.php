@@ -44,7 +44,7 @@ class ThankYouDonation extends Mailable
             'body' => view('mail.thank_you_donation', ['order' => $this->order])->render(),
         ]);
 
-        return $this->from(env('MAIL_FROM_ADDRESS'))
+        return $this->from($this->emailFrom)
             ->subject($this->subject)
             ->view('mail.thank_you_donation', ['order' => $this->order]);
     }
