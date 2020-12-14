@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Parts;
 
 use App\Models\Campaign;
 use App\Models\Page;
@@ -14,65 +14,24 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use \App\Models\CampaignPrice;
 
-class PageParser extends Command
+class ProjectsParser
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * php artisan parse:page
-     *
-     * @var string
-     */
-    protected $signature = 'parse:page';
+    const PROJECTS_PATH = 'projects';
 
     protected $wpConnection;
 
-    const PROJECTS_PATH = 'projects';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __construct($wpConnection)
     {
-        parent::__construct();
+        $this->wpConnection = $wpConnection;
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
-    public function handle()
+    public function info($str)
     {
-        $this->info('Pages parser command started.');
-        $this->wpConnection = DB::connection('wp');
-
-        $this->parseProjects();
-
-        $this->info('Parsing complete!');
+        echo $str . PHP_EOL;
     }
 
-    protected function parseProjects()
+    public function parseProjects($posts)
     {
-        $posts = $this->wpConnection->table('wp_posts')
-            //->where('ID', 6129)
-            ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
-            ->where('wp_posts.post_type', 'page')
-            ->where(function ($query) {
-                $query->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
-                    ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php');
-            })
-            ->get();
-
         foreach ($posts as $pageKey => $project) {
 
             $copyProject = Page::where('wp_id', $project->ID)->first();

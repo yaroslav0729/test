@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use DB;
+use App\Console\Commands\Parts\ProjectsParser;
 
 class AllPagesParser extends Command
 {
@@ -15,6 +16,10 @@ class AllPagesParser extends Command
      * @var string
      */
     protected $signature = 'parse:all_pages';
+
+    protected $posts;
+    protected $templates;
+    protected $sortedPosts;
 
     protected $wpConnection;
 
@@ -45,17 +50,50 @@ class AllPagesParser extends Command
         $this->info('All pages parser command started.');
         $this->wpConnection = DB::connection('wp');
 
-        $this->parseAllPages();
+        $this->getAllPostsWithTemplate();
+        $this->getAllTemplates();
+        $countPages = $this->getCountOfPages();
+        $this->sortPosts();
+
+        dump($countPages);
+
+        $this->parseProjects();
 
         $this->info('Parsing complete!');
     }
 
-    protected function parseAllPages()
+    protected function parseProjects()
     {
-        $this->getAllTemplates();
+        $this->info('Projects parser:');
+
+        $projectsParser = new ProjectsParser($this->wpConnection);
+
+        $projectsParser->parseProjects($this->sortedPosts['template/projectpage5prices.php']);
+        $projectsParser->parseProjects($this->sortedPosts['template/projectpage2020.php']);
     }
 
-    protected function getAllTemplates()
+    protected function sortPosts()
+    {
+        $this->sortedPosts = [];
+
+        foreach ($this->posts as $post) {
+            $templateName = $post->meta_value;
+            $this->sortedPosts[$templateName][] = $post;
+        }
+    }
+
+    public function getCountOfPages()
+    {
+        $allTemplates = [];
+
+        foreach ($this->posts as $post) {
+            $allTemplates[] = $post->meta_value;
+        }
+
+        return array_count_values($allTemplates);
+    }
+
+    protected function getAllPostsWithTemplate()
     {
         $posts = $this->wpConnection->table('wp_posts')
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
@@ -65,13 +103,17 @@ class AllPagesParser extends Command
             })
             ->get();
 
+        $this->posts = $posts;
+    }
+
+    protected function getAllTemplates()
+    {
         $allTemplates = [];
 
-        foreach ($posts as $post) {
+        foreach ($this->posts as $post) {
             $allTemplates[] = $post->meta_value;
         }
-        $allTemplates = array_unique($allTemplates);
 
-        dd($allTemplates);
+        $this->templates = array_unique($allTemplates);
     }
 }
