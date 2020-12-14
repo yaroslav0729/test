@@ -1,40 +1,27 @@
 <?php
 
 namespace App\Console\Commands\Parts;
+
+use App\Console\Commands\Parts\AbstractParser;
+use App\Models\Event;
 use App\Models\Page;
 use App\Models\PageInstance;
 use App\Models\Template;
 use Carbon\Carbon;
-use DB;
-use Exception;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
-use App\Models\Event;
 
-class EventsParser
+class EventsParser extends AbstractParser
 {
-    protected $wpConnection;
+    const IMG_PATH = 'events';
 
-    const IMAGE_PATH = 'events';
-
-    public function __construct($wpConnection)
-    {
-        $this->wpConnection = $wpConnection;
-    }
-
-    public function info($str)
-    {
-        echo $str . PHP_EOL;
-    }
-
-    public function parseEvents()
+    public function parse()
     {
         $events = $this->wpConnection->table('wp_posts')
-        ->where('wp_posts.id', 10734)
-        ->where('wp_posts.post_type', 'events')
-        ->get();
+            //->where('wp_posts.id', 10734)
+            ->where('wp_posts.post_type', 'events')
+            ->get();
 
-       foreach ($events as $pageKey => $event) {
+        foreach ($events as $pageKey => $event) {
             $copyEvent = Page::where('wp_id', $event->ID)->first();
 
             $eventOptions = $this->wpConnection->table('wp_postmeta')
@@ -90,9 +77,9 @@ class EventsParser
 
             $this->info($infoString);
             Log::channel('parser')->info($infoString);
-       }
+        }
 
-       $this->info('count events:' . count($events));
+        $this->info('count events:' . count($events));
     }
 
     protected function createOrUpdateEvent($instance)
@@ -102,7 +89,7 @@ class EventsParser
         $data['page_id'] = $instance->page->id;
         $data['parameters'] = $instance->parameters;
 
-        $event = Event::updateOrCreate(['page_id'=> $instance->page->id], $data);
+        $event = Event::updateOrCreate(['page_id' => $instance->page->id], $data);
     }
 
     protected function updateTemplateParams($instance, $options, $event)
@@ -112,19 +99,19 @@ class EventsParser
         $evType = $this->getOption($options, 'eventType');
 
         switch ($evType) {
-            case 'Paid': $evType = Event::ENTRY_PAID;
-            default: $evType = Event::ENTRY_FREE;
+            case 'Paid':$evType = Event::ENTRY_PAID;
+            default:$evType = Event::ENTRY_FREE;
         }
 
         $parameters['event_details_entry'] = $evType;
-        
+
         $typeParticipate = $this->getOption($options, 'liveEvents');
 
         switch ($typeParticipate) {
-            case 'Webinars': $typeParticipate = Event::EVENT_ONLINE;
-            case 'Live events': $typeParticipate = Event::EVENT_LIVE;
-            case 'Fundraising efforts': $typeParticipate = Event::EVENT_FUNDRAISING;
-            default: $typeParticipate = Event::EVENT_ONLINE;
+            case 'Webinars':$typeParticipate = Event::EVENT_ONLINE;
+            case 'Live events':$typeParticipate = Event::EVENT_LIVE;
+            case 'Fundraising efforts':$typeParticipate = Event::EVENT_FUNDRAISING;
+            default:$typeParticipate = Event::EVENT_ONLINE;
         }
 
         $eventsDate = $this->getOption($options, 'events_date');
@@ -147,7 +134,6 @@ class EventsParser
         $eventsTime = $this->getTime($eventsTime);
         $parameters['event_end_time'] = $eventsTime;
 
-        
         $parameters['event_details_organiser'] = $this->getOption($options, 'events_sidebar_info_2_events_value');
         $parameters['event_details_contact'] = $this->getOption($options, 'events_sidebar_info_3_events_value');
         $parameters['important_title'] = $this->getOption($options, 'cta_heading');
@@ -171,76 +157,6 @@ class EventsParser
         //$instance->title = $this->getOption($options, '_yoast_wpseo_title');
         $instance->description = $this->getOption($options, '_yoast_wpseo_metadesc');
         $instance->save();
-    }
-
-    protected function getWpImage($wpImageId)
-    {
-        $img = $this->wpConnection->table('wp_postmeta')
-            ->where('post_id', $wpImageId)
-            ->where('meta_key', '_wp_attached_file')->first();
-
-        $imageUrl = 'https://www.islamichelp.org.uk/wp-content/uploads/';
-
-        $now = Carbon::now();
-        $year = $now->year;
-        $month = $now->month;
-
-        if (isset($img)) {
-            $imageUrl = $imageUrl . $img->meta_value;
-
-            list($linkMonth, $linkYear) = $this->searchMonthYear($imageUrl);
-
-            if (($linkMonth !== '') && ($linkYear !== '')) {
-                $year = $linkYear;
-                $month = $linkMonth;
-            }
-
-            $name = substr($imageUrl, strrpos($imageUrl, '/') + 1);
-            $path = self::IMAGE_PATH . '/' . $year . '/' . $month . '/' . $name;
-
-            $exists = Storage::disk('public')->exists($path);
-
-            if ((!$exists) && ($imageUrl !== "")) {
-                try {
-                    $contents = file_get_contents($imageUrl);
-                    Storage::disk('public')->put($path, $contents);
-
-                } catch (Exception $e) {
-                    $this->info('WARNING: file not found: ' . $imageUrl);
-                }
-            }
-
-            return Storage::url($path);
-        }
-
-        return "";
-    }
-
-    protected function searchMonthYear($imageUrl)
-    {
-        $month = '';
-        $year = '';
-
-        $pos = -1;
-
-        $arr = explode('/', $imageUrl);
-
-        foreach ($arr as $key => $item) {
-            if ($item === 'uploads') {
-                $pos = $key;
-                break;
-            }
-        }
-
-        if (isset($arr[$pos + 1])) {
-            $year = $arr[$pos + 1];
-        }
-
-        if (isset($arr[$pos + 2])) {
-            $month = $arr[$pos + 2];
-        }
-
-        return [$month, $year];
     }
 
     protected function getPrice($str)
@@ -274,18 +190,6 @@ class EventsParser
         $day = substr($str, 6, 2);
 
         return Carbon::createFromDate($year, $month, $day)->subDays(1)->toDateString('');
-    }
-
-    protected function getOption($options, $optName)
-    {
-        foreach ($options as $option) {
-            if ($option->meta_key === $optName) {
-                return $option->meta_value;
-            }
-
-        }
-
-        return "";
     }
 
 }

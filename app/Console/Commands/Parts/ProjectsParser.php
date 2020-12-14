@@ -2,44 +2,28 @@
 
 namespace App\Console\Commands\Parts;
 
+use App\Console\Commands\Parts\AbstractParser;
 use App\Models\Campaign;
 use App\Models\Page;
 use App\Models\PageInstance;
 use App\Models\Template;
-use Carbon\Carbon;
-use DB;
-use Exception;
-use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use \App\Models\CampaignPrice;
 
-class ProjectsParser
+class ProjectsParser extends AbstractParser
 {
-    const PROJECTS_PATH = 'projects';
+    const IMG_PATH = 'projects';
 
-    protected $wpConnection;
-
-    public function __construct($wpConnection)
-    {
-        $this->wpConnection = $wpConnection;
-    }
-
-    public function info($str)
-    {
-        echo $str . PHP_EOL;
-    }
-
-    public function parseProjects()
+    public function parse()
     {
         $posts = $this->wpConnection->table('wp_posts')
-        ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
-        ->where('wp_posts.post_type', 'page')
-        ->where(function ($query) {
-            $query->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
-                ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php');
-        })
-        ->get();
+            ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
+            ->where('wp_posts.post_type', 'page')
+            ->where(function ($query) {
+                $query->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
+                    ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php');
+            })
+            ->get();
 
         foreach ($posts as $pageKey => $project) {
 
@@ -154,88 +138,6 @@ class ProjectsParser
         $projectInstance->description = $this->getOption($projectOptions, '_yoast_wpseo_metadesc');
         $projectInstance->preview_img = $parameters['donate_img'];
         $projectInstance->save();
-    }
-
-    protected function searchMonthYear($imageUrl)
-    {
-        $month = '';
-        $year = '';
-
-        $pos = -1;
-
-        $arr = explode('/', $imageUrl);
-
-        foreach ($arr as $key => $item) {
-            if ($item === 'uploads') {
-                $pos = $key;
-                break;
-            }
-        }
-
-        if (isset($arr[$pos + 1])) {
-            $year = $arr[$pos + 1];
-        }
-
-        if (isset($arr[$pos + 2])) {
-            $month = $arr[$pos + 2];
-        }
-
-        return [$month, $year];
-    }
-
-    protected function getWpImage($wpImageId)
-    {
-        $img = $this->wpConnection->table('wp_postmeta')
-            ->where('post_id', $wpImageId)
-            ->where('meta_key', '_wp_attached_file')->first();
-
-        $imageUrl = 'https://www.islamichelp.org.uk/wp-content/uploads/';
-
-        $now = Carbon::now();
-        $year = $now->year;
-        $month = $now->month;
-
-        if (isset($img)) {
-            $imageUrl = $imageUrl . $img->meta_value;
-
-            list($linkMonth, $linkYear) = $this->searchMonthYear($imageUrl);
-
-            if (($linkMonth !== '') && ($linkYear !== '')) {
-                $year = $linkYear;
-                $month = $linkMonth;
-            }
-
-            $name = substr($imageUrl, strrpos($imageUrl, '/') + 1);
-            $path = self::PROJECTS_PATH . '/' . $year . '/' . $month . '/' . $name;
-
-            $exists = Storage::disk('public')->exists($path);
-
-            if ((!$exists) && ($imageUrl !== "")) {
-                try {
-                    $contents = file_get_contents($imageUrl);
-                    Storage::disk('public')->put($path, $contents);
-
-                } catch (Exception $e) {
-                    $this->info('WARNING: file not found: ' . $imageUrl);
-                }
-            }
-
-            return Storage::url($path);
-        }
-
-        return "";
-    }
-
-    protected function getOption($options, $optName)
-    {
-        foreach ($options as $option) {
-            if ($option->meta_key === $optName) {
-                return $option->meta_value;
-            }
-
-        }
-
-        return "";
     }
 
     protected function updateProjectPrices($projectInstance, $projectOptions)

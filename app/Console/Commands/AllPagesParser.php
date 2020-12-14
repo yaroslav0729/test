@@ -68,7 +68,7 @@ class AllPagesParser extends Command
 
         $projectsParser = new ProjectsParser($this->wpConnection);
 
-        $projectsParser->parseProjects();
+        $projectsParser->parse();
     }
 
     protected function parseEvents()
@@ -77,7 +77,7 @@ class AllPagesParser extends Command
 
         $eventsParser = new EventsParser($this->wpConnection);
 
-        $eventsParser->parseEvents();
+        $eventsParser->parse();
     }
 
     protected function sortPosts()
