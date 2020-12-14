@@ -55,7 +55,7 @@ class CartItem extends Model
         return $newItems;
     }
 
-    public function removeSameItems($quantity)
+    public function removeSameItems($quantity = null)
     {
         $sameItems = $this->getSameItems();
 
@@ -68,7 +68,7 @@ class CartItem extends Model
                 $deletedItems[] = $item->cart_item_id;
                 $item->delete();
             
-                if (count($deletedItems) >= $quantity) break;
+                if ((!empty($quantity)) && (count($deletedItems) >= $quantity)) break;
             }  
         }
 

@@ -61,7 +61,14 @@ class CartController extends Controller
 
     public function remove(Request $request, $itemId)
     {
-        CartItem::where('cart_item_id', $itemId)->delete();
+        $item = CartItem::where('cart_item_id', $itemId)->firstOrFail();
+        $deletedItems = $item->removeSameItems();
+        
+        foreach ($deletedItems as $delItem) {
+            $this->sessionCartDelete($delItem);
+        }
+
+        $item->delete();
         $this->sessionCartDelete($itemId);
 
         if (request()->ajax()) {
