@@ -15,6 +15,8 @@ class EventsParser
 {
     protected $wpConnection;
 
+    const IMAGE_PATH = 'events';
+
     public function __construct($wpConnection)
     {
         $this->wpConnection = $wpConnection;
@@ -28,7 +30,7 @@ class EventsParser
     public function parseEvents()
     {
         $events = $this->wpConnection->table('wp_posts')
-        //->where('wp_posts.id', 10734)
+        ->where('wp_posts.id', 10734)
         ->where('wp_posts.post_type', 'events')
         ->get();
 
@@ -53,7 +55,7 @@ class EventsParser
 
                 $instance->update([
                     'name' => $event->post_title,
-                    'slug' => $event->post_name,
+                    'slug' => 'events/' . $event->post_name,
                     'title' => $event->post_title,
                     'description' => 'parsed event page wp_id: ' . $event->ID,
                     'template' => Template::EVENT_PAGE,
@@ -70,7 +72,7 @@ class EventsParser
 
                 $instance = PageInstance::create([
                     'name' => $event->post_title,
-                    'slug' => $event->post_name,
+                    'slug' => 'events/' . $event->post_name,
                     'title' => $event->post_title,
                     'description' => 'parsed event page wp_id: ' . $event->ID,
                     'page_id' => $copyEvent->id,
@@ -162,11 +164,83 @@ class EventsParser
         $parameters['information_text'] = $event->post_content;
         $parameters['preview_position'] = $this->getOption($options, 'event_city');
 
+        $img = $this->getOption($options, 'background');
+        $instance->preview_img = $this->getWpImage($img);
         $instance->preview_text = $this->getOption($options, 'events_description');
         $instance->parameters = $parameters;
         //$instance->title = $this->getOption($options, '_yoast_wpseo_title');
         $instance->description = $this->getOption($options, '_yoast_wpseo_metadesc');
         $instance->save();
+    }
+
+    protected function getWpImage($wpImageId)
+    {
+        $img = $this->wpConnection->table('wp_postmeta')
+            ->where('post_id', $wpImageId)
+            ->where('meta_key', '_wp_attached_file')->first();
+
+        $imageUrl = 'https://www.islamichelp.org.uk/wp-content/uploads/';
+
+        $now = Carbon::now();
+        $year = $now->year;
+        $month = $now->month;
+
+        if (isset($img)) {
+            $imageUrl = $imageUrl . $img->meta_value;
+
+            list($linkMonth, $linkYear) = $this->searchMonthYear($imageUrl);
+
+            if (($linkMonth !== '') && ($linkYear !== '')) {
+                $year = $linkYear;
+                $month = $linkMonth;
+            }
+
+            $name = substr($imageUrl, strrpos($imageUrl, '/') + 1);
+            $path = self::IMAGE_PATH . '/' . $year . '/' . $month . '/' . $name;
+
+            $exists = Storage::disk('public')->exists($path);
+
+            if ((!$exists) && ($imageUrl !== "")) {
+                try {
+                    $contents = file_get_contents($imageUrl);
+                    Storage::disk('public')->put($path, $contents);
+
+                } catch (Exception $e) {
+                    $this->info('WARNING: file not found: ' . $imageUrl);
+                }
+            }
+
+            return Storage::url($path);
+        }
+
+        return "";
+    }
+
+    protected function searchMonthYear($imageUrl)
+    {
+        $month = '';
+        $year = '';
+
+        $pos = -1;
+
+        $arr = explode('/', $imageUrl);
+
+        foreach ($arr as $key => $item) {
+            if ($item === 'uploads') {
+                $pos = $key;
+                break;
+            }
+        }
+
+        if (isset($arr[$pos + 1])) {
+            $year = $arr[$pos + 1];
+        }
+
+        if (isset($arr[$pos + 2])) {
+            $month = $arr[$pos + 2];
+        }
+
+        return [$month, $year];
     }
 
     protected function getPrice($str)
