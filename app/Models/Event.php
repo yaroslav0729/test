@@ -18,13 +18,13 @@ class Event extends Model
 
     const ALL_TYPES_ENTRY = [
         self::ENTRY_FREE => 'Free',
-        self::ENTRY_PAID => 'Paid'
+        self::ENTRY_PAID => 'Paid',
     ];
 
     const ALL_TYPE_EVENT = [
         self::EVENT_ONLINE => 'Webinars',
         self::EVENT_LIVE => 'Live events',
-        self::EVENT_FUNDRAISING => 'Fundraising efforts'
+        self::EVENT_FUNDRAISING => 'Fundraising efforts',
     ];
 
     protected $fillable = [
@@ -36,7 +36,7 @@ class Event extends Model
         'end_time',
         'entry_type',
         'event_type',
-        'location'
+        'location',
     ];
 
     /**
@@ -102,8 +102,7 @@ class Event extends Model
      */
     public static function firstOrNew(array $attributes)
     {
-        if ( ! is_null($instance = static::where($attributes)->first()))
-        {
+        if (!is_null($instance = static::where($attributes)->first())) {
             return $instance;
         }
 

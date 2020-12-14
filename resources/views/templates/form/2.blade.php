@@ -207,7 +207,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Event details speaker:</label>
-            <input class="form-control" required name="parameters[event_details_speaker]"
+            <input class="form-control" name="parameters[event_details_speaker]"
                    placeholder="Insert event details speaker" value="{{ $eventDetailsSpeaker }}"/>
         </div>
     </div>
@@ -224,7 +224,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Information title:</label>
-            <input class="form-control" required name="parameters[information_title]"
+            <input class="form-control" name="parameters[information_title]"
                    placeholder="Insert information title" value="{{ $informationTitle }}"/>
         </div>
     </div>

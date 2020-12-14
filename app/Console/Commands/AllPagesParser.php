@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use DB;
 use App\Console\Commands\Parts\ProjectsParser;
+use App\Console\Commands\Parts\EventsParser;
 
 class AllPagesParser extends Command
 {
@@ -50,14 +51,13 @@ class AllPagesParser extends Command
         $this->info('All pages parser command started.');
         $this->wpConnection = DB::connection('wp');
 
-        $this->getAllPostsWithTemplate();
-        $this->getAllTemplates();
-        $countPages = $this->getCountOfPages();
-        $this->sortPosts();
+        // $this->getAllPostsWithTemplate();
+        // $this->getAllTemplates();
+        // $this->getCountOfPages();
+        // $this->sortPosts();
 
-        dump($countPages);
-
-        $this->parseProjects();
+        //$this->parseProjects();
+        $this->parseEvents();
 
         $this->info('Parsing complete!');
     }
@@ -68,8 +68,16 @@ class AllPagesParser extends Command
 
         $projectsParser = new ProjectsParser($this->wpConnection);
 
-        $projectsParser->parseProjects($this->sortedPosts['template/projectpage5prices.php']);
-        $projectsParser->parseProjects($this->sortedPosts['template/projectpage2020.php']);
+        $projectsParser->parseProjects();
+    }
+
+    protected function parseEvents()
+    {
+        $this->info('Events parser:');
+
+        $eventsParser = new EventsParser($this->wpConnection);
+
+        $eventsParser->parseEvents();
     }
 
     protected function sortPosts()
@@ -90,7 +98,9 @@ class AllPagesParser extends Command
             $allTemplates[] = $post->meta_value;
         }
 
-        return array_count_values($allTemplates);
+        $allTemplates = array_count_values($allTemplates);
+
+        dump($allTemplates);
     }
 
     protected function getAllPostsWithTemplate()

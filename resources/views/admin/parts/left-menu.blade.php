@@ -7,7 +7,7 @@
         <li><a href="{{ route('admin.menu_items.index', ['menuSlug' =>'additional-header']) }}"><i class="fas fa-bars"></i>Additional header Menu</a></li>
         <li><a href="{{ route('admin.menu_items.index', ['menuSlug' =>'footer']) }}"><i class="fas fa-bars"></i>Footer Menu</a></li>
         <li><a href="{{ route('admin.pages.index') }}"><i class="fas fa-file-alt"></i>Pages</a></li>
-        <li><a href="{{ route('admin.pages.index', ['template' => \App\Models\Template::EVENTS_PAGE]) }}"><i class="fas fa-calendar-star"></i>Events</a></li>
+        <li><a href="{{ route('admin.pages.index', ['template' => \App\Models\Template::EVENT_PAGE]) }}"><i class="fas fa-calendar-star"></i>Events</a></li>
         <li><a href="{{ route('admin.category.index') }}"><i class="fas fa-folder-open"></i>Categories</a></li>
         <li><a href="{{ route('admin.campaigns.index') }}"><i class="far fa-building"></i>Campaigns</a></li>
         <li><a href="{{ route('admin.campaign_categories.index') }}"><i class="fas fa-clone"></i>Campaign categories</a></li>

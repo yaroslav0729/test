@@ -30,8 +30,17 @@ class ProjectsParser
         echo $str . PHP_EOL;
     }
 
-    public function parseProjects($posts)
+    public function parseProjects()
     {
+        $posts = $this->wpConnection->table('wp_posts')
+        ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
+        ->where('wp_posts.post_type', 'page')
+        ->where(function ($query) {
+            $query->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
+                ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php');
+        })
+        ->get();
+
         foreach ($posts as $pageKey => $project) {
 
             $copyProject = Page::where('wp_id', $project->ID)->first();
