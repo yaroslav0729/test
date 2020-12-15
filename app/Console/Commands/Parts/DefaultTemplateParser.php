@@ -24,8 +24,6 @@ class DefaultTemplateParser extends AbstractParser
             })
             ->get();
 
-        $ids = [];
-
         $this->info('count posts:' . count($posts));
 
         foreach ($posts as $pageKey => $post) {

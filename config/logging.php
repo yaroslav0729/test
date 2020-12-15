@@ -106,6 +106,11 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 14,
         ],
+        'seo_checker' => [
+            'path' => storage_path('logs/seo_checker.log'),
+            'driver' => 'single',
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
     ],
 
 ];
