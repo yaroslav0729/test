@@ -20,6 +20,7 @@ class EventsParser extends AbstractParser
         $events = $this->wpConnection->table('wp_posts')
             //->where('wp_posts.id', 2890)
             ->where('wp_posts.post_type', 'events')
+            ->where('wp_posts.post_status', 'publish')
             ->get();
 
         foreach ($events as $pageKey => $event) {

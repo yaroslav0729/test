@@ -59,6 +59,12 @@ class AllPagesParser extends Command
         $this->info('All pages parser command started.');
         $this->wpConnection = DB::connection('wp');
 
+        // $this->getAllPostsWithTemplate();
+        // $this->getCountOfPages();
+
+        // $this->getAllPosts();
+        // $this->getAllPostTypes();
+
         if (($parserOption === 'projects') || (!$parserOption)) {
             $this->parseProjects();
         }
@@ -126,6 +132,7 @@ class AllPagesParser extends Command
     {
         $posts = $this->wpConnection->table('wp_posts')
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
+            ->where('wp_posts.post_status', 'publish')
             ->where('wp_posts.post_type', 'page')
             ->where(function ($query) {
                 $query->where('wp_postmeta.meta_key', '_wp_page_template');
@@ -144,5 +151,25 @@ class AllPagesParser extends Command
         }
 
         $this->templates = array_unique($allTemplates);
+    }
+
+    protected function getAllPosts()
+    {
+        $posts = $this->wpConnection->table('wp_posts')->get();
+
+        $this->posts = $posts;
+    }
+
+    protected function  getAllPostTypes()
+    {
+        $allTypes = [];
+
+        foreach ($this->posts as $post) {
+            $allTypes[] = $post->post_type;
+        }
+
+        $allTypes = array_count_values($allTypes);
+
+        dump($allTypes);
     }
 }

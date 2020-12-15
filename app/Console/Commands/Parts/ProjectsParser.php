@@ -19,6 +19,7 @@ class ProjectsParser extends AbstractParser
         $posts = $this->wpConnection->table('wp_posts')
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
             ->where('wp_posts.post_type', 'page')
+            ->where('wp_posts.post_status', 'publish')
             ->where(function ($query) {
                 $query->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
                     ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php');
