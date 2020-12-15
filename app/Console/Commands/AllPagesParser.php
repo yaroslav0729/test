@@ -2,10 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use DB;
-use App\Console\Commands\Parts\ProjectsParser;
 use App\Console\Commands\Parts\EventsParser;
+use App\Console\Commands\Parts\MediaParser;
+use App\Console\Commands\Parts\ProjectsParser;
+use DB;
+use Illuminate\Console\Command;
 
 class AllPagesParser extends Command
 {
@@ -13,10 +14,19 @@ class AllPagesParser extends Command
      * The name and signature of the console command.
      *
      * php artisan parse:all_pages
-     * 
+     * php artisan parse:all_pages --parser=projects
+     * php artisan parse:all_pages --parser=media
+     * php artisan parse:all_pages --parser=events
+     *
      * @var string
      */
-    protected $signature = 'parse:all_pages';
+    protected $signature = 'parse:all_pages {--parser=}';
+
+    /*
+
+    parser option: media, projects, events
+
+     */
 
     protected $posts;
     protected $templates;
@@ -48,16 +58,20 @@ class AllPagesParser extends Command
      */
     public function handle()
     {
+        $parserOption = $this->option('parser');
+
         $this->info('All pages parser command started.');
         $this->wpConnection = DB::connection('wp');
 
-        // $this->getAllPostsWithTemplate();
-        // $this->getAllTemplates();
-        // $this->getCountOfPages();
-        // $this->sortPosts();
-
-        //$this->parseProjects();
-        $this->parseEvents();
+        if (($parserOption === 'projects') || (!$parserOption)) {
+            $this->parseProjects();
+        }
+        if (($parserOption === 'events') || (!$parserOption)) {
+            $this->parseEvents();
+        }
+        if (($parserOption === 'media') || (!$parserOption)) {
+            $this->parseMedia();
+        }
 
         $this->info('Parsing complete!');
     }
@@ -78,6 +92,15 @@ class AllPagesParser extends Command
         $eventsParser = new EventsParser($this->wpConnection);
 
         $eventsParser->parse();
+    }
+
+    protected function parseMedia()
+    {
+        $this->info('Media parser:');
+
+        $mediaParser = new MediaParser();
+
+        $mediaParser->parse();
     }
 
     protected function sortPosts()

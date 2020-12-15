@@ -123,6 +123,34 @@ abstract class AbstractParser
         return $images;
     }
 
+    protected function findAllImagesSrcset($el)
+    {
+        $images = [];
+        $srcsets = [];
+
+        $imagesOrFalse = $el->findMultiOrFalse('img');
+
+        if ($imagesOrFalse !== false) {
+            foreach ($imagesOrFalse as $image) {
+                $srcsets[] = $image->getAttribute('srcset');
+            }
+        }
+
+        foreach ($srcsets as $key => $srcset) {
+            $links = explode(', ', $srcset);
+
+            foreach ($links as $linkKey => $link) {
+                $arr = explode(' ', $link);
+
+                if (isset($arr[0])) {
+                    $images[] = $arr[0];
+                }
+            }
+        }
+
+        return $images;
+    }
+
     protected function uploadAll($images)
     {
         $imagesLinks = [];

@@ -18,7 +18,7 @@ class EventsParser extends AbstractParser
     public function parse()
     {
         $events = $this->wpConnection->table('wp_posts')
-            ->where('wp_posts.id', 10734)
+            //->where('wp_posts.id', 10734)
             ->where('wp_posts.post_type', 'events')
             ->get();
 
@@ -38,7 +38,7 @@ class EventsParser extends AbstractParser
                 $instance = $copyEvent->actual_page_instance;
 
                 if ($instance === null) {
-                    die('page without instance: ' .$copyEvent->id);
+                    die('page without instance: ' . $copyEvent->id);
                 }
 
                 $instance->update([
@@ -100,8 +100,8 @@ class EventsParser extends AbstractParser
         $evType = $this->getOption($options, 'eventType');
 
         switch ($evType) {
-            case 'Paid': $evType = Event::ENTRY_PAID;
-            default: $evType = Event::ENTRY_FREE;
+            case 'Paid':$evType = Event::ENTRY_PAID;
+            default:$evType = Event::ENTRY_FREE;
         }
 
         $parameters['event_details_entry'] = $evType;
@@ -109,9 +109,9 @@ class EventsParser extends AbstractParser
         $typeParticipate = $this->getOption($options, 'liveEvents');
 
         switch ($typeParticipate) {
-            case 'Webinars': $typeParticipate = Event::EVENT_ONLINE;
-            case 'Live events': $typeParticipate = Event::EVENT_LIVE;
-            case 'Fundraising efforts': $typeParticipate = Event::EVENT_FUNDRAISING;
+            case 'Webinars':$typeParticipate = Event::EVENT_ONLINE;
+            case 'Live events':$typeParticipate = Event::EVENT_LIVE;
+            case 'Fundraising efforts':$typeParticipate = Event::EVENT_FUNDRAISING;
             default:$typeParticipate = Event::EVENT_ONLINE;
         }
 
