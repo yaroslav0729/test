@@ -9,7 +9,6 @@ use App\Models\PageInstance;
 use App\Models\Template;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
-use voku\helper\HtmlDomParser;
 
 class EventsParser extends AbstractParser
 {
@@ -18,14 +17,14 @@ class EventsParser extends AbstractParser
     public function parse()
     {
         $events = $this->wpConnection->table('wp_posts')
-            //->where('wp_posts.id', 2890)
+        //->where('wp_posts.id', 2890)
             ->where('wp_posts.post_type', 'events')
             ->where('wp_posts.post_status', 'publish')
             ->get();
 
         foreach ($events as $pageKey => $event) {
 
-            $this->info('Processing item wp_id: ' . $event->ID); 
+            $this->info('Processing item wp_id: ' . $event->ID);
 
             $copyEvent = Page::where('wp_id', $event->ID)->first();
 
@@ -94,10 +93,21 @@ class EventsParser extends AbstractParser
         $data['page_id'] = $instance->page->id;
         $data['parameters'] = $instance->parameters;
 
-        if (empty($instance->parameters['event_start_date'])) return;
-        if (empty($instance->parameters['event_end_date'])) return;
-        if (empty($instance->parameters['event_start_time'])) return;
-        if (empty($instance->parameters['event_end_time'])) return;
+        if (empty($instance->parameters['event_start_date'])) {
+            return;
+        }
+
+        if (empty($instance->parameters['event_end_date'])) {
+            return;
+        }
+
+        if (empty($instance->parameters['event_start_time'])) {
+            return;
+        }
+
+        if (empty($instance->parameters['event_end_time'])) {
+            return;
+        }
 
         $event = Event::updateOrCreate(['page_id' => $instance->page->id], $data);
     }
@@ -161,12 +171,6 @@ class EventsParser extends AbstractParser
         $content = $this->replaceWPTags($content);
         $content = $this->uploadImages($content);
 
-        $document = new HtmlDomParser($content);
-
-        $images = $this->findAllImages($document);
-        $images = $this->uploadAll($images);
-        $content = $this->replaceImagesLinks($content, $images);
-
         $parameters['information_text'] = $content;
         $parameters['preview_position'] = $this->getOption($options, 'event_city');
 
@@ -186,11 +190,6 @@ class EventsParser extends AbstractParser
         return $content;
     }
 
-    protected function uploadImages($content)
-    {
-        return $content;
-    }
-
     protected function getPrice($str)
     {
         $price = substr($str, 2);
@@ -200,7 +199,9 @@ class EventsParser extends AbstractParser
 
     protected function getTime($str)
     {
-        if (empty($str)) return "";
+        if (empty($str)) {
+            return "";
+        }
 
         $hou = substr($str, 0, 2);
         $min = substr($str, 3, 2);
@@ -210,7 +211,9 @@ class EventsParser extends AbstractParser
 
     protected function getDate($str)
     {
-        if (empty($str)) return "";
+        if (empty($str)) {
+            return "";
+        }
 
         $year = substr($str, 0, 4);
         $month = substr($str, 4, 2);
@@ -221,7 +224,9 @@ class EventsParser extends AbstractParser
 
     protected function getDateBefore($str)
     {
-        if (empty($str)) return "";
+        if (empty($str)) {
+            return "";
+        }
 
         $year = substr($str, 0, 4);
         $month = substr($str, 4, 2);

@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Console\Commands\Parts\EventsParser;
 use App\Console\Commands\Parts\MediaParser;
 use App\Console\Commands\Parts\ProjectsParser;
+use App\Console\Commands\Parts\DefaultTemplateParser;
 use DB;
 use Illuminate\Console\Command;
 
@@ -13,12 +14,13 @@ class AllPagesParser extends Command
     /**
      * The name and signature of the console command.
      *
-     * Note: parser option: media, projects, events
+     * Note: parser option: media, projects, events, default_template
      * 
      * php artisan parse:all_pages
      * php artisan parse:all_pages --parser=projects
      * php artisan parse:all_pages --parser=media
      * php artisan parse:all_pages --parser=events
+     * php artisan parse:all_pages --parser=default_template
      *
      * @var string
      */
@@ -74,6 +76,9 @@ class AllPagesParser extends Command
         if (($parserOption === 'media') || (!$parserOption)) {
             $this->parseMedia();
         }
+        if (($parserOption === 'default_template') || (!$parserOption)) {
+            $this->parseDefaultTemplatePages();
+        }
 
         $this->info('Parsing complete!');
     }
@@ -103,6 +108,15 @@ class AllPagesParser extends Command
         $mediaParser = new MediaParser();
 
         $mediaParser->parse();
+    }
+
+    protected function parseDefaultTemplatePages()
+    {
+        $this->info('Default template pages parser:');
+
+        $defParser = new DefaultTemplateParser($this->wpConnection);
+
+        $defParser->parse();    
     }
 
     protected function sortPosts()

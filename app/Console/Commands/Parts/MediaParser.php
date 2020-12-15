@@ -2,17 +2,14 @@
 
 namespace App\Console\Commands\Parts;
 
+use App\Console\Commands\Parts\AbstractParser;
 use App\Models\Category;
-use App\Models\Page;
-use App\Models\PageInstance; // https://github.com/voku/simple_html_dom
+use App\Models\Page; // https://github.com/voku/simple_html_dom
+use App\Models\PageInstance;
 use App\Models\Template;
-use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
 use voku\helper\HtmlDomParser;
-use Exception;
-use App\Console\Commands\Parts\AbstractParser;
 
 class MediaParser extends AbstractParser
 {
@@ -60,7 +57,7 @@ class MediaParser extends AbstractParser
             if ($el) {
                 $h1 = $el->text();
             }
-            
+
             $el = $document->findOneOrFalse('h2.title_post');
 
             if ($el) {
@@ -88,16 +85,9 @@ class MediaParser extends AbstractParser
             if ($newsBlock) {
                 $newsHtml = $newsBlock->html();
 
-                $images = $this->findAllImages($newsBlock);
-                $images = $this->uploadAll($images);
-                $newsHtml = $this->replaceImagesLinks($newsHtml, $images);
-
-                //~~~ replace all images in srcset attribute ~~~
-                $images = $this->findAllImagesSrcset($newsBlock);
-                $images = $this->uploadAll($images);
-                $newsHtml = $this->replaceImagesLinks($newsHtml, $images);
+                $newsHtml = $this->uploadImages($newsHtml);
             }
-            
+
             $category = Category::firstOrCreate([
                 'slug' => $category,
                 'name' => $category,

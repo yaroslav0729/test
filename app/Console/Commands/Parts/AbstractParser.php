@@ -5,6 +5,7 @@ namespace App\Console\Commands\Parts;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Storage;
+use voku\helper\HtmlDomParser;
 
 abstract class AbstractParser
 {
@@ -109,7 +110,7 @@ abstract class AbstractParser
         return "";
     }
 
-    protected function findAllImages($el)
+    private function findAllImages($el)
     {
         $images = [];
         $imagesOrFalse = $el->findMultiOrFalse('img');
@@ -151,7 +152,18 @@ abstract class AbstractParser
         return $images;
     }
 
-    protected function uploadAll($images)
+    protected function uploadImages($content)
+    {
+        $document = new HtmlDomParser($content);
+
+        $images = $this->findAllImages($document);
+        $images = $this->uploadAll($images);
+        $content = $this->replaceImagesLinks($content, $images);
+
+        return $content;
+    }
+
+    private function uploadAll($images)
     {
         $imagesLinks = [];
 
@@ -196,7 +208,7 @@ abstract class AbstractParser
         return $imagesLinks;
     }
 
-    protected function replaceImagesLinks($html, $images)
+    private function replaceImagesLinks($html, $images)
     {
         foreach ($images as $image) {
             $html = str_replace($image['remote_image'], $image['local_image'], $html);
