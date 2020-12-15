@@ -42,19 +42,16 @@ class ClearPages extends Command
     {
         $this->info('Clear command started');
 
-        //Page::doesntHave('pageInstances')->delete();
-
         $pages = Page::doesntHave('pageInstances')->get();
         $count = count($pages);
 
         foreach ($pages as $page) {
             if ($page->event) {
-                //$page->event()->delete;
-                $page->delete();
+                $page->event()->delete;    
             }
         }
 
-
+        Page::doesntHave('pageInstances')->delete();
 
         $this->info('Command complete. Deleted: ' . $count . ' pages');
     }
