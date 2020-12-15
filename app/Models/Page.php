@@ -32,6 +32,14 @@ class Page extends Model
         'status', 'type', 'wp_id'
     ];
 
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($model) {
+             $model->event()->delete();
+        });
+    }
+
     public function pageInstances()
     {
         return $this->hasMany('App\Models\PageInstance');
