@@ -13,6 +13,8 @@ class AllPagesParser extends Command
     /**
      * The name and signature of the console command.
      *
+     * Note: parser option: media, projects, events
+     * 
      * php artisan parse:all_pages
      * php artisan parse:all_pages --parser=projects
      * php artisan parse:all_pages --parser=media
@@ -21,12 +23,6 @@ class AllPagesParser extends Command
      * @var string
      */
     protected $signature = 'parse:all_pages {--parser=}';
-
-    /*
-
-    parser option: media, projects, events
-
-     */
 
     protected $posts;
     protected $templates;
