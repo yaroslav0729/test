@@ -35,7 +35,7 @@ class EventsParser extends AbstractParser
             if ($copyEvent) {
 
                 $copyEvent->update([
-                    'status' => $event->post_status === 'publish' ? Page::PAGE_STATUS_PUBLICHED : Page::PAGE_STATUS_NOT_PUBLICHED,
+                    'status' => $event->post_status === 'publish' ? Page::PAGE_STATUS_PUBLISHED : Page::PAGE_STATUS_NOT_PUBLISHED,
                 ]);
 
                 $instance = $copyEvent->actual_page_instance;
@@ -58,7 +58,7 @@ class EventsParser extends AbstractParser
 
                 $copyEvent = Page::create([
                     'wp_id' => $event->ID,
-                    'status' => $event->post_status === 'publish' ? Page::PAGE_STATUS_PUBLICHED : Page::PAGE_STATUS_NOT_PUBLICHED,
+                    'status' => $event->post_status === 'publish' ? Page::PAGE_STATUS_PUBLISHED : Page::PAGE_STATUS_NOT_PUBLISHED,
                 ]);
 
                 $instance = PageInstance::create([

@@ -52,7 +52,7 @@ class ProjectsParser extends AbstractParser
 
                 $copyProject = Page::create([
                     'wp_id' => $project->ID,
-                    'status' => Page::PAGE_STATUS_PUBLICHED,
+                    'status' => Page::PAGE_STATUS_PUBLISHED,
                 ]);
 
                 $copyProjectInstance = PageInstance::create([

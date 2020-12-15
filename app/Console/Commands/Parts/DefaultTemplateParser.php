@@ -50,7 +50,7 @@ class DefaultTemplateParser extends AbstractParser
 
                 $page = Page::create([
                     'wp_id' => $post->ID,
-                    'status' => Page::PAGE_STATUS_PUBLICHED,
+                    'status' => Page::PAGE_STATUS_PUBLISHED,
                 ]);
 
                 $instance = PageInstance::create([

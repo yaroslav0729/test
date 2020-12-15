@@ -236,7 +236,7 @@ class PageController extends Controller
         $page = Page::findOrFail($id);
         $page->status = $request->status;
 
-        if ((int)$page->status === Page::PAGE_STATUS_PUBLICHED) {
+        if ((int)$page->status === Page::PAGE_STATUS_PUBLISHED) {
             $page->published_at = Carbon::now();
         }
 

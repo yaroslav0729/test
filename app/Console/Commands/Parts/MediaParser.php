@@ -100,7 +100,7 @@ class MediaParser extends AbstractParser
 
             if (!isset($pageInstance)) {
                 $page = Page::create([
-                    'status' => Page::PAGE_STATUS_PUBLICHED,
+                    'status' => Page::PAGE_STATUS_PUBLISHED,
                     'published_at' => $date,
                 ]);
                 $pageInstance = PageInstance::create([

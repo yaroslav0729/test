@@ -24,7 +24,7 @@ class ProjectsPageSeeder extends Seeder
 
             $page = Page::create([
                 'type' => Page::TYPE_PROJECTS_PAGE,
-                'status' => Page::PAGE_STATUS_PUBLICHED
+                'status' => Page::PAGE_STATUS_PUBLISHED
             ]);
 
             $pageInstance = PageInstance::create([
