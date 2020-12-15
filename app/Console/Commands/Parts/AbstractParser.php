@@ -77,7 +77,7 @@ abstract class AbstractParser
             }
 
             $name = substr($imageUrl, strrpos($imageUrl, '/') + 1);
-            $path = self::IMG_PATH . '/' . $year . '/' . $month . '/' . $name;
+            $path = $this::IMG_PATH . '/' . $year . '/' . $month . '/' . $name;
 
             $exists = Storage::disk('public')->exists($path);
 
@@ -107,5 +107,73 @@ abstract class AbstractParser
         }
 
         return "";
+    }
+
+    protected function findAllImages($el)
+    {
+        $images = [];
+        $imagesOrFalse = $el->findMultiOrFalse('img');
+
+        if ($imagesOrFalse !== false) {
+            foreach ($imagesOrFalse as $image) {
+                $images[] = $image->getAttribute('src');
+            }
+        }
+
+        return $images;
+    }
+
+    protected function uploadAll($images)
+    {
+        $imagesLinks = [];
+
+        $now = Carbon::now();
+        $year = $now->year;
+        $month = $now->month;
+
+        if ($images !== []) {
+            foreach ($images as $imageUrl) {
+
+                list($linkMonth, $linkYear) = $this->searchMonthYear($imageUrl);
+
+                if (($linkMonth !== '') && ($linkYear !== '')) {
+                    $year = $linkYear;
+                    $month = $linkMonth;
+                }
+
+                $name = substr($imageUrl, strrpos($imageUrl, '/') + 1);
+                $path = $this::IMG_PATH . '/' . $year . '/' . $month . '/' . $name;
+
+                $exists = Storage::disk('public')->exists($path);
+
+                if ((!$exists) && ($imageUrl !== "")) {
+                    try {
+                        $contents = file_get_contents($imageUrl);
+                        Storage::disk('public')->put($path, $contents);
+
+                    } catch (Exception $e) {
+                        $this->info('WARNING: file not found: ' . $imageUrl);
+                    }
+                }
+
+                if ($imageUrl !== "") {
+                    $imagesLinks[] = [
+                        'remote_image' => $imageUrl,
+                        'local_image' => Storage::url($path),
+                    ];
+                }
+            }
+        }
+
+        return $imagesLinks;
+    }
+
+    protected function replaceImagesLinks($html, $images)
+    {
+        foreach ($images as $image) {
+            $html = str_replace($image['remote_image'], $image['local_image'], $html);
+        }
+
+        return $html;
     }
 }

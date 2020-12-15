@@ -9,6 +9,7 @@ use App\Models\PageInstance;
 use App\Models\Template;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use voku\helper\HtmlDomParser;
 
 class EventsParser extends AbstractParser
 {
@@ -17,7 +18,7 @@ class EventsParser extends AbstractParser
     public function parse()
     {
         $events = $this->wpConnection->table('wp_posts')
-            //->where('wp_posts.id', 10734)
+            ->where('wp_posts.id', 10734)
             ->where('wp_posts.post_type', 'events')
             ->get();
 
@@ -37,7 +38,7 @@ class EventsParser extends AbstractParser
                 $instance = $copyEvent->actual_page_instance;
 
                 if ($instance === null) {
-                    dd($copyEvent->id);
+                    die('page without instance: ' .$copyEvent->id);
                 }
 
                 $instance->update([
@@ -99,8 +100,8 @@ class EventsParser extends AbstractParser
         $evType = $this->getOption($options, 'eventType');
 
         switch ($evType) {
-            case 'Paid':$evType = Event::ENTRY_PAID;
-            default:$evType = Event::ENTRY_FREE;
+            case 'Paid': $evType = Event::ENTRY_PAID;
+            default: $evType = Event::ENTRY_FREE;
         }
 
         $parameters['event_details_entry'] = $evType;
@@ -108,9 +109,9 @@ class EventsParser extends AbstractParser
         $typeParticipate = $this->getOption($options, 'liveEvents');
 
         switch ($typeParticipate) {
-            case 'Webinars':$typeParticipate = Event::EVENT_ONLINE;
-            case 'Live events':$typeParticipate = Event::EVENT_LIVE;
-            case 'Fundraising efforts':$typeParticipate = Event::EVENT_FUNDRAISING;
+            case 'Webinars': $typeParticipate = Event::EVENT_ONLINE;
+            case 'Live events': $typeParticipate = Event::EVENT_LIVE;
+            case 'Fundraising efforts': $typeParticipate = Event::EVENT_FUNDRAISING;
             default:$typeParticipate = Event::EVENT_ONLINE;
         }
 
@@ -147,7 +148,17 @@ class EventsParser extends AbstractParser
 
         $parameters['event_type_participate'] = $typeParticipate;
 
-        $parameters['information_text'] = $event->post_content;
+        $content = $event->post_content;
+        $content = $this->replaceWPTags($content);
+        $content = $this->uploadImages($content);
+
+        $document = new HtmlDomParser($content);
+
+        $images = $this->findAllImages($document);
+        $images = $this->uploadAll($images);
+        $content = $this->replaceImagesLinks($content, $images);
+
+        $parameters['information_text'] = $content;
         $parameters['preview_position'] = $this->getOption($options, 'event_city');
 
         $img = $this->getOption($options, 'background');
@@ -157,6 +168,18 @@ class EventsParser extends AbstractParser
         //$instance->title = $this->getOption($options, '_yoast_wpseo_title');
         $instance->description = $this->getOption($options, '_yoast_wpseo_metadesc');
         $instance->save();
+    }
+
+    protected function replaceWPTags($content)
+    {
+        $content = str_replace('<p>&nbsp;</p>', '', $content);
+
+        return $content;
+    }
+
+    protected function uploadImages($content)
+    {
+        return $content;
     }
 
     protected function getPrice($str)

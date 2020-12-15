@@ -179,11 +179,6 @@ class ConvertPages extends Command
 
                 $this->info('Page updated: slug ' . $pageInstance->slug);
             }
-
-            // if ($key === 3) {
-            //     break;
-            // }
-
         }
 
         $this->info('Parsing process complete!!!');
@@ -228,26 +223,8 @@ class ConvertPages extends Command
         }
     }
 
-    /* replaced by removeDomainFromLinks() */
-
-    // protected function replaceDomainInLinks($html)
-    // {
-    //     $domainExp = 'href="https://www.islamichelp.org.uk';
-    //     $html = str_replace($domainExp, 'href="', $html);
-
-    //     $domainExp = "href='https://www.islamichelp.org.uk";
-    //     $html = str_replace($domainExp, 'href=\'', $html);
-
-    //     return $html;
-    // }
-
     protected function getSlugFromLink($link)
     {
-        // $arr = explode('/', $link);
-        // $slug = $arr[count($arr) - 2];
-
-        // return $slug;
-
         $domain = 'https://www.islamichelp.org.uk' . '/';
         $slug = str_replace($domain, '', $link);
 
