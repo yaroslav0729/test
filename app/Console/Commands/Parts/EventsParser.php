@@ -18,11 +18,14 @@ class EventsParser extends AbstractParser
     public function parse()
     {
         $events = $this->wpConnection->table('wp_posts')
-            //->where('wp_posts.id', 10734)
+            //->where('wp_posts.id', 2890)
             ->where('wp_posts.post_type', 'events')
             ->get();
 
         foreach ($events as $pageKey => $event) {
+
+            $this->info('Processing item wp_id: ' . $event->ID); 
+
             $copyEvent = Page::where('wp_id', $event->ID)->first();
 
             $eventOptions = $this->wpConnection->table('wp_postmeta')
@@ -89,6 +92,11 @@ class EventsParser extends AbstractParser
         $data['name'] = $instance->name;
         $data['page_id'] = $instance->page->id;
         $data['parameters'] = $instance->parameters;
+
+        if (empty($instance->parameters['event_start_date'])) return;
+        if (empty($instance->parameters['event_end_date'])) return;
+        if (empty($instance->parameters['event_start_time'])) return;
+        if (empty($instance->parameters['event_end_time'])) return;
 
         $event = Event::updateOrCreate(['page_id' => $instance->page->id], $data);
     }
@@ -191,6 +199,8 @@ class EventsParser extends AbstractParser
 
     protected function getTime($str)
     {
+        if (empty($str)) return "";
+
         $hou = substr($str, 0, 2);
         $min = substr($str, 3, 2);
 
@@ -199,6 +209,8 @@ class EventsParser extends AbstractParser
 
     protected function getDate($str)
     {
+        if (empty($str)) return "";
+
         $year = substr($str, 0, 4);
         $month = substr($str, 4, 2);
         $day = substr($str, 6, 2);
@@ -208,6 +220,8 @@ class EventsParser extends AbstractParser
 
     protected function getDateBefore($str)
     {
+        if (empty($str)) return "";
+
         $year = substr($str, 0, 4);
         $month = substr($str, 4, 2);
         $day = substr($str, 6, 2);
