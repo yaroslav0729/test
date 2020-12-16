@@ -47,7 +47,7 @@ class ClearPages extends Command
 
         foreach ($pages as $page) {
             if ($page->event) {
-                $page->event()->delete;    
+                $page->event()->delete();    
             }
         }
 
