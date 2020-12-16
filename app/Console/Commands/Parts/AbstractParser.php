@@ -110,6 +110,34 @@ abstract class AbstractParser
         return "";
     }
 
+    protected function getSlug($post)
+    {
+        $seoSlug = null;
+
+        if ($seoSlug !== null) {
+            return $seoSlug;
+        }
+
+        $slug = $post->post_name;
+ 
+        $lastParentPost = $post->post_parent;
+
+        while ($lastParentPost !== 0) {
+            $parPost = $this->wpConnection->table('wp_posts')
+                                ->where('wp_posts.ID', $lastParentPost)
+                                ->first();
+
+            if (!empty($parPost)) {
+                $lastParentPost = $parPost->post_parent;
+                $slug = $parPost->post_name . '/' . $slug;
+            } else {
+                $lastParentPost = 0;
+            }
+        }
+
+        return $slug;
+    }
+
     private function findAllImages($el)
     {
         $images = [];

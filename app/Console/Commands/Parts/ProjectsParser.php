@@ -17,6 +17,7 @@ class ProjectsParser extends AbstractParser
     public function parse()
     {
         $posts = $this->wpConnection->table('wp_posts')
+            //->where('wp_posts.ID', 2060)
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
             ->where('wp_posts.post_type', 'page')
             ->where('wp_posts.post_status', 'publish')
@@ -34,13 +35,15 @@ class ProjectsParser extends AbstractParser
                 ->where('post_id', $project->ID)
                 ->get();
 
+            $slug = $this->getSlug($project);
+
             if ($copyProject) {
 
                 $copyProjectInstance = $copyProject->actual_page_instance;
 
                 $copyProjectInstance->update([
                     'name' => $project->post_title,
-                    'slug' => $project->post_name,
+                    'slug' => $slug,
                     'title' => $project->post_title,
                     'description' => 'parsed project page wp_id: ' . $project->ID,
                     'template' => Template::PROJECT_PAGE,
@@ -57,7 +60,7 @@ class ProjectsParser extends AbstractParser
 
                 $copyProjectInstance = PageInstance::create([
                     'name' => $project->post_title,
-                    'slug' => $project->post_name,
+                    'slug' => $slug,
                     'title' => $project->post_title,
                     'description' => 'parsed project page wp_id: ' . $project->ID,
                     'page_id' => $copyProject->id,
