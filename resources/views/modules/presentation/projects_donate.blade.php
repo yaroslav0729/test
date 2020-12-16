@@ -70,7 +70,7 @@ foreach ($amount as $key => $item) {
                 <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                         @isset($useSingleTab)
-                        <a class="nav-link active @if($isEmergency) color-red @endif"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true" donate-filter data-filter="single">Single Donation</a>
+                        <a run-trigger="click" class="nav-link active @if($isEmergency) color-red @endif"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true" donate-filter data-filter="single">Single Donation</a>
                         @endisset
                         @isset($useMonthlyTab)
                         <a class="nav-link @if($isEmergency) color-red @else color-info @endif @empty($useSingleTab) active @endempty"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false" donate-filter data-filter="monthly">Monthly Donation</a>

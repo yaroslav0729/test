@@ -171,6 +171,8 @@ $(function () {
 
     initWysiwyg();
     initSwiper();
+
+    setTimeout(initTriggers, 100);
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     $(document).on('change', '[name="template"]', selectTemplateRequest);
@@ -552,6 +554,12 @@ function initSwiper(){
             }
         });
     })
+}
+
+function initTriggers() {
+    $('[run-trigger]').each(function() {
+        $(this).trigger($(this).attr('run-trigger')).removeAttr('run-trigger');
+    });
 }
 
 //require('./functions');

@@ -92,11 +92,11 @@
         @include('modules.presentation.projects_tiles', ['projects' => $sProjects])
     </div>
 
-    <div class="filter_projects_monthly d-none" filter-projects>
+    <div class="filter_projects_monthly" filter-projects>
         @include('modules.presentation.projects_tiles', ['projects' => $mProjects])
     </div>
 
-    <div class="filter_projects_appeal d-none" filter-projects>
+    <div class="filter_projects_appeal" filter-projects>
         @include('modules.presentation.projects_tiles', ['projects' => $aProjects])
     </div>
 
