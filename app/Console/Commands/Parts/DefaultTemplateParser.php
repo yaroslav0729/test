@@ -121,7 +121,7 @@ class DefaultTemplateParser extends AbstractParser
                     'name' => $post->post_title,
                     'slug' => $slug,
                     'title' => $post->post_title,
-                    'description' => 'parsed project page wp_id: ' . $post->ID,
+                    'description' => '',
                     'template' => Template::COMMON_CONTENT_PAGE,
                 ]);
 
@@ -168,6 +168,8 @@ class DefaultTemplateParser extends AbstractParser
         $parameters = [];
         $parameters['main_html'] = $content;
         $instance->parameters = $parameters;
+
+        $instance->description = $this->getOption($options, '_yoast_wpseo_metadesc');
 
         $page = $instance->page;
         $page->published_at = $post->post_date;
