@@ -16,17 +16,13 @@ class ProjectsParser extends AbstractParser
 
     public function parse()
     {
-        $posts = $this->wpConnection->table('wp_posts')
-            //->where('wp_posts.ID', 2060)
-            ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
-            ->where('wp_posts.post_type', 'page')
-            ->where('wp_posts.post_status', 'publish')
-            ->where(function ($query) {
-                $query->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
-                    ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php');
-            })
-            ->get();
+        $posts = $this->getProjects();
+        $this->processPosts($posts);
+        $this->info('Count of projects:' . count($posts));
+    }
 
+    protected function processPosts($posts)
+    {
         foreach ($posts as $pageKey => $project) {
 
             $copyProject = Page::where('wp_id', $project->ID)->first();
@@ -79,8 +75,21 @@ class ProjectsParser extends AbstractParser
             $this->info($infoString);
             Log::channel('parser')->info($infoString);
         }
+    }
 
-        $this->info('count posts:' . count($posts));
+    protected function getProjects()
+    {
+        $posts = $this->wpConnection->table('wp_posts')
+            ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
+            ->where('wp_posts.post_type', 'page')
+            ->where('wp_posts.post_status', 'publish')
+            ->where(function ($query) {
+                $query->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
+                    ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php');
+            })
+            ->get();
+
+        return $posts;
     }
 
     protected function updateProjectTemplateParams($projectInstance, $projectOptions)

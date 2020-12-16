@@ -14,20 +14,31 @@ class DefaultTemplateParser extends AbstractParser
 
     public function parse()
     {
-        $posts = $this->getPostsWithoutAnyTemplate();
-
-        $this->info('count posts without template: ' . count($posts));
-        $this->processPosts($posts);
-
         $posts = $this->getPostsWithDefaultTemplate();
-
         $this->info('count posts with default template: ' . count($posts));
         $this->processPosts($posts);
 
         $posts = $this->getPostsWithTypePost();
-
         $this->info('count pages with type post: ' . count($posts));
         $this->processPosts($posts);
+
+        $posts = $this->getEmergencies();
+        $this->info('count of emergencies:' . count($posts));
+        $this->processPosts($posts);
+
+        $posts = $this->getPostsWithoutAnyTemplate();
+        $this->info('count posts without template: ' . count($posts));
+        $this->processPosts($posts);
+    }
+
+    protected function getEmergencies()
+    {
+        $posts = $this->wpConnection->table('wp_posts')
+            ->where('wp_posts.post_type', 'emergencies')
+            ->where('wp_posts.post_status', 'publish')
+            ->get();
+
+        return $posts;
     }
 
     protected function getPostsWithoutAnyTemplate()
