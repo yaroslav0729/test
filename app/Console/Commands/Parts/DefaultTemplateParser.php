@@ -25,7 +25,26 @@ class DefaultTemplateParser extends AbstractParser
             ->get();
 
         $this->info('count posts:' . count($posts));
+        $this->processPosts($posts);
 
+        $posts = $this->wpConnection->table('wp_posts')
+            ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
+            ->where('wp_posts.post_type', 'post')
+            ->where('wp_posts.post_status', 'publish')
+            ->orderBy('wp_posts.ID', 'ASC')
+            ->where(function ($query) {
+                $query->where('wp_postmeta.meta_key', '_wp_page_template');
+                $query->where('wp_postmeta.meta_value', 'default');
+            })
+            ->get();
+
+
+        $this->info('count posts:' . count($posts));
+        $this->processPosts($posts);
+    }
+
+    protected function processPosts($posts)
+    {
         foreach ($posts as $pageKey => $post) {
 
             $page = Page::where('wp_id', $post->ID)->first();
