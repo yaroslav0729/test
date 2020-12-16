@@ -6,7 +6,7 @@
             @endif
         </div>
         @if(count($parameters)>1)
-            <a href="javascript:void(0)" class="view-more"><i class="far fa-arrow-right"></i></a>
+            <a href="javascript:void(0)" class="view-more"><i class="fal fa-arrow-right"></i></a>
         @endif
         <div class="d-none blog-video-parameters alert alert-warning" data-current="0">
             <ul>

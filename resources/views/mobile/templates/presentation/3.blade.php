@@ -158,7 +158,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                                     <p class="mb-3">{!! $hdrText[$i] !!}</p>
                                     <a href="#" class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate now</a>
                                     <div class="text-right pt-4 d-block">
-                                        <a href="#" class="view-more swiper-button-next"><i class="far fa-arrow-right"></i></a>
+                                        <a href="#" class="view-more swiper-button-next"><i class="fal fa-arrow-right"></i></a>
                                         <div class="black-line"></div>
                                     </div>
                                 </div>
@@ -184,7 +184,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                 <p class="mb-5">You can help the children in Syria now,<br>from as little as £3</p>
                 <a href="#" class="btn btn-danger">Donate now</a>
                 <div class="text-right pt-4 d-block">
-                    <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="view-more"><i class="fal fa-arrow-right"></i></a>
                     <div class="black-line"></div>
                 </div>
             </div>
@@ -229,7 +229,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                 <span>Volunteers this year</span>
             </div>
         </div>
-        <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
+        <div class="swiper-button-next"><i class="fal fa-arrow-right"></i></div>
         <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
     </div>
 
@@ -267,7 +267,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                 </div>
                 @endfor
             </div>
-            <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
+            <div class="swiper-button-next"><i class="fal fa-arrow-right"></i></div>
             <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
             <div class="swiper-pagination"></div>
         </div>

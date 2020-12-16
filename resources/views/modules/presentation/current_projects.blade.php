@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-6">
                     <div class="img slide-img" style="background-image: url({{ $slideImage[0] }})">
-                        <a href="#" id="current-proj-next-slide" class="view-more"><i class="far fa-arrow-right"></i></a>
+                        <a href="#" id="current-proj-next-slide" class="view-more"><i class="fal fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>

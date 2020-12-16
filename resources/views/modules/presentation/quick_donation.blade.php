@@ -31,7 +31,7 @@ $categories = \App\Models\CampaignCategory::all();
                     </div>
                 </div>
                 <div class="col-2">
-                    <button type="submit" class="btn_sbmt btn btn-danger">Donate now</button>
+                    <button type="submit" class="btn_sbmt btn btn-danger w-100">Donate now</button>
                 </div>
             </div>
         </form>

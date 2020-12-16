@@ -91,7 +91,7 @@
                         <span>{{ $infoBlockText3 }}</span>
                     </div>
                 </div>
-                <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
+                <div class="swiper-button-next"><i class="fal fa-arrow-right"></i></div>
                 <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
             </div>
 

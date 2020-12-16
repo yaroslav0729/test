@@ -159,7 +159,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
         <div class="pt-4"></div>
         <div class="down-bar">
             <div class="mb-4">
-                <a href="#" class="btn  btn-danger w-100">Checkout <i class="far fa-arrow-right"></i></a>
+                <a href="#" class="btn  btn-danger w-100">Checkout <i class="fal fa-arrow-right"></i></a>
             </div>
             <p class="mb-4">Thank you, this donation could help empower 512 people!</p>
             <div>

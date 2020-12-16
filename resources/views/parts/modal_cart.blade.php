@@ -56,7 +56,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                             <a href="#" class="text-underline text-dark"><b>VIEW MORE PROJECTS</b></a>
                         </div>
                         <div class="col-5 text-right">
-                        <a href="{{ url('/donate#about-donation') }}" class="btn_checkout btn btn-danger">Checkout <i class="far fa-arrow-right"></i></a>
+                        <a href="{{ url('/donate#about-donation') }}" class="btn_checkout btn btn-danger">Checkout <i class="fal fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
