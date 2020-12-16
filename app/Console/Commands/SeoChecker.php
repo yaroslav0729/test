@@ -35,13 +35,13 @@ class SeoChecker extends Command
     const SITEMAPS = [
         'posts' => 'https://www.islamichelp.org.uk/post-sitemap.xml',
         'pages' => 'https://www.islamichelp.org.uk/page-sitemap.xml',
-        // 'media-center' => 'https://www.islamichelp.org.uk/media-centre-sitemap.xml',
-        // 'events' => 'https://www.islamichelp.org.uk/events-sitemap.xml',
-        // 'ihelp' => 'https://www.islamichelp.org.uk/ihelp-give-sitemap.xml',
-        // 'emergencies' => 'https://www.islamichelp.org.uk/emergencies-sitemap.xml',
-        // 'categories' => 'https://www.islamichelp.org.uk/category-sitemap.xml',
-        // 'media-categories' => 'https://www.islamichelp.org.uk/media-categories-sitemap.xml',
-        // 'author' => 'https://www.islamichelp.org.uk/author-sitemap.xml',
+        'media-center' => 'https://www.islamichelp.org.uk/media-centre-sitemap.xml',
+        'events' => 'https://www.islamichelp.org.uk/events-sitemap.xml',
+        'ihelp' => 'https://www.islamichelp.org.uk/ihelp-give-sitemap.xml',
+        'emergencies' => 'https://www.islamichelp.org.uk/emergencies-sitemap.xml',
+        'categories' => 'https://www.islamichelp.org.uk/category-sitemap.xml',
+        'media-categories' => 'https://www.islamichelp.org.uk/media-categories-sitemap.xml',
+        'author' => 'https://www.islamichelp.org.uk/author-sitemap.xml',
     ];
 
     /**
@@ -90,9 +90,6 @@ class SeoChecker extends Command
         }
 
         $this->seoCheck();
-
-        dump($this->errorItems);
-
         $this->report();
 
         $this->info('Seo checker complete');  
@@ -145,12 +142,19 @@ class SeoChecker extends Command
             if (!empty($item['wp_id'])) $wpIdFound++;
         }
 
-        $info = 'Items: ' . count($this->errorItems) . ', wp_ids: ' . $wpIdFound . ', ids: ' . $idFound;
-        
-        dump($idsExists);
-
+        $info = '// ~~~~~~~~~~ REPORT ~~~~~~~~~~';
         $this->info($info);
         Log::channel('seo_checker')->info($info);
+
+        $info = 'Bad url:';
+        $this->info($info);
+        Log::channel('seo_checker')->info($info);
+
+        foreach ($this->errorItems as $key => $item) {
+            $info = $key + 1 . ': ' . $item['link'];
+            $this->info($info);
+            Log::channel('seo_checker')->info($info);
+        }
     }
 
     protected function getLinkErrorData($link)
@@ -181,10 +185,6 @@ class SeoChecker extends Command
             'wp_id' => $wpId,
             'id' => $id
         ];
-
-        //$info = 'Error data -> post id: ' . $id . ', wp_id: ' . $wpId;
-        //$this->info($info);
-        //Log::channel('seo_checker')->info($info);
     }
 
     protected function getPostName($link)
