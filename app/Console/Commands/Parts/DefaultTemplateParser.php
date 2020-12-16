@@ -109,6 +109,10 @@ class DefaultTemplateParser extends AbstractParser
 
             $slug = $this->getSlug($post);
 
+            $options = $this->wpConnection->table('wp_postmeta')
+                ->where('post_id', $post->ID)
+                ->get();
+
             if ($page) {
 
                 $instance = $page->actual_page_instance;
@@ -145,16 +149,30 @@ class DefaultTemplateParser extends AbstractParser
                 $infoString = $pageKey . ': Page created => id: ' . $page->id . ', wp_id: ' . $page->wp_id;
             }
 
-            $content = $post->post_content;
-            $content = $this->uploadImages($content);
-
-            $parameters = [];
-            $parameters['main_html'] = $content;
-            $instance->parameters = $parameters;
-            $instance->save();
+            $this->updateTemplateParams($instance, $options, $post);
 
             $this->info($infoString);
             Log::channel('parser')->info($infoString);
         }
+    }
+
+    protected function updateTemplateParams($instance, $options, $post)
+    {
+        $img = $this->getOption($options, 'background');
+        $instance->preview_img = $this->getWpImage($img);
+        $instance->preview_text = $this->getOption($options, 'head_content');
+
+        $content = $post->post_content;
+        $content = $this->uploadImages($content);
+
+        $parameters = [];
+        $parameters['main_html'] = $content;
+        $instance->parameters = $parameters;
+
+        $page = $instance->page;
+        $page->published_at = $post->post_date;
+        $page->save();
+
+        $instance->save();
     }
 }

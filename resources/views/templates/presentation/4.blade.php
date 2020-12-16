@@ -8,11 +8,14 @@
 
 @endphp
 
+@if(!empty($pageInstance->preview_img))
+    @include('modules.presentation.header_img')
+@endif
+
 <section class="blog-article-body">
     <div class="wrap">
         <div class="body">
-            <h1>{!! $pageInstance->name !!}</h1>
-            <h2>{!! $pageInstance->preview_text !!}</h2>
+            <h2>{!! $pageInstance->name !!}</h2>
             <div class="date pt-4 pb-4">
                 <i class="fas fa-calendar-alt"></i>
                 <span>{{ date('d F Y', strtotime($pageInstance->published_at)) }}</span>
