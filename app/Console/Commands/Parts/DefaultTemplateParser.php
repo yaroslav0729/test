@@ -15,6 +15,7 @@ class DefaultTemplateParser extends AbstractParser
     public function parse()
     {
         $posts = $this->wpConnection->table('wp_posts')
+            //->where('wp_posts.ID', 456)
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
             ->where('wp_posts.post_type', 'page')
             ->where('wp_posts.post_status', 'publish')
@@ -49,13 +50,15 @@ class DefaultTemplateParser extends AbstractParser
 
             $page = Page::where('wp_id', $post->ID)->first();
 
+            $slug = $this->getSlug($post);
+
             if ($page) {
 
                 $instance = $page->actual_page_instance;
 
                 $instance->update([
                     'name' => $post->post_title,
-                    'slug' => $post->post_name,
+                    'slug' => $slug,
                     'title' => $post->post_title,
                     'description' => 'parsed project page wp_id: ' . $post->ID,
                     'template' => Template::COMMON_CONTENT_PAGE,
@@ -72,7 +75,7 @@ class DefaultTemplateParser extends AbstractParser
 
                 $instance = PageInstance::create([
                     'name' => $post->post_title,
-                    'slug' => $post->post_name,
+                    'slug' => $slug,
                     'title' => $post->post_title,
                     'description' => '',
                     'page_id' => $page->id,
@@ -96,5 +99,33 @@ class DefaultTemplateParser extends AbstractParser
             $this->info($infoString);
             Log::channel('parser')->info($infoString);
         }
+    }
+
+    protected function getSlug($post)
+    {
+        $seoSlug = null;
+
+        if ($seoSlug !== null) {
+            return $seoSlug;
+        }
+
+        $slug = $post->post_name;
+ 
+        $lastParentPost = $post->post_parent;
+
+        while ($lastParentPost !== 0) {
+            $parPost = $this->wpConnection->table('wp_posts')
+                                ->where('wp_posts.ID', $lastParentPost)
+                                ->first();
+
+            if (!empty($parPost)) {
+                $lastParentPost = $parPost->post_parent;
+                $slug = $parPost->post_name . '/' . $slug;
+            } else {
+                $lastParentPost = 0;
+            }
+        }
+
+        return $slug;
     }
 }
