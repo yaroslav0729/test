@@ -421,13 +421,17 @@ $(function () {
             $(divZakat).addClass('text-danger');
 
             $('#total-zakat').find('.money-val').addClass('text-danger');
-            $(divZakat).find('b').html('£' + convertMonetary(zakat.toFixed(2)));
+
+            let zakatValue = convertMonetary(zakat.toFixed(2))
+            $(divZakat).find('b').html('£' + zakatValue);
+            $(divZakat).find('input[name="zakat_value"]').val(zakatValue)
 
         } else {
             $('#zakat-pay').removeClass('bg-danger-light');
 
             $(divZakat).removeClass('text-danger');
             $(divZakat).find('b').html('£0.00');
+            $(divZakat).find('input[name="zakat_value"]').val(0)
         }
     });
 

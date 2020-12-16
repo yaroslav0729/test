@@ -304,11 +304,13 @@
                             ZAKAT TOTAL
                             <div class="d-inline money-val">
                                 <b>£0.00</b>
+                                <input name="zakat_value" type="hidden">
                             </div>
                         </div>
                     </div>
                     <div class="pl-4 pr-4">
-                        <a href="#" class="btn btn-danger w-100">Donate my Zakat</a>
+                        
+                        <a href="#" class="btn btn-danger w-100" zakat-donate-btn>Donate my Zakat</a>
                     </div>
                 </div>
             </div>

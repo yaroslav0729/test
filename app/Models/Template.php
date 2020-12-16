@@ -90,9 +90,9 @@ class Template
                     'parameters.event_link' => 'required',
                     'parameters.event_details_entry' => 'required',
                     'parameters.event_details_organiser' => 'required',
-                    'parameters.event_details_speaker' => 'required',
+                    //'parameters.event_details_speaker' => 'required',
                     'parameters.event_details_contact' => 'required',
-                    'parameters.information_title' => 'required',
+                    //'parameters.information_title' => 'required',
                     'parameters.information_text' => 'required',
                 ];
 

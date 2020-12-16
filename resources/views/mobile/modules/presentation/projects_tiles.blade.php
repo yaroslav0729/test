@@ -26,11 +26,11 @@
                         <div class="descr">
                             <div class="name text-ellipsis"><b>{{ $projInstance->name }}</b></div>
                             <div><a href="{{ url('/' . $projInstance->slug) }}" class="font-size-14 text-uppercase text-info"><b>LEARN MORE</b></a></div>
-                            <div class="add" data-popup="{{ $projKey }}">
+                            <div class="add" data-id="{{ $projInstance->id}}">
                                 <i class="far fa-plus"></i>
                             </div>
 
-                            @include('modules.presentation.parts.projects_tiles_popup', ['popupKey' => $projKey])
+                            @include('modules.presentation.parts.projects_tiles_popup', ['popupKey' => $projInstance->id])
                         </div>
                     </div>
                 </div>

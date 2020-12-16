@@ -9,7 +9,7 @@ $categories = \App\Models\CampaignCategory::all();
         
     </script>
 
-    <div class="modal-quick-donation">
+    <div class="modal-quick-donation" quick-donation>
         <form action="{{ route('cart.add') }}" method="post">
         @csrf
         <div class="img" style="background-image: url(img/content/m-quick-donation.jpg)">
@@ -76,7 +76,7 @@ $categories = \App\Models\CampaignCategory::all();
         </div>
         <br>
         <div>
-            <button  type="submit" class="btn btn-danger w-100">Donate now</button>
+            <button  type="submit" class="btn_sbmt btn btn-danger w-100">Donate now</button>
         </div>
         </form>
     </div>

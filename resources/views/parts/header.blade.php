@@ -32,11 +32,11 @@ $cartSum = \App\Models\CartItem::getCartSum();
                         <li><a href="#">Get Involved</a></li>
                         <li><a href="#">newsroom</a></li>
                         <li><a href="#">appeals</a></li>
-                        <li><a href="#"><i class="ico-search"></i></a></li>
+                        <li><a href="#"><i class="fas fa-search"></i></a></li>
                     </ul>
                 </div>
                 <div class="col-3 text-right">
-                    <a href="{{ \App\Models\Page::getProjectsUrl() }}" class="btn btn-danger">Donate</a>
+                    <a href="{{ \App\Models\Page::getSinglePageUrl(\App\Models\Template::PROJECTS_PAGE) }}" class="btn btn-danger">Donate</a>
                 </div>
             </div>
         </div>

@@ -75,7 +75,7 @@
 
 </section>
 
-@include('mobile.modules.presentation.donation_page_cart')
+@include('modules.presentation.donation_page_cart')
 
 <section class="other-way-give-mobile">
     <div class="wrap">

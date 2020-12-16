@@ -8,6 +8,8 @@ use App\Models\CartItem;
 use App\Models\CampaignPrice;
 use App\Models\Donation;
 use App\Models\Order;
+use App\Models\Currency;
+use App\Services\Paypal;
 
 class CartController extends Controller
 {
@@ -17,7 +19,7 @@ class CartController extends Controller
 
         $amount = $request->amount;
         $campaignId = $request->campaigns;
-        
+
         if (isset($request->categories)) {
             $category = CampaignCategory::where('name', $request->categories)->first();
             
@@ -26,13 +28,20 @@ class CartController extends Controller
             }
         }
         
-        $period = array_search($request->period, CampaignPrice::ALL_TYPES);
+        if (isset($request->period)) {
+            $period = array_search($request->period, CampaignPrice::ALL_TYPES);
+        } else {
+            $period = CampaignPrice::TYPE_SINGLE;
+        }
 
+        $note = $request->note;
+        
         $cartItem = CartItem::create([
             'amount' => $amount,
             'campaign_id' => $campaignId,
             'campaign_category_id' => $categoryId,
-            'period' => $period
+            'period' => $period,
+            'note' => $note
         ]);
 
         $this->sessionCartPut($cartItem->cart_item_id);
@@ -52,7 +61,14 @@ class CartController extends Controller
 
     public function remove(Request $request, $itemId)
     {
-        CartItem::where('cart_item_id', $itemId)->delete();
+        $item = CartItem::where('cart_item_id', $itemId)->firstOrFail();
+        $deletedItems = $item->removeSameItems();
+        
+        foreach ($deletedItems as $delItem) {
+            $this->sessionCartDelete($delItem);
+        }
+
+        $item->delete();
         $this->sessionCartDelete($itemId);
 
         if (request()->ajax()) {
@@ -106,7 +122,12 @@ class CartController extends Controller
         $cartIds = session()->get('cart');
         $cartItems = CartItem::whereIn('cart_item_id', $cartIds)->get();
 
+        $sum = 0;
+
         foreach ($cartItems as $cartItem) {
+
+            $sum = $sum + $cartItem->amount;
+
             Donation::create([
                 'value' => $cartItem->amount,
                 'order_id' => $order->id,
@@ -114,14 +135,33 @@ class CartController extends Controller
                 'currency' => 'GBP',
                 'campaign_id' => $cartItem->campaign_id,
                 'campaign_category_id' => $cartItem->campaign_category_id,
-                'user_id' => null, //auth()->user ? auth()->user->id : null,
+                'user_id' => auth()->user() ? auth()->user()->id : null,
                 'email' => $order->email,
+                'note' => $cartItem->note,
             ]);
         }
 
         $this->clearCart();
 
-        return redirect('/donate')->with('success', 'Order created successfully');
+        $response = null;
+        $payLink = null;
+
+        $order->pay_with = $request->pay_method;
+
+        if ($request->pay_method === 'paypal') {
+            $response = Paypal::createOrder($sum, 'GBP', 'Order id: ' . $order->id);
+        
+            $order->order_id = $response->result->id;
+            $payLink = $response->result->links[1]->href;
+
+            $order->save();
+        }
+
+        if (empty($payLink)) {
+            die('Bad request');
+        }
+
+        return redirect($payLink);
     }
 
     protected function sessionCartPut($itemId)
@@ -141,5 +181,44 @@ class CartController extends Controller
         }
 
         session()->put('cart', $cart);
+    }
+
+    protected function refreshItemQuantity($cartItemId, $quantity)
+    {
+        $needItem = CartItem::findOrFail($cartItemId);
+        $sameItems = $needItem->getSameItems();
+
+        if ($quantity > count($sameItems)) {
+            $newItemIds = $needItem->createSameItems($quantity - count($sameItems));
+
+            foreach ($newItemIds as $cartId) {
+                $this->sessionCartPut($cartId);
+            }
+
+        } else if (count($sameItems) > $quantity) {
+            $deletedItemIds = $needItem->removeSameItems(count($sameItems) - $quantity);
+
+            foreach ($deletedItemIds as $cartId) {
+                $this->sessionCartDelete($cartId);
+            }            
+        }
+
+        $sameItems = $needItem->getSameItems();
+    }
+
+    public function refreshQuantity(Request $request)
+    {
+        $cart = $request->get('cart');
+
+        foreach ($cart as $item) {
+            $this->refreshItemQuantity($item['id'], $item['quantity']);
+        }
+
+        return response()->json([
+            'success' => true,
+            'cart_html' => view('parts.modal_cart')->render(),
+            'cart_donate' => view('modules.presentation.donation_page_cart')->render(),
+            'sum' => CartItem::getCartSum(),
+        ]);
     }
 }

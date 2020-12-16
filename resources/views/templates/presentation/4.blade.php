@@ -11,13 +11,6 @@
 <section class="blog-article-body">
     <div class="wrap">
         <div class="body">
-
-            @if(isset($pageInstance->html))
-                <div class="container pt-3">
-                    <a href="{{ $pageInstance->html }}" target="_blank">old page</a>
-                </div>
-            @endif
-
             <h1>{!! $pageInstance->name !!}</h1>
             <h2>{!! $pageInstance->preview_text !!}</h2>
             <div class="date pt-4 pb-4">

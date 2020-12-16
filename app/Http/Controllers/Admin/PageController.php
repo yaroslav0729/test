@@ -71,7 +71,6 @@ class PageController extends Controller
      */
     public function store(PageCreateEditRequest $request)
     {
-
         $page = Page::create();
         $data = $request->all();
         $data['page_id'] = $page->id;
@@ -183,13 +182,15 @@ class PageController extends Controller
      */
     public function update(PageCreateEditRequest $request, Page $page)
     {
+        $data = $request->all();
+
         $oldPage = $page->actual_page_instance;
 
         if (isset($oldPage)) {
             $oldPage->actual = false;
             $oldPage->save();
         }
-        $data = $request->all();
+        
         $data['page_id'] = $oldPage->page_id;
         $data['author_id'] = $oldPage->author_id;
         if (isset($data['parameters']['amount'])) {
@@ -235,7 +236,7 @@ class PageController extends Controller
         $page = Page::findOrFail($id);
         $page->status = $request->status;
 
-        if ((int)$page->status === Page::PAGE_STATUS_PUBLICHED) {
+        if ((int)$page->status === Page::PAGE_STATUS_PUBLISHED) {
             $page->published_at = Carbon::now();
         }
 

@@ -125,7 +125,15 @@ $cartSum = \App\Models\CartItem::getCartSum();
                         <div class="row gutter-0">
                             <div class="col-12">
                                 <div class="mb-3">
+                                    @isset($cartItem[0]->campaign_category)
                                     <p class="font-size-16 mb-0"><b>{{ $cartItem[0]->campaign_category->name }}</b></p>
+                                    @else
+                                        @empty($cartItem[0]->note)
+                                            <p class="font-size-16 mb-0"><b>No category</b></p>
+                                        @else
+                                            <p class="font-size-16 mb-0"><b>{{ $cartItem[0]->note }}</b></p>
+                                        @endempty
+                                    @endisset
                                     <p class="font-size-16 mb-0">{{ (int)$cartItem[0]->period === \App\Models\CampaignPrice::TYPE_SINGLE ? 'Single' : 'Monthly' }} payment</p>
                                 </div>
                             </div>
@@ -139,7 +147,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
 
                             </div>
                             <div class="col-6 d-flex align-items-center">
-                                <input type="number" value="{{ count($cartItem) }}" min="0" max="1000" step="1" class="color-danger"/>
+                                <input type="number" data-id="{{ $cartItem[0]->id }}" value="{{ count($cartItem) }}" min="1" max="1000" step="1" class="color-danger"/>
                             </div>
                         </div>
                     </div>
@@ -159,7 +167,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
         <div class="pt-4"></div>
         <div class="down-bar">
             <div class="mb-4">
-                <a href="#" class="btn  btn-danger w-100">Checkout <i class="fal fa-arrow-right"></i></a>
+                <a href="{{ route('cart.payment') }}" class="btn  btn-danger w-100">Checkout <i class="far fa-arrow-right"></i></a>
             </div>
             <p class="mb-4">Thank you, this donation could help empower 512 people!</p>
             <div>

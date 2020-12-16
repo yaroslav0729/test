@@ -171,6 +171,7 @@
             </div>
 
             <div class="black-line height-1"></div>
+
             <div class="row gutter-0">
                 <div class="col-6 info-col hide">
                     <div class="order-cart-list">
@@ -219,16 +220,16 @@
                         <div class="pt-4"></div>
                         <div class="mb-4 text-center">
                             <label class="radio mr-5">
-                                <input type="radio" name="payMethod" checked><span><i class="fal fa-check"></i></span>
-                                <b>PAY BY CARD</b>
+                                <input type="radio" name="pay_method" value="paypal" checked><span><i class="fal fa-check"></i></span>
+                                <b>PAY BY PAYPAL</b>
                             </label>
                             <label class="radio">
-                                <input type="radio" name="payMethod"><span><i class="fal fa-check"></i></span>
-                                <b>PAY BY PAL</b>
+                                <input type="radio" name="pay_method" value="global"><span><i class="fal fa-check"></i></span>
+                                <b>PAY BY GLOBAL PAY</b>
                             </label>
                         </div>
 
-                        <div class="row">
+                        <div class="row d-none">
                             <div class="col-12 name-card-col">
                                 <div class="form-group">
                                     <label><b>NAME ON CARD</b></label>

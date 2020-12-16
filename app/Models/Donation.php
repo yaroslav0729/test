@@ -11,7 +11,21 @@ class Donation extends Model
 {
     use HasFactory;
 
+    const STATUS_PROCESSING = 0;
+    const STATUS_COMPLETE = 1;
+    const STATUS_CANCELED = 2;
+
     protected $guarded = ['id'];
+
+    protected static function getStatusLabel($status)
+    {
+        switch ($status) {
+            case self::STATUS_PROCESSING:  return "processing";
+            case self::STATUS_COMPLETE: return "complete";
+            case self::STATUS_CANCELED: return "canceled";
+
+        }
+    }
 
     public function getTypeNameAttribute()
     {
@@ -22,6 +36,11 @@ class Donation extends Model
         return "";
     }
 
+    public function getStatusNameAttribute()
+    {
+        return self::getStatusLabel($this->status);
+    }
+
     public function getCurrrencySignAttribute()
     {
         return Currency::getSignFromCode($this->currency);
@@ -30,6 +49,11 @@ class Donation extends Model
     public function campaign()
     {
         return $this->belongsTo('App\Models\Campaign');
+    }
+
+    public function campaign_category()
+    {
+        return $this->belongsTo('App\Models\CampaignCategory');
     }
 
     public function user()

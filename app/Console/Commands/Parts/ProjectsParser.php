@@ -1,72 +1,25 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Parts;
 
+use App\Console\Commands\Parts\AbstractParser;
 use App\Models\Campaign;
 use App\Models\Page;
 use App\Models\PageInstance;
 use App\Models\Template;
-use Carbon\Carbon;
-use DB;
-use Exception;
-use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use \App\Models\CampaignPrice;
 
-class PageParser extends Command
+class ProjectsParser extends AbstractParser
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * php artisan parse:page
-     *
-     * @var string
-     */
-    protected $signature = 'parse:page';
+    const IMG_PATH = 'projects';
 
-    protected $wpConnection;
-
-    const PROJECTS_PATH = 'projects';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
-    public function handle()
-    {
-        $this->info('Pages parser command started.');
-        $this->wpConnection = DB::connection('wp');
-
-        $this->parseProjects();
-
-        $this->info('Parsing complete!');
-    }
-
-    protected function parseProjects()
+    public function parse()
     {
         $posts = $this->wpConnection->table('wp_posts')
-            //->where('ID', 6129)
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
             ->where('wp_posts.post_type', 'page')
+            ->where('wp_posts.post_status', 'publish')
             ->where(function ($query) {
                 $query->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
                     ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php');
@@ -99,7 +52,7 @@ class PageParser extends Command
 
                 $copyProject = Page::create([
                     'wp_id' => $project->ID,
-                    'status' => Page::PAGE_STATUS_PUBLICHED,
+                    'status' => Page::PAGE_STATUS_PUBLISHED,
                 ]);
 
                 $copyProjectInstance = PageInstance::create([
@@ -186,88 +139,6 @@ class PageParser extends Command
         $projectInstance->description = $this->getOption($projectOptions, '_yoast_wpseo_metadesc');
         $projectInstance->preview_img = $parameters['donate_img'];
         $projectInstance->save();
-    }
-
-    protected function searchMonthYear($imageUrl)
-    {
-        $month = '';
-        $year = '';
-
-        $pos = -1;
-
-        $arr = explode('/', $imageUrl);
-
-        foreach ($arr as $key => $item) {
-            if ($item === 'uploads') {
-                $pos = $key;
-                break;
-            }
-        }
-
-        if (isset($arr[$pos + 1])) {
-            $year = $arr[$pos + 1];
-        }
-
-        if (isset($arr[$pos + 2])) {
-            $month = $arr[$pos + 2];
-        }
-
-        return [$month, $year];
-    }
-
-    protected function getWpImage($wpImageId)
-    {
-        $img = $this->wpConnection->table('wp_postmeta')
-            ->where('post_id', $wpImageId)
-            ->where('meta_key', '_wp_attached_file')->first();
-
-        $imageUrl = 'https://www.islamichelp.org.uk/wp-content/uploads/';
-
-        $now = Carbon::now();
-        $year = $now->year;
-        $month = $now->month;
-
-        if (isset($img)) {
-            $imageUrl = $imageUrl . $img->meta_value;
-
-            list($linkMonth, $linkYear) = $this->searchMonthYear($imageUrl);
-
-            if (($linkMonth !== '') && ($linkYear !== '')) {
-                $year = $linkYear;
-                $month = $linkMonth;
-            }
-
-            $name = substr($imageUrl, strrpos($imageUrl, '/') + 1);
-            $path = self::PROJECTS_PATH . '/' . $year . '/' . $month . '/' . $name;
-
-            $exists = Storage::disk('public')->exists($path);
-
-            if ((!$exists) && ($imageUrl !== "")) {
-                try {
-                    $contents = file_get_contents($imageUrl);
-                    Storage::disk('public')->put($path, $contents);
-
-                } catch (Exception $e) {
-                    $this->info('WARNING: file not found: ' . $imageUrl);
-                }
-            }
-
-            return Storage::url($path);
-        }
-
-        return "";
-    }
-
-    protected function getOption($options, $optName)
-    {
-        foreach ($options as $option) {
-            if ($option->meta_key === $optName) {
-                return $option->meta_value;
-            }
-
-        }
-
-        return "";
     }
 
     protected function updateProjectPrices($projectInstance, $projectOptions)

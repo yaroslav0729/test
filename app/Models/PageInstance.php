@@ -142,13 +142,13 @@ class PageInstance extends Model
 
     public function getIsPublishedAttribute()
     {
-        return ($this->page->status === \App\Models\Page::PAGE_STATUS_PUBLICHED);
+        return ($this->page->status === \App\Models\Page::PAGE_STATUS_PUBLISHED);
     }
 
     // public function scopePublished($query)
     // {
     //     return $query->whereHas('page', function(Builder $queryPage) {
-    //         $queryPage->where('status', Page::PAGE_STATUS_PUBLICHED);
+    //         $queryPage->where('status', Page::PAGE_STATUS_PUBLISHED);
     //     });
     // }
 

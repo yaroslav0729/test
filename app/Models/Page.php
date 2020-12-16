@@ -18,19 +18,27 @@ class Page extends Model
 
     const PAGE_STATUS_MOVED_TO_TRASH = 0;
     const PAGE_STATUS_EDITED = 1;
-    const PAGE_STATUS_PUBLICHED = 2;
-    const PAGE_STATUS_NOT_PUBLICHED = 3;
+    const PAGE_STATUS_PUBLISHED = 2;
+    const PAGE_STATUS_NOT_PUBLISHED = 3;
 
     const POST_STATUS = [
         self::PAGE_STATUS_MOVED_TO_TRASH => 'Moved to trash',
         self::PAGE_STATUS_EDITED => 'Edited',
-        self::PAGE_STATUS_PUBLICHED => 'Published',
-        self::PAGE_STATUS_NOT_PUBLICHED => 'Not published',
+        self::PAGE_STATUS_PUBLISHED => 'Published',
+        self::PAGE_STATUS_NOT_PUBLISHED => 'Not published',
     ];
 
     protected $fillable = [
         'status', 'type', 'wp_id'
     ];
+
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($model) {
+             $model->event()->delete();
+        });
+    }
 
     public function pageInstances()
     {
@@ -49,7 +57,7 @@ class Page extends Model
 
     public function scopePublished($query)
     {
-        return $query->where('status', self::PAGE_STATUS_PUBLICHED);    
+        return $query->where('status', self::PAGE_STATUS_PUBLISHED);    
     }
 
     public function scopeIndex($query)
@@ -72,26 +80,13 @@ class Page extends Model
             ->whereNotIn('id', $ids)->delete();
     }
 
-    public static function getProjectsUrl()
+    public static function getSinglePageUrl($template)
     {
-        $page = Page::where('type', self::TYPE_PROJECTS_PAGE)->first();
-
-        if ($page) {
-            $slug = $page->actual_page_instance->slug;
-        } else {
-            $slug = "";
-        }
-
-        return url($slug);
-    }
-
-    public static function getZakatUrl()
-    {
-        $page = Page::whereHas('pageInstances', function (Builder $query) {
-            $query->where('template', Template::CALCULATOR_PAGE);
+        $page = Page::whereHas('pageInstances', function (Builder $query) use ($template) {
+            $query->where('template', $template);
         })->published()->first();
 
-        if ($page) {
+        if (($page) && (isset($page->actual_page_instance))) {
             $slug = $page->actual_page_instance->slug;
         } else {
             $slug = "";

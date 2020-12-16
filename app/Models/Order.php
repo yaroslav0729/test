@@ -16,5 +16,18 @@ class Order extends Model
         return $this->hasMany('App\Models\Donation');
     }
 
+    public function getSumAttribute()
+    {
+        $sum = 0;
+
+        if (isset($this->donations)) {
+            foreach ($this->donations as $donation) {
+                $sum = $sum + $donation->value;
+            }
+        }
+        
+        return $sum;
+    }
+
     
 }

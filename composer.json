@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.0",
         "laravelium/sitemap": "^8.0",
         "livewire/livewire": "^2.0",
+        "paypal/paypal-checkout-sdk": "1.0.1",
         "spatie/laravel-permission": "^3.17",
         "voku/simple_html_dom": "^4.7"
     },

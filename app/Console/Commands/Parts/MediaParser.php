@@ -1,56 +1,27 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Parts;
 
+use App\Console\Commands\Parts\AbstractParser;
 use App\Models\Category;
-use App\Models\Page;
-use App\Models\PageInstance; // https://github.com/voku/simple_html_dom
+use App\Models\Page; // https://github.com/voku/simple_html_dom
+use App\Models\PageInstance;
 use App\Models\Template;
-use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
 use voku\helper\HtmlDomParser;
-use Exception;
 
-class ConvertPages extends Command
+class MediaParser extends AbstractParser
 {
     const PARSING_LINK = 'https://www.islamichelp.org.uk/media-centre-sitemap.xml';
-    const MEDIA_CENTER_IMAGE_STORAGE_PATH = 'media-center';
+    const IMG_PATH = 'media-center';
 
-    /**
-     * The name and signature of the console command.
-     *
-     *
-     * php artisan convert:media-center
-     *
-     * @var string
-     */
-    protected $signature = 'convert:media-center {startIndex?}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Pages parser';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        parent::__construct();
+
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
-    public function handle()
+    public function parse()
     {
         $this->info('Parsing process started');
 
@@ -63,10 +34,6 @@ class ConvertPages extends Command
 
             if ($key === 0) {
                 continue;
-            }
-
-            if (!empty($this->argument('startIndex')) && $key <= $this->argument('startIndex')) {
-                continue;   
             }
 
             $this->info('parsing link ' . $key . ' from ' . $allCou);
@@ -90,7 +57,7 @@ class ConvertPages extends Command
             if ($el) {
                 $h1 = $el->text();
             }
-            
+
             $el = $document->findOneOrFalse('h2.title_post');
 
             if ($el) {
@@ -118,16 +85,9 @@ class ConvertPages extends Command
             if ($newsBlock) {
                 $newsHtml = $newsBlock->html();
 
-                $images = $this->findAllImages($newsBlock);
-                $images = $this->uploadAll($images);
-                $newsHtml = $this->replaceImagesLinks($newsHtml, $images);
-
-                //~~~ replace all images in srcset attribute ~~~
-                $images = $this->findAllImagesSrcset($newsBlock);
-                $images = $this->uploadAll($images);
-                $newsHtml = $this->replaceImagesLinks($newsHtml, $images);
+                $newsHtml = $this->uploadImages($newsHtml);
             }
-            
+
             $category = Category::firstOrCreate([
                 'slug' => $category,
                 'name' => $category,
@@ -140,7 +100,7 @@ class ConvertPages extends Command
 
             if (!isset($pageInstance)) {
                 $page = Page::create([
-                    'status' => Page::PAGE_STATUS_PUBLICHED,
+                    'status' => Page::PAGE_STATUS_PUBLISHED,
                     'published_at' => $date,
                 ]);
                 $pageInstance = PageInstance::create([
@@ -151,7 +111,7 @@ class ConvertPages extends Command
                     'preview_text' => $h2,
                     'description' => $description,
                     'keywords' => $keywords,
-                    'template' => Template::MEDIA_CENTER_PAGE,
+                    'template' => Template::COMMON_CONTENT_PAGE,
                     'parameters' => $parameters,
                     'html' => $link, // save old link
                 ]);
@@ -168,7 +128,7 @@ class ConvertPages extends Command
                     'preview_text' => $h2,
                     'description' => $description,
                     'keywords' => $keywords,
-                    'template' => Template::MEDIA_CENTER_PAGE,
+                    'template' => Template::COMMON_CONTENT_PAGE,
                     'parameters' => $parameters,
                     'html' => $link, // save old link
                 ]);
@@ -179,11 +139,6 @@ class ConvertPages extends Command
 
                 $this->info('Page updated: slug ' . $pageInstance->slug);
             }
-
-            // if ($key === 3) {
-            //     break;
-            // }
-
         }
 
         $this->info('Parsing process complete!!!');
@@ -228,26 +183,8 @@ class ConvertPages extends Command
         }
     }
 
-    /* replaced by removeDomainFromLinks() */
-
-    // protected function replaceDomainInLinks($html)
-    // {
-    //     $domainExp = 'href="https://www.islamichelp.org.uk';
-    //     $html = str_replace($domainExp, 'href="', $html);
-
-    //     $domainExp = "href='https://www.islamichelp.org.uk";
-    //     $html = str_replace($domainExp, 'href=\'', $html);
-
-    //     return $html;
-    // }
-
     protected function getSlugFromLink($link)
     {
-        // $arr = explode('/', $link);
-        // $slug = $arr[count($arr) - 2];
-
-        // return $slug;
-
         $domain = 'https://www.islamichelp.org.uk' . '/';
         $slug = str_replace($domain, '', $link);
 
@@ -300,129 +237,5 @@ class ConvertPages extends Command
         } else {
             return "";
         }
-    }
-
-    protected function findAllImages($el)
-    {
-        $images = [];
-        $imagesOrFalse = $el->findMultiOrFalse('img');
-
-        if ($imagesOrFalse !== false) {
-            foreach ($imagesOrFalse as $image) {
-                $images[] = $image->getAttribute('src');
-            }
-        }
-
-        return $images;
-    }
-
-    protected function findAllImagesSrcset($el)
-    {
-        $images = [];
-        $srcsets = [];
-
-        $imagesOrFalse = $el->findMultiOrFalse('img');
-
-        if ($imagesOrFalse !== false) {
-            foreach ($imagesOrFalse as $image) {
-                $srcsets[] = $image->getAttribute('srcset');
-            }
-        }
-
-        foreach ($srcsets as $key => $srcset) {
-            $links = explode(', ', $srcset);
-
-            foreach ($links as $linkKey => $link) {
-                $arr = explode(' ', $link);
-
-                if (isset($arr[0])) {
-                    $images[] = $arr[0];
-                }
-            }
-        }
-
-        return $images;
-    }
-
-    protected function searchMonthYear($imageUrl)
-    {
-        $month = '';
-        $year = '';
-
-        $pos = -1;
-
-        $arr = explode('/', $imageUrl);
-
-        foreach ($arr as $key => $item) {
-            if ($item === 'uploads') {
-                $pos = $key;
-                break;
-            }
-        }
-
-        if (isset($arr[$pos + 1])) {
-            $year = $arr[$pos + 1];
-        }
-        
-        if (isset($arr[$pos + 2])) {
-            $month = $arr[$pos + 2];
-        }
-        
-        return [$month, $year];
-    }
-
-    protected function uploadAll($images)
-    {
-        $imagesLinks = [];
-
-        $now = Carbon::now();
-        $year = $now->year;
-        $month = $now->month;
-
-        if ($images !== []) {
-            foreach ($images as $imageUrl) {
-
-                /* catalogs structure as in link. If not exists - now date */
-                list($linkMonth, $linkYear) = $this->searchMonthYear($imageUrl);
-                
-                if (($linkMonth !== '') && ($linkYear !== '')) {
-                    $year = $linkYear;
-                    $month = $linkMonth;
-                }
-
-                $name = substr($imageUrl, strrpos($imageUrl, '/') + 1);
-                $path = self::MEDIA_CENTER_IMAGE_STORAGE_PATH . '/' . $year . '/' . $month . '/' . $name;
-                
-                $exists = Storage::disk('public')->exists($path);
-
-                if ((!$exists) && ($imageUrl !== "")) {
-                    try {
-                        $contents = file_get_contents($imageUrl);
-                        Storage::disk('public')->put($path, $contents);
-    
-                    } catch (Exception $e) {
-                        $this->info('WARNING: file not found: ' . $imageUrl);
-                    }
-                } 
-
-                if ($imageUrl !== "") {
-                    $imagesLinks[] = [
-                        'remote_image' => $imageUrl,
-                        'local_image' => Storage::url($path),
-                    ];
-                }
-            }
-        }
-
-        return $imagesLinks;
-    }
-
-    protected function replaceImagesLinks($html, $images)
-    {
-        foreach ($images as $image) {
-            $html = str_replace($image['remote_image'], $image['local_image'], $html);
-        }
-
-        return $html;
     }
 }
