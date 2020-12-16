@@ -135,12 +135,20 @@ class SeoChecker extends Command
         $wpIdFound = 0;
         $idFound = 0;
 
+        $idsExists = [];
+
         foreach ($this->errorItems as $item) {
-            if (!empty($item['id'])) $idFound++;
+            if (!empty($item['id'])) {
+                $idFound++;
+                $idsExists[] = $item;
+            }
             if (!empty($item['wp_id'])) $wpIdFound++;
         }
 
         $info = 'Items: ' . count($this->errorItems) . ', wp_ids: ' . $wpIdFound . ', ids: ' . $idFound;
+        
+        dump($idsExists);
+
         $this->info($info);
         Log::channel('seo_checker')->info($info);
     }

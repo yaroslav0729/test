@@ -14,20 +14,64 @@ class DefaultTemplateParser extends AbstractParser
 
     public function parse()
     {
-        $posts = $this->wpConnection->table('wp_posts')
-            //->where('wp_posts.ID', 456)
+        $posts = $this->getPostsWithoutAnyTemplate();
+
+        $this->info('count posts without template: ' . count($posts));
+        $this->processPosts($posts);
+
+        $posts = $this->getPostsWithDefaultTemplate();
+
+        $this->info('count posts with default template: ' . count($posts));
+        $this->processPosts($posts);
+
+        $posts = $this->getPostsWithTypePost();
+
+        $this->info('count pages with type post: ' . count($posts));
+        $this->processPosts($posts);
+    }
+
+    protected function getPostsWithoutAnyTemplate()
+    {
+        $postsWithTemplate = $this->wpConnection->table('wp_posts')
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
             ->where('wp_posts.post_type', 'page')
             ->where('wp_posts.post_status', 'publish')
             ->orderBy('wp_posts.ID', 'ASC')
             ->where(function ($query) {
-                $query->where('wp_postmeta.meta_value', 'default');
+                $query->where('wp_postmeta.meta_key', '_wp_page_template');
             })
             ->get();
 
-        $this->info('count posts:' . count($posts));
-        $this->processPosts($posts);
+        $allPosts = $this->wpConnection->table('wp_posts')
+            ->where('wp_posts.post_type', 'page')
+            ->where('wp_posts.post_status', 'publish')
+            ->orderBy('wp_posts.ID', 'ASC')
+            ->get();
 
+        $postsWithTemplateIds = [];
+        foreach ($postsWithTemplate as $item) {
+            $postsWithTemplateIds[] = $item->ID;
+        }
+
+        $allPostsIds = [];
+        foreach ($allPosts as $item) {
+            $allPostsIds[] = $item->ID;
+        }
+
+        $postsWhithoutTemplate = array_diff($allPostsIds, $postsWithTemplateIds);
+        
+        $posts = $this->wpConnection->table('wp_posts')
+            ->where('wp_posts.post_type', 'page')
+            ->where('wp_posts.post_status', 'publish')
+            ->whereIn('wp_posts.ID', $postsWhithoutTemplate)
+            ->orderBy('wp_posts.ID', 'ASC')
+            ->get();
+
+        return $posts;    
+    }
+
+    protected function getPostsWithTypePost() 
+    {
         $posts = $this->wpConnection->table('wp_posts')
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
             ->where('wp_posts.post_type', 'post')
@@ -39,9 +83,22 @@ class DefaultTemplateParser extends AbstractParser
             })
             ->get();
 
+            return $posts;
+    }
 
-        $this->info('count posts:' . count($posts));
-        $this->processPosts($posts);
+    protected function getPostsWithDefaultTemplate()
+    {
+        $posts = $this->wpConnection->table('wp_posts')
+            ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
+            ->where('wp_posts.post_type', 'page')
+            ->where('wp_posts.post_status', 'publish')
+            ->orderBy('wp_posts.ID', 'ASC')
+            ->where(function ($query) {
+                $query->where('wp_postmeta.meta_value', 'default');
+            })
+            ->get();
+
+        return $posts;
     }
 
     protected function processPosts($posts)
