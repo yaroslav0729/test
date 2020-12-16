@@ -118,7 +118,10 @@ class DefaultTemplateParser extends AbstractParser
 
             $page = Page::where('wp_id', $post->ID)->first();
 
-            $slug = $this->getSlug($post);
+            $slug = '';
+
+            if ($post->post_type === 'emergencies') $slug = 'emergencies/';
+            $slug = $slug . $this->getSlug($post);
 
             $options = $this->wpConnection->table('wp_postmeta')
                 ->where('post_id', $post->ID)
