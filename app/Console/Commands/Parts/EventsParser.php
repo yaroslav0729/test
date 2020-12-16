@@ -22,9 +22,11 @@ class EventsParser extends AbstractParser
             ->where('wp_posts.post_status', 'publish')
             ->get();
 
+        $count = count($events);
+
         foreach ($events as $pageKey => $event) {
 
-            $this->info('Processing item wp_id: ' . $event->ID);
+            $this->info('Processing item ' . $pageKey . ' from ' . $count . ' -> wp_id: ' . $event->ID);
 
             $copyEvent = Page::where('wp_id', $event->ID)->first();
 
