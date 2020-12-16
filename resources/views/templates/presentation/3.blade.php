@@ -136,7 +136,7 @@
              @endfor
              </div>
          </div>
-         <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
+         <div class="swiper-button-next"><i class="fal fa-arrow-right"></i></div>
          <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
      </section>--}}
 <section class="main-page-header style-{{ $hdrTypeValue }}" swiper-wrapper="header2" style="display: none1">
@@ -150,7 +150,7 @@
                                     <div class="left">
                                         <div class="mb-4">
                                             <a href="{{ $hdrLearnMoreLink[$i] }}"
-                                               class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
+                                               class="learn-more text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
                                         </div>
                                         <div class="title mb-3">
                                             @if($hdrColorType === 'blue')
@@ -166,7 +166,7 @@
                                     </div>
                                     <div class="right"
                                          style="background-image: url('{{ $hdrBgImage[$i] }}')"></div>
-                                    <a href="#" class="view-more swiper-button-next"><i class="far fa-arrow-right"></i></a>
+                                    <a href="#" class="view-more swiper-button-next"><i class="fal fa-arrow-right"></i></a>
                                 </div>
                             </div>
                         @endif
@@ -229,25 +229,25 @@
             <div class="col-3">
                 <a href="{{ $longtermLink }}">
                     <span style="background-image: url(img/ico-leaf.svg)"></span>
-                    <p><b>Longterm Projects</b></p>
+                    <p>Longterm Projects</p>
                 </a>
             </div>
             <div class="col-3">
                 <a href="{{ $emergencyLink }}">
                     <span style="background-image: url(img/ico-alert.svg)"></span>
-                    <p><b>Emergency Relief</b></p>
+                    <p>Emergency Relief</p>
                 </a>
             </div>
             <div class="col-3">
                 <a href="{{ $volunteeringLink }}">
                     <span style="background-image: url(img/ico-motivation.svg)"></span>
-                    <p><b>Volunteering</b></p>
+                    <p>Volunteering</p>
                 </a>
             </div>
             <div class="col-3">
                 <a href="{{ $sadiqahLink }}">
                     <span style="background-image: url(img/ico-Saadiqah.svg)"></span>
-                    <p><b>Sadiqah</b></p>
+                    <p>Sadiqah</p>
                 </a>
             </div>
         </div>
@@ -270,7 +270,7 @@
                     <b>Let's join</b><br>in progress <b>together</b>
                 </p>
                 <p class="font-size-45 mb-0">
-                    <i class="far fa-arrow-right" style="font-size: 130%"></i>
+                    <i class="fal fa-arrow-right" style="font-size: 130%"></i>
                 </p>
             </div>
             <div class="col-6">
@@ -436,7 +436,7 @@
     -16z"/>
                 </g>
             </svg>
-            <b>WHAT'S NEW <i class="far fa-arrow-right"></i></b> <a href="#" class="text-underline text-uppercase"><b>visit
+            <b>WHAT'S NEW <i class="fal fa-arrow-right"></i></b> <a href="#" class="text-underline text-uppercase"><b>visit
                     newsroom</b></a>
         </div>
         <div>

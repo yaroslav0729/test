@@ -25,7 +25,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
     <div class="down-bar">
         <div class="wrap">
             <div class="row align-items-center">
-                <div class="col-8">
+                <div class="col-9">
                     <ul class="d-flex justify-content-between">
                         <li><a href="#" class="open-head-menu">our story</a></li>
                         <li><a href="#">Projects</a></li>
@@ -35,7 +35,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                         <li><a href="#"><i class="fas fa-search"></i></a></li>
                     </ul>
                 </div>
-                <div class="col-4 text-right">
+                <div class="col-3 text-right">
                     <a href="{{ \App\Models\Page::getSinglePageUrl(\App\Models\Template::PROJECTS_PAGE) }}" class="btn btn-danger">Donate</a>
                 </div>
             </div>

@@ -5,7 +5,7 @@
         <div class="body">
             <div class="left">
                 <div class="mb-4">
-                    <a href="#" class="text-underline text-dark"><b>LEARN MORE</b></a>
+                    <a href="#" class="learn-more text-underline text-dark"><b>LEARN MORE</b></a>
                 </div>
                 <div class="title mb-3">Build <span class="text-info">Eco Village</span> shelter</div>
                 <p class="mb-5">Help provide care and aid to homeless and orphan children</p>
@@ -22,7 +22,7 @@
         <div class="body">
             <div class="left">
                 <div class="mb-4">
-                    <a href="#" class="text-underline text-dark"><b>LEARN MORE</b></a>
+                    <a href="#" class="learn-more text-underline text-dark"><b>LEARN MORE</b></a>
                 </div>
                 <div class="title mb-3">Syria in a state of <span class="text-danger">Emergency</span> </div>
                 <p class="mb-5">You can help the children in Syria now,<br>from as little as £3</p>
@@ -52,7 +52,7 @@
         <div class="col-6">
             <div class="body">
                 <div class="mb-4">
-                    <a href="#" class="text-underline text-dark"><b>LEARN MORE</b></a>
+                    <a href="#" class="learn-more text-underline text-dark"><b>LEARN MORE</b></a>
                 </div>
                 <div class="title mb-3">Build <span class="text-info">Eco Village</span> shelter</div>
                 <p class="mb-5">Help provide care and aid to homeless<br>and orphan children</p>
@@ -114,7 +114,7 @@
                     <input type="text" class="form-control" placeholder="£  Enter amount">
                 </div>
             </div>
-            <div class="col-2"><button  type="submit" class="btn btn-danger">Donate now</button></div>
+            <div class="col-2"><button  type="submit" class="btn btn-danger w-100">Donate now</button></div>
         </div>
     </section>
 </div>

@@ -152,7 +152,7 @@
             @for ($i = 1; $i <= 4; $i++)
                 @if(in_array($i, $actionActive ))
                 <div class="swiper-slide {{ $colorNameClass[$i] }}">
-                    <i class="far fa-arrow-right swiper-button-next"></i>
+                    <i class="fal fa-arrow-right swiper-button-next"></i>
                     <div class="text">
                         <p class="text-1">{!! $actionSlogan[$i] !!}</p>
                         <p class="text-2">{!! $actionTitle[$i] !!}</p>
@@ -194,7 +194,7 @@
                 @endfor
             </div>
         </div>
-        <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
+        <div class="swiper-button-next"><i class="fal fa-arrow-right"></i></div>
         <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
         <div class="swiper-pagination"></div>
     </div>
@@ -213,7 +213,7 @@
                 <div class="swiper-slide">
                     <div class="img" style="background-image: url({{ ${'lifeChangingPhoto' . $i} }})">
                         <a href="#" class="prev swiper-button-prev"><i class="far fa-arrow-left"></i></a>
-                        <a href="#" class="next swiper-button-next"><i class="far fa-arrow-right"></i></a>
+                        <a href="#" class="next swiper-button-next"><i class="fal fa-arrow-right"></i></a>
                     </div>
                     <div class="black-line"></div>
                     <div class="text bg-danger-light">
@@ -287,7 +287,7 @@
             'parameters' => $parameters
         ])
         <div class="text-center mt-5 mb-4">
-            <a href="#" class="text-uppercase text-underline text-danger font-size-16"><b>visit newsroom</b> <i class="far fa-arrow-right font-size-20"></i></a>
+            <a href="#" class="text-uppercase text-underline text-danger font-size-16"><b>visit newsroom</b> <i class="fal fa-arrow-right font-size-20"></i></a>
         </div>
     </div>
 </section>

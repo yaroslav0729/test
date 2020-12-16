@@ -99,7 +99,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                         <p>Thank you, this donation could help empower 512 people!</p>
                     </div>
                     <div class="col-5 text-right">
-                        <a href="{{ route('cart.payment') }}" class="btn  btn-danger">Checkout <i class="far fa-arrow-right"></i></a>
+                        <a href="{{ route('cart.payment') }}" class="btn  btn-danger">Checkout <i class="fal fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
