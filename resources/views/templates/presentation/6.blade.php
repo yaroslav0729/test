@@ -30,7 +30,7 @@
                 @endempty
                 
             </p>
-            <i class="far fa-arrow-down"></i>
+            <i class="moon-icons-arrow-down"></i>
         </div>
         <div class="pt-5"></div>
 

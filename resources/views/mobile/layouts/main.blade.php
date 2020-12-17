@@ -34,7 +34,7 @@
 
     <div class="header-menu" level="0">
         <div class="row top">
-            <div class="col-4"><a href="#" style="display: none" class="back"><i class="far fa-arrow-left"></i></a></div>
+            <div class="col-4"><a href="#" style="display: none" class="back"><i class="moon-icons-arrow-left"></i></a></div>
             <div class="col-4 text-center"><a href="#" class="search-btn"><i class="fas fa-search"></i></a></div>
             <div class="col-4 text-right"><a href="#" class="close-menu"><i class="far fa-times"></i></a></div>
         </div>
@@ -82,39 +82,39 @@
             <div class="projects-group-swiper">
                 <a href="#" class="item open-submenu" data-target="3">
                     Environmental Projects
-                    <i class="far fa-plus"></i>
+                    <i class="moon-icons-plus"></i>
                 </a>
                 <a href="#" class="item open-submenu" data-target="3">
                     UK Projects
-                    <i class="far fa-plus"></i>
+                    <i class="moon-icons-plus"></i>
                 </a>
                 <a href="#" class="item open-submenu" data-target="3">
                     Eco Village
-                    <i class="far fa-plus"></i>
+                    <i class="moon-icons-plus"></i>
                 </a>
                 <a href="#" class="item open-submenu" data-target="3">
                     Change a Child's Life
-                    <i class="far fa-plus"></i>
+                    <i class="moon-icons-plus"></i>
                 </a>
                 <a href="#" class="item open-submenu" data-target="3">
                     Water Aid
-                    <i class="far fa-plus"></i>
+                    <i class="moon-icons-plus"></i>
                 </a>
                 <a href="#" class="item open-submenu" data-target="3">
                     IH Birth Clinic
-                    <i class="far fa-plus"></i>
+                    <i class="moon-icons-plus"></i>
                 </a>
                 <a href="#" class="item open-submenu" data-target="3">
                     Long-term Crisis
-                    <i class="far fa-plus"></i>
+                    <i class="moon-icons-plus"></i>
                 </a>
                 <a href="#" class="item open-submenu" data-target="3">
                     Seasonal Charity
-                    <i class="far fa-plus"></i>
+                    <i class="moon-icons-plus"></i>
                 </a>
                 <a href="#" class="item open-submenu" data-target="3">
                     Umrah for Orphans
-                    <i class="far fa-plus"></i>
+                    <i class="moon-icons-plus"></i>
                 </a>
             </div>
         </div>

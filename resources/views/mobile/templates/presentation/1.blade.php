@@ -164,7 +164,7 @@
         ])
 
         <div class="text-center mt-5 mb-4">
-            <a href="#" class="text-uppercase text-underline text-danger font-size-16"><b>visit newsroom</b> <i class="fal fa-arrow-right font-size-20"></i></a>
+            <a href="#" class="text-uppercase text-underline text-danger font-size-16"><b>visit newsroom</b> <i class="moon-icons-arrow-right font-size-20"></i></a>
         </div>
 
     </div>

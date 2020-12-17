@@ -6,6 +6,7 @@
 /*@import 'swiper/swiper-bundle.css';*/
 
 @import '../libs/fontawesome-pro-5.14.0/css/all.css';
+@import '../libs/moon-icons/style.css';
 @import '../../public/css/styles.css';
 @import 'app_additional_styles.css';
 @import "toastr";

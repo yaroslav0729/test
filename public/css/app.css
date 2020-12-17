@@ -9748,6 +9748,51 @@ readers do not read off random characters that represent icons */
 .fas {
   font-family: 'Font Awesome 5 Pro';
   font-weight: 900; }
+@font-face {
+  font-family: 'moon-icons';
+  src:
+    url('/fonts/moon-icons.ttf?v1yojz') format('truetype'),
+    url('/fonts/moon-icons.woff?v1yojz') format('woff'),
+    url('/fonts/moon-icons.svg?v1yojz#moon-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+*[class*="moon-icons-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'moon-icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.moon-icons-arrow-down:before {
+  content: "\E900";
+}
+.moon-icons-arrow-left:before {
+  content: "\E901";
+}
+.moon-icons-arrow-right:before {
+  content: "\E902";
+}
+.moon-icons-arrow-up:before {
+  content: "\E903";
+}
+.moon-icons-cancel:before {
+  content: "\E904";
+}
+.moon-icons-IH-Menu:before {
+  content: "\E905";
+}
+.moon-icons-plus:before {
+  content: "\E906";
+}
 body,
 html {
   height: 100%;
@@ -10453,7 +10498,7 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   position: relative;
   padding: 21px 10px 22px;
 }
-.header-menu .projects-group-swiper .item .fa-plus {
+.header-menu .projects-group-swiper .item .moon-icons-plus {
   position: absolute;
   right: 28px;
   top: 50%;
@@ -10734,6 +10779,9 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 }
 .text-uppercase {
   text-transform: uppercase;
+}
+.letter-spacing-1 {
+  letter-spacing: 1px;
 }
 b,
 strong {
@@ -11038,7 +11086,7 @@ input[type='number'].color-danger + .input-group .btn {
   width: 60px;
   height: 60px;
   position: absolute;
-  bottom: 0;
+  bottom: -4px;
   right: 0;
   text-align: center;
   font-size: 30px;
@@ -11282,19 +11330,22 @@ input[type='number'].color-danger + .input-group .btn {
   width: 69%;
 }
 .who-we-are .img-video {
-  padding-bottom: 54.25%;
+  padding-bottom: 52.25%;
 }
 .who-we-are .help-info {
   position: absolute;
   right: 20px;
   bottom: -58px;
 }
+.who-we-are .text {
+  padding: 17px 40px 0;
+}
 .help-info {
   border-radius: 5px;
   background-color: #FFF;
   box-shadow: 0 18px 20px 0 rgba(223, 185, 181, 0.3);
   display: inline-block;
-  padding: 28px 10px;
+  padding: 28px 25px;
   white-space: nowrap;
   position: relative;
   z-index: 2;
@@ -11495,7 +11546,7 @@ input[type='number'].color-danger + .input-group .btn {
   color: #fff;
 }
 .our-work {
-  padding: 0 170px 140px 165px;
+  padding: 0 170px 118px 165px;
 }
 .our-work .view-more {
   display: inline-block;
@@ -11505,7 +11556,7 @@ input[type='number'].color-danger + .input-group .btn {
 .our-work .view-more:after {
   content: "";
   display: block;
-  width: 218px;
+  width: 229px;
   height: 4px;
   background: #FED4C2;
   position: absolute;
@@ -11682,12 +11733,12 @@ input[type='number'].color-danger + .input-group .btn {
   position: relative;
   top: 4px;
 }
-.current-projects .title .fa-arrow-down {
+.current-projects .title .moon-icons-arrow-down {
   color: #101525;
-  font-size: 50px;
+  font-size: 58px;
   position: absolute;
   left: -70px;
-  top: 30px;
+  top: 21px;
 }
 .current-projects .title:after {
   content: "";
@@ -11813,7 +11864,7 @@ input[type='number'].color-danger + .input-group .btn {
 .popular-topic-list .item .descr span:first-child {
   margin-bottom: 68px;
 }
-.popular-topic-list .item .descr .fa-plus {
+.popular-topic-list .item .descr .moon-icons-plus {
   font-size: 25px;
   position: absolute;
   top: 20px;
@@ -11846,12 +11897,12 @@ input[type='number'].color-danger + .input-group .btn {
   padding: 22px 15px 22px 32px;
   position: relative;
 }
-.lets-join .item .more-view .fa-plus {
+.lets-join .item .more-view .moon-icons-plus {
   position: absolute;
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
-  font-size: 30px;
+  font-size: 20px;
 }
 .widget-about-project {
   margin-bottom: 128px;
@@ -11868,7 +11919,7 @@ input[type='number'].color-danger + .input-group .btn {
   text-align: center;
   padding: 31px 10px;
 }
-.widget-about-project .view-more .fa-arrow-up {
+.widget-about-project .view-more .moon-icons-arrow-up {
   font-size: 35px;
   position: absolute;
   top: 50%;
@@ -11963,7 +12014,7 @@ input[type='number'].color-danger + .input-group .btn {
   left: 0;
   bottom: 0;
   border-radius: 0 0 0 5px;
-  font-size: 27px;
+  font-size: 20px;
   color: #fff;
   line-height: 50px;
   text-align: center;
@@ -12049,11 +12100,10 @@ input[type='number'].color-danger + .input-group .btn {
   position: relative;
 }
 .join-cause .decor-plus {
-  font-size: 70px;
+  font-size: 50px;
   position: absolute;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 5px;
 }
 .join-cause form {
   background: #F7F8F8;
@@ -12482,7 +12532,7 @@ input[type='number'].color-danger + .input-group .btn {
   width: 60px;
   height: 60px;
   position: absolute;
-  bottom: 4px;
+  bottom: 0;
   right: 0;
   text-align: center;
   font-size: 30px;
@@ -12608,7 +12658,7 @@ input[type='number'].color-danger + .input-group .btn {
   padding: 0 102px;
   position: relative;
 }
-.donate-today .title .fa-arrow-down {
+.donate-today .title .moon-icons-arrow-down {
   color: #101525;
   font-size: 50px;
   position: absolute;
@@ -14553,7 +14603,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 900;
   line-height: 59px;
 }
-.so-all-about .title .fa-arrow-down {
+.so-all-about .title .moon-icons-arrow-down {
   color: #FF5D4A;
   font-size: 65px;
   position: absolute;

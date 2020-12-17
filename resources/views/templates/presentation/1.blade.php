@@ -194,7 +194,7 @@
                     </svg>
                 </div>
                 <div class="col-5 text-right">
-                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="fal fa-arrow-right"></i></a>
+                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="moon-icons-arrow-right"></i></a>
                 </div>
             </div>
         </div>

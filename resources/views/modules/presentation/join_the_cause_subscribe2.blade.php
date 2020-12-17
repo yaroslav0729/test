@@ -50,7 +50,7 @@
             <a href="#" class="text-underline text-dark">Newsletter</a> or find out more about our latest
             <a href="#"  class="text-underline text-dark">Mission Impossible Tour</a>.
         </p>
-        <i class="fal fa-plus decor-plus subscribe_news" id="join_the_cause_show_form"></i>
+        <i class="moon-icons-plus decor-plus subscribe_news" id="join_the_cause_show_form"></i>
     </div>
 </section>
 

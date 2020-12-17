@@ -703,7 +703,7 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   position: relative;
   padding: 21px 10px 22px;
 }
-.header-menu .projects-group-swiper .item .fa-plus {
+.header-menu .projects-group-swiper .item .moon-icons-plus {
   position: absolute;
   right: 28px;
   top: 50%;
@@ -1280,7 +1280,7 @@ input[type='number'].color-danger + .input-group .btn {
   width: 60px;
   height: 60px;
   position: absolute;
-  bottom: 0;
+  bottom: -4px;
   right: 0;
   text-align: center;
   font-size: 30px;
@@ -1927,12 +1927,12 @@ input[type='number'].color-danger + .input-group .btn {
   position: relative;
   top: 4px;
 }
-.current-projects .title .fa-arrow-down {
+.current-projects .title .moon-icons-arrow-down {
   color: #101525;
-  font-size: 50px;
+  font-size: 58px;
   position: absolute;
   left: -70px;
-  top: 30px;
+  top: 21px;
 }
 .current-projects .title:after {
   content: "";
@@ -2058,7 +2058,7 @@ input[type='number'].color-danger + .input-group .btn {
 .popular-topic-list .item .descr span:first-child {
   margin-bottom: 68px;
 }
-.popular-topic-list .item .descr .fa-plus {
+.popular-topic-list .item .descr .moon-icons-plus {
   font-size: 25px;
   position: absolute;
   top: 20px;
@@ -2091,12 +2091,12 @@ input[type='number'].color-danger + .input-group .btn {
   padding: 22px 15px 22px 32px;
   position: relative;
 }
-.lets-join .item .more-view .fa-plus {
+.lets-join .item .more-view .moon-icons-plus {
   position: absolute;
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
-  font-size: 30px;
+  font-size: 20px;
 }
 .widget-about-project {
   margin-bottom: 128px;
@@ -2113,7 +2113,7 @@ input[type='number'].color-danger + .input-group .btn {
   text-align: center;
   padding: 31px 10px;
 }
-.widget-about-project .view-more .fa-arrow-up {
+.widget-about-project .view-more .moon-icons-arrow-up {
   font-size: 35px;
   position: absolute;
   top: 50%;
@@ -2208,7 +2208,7 @@ input[type='number'].color-danger + .input-group .btn {
   left: 0;
   bottom: 0;
   border-radius: 0 0 0 5px;
-  font-size: 27px;
+  font-size: 20px;
   color: #fff;
   line-height: 50px;
   text-align: center;
@@ -2294,11 +2294,10 @@ input[type='number'].color-danger + .input-group .btn {
   position: relative;
 }
 .join-cause .decor-plus {
-  font-size: 70px;
+  font-size: 50px;
   position: absolute;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 5px;
 }
 .join-cause form {
   background: #F7F8F8;
@@ -2719,7 +2718,7 @@ input[type='number'].color-danger + .input-group .btn {
   width: 60px;
   height: 60px;
   position: absolute;
-  bottom: 4px;
+  bottom: 0;
   right: 0;
   text-align: center;
   font-size: 30px;
@@ -2845,7 +2844,7 @@ input[type='number'].color-danger + .input-group .btn {
   padding: 0 102px;
   position: relative;
 }
-.donate-today .title .fa-arrow-down {
+.donate-today .title .moon-icons-arrow-down {
   color: #101525;
   font-size: 50px;
   position: absolute;
@@ -4790,7 +4789,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 900;
   line-height: 59px;
 }
-.so-all-about .title .fa-arrow-down {
+.so-all-about .title .moon-icons-arrow-down {
   color: #FF5D4A;
   font-size: 65px;
   position: absolute;

@@ -58,71 +58,71 @@
                             <div class="swiper-slide">
                                 <a href="#" class="item">
                                     Environmental Projects
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                                 <a href="#" class="item">
                                     UK Projects
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                                 <a href="#" class="item">
                                     Eco Village
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                             </div>
                             <div class="swiper-slide">
                                 <a href="#" class="item">
                                     Change a Child's Life
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                                 <a href="#" class="item">
                                     Water Aid
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                                 <a href="#" class="item">
                                     IH Birth Clinic
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                             </div>
                             <div class="swiper-slide">
                                 <a href="#" class="item">
                                     Long-term Crisis
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                                 <a href="#" class="item">
                                     Seasonal Charity
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                                 <a href="#" class="item">
                                     Umrah for Orphans
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                             </div>
                             <div class="swiper-slide">
                                 <a href="#" class="item">
                                     Long-term Crisis
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                                 <a href="#" class="item">
                                     Seasonal Charity
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                                 <a href="#" class="item">
                                     Umrah for Orphans
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                             </div>
                             <div class="swiper-slide">
                                 <a href="#" class="item">
                                     Long-term Crisis
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                                 <a href="#" class="item">
                                     Seasonal Charity
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                                 <a href="#" class="item">
                                     Umrah for Orphans
-                                    <i class="far fa-plus"></i>
+                                    <i class="moon-icons-plus"></i>
                                 </a>
                             </div>
                         </div>
@@ -202,8 +202,8 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
-                        <div class="swiper-button-next"><i class="fal fa-arrow-right"></i></div>
+                        <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
+                        <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
                     </div>
                 </div>
 

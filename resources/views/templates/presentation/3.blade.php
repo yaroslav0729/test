@@ -136,8 +136,8 @@
              @endfor
              </div>
          </div>
-         <div class="swiper-button-next"><i class="fal fa-arrow-right"></i></div>
-         <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
+         <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
+         <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
      </section>--}}
 <section class="main-page-header style-{{ $hdrTypeValue }}" swiper-wrapper="header2" style="display: none1">
         <div class="wrap">
@@ -166,7 +166,7 @@
                                     </div>
                                     <div class="right"
                                          style="background-image: url('{{ $hdrBgImage[$i] }}')"></div>
-                                    <a href="#" class="view-more swiper-button-next"><i class="fal fa-arrow-right"></i></a>
+                                    <a href="#" class="view-more swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
                                 </div>
                             </div>
                         @endif
@@ -270,7 +270,7 @@
                     <b>Let's join</b><br>in progress <b>together</b>
                 </p>
                 <p class="font-size-45 mb-0">
-                    <i class="fal fa-arrow-right" style="font-size: 130%"></i>
+                    <i class="moon-icons-arrow-right" style="font-size: 130%"></i>
                 </p>
             </div>
             <div class="col-6">
@@ -287,7 +287,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="more-view bg-info">LATEST EVENTS <i class="far fa-plus"></i></a>
+                    <a href="#" class="more-view bg-info">LATEST EVENTS <i class="moon-icons-plus"></i></a>
                 </div>
             </div>
         </div>
@@ -308,7 +308,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="more-view bg-danger">MISSION IMPOSSIBLE <i class="far fa-plus"></i></a>
+                    <a href="#" class="more-view bg-danger">MISSION IMPOSSIBLE <i class="moon-icons-plus"></i></a>
                 </div>
             </div>
             <div class="col-6">
@@ -373,7 +373,7 @@
 <section class="widget-about-project">
     <div class="row gutter-0">
         <div class="col-6"><a href="#" class="view-more text-underline">VIEW ALL PROJECTS <i
-                    class="far fa-arrow-up"></i></a></div>
+                    class="moon-icons-arrow-up"></i></a></div>
     </div>
     <div class="row gutter-0">
         <div class="col-6 img" style="background-image: url(img/content/widget-about-project-1.jpg)"></div>
@@ -436,7 +436,7 @@
     -16z"/>
                 </g>
             </svg>
-            <b>WHAT'S NEW <i class="fal fa-arrow-right"></i></b> <a href="#" class="text-underline text-uppercase"><b>visit
+            <b>WHAT'S NEW <i class="moon-icons-arrow-right"></i></b> <a href="#" class="text-underline text-uppercase"><b>visit
                     newsroom</b></a>
         </div>
         <div>
@@ -445,7 +445,7 @@
                     <div class="item vertical">
                         <a class="img" href="#">
                             <span style="background-image: url(img/content/whats-new-1.jpg)"></span>
-                            <span class="plus bg-info"><i class="far fa-plus"></i></span>
+                            <span class="plus bg-info"><i class="moon-icons-plus"></i></span>
                         </a>
                         <div class="descr">
                             <p class="font-size-18 mb-0"><b>Article Video placement 30ch</b></p>
@@ -461,7 +461,7 @@
                         <span style="background-image: url(img/content/whats-new-2.jpg)">
                             <i class="fas fa-play-circle"></i>
                         </span>
-                            <span class="plus bg-danger"><i class="far fa-plus"></i></span>
+                            <span class="plus bg-danger"><i class="moon-icons-plus"></i></span>
                         </a>
                         <div class="descr">
                             <p class="font-size-18 mb-0"><b>Article Video placement 30ch</b></p>
@@ -472,7 +472,7 @@
                     <div class="item">
                         <a class="img" href="#">
                             <span style="background-image: url(img/content/whats-new-3.jpg)"></span>
-                            <span class="plus bg-warning"><i class="far fa-plus"></i></span>
+                            <span class="plus bg-warning"><i class="moon-icons-plus"></i></span>
                         </a>
                         <div class="descr">
                             <p class="font-size-18 mb-0"><b>Article Video placement 30ch</b></p>

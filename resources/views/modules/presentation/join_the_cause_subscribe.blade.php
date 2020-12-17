@@ -46,7 +46,7 @@
                         @else
                             <img src="{{ $image }}" alt="" class="w-100">
                         @endif
-                    <i class="fal fa-plus decor-plus subscribe_news" id="join_the_cause_show_form"></i>
+                    <i class="moon-icons-plus decor-plus subscribe_news" id="join_the_cause_show_form"></i>
                 </div>
             </div>
         </div>

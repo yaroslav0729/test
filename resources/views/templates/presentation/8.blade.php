@@ -228,7 +228,7 @@
                 @endfor
             </div>
         </div>
-        <div class="swiper-button-next"><i class="fal fa-arrow-right"></i></div>
+        <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
         <div class="swiper-pagination"></div>
     </div>
 </section>
@@ -258,7 +258,7 @@
                 @endif
             @endfor
             </div>
-            <a href="#" class="next swiper-button-next"><i class="fal fa-arrow-right"></i></a>
+            <a href="#" class="next swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
         </div>
     </div>
 </section>
@@ -284,7 +284,7 @@
                 </div>
                 <div class="col-5 text-right">
                     <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i
-                            class="fal fa-arrow-right"></i></a>
+                            class="moon-icons-arrow-right"></i></a>
                 </div>
             </div>
         </div>

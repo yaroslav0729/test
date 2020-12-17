@@ -41,7 +41,7 @@
     <div class="wrap">
         <div class="title">
             <span>Current Projects</span>
-            <i class="far fa-arrow-down"></i>
+            <i class="moon-icons-arrow-down"></i>
         </div>
 
         <div class="swiper-container">
@@ -61,8 +61,8 @@
                     </div>   
                 @endfor
             </div>
-            <div class="swiper-button-next"><i class="fal fa-arrow-right"></i></div>
-            <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
+            <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
+            <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
             <div class="swiper-pagination"></div>
         </div>
     </div>

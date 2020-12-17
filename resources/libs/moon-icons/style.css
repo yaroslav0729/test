@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'moon-icons';
   src:
-    url('fonts/moon-icons.ttf?v1yojz') format('truetype'),
-    url('fonts/moon-icons.woff?v1yojz') format('woff'),
-    url('fonts/moon-icons.svg?v1yojz#moon-icons') format('svg');
+    url('/fonts/moon-icons.ttf?v1yojz') format('truetype'),
+    url('/fonts/moon-icons.woff?v1yojz') format('woff'),
+    url('/fonts/moon-icons.svg?v1yojz#moon-icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;

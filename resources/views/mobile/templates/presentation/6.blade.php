@@ -13,7 +13,7 @@
     <div class="wrap">
         <div class="title text-left pr-5">
             <p><b>{{ $pageInstance->name }}</b></p>
-            <i class="far fa-arrow-down"></i>
+            <i class="moon-icons-arrow-down"></i>
         </div>
 
         @include('modules.presentation.projects_donate')

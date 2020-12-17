@@ -45,7 +45,7 @@
         <div class="title">
             <span>Current Projects</span>
             <a href="{{ $featuredCompaignLink }}" class="text-underline text-dark view-more letter-spacing-1"><b>FEATURED CAMPIGN</b></a>
-            <i class="far fa-arrow-down"></i>
+            <i class="moon-icons-arrow-down"></i>
         </div>
         <div class="body">
             <div class="row gutter-0">
@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-6">
                     <div class="img slide-img" style="background-image: url({{ $slideImage[0] }})">
-                        <a href="#" id="current-proj-next-slide" class="view-more"><i class="fal fa-arrow-right"></i></a>
+                        <a href="#" id="current-proj-next-slide" class="view-more"><i class="moon-icons-arrow-right"></i></a>
                     </div>
                 </div>
             </div>

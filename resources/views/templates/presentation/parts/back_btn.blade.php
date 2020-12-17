@@ -1,1 +1,1 @@
-<a href="{{ url()->previous() }}" class="btn-back"><i class="far fa-arrow-left"></i> BACK</a>
+<a href="{{ url()->previous() }}" class="btn-back"><i class="moon-icons-arrow-left"></i> BACK</a>

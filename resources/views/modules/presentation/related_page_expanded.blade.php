@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-5 text-right">
                     <a href="{{ $relPageLink }}" class="text-uppercase text-underline"><b>{{ $relPageLinkTitle }}</b> <i
-                            class="fal fa-arrow-right"></i></a>
+                            class="moon-icons-arrow-right"></i></a>
                 </div>
             </div>
         </div>

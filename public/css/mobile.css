@@ -437,7 +437,7 @@
   font-weight: 900;
   line-height: 35px;
 }
-.mobile-template .current-projects .title .fa-arrow-down {
+.mobile-template .current-projects .title .moon-icons-arrow-down {
   left: auto;
   right: 13px;
   top: 4px;
@@ -672,7 +672,7 @@
   text-align: center;
   margin-bottom: 30px;
 }
-.mobile-template .donate-today .title .fa-arrow-down {
+.mobile-template .donate-today .title .moon-icons-arrow-down {
   font-size: 37px;
   left: auto;
   top: 22px;
