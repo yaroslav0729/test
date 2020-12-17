@@ -864,7 +864,8 @@ header {
 
 .letter-spacing-1 {letter-spacing: 1px;}
 
-b, strong {font-weight: 900}
+b, strong, .font-weight-bold {font-weight: 900}
+.font-weight-medium {font-weight: 500}
 
 .form-group {
     margin-bottom: 14px;
@@ -1737,20 +1738,20 @@ input[type='number'].color-danger  + .input-group {
     }
 }
 
-
 .lets-join {
     margin-bottom: 163px;
     padding: 0 164px;
+    .decor-wave {margin-top: 23px;}
     .item {
         background: #fff;
         box-shadow: 0 10px 25px 0 rgba(104,110,117,0.2);
         .img {
-            padding-top: 65%;
+            padding-top: 75%;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: 50% 50%;
         }
-        .img-video {padding-top: 9%;}
+        .img-video {padding-top: 19%;}
         .more-view {
             display: block;
             text-decoration: none;
@@ -1758,7 +1759,7 @@ input[type='number'].color-danger  + .input-group {
             font-weight: 900;
             letter-spacing: 1px;
             line-height: 30px;
-            padding: 22px 15px 22px 32px;
+            padding: 27px 15px 27px 32px;
             position: relative;
             .moon-icons-plus {
                 position: absolute; top: 50%; right: 20px;
@@ -3086,6 +3087,7 @@ input[type='number'].color-danger  + .input-group {
 
 #cartModal {
     top: 100px;
+    height: calc(~"100% - 100px");
     .modal-dialog {
         max-width: 1000px;
         width: 550px;

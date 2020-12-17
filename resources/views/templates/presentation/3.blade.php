@@ -269,7 +269,7 @@
                 <p class="font-size-45 mb-3" style="font-weight: 100">
                     <b>Let's join</b><br>in progress <b>together</b>
                 </p>
-                <p class="font-size-45 mb-0">
+                <p class="font-size-50 mb-0">
                     <i class="moon-icons-arrow-right" style="font-size: 130%"></i>
                 </p>
             </div>
