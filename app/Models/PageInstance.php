@@ -43,7 +43,7 @@ class PageInstance extends Model
         });
     }
 
-    protected function refreshCampaigns()
+    public function refreshCampaigns()
     {
         $parameters = $this->parameters;
 
