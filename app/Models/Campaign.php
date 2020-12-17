@@ -25,9 +25,32 @@ class Campaign extends Model
         'wp_id'
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        self::saved(function ($model) {
+            $model->refreshInstances();
+        });
+    }
+
+    protected function refreshInstances()
+    {
+        $instances = $this->page_instances;
+
+        foreach ($instances as $instance) {
+            $instance->refreshParams();    
+        }
+    }
+
     public function country()
     {
         return $this->belongsTo('App\Models\Country');
+    }
+
+    public function page_instances()
+    {
+        return $this->belongsToMany('App\Models\PageInstance');
     }
 
     public function getCountryNameAttribute()
