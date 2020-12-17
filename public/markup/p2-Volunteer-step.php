@@ -9,7 +9,7 @@
 
     <!--step 2-->
     <form action="/">
-        <div class="title"><span>1 <i class="far fa-arrow-right"></i></span>     Hey there! What's your name?</div>
+        <div class="title"><span>1 <i class="moon-icons-arrow-right"></i></span>     Hey there! What's your name?</div>
         <div class="field"><input type="text" placeholder="Get typing here..."></div>
         <div class="field"><textarea placeholder="Get typing here..."">Textarea</textarea></div>
         <button class="btn btn-outline-primary btn-lg">Next</button>
@@ -68,7 +68,7 @@
                     <b class="font-size-30 mr-4 text-uppercase">make a difference today</b>
                 </div>
                 <div class="col-5 text-right">
-                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="moon-icons-arrow-right"></i></a>
                 </div>
             </div>
         </div>

@@ -227,7 +227,7 @@
                 <div class="item">
                     <div class="img" style="background-image: url(img/content/join-cause-2.jpg)">
                         <div class="top-bar">
-                            <div class="add"><i class="far fa-plus"></i></div>
+                            <div class="add"><i class="moon-icons-plus"></i></div>
                         </div>
                     </div>
                     <div class="descr">
@@ -240,7 +240,7 @@
                 <div class="item">
                     <div class="img" style="background-image: url(img/content/join-cause-2.jpg)">
                         <div class="top-bar">
-                            <div class="add"><i class="far fa-plus"></i></div>
+                            <div class="add"><i class="moon-icons-plus"></i></div>
                             <div class="form">
                                 <i class="fal fa-check"></i>
                                 <div class="name">Environmental sustainabilty</div>
@@ -281,7 +281,7 @@
                 <div class="item selected">
                     <div class="img" style="background-image: url(img/content/join-cause-2.jpg)">
                         <div class="top-bar">
-                            <div class="add"><i class="far fa-plus"></i></div>
+                            <div class="add"><i class="moon-icons-plus"></i></div>
                             <div class="price">£250  <span class="ml-2">+Sadiqah</span></div>
                             <i class="fal fa-check"></i>
                         </div>
@@ -297,7 +297,7 @@
                 <div class="item">
                     <div class="img" style="background-image: url(img/content/join-cause-2.jpg)">
                         <div class="top-bar">
-                            <div class="add"><i class="far fa-plus"></i></div>
+                            <div class="add"><i class="moon-icons-plus"></i></div>
                         </div>
                     </div>
                     <div class="descr">
@@ -393,7 +393,7 @@
                         <p>Thank you, this donation could help empower 512 people!</p>
                     </div>
                     <div class="col-5 text-right">
-                        <a href="#" class="btn  btn-danger">Checkout <i class="far fa-arrow-right"></i></a>
+                        <a href="#" class="btn  btn-danger">Checkout <i class="moon-icons-arrow-right"></i></a>
                     </div>
                 </div>
             </div>

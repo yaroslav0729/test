@@ -127,7 +127,7 @@
                                 <span class="num">01</span>
                                 <span class="text font-size-16 mb-3"><b>Article title placement here with a maximum of 60 characters.</b></span>
                                 <span class="date">April 06, 2020 BY AHMED SALEM</span>
-                                <i class="far fa-plus"></i>
+                                <i class="moon-icons-plus"></i>
                             </span>
                         </a>
                     </div>
@@ -139,7 +139,7 @@
                                 <span class="num">02</span>
                                 <span class="text font-size-16 mb-3"><b>Article title placement here with a maximum of 60 characters.</b></span>
                                 <span class="date">April 06, 2020 BY AHMED SALEM</span>
-                                <i class="far fa-plus"></i>
+                                <i class="moon-icons-plus"></i>
                             </span>
                         </a>
                     </div>
@@ -151,7 +151,7 @@
                                 <span class="num">03</span>
                                 <span class="text font-size-16 mb-3"><b>Article title placement here with a maximum of 60 characters.</b></span>
                                 <span class="date">April 06, 2020 BY AHMED SALEM</span>
-                                <i class="far fa-plus"></i>
+                                <i class="moon-icons-plus"></i>
                             </span>
                         </a>
                     </div>

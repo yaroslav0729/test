@@ -2,7 +2,7 @@
 <section class="event-info-head bg-light">
     <div class="wrap">
         <div class="mb-4">
-            <a href="#" class="btn-back"><i class="far fa-arrow-left"></i> BACK</a>
+            <a href="#" class="btn-back"><i class="moon-icons-arrow-left"></i> BACK</a>
         </div>
 
         <div class="row gutter-0 align-items-center">
@@ -118,7 +118,7 @@
 
             <div class="blog-video">
                 <div class="img-video play-tr" style="background-image: url(img/content/Video-placement-2.jpg)"><i class="fas fa-play-circle"></i></div>
-                <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+                <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
             </div>
 
             <h2>General subtitle right here, lorem ipsum exquisite.</h2>
@@ -155,7 +155,7 @@
                     <b class="font-size-30 mr-4 text-uppercase">Related topics</b>
                 </div>
                 <div class="col-5 text-right">
-                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="moon-icons-arrow-right"></i></a>
                 </div>
             </div>
         </div>

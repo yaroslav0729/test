@@ -52,7 +52,7 @@
     <div class="red-line"></div>
     <div class="title">
         <p>So what's this  all about?</p>
-        <i class="far fa-arrow-down"></i>
+        <i class="moon-icons-arrow-down"></i>
     </div>
     <div class="row gutter-0 mb-4">
         <div class="col-6">
@@ -302,7 +302,7 @@
                     <b class="font-size-30 mr-4 text-uppercase">make a difference today</b>
                 </div>
                 <div class="col-5 text-right">
-                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="moon-icons-arrow-right"></i></a>
                 </div>
             </div>
         </div>

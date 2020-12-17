@@ -79,7 +79,7 @@
 
 <section class="widget-about-project">
     <div class="row gutter-0">
-        <div class="col-6"><a href="#" class="view-more text-underline">VIEW ALL PROJECTS <i class="far fa-arrow-up"></i></a></div>
+        <div class="col-6"><a href="#" class="view-more text-underline">VIEW ALL PROJECTS <i class="moon-icons-arrow-up"></i></a></div>
     </div>
     <div class="row gutter-0">
         <div class="col-6 img" style="background-image: url(img/content/widget-about-project-night.jpg)"></div>

@@ -1,3 +1,4 @@
+@import url("../libs/moon-icons/style.css");
 
 .clearfix () {
     &:after {
@@ -672,7 +673,7 @@ header {
             text-decoration: none;
             position: relative;
             padding: 21px 10px 22px;
-            .fa-plus {
+            .moon-icons-plus {
                 position: absolute; right: 28px; top: 50%;
                 transform: translateY(-50%);
             }
@@ -860,6 +861,8 @@ header {
 
 .text-underline {text-decoration: underline}
 .text-uppercase {text-transform: uppercase;}
+
+.letter-spacing-1 {letter-spacing: 1px;}
 
 b, strong {font-weight: 900}
 
@@ -1081,7 +1084,7 @@ input[type='number'].color-danger  + .input-group {
         .view-more {
             background: #101525;
             width: 60px; height: 60px;
-            position: absolute; bottom: 0; right: 0;
+            position: absolute; bottom: -4px; right: 0;
             text-align: center;
             font-size: 30px;
             line-height: 60px;
@@ -1279,10 +1282,13 @@ input[type='number'].color-danger  + .input-group {
         right: 0; top: 0; bottom: 0;
         width: 69%;
     }
-    .img-video {padding-bottom: 54.25%;}
+    .img-video {padding-bottom: 52.25%;}
     .help-info {
         position: absolute; right: 20px;
         bottom: -58px;
+    }
+    .text {
+        padding: 17px 40px 0;
     }
 }
 
@@ -1291,7 +1297,7 @@ input[type='number'].color-danger  + .input-group {
     background-color: #FFF;
     box-shadow: 0 18px 20px 0 rgba(223,185,181,0.3);
     display: inline-block;
-    padding: 28px 10px;
+    padding: 28px 25px;
     white-space: nowrap;
     position: relative;
     z-index: 2;
@@ -1455,7 +1461,7 @@ input[type='number'].color-danger  + .input-group {
 
 
 .our-work {
-    padding: 0 170px 140px 165px;
+    padding: 0 170px 118px 165px;
     .view-more {
         display: inline-block;
         margin-bottom: 20px;
@@ -1463,7 +1469,7 @@ input[type='number'].color-danger  + .input-group {
         &:after {
             content: "";
             display: block;
-            width: 218px; height: 4px;
+            width: 229px; height: 4px;
             background: #FED4C2;
             position: absolute;
             left: 12px; bottom: -20px;
@@ -1614,10 +1620,10 @@ input[type='number'].color-danger  + .input-group {
             vertical-align: middle;
             position: relative; top:  4px;
         }
-        .fa-arrow-down {
+        .moon-icons-arrow-down {
             color: #101525;
-            font-size: 50px;
-            position: absolute; left: -70px; top: 30px;
+            font-size: 58px;
+            position: absolute; left: -70px; top: 21px;
         }
         &:after {
             content: "";
@@ -1723,7 +1729,7 @@ input[type='number'].color-danger  + .input-group {
                 text-transform: uppercase;
             }
             span:first-child {margin-bottom: 68px;}
-            .fa-plus {
+            .moon-icons-plus {
                 font-size: 25px;
                 position: absolute; top: 20px; right: 20px;
             }
@@ -1754,10 +1760,10 @@ input[type='number'].color-danger  + .input-group {
             line-height: 30px;
             padding: 22px 15px 22px 32px;
             position: relative;
-            .fa-plus {
+            .moon-icons-plus {
                 position: absolute; top: 50%; right: 20px;
                 transform: translateY(-50%);
-                font-size: 30px;
+                font-size: 20px;
             }
         }
     }
@@ -1776,7 +1782,7 @@ input[type='number'].color-danger  + .input-group {
         color: #231F51;
         text-align: center;
         padding: 31px 10px;
-        .fa-arrow-up {
+        .moon-icons-arrow-up {
             font-size: 35px;
             position: absolute; top: 50%; right: 26px;
             transform: translateY(-50%);
@@ -1852,7 +1858,7 @@ input[type='number'].color-danger  + .input-group {
                 width: 50px; height: 50px;
                 position: absolute; left: 0; bottom: 0;
                 border-radius: 0 0 0 5px;
-                font-size: 27px;
+                font-size: 20px;
                 color: #fff;
                 line-height: 50px;
                 text-align: center;
@@ -1923,9 +1929,11 @@ input[type='number'].color-danger  + .input-group {
     padding: 82px 155px 83px 180px;
     .wrap {position: relative}
     .decor-plus {
-        font-size: 70px;
-        position: absolute; right: 0; top: 50%;
-        transform: translateY(-50%);
+        font-size: 50px;
+        position: absolute; right: 0;
+        bottom: 5px;
+        //top: 50%;
+        //transform: translateY(-50%);
     }
     form {
         //display: flex;
@@ -2277,7 +2285,7 @@ input[type='number'].color-danger  + .input-group {
         .view-more {
             background: #101525;
             width: 60px; height: 60px;
-            position: absolute; bottom: 4px; right: 0;
+            position: absolute; bottom: 0; right: 0;
             text-align: center;
             font-size: 30px;
             line-height: 60px;
@@ -2399,7 +2407,7 @@ input[type='number'].color-danger  + .input-group {
     .title {
         padding: 0 102px;
         position: relative;
-        .fa-arrow-down {
+        .moon-icons-arrow-down {
             color: #101525;
             font-size: 50px;
             position: absolute; left: 20px; top: 30px;
@@ -4219,7 +4227,7 @@ input[type='number'].color-danger  + .input-group {
             font-weight: 900;
             line-height: 59px;
         }
-        .fa-arrow-down {
+        .moon-icons-arrow-down {
             color: #FF5D4A;
             font-size: 65px;
             position: absolute; top: 50%; right: 0;
