@@ -125,15 +125,14 @@ $cartSum = \App\Models\CartItem::getCartSum();
                         <div class="row gutter-0">
                             <div class="col-12">
                                 <div class="mb-3">
-                                    @isset($cartItem[0]->campaign_category)
-                                    <p class="font-size-16 mb-0"><b>{{ $cartItem[0]->campaign_category->name }}</b></p>
-                                    @else
-                                        @empty($cartItem[0]->note)
-                                            <p class="font-size-16 mb-0"><b>No category</b></p>
-                                        @else
-                                            <p class="font-size-16 mb-0"><b>{{ $cartItem[0]->note }}</b></p>
-                                        @endempty
+                                    @isset($cartItem[0]->campaign)
+                                    <p class="font-size-16 mb-0"><b>{{ $cartItem[0]->campaign->name }}</b></p>
                                     @endisset
+
+                                    @isset($cartItem[0]->campaign_category)
+                                    <span>+{{ $cartItem[0]->campaign_category->name }}</b></span>
+                                    @endisset
+
                                     <p class="font-size-16 mb-0">{{ (int)$cartItem[0]->period === \App\Models\CampaignPrice::TYPE_SINGLE ? 'Single' : 'Monthly' }} payment</p>
                                 </div>
                             </div>
