@@ -6,6 +6,33 @@
     <div class="p-5 pb-8">
         <h1>Campaigns:</h1>
 
+        <form action="{{ route('admin.campaigns.index') }}" method="get">
+          <div class="row">
+            <div class="form-group col-6">
+              <label>Filter name:</label>
+              <input class="form-control" @if(!empty($nameFilter)) value="{{ $nameFilter }}" @endif name="search_name" type="text" />
+            </div>
+            <div class="form-group col-6">
+              <label>Is emergency:</label>
+              <select name="emergency" class="form-control">
+                <option value="">Not selected</option>
+                <option value="1" 
+                @if((!empty($emergencyFilter)) && ((int)$emergencyFilter === 1))
+                selected
+                @endif
+                >Yes</option>
+                <option value="0"
+                @if((!empty($emergencyFilter)) && ((int)$emergencyFilter === 0))
+                selected
+                @endif
+                >No</option>
+              </select>
+            </div>
+            </div>
+          <button class="btn btn-primary">Filter</button>
+          <a href="{{ route('admin.campaigns.index') }}"><button class="btn btn-info" type="button">Clear all filters</button></a>
+        </form>
+
         <a href="{{ route('admin.campaigns.create') }}">
           <button class="btn btn-success mt-3 mb-3" type="button" title="Create campaign">
             <i class="far fa-plus-square mr-2"></i>Create
@@ -29,7 +56,13 @@
                 @foreach ($campaigns as $campaign)
                     <tr>
                         <td class="border px-4 py-2">{{ $campaign->id }}</td>
-                        <td class="border px-4 py-2">{{ $campaign->name }}</td>
+
+                        @if($campaign->is_emergency)
+                        <td class="border px-4 py-2"><span class="text-danger">{{ $campaign->name }}</span></td>
+                        @else
+                        <td class="border px-4 py-2"><span class="text-primary">{{ $campaign->name }}</span></td>
+                        @endif
+
                         <td class="border px-4 py-2">{{ $campaign->description }}</td>
                         <td class="border px-4 py-2">{{ $campaign->status }}</td>
                         <td class="border px-4 py-2">{{ $campaign->country_name }}</td>
