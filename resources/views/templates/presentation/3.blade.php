@@ -182,7 +182,7 @@
 
 <div class="wrap">
     <section class="who-we-are">
-        <div class="row gutter-5">
+        <div class="row gutter-0">
             <div class="col-6">
                 <div class="img-video play-tr videoWrapper" style="">
                     <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $whoVideo }}"
@@ -192,7 +192,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <div class="pl-5 pr-2 pt-4">
+                <div class="text">
                     <div class="mb-4">
                         <a href="{{ $whoLink }}" class="text-underline text-dark"><b>{{ $whoLinkText }}</b></a>
                     </div>

@@ -25,7 +25,7 @@
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide bg-primary-light">
-                <i class="far fa-arrow-right"></i>
+                <i class="moon-icons-arrow-right"></i>
                 <div class="text">
                     <p class="text-1">Transparency</p>
                     <p class="text-2">A stat or fact that supports this value, lorem ipsum.</p>
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="swiper-slide bg-warning">
-                <i class="far fa-arrow-right"></i>
+                <i class="moon-icons-arrow-right"></i>
                 <div class="text">
                     <p class="text-1">Integrity</p>
                     <p class="text-2">A stat or fact that supports this value, lorem ipsum.</p>
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="swiper-slide bg-danger">
-                <i class="far fa-arrow-right"></i>
+                <i class="moon-icons-arrow-right"></i>
                 <div class="text">
                     <p class="text-1">Empowerment</p>
                     <p class="text-2">A stat or fact that supports this value, lorem ipsum.</p>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="swiper-slide bg-info">
-                <i class="far fa-arrow-right"></i>
+                <i class="moon-icons-arrow-right"></i>
                 <div class="text">
                     <p class="text-1">Understanding</p>
                     <p class="text-2">A stat or fact that supports this value, lorem ipsum.</p>
@@ -131,8 +131,8 @@
                 </div>
             </div>
         </div>
-        <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
-        <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
+        <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
+        <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
         <div class="swiper-pagination"></div>
     </div>
 </section>
@@ -154,8 +154,8 @@
 </section>
 <section class="promo-project-swiper">
     <div class="img" style="background-image: url(img/content/Image-brace-1.jpg)">
-        <a href="#" class="prev"><i class="far fa-arrow-left"></i></a>
-        <a href="#" class="next"><i class="far fa-arrow-right"></i></a>
+        <a href="#" class="prev"><i class="moon-icons-arrow-left"></i></a>
+        <a href="#" class="next"><i class="moon-icons-arrow-right"></i></a>
     </div>
     <div class="black-line"></div>
     <div class="text bg-danger-light">
@@ -266,7 +266,7 @@
         </script>
 
         <div class="text-center mt-5 mb-4">
-            <a href="#" class="text-uppercase text-underline text-danger font-size-16"><b>visit newsroom</b> <i class="far fa-arrow-right font-size-20"></i></a>
+            <a href="#" class="text-uppercase text-underline text-danger font-size-16"><b>visit newsroom</b> <i class="moon-icons-arrow-right font-size-20"></i></a>
         </div>
 
     </div>

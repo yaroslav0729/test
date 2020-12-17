@@ -135,8 +135,8 @@
                 </div>
             </div>
         </div>
-        <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
-        <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
+        <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
+        <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
         <div class="swiper-pagination"></div>
     </div>
 </section>
@@ -164,8 +164,8 @@
             </div>
             <div class="col-6 text bg-primary-light">
                 756'012 lorem ipsum, dolor excitenum.
-                <a href="#" class="prev"><i class="far fa-arrow-left"></i></a>
-                <a href="#" class="next"><i class="far fa-arrow-right"></i></a>
+                <a href="#" class="prev"><i class="moon-icons-arrow-left"></i></a>
+                <a href="#" class="next"><i class="moon-icons-arrow-right"></i></a>
             </div>
         </div>
     </div>
@@ -193,7 +193,7 @@
                     <b class="font-size-30 mr-4 text-uppercase">Discover more</b>
                 </div>
                 <div class="col-5 text-right">
-                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="moon-icons-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -246,7 +246,7 @@
                 </div>
                 <div class="col-5 pr-4">
                     <img src="img/content/join-cause-2.jpg" alt="" class="w-100">
-                    <i class="fal fa-plus decor-plus"></i>
+                    <i class="moon-icons-plus decor-plus"></i>
                 </div>
             </div>
         </div>

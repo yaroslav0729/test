@@ -8,7 +8,7 @@
 
     <!--step 2-->
     <form action="/">
-        <div class="title"><span>1 <i class="far fa-arrow-right"></i></span>     Hey there! What's your name?</div>
+        <div class="title"><span>1 <i class="moon-icons-arrow-right"></i></span>     Hey there! What's your name?</div>
         <div class="field"><input type="text" placeholder="Get typing here..."></div>
         <div class="field"><textarea placeholder="Get typing here..."">Textarea</textarea></div>
         <button class="btn btn-outline-primary">Next</button>

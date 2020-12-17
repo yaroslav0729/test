@@ -118,7 +118,7 @@
                             <a href="#" class="text-underline text-dark"><b>VIEW MORE PROJECTS</b></a>
                         </div>
                         <div class="col-5 text-right">
-                            <a href="#" class="btn  btn-danger">Checkout <i class="far fa-arrow-right"></i></a>
+                            <a href="#" class="btn  btn-danger">Checkout <i class="moon-icons-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -174,14 +174,14 @@
                                 <p class="font-size-12 text-info mb-0"><b>1 FOOD PACK SELECTED</b></p>
                                 <p class="font-size-16"><b>Total: £30</b></p>
 
-                                <button class="btn btn-primary-light w-100"><span><i class="fal fa-plus"></i> Add £20 for an Eid Gift!</button>
+                                <button class="btn btn-primary-light w-100"><span><i class="moon-icons-plus"></i> Add £20 for an Eid Gift!</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-right">
-                    <a href="#" class="btn  btn-danger">Checkout <i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="btn  btn-danger">Checkout <i class="moon-icons-arrow-right"></i></a>
                 </div>
             </div>
         </div>

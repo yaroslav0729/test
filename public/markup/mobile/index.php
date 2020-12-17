@@ -11,7 +11,7 @@
                 <p class="mb-3">Help provide care and aid to homeless and orphan children</p>
                 <a href="#" class="btn btn-info">Donate now</a>
                 <div class="text-right pt-4 d-block">
-                    <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
                     <div class="black-line"></div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                 <p class="mb-5">You can help the children in Syria now,<br>from as little as £3</p>
                 <a href="#" class="btn btn-danger">Donate now</a>
                 <div class="text-right pt-4 d-block">
-                    <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
                     <div class="black-line"></div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 <p class="mb-5">Help provide care and aid to homeless<br>and orphan children</p>
                 <a href="#" class="btn btn-dark">Donate now</a>
                 <div class="text-right pt-4 d-block">
-                    <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
                     <div class="black-line"></div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                 <p class="mb-5">Help provide care and aid to homeless<br>and orphan children</p>
                 <a href="#" class="btn btn-info-light">Donate now</a>
                 <div class="text-right pt-4 d-block">
-                    <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
                     <div class="black-line"></div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                 <p class="mb-5">Life saving donations packs,<br>from as little as £3</p>
                 <a href="#" class="btn btn-danger-middle">Donate now</a>
                 <div class="text-right pt-4 d-block">
-                    <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
                     <div class="black-line"></div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
 </section>
 
 <div class="wrap">
-    <button class="btn btn-primary-dark w-100 br-0 btn-modal-quick-donation" >Quick Donation <i class="far fa-plus"></i></button>
+    <button class="btn btn-primary-dark w-100 br-0 btn-modal-quick-donation" >Quick Donation <i class="moon-icons-plus"></i></button>
     <script>
         $(function() {
             $('.btn-modal-quick-donation').on('click', function () {
@@ -201,8 +201,8 @@
                 <span>Volunteers this year</span>
             </div>
         </div>
-        <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
-        <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
+        <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
+        <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
     </div>
 
     <script>
@@ -221,7 +221,7 @@
     <div class="wrap">
         <div class="title">
             <span>Current Projects</span>
-            <i class="far fa-arrow-down"></i>
+            <i class="moon-icons-arrow-down"></i>
         </div>
 
         <div class="swiper-container">
@@ -251,8 +251,8 @@
                     </div>
                 </div>
             </div>
-            <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
-            <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
+            <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
+            <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
             <div class="swiper-pagination"></div>
         </div>
 
@@ -276,10 +276,10 @@
     <div class="wrap">
         <div class="title">
             <span><b>Let's join</b><br>in progress <b>together</b></span>
-            <i class="far fa-arrow-down" style="font-size: 130%"></i>
+            <i class="moon-icons-arrow-down" style="font-size: 130%"></i>
         </div>
         <div class="item">
-            <a href="#" class="more-view bg-info">LATEST EVENTS <i class="far fa-plus"></i></a>
+            <a href="#" class="more-view bg-info">LATEST EVENTS <i class="moon-icons-plus"></i></a>
             <div class="img" style="background-image: url(img/content/lets-join-1.jpg)"></div>
             <div class="pl-5 pr-5">
                 <p class="font-size-16 text-uppercase mb-0"><b>Event title 20chara.</b></p>
@@ -288,7 +288,7 @@
         </div>
 
         <div class="item">
-            <a href="#" class="more-view bg-danger">MISSION IMPOSSIBLE <i class="far fa-plus"></i></a>
+            <a href="#" class="more-view bg-danger">MISSION IMPOSSIBLE <i class="moon-icons-plus"></i></a>
             <div class="img-video" style="background-image: url(img/content/lets-join-2.jpg)"><i class="fas fa-play-circle"></i></div>
             <div class="pl-5 pr-5">
                 <p class="font-size-16 text-uppercase mb-0"><b>MISSION: 24/09/2020</b></p>
@@ -354,7 +354,7 @@
     <div class="row gutter-0">
         <div class="col-12 descr">
             <div class="text-right">
-                <a href="#"><i class="far fa-plus"></i></a>
+                <a href="#"><i class="moon-icons-plus"></i></a>
             </div>
             <div>
                 <p class="font-size-25 text-uppercase" style="font-weight: 100"><b>help orphans</b> & the environment</p>
@@ -425,7 +425,7 @@
                         <div class="item vertical">
                             <a class="img" href="#">
                                 <span style="background-image: url(img/content/whats-new-1.jpg)"></span>
-                                <span class="plus bg-info"><i class="far fa-plus"></i></span>
+                                <span class="plus bg-info"><i class="moon-icons-plus"></i></span>
                             </a>
                             <div class="descr">
                                 <p class="font-size-16 mb-0 text-ellipsis"><b>Article Video placement 30ch</b></p>
@@ -439,7 +439,7 @@
                         <span style="background-image: url(img/content/whats-new-2.jpg)">
                             <i class="fas fa-play-circle"></i>
                         </span>
-                                <span class="plus bg-danger"><i class="far fa-plus"></i></span>
+                                <span class="plus bg-danger"><i class="moon-icons-plus"></i></span>
                             </a>
                             <div class="descr">
                                 <p class="font-size-16 mb-0 text-ellipsis"><b>Article Video placement 30ch</b></p>
@@ -449,7 +449,7 @@
                         <div class="item">
                             <a class="img" href="#">
                                 <span style="background-image: url(img/content/whats-new-3.jpg)"></span>
-                                <span class="plus bg-warning"><i class="far fa-plus"></i></span>
+                                <span class="plus bg-warning"><i class="moon-icons-plus"></i></span>
                             </a>
                             <div class="descr">
                                 <p class="font-size-16 mb-0 text-ellipsis"><b>Article Video placement 30ch</b></p>

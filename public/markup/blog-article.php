@@ -3,7 +3,7 @@
 <section class="blog-article-head">
     <div class="wrap">
         <div class="mb-4">
-            <a href="#" class="btn-back"><i class="far fa-arrow-left"></i> BACK</a>
+            <a href="#" class="btn-back"><i class="moon-icons-arrow-left"></i> BACK</a>
         </div>
 
         <div class="row">
@@ -39,7 +39,7 @@
 
             <div class="blog-video">
                 <div class="img-video play-tr" style="background-image: url(img/content/Video-placement-2.jpg)"><i class="fas fa-play-circle"></i></div>
-                <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+                <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
             </div>
 
             <h2>General subtitle right here, lorem ipsum exquisite.</h2>
@@ -157,7 +157,7 @@
                     </svg>
                 </div>
                 <div class="col-5 text-right">
-                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="moon-icons-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -210,7 +210,7 @@
                 </div>
                 <div class="col-5 pr-4">
                     <img src="img/content/join-cause-2.jpg" alt="" class="w-100">
-                    <i class="fal fa-plus decor-plus"></i>
+                    <i class="moon-icons-plus decor-plus"></i>
                 </div>
             </div>
         </div>

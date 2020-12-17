@@ -12,7 +12,7 @@
                 <a href="#" class="btn btn-info">Donate now</a>
             </div>
             <div class="right" style="background-image: url('img/content/adrianna-van-groningen-NvD9zZ7nn8Q-unsplash.jpg')"></div>
-            <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+            <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
         </div>
     </div>
 </section>
@@ -29,7 +29,7 @@
                 <a href="#" class="btn btn-danger">Donate now</a>
             </div>
             <div class="right" style="background-image: url('img/content/main-page-header-2.jpg')"></div>
-            <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+            <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
         </div>
     </div>
 </section>
@@ -195,7 +195,7 @@
         <div class="title">
             <span>Current Projects</span>
             <a href="#" class="text-underline text-dark view-more"><b>FEATURED CAMPIGN</b></a>
-            <i class="far fa-arrow-down"></i>
+            <i class="moon-icons-arrow-down"></i>
         </div>
         <div class="body">
             <div class="row gutter-0">
@@ -211,7 +211,7 @@
                 </div>
                 <div class="col-6">
                     <div class="img" style="background-image: url(img/content/current-projects-1.jpg)">
-                        <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+                        <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -261,7 +261,7 @@
                     <b>Let's join</b><br>in progress <b>together</b>
                 </p>
                 <p class="font-size-45 mb-0">
-                    <i class="far fa-arrow-right" style="font-size: 130%"></i>
+                    <i class="moon-icons-arrow-right" style="font-size: 130%"></i>
                 </p>
             </div>
             <div class="col-6">
@@ -277,7 +277,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="more-view bg-info">LATEST EVENTS <i class="far fa-plus"></i></a>
+                    <a href="#" class="more-view bg-info">LATEST EVENTS <i class="moon-icons-plus"></i></a>
                 </div>
             </div>
         </div>
@@ -296,7 +296,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="more-view bg-danger">MISSION IMPOSSIBLE <i class="far fa-plus"></i></a>
+                    <a href="#" class="more-view bg-danger">MISSION IMPOSSIBLE <i class="moon-icons-plus"></i></a>
                 </div>
             </div>
             <div class="col-6">
@@ -358,7 +358,7 @@
 
 <section class="widget-about-project">
     <div class="row gutter-0">
-        <div class="col-6"><a href="#" class="view-more text-underline">VIEW ALL PROJECTS <i class="far fa-arrow-up"></i></a></div>
+        <div class="col-6"><a href="#" class="view-more text-underline">VIEW ALL PROJECTS <i class="moon-icons-arrow-up"></i></a></div>
     </div>
     <div class="row gutter-0">
         <div class="col-6 img" style="background-image: url(img/content/widget-about-project-1.jpg)"></div>
@@ -417,7 +417,7 @@
     -16z"/>
                 </g>
             </svg>
-            <b>WHAT'S NEW <i class="far fa-arrow-right"></i></b>  <a href="#" class="text-underline text-uppercase"><b>visit newsroom</b></a>
+            <b>WHAT'S NEW <i class="moon-icons-arrow-right"></i></b>  <a href="#" class="text-underline text-uppercase"><b>visit newsroom</b></a>
         </div>
         <div>
             <div class="row gutter-5">
@@ -425,7 +425,7 @@
                     <div class="item vertical">
                         <a class="img" href="#">
                             <span style="background-image: url(img/content/whats-new-1.jpg)"></span>
-                            <span class="plus bg-info"><i class="far fa-plus"></i></span>
+                            <span class="plus bg-info"><i class="moon-icons-plus"></i></span>
                         </a>
                         <div class="descr">
                             <p class="font-size-18 mb-0"><b>Article Video placement 30ch</b></p>
@@ -441,7 +441,7 @@
                         <span style="background-image: url(img/content/whats-new-2.jpg)">
                             <i class="fas fa-play-circle"></i>
                         </span>
-                            <span class="plus bg-danger"><i class="far fa-plus"></i></span>
+                            <span class="plus bg-danger"><i class="moon-icons-plus"></i></span>
                         </a>
                         <div class="descr">
                             <p class="font-size-18 mb-0"><b>Article Video placement 30ch</b></p>
@@ -452,7 +452,7 @@
                     <div class="item">
                         <a class="img" href="#">
                             <span style="background-image: url(img/content/whats-new-3.jpg)"></span>
-                            <span class="plus bg-warning"><i class="far fa-plus"></i></span>
+                            <span class="plus bg-warning"><i class="moon-icons-plus"></i></span>
                         </a>
                         <div class="descr">
                             <p class="font-size-18 mb-0"><b>Article Video placement 30ch</b></p>
@@ -562,7 +562,7 @@
             <a href="#" class="text-underline text-dark">Newsletter</a> or find out more about our latest
             <a href="#"  class="text-underline text-dark">Mission Impossible Tour</a>.
         </p>
-        <i class="fal fa-plus decor-plus"></i>
+        <i class="moon-icons-plus decor-plus"></i>
     </div>
 </section>
 

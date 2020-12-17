@@ -169,7 +169,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-danger w-100">Pay Now <i class="far fa-arrow-right"></i></button>
+        <button type="submit" class="btn btn-danger w-100">Pay Now <i class="moon-icons-arrow-right"></i></button>
     </form>
 
     <div class="pt-5"></div>

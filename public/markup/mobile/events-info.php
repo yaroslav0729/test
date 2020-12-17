@@ -3,7 +3,7 @@
 <section class="event-info-head">
 
     <div class="mb-2">
-        <a href="#" class="btn-back"><i class="far fa-arrow-left"></i> BACK</a>
+        <a href="#" class="btn-back"><i class="moon-icons-arrow-left"></i> BACK</a>
     </div>
     <div class="line">
         <span class="date">Oct<span>26</span></span>
@@ -108,7 +108,7 @@
 
             <div class="blog-video">
                 <div class="img-video" style="background-image: url(img/content/Video-placement-2.jpg)"><i class="fas fa-play-circle"></i></div>
-                <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+                <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
             </div>
 
             <h2>General subtitle right here, lorem ipsum exquisite.</h2>

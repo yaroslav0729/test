@@ -7,7 +7,7 @@
     <div class="wrap">
         <div class="title mb-5">
             <p class="font-size-40"><b>Snappy Project Title/CTA 30ch</b></p>
-            <i class="far fa-arrow-down"></i>
+            <i class="moon-icons-arrow-down"></i>
         </div>
         <div class="pt-5"></div>
 
@@ -157,7 +157,7 @@
 
             <div class="blog-video">
                 <div class="img-video play-tr" style="background-image: url(img/content/Video-placement-2.jpg)"><i class="fas fa-play-circle"></i></div>
-                <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+                <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
             </div>
 
             <h2>What IH does with your donation for this project CTA</h2>
@@ -263,7 +263,7 @@
                     <b class="font-size-30 mr-4 text-uppercase">Related topics</b>
                 </div>
                 <div class="col-5 text-right">
-                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="moon-icons-arrow-right"></i></a>
                 </div>
             </div>
         </div>

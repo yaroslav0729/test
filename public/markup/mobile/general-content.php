@@ -3,7 +3,7 @@
 <section>
     <div class="pt-5"></div>
     <div class="mb-4">
-        <a href="#" class="btn-back"><i class="far fa-arrow-left"></i> BACK</a>
+        <a href="#" class="btn-back"><i class="moon-icons-arrow-left"></i> BACK</a>
     </div>
 
     <nav class="general-content-tabs">
@@ -156,7 +156,7 @@
         </script>
 
         <div class="text-center mt-5 mb-4">
-            <a href="#" class="text-uppercase text-underline text-danger font-size-16"><b>visit newsroom</b> <i class="far fa-arrow-right font-size-20"></i></a>
+            <a href="#" class="text-uppercase text-underline text-danger font-size-16"><b>visit newsroom</b> <i class="moon-icons-arrow-right font-size-20"></i></a>
         </div>
 
     </div>

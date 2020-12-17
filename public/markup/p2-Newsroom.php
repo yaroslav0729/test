@@ -129,7 +129,7 @@
                     <span class="name font-size-16"><b>CHARITY</b></span>
                     <span class="text font-size-20 mb-3"><b>Article title placement here with a maximum of 60 characters.</b></span>
                     <span class="date">April 06, 2020 BY AHMED SALEM</span>
-                    <i class="far fa-plus"></i>
+                    <i class="moon-icons-plus"></i>
                 </span>
             </a>
         </div>
@@ -141,7 +141,7 @@
                     <span class="name font-size-16"><b>EVENT</b></span>
                     <span class="text font-size-20 mb-3"><b>Article title placement here with a maximum of 60 characters.</b></span>
                     <span class="date">April 06, 2020 BY AHMED SALEM</span>
-                    <i class="far fa-plus"></i>
+                    <i class="moon-icons-plus"></i>
                 </span>
             </a>
         </div>
@@ -153,7 +153,7 @@
                     <span class="name font-size-16"><b>PROJECT</b></span>
                     <span class="text font-size-20 mb-3"><b>Article title placement here with a maximum of 60 characters.</b></span>
                     <span class="date">April 06, 2020 BY AHMED SALEM</span>
-                    <i class="far fa-plus"></i>
+                    <i class="moon-icons-plus"></i>
                 </span>
             </a>
         </div>
@@ -172,7 +172,7 @@
                 </div>
                 <div class="col-5 pr-4">
                     <img src="img/content/join-cause-2.jpg" alt="" class="w-100">
-                    <i class="fal fa-plus decor-plus"></i>
+                    <i class="moon-icons-plus decor-plus"></i>
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@
     <div class="wrap">
         <div class="title text-left pr-5">
             <p><b>Snappy Project Title/CTA 30ch</b></p>
-            <i class="far fa-arrow-down"></i>
+            <i class="moon-icons-arrow-down"></i>
         </div>
 
         <div class="body">
@@ -121,7 +121,7 @@
 
             <div class="blog-video">
                 <div class="img-video" style="background-image: url(img/content/Video-placement-2.jpg)"><i class="fas fa-play-circle"></i></div>
-                <a href="#" class="view-more"><i class="far fa-arrow-right"></i></a>
+                <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
             </div>
 
             <h2>What IH does with your donation for this project CTA</h2>
@@ -159,8 +159,8 @@
                         <span>Volunteers this year</span>
                     </div>
                 </div>
-                <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
-                <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
+                <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
+                <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
             </div>
 
             <script>

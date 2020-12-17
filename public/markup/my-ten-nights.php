@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-5 pr-4">
                     <img src="img/content/join-cause-2.jpg" alt="" class="w-100">
-                    <i class="fal fa-plus decor-plus"></i>
+                    <i class="moon-icons-plus decor-plus"></i>
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
                     <b class="font-size-30 mr-4 text-uppercase">make a difference today</b>
                 </div>
                 <div class="col-5 text-right">
-                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="far fa-arrow-right"></i></a>
+                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="moon-icons-arrow-right"></i></a>
                 </div>
             </div>
         </div>

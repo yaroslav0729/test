@@ -128,8 +128,8 @@
             </div>
         </div>
         <div class="swiper">
-            <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
-            <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
+            <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
+            <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
         </div>
     </div>
 </section>
@@ -335,7 +335,7 @@
                 </div>
                 <div class="col-5 pr-4">
                     <img src="img/content/join-cause-2.jpg" alt="" class="w-100">
-                    <i class="fal fa-plus decor-plus"></i>
+                    <i class="moon-icons-plus decor-plus"></i>
                 </div>
             </div>
         </div>
