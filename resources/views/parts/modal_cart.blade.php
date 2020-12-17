@@ -29,6 +29,8 @@ $cartSum = \App\Models\CartItem::getCartSum();
                                     <div class="col-8">
                                         @if(isset($cartItem[0]->campaign))
                                         <p class="font-size-20 mb-0"><b>{{ $cartItem[0]->campaign->name }}</b></p>
+                                        @else
+                                        <p class="font-size-20 mb-0"><b>{{ $cartItem[0]->note }}</b></p>
                                         @endif
                                         <p class="font-size-20 mb-0">{{ (int)$cartItem[0]->period === \App\Models\CampaignPrice::TYPE_SINGLE ? 'Single' : 'Monthly' }} payment</p>
                                     
