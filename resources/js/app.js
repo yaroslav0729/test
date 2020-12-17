@@ -505,6 +505,7 @@ $(function () {
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    $("input[type='number']").inputSpinner()
 });
 
 
@@ -561,5 +562,3 @@ function initTriggers() {
         $(this).trigger($(this).attr('run-trigger')).removeAttr('run-trigger');
     });
 }
-
-//require('./functions');

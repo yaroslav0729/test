@@ -169,6 +169,8 @@ $(function () {
         let newCartDonate = $(response.cart_donate)
         $('.about-donation').html(newCartDonate.html())
 
+        $("input[type='number']").inputSpinner()
+
         $('.basket #sum').text(response.sum)
 
         if (response.sum > 0) {
