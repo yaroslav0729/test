@@ -40,7 +40,6 @@ class CampaignsController extends Controller
     public function store(CampaignCreateEditRequest $request)
     {
         $campaign = Campaign::create($request->all());
-        $campaign->saveIsEmergency($request);
         $campaign->updatePrices($request);
 
         $categories = $request->input('categories');
@@ -85,7 +84,6 @@ class CampaignsController extends Controller
     {
         $campaign = Campaign::findOrFail($id);
         $campaign->update($request->all());
-        $campaign->saveIsEmergency($request);
         $campaign->updatePrices($request);
         
         $categories = $request->input('categories');

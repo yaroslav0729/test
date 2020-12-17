@@ -100,19 +100,6 @@ class Campaign extends Model
         }
     }
 
-    public function saveIsEmergency($request)
-    {
-        $isEmergency = $request->input('is_emergency');
-
-        if (($isEmergency === 'on') && (!$this->is_emergency)) {
-            $this->is_emergency = true;
-            $this->save();
-        } else if ($this->is_emergency) {
-            $this->is_emergency = false;
-            $this->save();
-        }
-    }
-
     public function getStatusAttribute($query)
     {
         $company = $this;
