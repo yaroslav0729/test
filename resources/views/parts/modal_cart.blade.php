@@ -19,6 +19,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                     </div>
                 </div>
                 <div class="black-line"></div>
+                <div class="order-cart-list">
 
                 @isset($cart)
                     @foreach ($cart as $cartItem)
@@ -26,20 +27,16 @@ $cartSum = \App\Models\CartItem::getCartSum();
                             <div class="item">
                                 <div class="row">
                                     <div class="col-8">
-                                        @isset($cartItem[0]->campaign_category)
-                                        <p class="font-size-20 mb-0"><b>{{ $cartItem[0]->campaign_category->name }}</b></p>
-                                        @else 
-
-                                            @empty($cartItem[0]->note)
-                                                <p class="font-size-20 mb-0"><b>No category</b></p>
-                                            @else
-                                                <p class="font-size-20 mb-0"><b>{{ $cartItem[0]->note }}</b></p>
-                                            @endempty
-
-                                        @endisset
-
-                                    <p class="font-size-20 mb-0">{{ (int)$cartItem[0]->period === \App\Models\CampaignPrice::TYPE_SINGLE ? 'Single' : 'Monthly' }} payment</p>
-                                    </div>
+                                        @if(isset($cartItem[0]->campaign))
+                                        <p class="font-size-20 mb-0"><b>{{ $cartItem[0]->campaign->name }}</b></p>
+                                        @endif
+                                        <p class="font-size-20 mb-0">{{ (int)$cartItem[0]->period === \App\Models\CampaignPrice::TYPE_SINGLE ? 'Single' : 'Monthly' }} payment</p>
+                                    
+                                    @isset($cartItem[0]->campaign_category)
+                                        <span>+{{ $cartItem[0]->campaign_category->name }}</span>
+                                    @endisset
+                                    
+                                </div>
                                     <div class="col-4 text-right">
                                         <form action="{{ route('cart.remove', ['itemId' => $cartItem[0]->cart_item_id]) }}" method="POST">
                                             @csrf
@@ -60,7 +57,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                     <span class="text-danger">Cart is not defined</span>
                 @endisset
                 
-
+                </div>
                 <div class="down-bar">
                     <p><b>Thank you,</b> this donation could help empower 512 people!</p>
                     <div class="pt-3"></div>

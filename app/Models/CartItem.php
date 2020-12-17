@@ -28,7 +28,7 @@ class CartItem extends Model
 
     public function campaign()
     {
-        return $this->hasOne('App\Models\Campaign');
+        return $this->belongsTo('App\Models\Campaign');
     }
 
     public function campaign_category()

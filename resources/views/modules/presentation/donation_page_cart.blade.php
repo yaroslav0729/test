@@ -47,16 +47,12 @@ $cartSum = \App\Models\CartItem::getCartSum();
                                 <div class="col-5">
                                     <div>
                                         <span></span>
-                                        @isset($cartItem[0]->campaign_category)
-                                        <p class="font-size-20 mb-0"><b>{{ $cartItem[0]->campaign_category->name }}</b></p>
-                                        @else
+                                        @isset($cartItem[0]->campaign)
+                                        <p class="font-size-20 mb-0"><b>{{ $cartItem[0]->campaign->name }}</b></p>
+                                        @endisset
 
-                                            @empty($cartItem[0]->note)
-                                                <p class="font-size-20 mb-0"><b>No category</b></p>
-                                            @else
-                                                <p class="font-size-20 mb-0"><b>{{ $cartItem[0]->note }}</b></p>
-                                            @endempty
-                                            
+                                        @isset($cartItem[0]->campaign_category)
+                                        <span>+{{ $cartItem[0]->campaign_category->name }}</span>
                                         @endisset
 
                                         <form action="{{ route('cart.remove', ['itemId' => $cartItem[0]->cart_item_id]) }}" method="POST">
