@@ -60,7 +60,7 @@
         $mProjects = \App\Models\Project::getMonthlyProjects();
     @endphp
 
-    <div class="row  filter_projects_monthly d-none" filter-projects>
+    <div class="row  filter_projects_monthly" filter-projects>
         @include('modules.presentation.projects_tiles', ['projects' => $mProjects])
     </div>
 
@@ -69,7 +69,7 @@
         $aProjects = \App\Models\Project::getAppealProjects();
     @endphp
 
-    <div class="row filter_projects_appeal d-none" filter-projects>
+    <div class="row filter_projects_appeal" filter-projects>
         @include('modules.presentation.projects_tiles', ['projects' => $aProjects])
     </div>
 

@@ -49,6 +49,7 @@ class RefreshPageInstanceAttrs extends Command
         foreach ($pageInstances as $pageInstance) {
 
             $pageInstance->refreshParams();
+            $pageInstance->refreshCampaigns();
 
             $this->info('Page instance id: ' . $pageInstance->id . ' refreshed');
         }

@@ -7,4 +7,4 @@ prod:
   hostname: islamic_help_prod
   stage: prod
   deploy_path: /home/ubuntu/projects/islamic_help
-  branch: dev
+  branch: master

@@ -89,10 +89,13 @@ class Project
                 if (isset($price['campaigns'])) {
                     foreach ($price['campaigns'] as $campaignId) {
 
-                        $campCategories = Campaign::where('id', $campaignId)->first()->campaign_categories->pluck('name')->toArray();
+                        $campaign = Campaign::where('id', $campaignId)->first();
 
-                        $campName = Campaign::getCountryNameForPrice($campaignId, $price['value'], $price['type']);
-
+                        if (isset($campaign)) {
+                            $campCategories = $campaign->campaign_categories->pluck('name')->toArray();
+                            $campName = Campaign::getCountryNameForPrice($campaignId, $price['value'], $price['type']);
+                        }
+                        
                         if (isset($campName)) {
                             $campaignsNames[$campaignId]['name'] = $campName;
                             $campaignsNames[$campaignId]['categories'] = $campCategories;

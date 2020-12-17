@@ -37,6 +37,36 @@ class PageInstance extends Model
             $model->is_monthly = self::isMonthlyParam($model->parameters);
             $model->is_appeal = self::isAppealParam($model->parameters);
         });
+
+        self::saved(function ($model) {
+            $model->refreshCampaigns();
+        });
+    }
+
+    public function refreshCampaigns()
+    {
+        $parameters = $this->parameters;
+
+        $campaigns = [];
+
+        if (isset($parameters['amount'])) {
+            foreach ($parameters['amount'] as $price) {
+                if (isset($price['campaigns'])) {
+                    foreach ($price['campaigns'] as $campaign) {
+                        $campaigns[] = $campaign;
+                    }
+                }
+            }
+        }
+
+        $campaigns = array_unique($campaigns);
+        $this->campaigns()->detach();
+        $this->campaigns()->attach($campaigns);
+    }
+
+    public function campaigns()
+    {
+        return $this->belongsToMany('App\Models\Campaign');
     }
 
     public function refreshParams()

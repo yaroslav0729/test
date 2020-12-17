@@ -14,11 +14,28 @@ class CampaignsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $campaigns = Campaign::paginate(25);
+        $emergencyFilter = $request->get('emergency');
+        $nameFilter = $request->get('search_name');
 
-        return view('admin.campaign.index', compact('campaigns'));
+        $campaigns = Campaign::where('id', '<>', 0);
+
+        if (isset($emergencyFilter) && ($emergencyFilter !== '0')) {
+            $campaigns->where('is_emergency', $emergencyFilter);
+        } 
+
+        if (!empty($nameFilter)) {
+            $campaigns->where('name', 'like',  '%' . $nameFilter . '%');
+        }
+
+        $campaigns = $campaigns->paginate(25);
+
+        return view('admin.campaign.index', [
+            'campaigns' => $campaigns,
+            'emergencyFilter' => $emergencyFilter,
+            'nameFilter' => $nameFilter
+        ]);
     }
 
     /**
@@ -40,7 +57,6 @@ class CampaignsController extends Controller
     public function store(CampaignCreateEditRequest $request)
     {
         $campaign = Campaign::create($request->all());
-        $campaign->saveIsEmergency($request);
         $campaign->updatePrices($request);
 
         $categories = $request->input('categories');
@@ -85,7 +101,6 @@ class CampaignsController extends Controller
     {
         $campaign = Campaign::findOrFail($id);
         $campaign->update($request->all());
-        $campaign->saveIsEmergency($request);
         $campaign->updatePrices($request);
         
         $categories = $request->input('categories');

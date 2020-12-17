@@ -57,7 +57,8 @@
 
             <div class="form-group">
                 <label for="is_emergency">Is emergency</label>
-                <input id="is_emergency" name="is_emergency" type="checkbox" @if(old('is_emergency', $campaign->is_emergency ?? null)) checked @endif /><br>
+                <input type="hidden" name="is_emergency" value="0">
+                <input id="is_emergency" name="is_emergency" value="1" type="checkbox" @if(old('is_emergency', $campaign->is_emergency ?? null)) checked @endif /><br>
             </div>
 
             <div price-container>
