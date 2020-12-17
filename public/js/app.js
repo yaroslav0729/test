@@ -91481,8 +91481,9 @@ $(function () {
       $('.donated-page .info-col').toggleClass('hide');
     });
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  //$("input[type='number']").inputSpinner()
 
-  $("input[type='number']").inputSpinner();
+  $("[input_number_spinner]").inputSpinner();
 }); //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
 
 function convertMonetary(value) {
@@ -91687,8 +91688,9 @@ $(function () {
     var newCart = $('.modal-body', response.cart_html);
     $('#cartModal .modal-body').html(newCart.html());
     var newCartDonate = $(response.cart_donate);
-    $('.about-donation').html(newCartDonate.html());
-    $("input[type='number']").inputSpinner();
+    $('.about-donation').html(newCartDonate.html()); //$("input[type='number']").inputSpinner()
+
+    $("[input_number_spinner]").inputSpinner();
     $('.basket #sum').text(response.sum);
 
     if (response.sum > 0) {

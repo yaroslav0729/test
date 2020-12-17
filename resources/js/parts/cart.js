@@ -169,7 +169,8 @@ $(function () {
         let newCartDonate = $(response.cart_donate)
         $('.about-donation').html(newCartDonate.html())
 
-        $("input[type='number']").inputSpinner()
+        //$("input[type='number']").inputSpinner()
+        $("[input_number_spinner]").inputSpinner()
 
         $('.basket #sum').text(response.sum)
 

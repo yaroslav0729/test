@@ -14,7 +14,7 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Select an Amount:</label>
             <div class="col-sm-9">
-            <input name="amount" type="text" class="form-control" placeholder="£  Enter amount">
+            <input name="amount" type="number" class="form-control" placeholder="£  Enter amount">
             </div>
           </div>
 

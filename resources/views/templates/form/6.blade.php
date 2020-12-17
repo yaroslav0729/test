@@ -26,7 +26,7 @@
 
 @include('modules.admin.important_information')
 
-@include('modules.admin.projects_donate')
+@include('modules.admin.donate_module')
 
 @include('modules.admin.what_happens_so_far')
 

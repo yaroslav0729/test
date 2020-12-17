@@ -30,7 +30,7 @@
     <div class="wrap">
         <div class="body">
 
-            @include('modules.presentation.projects_donate', [
+            @include('modules.presentation.donate_module', [
                 'parameters' => $parameters,
                 'useAppeal' => true
             ])

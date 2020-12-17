@@ -146,7 +146,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
 
                             </div>
                             <div class="col-6 d-flex align-items-center">
-                                <input type="number" data-id="{{ $cartItem[0]->id }}" value="{{ count($cartItem) }}" min="1" max="1000" step="1" class="color-danger"/>
+                                <input type="number" input_number_spinner data-id="{{ $cartItem[0]->id }}" value="{{ count($cartItem) }}" min="1" max="1000" step="1" class="color-danger"/>
                             </div>
                         </div>
                     </div>

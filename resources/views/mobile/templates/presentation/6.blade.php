@@ -16,7 +16,7 @@
             <i class="moon-icons-arrow-down"></i>
         </div>
 
-        @include('modules.presentation.projects_donate')
+        @include('modules.presentation.donate_module')
         
     </div>
 </section>

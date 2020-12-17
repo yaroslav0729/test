@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        @include('modules.presentation.projects_donate', [
+        @include('modules.presentation.donate_module', [
             'parameters' => $parameters,
             'useAppeal' => true
         ])

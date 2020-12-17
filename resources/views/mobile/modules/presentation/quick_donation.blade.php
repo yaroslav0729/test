@@ -72,7 +72,7 @@ $categories = \App\Models\CampaignCategory::all();
             </select>
         </div>
         <div class="form-group">
-            <input type="text" name="amount" class="form-control" placeholder="£  Enter amount">
+            <input type="number" name="amount" class="form-control" placeholder="£  Enter amount">
         </div>
         <br>
         <div>

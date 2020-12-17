@@ -34,7 +34,7 @@
         </div>
         <div class="pt-5"></div>
 
-        @include('modules.presentation.projects_donate')
+        @include('modules.presentation.donate_module')
 
     </div>
 </section>

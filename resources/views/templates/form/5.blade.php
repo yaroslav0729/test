@@ -46,7 +46,7 @@
     <input class="form-control" required name="parameters[donate_to_text]" placeholder="Text value here" value="{{ $donateToProjText }}" />
 </div>
 
-@include('modules.admin.projects_donate', [
+@include('modules.admin.donate_module', [
     'parameters' => $parameters,
     'useAppeal' => true
 ])

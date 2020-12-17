@@ -505,7 +505,8 @@ $(function () {
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    $("input[type='number']").inputSpinner()
+    //$("input[type='number']").inputSpinner()
+    $("[input_number_spinner]").inputSpinner()
 });
 
 
