@@ -41,17 +41,29 @@
         <a href="#" class="logo"></a>
         <div class="level-0">
             <ul class="menu-1">
-                <li><a href="#" class="open-submenu" data-target="1">Our Story</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Get Involved</a></li>
-                <li><a href="#">Newsroom</a></li>
-                <li><a href="#">Appeals</a></li>
-                <li><a href="#">Donate today</a></li>
+                @isset($headerMenuItem[0])
+                    @foreach ($headerMenuItem[0] as $menuItem)
+                        <li>
+                            <a
+                                @if ($menuItem->is_group)
+                                    href="#" 
+                                    class="open-submenu" 
+                                    data-target="{{ $menuItem->id }}"
+                                @else
+                                    href="{{ $menuItem->link }}"
+                                @endif
+                            >
+                                {{ $menuItem->text }}
+                            </a>
+                        </li>
+                    @endforeach
+                @endisset
             </ul>
             <div class="line"></div>
             <ul class="menu-2">
-                <li><a href="#">Zakat Calculator</a></li>
+                @foreach ($additionalHeaderMenuItem as $menuItem)
+                    <li><a href="{{ $menuItem->formatted_link }}">{{ $menuItem->text }}</a></li>
+                @endforeach
                 <li><a href="#">Login</a></li>
                 <li><a href="#">+ Create Account</a></li>
                 <li>Hotline: <b class="text-info">0121 446 5682</b></li>
@@ -59,87 +71,67 @@
         </div>
 
         <!-- level 1-->
-        <div style="display: none" class="level-1">
-            <div class="title">Our Story</div>
-            <div class="line"></div>
-            <div>
-                <ul class="menu">
-                    <li><a href="#" class="open-submenu" data-target="2">Who we are</a></li>
-                    <li><a href="#" class="open-submenu" data-target="2">Our Work + History</a></li>
-                    <li><a href="#" class="open-submenu" data-target="2">Advocacy + Transparency</a></li>
-                    <li><a href="#" class="open-submenu" data-target="2">Board</a></li>
-                    <li><a href="#" class="open-submenu" data-target="2">Partnerships</a></li>
-                    <li><a href="#" class="open-submenu" data-target="2">Contact</a></li>
-                    <li><a href="#" class="open-submenu" data-target="2">Careers</a></li>
-                </ul>
-            </div>
-        </div>
+        @isset ($headerMenuItem[1])
+            @foreach ($headerMenuItem[1] as $groupId => $menuGroupItem)
+                <div style="display: none" class="level-1" data-group-id="{{ $groupId }}">
+                    <div class="title">{{ $menuGroupItem['parent_text'] }}</div>
+                    <div class="line"></div>
+                    @if ($menuGroupItem['max_depth'] >= 2)
+                        <div class="projects-group-swiper">
+                            @foreach ($menuGroupItem['items'] as $menuItem)
+                                <a 
+                                    @if ($menuItem->is_group)
+                                        href="#" 
+                                        class="item open-submenu" 
+                                        data-target="{{ $menuItem->id }}"
+                                    @else
+                                        href="{{ $menuItem->link }}"
+                                        class="item"
+                                    @endif
+                                >
+                                    {{ $menuItem->text }}
+                                    @if ($menuItem->is_group)
+                                        <i class="far fa-plus"></i>
+                                    @endif
+                                </a>
+                            @endforeach
+                        </div>
+                    @else
+                        <div>
+                            <ul class="menu">
+                                @foreach ($menuGroupItem['items'] as $menuItem)
+                                    <li><a href="{{ $menuItem->link }}">{{ $menuItem->text }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+            @endforeach
+        @endisset
 
         <!-- level 2-->
-        <div style="display: none" class="level-2">
-            <div class="title">Our Projects</div>
-            <div class="line"></div>
-            <div class="projects-group-swiper">
-                <a href="#" class="item open-submenu" data-target="3">
-                    Environmental Projects
-                    <i class="moon-icons-plus"></i>
-                </a>
-                <a href="#" class="item open-submenu" data-target="3">
-                    UK Projects
-                    <i class="moon-icons-plus"></i>
-                </a>
-                <a href="#" class="item open-submenu" data-target="3">
-                    Eco Village
-                    <i class="moon-icons-plus"></i>
-                </a>
-                <a href="#" class="item open-submenu" data-target="3">
-                    Change a Child's Life
-                    <i class="moon-icons-plus"></i>
-                </a>
-                <a href="#" class="item open-submenu" data-target="3">
-                    Water Aid
-                    <i class="moon-icons-plus"></i>
-                </a>
-                <a href="#" class="item open-submenu" data-target="3">
-                    IH Birth Clinic
-                    <i class="moon-icons-plus"></i>
-                </a>
-                <a href="#" class="item open-submenu" data-target="3">
-                    Long-term Crisis
-                    <i class="moon-icons-plus"></i>
-                </a>
-                <a href="#" class="item open-submenu" data-target="3">
-                    Seasonal Charity
-                    <i class="moon-icons-plus"></i>
-                </a>
-                <a href="#" class="item open-submenu" data-target="3">
-                    Umrah for Orphans
-                    <i class="moon-icons-plus"></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- level 3-->
-        <div style="display: none" class="level-3">
-            <div class="title">Change a Child's Life</div>
-            <div class="line"></div>
-            <div class="categories">
-                <ul>
-                    <li><a href="#">Orphan Sponsorships</a></li>
-                    <li><a href="#">Disabled Children Sponsorships</a></li>
-                    <li><a href="#">Umrah for Orphans</a></li>
-                    <li><a href="#">Education for Refugees in Jordan</a></li>
-                    <li><a href="#">Rohingha Refugees School</a></li>
-                    <li><a href="#">Cricket Academy</a></li>
-                    <li><a href="#">New life for newborns in Syria</a></li>
-                    <li><a href="#">Empowering our Youth</a></li>
-                    <li><a href="#">Another Example Title</a></li>
-                    <li><a href="#">New life for newborns in Syria</a></li>
-                    <li><a href="#">Empowering our Youth</a></li>
-                    <li><a href="#">Another Example Title</a></li>
-                </ul>
-            </div>
-        </div>
+        @isset ($headerMenuItem[2])
+            @foreach ($headerMenuItem[2] as $groupId => $menuGroupItem)
+                <div style="display: none" class="level-2" data-group-id="{{ $groupId }}">
+                    <div class="title">{{ $menuGroupItem['parent_text'] }}</div>
+                    <div class="line"></div>
+                    <div class="categories">
+                        <ul>
+                            @foreach ($menuGroupItem['items'] as $menuItem)
+                                <li>
+                                    <a
+                                        @if (!$menuItem->is_group)
+                                            href="{{ $menuItem->formatted_link }}"
+                                        @endif
+                                    >{{ $menuItem->text }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endforeach
+        @endisset
     </div>
 
     @if (\Session::has('success'))

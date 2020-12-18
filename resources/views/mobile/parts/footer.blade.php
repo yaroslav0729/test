@@ -3,18 +3,22 @@
         <div class="toggle-menu"><b>EXPAND NAVIGATION</b></div>
         <div style="display: none">
             <ul class="menu">
-                <li class="open">
-                    <a href="#">DONATE</a>
-                    <ul class="sub-menu">
-                        <li><a href="#">Donate now</a></li>
-                        <li><a href="#">Food Packs</a></li>
-                        <li><a href="#">Ways to empower</a></li>
-                        <li><a href="#">Zakat Calculator</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">make a difference</a></li>
-                <li><a href="#">our work</a></li>
-                <li><a href="#">say hello</a></li>
+                @foreach ($footerMenuItem as $menuItem)
+                    <li>
+                        <a 
+                            href="#"
+                        >
+                            {{ $menuItem->text }}
+                        </a>
+                        @if ($menuItem->is_group)
+                            <ul class="sub-menu">
+                                @foreach ($menuItem->orderedSubMenus as $subMenuItem)
+                                    <li><a href="{{ $subMenuItem->link }}">{{ $subMenuItem->text }}</a></li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </li>
+                @endforeach
             </ul>
         </div>
 
@@ -32,3 +36,5 @@
         </div>
     </div>
 </footer>
+
+@include('parts.modal_cart')

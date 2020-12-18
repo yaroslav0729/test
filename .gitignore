@@ -19,3 +19,4 @@ etc/
 storage/mysql/
 public/css/styles.css.map
 public/js/app.js.LICENSE.txt
+storage/debugbar
