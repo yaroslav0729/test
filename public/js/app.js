@@ -103934,8 +103934,10 @@ $(function () {
 
     if (response.sum > 0) {
       $('.basket span').removeClass('d-none');
+      $('.basket').addClass('bell-animate');
     } else {
       $('.basket span').addClass('d-none');
+      $('.basket').removeClass('bell-animate');
       $('#empty_cart_popup').fadeIn().delay(5000).fadeOut();
     }
   }
@@ -104225,11 +104227,11 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\OSPanel\OSPanel\domains\islamichelp\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\OSPanel\OSPanel\domains\islamichelp\resources\assets\vendor\MediaManager\sass\manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! D:\OSPanel\OSPanel\domains\islamichelp\resources\css\app.css */"./resources/css/app.css");
-__webpack_require__(/*! D:\OSPanel\OSPanel\domains\islamichelp\resources\css\app_admin.css */"./resources/css/app_admin.css");
-module.exports = __webpack_require__(/*! D:\OSPanel\OSPanel\domains\islamichelp\resources\css\admin_styles.css */"./resources/css/admin_styles.css");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app_admin.css */"./resources/css/app_admin.css");
+module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
 
 
 /***/ })
