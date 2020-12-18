@@ -893,6 +893,13 @@ b, strong, .font-weight-bold {font-weight: 900}
         font-weight: 500;
         line-height: 21px;
     }
+    &:after {
+        content: attr(currency);
+        display: block;
+	    position: absolute; left: 15px; top: 50%;
+        transform: translateY(-50%);
+    }
+    &[currency] .form-control {padding-left: 35px;}
 }
 .invalid-feedback {
   color: #F7796A;
@@ -1644,7 +1651,7 @@ input[type='number'].color-danger  + .input-group {
             border-radius: 5px 0 5px 5px;
             background-color: #FFF;
             box-shadow: 0 18px 35px 0 rgba(104,110,117,0.2);
-            padding: 106px 105px 85px 63px;
+            padding: 103px 105px 85px 63px;
         }
         .img {
             background-size: cover;

@@ -71,8 +71,8 @@ $categories = \App\Models\CampaignCategory::all();
                 @endforeach
             </select>
         </div>
-        <div class="form-group">
-            <input type="number" name="amount" class="form-control" placeholder="£  Enter amount">
+        <div class="form-group" currency="£">
+            <input type="number" name="amount" class="form-control" placeholder="Enter amount">
         </div>
         <br>
         <div>

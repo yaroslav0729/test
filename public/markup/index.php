@@ -110,8 +110,8 @@
                 </div>
             </div>
             <div class="col-2">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="£  Enter amount">
+                <div class="form-group" currency="£">
+                    <input type="text" class="form-control" placeholder="Enter amount">
                 </div>
             </div>
             <div class="col-2"><button  type="submit" class="btn btn-danger w-100">Donate now</button></div>

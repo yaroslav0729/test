@@ -1,4 +1,4 @@
-//@import url("../libs/moon-icons/style.css");
+@import url("../libs/moon-icons/style.css");
 
 .clearfix () {
     &:after {
@@ -117,6 +117,7 @@ footer {
         color: #FFF;
         font-size: 11px;
         line-height: 50px;
+        font-weight: 400;
         a {
             color: #FFF;
             &:hover {text-decoration: underline}
@@ -862,7 +863,9 @@ header {
 .text-underline {text-decoration: underline}
 .text-uppercase {text-transform: uppercase;}
 
+.letter-spacing-0 {letter-spacing: 0px;}
 .letter-spacing-1 {letter-spacing: 1px;}
+
 
 b, strong, .font-weight-bold {font-weight: 900}
 .font-weight-medium {font-weight: 500}
@@ -890,6 +893,13 @@ b, strong, .font-weight-bold {font-weight: 900}
         font-weight: 500;
         line-height: 21px;
     }
+    &:after {
+        content: attr(currency);
+        display: block;
+	    position: absolute; left: 15px; top: 50%;
+        transform: translateY(-50%);
+    }
+    &[currency] .form-control {padding-left: 35px;}
 }
 .invalid-feedback {
   color: #F7796A;
@@ -1641,7 +1651,7 @@ input[type='number'].color-danger  + .input-group {
             border-radius: 5px 0 5px 5px;
             background-color: #FFF;
             box-shadow: 0 18px 35px 0 rgba(104,110,117,0.2);
-            padding: 106px 105px 85px 63px;
+            padding: 103px 105px 85px 63px;
         }
         .img {
             background-size: cover;
@@ -1738,7 +1748,6 @@ input[type='number'].color-danger  + .input-group {
     }
 }
 
-
 .lets-join {
     margin-bottom: 163px;
     padding: 0 164px;
@@ -1795,7 +1804,7 @@ input[type='number'].color-danger  + .input-group {
         }
     }
     .img {
-        padding-bottom: 18%;
+        padding-bottom: 20%;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 50% 50%;
@@ -1813,7 +1822,7 @@ input[type='number'].color-danger  + .input-group {
 
 .whats-new {
     background: #F6F8FB;
-    padding: 77px 115px 77px 180px;
+    padding: 77px 115px 154px 180px;
     margin-bottom: 100px;
     .title {
         margin-bottom: 74px;
@@ -1825,6 +1834,10 @@ input[type='number'].color-danger  + .input-group {
             vertical-align: middle;
             margin-right: 31px;
             i {margin-left: 27px;}
+        }
+        .moon-icons-arrow-right {
+            display: inline-block;
+            transform: scale(1.3)
         }
         a {
             color: #101525;
@@ -1928,15 +1941,18 @@ input[type='number'].color-danger  + .input-group {
 
 .join-cause {
     background: #EEF3F0;
-    padding: 82px 155px 83px 180px;
+    padding: 73px 155px 77px 180px;
     .wrap {position: relative}
     .decor-plus {
         font-size: 50px;
         position: absolute; right: 0;
-        bottom: 5px;
+        bottom: 18px;
         //top: 50%;
         //transform: translateY(-50%);
     }
+    .title + p {
+	  line-height: 2.3;
+	}
     form {
         //display: flex;
         background: #F7F8F8;

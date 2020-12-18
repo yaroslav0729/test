@@ -99,8 +99,8 @@ foreach ($amount as $key => $item) {
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <div class="form-group">
-                                        <input name="amount" type="number" class="form-control" placeholder="£  Enter amount">
+                                    <div class="form-group" currency="£">
+                                        <input name="amount" type="number" class="form-control" placeholder="Enter amount">
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -138,8 +138,8 @@ foreach ($amount as $key => $item) {
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <div class="form-group">
-                                        <input name="amount" type="number" class="form-control" placeholder="£  Enter amount">
+                                    <div class="form-group" currency="£">
+                                        <input name="amount" type="number" class="form-control" placeholder="Enter amount">
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -191,8 +191,8 @@ foreach ($amount as $key => $item) {
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <div class="form-group">
-                                        <input name="amount" type="number" class="form-control" placeholder="£  Enter amount">
+                                    <div class="form-group" currency="£">
+                                        <input name="amount" type="number" class="form-control" placeholder="Enter amount">
                                     </div>
                                 </div>
                                 <div class="col-2">
