@@ -66,3 +66,14 @@ a#clear_all_btn:hover {
     cursor: pointer;
     text-decoration: underline;
 }
+#quick_donation_widget {
+    position: fixed;
+    top:  57px;
+    left: 0;
+    width: 100%; height: 51px;
+    background: #aaa;
+    z-index: 10;
+}
+/* .mobile-template .wrapper {
+padding-top: 108px !important;
+} */

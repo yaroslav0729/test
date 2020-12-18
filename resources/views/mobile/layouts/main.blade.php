@@ -134,6 +134,10 @@
         @endisset
     </div>
 
+    <div id="quick_donation_widget">
+        @include('modules.presentation.quick_donation')
+    </div>
+
     @if (\Session::has('success'))
         <div class="container p-3">
             <div class="alert alert-success">
