@@ -91704,6 +91704,7 @@ $(function () {
       $('.basket span').removeClass('d-none');
     } else {
       $('.basket span').addClass('d-none');
+      $('#empty_cart_popup').fadeIn().delay(5000).fadeOut();
     }
   }
 

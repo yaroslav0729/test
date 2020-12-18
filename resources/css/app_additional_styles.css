@@ -49,8 +49,8 @@
     border: 1px solid #F97866;
 }
 #donate_modal label {text-transform: none; font-weight: bold; font-size: 14px; padding-top: 20px;}
-#add_to_cart_popup {display: none}
-a #add_to_cart_popup{color:#101525}
+#add_to_cart_popup, #empty_cart_popup {display: none}
+a #add_to_cart_popup, a #empty_cart_popup{color:#101525}
 #add_to_cart_popup .period{text-transform: capitalize;}
 a#clear_all_btn {
 display: inline-block;

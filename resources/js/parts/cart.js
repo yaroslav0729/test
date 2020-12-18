@@ -178,6 +178,8 @@ $(function () {
             $('.basket span').removeClass('d-none')
         } else {
             $('.basket span').addClass('d-none')
+
+            $('#empty_cart_popup').fadeIn().delay(5000).fadeOut();
         }
     }
 
@@ -220,7 +222,7 @@ $(function () {
         var form = $(this).closest('form')
 
         //form.submit()
-        sendFormAndRefreshCard(form)
+        sendFormAndRefreshCard(form) 
     })
 
     $(document).on('click', '#clear_all_btn', function (e) {
