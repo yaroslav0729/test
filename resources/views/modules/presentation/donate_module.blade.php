@@ -83,8 +83,8 @@ foreach ($amount as $key => $item) {
                 <div class="tab-content" id="nav-tabContent">
                     @isset($useSingleTab)
                     <div class="tab-pane fade show active" id="nav-1" role="tabpanel" >
-                        <form action="/">
-
+                        <form action="{{ route('cart.add') }}" method="POST">
+                            @csrf
                             @include('modules.presentation.parts.donate_options',[
                                 'donateOptionsType' => \App\Models\CampaignPrice::TYPE_SINGLE
                             ])                        
@@ -120,7 +120,8 @@ foreach ($amount as $key => $item) {
                     @endisset 
                     @isset($useMonthlyTab)
                     <div class="tab-pane fade @empty($useSingleTab) show active @endempty" id="nav-2" role="tabpanel" >
-                        <form action="/">
+                        <form action="{{ route('cart.add') }}" method="POST">
+                            @csrf
 
                             @include('modules.presentation.parts.donate_options',[
                                 'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY,
@@ -158,7 +159,8 @@ foreach ($amount as $key => $item) {
                     @endisset 
                     @isset($useAppeal)
                     <div class="tab-pane fade" id="nav-3" role="tabpanel" >
-                        <form action="/">
+                        <form action="{{ route('cart.add') }}" method="POST">
+                            @csrf
 
                             <div class="pb-2">
                             <button type="button" select-appeal-tab data-tab="tab_single" class="btn btn-danger btn_appeal_tab">Single</button>
@@ -220,6 +222,4 @@ foreach ($amount as $key => $item) {
         </div></div>
 
     </div>
-
-    @include('modules.presentation.parts.donate_modal')
 </div>

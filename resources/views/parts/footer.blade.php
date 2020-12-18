@@ -61,14 +61,4 @@
     </div>
 </footer>
 
-<script>
-    $(function() {
-        $('footer .menu > li > a').on('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            $(this).parent().toggleClass('open');
-        })
-    } );
-</script>
-
-    @include('parts.modal_cart')
+@include('parts.modal_cart')

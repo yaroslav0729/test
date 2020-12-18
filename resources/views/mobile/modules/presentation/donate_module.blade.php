@@ -75,7 +75,7 @@ foreach ($amount as $key => $item) {
         <nav>
             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                 @isset($useSingleTab)
-                <a class="nav-link color-info active"  data-toggle="tab" href="#nav-1" role="tab" donate-filter data-filter="single" aria-selected="true">Single</a>
+                <a class="nav-link color-info active" run-trigger="click"  data-toggle="tab" href="#nav-1" role="tab" donate-filter data-filter="single" aria-selected="true">Single</a>
                 @endisset
                 @isset($useMonthlyTab)
                 <a class="nav-link color-info"  data-toggle="tab" href="#nav-2" role="tab" donate-filter data-filter="monthly"  aria-selected="false">Monthly</a>
@@ -90,8 +90,8 @@ foreach ($amount as $key => $item) {
 
             @isset($useSingleTab)
             <div class="tab-pane fade show active" id="nav-1" role="tabpanel" >
-                <form action="/">
-
+                <form action="{{ route('cart.add') }}" method="POST">
+                    @csrf
                     @include('modules.presentation.parts.donate_options',[
                         'donateOptionsType' => \App\Models\CampaignPrice::TYPE_SINGLE
                     ]) 
@@ -121,8 +121,8 @@ foreach ($amount as $key => $item) {
 
             @isset($useMonthlyTab)
             <div class="tab-pane fade" id="nav-2" role="tabpanel" >
-                <form action="/">
-
+                <form action="{{ route('cart.add') }}" method="POST">
+                    @csrf
                     @include('modules.presentation.parts.donate_options',[
                         'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY,
                         'class' => 'active-color-info'
@@ -152,8 +152,8 @@ foreach ($amount as $key => $item) {
 
             @isset($useAppeal)
             <div class="tab-pane fade" id="nav-3" role="tabpanel" >
-                <form action="/">
-
+                <form action="{{ route('cart.add') }}" method="POST">
+                    @csrf
                     <div class="pb-2">
                         <button type="button" select-appeal-tab data-tab="tab_single" class="btn btn-danger btn_appeal_tab">Single</button>
                         <button type="button" select-appeal-tab data-tab="tab_monthly" class="btn btn-danger btn_appeal_tab">Regular</button>
@@ -197,4 +197,3 @@ foreach ($amount as $key => $item) {
         </div>
     </div>
 </div>
-@include('modules.presentation.parts.donate_modal')

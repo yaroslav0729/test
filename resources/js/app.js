@@ -507,6 +507,14 @@ $(function () {
 
     //$("input[type='number']").inputSpinner()
     $("[input_number_spinner]").inputSpinner()
+
+    $(function() {
+        $('footer .menu > li > a').on('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).parent().toggleClass('open');
+        })
+    });
 });
 
 

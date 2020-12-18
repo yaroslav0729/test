@@ -241,49 +241,14 @@ $(function () {
         sendFormAndRefreshCard(form)
     })
 
-    $(document).on('submit', '#donate_modal form', function (e) {
-        e.preventDefault()
-
-        var form = $(this)
-
-        sendFormAndRefreshCard(form)
-
-        $('#donate_modal').modal('hide');
-
-        $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
-        
-    })
-
     $(document).on('click', '[donate-btn]', function (e) {
         e.preventDefault()
-        //toastr.success('message')
 
         let form = $(this).closest('form')
 
-        let amount = form.find('input[name="amount"]').val()
-
-        if (Number.isNaN(parseInt(amount))) {
-            toastr.warning('Select amount first, please!')
-            return
-        } 
-
-        let modal = $('#donate_modal')
-        modal.find('input[name="amount"]').val(amount)
-
-        let checkedEL = form.find('input[name="price"]:checked').closest('[select-amount]')
-        let amountId = checkedEL.data('amount_id')
-
-        countryId = $('[amount-countries][data-amount_id="' + amountId +  '"] select').val()
-        modal.find('input[name="campaigns"]').val(countryId)
-
-        let categoriesEl = form.find('select[name="categories"]')
-        let modalCategEl = modal.find('select[name="categories"]')
-
-        modalCategEl.html(categoriesEl.html())
-        let selectedCateg = categoriesEl.val()
-        modalCategEl.find('option[value="' + selectedCateg + '"]').attr('selected','selected')
-
-        modal.modal('show')
+        //form.submit();
+        sendFormAndRefreshCard(form)
+        $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();  
     });
 
 });
