@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/_footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/_footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/markup/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/markup/css/styles.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/modules/presentation/current_projects.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modules/presentation/current_projects.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe2.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe2.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/parts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/parts/footer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,28 +24,32 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/markup/css/styles.less">
+        <entry file="file://$PROJECT_DIR$/public/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="192">
+              <caret line="119" column="24" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/css/styles.less">
+        <entry file="file://$PROJECT_DIR$/resources/views/parts/footer.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1739" selection-start-line="1739" selection-end-line="1739" />
+            <state relative-caret-position="421">
+              <caret line="69" column="10" selection-start-line="69" selection-start-column="10" selection-end-line="69" selection-end-column="10" />
+              <folding>
+                <element signature="e#3146#3152#0#HTML" expanded="true" />
+                <element signature="e#3152#3158#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/markup/_footer.php">
+        <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="192" column="26" selection-start-line="192" selection-start-column="26" selection-end-line="192" selection-end-column="26" />
+            <state relative-caret-position="316">
+              <caret line="137" column="6" lean-forward="true" selection-start-line="133" selection-start-column="4" selection-end-line="137" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -63,16 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>letter</find>
-      <find>.text</find>
-      <find>current-projects&quot;</find>
-      <find>moon-icons-arrow-right</find>
-      <find>arrow</find>
-      <find>fa-arrow-</find>
-      <find>plus</find>
-      <find>fa-</find>
-      <find>moon-icons-arrow-down</find>
-      <find>moon-icons-right</find>
       <find>fa-plus</find>
       <find>.fa-</find>
       <find>current-projects</find>
@@ -93,6 +86,16 @@
       <find>lets-join</find>
       <find>id=&quot;cartModal&quot;</find>
       <find>cartModal</find>
+      <find>letter</find>
+      <find>.letter-spacing</find>
+      <find>lets-</find>
+      <find>.widget-about-project</find>
+      <find>letter-spacing-1</find>
+      <find>join-</find>
+      <find>join-cause join-cause-main</find>
+      <find>whats-new</find>
+      <find>&lt;footer</find>
+      <find>footer</find>
     </findStrings>
     <replaceStrings>
       <replace>fal fa-arrow-right</replace>
@@ -105,13 +108,13 @@
       <replace>moon-icons-arrow-down</replace>
     </replaceStrings>
     <dirStrings>
-      <dir>$PROJECT_DIR$/resources</dir>
       <dir>$PROJECT_DIR$/public/markup/mobile</dir>
       <dir>$PROJECT_DIR$/resources/views/mobile</dir>
       <dir>$PROJECT_DIR$/resources/viewsswiper-wrapper=&quot;header2&quot;</dir>
       <dir>$PROJECT_DIR$/public/css</dir>
-      <dir>$PROJECT_DIR$/resources/views</dir>
       <dir>$PROJECT_DIR$/public/markup</dir>
+      <dir>$PROJECT_DIR$/resources/views</dir>
+      <dir>$PROJECT_DIR$/resources</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -151,10 +154,12 @@
         <option value="$PROJECT_DIR$/resources/libs/moon-icons/style.css" />
         <option value="$PROJECT_DIR$/public/css/app.css" />
         <option value="$PROJECT_DIR$/resources/views/modules/presentation/current_projects.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php" />
         <option value="$PROJECT_DIR$/public/markup/_footer.php" />
         <option value="$PROJECT_DIR$/public/markup/css/styles.less" />
+        <option value="$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe2.blade.php" />
         <option value="$PROJECT_DIR$/public/css/styles.less" />
+        <option value="$PROJECT_DIR$/resources/views/parts/footer.blade.php" />
       </list>
     </option>
   </component>
@@ -341,7 +346,7 @@
               <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="markup" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
@@ -431,17 +436,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94100000" />
+    <option name="totallyTimeSpent" value="97394000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.20958512" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.20958512" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="npm" order="3" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.19372442" />
+      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.19372442" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
@@ -485,12 +490,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/markup/img/Line-styling.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/img/ico-apply-online.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/img/ico-email.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -520,13 +519,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/img/ico-menu.svg">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="141" column="52" lean-forward="true" selection-start-line="141" selection-start-column="52" selection-end-line="141" selection-end-column="52" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/p2-Newsroom.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -820,20 +812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="271" column="38" selection-start-line="271" selection-start-column="38" selection-end-line="271" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/markup/_footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="192" column="26" selection-start-line="192" selection-start-column="26" selection-end-line="192" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/css/mobile.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -848,10 +826,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe2.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding>
+            <element signature="n#g#0;n#svg#0;n#div#0;n#div#0;n#section#0;n#!!top" />
+            <element signature="n#svg#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#section#1;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1153">
+          <caret line="391" column="25" selection-start-line="391" selection-start-column="16" selection-end-line="391" selection-end-column="25" />
+          <folding>
+            <element signature="e#17855#20853#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/styles.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1739" selection-start-line="1739" selection-end-line="1739" />
+        <state relative-caret-position="192">
+          <caret line="119" column="24" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/js/functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="137" column="6" lean-forward="true" selection-start-line="133" selection-start-column="4" selection-end-line="137" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/markup/_footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="276" column="8" lean-forward="true" selection-start-line="274" selection-start-column="4" selection-end-line="276" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/parts/footer.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="69" column="10" selection-start-line="69" selection-start-column="10" selection-end-line="69" selection-end-column="10" />
+          <folding>
+            <element signature="e#3146#3152#0#HTML" expanded="true" />
+            <element signature="e#3152#3158#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

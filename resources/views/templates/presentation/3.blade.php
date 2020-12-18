@@ -281,7 +281,7 @@
                         </div>
                         <div class="col-6">
                             <div class="pl-4 pr-4">
-                                <p class="font-size-16 text-uppercase mb-0"><b>Event title 20chara.</b></p>
+                                <p class="font-size-16 text-uppercase mb-0 letter-spacing-1"><b>Event title 20chara.</b></p>
                                 <p class="font-size-16 mb-0">Critical event info,<br>60 char lorem ametional,<br>jaan
                                     vella...</p>
                             </div>
@@ -302,7 +302,7 @@
                         </div>
                         <div class="col-6">
                             <div class="pl-4 pr-4">
-                                <p class="font-size-16 text-uppercase mb-0"><b>MISSION: 24/09/2020</b></p>
+                                <p class="font-size-16 text-uppercase mb-0 letter-spacing-1"><b>MISSION: 24/09/2020</b></p>
                                 <p class="font-size-16 mb-0">Critical mission info,<br>60 char lorem sit amet,<br>demi
                                     vella...</p>
                             </div>
@@ -359,7 +359,7 @@
     -16z"/>
                             </g>
                         </svg>
-                        <p class="font-size-20 mb-3"><b>#FUNDRAISEMYSELF</b></p>
+                        <p class="font-size-20 mb-3 "><b>#FUNDRAISEMYSELF</b></p>
                         <p class="font-size-16 mb-4">Feeling inspired to help? Starting a campaign takes minutes, no
                             time at all to save lives! 90ch.</p>
                         <a href="#" class="btn btn-outline-warning">More info</a>
@@ -436,8 +436,7 @@
     -16z"/>
                 </g>
             </svg>
-            <b>WHAT'S NEW <i class="moon-icons-arrow-right"></i></b> <a href="#" class="text-underline text-uppercase"><b>visit
-                    newsroom</b></a>
+            <b>WHAT'S NEW <i class="moon-icons-arrow-right"></i></b> <a href="#" class="text-underline text-uppercase letter-spacing-1"><b>visit newsroom</b></a>
         </div>
         <div>
             <div class="row gutter-5">
@@ -448,8 +447,8 @@
                             <span class="plus bg-info"><i class="moon-icons-plus"></i></span>
                         </a>
                         <div class="descr">
-                            <p class="font-size-18 mb-0"><b>Article Video placement 30ch</b></p>
-                            <p class="font-size-16 mb-4">Subtitle capture copy placed here, 40ch...</p>
+                            <p class="font-size-20 letter-spacing-1 mb-0"><b>Article Video placement 30ch</b></p>
+                            <p class="font-size-16 mb-4 letter-spacing-0">Subtitle capture copy placed here, 40ch...</p>
                             <div class="date">April 06, 2020 BY AHMED SALEM</div>
                             <div class="stat"><span>1.2k</span></div>
                         </div>
@@ -464,8 +463,8 @@
                             <span class="plus bg-danger"><i class="moon-icons-plus"></i></span>
                         </a>
                         <div class="descr">
-                            <p class="font-size-18 mb-0"><b>Article Video placement 30ch</b></p>
-                            <p class="font-size-16 mb-4">Subtitle capture copy placed here, 40ch...</p>
+                            <p class="font-size-20 letter-spacing-1 mb-0"><b>Article Video placement 30ch</b></p>
+                            <p class="font-size-16 mb-4 letter-spacing-0">Subtitle capture copy placed here, 40ch...</p>
                             <div class="date">April 06, 2020 BY AHMED SALEM</div>
                         </div>
                     </div>
@@ -475,8 +474,8 @@
                             <span class="plus bg-warning"><i class="moon-icons-plus"></i></span>
                         </a>
                         <div class="descr">
-                            <p class="font-size-18 mb-0"><b>Article Video placement 30ch</b></p>
-                            <p class="font-size-16 mb-4">Subtitle capture copy placed here, 40ch...</p>
+                            <p class="font-size-20 letter-spacing-1 mb-0"><b>Article Video placement 30ch</b></p>
+                            <p class="font-size-16 mb-4 letter-spacing-0">Subtitle capture copy placed here, 40ch...</p>
                             <div class="date">April 06, 2020 BY AHMED SALEM</div>
                         </div>
                     </div>

@@ -9867,6 +9867,7 @@ footer .copy {
   color: #FFF;
   font-size: 11px;
   line-height: 50px;
+  font-weight: 400;
 }
 footer .copy a {
   color: #FFF;
@@ -10779,6 +10780,9 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 }
 .text-uppercase {
   text-transform: uppercase;
+}
+.letter-spacing-0 {
+  letter-spacing: 0px;
 }
 .letter-spacing-1 {
   letter-spacing: 1px;
@@ -11938,7 +11942,7 @@ input[type='number'].color-danger + .input-group .btn {
   color: #fff;
 }
 .widget-about-project .img {
-  padding-bottom: 18%;
+  padding-bottom: 20%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -11958,7 +11962,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .whats-new {
   background: #F6F8FB;
-  padding: 77px 115px 77px 180px;
+  padding: 77px 115px 154px 180px;
   margin-bottom: 100px;
 }
 .whats-new .title {
@@ -11974,6 +11978,10 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .whats-new .title > b i {
   margin-left: 27px;
+}
+.whats-new .title .moon-icons-arrow-right {
+  display: inline-block;
+  transform: scale(1.3);
 }
 .whats-new .title a {
   color: #101525;
@@ -12101,7 +12109,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .join-cause {
   background: #EEF3F0;
-  padding: 82px 155px 83px 180px;
+  padding: 73px 155px 77px 180px;
 }
 .join-cause .wrap {
   position: relative;
@@ -12110,7 +12118,10 @@ input[type='number'].color-danger + .input-group .btn {
   font-size: 50px;
   position: absolute;
   right: 0;
-  bottom: 5px;
+  bottom: 18px;
+}
+.join-cause .title + p {
+  line-height: 2.3;
 }
 .join-cause form {
   background: #F7F8F8;

@@ -1,6 +1,6 @@
 <section class="join-cause join-cause-main">
     <div class="wrap">
-        <div class="title mb-5">
+        <div class="title mb-2">
             <svg class="decor-wave mb-5" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
                    fill="#000000" stroke="none">
@@ -45,7 +45,7 @@
             </svg>
             <p class="font-size-30"><b>JOIN THE CAUSE</b></p>
         </div>
-        <p  class="font-size-20">
+        <p  class="font-size-20 letter-spacing-0">
             There are so many ways to help, make sure you stay in the loop and sign up to our <br>
             <a href="#" class="text-underline text-dark">Newsletter</a> or find out more about our latest
             <a href="#"  class="text-underline text-dark">Mission Impossible Tour</a>.
@@ -104,7 +104,7 @@
                         </svg>
                         <p class="font-size-30"><b>JOIN THE CAUSE</b></p>
                     </div>
-                    <p  class="font-size-20">
+                    <p  class="font-size-20 letter-spacing-0">
                         There are so many ways to help, make sure you stay in the loop and sign up to our Newsletter or find out more about our latest
                         <br>
                         <a href="#"  class="text-underline text-dark">Mission Impossible Tour</a>.
