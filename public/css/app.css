@@ -10040,12 +10040,77 @@ header .top-bar .ico-menu {
 header .top-bar .ico-menu path {
   fill: #231F51;
 }
+@-webkit-keyframes bellshake {
+  0% {
+    transform: rotate(0);
+  }
+  80% {
+    transform: rotate(5deg);
+  }
+  85% {
+    transform: rotate(-5deg);
+  }
+  90% {
+    transform: rotate(4deg);
+  }
+  95% {
+    transform: rotate(-4deg);
+  }
+  97% {
+    transform: rotate(2deg);
+  }
+  98% {
+    transform: rotate(-2deg);
+  }
+  99% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+@keyframes bellshake {
+  0% {
+    transform: rotate(0);
+  }
+  80% {
+    transform: rotate(5deg);
+  }
+  85% {
+    transform: rotate(-5deg);
+  }
+  90% {
+    transform: rotate(4deg);
+  }
+  95% {
+    transform: rotate(-4deg);
+  }
+  97% {
+    transform: rotate(2deg);
+  }
+  98% {
+    transform: rotate(-2deg);
+  }
+  99% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
 header .basket {
   display: inline-block;
   margin-left: 43px;
   color: #101525;
   position: relative;
   cursor: pointer;
+}
+header .basket.bell-animate {
+  -webkit-animation: bellshake 2.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+          animation: bellshake 2.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  transform-origin: top center;
 }
 header .basket i {
   display: inline-block;

@@ -212,6 +212,7 @@ footer {
     }
 }
 
+
 header {
     background: #fff;
     position: fixed;top:0; left: 0; right: 0;
@@ -269,12 +270,32 @@ header {
             path {fill: #231F51}
         }
     }
+
+    @keyframes bellshake {
+        0% { transform: rotate(0); }
+        80% { transform: rotate(5deg); }
+        85% { transform: rotate(-5deg); }
+        90% { transform: rotate(4deg); }
+        95% { transform: rotate(-4deg); }
+        97% { transform: rotate(2deg); }
+        98% { transform: rotate(-2deg); }
+        99% { transform: rotate(1deg); }
+        100% { transform: rotate(0); }
+    }
+
     .basket {
         display: inline-block;
         margin-left: 43px;
         color: #101525;
         position: relative;
         cursor: pointer;
+
+        &.bell-animate {
+            animation: bellshake 2.5s cubic-bezier(.36,.07,.19,.97) infinite;
+            backface-visibility: hidden;
+            transform-origin: top center;
+        }
+
         i {
             display: inline-block;
             background: url(../img/shopping-cart.svg) no-repeat;
