@@ -91484,6 +91484,13 @@ $(function () {
   //$("input[type='number']").inputSpinner()
 
   $("[input_number_spinner]").inputSpinner();
+  $(function () {
+    $('footer .menu > li > a').on('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      $(this).parent().toggleClass('open');
+    });
+  });
 }); //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
 
 function convertMonetary(value) {
@@ -91744,36 +91751,12 @@ $(function () {
 
     sendFormAndRefreshCard(form);
   });
-  $(document).on('submit', '#donate_modal form', function (e) {
-    e.preventDefault();
-    var form = $(this);
-    sendFormAndRefreshCard(form);
-    $('#donate_modal').modal('hide');
-    $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
-  });
   $(document).on('click', '[donate-btn]', function (e) {
-    e.preventDefault(); //toastr.success('message')
+    e.preventDefault();
+    var form = $(this).closest('form'); //form.submit();
 
-    var form = $(this).closest('form');
-    var amount = form.find('input[name="amount"]').val();
-
-    if (Number.isNaN(parseInt(amount))) {
-      toastr.warning('Select amount first, please!');
-      return;
-    }
-
-    var modal = $('#donate_modal');
-    modal.find('input[name="amount"]').val(amount);
-    var checkedEL = form.find('input[name="price"]:checked').closest('[select-amount]');
-    var amountId = checkedEL.data('amount_id');
-    countryId = $('[amount-countries][data-amount_id="' + amountId + '"] select').val();
-    modal.find('input[name="campaigns"]').val(countryId);
-    var categoriesEl = form.find('select[name="categories"]');
-    var modalCategEl = modal.find('select[name="categories"]');
-    modalCategEl.html(categoriesEl.html());
-    var selectedCateg = categoriesEl.val();
-    modalCategEl.find('option[value="' + selectedCateg + '"]').attr('selected', 'selected');
-    modal.modal('show');
+    sendFormAndRefreshCard(form);
+    $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
   });
 });
 
