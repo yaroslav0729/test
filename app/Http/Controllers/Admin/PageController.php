@@ -186,11 +186,6 @@ class PageController extends Controller
 
         $oldPage = $page->actual_page_instance;
 
-        if (isset($oldPage)) {
-            $oldPage->actual = false;
-            $oldPage->save();
-        }
-        
         $data['page_id'] = $oldPage->page_id;
         $data['author_id'] = $oldPage->author_id;
         if (isset($data['parameters']['amount'])) {
@@ -201,6 +196,11 @@ class PageController extends Controller
         $pageInstance->page()->associate($page);
         $pageInstance->actual = true;
         $pageInstance->save();
+
+        if (isset($oldPage)) {
+            $oldPage->actual = false;
+            $oldPage->save();
+        }
 
         $cIds = $request->input('categories');
         $pageInstance->categories()->attach($cIds);
