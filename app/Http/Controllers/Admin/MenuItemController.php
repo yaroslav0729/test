@@ -30,6 +30,17 @@ class MenuItemController extends Controller
             $menuItems = $menuItemsQuery->whereNull('parent_id')->get();
         }
 
+/*       $data = MenuItem::getMenu(MenuItem::HEADER_MENU);
+
+        $firstMenu  = $data[2];
+        dump($firstMenu);
+        dump($firstMenu->subMenus()->get());
+
+        $f = MenuItem::arrayMaxDepthChild($firstMenu->subMenus()->get());
+        dump($f);*/
+
+
+
         return view('admin.menu_items.index', compact('menuItems', 'menuDestination', 'menuSlug'));
     }
 

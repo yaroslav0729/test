@@ -9,11 +9,14 @@
                         </span>
                     </a>
                     <ul class="d-flex justify-content-between">
-                        <li><a href="#" class="open-head-menu">our story</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Get Involved</a></li>
-                        <li><a href="#">newsroom</a></li>
-                        <li><a href="#">appeals</a></li>
+                        @isset ($headerMenuItem[0])
+                            @foreach($headerMenuItem[0] as $itemMenu)
+                                <li><a href="@if($itemMenu->is_group)#@else{{ $itemMenu->link }}@endif"
+                                    @if($itemMenu->is_group)
+                                    class="open-head-menu"
+                                    @endif data-id="{{$itemMenu->id}}">{{ $itemMenu->text }}</a></li>
+                            @endforeach
+                        @endisset
                         <li><a href="#"><i class="fas fa-search"></i></a></li>
                     </ul>
                 </div>
@@ -25,3 +28,5 @@
         </div>
     </div>
 </header>
+
+@include('parts.header_menu')
