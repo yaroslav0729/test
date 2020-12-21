@@ -248,7 +248,7 @@
     </div>
 </section>
 
-<@include('modules.presentation.mission_possible')
+@include('modules.presentation.mission_possible')
 
 <div class="pt-4 pb-3"></div>
 
