@@ -13,6 +13,10 @@
     $interestedTitle = "";
     $interestedText = "";
     $volonteerNowLink = "";
+    $projImg1 = "";
+    $projText1 = "";
+    $projImg2 = "";
+    $projText2 = "";
 
     if (isset($parameters['main_title'])) {
         $mainTitle = $parameters['main_title'];    
@@ -65,6 +69,23 @@
     if (isset($parameters['volonteer_link'])) {
         $volonteerNowLink = $parameters['volonteer_link'];    
     }
+
+    if (isset($parameters['proj_img1'])) {
+        $projImg1 = $parameters['proj_img1'];    
+    }
+
+    if (isset($parameters['proj_text1'])) {
+        $projText1 = $parameters['proj_text1'];    
+    }
+
+    if (isset($parameters['proj_img2'])) {
+        $projImg2 = $parameters['proj_img2'];    
+    }
+
+    if (isset($parameters['proj_text2'])) {
+        $projText2 = $parameters['proj_text2'];    
+    }
+  
   
 @endphp
 
@@ -116,6 +137,26 @@
 <div class="form-group">
     <label>Explore projects text:</label>
     <input class="form-control"  name="parameters[explore_proj_text]" placeholder="Text here ..." value="{{ $exploreText }}" />
+</div>
+
+<div class="form-group">
+    <label>Project image 1:</label>
+    <input class="form-control"  name="parameters[proj_img1]" placeholder="img/content/explore-past-missions3.jpg - example" value="{{ $projImg1 }}" />
+</div>
+
+<div class="form-group">
+    <label>Project text 1:</label>
+    <input class="form-control"  name="parameters[proj_text1]" placeholder="Tanzania, africa - example" value="{{ $projText1 }}" />
+</div>
+
+<div class="form-group">
+    <label>Project image 2:</label>
+    <input class="form-control"  name="parameters[proj_img2]" placeholder="img/content/explore-past-missions4.jpg - example" value="{{ $projImg2 }}" />
+</div>
+
+<div class="form-group">
+    <label>Project text 2:</label>
+    <input class="form-control"  name="parameters[proj_text2]" placeholder="London, UK - example" value="{{ $projText2 }}" />
 </div>
 
 <div class="form-group">

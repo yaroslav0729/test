@@ -13,6 +13,10 @@
     $interestedTitle = "";
     $interestedText = "";
     $volonteerNowLink = "";
+    $projImg1 = "";
+    $projText1 = "";
+    $projImg2 = "";
+    $projText2 = "";
 
     if (isset($parameters['main_title'])) {
         $mainTitle = $parameters['main_title'];    
@@ -64,6 +68,22 @@
 
     if (isset($parameters['volonteer_link'])) {
         $volonteerNowLink = $parameters['volonteer_link'];    
+    }
+
+    if (isset($parameters['proj_img1'])) {
+        $projImg1 = $parameters['proj_img1'];    
+    }
+
+    if (isset($parameters['proj_text1'])) {
+        $projText1 = $parameters['proj_text1'];    
+    }
+
+    if (isset($parameters['proj_img2'])) {
+        $projImg2 = $parameters['proj_img2'];    
+    }
+
+    if (isset($parameters['proj_text2'])) {
+        $projText2 = $parameters['proj_text2'];    
     }
   
 @endphp
@@ -193,14 +213,32 @@
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="item mt-n4">
+                        @empty($projImg1)
                         <img src="img/content/explore-past-missions3.jpg" alt="">
+                        @else 
+                        <img src="{{ $projImg1 }}" alt="">
+                        @endempty
+
+                        @empty($projText1)
                         <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> Tanzania, africa</span></span>
+                        @else 
+                        <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> {{ $projText1 }}</span></span>
+                        @endempty
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="item mt-5">
+                        @empty($projImg2)
                         <img src="img/content/explore-past-missions4.jpg" alt="">
+                        @else 
+                        <img src="{{ $projImg2 }}" alt="">
+                        @endempty
+
+                        @empty($projText2)
                         <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> LONDON, UK</span></span>
+                        @else
+                        <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> {{ $projText2 }}</span></span>
+                        @endempty
                     </div>
                 </div>
             </div>
