@@ -10,6 +10,9 @@
     $colText3 = "";
     $exploreTitle = "";
     $exploreText = "";
+    $interestedTitle = "";
+    $interestedText = "";
+    $volonteerNowLink = "";
 
     if (isset($parameters['main_title'])) {
         $mainTitle = $parameters['main_title'];    
@@ -49,6 +52,18 @@
 
     if (isset($parameters['explore_proj_text'])) {
         $exploreText = $parameters['explore_proj_text'];    
+    }
+
+    if (isset($parameters['interested_title'])) {
+        $interestedTitle = $parameters['interested_title'];    
+    }
+
+    if (isset($parameters['interested_text'])) {
+        $interestedText = $parameters['interested_text'];    
+    }
+
+    if (isset($parameters['volonteer_link'])) {
+        $volonteerNowLink = $parameters['volonteer_link'];    
     }
   
 @endphp
@@ -101,6 +116,21 @@
 <div class="form-group">
     <label>Explore projects text:</label>
     <input class="form-control"  name="parameters[explore_proj_text]" placeholder="Text here ..." value="{{ $exploreText }}" />
+</div>
+
+<div class="form-group">
+    <label>Interested title:</label>
+    <input class="form-control"  name="parameters[interested_title]" placeholder="Interested? Volunteer today - example" value="{{ $interestedTitle }}" />
+</div>
+
+<div class="form-group">
+    <label>Interested text:</label>
+    <input class="form-control"  name="parameters[interested_text]" placeholder="Text here ..." value="{{ $interestedText }}" />
+</div>
+
+<div class="form-group">
+    <label>Volonteer now link:</label>
+    <input class="form-control"  name="parameters[volonteer_link]" placeholder="link here ..." value="{{ $volonteerNowLink }}" />
 </div>
 
 @include('modules.admin.mission_possible')

@@ -243,6 +243,20 @@ class Template
 
                 break;
             }
+
+            case self::VOLUNTEER_PAGE: {
+
+                $rules = [
+                    'parameters.column1_text' => 'max:160',
+                    'parameters.column2_text' => 'max:160',
+                    'parameters.column3_text' => 'max:160',
+                    'parameters.explore_proj_text' => 'max:210',
+                    'parameters.preview_page_text2' => 'max:170',
+                    'parameters.interested_text' => 'max:210',
+                ];
+
+                break;
+            }
         }
 
         return $rules;

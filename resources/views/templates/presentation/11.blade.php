@@ -10,6 +10,9 @@
     $colText3 = "";
     $exploreTitle = "";
     $exploreText = "";
+    $interestedTitle = "";
+    $interestedText = "";
+    $volonteerNowLink = "";
 
     if (isset($parameters['main_title'])) {
         $mainTitle = $parameters['main_title'];    
@@ -49,6 +52,18 @@
 
     if (isset($parameters['explore_proj_text'])) {
         $exploreText = $parameters['explore_proj_text'];    
+    }
+
+    if (isset($parameters['interested_title'])) {
+        $interestedTitle = $parameters['interested_title'];    
+    }
+
+    if (isset($parameters['interested_text'])) {
+        $interestedText = $parameters['interested_text'];    
+    }
+
+    if (isset($parameters['volonteer_link'])) {
+        $volonteerNowLink = $parameters['volonteer_link'];    
     }
   
 @endphp
@@ -217,10 +232,19 @@
             </div>
         </div>
         <div class="col-12 col-md-6 pl-5">
+            @empty($interestedTitle)
             <p class="font-size-40 mb-3"><b>Interested? Volunteer today</b></p>
+            @else 
+            <p class="font-size-40 mb-3"><b>{{ $interestedTitle }}</b></p>
+            @endempty
+
+            @empty($interestedText)
             <p class="font-size-16  mb-5">210 Characters undos omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. </p>
+            @else 
+            <p class="font-size-16  mb-5">{{ $interestedText }}</p>
+            @endempty
             <div class="pt-0">
-                <a href="#" class="btn btn-red">Volunteer now!</a>
+                <a href="{{ $volonteerNowLink }}" class="btn btn-red">Volunteer now!</a>
             </div>
         </div>
     </div>
