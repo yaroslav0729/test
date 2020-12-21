@@ -2,6 +2,9 @@
 
     $mainTitle = "";
     $mainImage = "";
+    $applyLink = "";
+    $latestMissionText = "";
+    $latestMissionDate = "";
     $colTitle1 = "";
     $colText1 = "";
     $colTitle2 = "";
@@ -24,6 +27,18 @@
 
     if (isset($parameters['main_image'])) {
         $mainImage = $parameters['main_image'];    
+    }
+
+    if (isset($parameters['apply_link'])) {
+        $applyLink = $parameters['apply_link'];    
+    }
+
+    if (isset($parameters['latest_mission_text'])) {
+        $latestMissionText = $parameters['latest_mission_text'];    
+    }
+
+    if (isset($parameters['latest_mission_date'])) {
+        $latestMissionDate = $parameters['latest_mission_date'];    
     }
 
     if (isset($parameters['column1_title'])) {
@@ -97,6 +112,21 @@
 <div class="form-group">
     <label>Main image:</label>
     <input class="form-control"  name="parameters[main_image]" placeholder="img/content/Volunteer1.jpg - example" value="{{ $mainImage }}" />
+</div>
+
+<div class="form-group">
+    <label>Latest mission text:</label>
+    <input class="form-control"  name="parameters[latest_mission_text]" placeholder="TANZANIA - example" value="{{ $latestMissionText }}" />
+</div>
+
+<div class="form-group">
+    <label>Latest mission date:</label>
+    <input class="form-control"  name="parameters[latest_mission_date]" placeholder="2OTH AUGUST 2020 - example" value="{{ $latestMissionDate }}" />
+</div>
+
+<div class="form-group">
+    <label>Apply now link:</label>
+    <input class="form-control"  name="parameters[apply_link]" placeholder="Link here ..." value="{{ $applyLink }}" />
 </div>
 
 <div class="form-group">

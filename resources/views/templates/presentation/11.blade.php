@@ -2,6 +2,9 @@
 
     $mainTitle = "";
     $mainImage = "";
+    $applyLink = "";
+    $latestMissionText = "";
+    $latestMissionDate = "";
     $colTitle1 = "";
     $colText1 = "";
     $colTitle2 = "";
@@ -24,6 +27,18 @@
 
     if (isset($parameters['main_image'])) {
         $mainImage = $parameters['main_image'];    
+    }
+
+    if (isset($parameters['apply_link'])) {
+        $applyLink = $parameters['apply_link'];    
+    }
+
+    if (isset($parameters['latest_mission_text'])) {
+        $latestMissionText = $parameters['latest_mission_text'];    
+    }
+
+    if (isset($parameters['latest_mission_date'])) {
+        $latestMissionDate = $parameters['latest_mission_date'];    
     }
 
     if (isset($parameters['column1_title'])) {
@@ -109,10 +124,14 @@
     <div class="box">
         <div class="row align-items-center">
             <div class="col-8">
+                @empty($latestMissionText)
                 <p>Latest mission | Tanzania 2oth August 2020</p>
+                @else
+                <p>Latest mission | {{ $latestMissionText }} {{ $latestMissionDate }}</p>
+                @endempty
             </div>
             <div class="col-4 text-right">
-                <a href="#" class="btn btn-primary">Apply now</a>
+                <a href="{{ $applyLink }}" class="btn btn-primary">Apply now</a>
             </div>
         </div>
     </div>

@@ -2,6 +2,9 @@
 
     $mainTitle = "";
     $mainImage = "";
+    $applyLink = "";
+    $latestMissionText = "";
+    $latestMissionDate = "";
     $colTitle1 = "";
     $colText1 = "";
     $colTitle2 = "";
@@ -24,6 +27,18 @@
 
     if (isset($parameters['main_image'])) {
         $mainImage = $parameters['main_image'];    
+    }
+
+    if (isset($parameters['apply_link'])) {
+        $applyLink = $parameters['apply_link'];    
+    }
+
+    if (isset($parameters['latest_mission_text'])) {
+        $latestMissionText = $parameters['latest_mission_text'];    
+    }
+
+    if (isset($parameters['latest_mission_date'])) {
+        $latestMissionDate = $parameters['latest_mission_date'];    
     }
 
     if (isset($parameters['column1_title'])) {
@@ -99,9 +114,9 @@
     <img src="img/content/Volunteer1.jpg" alt="" class="w-100">
     <div class="box text-center">
         <p class="font-size-12 text-uppercase mb-4"><b>Latest mission</b></p>
-        <p class="font-size-30 font-weight-light text-uppercase mb-0">Tanzania</p>
-        <p class="font-size-16 text-uppercase mb-4"><b>20th August 2020</b></p>
-        <a href="#" class="btn btn-primary">Apply now</a>
+        <p class="font-size-30 font-weight-light text-uppercase mb-0">{{ $latestMissionText }}</p>
+        <p class="font-size-16 text-uppercase mb-4"><b>{{ $latestMissionDate }}</b></p>
+        <a href="{{ $applyLink }}" class="btn btn-primary">Apply now</a>
     </div>
 </section>
 
