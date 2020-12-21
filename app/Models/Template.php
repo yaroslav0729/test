@@ -14,6 +14,7 @@ class Template
     const WHO_WE_ARE_PAGE = 8;
     const THANK_YOU_DONATE_PAGE = 9;
     const EVENTS_PAGE = 10;
+    const VOLUNTEER_PAGE = 11;
     const CALCULATOR_PAGE = 20;
 
     const TEST_PAGE = 100;
@@ -31,7 +32,8 @@ class Template
         self::PROJECTS_PAGE,
         self::PROJECT_PAGE,
         self::EVENTS_PAGE,
-        self::CALCULATOR_PAGE
+        self::CALCULATOR_PAGE,
+        self::VOLUNTEER_PAGE,
 
     ];
 
@@ -49,6 +51,7 @@ class Template
             case self::THANK_YOU_DONATE_PAGE:return "Thank you your donation page";
             case self::CONTACT_PAGE:return "Contact page";
             case self::EVENTS_PAGE:return "Events page";
+            case self::VOLUNTEER_PAGE:return "Volunteers page";
             case self::CALCULATOR_PAGE:return "Zakat calculator page";
 
             default:return "Unknown template type";
