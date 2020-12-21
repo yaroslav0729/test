@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use App\Models\CartItem;
+use App\Services\Menu;
 use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
@@ -52,6 +53,8 @@ class AppServiceProvider extends ServiceProvider
             'additionalHeaderMenuItem' => MenuItem::rootMenuByDestination(MenuItem::ADDITIONAL_HEADER_MENU)->get(),
             'additionalFooterMenuItem' => MenuItem::rootMenuByDestination(MenuItem::ADDITIONAL_FOOTER_MENU)->get(),
             'footerMenuItem' => MenuItem::rootMenuByDestination(MenuItem::FOOTER_MENU)->with('orderedSubMenus')->get(),
+            'socialMenu' => MenuItem::rootMenuByDestination(MenuItem::SOCIAL_MENU)->get(),
+            'socialMenuIcons' => resolve(Menu::class)->getSocialIcons()
         ]);
     }
 }

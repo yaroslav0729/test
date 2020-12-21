@@ -3,24 +3,50 @@
 namespace App\Models;
 
 use App\Helpers\CollectionHelper;
+use App\Helpers\MenuHelper;
 use App\Helpers\RegexHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
-class MenuItem extends Model
+class MenuItem extends Model implements Sortable
 {
-    use HasFactory;
+    use HasFactory, SortableTrait;
 
     const HEADER_MENU = 10;
     const ADDITIONAL_HEADER_MENU = 15;
     const FOOTER_MENU = 20;
     const ADDITIONAL_FOOTER_MENU = 25;
+    const SOCIAL_MENU = 30;
+
+    const DROPDOWN_MENU_TYPES = [ self::SOCIAL_MENU ];
+
+    const SOCIAL_MENU_LIST = [
+        'facebook' => [
+            'title' => 'Facebook',
+            'icon' => 'fab fa-facebook-f'
+        ],
+        'instagram' => [
+            'title' => 'Instagram',
+            'icon' => 'fab fa-instagram'
+        ],
+        'youtube' => [
+            'title' => 'Youtube',
+            'icon' => 'fab fa-youtube'
+        ],
+        'twitter' => [
+            'title' => 'Twitter',
+            'icon' => 'fab fa-twitter'
+        ]
+    ];
 
     const ALL_TYPES_MENU = [
         self::HEADER_MENU => 'Header menu',
         self::ADDITIONAL_HEADER_MENU => 'Additional header menu',
         self::FOOTER_MENU => 'Footer menu',
         self::ADDITIONAL_FOOTER_MENU => 'Additional footer menu',
+        self::SOCIAL_MENU => 'Social Menu'
     ];
 
     const ALL_SLUG_MENU = [
@@ -28,6 +54,7 @@ class MenuItem extends Model
         self::ADDITIONAL_HEADER_MENU => 'additional-header',
         self::FOOTER_MENU => 'footer',
         self::ADDITIONAL_FOOTER_MENU => 'additional-footer',
+        self::SOCIAL_MENU => 'social'
     ];
 
     /**
@@ -50,42 +77,20 @@ class MenuItem extends Model
      * @var array
      */
     protected $casts = [
-        'is_group' => 'boolean',
+        'is_group' => 'boolean'
     ];
 
-    public function setIsGroupAttribute($value)
+    public $sortable = [
+        'order_column_name' => 'ordering',
+        'sort_when_creating' => true,
+    ];
+
+    public function buildSortQuery()
     {
-        $this->attributes['is_group'] = ($value == 'on') ? 1 : 0;
-    }
-
-    /**
-     * @param string $menuSlug
-     * @return array
-     */
-    public static function getMenuItems(string $menuSlug)
-    {
-        $menuDestination = self::getMenuDestination($menuSlug);
-
-        if ($menuDestination) {
-            return self::where('destination', $menuDestination);
-        }
-
-        return [];
-    }
-
-    /**
-     * @param string $menuSlug
-     * @return int|null
-     */
-    public static function getMenuDestination(string $menuSlug): ?int
-    {
-        foreach (self::ALL_SLUG_MENU as $key => $value) {
-            if ($value === $menuSlug) {
-                return $key;
-            }
-        }
-
-        return null;
+        return static::query()->where([
+            'parent_id' => $this->parent_id,
+            'destination' => $this->destination
+        ]);
     }
 
     /**
@@ -98,7 +103,7 @@ class MenuItem extends Model
 
     public function parent()
     {
-        return $this->belongsTo('App\Models\MenuItem', 'parent_id');
+        return $this->belongsTo('App\Models\MenuItem', 'parent_id')->with('parent');
     }
 
     public function orderedSubMenus()
@@ -121,30 +126,24 @@ class MenuItem extends Model
         return $query->whereDestination($destination);
     }
 
-    public function scopeOrdered($query)
-    {
-        return $query->orderBy('ordering');
-    }   
-
     public function scopeParentless($query)
     {
         return $query->whereNull('parent_id');
     }
 
-    /**
-     * @param int $id
-     * @return int|mixed
-     */
-    public static function arrayDepth(int $id)
+    public function scopeParent($query, $parent = null)
     {
-        $depth = 1;
-        $menuItem = self::find($id);
+        return $query->where('parent_id', $parent);
+    }
 
-        if (!is_null($menuItem->parent_id)) {
-            $depth += self::arrayDepth($menuItem->parent_id);
-        }
+    public function isHeaderMenu()
+    {
+        return $this->destination === self::HEADER_MENU;
+    }
 
-        return $depth;
+    public function isFooterMenu()
+    {
+        return $this->destination === self::FOOTER_MENU;
     }
 
     public function getMaxDepthAttribute()
@@ -152,44 +151,21 @@ class MenuItem extends Model
         return CollectionHelper::maxDepth($this->orderedSubMenus, "orderedSubMenus");
     }
 
+    public function getDepthAttribute()
+    {
+        return MenuHelper::getDepth($this);
+    }
+
     public function getFormattedLinkAttribute()
     {
-        if (RegexHelper::isTelephone($this->link)) {
-            return "tel:" . $this->link;
-        } elseif (RegexHelper::isEmail($this->link)) {
-            return "mailto:" . $this->link;
+        if ($this->link) {
+            if (RegexHelper::isTelephone($this->link)) {
+                return "tel:" . $this->link;
+            } elseif (RegexHelper::isEmail($this->link)) {
+                return "mailto:" . $this->link;
+            }
         }
 
         return $this->link;
     }
-
-    /**
-     * @return mixed
-     */
-/*    public static function getAdditionalHeaderMenu()
-    {
-        return self::whereDestination(self::ADDITIONAL_HEADER_MENU)->whereNull('parent_id')->get();
-    }*/
-
-
-/*    public static function getFooterMenu()
-    {
-        return self::whereDestination(self::FOOTER_MENU)->whereNull('parent_id')->get();
-    }*/
-
-/*    public static function getHeaderMenu()
-    {
-        return self::whereDestination(self::HEADER_MENU)->whereNull('parent_id')->get();
-    }*/
-
-    public static function getMenu(int $destination)
-    {
-        if (array_key_exists($destination, self::ALL_TYPES_MENU)){
-            return self::whereDestination($destination)->parentless()->get();
-        }
-
-        return collect();
-    }
-
-
 }

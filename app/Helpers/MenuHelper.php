@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\MenuItem;
 use Illuminate\Database\Eloquent\Collection;
 
 class MenuHelper
@@ -33,5 +34,18 @@ class MenuHelper
         }
 
         return $result;
+    }
+
+    public static function getDepth(MenuItem $menuItem)
+    {
+        $depth = 1;
+        $parent = $menuItem->parent;
+
+        while ($parent) {
+            $depth++;
+            $parent = $parent->parent;
+        }
+
+        return $depth;
     }
 }

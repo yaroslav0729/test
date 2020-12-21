@@ -7,115 +7,196 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MenuItemRequest;
 use App\Models\MenuItem;
+use App\Services\Menu;
 use Illuminate\Http\Request;
 
 class MenuItemController extends Controller
 {
-    public function callAction($method, $parameters)
+    private $menuService;
+
+    public function __construct(Menu $menuService)
     {
-        if (isset($parameters['menuSlug']) && !in_array($parameters['menuSlug'], MenuItem::ALL_SLUG_MENU, true)) {
-            abort(404);
-        }
-        return parent::callAction($method, $parameters);
+        $this->menuService = $menuService;
     }
 
-    public function index(string $menuSlug)
+    public function index()
     {
-        $menuItemsQuery = MenuItem::getMenuItems($menuSlug);
-        $menuDestination = MenuItem::getMenuDestination($menuSlug);
-
-        if (request('submenu')) {
-            $menuItems = $menuItemsQuery->whereParentId(request('submenu'))->get();
-        } else {
-            $menuItems = $menuItemsQuery->whereNull('parent_id')->get();
-        }
-
-/*       $data = MenuItem::getMenu(MenuItem::HEADER_MENU);
-
-        $firstMenu  = $data[2];
-        dump($firstMenu);
-        dump($firstMenu->subMenus()->get());
-
-        $f = MenuItem::arrayMaxDepthChild($firstMenu->subMenus()->get());
-        dump($f);*/
-
-
-
-        return view('admin.menu_items.index', compact('menuItems', 'menuDestination', 'menuSlug'));
+        return view('admin.menu_items.index', [
+            'menuTypes' => array_combine(MenuItem::ALL_SLUG_MENU, MenuItem::ALL_TYPES_MENU)
+        ]);
     }
 
+    public function show(string $menuSlug)
+    {
+        $menuDestination = $this->menuService->getMenuDestination($menuSlug);
+
+        $menuItems = $this->menuService->getMenuItemsByDestination($menuDestination);
+        $menuName = $this->menuService->getMenuName($menuDestination);
+        $createLink = route('admin.menu_items.create', ['menuSlug' => $menuSlug]);
+
+        return view('admin.menu_items.show', compact('menuItems', 'menuName', 'createLink'));
+    }
+
+    public function showSubmenu(MenuItem $parent)
+    {
+        $menuItems = $this->menuService->getMenuItemsByParent($parent->id);
+        $menuName = $this->menuService->getMenuName($parent->destination);
+        $createLink = route('admin.menu_items.create_submenu', ['parent' => $parent->id]);
+
+        return view('admin.menu_items.show', compact('menuItems', 'menuName', 'parent', 'createLink'));
+    }
 
     public function create(Request $request, string $menuSlug)
     {
-        $menuDestination = MenuItem::getMenuDestination($menuSlug);
-        $parentId = $request->input('parent_id');
+        $menuDestination = $this->menuService->getMenuDestination($menuSlug);
+        $isMenuAdditional = $this->menuService->isMenuAdditional($menuDestination);
+        $menuName = $this->menuService->getMenuName($menuDestination);
 
-        return view('admin.menu_items.create_edit', compact('menuDestination', 'parentId', 'menuSlug'));
+        $isGroup = $isMenuAdditional ? 0 : old('is_group', 0);
+
+        $groupCheckboxChecked = $isGroup ? 'checked' : null;
+        $groupCheckboxDisabled = null;
+        $linkInputDisabled = $isGroup ? 'disabled' : null;
+
+        $text = old('text');
+        $link = is_null($linkInputDisabled) ? old('link') : null;
+
+        $storeLink = route('admin.menu_items.store', ['menuSlug' => $menuSlug]);
+        $textValues = $this->menuService->getPredefinedTextValuesList($menuDestination);
+
+        return view('admin.menu_items.create', compact(
+            'menuDestination', 
+            'menuSlug', 
+            'isMenuAdditional', 
+            'menuName',
+            'text',
+            'link',
+            'linkInputDisabled',
+            'groupCheckboxChecked',
+            'groupCheckboxDisabled',
+            'storeLink',
+            'textValues'
+        ));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param string $menuSlug
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(string $menuSlug, int $id)
+    public function createSubmenu(MenuItem $parent)
     {
-        $menuItem = MenuItem::findOrFail($id);
+        $isMenuAdditional = $this->menuService->isMenuAdditional($parent->destination);
+        $menuName = $this->menuService->getMenuName($parent->destination);
 
-        return view('admin.menu_items.create_edit', ['menuSlug' => $menuSlug, 'menuItem' => $menuItem]);
+        $isGroup = $isMenuAdditional ? 0 : old('is_group', 0);
+
+        $groupCheckboxChecked = $isGroup ? 'checked' : null;
+        $groupCheckboxDisabled = null;
+        $linkInputDisabled = $isGroup ? 'disabled' : null;
+
+        $text = old('text');
+        $link = is_null($linkInputDisabled) ? old('link') : null;
+
+        $storeLink = route('admin.menu_items.store_submenu', ['parent' => $parent->id]);
+        $textValues = $this->menuService->getPredefinedTextValuesList($parent->destination);
+
+        return view('admin.menu_items.create', compact(
+            'isMenuAdditional', 
+            'menuName',
+            'text',
+            'link',
+            'linkInputDisabled',
+            'groupCheckboxChecked',
+            'groupCheckboxDisabled',
+            'storeLink',
+            'textValues'
+        ));
     }
 
-    public function store(MenuItemRequest $request)
+    public function edit(MenuItem $menuItem)
     {
-        $slugMenu = $request->input('slug');
-        $data = $request->all();
+        $groupCheckboxChecked = $menuItem->is_group ? 'checked' : null;
+        $groupCheckboxDisabled = 'disabled';
+        $linkInputDisabled = $menuItem->is_group ? 'disabled' : null;
 
-        $parameters = ['menuSlug' => $slugMenu];
-        if ($data['parent_id']) {
-            $parameters['submenu'] = $data['parent_id'];
+        $isMenuAdditional = $this->menuService->isMenuAdditional($menuItem->destination);
+        $menuName = $this->menuService->getMenuName($menuItem->destination);
+        $textValues = $this->menuService->getPredefinedTextValuesList($menuItem->destination);
+
+        $text = old('text', $menuItem->text);
+        $link = is_null($linkInputDisabled) ? old('link', $menuItem->link) : null;
+        $menuId = $menuItem->id;
+
+        return view('admin.menu_items.edit', compact(
+            'groupCheckboxChecked',
+            'groupCheckboxDisabled',
+            'linkInputDisabled',
+            'isMenuAdditional',
+            'menuName',
+            'textValues',
+            'text',
+            'link',
+            'menuId'
+        ));
+    }
+
+    public function storeSubmenu(MenuItemRequest $request, MenuItem $parent)
+    {
+        $data = $request->validated();
+
+        $parent->subMenus()->create($data + [
+            'destination' => $parent->destination
+        ]);
+
+        return redirect()->route('admin.menu_items.show_submenu', $parent)->with('status', 'Item menu created successfully!');
+    }
+
+    public function store(MenuItemRequest $request, string $menuSlug)
+    {
+        $data = $request->validated();
+
+        $menuDestination = $this->menuService->getMenuDestination($menuSlug);
+
+        MenuItem::create($data + [
+            'destination' => $menuDestination
+        ]);
+
+        return redirect()->route('admin.menu_items.show', $menuSlug)->with('status', 'Item menu created successfully!');
+    }
+
+    public function update(MenuItemRequest $request, MenuItem $menuItem)
+    {
+        $menuItem->update($request->validated());
+
+        if ($menuItem->parent_id) {
+            $redirectRoute = route('admin.menu_items.show_submenu', ['parent' => $menuItem->parent_id ]);
+        } else {
+            $redirectRoute = route('admin.menu_items.show', ['menuSlug' => $this->menuService->getSlug($menuItem->destination) ]);
         }
 
-        $menuItem = MenuItem::create($data);
-        $menuItem->save();
-
-        return redirect()->route('admin.menu_items.index', $parameters)->with('status', 'Item menu created successfully!');
+        return redirect($redirectRoute)->with('status', 'Item Menu updated!');
     }
 
-    /**
-     *  Update the specified resource in storage.
-     *
-     * @param MenuItemRequest $request
-     * @param string $slugMenu
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(MenuItemRequest $request, string $slugMenu, int $id)
+    public function destroy(MenuItem $menuItem)
     {
-        $parameters = ['menuSlug' => $slugMenu];
-        if ($request['parent_id']) {
-            $parameters['submenu'] = $request['parent_id'];
+        $menuItem->delete();
+
+        if ($menuItem->parent_id) {
+            $redirectRoute = route('admin.menu_items.show_submenu', ['parent' => $menuItem->parent_id ]);
+        } else {
+            $redirectRoute = route('admin.menu_items.show', ['menuSlug' => $this->menuService->getSlug($menuItem->destination) ]);
         }
 
-        $menuItem = MenuItem::findOrFail($id);
-        $menuItem->update($request->all());
-
-        return redirect()->route('admin.menu_items.index', $parameters)->with('status', 'Item Menu updated!');
+        return redirect($redirectRoute)->with('status', 'Item menu deleted successfully!');
     }
 
-    /**
-     *
-     * @param string $slug
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function destroy(string $slug, int $id)
+    public function moveUp(MenuItem $menuItem)
     {
-        $page = MenuItem::findOrFail($id);
-        $page->delete();
+        $menuItem->moveOrderUp();
 
-        return redirect()->route('admin.menu_items.index', ['menuSlug' => $slug])->with('status', 'Item menu deleted successfully!');
+        return back()->with('status', 'Item menu moved up successfully!');
     }
 
+    public function moveDown(MenuItem $menuItem)
+    {
+        $menuItem->moveOrderDown();
+        
+        return back()->with('status', 'Item menu moved down successfully!');
+    }
 }

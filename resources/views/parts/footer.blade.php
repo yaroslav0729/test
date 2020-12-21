@@ -21,10 +21,11 @@
             <div class="col-1"></div>
             <div class="col-3">
                 <div class="social d-flex justify-content-between">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    @foreach ($socialMenu as $menuItem)
+                        <a href="{{ $menuItem->link }}">
+                            <i class="{{ $socialMenuIcons[$menuItem->text] ?? '' }}"></i>
+                        </a>
+                    @endforeach
                 </div>
             </div>
         </div>

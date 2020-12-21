@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SitemapController;
+use App\Models\MenuItem;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -57,14 +58,32 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         Route::post('/restore_post/{id}', [AdminPageController::class, 'restore'])->name('admin.pages.restore');
         Route::post('/save_status/{id}', [AdminPageController::class, 'saveStatus'])->name('admin.pages.save_status');
 
-        Route::prefix('menu')->group(function () {
-            Route::get('/{menuSlug}', [MenuItemController::class, 'index'])->name('admin.menu_items.index');
-            Route::post('/{menuSlug}', [MenuItemController::class, 'store'])->name('admin.menu_items.store');
-            Route::match(['get', 'post'], '/{menuSlug}/create', [MenuItemController::class, 'create'])->name('admin.menu_items.create');
-            Route::match(['get', 'post'], '/{menuSlug}/{id}', [MenuItemController::class, 'edit'])->name('admin.menu_items.edit');
-            Route::put('/{menuSlug}/{id}', [MenuItemController::class, 'update'])->name('admin.menu_items.update');
-            Route::delete('/{menuSlug}/{id}', [MenuItemController::class, 'destroy'])->name('admin.menu_items.destroy');
-        });
+        Route::prefix('menu')
+            ->where([
+                'parent' => '\d+',
+                'menuItem' => '\d+',
+                'menuSlug' => implode('|', MenuItem::ALL_SLUG_MENU)
+            ])
+            ->group(function () {
+                Route::get('/', [MenuItemController::class, 'index'])->name('admin.menu_items.index');
+                
+                Route::get('/{menuSlug}', [MenuItemController::class, 'show'])->name('admin.menu_items.show');
+                Route::get('/{parent}', [MenuItemController::class, 'showSubmenu'])->name('admin.menu_items.show_submenu');
+
+                Route::post('/{menuSlug}', [MenuItemController::class, 'store'])->name('admin.menu_items.store');
+                Route::post('/{parent}', [MenuItemController::class, 'storeSubmenu'])->name('admin.menu_items.store_submenu');
+
+                Route::get('/{parent}/create', [MenuItemController::class, 'createSubmenu'])->name('admin.menu_items.create_submenu');
+                Route::get('/{menuSlug}/create', [MenuItemController::class, 'create'])->name('admin.menu_items.create');
+
+                Route::get('/{menuItem}/edit', [MenuItemController::class, 'edit'])->name('admin.menu_items.edit');
+                Route::put('/{menuItem}/edit', [MenuItemController::class, 'update'])->name('admin.menu_items.update');
+
+                Route::get('/{menuItem}/move-up', [MenuItemController::class, 'moveUp'])->name('admin.menu_items.move_up');
+                Route::get('/{menuItem}/move-down', [MenuItemController::class, 'moveDown'])->name('admin.menu_items.move_down');
+
+                Route::delete('/{menuItem}', [MenuItemController::class, 'destroy'])->name('admin.menu_items.destroy');
+            });
 
         Route::prefix('users')->group(function () {
             Route::get('edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');

@@ -534,6 +534,8 @@ $(function () {
         $.each($(blocks), function (key, block) {
             if (id ===  $(block).attr('data-id')) {
                 
+                $(block).css({'display': 'block'})
+
                 if (hasSwiper($(block))) {
                     if (!isSwiperInitialized($(block))) {
                         initMenuSwiper($(block), {
@@ -546,8 +548,7 @@ $(function () {
                         });
                     }
                 }
-
-                $(block).css({'display': 'block'})
+                
             } else {
                 $(block).css({'display': 'none'})
             }
