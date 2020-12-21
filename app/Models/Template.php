@@ -14,6 +14,7 @@ class Template
     const WHO_WE_ARE_PAGE = 8;
     const THANK_YOU_DONATE_PAGE = 9;
     const EVENTS_PAGE = 10;
+    const VOLUNTEER_PAGE = 11;
     const CALCULATOR_PAGE = 20;
 
     const TEST_PAGE = 100;
@@ -31,7 +32,8 @@ class Template
         self::PROJECTS_PAGE,
         self::PROJECT_PAGE,
         self::EVENTS_PAGE,
-        self::CALCULATOR_PAGE
+        self::CALCULATOR_PAGE,
+        self::VOLUNTEER_PAGE,
 
     ];
 
@@ -49,6 +51,7 @@ class Template
             case self::THANK_YOU_DONATE_PAGE:return "Thank you your donation page";
             case self::CONTACT_PAGE:return "Contact page";
             case self::EVENTS_PAGE:return "Events page";
+            case self::VOLUNTEER_PAGE:return "Volunteers page";
             case self::CALCULATOR_PAGE:return "Zakat calculator page";
 
             default:return "Unknown template type";
@@ -236,6 +239,20 @@ class Template
                     'parameters.dropdown_text' => 'required',
                     'parameters.dropdown_link_title' => 'required',
                     'parameters.dropdown_link' => 'required',
+                ];
+
+                break;
+            }
+
+            case self::VOLUNTEER_PAGE: {
+
+                $rules = [
+                    'parameters.column1_text' => 'max:160',
+                    'parameters.column2_text' => 'max:160',
+                    'parameters.column3_text' => 'max:160',
+                    'parameters.explore_proj_text' => 'max:210',
+                    'parameters.preview_page_text2' => 'max:170',
+                    'parameters.interested_text' => 'max:210',
                 ];
 
                 break;

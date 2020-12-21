@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.less" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/parts/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/parts/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mobile/modules/presentation/projects_donate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mobile/modules/presentation/donate_module.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/modules/presentation/donate_module.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modules/presentation/donate_module.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/parts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/parts/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/parts/basket.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/parts/basket.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,11 +19,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13515">
-              <caret line="901" column="47" selection-start-line="901" selection-start-column="47" selection-end-line="901" selection-end-column="47" />
+            <state relative-caret-position="350">
+              <caret line="293" column="36" selection-start-line="293" selection-start-column="36" selection-end-line="293" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/parts/basket.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -42,8 +49,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fal fa-arrow-right</find>
-      <find>far fa-arrow-down</find>
       <find>far fa-arrow-left</find>
       <find>far fa-arrow-up</find>
       <find>fa-arrow-down</find>
@@ -72,6 +77,8 @@
       <find>£  Enter amount</find>
       <find>dona</find>
       <find>Enter amount</find>
+      <find>basket</find>
+      <find>data-target=&quot;#cartModal&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>fal fa-arrow-right</replace>
@@ -89,8 +96,8 @@
       <dir>$PROJECT_DIR$/resources/viewsswiper-wrapper=&quot;header2&quot;</dir>
       <dir>$PROJECT_DIR$/public/css</dir>
       <dir>$PROJECT_DIR$/public/markup</dir>
-      <dir>$PROJECT_DIR$/resources/views</dir>
       <dir>$PROJECT_DIR$/resources</dir>
+      <dir>$PROJECT_DIR$/resources/views</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -132,7 +139,6 @@
         <option value="$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe2.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/parts/footer.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/styles.less" />
         <option value="$PROJECT_DIR$/resources/views/modules/presentation/quick_donation.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/modules/presentation/projects_donate.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/modules/presentation/quick_donation.blade.php" />
@@ -140,6 +146,8 @@
         <option value="$PROJECT_DIR$/resources/views/modules/presentation/parts/donate_modal.blade.php" />
         <option value="$PROJECT_DIR$/public/markup/index.php" />
         <option value="$PROJECT_DIR$/public/markup/css/styles.less" />
+        <option value="$PROJECT_DIR$/public/css/styles.less" />
+        <option value="$PROJECT_DIR$/resources/views/parts/basket.blade.php" />
       </list>
     </option>
   </component>
@@ -396,16 +404,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100400000" />
+    <option name="totallyTimeSpent" value="101480000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.20958512" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.20958512" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="npm" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.19372442" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.19372442" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
@@ -449,9 +458,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/markup/img/ico-menu.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/p2-Newsroom.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -817,8 +823,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/styles.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13515">
-          <caret line="901" column="47" selection-start-line="901" selection-start-column="47" selection-end-line="901" selection-end-column="47" />
+        <state relative-caret-position="350">
+          <caret line="293" column="36" selection-start-line="293" selection-start-column="36" selection-end-line="293" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/parts/basket.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
         </state>
       </provider>
     </entry>

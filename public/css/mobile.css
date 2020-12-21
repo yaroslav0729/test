@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: .2;
+  opacity: 0.2;
 }
 .other-way-give-mobile .phone {
   font-family: Lato;
@@ -133,7 +133,7 @@
   padding-right: 30px;
 }
 .mobile-template .wrapper {
-  padding-top: 54px;
+  padding-top: 108px;
 }
 .mobile-template .wrap {
   min-width: 200px;
@@ -1561,4 +1561,3 @@
 .mobile-template .calculator .down .total {
   display: block;
 }
-/*# sourceMappingURL=mobile.css.map */

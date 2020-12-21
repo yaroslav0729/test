@@ -8,6 +8,8 @@
     }
 @endphp
 
+<h3 class="text-center">Related pages module:</h3>
+
 <div class="form-group">
     <label>Related pages category:</label>
     <select name="parameters[rel_page_category]" class="form-control">

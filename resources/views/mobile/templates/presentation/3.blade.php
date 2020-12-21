@@ -193,8 +193,6 @@ if (isset($parameters['our_work_sadiqah_link'])) {
     </div>
 </section>--}}
 
-@include('modules.presentation.quick_donation')
-
 <section class="who-we-are">
     <p class="font-size-25 mb-4">{!! $whoTitle !!}</p>
     <div class="img-video play-tr videoWrapper" style="">

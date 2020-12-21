@@ -103934,8 +103934,10 @@ $(function () {
 
     if (response.sum > 0) {
       $('.basket span').removeClass('d-none');
+      $('.basket').addClass('bell-animate');
     } else {
       $('.basket span').addClass('d-none');
+      $('.basket').removeClass('bell-animate');
       $('#empty_cart_popup').fadeIn().delay(5000).fadeOut();
     }
   }
