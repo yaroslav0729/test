@@ -190,9 +190,9 @@
                 </g>
             </svg>
         </div>
-        <div class="col-12">
+        <div class="col-12" swiper-wrapper="explore_projects">
             <div class="pt-5"></div>
-            <div class="swiper-container">
+            <div class="swiper-container" >
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="item">
@@ -215,7 +215,7 @@
 
 
 <section class="be-part-possible bg-danger-light pt-0">
-    <div class="help-info-swiper red pl-0 pr-0">
+    <div class="help-info-swiper red pl-0 pr-0" swiper-wrapper="people_empowered">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
