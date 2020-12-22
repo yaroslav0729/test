@@ -3,3 +3,7 @@
 @include('modules.admin.explore_past_missions')
 
 @include('modules.admin.experience_of_lifetime')
+
+@include('modules.admin.be_part_of_possible')
+
+@include('modules.admin.our_latest_mission')
