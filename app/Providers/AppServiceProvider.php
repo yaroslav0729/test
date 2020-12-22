@@ -10,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use App\Models\CartItem;
 use App\Services\Menu;
+use App\Services\PageInstanceService;
 use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
@@ -54,7 +55,27 @@ class AppServiceProvider extends ServiceProvider
             'additionalFooterMenuItem' => MenuItem::rootMenuByDestination(MenuItem::ADDITIONAL_FOOTER_MENU)->get(),
             'footerMenuItem' => MenuItem::rootMenuByDestination(MenuItem::FOOTER_MENU)->with('orderedSubMenus')->get(),
             'socialMenu' => MenuItem::rootMenuByDestination(MenuItem::SOCIAL_MENU)->get(),
-            'socialMenuIcons' => resolve(Menu::class)->getSocialIcons()
+            'socialMenuIcons' => resolve(Menu::class)->getSocialIcons(),
+            'footerClass' => 'style-4'
         ]);
+
+        View::composer('admin.pages.create_edit', function ($view) {
+            $view->with([
+                'footerClasses' => PageInstance::FOOTER_CLASSES
+            ]);
+        });
+
+        View::composer(['page', 'page_short_header'], function ($view) {
+            /** @var PageInstanceService $pageInstanceService */
+            $pageInstanceService = resolve(PageInstanceService::class);
+            $slug = request()->route('slug', 'index');
+            $pageInstance = $pageInstanceService->actualPublishedBySlugQuery($slug)->first();
+
+            if ($pageInstance) {
+                $view->with([
+                    'footerClass' =>  $pageInstance->parameters['footer_class'] ?? 'style-4'
+                ]);
+            }
+        });
     }
 }
