@@ -10,7 +10,7 @@
     <form action="{{ route('cart.order') }}" method="POST">
         @csrf
         <p class="font-size-16 mb-3"><b>Payment details</b></p>
-        <div class="form-title form-done"><b>YOUR DETAILS</b><i class="fal fa-check-circle"></i></div>
+        <div class="form-title"><b>YOUR DETAILS</b><i class="fal fa-check-circle"></i></div>
             <div>
                 <div class="form-group">
                     <label><b>TITLE</b> (OPTIONAL)</label>
@@ -127,45 +127,13 @@
 
         <div class="mb-4 text-center">
             <label class="radio mr-5">
-                <input type="radio" name="payMethod" checked><span><i class="fal fa-check"></i></span>
+                <input type="radio" name="pay_method" value="paypal" checked><span><i class="fal fa-check"></i></span>
                 <b>PAY BY CARD</b>
             </label>
             <label class="radio">
-                <input type="radio" name="payMethod"><span><i class="fal fa-check"></i></span>
+                <input type="radio" name="pay_method" value="global"><span><i class="fal fa-check"></i></span>
                 <b>PAY BY PAL</b>
             </label>
-        </div>
-
-        <div class="row">
-            <div class="col-12 name-card-col">
-                <div class="form-group">
-                    <label><b>NAME ON CARD</b></label>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-group">
-                    <label class="row gutter-0 d-flex">
-                        <b class="col-6 d-block">CARD NUMBER</b>
-                        <span class="col-6 text-right d-block"><img src="img/payment-global.png" alt=""></span>
-                    </label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="row gutter-5">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label><b>EXPIRY DATE</b></label>
-                            <input type="text" class="form-control" placeholder="MM / YY">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label><b>CVV</b></label>
-                            <input type="text" class="form-control" placeholder="CVV">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <button type="submit" class="btn btn-danger w-100">Pay Now <i class="moon-icons-arrow-right"></i></button>

@@ -5,6 +5,10 @@
 @endsection
 
 @section('content')
+
+@php
+    $cartSum = \App\Models\CartItem::getCartSum()    
+@endphp
     
 
 <div class="donated-page">
@@ -162,7 +166,7 @@
             <div class="row mb-3">
                 <div class="col-6">
                     <div class="toggle-view-donation">
-                        <b class="mr-4">£300.00</b>
+                        <b class="mr-4">£{{ $cartSum }}</b>
                         <span class="cursor-pointer toggle-view-donation-info">VIEW SUMMARY <i class="far fa-chevron-down"></i></span>
                     </div>
                     <span class=" cursor-pointer toggle-view-donation-info">CLOSE SUMMARY <i class="far fa-chevron-up"></i></span>
@@ -209,7 +213,7 @@
                                     <b>DONATION TOTAL:</b>
                                 </div>
                                 <div class="col-6">
-                                    <span>£300.00</span>
+                                    <span>£{{ $cartSum }}</span>
                                 </div>
                             </div>
                         </div>
