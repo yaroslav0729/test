@@ -1,4 +1,4 @@
-<footer class="style-4">
+<footer class="{{ $footerClass }}">
     <div class="wrap">
         <div class="toggle-menu"><b>EXPAND NAVIGATION</b></div>
         <div style="display: none">

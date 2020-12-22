@@ -1,5 +1,6 @@
 @php
     $pageInstance = $page->actual_page_instance ?? null;
+    $footerClass = $pageInstance->parameters['footer_class'] ?? null;
 
 if (isset($page)) {
 
@@ -116,6 +117,15 @@ if (isset($page)) {
                         @endphp
 
                         <option value="{{ $category->id }}" @if($selected) selected @endif>{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="footer_class">Footer Class</label>
+                <select id="footer_class" name="parameters[footer_class]" class="form-control">
+                    @foreach ($footerClasses as $class)
+                        <option @if ($class === $footerClass) selected @endif value="{{ $class }}">{{ $class }}</option>
                     @endforeach
                 </select>
             </div>

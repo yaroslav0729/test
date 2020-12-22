@@ -13,6 +13,14 @@ class PageInstance extends Model
 {
     use HasFactory;
 
+    const FOOTER_CLASSES = [
+        'style-1',
+        'style-2',
+        'style-3',
+        'style-4',
+        'style-5'
+    ];
+
     protected $fillable = [
         'page_id',
         'author_id',

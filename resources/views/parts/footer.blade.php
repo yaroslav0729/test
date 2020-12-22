@@ -1,5 +1,4 @@
-
-<footer class="style-4">
+<footer class="{{ $footerClass }}">
     <div class="wrap">
         <div class="row">
             <div class="col-8">
