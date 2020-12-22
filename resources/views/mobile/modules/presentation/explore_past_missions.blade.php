@@ -48,7 +48,7 @@
                 <a href="{{ $donateLink }}" class="btn btn-outline-primary border-white">Donate now</a>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-12" swiper-wrapper="explore_past">
             <div class="pt-5"></div>
             <div class="swiper-container">
                 <div class="swiper-wrapper">

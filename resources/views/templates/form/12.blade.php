@@ -25,3 +25,5 @@
 @include('modules.admin.be_part_of_possible')
 
 @include('modules.admin.our_latest_mission')
+
+@include('modules.admin.related_pages')

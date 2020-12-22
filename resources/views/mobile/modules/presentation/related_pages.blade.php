@@ -8,32 +8,32 @@
     $relatedPages = \App\Models\Module::getRelatedPages($relPageCatId);
 @endphp
 
-<div class="current-projects-list current-projects-swiper" swiper-wrapper="related">
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            @foreach ($relatedPages as $page)
-                <div class="swiper-slide">
-                    <a href="#" class="item">
-                        @isset($page->preview_img)
-                            <span class="img" style="background-image: url({{ $page->preview_img }})"></span>
-                        @else
-                            <span class="img" style="background: #eee"></span>
-                        @endisset
-                        <span class="descr">
-                        <span class="name font-size-16">{{ $page->name }}</span>
-                        <span class="text font-size-16"><b>{{ $page->preview_text }}</b></span></span>
-                    </a>
-                </div>
-            @endforeach
+<section class="discover-more bg-danger-light">
+    <div class="wrap">
+        <div class="title">
+            <b class="font-size-25 text-uppercase">Related topics</b>
         </div>
-        <div class="swiper-pagination"></div>
-    </div>
-</div>
+        <div class="current-projects-list current-projects-swiper">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @foreach ($relatedPages as $page)
+                        <div class="swiper-slide">
+                            <a href="#" class="item">
+                                @isset($page->preview_img)
+                                <span class="img" style="background-image: url(img/content/discover-more-1.jpg)"></span>
+                                @else
+                                <span class="img" style="background: #eee"></span>
+                                @endisset
 
-<script>
-    var swiper = new Swiper('.current-projects-swiper .swiper-container', {
-        pagination: {
-            el: '.current-projects-swiper .swiper-pagination'
-        }
-    });
-</script>
+                                <span class="descr">
+                                <span class="name font-size-16">{{ $page->name }}</span>
+                                <span class="text font-size-16"><b>{{ $page->preview_text }}</b></span></span>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+</section>

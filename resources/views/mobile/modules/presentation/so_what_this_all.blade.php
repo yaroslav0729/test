@@ -49,7 +49,7 @@
 
     <img src="{{ $soWhatImg }}" alt="" class="w-100">
 
-    <div class="help-info-swiper">
+    <div class="help-info-swiper" swiper-wrapper="so_what_all_this_about_">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">

@@ -22,7 +22,7 @@
     <p class="font-size-16 mb-0"><b>THE NEXT STEP TO<br>VOLUNTEERING, MAKE IMPACTS<br>TO GLOBAL COMMUNITIES.</b></p>
 </section>
 
-<section class="swiper-mission-impossible">
+<section class="swiper-mission-impossible" swiper-wrapper="mission_possible">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
