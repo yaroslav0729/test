@@ -192,8 +192,14 @@ $(function () {
         let lastAmount = form.find('input[name="amount"]').val()
         let lastPeriod = form.find('select[name="period"]').val()
 
+        if (lastPeriod === undefined) {
+            lastPeriod = form.find('input[name="period"]').val()    
+        } 
+
         $('#add_to_cart_popup .amount').text(lastAmount)
         $('#add_to_cart_popup .period').text(lastPeriod)
+
+        console.log(lastPeriod)
 
         $.ajax({
             url     : form.attr('action'),

@@ -103952,8 +103952,14 @@ $(function () {
     var formData = new FormData(form[0]);
     var lastAmount = form.find('input[name="amount"]').val();
     var lastPeriod = form.find('select[name="period"]').val();
+
+    if (lastPeriod === undefined) {
+      lastPeriod = form.find('input[name="period"]').val();
+    }
+
     $('#add_to_cart_popup .amount').text(lastAmount);
     $('#add_to_cart_popup .period').text(lastPeriod);
+    console.log(lastPeriod);
     $.ajax({
       url: form.attr('action'),
       type: form.attr('method'),
@@ -104012,6 +104018,11 @@ $(function () {
 
 $(function () {
   //~~~~~~~~~~~~ show countries dropdown if click on amount ~~~~
+  $(document).on('click', '[select-appeal-tab]', function () {
+    var period = $(this).data('period');
+    var form = $(this).closest('form');
+    form.find('input[name="period"]').val(period);
+  });
   $(document).on('click', '[select-amount]', function () {
     var form = $(this).closest('form');
     var amountId = $(this).data('amount_id');

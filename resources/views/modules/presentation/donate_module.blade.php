@@ -87,7 +87,9 @@ foreach ($amount as $key => $item) {
                             @csrf
                             @include('modules.presentation.parts.donate_options',[
                                 'donateOptionsType' => \App\Models\CampaignPrice::TYPE_SINGLE
-                            ])                        
+                            ]) 
+                            
+                            <input type="hidden" value="single" name="period" />
 
                             <div class="pt-3"></div>
                             <div class="row gutter-5">
@@ -128,6 +130,8 @@ foreach ($amount as $key => $item) {
                                 'class' => 'active-color-info'
                             ])
 
+                            <input type="hidden" value="monthly" name="period" />
+
                             <div class="pt-3"></div>
                             <div class="row gutter-5">
                                 <div class="col-6">
@@ -162,9 +166,11 @@ foreach ($amount as $key => $item) {
                         <form action="{{ route('cart.add') }}" method="POST">
                             @csrf
 
+                            <input type="hidden" value="single" name="period" />
+
                             <div class="pb-2">
-                            <button type="button" select-appeal-tab data-tab="tab_single" class="btn btn-danger btn_appeal_tab">Single</button>
-                            <button type="button" select-appeal-tab data-tab="tab_monthly" class="btn btn-danger btn_appeal_tab">Regular</button>
+                            <button type="button" select-appeal-tab data-period="single" data-tab="tab_single" class="btn btn-danger btn_appeal_tab">Single</button>
+                            <button type="button" select-appeal-tab data-period="monthly" data-tab="tab_monthly" class="btn btn-danger btn_appeal_tab">Regular</button>
                             </div>
 
                             <div class="tab_single" appeal-tab>

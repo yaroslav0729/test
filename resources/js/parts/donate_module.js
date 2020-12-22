@@ -2,6 +2,15 @@ $(function () {
 
     //~~~~~~~~~~~~ show countries dropdown if click on amount ~~~~
 
+    
+
+    $(document).on('click', '[select-appeal-tab]', function () {
+        let period = $(this).data('period')
+
+        var form = $(this).closest('form')
+        form.find('input[name="period"]').val(period)
+    });
+
     $(document).on('click', '[select-amount]', function () {
 
         let form = $(this).closest('form')
