@@ -15,6 +15,7 @@ class Template
     const THANK_YOU_DONATE_PAGE = 9;
     const EVENTS_PAGE = 10;
     const VOLUNTEER_PAGE = 11;
+    const MISSION_POSSIBLE = 12;
     const CALCULATOR_PAGE = 20;
 
     const TEST_PAGE = 100;
@@ -34,6 +35,7 @@ class Template
         self::EVENTS_PAGE,
         self::CALCULATOR_PAGE,
         self::VOLUNTEER_PAGE,
+        self::MISSION_POSSIBLE,
 
     ];
 
@@ -53,6 +55,7 @@ class Template
             case self::EVENTS_PAGE:return "Events page";
             case self::VOLUNTEER_PAGE:return "Volunteers page";
             case self::CALCULATOR_PAGE:return "Zakat calculator page";
+            case self::MISSION_POSSIBLE:return "Mission possible page";
 
             default:return "Unknown template type";
         }
@@ -253,6 +256,14 @@ class Template
                     'parameters.explore_proj_text' => 'max:210',
                     'parameters.preview_page_text2' => 'max:170',
                     'parameters.interested_text' => 'max:210',
+                ];
+
+                break;
+            }
+
+            case self::MISSION_POSSIBLE: {
+
+                $rules = [
                 ];
 
                 break;
