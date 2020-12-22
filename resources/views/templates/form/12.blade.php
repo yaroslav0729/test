@@ -1,3 +1,5 @@
+@include('modules.admin.so_what_this_all')
+
 @include('modules.admin.how_does_it_work')
 
 @include('modules.admin.explore_past_missions')
