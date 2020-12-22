@@ -103149,6 +103149,8 @@ __webpack_require__(/*! ./parts/donate_module.js */ "./resources/js/parts/donate
 
 __webpack_require__(/*! ./parts/cart.js */ "./resources/js/parts/cart.js");
 
+__webpack_require__(/*! ./parts/swipers.js */ "./resources/js/parts/swipers.js");
+
 var MODAL_FORM_LOCK = false;
 $(function () {
   new Vue({
@@ -104220,6 +104222,24 @@ $(function () {
 
 /***/ }),
 
+/***/ "./resources/js/parts/swipers.js":
+/*!***************************************!*\
+  !*** ./resources/js/parts/swipers.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  var swiperMission = new Swiper('.swiper-mission-impossible .swiper-container', {
+    slidesPerView: 3,
+    centeredSlides: true,
+    loop: true,
+    spaceBetween: 0
+  });
+});
+
+/***/ }),
+
 /***/ 0:
 /*!***********************************************************************************************************************************************************************************!*\
   !*** multi ./resources/js/app.js ./resources/assets/vendor/MediaManager/sass/manager.scss ./resources/css/app.css ./resources/css/app_admin.css ./resources/css/admin_styles.css ***!
@@ -104227,11 +104247,11 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\OSPanel\OSPanel\domains\islamichelp\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\OSPanel\OSPanel\domains\islamichelp\resources\assets\vendor\MediaManager\sass\manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! D:\OSPanel\OSPanel\domains\islamichelp\resources\css\app.css */"./resources/css/app.css");
-__webpack_require__(/*! D:\OSPanel\OSPanel\domains\islamichelp\resources\css\app_admin.css */"./resources/css/app_admin.css");
-module.exports = __webpack_require__(/*! D:\OSPanel\OSPanel\domains\islamichelp\resources\css\admin_styles.css */"./resources/css/admin_styles.css");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app_admin.css */"./resources/css/app_admin.css");
+module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
 
 
 /***/ })

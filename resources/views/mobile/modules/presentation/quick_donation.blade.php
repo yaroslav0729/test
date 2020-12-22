@@ -5,9 +5,6 @@ $categories = \App\Models\CampaignCategory::all();
 <div class="wrap">
     <button class="btn btn-primary-dark w-100 br-0 btn-modal-quick-donation" >Quick Donation
         <i class="moon-icons-plus"></i></button>
-    <script>
-        
-    </script>
 
     <div class="modal-quick-donation" quick-donation>
         <form action="{{ route('cart.add') }}" method="post">

@@ -27,6 +27,7 @@ require('../assets/vendor/MediaManager/js/manager')
 require('./parts/project_tiles.js')
 require('./parts/donate_module.js')
 require('./parts/cart.js')
+require('./parts/swipers.js')
 
 var MODAL_FORM_LOCK = false
 
