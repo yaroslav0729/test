@@ -103959,7 +103959,6 @@ $(function () {
 
     $('#add_to_cart_popup .amount').text(lastAmount);
     $('#add_to_cart_popup .period').text(lastPeriod);
-    console.log(lastPeriod);
     $.ajax({
       url: form.attr('action'),
       type: form.attr('method'),
