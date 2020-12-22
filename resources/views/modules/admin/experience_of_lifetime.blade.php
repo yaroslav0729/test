@@ -33,7 +33,7 @@
 
 @endphp
 
-<h3 class="mt-4 mb-4">Experience of a lifetime module:</h3>
+<h3 class="text-center">Experience of a lifetime module:</h3>
 
 <div class="form-group">
     <label>Experience video:</label>

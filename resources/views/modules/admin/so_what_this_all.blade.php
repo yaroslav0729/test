@@ -4,6 +4,8 @@
     $latestMissionText  = "";
     $latestMissionDate = "";
     $applyNowLink = "";
+    $soWhatP1 = "";
+    $soWhatP2 = "";
 
     if (isset($parameters['so_what_img'])) {
         $soWhatImg = $parameters['so_what_img'];    
@@ -20,6 +22,14 @@
     if (isset($parameters['apply_now_link'])) {
         $applyNowLink = $parameters['apply_now_link'];    
     }
+
+    if (isset($parameters['so_what_p1'])) {
+        $soWhatP1 = $parameters['so_what_p1'];    
+    }
+
+    if (isset($parameters['so_what_p2'])) {
+        $soWhatP2 = $parameters['so_what_p2'];    
+    }
     
 @endphp
 
@@ -28,6 +38,16 @@
 <div class="form-group">
     <label>So what image:</label>
     <input class="form-control" name="parameters[so_what_img]" placeholder="Insert image link" value="{{ $soWhatImg }}" />
+</div>
+
+<div class="form-group">
+    <label>So what paragraph 1:</label>
+    <input class="form-control" name="parameters[so_what_p1]" placeholder="Insert text" value="{{ $soWhatP1 }}" />
+</div>
+
+<div class="form-group">
+    <label>So what paragraph 2:</label>
+    <input class="form-control" name="parameters[so_what_p2]" placeholder="Insert text" value="{{ $soWhatP2 }}" />
 </div>
 
 <div class="form-group">

@@ -18,7 +18,7 @@
 
 @endphp
 
-<h3 class="mt-4 mb-4">Be part module:</h3>
+<h3 class="text-center">Be part module:</h3>
 
 <div class="form-group">
     <label>Be part title:</label>

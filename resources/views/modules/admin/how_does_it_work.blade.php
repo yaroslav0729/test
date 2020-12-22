@@ -33,7 +33,7 @@
     
 @endphp
 
-<h3 class="mt-4 mb-4">How does it work module:</h3>
+<h3 class="text-center">How does it work module:</h3>
 
 <div class="form-group">
     <label>Column 1 title:</label>

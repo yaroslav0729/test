@@ -4,6 +4,8 @@
     $latestMissionText  = "";
     $latestMissionDate = "";
     $applyNowLink = "";
+    $soWhatP1 = "";
+    $soWhatP2 = "";
 
     if (isset($parameters['so_what_img'])) {
         $soWhatImg = $parameters['so_what_img'];    
@@ -19,6 +21,14 @@
 
     if (isset($parameters['apply_now_link'])) {
         $applyNowLink = $parameters['apply_now_link'];    
+    }
+
+    if (isset($parameters['so_what_p1'])) {
+        $soWhatP1 = $parameters['so_what_p1'];    
+    }
+
+    if (isset($parameters['so_what_p2'])) {
+        $soWhatP2 = $parameters['so_what_p2'];    
     }
     
 @endphp
@@ -39,8 +49,8 @@
         </div>
         <div class="col-6 bg-red pl-5 pr-5 d-flex align-items-center">
             <div>
-                <p class="font-size-16 text-white  pl-5 pr-5">Mission Possible is our flagship volunteering programme and the humanitarian experience of a lifetime. A life-changing venture for volunteers and beneficiaries, it gives young people the opportunity to experience day-to-day humanitarian work on the ground.</p>
-                <p class="font-size-16 text-white  pl-5 pr-5 mb-0">As well as directly delivering aid, volunteers encounter the daily heart-breaking realities that face aid workers, including interviewing potential beneficiaries and deciding – based on needs criteria – certain aid allocations.</p>
+                <p class="font-size-16 text-white  pl-5 pr-5">{{ $soWhatP1 }}</p>
+                <p class="font-size-16 text-white  pl-5 pr-5 mb-0">{{ $soWhatP2 }}</p>
             </div>
         </div>
     </div>

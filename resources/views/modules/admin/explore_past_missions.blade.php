@@ -37,7 +37,7 @@
 
 @endphp
 
-<h3 class="mt-4 mb-4">Explore past missions module:</h3>
+<h3 class="text-center">Explore past missions module:</h3>
 
 <div class="form-group">
     <label>Explore title:</label>
