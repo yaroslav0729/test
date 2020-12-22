@@ -103149,8 +103149,6 @@ __webpack_require__(/*! ./parts/donate_module.js */ "./resources/js/parts/donate
 
 __webpack_require__(/*! ./parts/cart.js */ "./resources/js/parts/cart.js");
 
-__webpack_require__(/*! ./parts/swipers.js */ "./resources/js/parts/swipers.js");
-
 var MODAL_FORM_LOCK = false;
 $(function () {
   new Vue({
@@ -103741,11 +103739,16 @@ function areElementsEmpty(selector) {
 
 function initSwiper() {
   $('[swiper-wrapper]').each(function () {
+    var _$$attr, _$$attr2, _$$attr3;
+
     var key = '[swiper-wrapper="' + $(this).attr('swiper-wrapper') + '"]';
-    var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](key + ' .swiper-container', {
+    var options = {
       loop: function loop() {
         return !!$(this).hasClass('loop');
       },
+      spaceBetween: parseInt((_$$attr = $(this).attr('space-between')) !== null && _$$attr !== void 0 ? _$$attr : 0),
+      centeredSlides: (_$$attr2 = $(this).attr('centered-slides')) !== null && _$$attr2 !== void 0 ? _$$attr2 : false,
+      slidesPerView: (_$$attr3 = $(this).attr('slides-per-view')) !== null && _$$attr3 !== void 0 ? _$$attr3 : 1,
       navigation: {
         nextEl: key + ' .swiper-button-next',
         prevEl: key + ' .swiper-button-prev'
@@ -103753,7 +103756,8 @@ function initSwiper() {
       pagination: {
         el: key + ' .swiper-pagination'
       }
-    });
+    };
+    var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](key + ' .swiper-container', options);
   });
 }
 
@@ -104218,24 +104222,6 @@ $(function () {
       }
     }
   }
-});
-
-/***/ }),
-
-/***/ "./resources/js/parts/swipers.js":
-/*!***************************************!*\
-  !*** ./resources/js/parts/swipers.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-$(function () {
-  var swiperMission = new Swiper('.swiper-mission-impossible .swiper-container', {
-    slidesPerView: 3,
-    centeredSlides: true,
-    loop: true,
-    spaceBetween: 0
-  });
 });
 
 /***/ }),

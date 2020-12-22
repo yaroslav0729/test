@@ -24,7 +24,7 @@
     </div>
 </section>
 
-<section class="swiper-mission-impossible bg-light" swiper-wrapper="mission_possible">
+<section class="swiper-mission-impossible bg-light loop" swiper-wrapper="mission_possible" space-between="0" centered-slides="true" slides-per-view="auto">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">

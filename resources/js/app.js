@@ -27,7 +27,6 @@ require('../assets/vendor/MediaManager/js/manager')
 require('./parts/project_tiles.js')
 require('./parts/donate_module.js')
 require('./parts/cart.js')
-require('./parts/swipers.js')
 
 var MODAL_FORM_LOCK = false
 
@@ -750,10 +749,13 @@ function initSwiper(){
     $('[swiper-wrapper]').each(function() {
         let key = '[swiper-wrapper="'+ $(this).attr('swiper-wrapper') +'"]';
 
-        let swiper = new Swiper(key + ' .swiper-container', {
+        let options = {
             loop: function (){
                 return !!$(this).hasClass('loop');
             },
+            spaceBetween:  parseInt($(this).attr('space-between') ?? 0),
+            centeredSlides: ($(this).attr('centered-slides') ?? false),
+            slidesPerView:  ($(this).attr('slides-per-view') ?? 1),
             navigation: {
                 nextEl: key + ' .swiper-button-next',
                 prevEl: key + ' .swiper-button-prev',
@@ -761,7 +763,9 @@ function initSwiper(){
             pagination: {
                 el: key + ' .swiper-pagination'
             }
-        });
+        };
+
+        let swiper = new Swiper(key + ' .swiper-container', options);
     })
 }
 
