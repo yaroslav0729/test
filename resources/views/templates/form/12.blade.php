@@ -1,3 +1,19 @@
+@php
+
+    $mainImg = "";
+    
+    if (isset($parameters['main_img'])) {
+        $mainImg = $parameters['main_img'];    
+    }
+    
+@endphp
+
+<div class="form-group">
+    <label>Main image:</label>
+    <input class="form-control"  name="parameters[main_img]" placeholder="Insert image path" value="{{ $mainImg }}" />
+</div>
+
+
 @include('modules.admin.so_what_this_all')
 
 @include('modules.admin.how_does_it_work')
