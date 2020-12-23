@@ -12,7 +12,7 @@
     cursor: pointer;
 }
 .current-projects-list .swiper-button-next, .current-projects-list .swiper-button-prev {
-    color: #F7796A; 
+    color: #F7796A;
 }
 .current-projects-list .swiper-wrapper {
     padding-bottom: 50px;
@@ -68,7 +68,7 @@ a#clear_all_btn:hover {
 }
 #quick_donation_widget {
     position: fixed;
-    top:  57px;
+    bottom:  0;
     left: 0;
     width: 100%; height: 51px;
     background: #aaa;
