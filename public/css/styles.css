@@ -282,7 +282,7 @@ header .basket {
   cursor: pointer;
 }
 header .basket.bell-animate {
-  animation: bellshake 2.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+  animation: bellshake 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
   backface-visibility: hidden;
   transform-origin: top center;
 }
