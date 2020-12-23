@@ -143,7 +143,7 @@ $(function () {
         e.preventDefault()
 
         let form = $(this).closest('form')
-        
+
         let type = form.find('select[name="period"]').val()
         let price
 
@@ -177,6 +177,9 @@ $(function () {
         if (response.sum > 0) {
             $('.basket span').removeClass('d-none')
             $('.basket').addClass('bell-animate')
+            setTimeout(function() {
+                $('.basket').removeClass('bell-animate');
+            }, 3200 );
         } else {
             $('.basket span').addClass('d-none')
             $('.basket').removeClass('bell-animate')
@@ -193,8 +196,8 @@ $(function () {
         let lastPeriod = form.find('select[name="period"]').val()
 
         if (lastPeriod === undefined) {
-            lastPeriod = form.find('input[name="period"]').val()    
-        } 
+            lastPeriod = form.find('input[name="period"]').val()
+        }
 
         $('#add_to_cart_popup .amount').text(lastAmount)
         $('#add_to_cart_popup .period').text(lastPeriod)
@@ -228,7 +231,7 @@ $(function () {
         var form = $(this).closest('form')
 
         //form.submit()
-        sendFormAndRefreshCard(form) 
+        sendFormAndRefreshCard(form)
     })
 
     $(document).on('click', '#clear_all_btn', function (e) {
@@ -249,6 +252,13 @@ $(function () {
         sendFormAndRefreshCard(form)
     })
 
+    $(document).on('click', '.basket', function (e) {
+        $('.basket').addClass('bell-animate')
+        setTimeout(function() {
+            $('.basket').removeClass('bell-animate');
+        }, 3200 );
+    });
+
     $(document).on('click', '[donate-btn]', function (e) {
         e.preventDefault()
 
@@ -256,7 +266,7 @@ $(function () {
 
         //form.submit();
         sendFormAndRefreshCard(form)
-        $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();  
+        $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
     });
 
 });
