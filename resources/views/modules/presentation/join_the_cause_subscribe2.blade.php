@@ -1,3 +1,26 @@
+@php
+    $title = "";
+    $text = "";
+    $textMobile = "";
+    $image = "";
+
+    if (isset($parameters['subscribe_title'])) {
+        $title = $parameters['subscribe_title'];
+    }
+
+    if (isset($parameters['subscribe_text'])) {
+        $text = $parameters['subscribe_text'];
+    }
+
+    if (isset($parameters['subscribe_text_mobile'])) {
+        $textMobile = $parameters['subscribe_text_mobile'];
+    }
+
+    if (isset($parameters['subscribe_img'])) {
+        $image = $parameters['subscribe_img'];
+    }
+@endphp
+
 <section class="join-cause join-cause-main">
     <div class="wrap">
         <div class="title mb-2">
@@ -43,13 +66,26 @@
     -16z"/>
                 </g>
             </svg>
-            <p class="font-size-30"><b>JOIN THE CAUSE</b></p>
+            <p class="font-size-30">
+                <b>
+                    @if ($title === "")
+                        JOIN THE CAUSE
+                    @else
+                        {{ $title }}
+                    @endif
+                </b>
+            </p>
         </div>
-        <p  class="font-size-20 letter-spacing-0">
-            There are so many ways to help, make sure you stay in the loop and sign up to our <br>
-            <a href="#" class="text-underline text-dark">Newsletter</a> or find out more about our latest
-            <a href="#"  class="text-underline text-dark">Mission Impossible Tour</a>.
-        </p>
+            @if ($text === "")
+            <p  class="font-size-20 letter-spacing-0">
+                There are so many ways to help, make sure you stay in the loop and sign up to our <br>
+                <a href="#" class="text-underline text-dark">Newsletter</a> or find out more about our latest
+                <a href="#"  class="text-underline text-dark">Mission Impossible Tour</a>.
+            </p>
+            @else
+                {!! $text !!}
+            @endif
+
         <i class="moon-icons-plus decor-plus subscribe_news" id="join_the_cause_show_form"></i>
     </div>
 </section>
@@ -102,17 +138,32 @@
     -16z"/>
                             </g>
                         </svg>
-                        <p class="font-size-30"><b>JOIN THE CAUSE</b></p>
+                        <p class="font-size-30">
+                            <b>
+                                @if ($title === "")
+                                    JOIN THE CAUSE
+                                @else
+                                    {{ $title }}
+                                @endif
+                            </b></p>
                     </div>
-                    <p  class="font-size-20 letter-spacing-0">
-                        There are so many ways to help, make sure you stay in the loop and sign up to our Newsletter or find out more about our latest
-                        <br>
-                        <a href="#"  class="text-underline text-dark">Mission Impossible Tour</a>.
-                    </p>
+                        @if ($text === "")
+                        <p  class="font-size-20 letter-spacing-0">
+                            There are so many ways to help, make sure you stay in the loop and sign up to our Newsletter or find out more about our latest
+                            <br>
+                            <a href="#"  class="text-underline text-dark">Mission Impossible Tour</a>.
+                        </p>
+                        @else
+                            {!! $text !!}
+                        @endif
                 </div>
             </div>
             <div class="col-12 col-xl-6">
-                <img src="/img/content/join-cause-3.jpg" alt="" class="w-100">
+                @if ($image === "")
+                    <img src="/img/content/join-cause-3.jpg" alt="" class="w-100">
+                @else
+                    <img src="{{ $image }}" alt="" class="w-100">
+                @endif
                 <form id="subscription_form" action="{{ route('subscribe') }}" method="POST" class="d-flex">
                     @csrf
                     <input type="text" name="email" placeholder="Your email address" class="flex-grow-1">
