@@ -206,6 +206,6 @@
 
 @include('modules.admin.mission_possible')
 
-@include('modules.admin.related_pages')
+@include('modules.admin.related_page_expanded')
 
 @include('modules.admin.join_the_cause_subscribe')

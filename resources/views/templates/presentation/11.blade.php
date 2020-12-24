@@ -313,6 +313,6 @@
 
 <div class="pt-5 pb-5"></div>
 
-@include('modules.presentation.related_pages')
+@include('modules.presentation.related_page_expanded')
 
 @include('modules.presentation.join_the_cause_subscribe')
