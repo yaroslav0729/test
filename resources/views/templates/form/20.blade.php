@@ -3,6 +3,45 @@
     $tabCalculatorTitle = "";
     $tabWhatZakatTitle = "";
 
+    $calculateBaseValueNisaabTitle = "";
+
+    $calculateBelowTitle = "";
+    $calculateYourAssetsSectionTitle = "";
+
+    $calculateValueOfGoldTitle = "";
+    $calculateValueOfGoldAnnotation = "";
+
+    $calculateValueOfSilverTitle = "";
+    $calculateValueOfSilverAnnotation = "";
+
+    $calculateCashInHandTitle = "";
+    $calculateCashInHandAnnotation = "";
+
+    $calculateCashDepositedTitle = "";
+    $calculateCashDepositedAnnotation = "";
+
+    $calculateGivenTitle = "";
+    $calculateGivenAnnotation = "";
+
+    $calculateOtherTitle = "";
+    $calculateOtherAnnotation = "";
+
+    $calculateTradeGoodsSectionTitle = "";
+
+    $calculateValueOfStockTitle = "";
+    $calculateValueOfStockAnnotation = "";
+
+    $calculateLiabilitiesSectionTitle = "";
+
+    $calculateBorrowedTitle = "";
+    $calculateBorrowedAnnotation = "";
+
+    $calculateWagesTitle = "";
+    $calculateWagesAnnotation = "";
+
+    $calculateTaxesTitle = "";
+    $calculateTaxesAnnotation = "";
+
     $whatIsZakatTitle = "";
     $whatIsZakatText = "";
 
@@ -48,6 +87,106 @@
 
     if (isset($parameters['tab_what_zakat_title'])) {
         $tabWhatZakatTitle = $parameters['tab_what_zakat_title'];
+    }
+
+    if (isset($parameters['calc_base_value_nisaab_title'])) {
+        $calculateBaseValueNisaabTitle = $parameters['calc_base_value_nisaab_title'];
+    }
+
+    if (isset($parameters['calc_below_title'])) {
+        $calculateBelowTitle = $parameters['calc_below_title'];
+    }
+
+    if (isset($parameters['calc_your_assets_section_title'])) {
+        $calculateYourAssetsSectionTitle = $parameters['calc_your_assets_section_title'];
+    }
+
+    if (isset($parameters['calc_value_gold_title'])) {
+        $calculateValueOfGoldTitle = $parameters['calc_value_gold_title'];
+    }
+
+    if (isset($parameters['calc_value_gold_annotation'])) {
+        $calculateValueOfGoldAnnotation = $parameters['calc_value_gold_annotation'];
+    }
+
+    if (isset($parameters['calc_value_silver_title'])) {
+        $calculateValueOfSilverTitle = $parameters['calc_value_silver_title'];
+    }
+
+    if (isset($parameters['calc_value_silver_annotation'])) {
+        $calculateValueOfSilverAnnotation = $parameters['calc_value_silver_annotation'];
+    }
+
+    if (isset($parameters['calc_cash_hand_title'])) {
+        $calculateCashInHandTitle = $parameters['calc_cash_hand_title'];
+    }
+
+    if (isset($parameters['calc_cash_hand_annotation'])) {
+        $calculateCashInHandAnnotation = $parameters['calc_cash_hand_annotation'];
+    }
+
+    if (isset($parameters['calc_cash_deposited_title'])) {
+        $calculateCashDepositedTitle = $parameters['calc_cash_deposited_title'];
+    }
+
+    if (isset($parameters['calc_cash_deposited_annotation'])) {
+        $calculateCashDepositedAnnotation = $parameters['calc_cash_deposited_annotation'];
+    }
+
+    if (isset($parameters['calc_given_title'])) {
+        $calculateGivenTitle = $parameters['calc_given_title'];
+    }
+
+    if (isset($parameters['calc_given_annotation'])) {
+        $calculateGivenAnnotation = $parameters['calc_given_annotation'];
+    }
+
+    if (isset($parameters['calc_other_title'])) {
+        $calculateOtherTitle = $parameters['calc_other_title'];
+    }
+
+    if (isset($parameters['calc_other_annotation'])) {
+        $calculateOtherAnnotation = $parameters['calc_other_annotation'];
+    }
+
+    if (isset($parameters['calc_trade_goods_section_title'])) {
+        $calculateTradeGoodsSectionTitle = $parameters['calc_trade_goods_section_title'];
+    }
+
+    if (isset($parameters['calc_value_stock_title'])) {
+        $calculateValueOfStockTitle = $parameters['calc_value_stock_title'];
+    }
+
+    if (isset($parameters['calc_value_stock_annotation'])) {
+        $calculateValueOfStockAnnotation = $parameters['calc_value_stock_annotation'];
+    }
+
+    if (isset($parameters['calc_liabilities_section_title'])) {
+        $calculateLiabilitiesSectionTitle = $parameters['calc_liabilities_section_title'];
+    }
+
+    if (isset($parameters['calc_borrowed_title'])) {
+        $calculateBorrowedTitle = $parameters['calc_borrowed_title'];
+    }
+
+    if (isset($parameters['calc_borrowed_annotation'])) {
+        $calculateBorrowedAnnotation = $parameters['calc_borrowed_annotation'];
+    }
+
+    if (isset($parameters['calc_wages_title'])) {
+        $calculateWagesTitle = $parameters['calc_wages_title'];
+    }
+
+    if (isset($parameters['calc_wages_annotation'])) {
+        $calculateWagesAnnotation = $parameters['calc_wages_annotation'];
+    }
+
+    if (isset($parameters['calc_taxes_title'])) {
+        $calculateTaxesTitle = $parameters['calc_taxes_title'];
+    }
+
+    if (isset($parameters['calc_taxes_annotation'])) {
+        $calculateTaxesAnnotation = $parameters['calc_taxes_annotation'];
     }
 
     if (isset($parameters['w_i_zakat_title'])) {
@@ -193,18 +332,199 @@
 </nav>
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-calculate" role="tabpanel" aria-labelledby="nav-home-tab">
+
         <div class="row mt-4">
             <div class="col-12 col-lg-6">
                 <div class="form-group">
+                    <label>Base Value of Nisaab title:</label>
+                    <input class="form-control" name="parameters[calc_base_value_nisaab_title]"
+                           placeholder="Base Value of Nisaab title" value="{{ $calculateBaseValueNisaabTitle }}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
                     <label>Price Silver:</label>
-                    <input type="number" class="form-control" name="parameters[price_silver]"
-                           placeholder="Price silver" value="{{ $priceSilver }}"/>
+                    <input type="number" step=0.01 class="form-control" name="parameters[price_silver]"
+                           placeholder="0.00" value="{{ $priceSilver }}"/>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
+                    <label>Price Gold:</label>
+                    <input type="number" step=0.01 class="form-control" name="parameters[price_gold]"
+                           placeholder="0.00" value="{{ $priceGold }}"/>
+                </div>
+            </div>
+            <div class="col-12 mt-lg-5">
+                <div class="form-group">
+                    <label>Enter below, your total assets text:</label>
+                    <input class="form-control" name="parameters[calc_below_title]"
+                           placeholder="Text" value="{{ $calculateBelowTitle }}"/>
+                </div>
+                <div class="form-group">
+                    <label>Your assets section title:</label>
+                    <input class="form-control" name="parameters[calc_your_assets_section_title]"
+                           placeholder="Your assets section title" value="{{ $calculateYourAssetsSectionTitle }}"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 mt-lg-3">
+                <div class="form-group">
+                    <label>Value of Gold title:</label>
+                    <input class="form-control" name="parameters[calc_value_gold_title]"
+                           placeholder="Value of Gold title" value="{{ $calculateValueOfGoldTitle }}"/>
                 </div>
 
                 <div class="form-group">
-                    <label>Price Gold:</label>
-                    <input type="number" class="form-control" name="parameters[price_gold]"
-                           placeholder="Price silver" value="{{ $priceGold }}"/>
+                    <label>Value of Gold annotation:</label>
+                    <input class="form-control" name="parameters[calc_value_gold_annotation]"
+                           placeholder="Value of Gold annotation" value="{{ $calculateValueOfGoldAnnotation }}"/>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 mt-lg-3">
+                <div class="form-group">
+                    <label>Value of Silver title:</label>
+                    <input class="form-control" name="parameters[calc_value_silver_title]"
+                           placeholder="Value of Silver title" value="{{ $calculateValueOfSilverTitle }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Value of Silver annotation:</label>
+                    <input class="form-control" name="parameters[calc_value_silver_annotation]"
+                           placeholder="Value of Silver annotation" value="{{ $calculateValueOfSilverAnnotation }}"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 mt-lg-3">
+                <div class="form-group">
+                    <label>Cash in hand/in bank accounts title:</label>
+                    <input class="form-control" name="parameters[calc_cash_hand_title]"
+                           placeholder="Cash in hand/in bank accounts title" value="{{ $calculateCashInHandTitle }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Cash in hand/in bank accounts annotation:</label>
+                    <input class="form-control" name="parameters[calc_cash_hand_annotation]"
+                           placeholder="Cash in hand/in bank accounts annotation" value="{{ $calculateCashInHandAnnotation }}"/>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-lg-6 mt-lg-3">
+                <div class="form-group">
+                    <label>Cash deposited for future purpose title:</label>
+                    <input class="form-control" name="parameters[calc_cash_deposited_title]"
+                           placeholder="Cash deposited for future purpose title" value="{{ $calculateCashDepositedTitle }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Cash deposited for future purpose annotation:</label>
+                    <input class="form-control" name="parameters[calc_cash_deposited_annotation]"
+                           placeholder="Cash deposited for future purpose annotation" value="{{ $calculateCashDepositedAnnotation }}"/>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-lg-6 mt-lg-3">
+                <div class="form-group">
+                    <label>Given out in loans title:</label>
+                    <input class="form-control" name="parameters[calc_given_title]"
+                           placeholder="Given out in loans title" value="{{ $calculateGivenTitle }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Given out in loans annotation:</label>
+                    <input class="form-control" name="parameters[calc_given_annotation]"
+                           placeholder="Given out in loans annotation" value="{{ $calculateGivenAnnotation }}"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 mt-lg-3">
+                <div class="form-group">
+                    <label>Other investments title:</label>
+                    <input class="form-control" name="parameters[calc_other_title]"
+                           placeholder="Other investments title" value="{{ $calculateOtherTitle }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Other investments annotation:</label>
+                    <input class="form-control" name="parameters[calc_other_annotation]"
+                           placeholder="Other investments annotation" value="{{ $calculateOtherAnnotation }}"/>
+                </div>
+            </div>
+
+            <div class="col-12 mt-lg-5">
+                <div class="form-group">
+                    <label>Trade goods section title:</label>
+                    <input class="form-control" name="parameters[calc_trade_goods_section_title]"
+                           placeholder="Trade goods section title" value="{{ $calculateTradeGoodsSectionTitle }}"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 mt-lg-3">
+                <div class="form-group">
+                    <label>Value of stock title:</label>
+                    <input class="form-control" name="parameters[calc_value_stock_title]"
+                           placeholder="Value of stock title" value="{{ $calculateValueOfStockTitle }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Value of stock annotation:</label>
+                    <input class="form-control" name="parameters[calc_value_stock_annotation]"
+                           placeholder="Value of stock annotation" value="{{ $calculateValueOfStockAnnotation }}"/>
+                </div>
+            </div>
+
+            <div class="col-12 mt-lg-5">
+                <div class="form-group">
+                    <label>Liabilities section title:</label>
+                    <input class="form-control" name="parameters[calc_liabilities_section_title]"
+                           placeholder="Liabilities section title" value="{{ $calculateLiabilitiesSectionTitle }}"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 mt-lg-3">
+                <div class="form-group">
+                    <label>Borrowed money/items bought on credit title:</label>
+                    <input class="form-control" name="parameters[calc_borrowed_title]"
+                           placeholder="Borrowed money/items bought on credit title" value="{{ $calculateBorrowedTitle }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Borrowed money/items bought on credit annotation:</label>
+                    <input class="form-control" name="parameters[calc_borrowed_annotation]"
+                           placeholder="Borrowed money/items bought on credit annotation" value="{{ $calculateBorrowedAnnotation }}"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 mt-lg-3">
+                <div class="form-group">
+                    <label>Wages due to employees title:</label>
+                    <input class="form-control" name="parameters[calc_wages_title]"
+                           placeholder="Wages due to employees title" value="{{ $calculateWagesTitle }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Wages due to employees annotation:</label>
+                    <input class="form-control" name="parameters[calc_wages_annotation]"
+                           placeholder="Wages due to employees annotation" value="{{ $calculateWagesAnnotation }}"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 mt-lg-3">
+                <div class="form-group">
+                    <label>Taxes/Rent/Utility bills due immediately title:</label>
+                    <input class="form-control" name="parameters[calc_taxes_title]"
+                           placeholder="Taxes/Rent/Utility bills due immediately title" value="{{ $calculateTaxesTitle }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Taxes/Rent/Utility bills due immediately annotation:</label>
+                    <input class="form-control" name="parameters[calc_taxes_annotation]"
+                           placeholder="Taxes/Rent/Utility bills due immediately annotation" value="{{ $calculateTaxesAnnotation }}"/>
                 </div>
             </div>
         </div>
@@ -335,13 +655,13 @@
                 <div class="form-group">
                     <label>Silver title:</label>
                     <input class="form-control" name="parameters[w_i_silver_title]"
-                           placeholder="Gold title" value="{{ $whatIsSilverTitle }}"/>
+                           placeholder="Silver title" value="{{ $whatIsSilverTitle }}"/>
                 </div>
 
                 <div class="form-group">
                     <label>Silver text:</label>
                     <textarea class="form-control" name="parameters[w_i_silver_text]"
-                              rows="3" placeholder="Gold text">{!! $whatIsSilverText !!}</textarea>
+                              rows="3" placeholder="Silver text">{!! $whatIsSilverText !!}</textarea>
                 </div>
             </div>
 
@@ -365,13 +685,13 @@
         <div class="row mt-4">
             <div class="col-12 col-lg-6">
                 <div class="form-group">
-                    <label>What is Zakat title:</label>
+                    <label>What do I need title:</label>
                     <input class="form-control" name="parameters[dropdown_title]"
-                           placeholder="What is Zakat title" value="{{ $dropdownWhatDoINeedTitle }}"/>
+                           placeholder="What do I need title" value="{{ $dropdownWhatDoINeedTitle }}"/>
                 </div>
 
                 <div class="form-group">
-                    <label>What is Zakat text:</label>
+                    <label>What do I need text:</label>
                     <textarea class="form-control" name="parameters[dropdown_text]"
                               rows="7" placeholder="Text">{!! $dropdownWhatDoINeedText !!}</textarea>
                 </div>
