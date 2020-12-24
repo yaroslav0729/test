@@ -152,6 +152,7 @@
 
     @yield('content')
     @include('templates.presentation.parts.add_to_cart_popup')
+    @include('templates.presentation.parts.at_least_5_popup')
     @include('parts.footer')
 </div><!--wrapper-->
 </body>
