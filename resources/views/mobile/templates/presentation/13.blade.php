@@ -48,7 +48,7 @@
 <section class="head-Volunteer">
     <!--step 1-->
     <h1>{!! $mainTitle !!}</h1>
-    <a href="{{ $startLink }}"><button class="btn btn-outline-primary">Start</button></a>
+    <a href="{{ $startLink }}"><button class="btn btn-outline-primary btn-black">Start</button></a>
 </section>
 
 <section class="how-does-work pt-4">

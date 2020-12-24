@@ -101,7 +101,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
  * For LGPL see License.txt in the project root for license information.
  * For commercial licenses see https://www.tiny.cloud/
  *
- * Version: 5.5.1 (2020-10-01)
+ * Version: 5.6.0 (2020-11-18)
  */
 (function () {
   'use strict';
@@ -1198,8 +1198,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       height = img.height;
 
       if (width || height) {
-        img.setAttribute('width', size.w);
-        img.setAttribute('height', size.h);
+        img.setAttribute('width', String(size.w));
+        img.setAttribute('height', String(size.h));
       }
     }
   }
@@ -1221,23 +1221,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return editor.dom.is(elem, 'figure');
   };
 
-  var getEditableImage = function getEditableImage(editor, elem) {
-    var isImage = function isImage(imgNode) {
-      return editor.dom.is(imgNode, 'img:not([data-mce-object],[data-mce-placeholder])');
-    };
+  var isImage = function isImage(editor, imgNode) {
+    return editor.dom.is(imgNode, 'img:not([data-mce-object],[data-mce-placeholder])');
+  };
 
+  var getEditableImage = function getEditableImage(editor, node) {
     var isEditable = function isEditable(imgNode) {
-      return isImage(imgNode) && (isLocalImage(editor, imgNode) || isCorsImage(editor, imgNode) || getProxyUrl(editor));
+      return isImage(editor, imgNode) && (isLocalImage(editor, imgNode) || isCorsImage(editor, imgNode) || isNonNullable(getProxyUrl(editor)));
     };
 
-    if (isFigure(editor, elem)) {
-      var imgOpt = getFigureImg(elem);
-      return imgOpt.map(function (img) {
+    if (isFigure(editor, node)) {
+      return getFigureImg(node).bind(function (img) {
         return isEditable(img.dom) ? Optional.some(img.dom) : Optional.none();
       });
+    } else {
+      return isEditable(node) ? Optional.some(node) : Optional.none();
     }
-
-    return isEditable(elem) ? Optional.some(elem) : Optional.none();
   };
 
   var displayError = function displayError(editor, error) {
@@ -1249,22 +1248,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   var getSelectedImage = function getSelectedImage(editor) {
     var elem = editor.selection.getNode();
+    var figureElm = editor.dom.getParent(elem, 'figure.image');
 
-    if (isFigure(editor, elem)) {
-      return getFigureImg(elem);
-    } else {
+    if (figureElm !== null && isFigure(editor, figureElm)) {
+      return getFigureImg(figureElm);
+    } else if (isImage(editor, elem)) {
       return Optional.some(SugarElement.fromDom(elem));
+    } else {
+      return Optional.none();
     }
   };
 
-  var extractFilename = function extractFilename(editor, url) {
-    var m = url.match(/\/([^\/\?]+)?\.(?:jpeg|jpg|png|gif)(?:\?|$)/i);
-
-    if (m) {
-      return editor.dom.encode(m[1]);
-    }
-
-    return null;
+  var extractFilename = function extractFilename(editor, url, group) {
+    var m = url.match(/(?:\/|^)(([^\/\?]+)\.(?:[a-z0-9.]+))(?:\?|$)/i);
+    return isNonNullable(m) ? editor.dom.encode(m[group]) : null;
   };
 
   var createId = function createId() {
@@ -1328,20 +1325,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     global$2.clearTimeout(imageUploadTimerState.get());
   };
 
-  var updateSelectedImage = function updateSelectedImage(editor, ir, uploadImmediately, imageUploadTimerState, selectedImage, size) {
+  var updateSelectedImage = function updateSelectedImage(editor, origBlob, ir, uploadImmediately, imageUploadTimerState, selectedImage, size) {
     return ir.toBlob().then(function (blob) {
-      var uri, name, blobInfo;
+      var uri, name, filename, blobInfo;
       var blobCache = editor.editorUpload.blobCache;
       uri = selectedImage.src;
+      var useFilename = origBlob.type === blob.type;
 
       if (shouldReuseFilename(editor)) {
         blobInfo = blobCache.getByUri(uri);
 
-        if (blobInfo) {
+        if (isNonNullable(blobInfo)) {
           uri = blobInfo.uri();
           name = blobInfo.name();
+          filename = blobInfo.filename();
         } else {
-          name = extractFilename(editor, uri);
+          name = extractFilename(editor, uri, 2);
+          filename = extractFilename(editor, uri, 1);
         }
       }
 
@@ -1350,7 +1350,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         blob: blob,
         base64: ir.toBase64(),
         uri: uri,
-        name: name
+        name: name,
+        filename: useFilename ? filename : undefined
       });
       blobCache.add(blobInfo);
       editor.undoManager.transact(function () {
@@ -1391,9 +1392,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }, function (img) {
         return editor._scanForImages().then(function () {
           return findBlob(editor, img.dom);
-        }).then(blobToImageResult).then(fn).then(function (imageResult) {
-          return updateSelectedImage(editor, imageResult, false, imageUploadTimerState, img.dom, size);
-        }, function (error) {
+        }).then(function (blob) {
+          return blobToImageResult(blob).then(fn).then(function (imageResult) {
+            return updateSelectedImage(editor, blob, imageResult, false, imageUploadTimerState, img.dom, size);
+          });
+        })["catch"](function (error) {
           displayError(editor, error);
         });
       });
@@ -1439,8 +1442,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       URL.revokeObjectURL(newImage.src);
       return blob;
     }).then(blobToImageResult).then(function (imageResult) {
-      return updateSelectedImage(editor, imageResult, true, imageUploadTimerState, img);
-    }, function () {});
+      return updateSelectedImage(editor, blob, imageResult, true, imageUploadTimerState, img);
+    })["catch"](function () {});
   };
 
   var saveState = 'save-state';
@@ -1518,8 +1521,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       var originalSizeOpt = originalImgOpt.map(function (origImg) {
         return getNaturalImageSize(origImg.dom);
       });
-      var imgOpt = getSelectedImage(editor);
-      imgOpt.each(function (img) {
+      originalImgOpt.each(function (img) {
         getEditableImage(editor, img.dom).each(function (_) {
           findBlob(editor, img.dom).then(function (blob) {
             var state = createState(blob);
@@ -1545,14 +1547,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   var setup = function setup(editor, imageUploadTimerState, lastSelectedImageState) {
     editor.on('NodeChange', function (e) {
       var lastSelectedImage = lastSelectedImageState.get();
+      var selectedImage = getEditableImage(editor, e.element);
 
-      if (lastSelectedImage && lastSelectedImage.src !== e.element.src) {
+      if (lastSelectedImage && !selectedImage.exists(function (img) {
+        return lastSelectedImage.src === img.src;
+      })) {
         cancelTimedUpload(imageUploadTimerState);
         editor.editorUpload.uploadImagesAuto();
         lastSelectedImageState.set(null);
       }
 
-      getEditableImage(editor, e.element).each(lastSelectedImageState.set);
+      selectedImage.each(lastSelectedImageState.set);
     });
   };
 
@@ -1589,11 +1594,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       onAction: cmd('mceEditImage'),
       onSetup: function onSetup(buttonApi) {
         var setDisabled = function setDisabled() {
-          var elementOpt = getSelectedImage(editor);
-          elementOpt.each(function (element) {
-            var disabled = getEditableImage(editor, element.dom).isNone();
-            buttonApi.setDisabled(disabled);
+          var disabled = getSelectedImage(editor).forall(function (element) {
+            return getEditableImage(editor, element.dom).isNone();
           });
+          buttonApi.setDisabled(disabled);
         };
 
         editor.on('NodeChange', setDisabled);
@@ -1656,7 +1660,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OSPanel\domains\islamichelp\node_modules\tinymce\plugins\imagetools\plugin.js */"./node_modules/tinymce/plugins/imagetools/plugin.js");
+module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/node_modules/tinymce/plugins/imagetools/plugin.js */"./node_modules/tinymce/plugins/imagetools/plugin.js");
 
 
 /***/ })

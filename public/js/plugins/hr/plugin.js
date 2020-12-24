@@ -99,7 +99,7 @@
  * For LGPL see License.txt in the project root for license information.
  * For commercial licenses see https://www.tiny.cloud/
  *
- * Version: 5.5.1 (2020-10-01)
+ * Version: 5.6.0 (2020-11-18)
  */
 (function () {
   'use strict';
@@ -148,7 +148,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OSPanel\domains\islamichelp\node_modules\tinymce\plugins\hr\plugin.js */"./node_modules/tinymce/plugins/hr/plugin.js");
+module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/node_modules/tinymce/plugins/hr/plugin.js */"./node_modules/tinymce/plugins/hr/plugin.js");
 
 
 /***/ })
