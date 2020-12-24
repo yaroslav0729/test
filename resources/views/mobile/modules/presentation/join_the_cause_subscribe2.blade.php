@@ -27,7 +27,7 @@
             <p class="font-size-25">
                 <b>
                     @if ($title === "")
-                        JOIN THE CAUSE2
+                        Join the cause!
                     @else
                         {{ $title }}
                     @endif

@@ -346,7 +346,7 @@ footer {
 
 	li {
 	  display: block;
-
+	  width: 100%;
 	  &:after {
 		display: none !important;
 	  }
@@ -383,7 +383,7 @@ footer {
 	letter-spacing: 1px;
 	line-height: 50px;
 	position: relative;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 
 	&:after {
 	  content: "";
@@ -461,12 +461,13 @@ footer {
 	margin-bottom: 0;
 	.wrap {padding: 0}
 	.title {
-	  margin-bottom: 35px;
+	  margin-bottom: 55px;
 	  &:after {display: none; bottom: -20px;}
 	  span {
 		font-size: 25px;
 		font-weight: 900;
 		line-height: 35px;
+		&:after {bottom: -20px;}
 	  }
 	  .moon-icons-arrow-down {
 		left: auto; right: 13px;
@@ -517,8 +518,18 @@ footer {
   }
 
   .lets-join {
-	padding: 0;
+	padding: 0 0 106px;
 	margin: 0;
+	position: relative; top: -4px;
+	overflow: hidden;
+	&:after {
+	  content: "";
+	  display: block;
+	  background: url(../img/Line-styling.png) no-repeat;
+	  background-size: contain;
+	  height: 157px; width: 152px;
+	  position: absolute; right: -46px; bottom: 20px;
+	}
 	.title {
 	  font-size: 25px;
 	  padding-top: 70px;
@@ -539,13 +550,14 @@ footer {
 		}
 	  }
 	  i {
-		position: absolute; right: 0; bottom: 20px;
+		position: absolute; right: 0; bottom: 14px;
 	  }
 	}
 	.item {
 	  padding-bottom: 50px;
 	  box-shadow: none;
 	  .img, .img-video {margin-bottom: 40px;}
+	  .more-view .moon-icons-plus {font-size: 33px;}
 	}
   }
 
@@ -569,8 +581,10 @@ footer {
 	padding: 50px 13px 0;
 	margin-bottom: 0;
 	.title {
+	  padding-left: 13px;
 	  font-size: 25px;
-	  margin-bottom: 25px;
+	  margin-bottom: 30px;
+	  svg {margin-bottom: 25px;}
 	}
 	.item {
 	  .img {
@@ -617,6 +631,38 @@ footer {
 		}
 	  }
 	}
+
+	.down-link {
+	  position: relative;
+	  margin-top: 45px;
+	  a {
+		display: inline-block;
+		color: #101525;
+		font-size: 15px;
+		font-weight: 900;
+		letter-spacing: 1px;
+		line-height: 22px;
+		text-transform: uppercase;
+		text-decoration: underline;
+		padding: 15px 10px;
+	  }
+	  .view-more {
+		background: #101525;
+		padding: 0;
+		text-decoration: none;
+		width: 60px;
+		height: 60px;
+		position: absolute;
+		bottom: 0px;
+		right: 0;
+		text-align: center;
+		font-size: 30px;
+		line-height: 60px;
+		color: #fff;
+	  }
+	}
+
+
   }
 
   .join-cause {
