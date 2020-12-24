@@ -376,44 +376,44 @@
                     <small>{{ $calculateCashDepositedAnnotation }}</small>
                 </div>
                 <div class="form-group">
-                    <label><b>Given out in loans</b></label>
+                    <label><b>{{ $calculateGivenTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                    <small>*Some helper text right here, to assure user of correct decision making.</small>
+                    <small>{{ $calculateGivenAnnotation }}</small>
                 </div>
                 <div class="form-group">
-                    <label><b>other investments</b></label>
+                    <label><b>{{ $calculateOtherTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                    <small>*E.g. Business investments, shares, saving certificates, pensions funded by money in ones possesssion</small>
+                    <small>{{ $calculateOtherAnnotation }}</small>
                 </div>
 
                 <div class="pt-5"></div>
                 <div class="line"></div>
-                <div class="text-uppercase"><b>Trade goods</b></div>
+                <div class="text-uppercase"><b>{{ $calculateTradeGoodsSectionTitle }}</b></div>
                 <div class="pt-5"></div>
                 <div class="form-group">
-                    <label><b>value of stock</b></label>
+                    <label><b>{{ $calculateValueOfStockTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                    <small>*Some helper text right here, to assure user of correct decision making.</small>
+                    <small>{{ $calculateValueOfStockAnnotation }}</small>
                 </div>
 
                 <div class="pt-5"></div>
                 <div class="line"></div>
-                <div class="text-uppercase"><b>Liabilities</b></div>
+                <div class="text-uppercase"><b>{{ $calculateLiabilitiesSectionTitle }}</b></div>
                 <div class="pt-5"></div>
                 <div class="form-group">
-                    <label><b>Borrowed money / items bought on credit</b></label>
+                    <label><b>{{ $calculateBorrowedTitle }}</b></label>
                     <input type="number" class="form-control credit-money" placeholder="£ 0.00">
-                    <small>*Some helper text right here, to assure user of correct decision making.</small>
+                    <small>{{ $calculateTaxesAnnotation }}</small>
                 </div>
                 <div class="form-group">
-                    <label><b>wages due to employees</b></label>
+                    <label><b>{{ $calculateWagesTitle }}</b></label>
                     <input type="number" class="form-control credit-money" placeholder="£ 0.00">
-                    <small>*Some helper text right here, to assure user of correct decision making.</small>
+                    <small>{{ $calculateWagesAnnotation }}</small>
                 </div>
                 <div class="form-group">
-                    <label><b>taxes / rent / utility bills due immediately</b></label>
+                    <label><b>{{ $calculateTaxesTitle }}</b></label>
                     <input type="number" class="form-control credit-money" placeholder="£ 0.00">
-                    <small>*Some helper text right here, to assure user of correct decision making.</small>
+                    <small>{{ $calculateTaxesAnnotation }}</small>
                 </div>
                 <div class="pt-5"></div>
 
