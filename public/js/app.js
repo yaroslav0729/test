@@ -103904,6 +103904,13 @@ $(function () {
   $(document).on('click', '[quick-donation] .btn_sbmt', function (e) {
     e.preventDefault();
     var form = $(this).closest('form');
+    var amount = form.find('input[name="amount"]').val();
+
+    if (amount < 5) {
+      $('.modal-at-least-5').modal('show');
+      return;
+    }
+
     sendFormAndRefreshCard(form); //form.submit()
 
     $('.modal-quick-donation').hide(); // mobile version
@@ -104007,7 +104014,15 @@ $(function () {
   });
   $(document).on('click', '[donate-btn]', function (e) {
     e.preventDefault();
-    var form = $(this).closest('form'); //form.submit();
+    var form = $(this).closest('form');
+    var amount = form.find('input[name="amount"]').val();
+
+    if (amount < 5) {
+      //toastr.warning('Sorry, your donation amount must be at least £5')
+      $('.modal-at-least-5').modal('show');
+      return;
+    } //form.submit();
+
 
     sendFormAndRefreshCard(form);
     $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();

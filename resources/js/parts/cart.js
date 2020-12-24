@@ -132,6 +132,14 @@ $(function () {
     $(document).on('click', '[quick-donation] .btn_sbmt', function (e) {
         e.preventDefault()
         let form = $(this).closest('form')
+
+        let amount = form.find('input[name="amount"]').val()
+
+        if (amount < 5) {
+            $('.modal-at-least-5').modal('show') 
+            return
+        }
+
         sendFormAndRefreshCard(form)
         //form.submit()
 
@@ -261,6 +269,14 @@ $(function () {
         e.preventDefault()
 
         let form = $(this).closest('form')
+
+        let amount = form.find('input[name="amount"]').val()
+
+        if (amount < 5) {
+            //toastr.warning('Sorry, your donation amount must be at least £5')
+            $('.modal-at-least-5').modal('show') 
+            return
+        }
 
         //form.submit();
         sendFormAndRefreshCard(form)
