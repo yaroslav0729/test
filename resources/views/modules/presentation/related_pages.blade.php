@@ -8,7 +8,7 @@
     $relatedPages = \App\Models\Module::getRelatedPages($relPageCatId);
 @endphp
 
-<section class="current-projects-list">
+<div class="current-projects-list">
     <div class="wrap">
         <div class="row">
             @foreach ($relatedPages as $page)
@@ -29,4 +29,4 @@
             @endforeach
         </div>
     </div>
-</section>
+</div>

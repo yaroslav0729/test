@@ -30,7 +30,7 @@
             </div>
         </div>
         @include('modules.presentation.related_pages', [
-            'parameters' => $parameters
+            'parameters' => $parameters,
         ])
     </div>
 </section>

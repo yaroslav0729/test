@@ -15208,7 +15208,8 @@ a#clear_all_btn:hover {
 }
 .btn-black {
     border-color: #000;
-    color: #000;    
+    color: #000;
+    box-shadow: 0 0 0 2px #000000 inset !important;  
 }
 .toast-title{font-weight:700}
 .toast-message{-ms-word-wrap:break-word;word-wrap:break-word}

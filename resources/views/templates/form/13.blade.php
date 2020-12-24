@@ -49,6 +49,11 @@
 </div>
 
 <div class="form-group">
+    <label>Start link:</label>
+    <input class="form-control"  name="parameters[start_link]" placeholder="Insert link url" value="{{ $startLink }}" />
+</div>
+
+<div class="form-group">
     <label>Colimn 1 title:</label>
     <input class="form-control"  name="parameters[col_title1]" placeholder="Insert title" value="{{ $colTitle1 }}" />
 </div>
@@ -77,3 +82,5 @@
     <label>Column 3 text:</label>
     <input class="form-control"  name="parameters[col_text3]" placeholder="Insert title" value="{{ $colText3 }}" />
 </div>
+
+@include('modules.admin.related_page_expanded')
