@@ -61,7 +61,12 @@ $cartSum = \App\Models\CartItem::getCartSum();
                 
                 </div>
                 <div class="down-bar">
+                    @if($cartSum !== 0)
                     <p><b>Thank you,</b> this donation could help empower 512 people!</p>
+                    @else
+                    <p><b>Any donations</b> you make today will help empower people in need!</p>
+                    @endif
+                    
                     <div class="pt-3"></div>
                     <div class="row align-items-center">
                         <div class="col-7">

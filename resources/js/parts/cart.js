@@ -183,8 +183,6 @@ $(function () {
         } else {
             $('.basket span').addClass('d-none')
             $('.basket').removeClass('bell-animate')
-
-            $('#empty_cart_popup').fadeIn().delay(5000).fadeOut();
         }
     }
 
