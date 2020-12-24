@@ -15202,6 +15202,10 @@ a#clear_all_btn:hover {
     background: #aaa;
     z-index: 10;
 }
+.btn-black {
+    border-color: #000;
+    color: #000;    
+}
 .toast-title{font-weight:700}
 .toast-message{-ms-word-wrap:break-word;word-wrap:break-word}
 .toast-message a,.toast-message label{color:#FFF}
