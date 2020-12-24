@@ -3,6 +3,45 @@
     $tabCalculatorTitle = "";
     $tabWhatZakatTitle = "";
 
+    $calculateBaseValueNisaabTitle = "";
+
+    $calculateBelowTitle = "";
+    $calculateYourAssetsSectionTitle = "";
+
+    $calculateValueOfGoldTitle = "";
+    $calculateValueOfGoldAnnotation = "";
+
+    $calculateValueOfSilverTitle = "";
+    $calculateValueOfSilverAnnotation = "";
+
+    $calculateCashInHandTitle = "";
+    $calculateCashInHandAnnotation = "";
+
+    $calculateCashDepositedTitle = "";
+    $calculateCashDepositedAnnotation = "";
+
+    $calculateGivenTitle = "";
+    $calculateGivenAnnotation = "";
+
+    $calculateOtherTitle = "";
+    $calculateOtherAnnotation = "";
+
+    $calculateTradeGoodsSectionTitle = "";
+
+    $calculateValueOfStockTitle = "";
+    $calculateValueOfStockAnnotation = "";
+
+    $calculateLiabilitiesSectionTitle = "";
+
+    $calculateBorrowedTitle = "";
+    $calculateBorrowedAnnotation = "";
+
+    $calculateWagesTitle = "";
+    $calculateWagesAnnotation = "";
+
+    $calculateTaxesTitle = "";
+    $calculateTaxesAnnotation = "";
+
     $whatIsZakatTitle = "";
     $whatIsZakatText = "";
 
@@ -48,6 +87,106 @@
 
     if (isset($parameters['tab_what_zakat_title'])) {
         $tabWhatZakatTitle = $parameters['tab_what_zakat_title'];
+    }
+
+    if (isset($parameters['calc_base_value_nisaab_title'])) {
+        $calculateBaseValueNisaabTitle = $parameters['calc_base_value_nisaab_title'];
+    }
+
+    if (isset($parameters['calc_below_title'])) {
+        $calculateBelowTitle = $parameters['calc_below_title'];
+    }
+
+    if (isset($parameters['calc_your_assets_section_title'])) {
+        $calculateYourAssetsSectionTitle = $parameters['calc_your_assets_section_title'];
+    }
+
+    if (isset($parameters['calc_value_gold_title'])) {
+        $calculateValueOfGoldTitle = $parameters['calc_value_gold_title'];
+    }
+
+    if (isset($parameters['calc_value_gold_annotation'])) {
+        $calculateValueOfGoldAnnotation = $parameters['calc_value_gold_annotation'];
+    }
+
+    if (isset($parameters['calc_value_silver_title'])) {
+        $calculateValueOfSilverTitle = $parameters['calc_value_silver_title'];
+    }
+
+    if (isset($parameters['calc_value_silver_annotation'])) {
+        $calculateValueOfSilverAnnotation = $parameters['calc_value_silver_annotation'];
+    }
+
+    if (isset($parameters['calc_cash_hand_title'])) {
+        $calculateCashInHandTitle = $parameters['calc_cash_hand_title'];
+    }
+
+    if (isset($parameters['calc_cash_hand_annotation'])) {
+        $calculateCashInHandAnnotation = $parameters['calc_cash_hand_annotation'];
+    }
+
+    if (isset($parameters['calc_cash_deposited_title'])) {
+        $calculateCashDepositedTitle = $parameters['calc_cash_deposited_title'];
+    }
+
+    if (isset($parameters['calc_cash_deposited_annotation'])) {
+        $calculateCashDepositedAnnotation = $parameters['calc_cash_deposited_annotation'];
+    }
+
+    if (isset($parameters['calc_given_title'])) {
+        $calculateGivenTitle = $parameters['calc_given_title'];
+    }
+
+    if (isset($parameters['calc_given_annotation'])) {
+        $calculateGivenAnnotation = $parameters['calc_given_annotation'];
+    }
+
+    if (isset($parameters['calc_other_title'])) {
+        $calculateOtherTitle = $parameters['calc_other_title'];
+    }
+
+    if (isset($parameters['calc_other_annotation'])) {
+        $calculateOtherAnnotation = $parameters['calc_other_annotation'];
+    }
+
+    if (isset($parameters['calc_trade_goods_section_title'])) {
+        $calculateTradeGoodsSectionTitle = $parameters['calc_trade_goods_section_title'];
+    }
+
+    if (isset($parameters['calc_value_stock_title'])) {
+        $calculateValueOfStockTitle = $parameters['calc_value_stock_title'];
+    }
+
+    if (isset($parameters['calc_value_stock_annotation'])) {
+        $calculateValueOfStockAnnotation = $parameters['calc_value_stock_annotation'];
+    }
+
+    if (isset($parameters['calc_liabilities_section_title'])) {
+        $calculateLiabilitiesSectionTitle = $parameters['calc_liabilities_section_title'];
+    }
+
+    if (isset($parameters['calc_borrowed_title'])) {
+        $calculateBorrowedTitle = $parameters['calc_borrowed_title'];
+    }
+
+    if (isset($parameters['calc_borrowed_annotation'])) {
+        $calculateBorrowedAnnotation = $parameters['calc_borrowed_annotation'];
+    }
+
+    if (isset($parameters['calc_wages_title'])) {
+        $calculateWagesTitle = $parameters['calc_wages_title'];
+    }
+
+    if (isset($parameters['calc_wages_annotation'])) {
+        $calculateWagesAnnotation = $parameters['calc_wages_annotation'];
+    }
+
+    if (isset($parameters['calc_taxes_title'])) {
+        $calculateTaxesTitle = $parameters['calc_taxes_title'];
+    }
+
+    if (isset($parameters['calc_taxes_annotation'])) {
+        $calculateTaxesAnnotation = $parameters['calc_taxes_annotation'];
     }
 
     if (isset($parameters['w_i_zakat_title'])) {
@@ -138,7 +277,6 @@
         $btnLink = $parameters['w_i_btn_link'];
     }
 
-
     if (isset($parameters['dropdown_title'])) {
         $dropdownWhatDoINeedTitle = $parameters['dropdown_title'];
     }
@@ -210,7 +348,7 @@
                     <div class="col-3"></div>
                     <div class="col-5">
                         <div class="form-group mb-0">
-                            <label><b>Base value of nisaab</b></label>
+                            <label><b>{{ $calculateBaseValueNisaabTitle }}</b></label>
                             <select class="form-control" id="currency">
                                 <option value="{{ $priceSilver }}">Silver</option>
                                 <option value="{{ $priceGold }}">Gold</option>
@@ -221,26 +359,25 @@
                 </div>
                 <div class="pt-5"></div>
 
-                <div>Enter below, your <b>total</b> assets from the past lunar year, that apply to you. </div>
+                <div>{!! $calculateBelowTitle !!}</div>
                 <div class="line"></div>
-                <div class="text-right text-uppercase"><b>your assets</b></div>
+                <div class="text-right text-uppercase"><b>{{ $calculateYourAssetsSectionTitle }}</b></div>
                 <div class="pt-5"></div>
 
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-5">
                         <div class="form-group">
-                            <label><b>value of gold</b></label>
+                            <label><b>{{ $calculateValueOfGoldTitle }}</b></label>
                             <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <span class="input-symbol">£</span>
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
+                            <small>{{ $calculateValueOfGoldAnnotation }}</small>
                         </div>
                     </div>
                     <div class="col-5">
                         <div class="form-group">
-                            <label><b>value of silver</b></label>
+                            <label><b>{{ $calculateValueOfSilverTitle }}</b></label>
                             <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
+                            <small>{{ $calculateValueOfSilverAnnotation }}</small>
                         </div>
                     </div>
                 </div>
@@ -248,16 +385,16 @@
                     <div class="col-1"></div>
                     <div class="col-5">
                         <div class="form-group">
-                            <label><b>Cash in hand / in bank accounts</b></label>
+                            <label><b>{{ $calculateCashInHandTitle }}</b></label>
                             <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
+                            <small>{{ $calculateCashInHandAnnotation }}</small>
                         </div>
                     </div>
                     <div class="col-5">
                         <div class="form-group">
-                            <label><b>cash deposited for future purpose</b></label>
+                            <label><b>{{ $calculateCashDepositedTitle }}</b></label>
                             <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <small>*E.g. Saving for Hajj</small>
+                            <small>{{ $calculateCashDepositedAnnotation }}</small>
                         </div>
                     </div>
                 </div>
@@ -265,55 +402,55 @@
                     <div class="col-1"></div>
                     <div class="col-5">
                         <div class="form-group">
-                            <label><b>Given out in loans</b></label>
+                            <label><b>{{ $calculateGivenTitle }}</b></label>
                             <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
+                            <small>{{ $calculateGivenAnnotation }}</small>
                         </div>
                     </div>
                     <div class="col-5">
                         <div class="form-group">
-                            <label><b>other investments</b></label>
+                            <label><b>{{ $calculateOtherTitle }}</b></label>
                             <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <small>*E.g. Business investments, shares, saving certificates, pensions funded by money in ones possesssion</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-5"></div>
-                <div class="line"></div>
-                <div class="text-right text-uppercase"><b>Trade goods</b></div>
-                <div class="pt-5"></div>
-
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5">
-                        <div class="form-group">
-                            <label><b>value of stock</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
+                            <small>{{ $calculateOtherAnnotation }}</small>
                         </div>
                     </div>
                 </div>
 
                 <div class="pt-5"></div>
                 <div class="line"></div>
-                <div class="text-right text-uppercase"><b>Liabilities</b></div>
+                <div class="text-right text-uppercase"><b>{{ $calculateTradeGoodsSectionTitle }}</b></div>
                 <div class="pt-5"></div>
 
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-5">
                         <div class="form-group">
-                            <label><b>Borrowed money / items bought on credit</b></label>
+                            <label><b>{{ $calculateValueOfStockTitle }}</b></label>
+                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                            <small>{{ $calculateValueOfStockAnnotation }}</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-5"></div>
+                <div class="line"></div>
+                <div class="text-right text-uppercase"><b>{{ $calculateLiabilitiesSectionTitle }}</b></div>
+                <div class="pt-5"></div>
+
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <div class="form-group">
+                            <label><b>{{ $calculateBorrowedTitle }}</b></label>
                             <input type="number" class="form-control credit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
+                            <small>{{ $calculateTaxesAnnotation }}</small>
                         </div>
                     </div>
                     <div class="col-5">
                         <div class="form-group">
-                            <label><b>wages due to employees</b></label>
+                            <label><b>{{ $calculateWagesTitle }}</b></label>
                             <input type="number" class="form-control credit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
+                            <small>{{ $calculateWagesAnnotation }}</small>
                         </div>
                     </div>
                 </div>
@@ -321,9 +458,9 @@
                     <div class="col-1"></div>
                     <div class="col-5">
                         <div class="form-group">
-                            <label><b>taxes / rent / utility bills due immediately</b></label>
+                            <label><b>{{ $calculateTaxesTitle }}</b></label>
                             <input type="number" class="form-control credit-money" placeholder="£ 0.00">
-                            <small>*Some helper text right here, to assure user of correct decision making.</small>
+                            <small>{{ $calculateTaxesAnnotation }}</small>
                         </div>
                     </div>
                 </div>

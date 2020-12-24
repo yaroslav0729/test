@@ -421,7 +421,7 @@ $(function () {
 
         const divZakat = $(zakatPayable).find('.money-val');
 
-        if (asset > metalPrice) {
+        if (asset >= metalPrice) {
             zakat = asset * 0.025;
 
             $('#zakat-pay').addClass('bg-danger-light');
@@ -528,12 +528,12 @@ $(function () {
     function openHeadMenu(e, id = null)
     {
         e.preventDefault();
-       
+
         let blocks = $('.block-dropdown-menu');
 
         $.each($(blocks), function (key, block) {
             if (id ===  $(block).attr('data-id')) {
-                
+
                 $(block).css({'display': 'block'})
 
                 if (hasSwiper($(block))) {
@@ -548,12 +548,12 @@ $(function () {
                         });
                     }
                 }
-                
+
             } else {
                 $(block).css({'display': 'none'})
             }
         });
-        
+
         toggleOpenedHeaderMenuItems(id);
 
         $('.header-menu').addClass('open')
@@ -610,7 +610,7 @@ $(function () {
         e.preventDefault();
 
         let menuContainer = $(e.target).closest('[class^=level-]').get(0);
-        
+
         if (menuContainer) {
 
             let level = Number(menuContainer.className.split('level-')[1]);
