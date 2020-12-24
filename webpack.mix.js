@@ -21,6 +21,8 @@ mix.js('resources/js/app.js', 'public/js')
     ])
     .postCss('resources/css/admin_styles.css', 'public/css', [
     ])
+    .postCss('resources/css/mobile.css', 'public/css', [
+    ])
 
     // TinyMCE
     .js('node_modules/tinymce/themes/silver/theme.js', 'public/js/themes/silver')

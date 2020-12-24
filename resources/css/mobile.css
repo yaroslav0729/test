@@ -63,7 +63,7 @@
   display: block;
   width: 205px;
   height: 198px;
-  background-image: url(/images/Line-styling-White.png?f49e17314b54d7c107ab5ad0b74248d9);
+  background-image: url(../img/Line-styling-White.png);
   background-size: 205px 198px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -157,7 +157,7 @@
   margin-right: 10px;
 }
 .mobile-template header .top-bar .open-head-menu {
-  background: url(/images/ico-menu.svg?b32c6ab29bb5e10c1209a79be3d8be6c) no-repeat;
+  background: url(../img/ico-menu.svg) no-repeat;
   background-size: 25px 25px;
   display: inline-block;
   width: 25px;
@@ -511,7 +511,7 @@
 .mobile-template .lets-join:after {
   content: "";
   display: block;
-  background: url(/images/Line-styling.png?b03a87dd394747a88d56e0d8ba1cafa2) no-repeat;
+  background: url(../img/Line-styling.png) no-repeat;
   background-size: contain;
   height: 157px;
   width: 152px;
@@ -703,7 +703,7 @@
 .mobile-template .join-cause.with-glyph:after {
   content: "";
   display: block;
-  background: url(/images/Line-styling.png?b03a87dd394747a88d56e0d8ba1cafa2) no-repeat;
+  background: url(../img/Line-styling.png) no-repeat;
   background-size: contain;
   height: 197px;
   width: 196px;
@@ -1226,7 +1226,7 @@
 .mobile-template .our-story-swiper:after {
   content: "";
   display: block;
-  background: url(/images/Line-styling.png?b03a87dd394747a88d56e0d8ba1cafa2) no-repeat;
+  background: url(../img/Line-styling.png) no-repeat;
   background-size: contain;
   height: 197px;
   width: 196px;
@@ -1374,7 +1374,7 @@
 .mobile-template .events-home-swiper:after {
   content: "";
   display: block;
-  background: url(/images/Line-styling.png?b03a87dd394747a88d56e0d8ba1cafa2) no-repeat;
+  background: url(../img/Line-styling.png) no-repeat;
   background-size: contain;
   height: 197px;
   width: 196px;
@@ -1588,7 +1588,7 @@
 .mobile-template .calculator .calc:before {
   content: "";
   display: block;
-  background: url(/images/Line-styling.png?b03a87dd394747a88d56e0d8ba1cafa2) no-repeat;
+  background: url(../img/Line-styling.png) no-repeat;
   background-size: contain;
   height: 197px;
   width: 196px;
@@ -1619,3 +1619,4 @@
 .mobile-template .calculator .down .total {
   display: block;
 }
+/*# sourceMappingURL=mobile.css.map */

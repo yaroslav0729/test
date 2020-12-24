@@ -101,7 +101,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
  * For LGPL see License.txt in the project root for license information.
  * For commercial licenses see https://www.tiny.cloud/
  *
- * Version: 5.5.1 (2020-10-01)
+ * Version: 5.6.0 (2020-11-18)
  */
 (function () {
   'use strict';
@@ -386,12 +386,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return r;
   };
 
+  var get = function get(xs, i) {
+    return i >= 0 && i < xs.length ? Optional.some(xs[i]) : Optional.none();
+  };
+
   var head = function head(xs) {
-    return xs.length === 0 ? Optional.none() : Optional.some(xs[0]);
+    return get(xs, 0);
   };
 
   var last = function last(xs) {
-    return xs.length === 0 ? Optional.none() : Optional.some(xs[xs.length - 1]);
+    return get(xs, xs.length - 1);
   };
 
   var _assign = function __assign() {
@@ -2370,7 +2374,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     });
   };
 
-  var get = function get(editor) {
+  var get$1 = function get$1(editor) {
     return {
       backspaceDelete: function backspaceDelete(isForward) {
         _backspaceDelete(editor, isForward);
@@ -2539,7 +2543,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
       register$1(editor);
       register$2(editor);
-      return get(editor);
+      return get$1(editor);
     });
   }
 
@@ -2555,7 +2559,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OSPanel\domains\islamichelp\node_modules\tinymce\plugins\lists\plugin.js */"./node_modules/tinymce/plugins/lists/plugin.js");
+module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/tinymce/plugins/lists/plugin.js */"./node_modules/tinymce/plugins/lists/plugin.js");
 
 
 /***/ })

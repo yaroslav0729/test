@@ -275,7 +275,7 @@ tinymce.IconManager.add('default', {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OSPanel\domains\islamichelp\node_modules\tinymce\icons\default\icons.js */"./node_modules/tinymce/icons/default/icons.js");
+module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/tinymce/icons/default/icons.js */"./node_modules/tinymce/icons/default/icons.js");
 
 
 /***/ })

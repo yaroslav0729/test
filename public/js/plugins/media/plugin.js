@@ -101,7 +101,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
  * For LGPL see License.txt in the project root for license information.
  * For commercial licenses see https://www.tiny.cloud/
  *
- * Version: 5.5.1 (2020-10-01)
+ * Version: 5.6.0 (2020-11-18)
  */
 (function () {
   'use strict';
@@ -1592,7 +1592,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OSPanel\domains\islamichelp\node_modules\tinymce\plugins\media\plugin.js */"./node_modules/tinymce/plugins/media/plugin.js");
+module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/tinymce/plugins/media/plugin.js */"./node_modules/tinymce/plugins/media/plugin.js");
 
 
 /***/ })
