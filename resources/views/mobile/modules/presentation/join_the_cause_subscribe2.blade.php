@@ -84,9 +84,10 @@
                 </g>
             </svg>
         </div>
-        <form action="/" class="d-flex">
+        <form id="subscription_form" action="{{ route('subscribe') }}" method="POST" class="d-flex">
+            @csrf
             <input type="text" placeholder="Your email address" class="flex-grow-1">
-            <button type="submit" ><i class="far fa-chevron-right"></i></button>
+            <button type="submit" id="subscription_sbmt"><i class="far fa-chevron-right"></i></button>
         </form>
     </div>
 </section>

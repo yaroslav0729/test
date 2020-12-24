@@ -136,7 +136,7 @@ $(function () {
         let amount = form.find('input[name="amount"]').val()
 
         if (amount < 5) {
-            $('.modal-at-least-5').modal('show') 
+            $('.modal-at-least-5').modal('show')
             return
         }
 
@@ -187,7 +187,7 @@ $(function () {
             $('.basket').addClass('bell-animate')
             setTimeout(function() {
                 $('.basket').removeClass('bell-animate');
-            }, 3200 );
+            }, 3100 );
         } else {
             $('.basket span').addClass('d-none')
             $('.basket').removeClass('bell-animate')
@@ -262,7 +262,7 @@ $(function () {
         $('.basket').addClass('bell-animate')
         setTimeout(function() {
             $('.basket').removeClass('bell-animate');
-        }, 3200 );
+        }, 1100 );
     });
 
     $(document).on('click', '[donate-btn]', function (e) {
@@ -274,7 +274,7 @@ $(function () {
 
         if (amount < 5) {
             //toastr.warning('Sorry, your donation amount must be at least £5')
-            $('.modal-at-least-5').modal('show') 
+            $('.modal-at-least-5').modal('show')
             return
         }
 
