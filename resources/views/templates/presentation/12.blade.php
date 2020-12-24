@@ -65,6 +65,6 @@
 
 @include('modules.presentation.our_latest_mission')
 
-@include('modules.presentation.related_pages')
+@include('modules.presentation.related_page_expanded')
 
 <div class="pt-5 pb-5"></div>

@@ -26,4 +26,4 @@
 
 @include('modules.admin.our_latest_mission')
 
-@include('modules.admin.related_pages')
+@include('modules.admin.related_page_expanded')

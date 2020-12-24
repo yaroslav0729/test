@@ -26,7 +26,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Relation page link title</label>
-            <textarea class="form-control" name="parameters[rel_page_link_title]" placeholder="Relation page link title">{{ $relPageLinkTitle }}</textarea>
+            <input class="form-control" name="parameters[rel_page_link_title]" placeholder="Relation page link title" value="{{ $relPageLinkTitle }}" />
         </div>
     </div>
     <div class="col-12 col-lg-6">
