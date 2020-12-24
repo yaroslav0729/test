@@ -146,6 +146,74 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        /*--------------------- Zakat Calculator ------------------------*/
+        'parameters.tab_calc_title' => 'Tab Calculate Title',
+        'parameters.tab_what_zakat_title' => 'Tab What is Zakat Title',
+        'parameters.calc_base_value_nisaab_title' => 'Base Value of Nisaab title',
+        'parameters.price_silver' => 'Price Silver',
+        'parameters.price_gold' => 'Price Gold',
+        'parameters.calc_below_title' => 'Enter below, your total assets text',
+
+        'parameters.calc_your_assets_section_title' => 'Your assets section title',
+        'parameters.calc_value_gold_title' => 'Value of Gold title',
+        'parameters.calc_value_gold_annotation' => 'Value of Gold annotation',
+        'parameters.calc_value_silver_title' => 'Value of Silver title',
+        'parameters.calc_value_silver_annotation' => 'Value of Silver annotation',
+
+        'parameters.calc_cash_hand_title' => 'Cash in hand/in bank accounts title',
+        'parameters.calc_cash_hand_annotation' => 'Cash in hand/in bank accounts annotation',
+        'parameters.calc_cash_deposited_title' => 'Cash deposited for future purpose title',
+        'parameters.calc_cash_deposited_annotation' => 'Cash deposited for future purpose annotation',
+
+        'parameters.calc_given_title' => 'Given out in loans title',
+        'parameters.calc_given_annotation' => 'Given out in loans annotation',
+        'parameters.calc_other_title' => 'Other investments title',
+        'parameters.calc_other_annotation' => 'Other investments annotation',
+
+        'parameters.calc_trade_goods_section_title' => 'Trade goods section title',
+        'parameters.calc_value_stock_title' => 'Value of stock title',
+        'parameters.calc_value_stock_annotation' => 'Value of stock annotation',
+
+        'parameters.calc_liabilities_section_title' => 'Liabilities section title',
+        'parameters.calc_borrowed_title' => 'Borrowed money/items bought on credit title',
+        'parameters.calc_borrowed_annotation' => 'Borrowed money/items bought on credit annotation',
+        'parameters.calc_wages_title' => 'Wages due to employees title',
+        'parameters.calc_wages_annotation' => 'Wages due to employees annotation',
+
+        'parameters.calc_taxes_title' => 'Taxes/Rent/Utility bills due immediately title',
+        'parameters.calc_taxes_annotation' => 'Taxes/Rent/Utility bills due immediately annotation',
+
+        'parameters.w_i_zakat_title' => 'What is Zakat title',
+        'parameters.w_i_zakat_text' => 'What is Zakat text',
+        'parameters.w_i_obligatory_title' => 'Zakat obligatory title',
+        'parameters.w_i_obligatory_text' => 'Zakat obligatory text',
+
+        'parameters.w_i_donate_title' => 'Why do we donate Zakat title',
+        'parameters.w_i_donate_text' => 'Why do we donate Zakat text',
+        'parameters.w_i_receive_title' => 'Who can receive Zakat title',
+        'parameters.w_i_receive_text' => 'Who can receive Zakat text',
+
+        'parameters.w_i_calc_title' => 'How is Zakat calculated title',
+        'parameters.w_i_calc_text' => 'How is Zakat calculated text',
+        'parameters.w_i_nisaab_title' => 'How is Nisaab measured title',
+        'parameters.w_i_nisaab_text' => 'How is Nisaab measured text',
+
+        'parameters.w_i_should_title' => 'Should I use gold/silver to calculate Nisaab title',
+        'parameters.w_i_should_text' => 'Should I use gold/silver to calculate Nisaab text',
+        'parameters.w_i_gold_title' => 'Gold title',
+        'parameters.w_i_gold_text' => 'Gold text',
+
+        'parameters.w_i_silver_title' => 'Silver title',
+        'parameters.w_i_silver_text' => 'Silver text',
+        'parameters.w_i_btn_title' => 'Calculate Zakat button Title',
+        'parameters.w_i_btn_link' => 'Calculate Zakat button link',
+
+        'parameters.dropdown_title' => 'What do I need title',
+        'parameters.dropdown_text' => 'What do I need text',
+        'parameters.dropdown_link_title' => 'Link title',
+        'parameters.dropdown_link' => 'Link',
+        /*--------------------- End Zakat Calculator ------------------------*/
+    ],
 
 ];

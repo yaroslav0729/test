@@ -28,9 +28,9 @@
             Tel: 020 800 8000
         </div>
 
-        <div class="social d-flex justify-content-between">
+        <div class="social d-flex">
             @foreach ($socialMenu as $menuItem)
-                <a href="{{ $menuItem->link }}">
+                <a href="{{ $menuItem->link }}" class="mr-4">
                     <i class="{{ $socialMenuIcons[$menuItem->text] ?? '' }}"></i>
                 </a>
             @endforeach

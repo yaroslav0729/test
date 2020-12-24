@@ -214,9 +214,40 @@ class Template
                 $rules = [
                     'parameters.tab_calc_title' => 'required',
                     'parameters.tab_what_zakat_title' => 'required',
+                    'parameters.calc_base_value_nisaab_title' => 'required',
 
                     'parameters.price_silver' => 'numeric|min:1',
                     'parameters.price_gold' => 'numeric|min:1',
+
+                    'parameters.calc_below_title' => 'required',
+                    'parameters.calc_your_assets_section_title' => 'required',
+                    'parameters.calc_value_gold_title' => 'required',
+                    'parameters.calc_value_gold_annotation' => 'required',
+                    'parameters.calc_value_silver_title' => 'required',
+                    'parameters.calc_value_silver_annotation' => 'required',
+
+                    'parameters.calc_cash_hand_title' => 'required',
+                    'parameters.calc_cash_hand_annotation' => 'required',
+                    'parameters.calc_cash_deposited_title' => 'required',
+                    'parameters.calc_cash_deposited_annotation' => 'required',
+
+                    'parameters.calc_given_title' => 'required',
+                    'parameters.calc_given_annotation' => 'required',
+                    'parameters.calc_other_title' => 'required',
+                    'parameters.calc_other_annotation' => 'required',
+
+                    'parameters.calc_trade_goods_section_title' => 'required',
+                    'parameters.calc_value_stock_title' => 'required',
+                    'parameters.calc_value_stock_annotation' => 'required',
+
+                    'parameters.calc_liabilities_section_title' => 'required',
+                    'parameters.calc_borrowed_title' => 'required',
+                    'parameters.calc_borrowed_annotation' => 'required',
+                    'parameters.calc_wages_title' => 'required',
+                    'parameters.calc_wages_annotation' => 'required',
+
+                    'parameters.calc_taxes_title' => 'required',
+                    'parameters.calc_taxes_annotation' => 'required',
 
                     'parameters.w_i_zakat_title' => 'required',
                     'parameters.w_i_zakat_text' => 'required',
@@ -240,6 +271,9 @@ class Template
 
                     'parameters.w_i_silver_title' => 'required',
                     'parameters.w_i_silver_text' => 'required',
+
+                    'parameters.w_i_btn_title' => 'required',
+                    'parameters.w_i_btn_link' => 'required',
 
                     'parameters.dropdown_title' => 'required',
                     'parameters.dropdown_text' => 'required',

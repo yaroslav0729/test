@@ -324,6 +324,7 @@
 }
 .mobile-template footer .menu li {
   display: block;
+  width: 100%;
 }
 .mobile-template footer .menu li:after {
   display: none !important;
@@ -353,7 +354,7 @@
   letter-spacing: 1px;
   line-height: 50px;
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 .mobile-template footer .toggle-menu:after {
   content: "";
@@ -426,7 +427,7 @@
   padding: 0;
 }
 .mobile-template .current-projects .title {
-  margin-bottom: 35px;
+  margin-bottom: 55px;
 }
 .mobile-template .current-projects .title:after {
   display: none;
@@ -436,6 +437,9 @@
   font-size: 25px;
   font-weight: 900;
   line-height: 35px;
+}
+.mobile-template .current-projects .title span:after {
+  bottom: -20px;
 }
 .mobile-template .current-projects .title .moon-icons-arrow-down {
   left: auto;
@@ -498,8 +502,22 @@
   left: 0;
 }
 .mobile-template .lets-join {
-  padding: 0;
+  padding: 0 0 106px;
   margin: 0;
+  position: relative;
+  top: -4px;
+  overflow: hidden;
+}
+.mobile-template .lets-join:after {
+  content: "";
+  display: block;
+  background: url(../img/Line-styling.png) no-repeat;
+  background-size: contain;
+  height: 157px;
+  width: 152px;
+  position: absolute;
+  right: -46px;
+  bottom: 20px;
 }
 .mobile-template .lets-join .title {
   font-size: 25px;
@@ -526,7 +544,7 @@
 .mobile-template .lets-join .title i {
   position: absolute;
   right: 0;
-  bottom: 20px;
+  bottom: 14px;
 }
 .mobile-template .lets-join .item {
   padding-bottom: 50px;
@@ -535,6 +553,9 @@
 .mobile-template .lets-join .item .img,
 .mobile-template .lets-join .item .img-video {
   margin-bottom: 40px;
+}
+.mobile-template .lets-join .item .more-view .moon-icons-plus {
+  font-size: 33px;
 }
 .mobile-template .widget-about-project {
   padding: 0;
@@ -558,7 +579,11 @@
   margin-bottom: 0;
 }
 .mobile-template .whats-new .title {
+  padding-left: 13px;
   font-size: 25px;
+  margin-bottom: 30px;
+}
+.mobile-template .whats-new .title svg {
   margin-bottom: 25px;
 }
 .mobile-template .whats-new .item .img {
@@ -615,6 +640,35 @@
 }
 .mobile-template .whats-new .swiper-container .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: #2CAABB;
+}
+.mobile-template .whats-new .down-link {
+  position: relative;
+  margin-top: 45px;
+}
+.mobile-template .whats-new .down-link a {
+  display: inline-block;
+  color: #101525;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 22px;
+  text-transform: uppercase;
+  text-decoration: underline;
+  padding: 15px 10px;
+}
+.mobile-template .whats-new .down-link .view-more {
+  background: #101525;
+  padding: 0;
+  text-decoration: none;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  text-align: center;
+  font-size: 30px;
+  line-height: 60px;
+  color: #fff;
 }
 .mobile-template .join-cause {
   padding: 70px 13px 50px;

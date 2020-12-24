@@ -2,7 +2,7 @@
     <div class="wrap">
         <div class="row align-items-center">
             <div class="col-9">
-                <a href="#" class="logo"><span></span></a>
+                <a href="{{ route('index') }}" class="logo"><span><img src="/img/logo.png" width="35" height="35" style="margin: 8px 0 0 8px" /></span></a>
                 <ul class="d-inline-flex justify-content-between">
                     @isset ($headerMenuItem[0])
                         @foreach($headerMenuItem[0] as $itemMenu)

@@ -1,166 +1,305 @@
 @php
-
     $tabCalculatorTitle = "";
-    $tabWhatZakatTitle = "";
+       $tabWhatZakatTitle = "";
 
-    $whatIsZakatTitle = "";
-    $whatIsZakatText = "";
+       $calculateBaseValueNisaabTitle = "";
 
-    $whatIsObligatoryTitle = "";
-    $whatIsObligatoryText = "";
+       $calculateBelowTitle = "";
+       $calculateYourAssetsSectionTitle = "";
 
-    $whatIsWhyWeDonateTitle = "";
-    $whatIsWhyWeDonateText = "";
+       $calculateValueOfGoldTitle = "";
+       $calculateValueOfGoldAnnotation = "";
 
-    $whatIsReceiveTitle = "";
-    $whatIsReceiveText = "";
+       $calculateValueOfSilverTitle = "";
+       $calculateValueOfSilverAnnotation = "";
 
-    $whatIsHowCalculatedTitle = "";
-    $whatIsHowCalculatedText = "";
+       $calculateCashInHandTitle = "";
+       $calculateCashInHandAnnotation = "";
 
-    $whatIsHowNisaabTitle = "";
-    $whatIsHowNisaabText = "";
+       $calculateCashDepositedTitle = "";
+       $calculateCashDepositedAnnotation = "";
 
-    $whatIsShouldUseTitle = "";
-    $whatIsShouldUseText = "";
+       $calculateGivenTitle = "";
+       $calculateGivenAnnotation = "";
 
-    $whatIsGoldTitle = "";
-    $whatIsGoldText = "";
+       $calculateOtherTitle = "";
+       $calculateOtherAnnotation = "";
 
-    $whatIsSilverTitle = "";
-    $whatIsSilverText = "";
+       $calculateTradeGoodsSectionTitle = "";
 
-    $btnTitle = "";
-    $btnLink = "";
+       $calculateValueOfStockTitle = "";
+       $calculateValueOfStockAnnotation = "";
 
-    $dropdownWhatDoINeedTitle = "";
-    $dropdownWhatDoINeedText = "";
+       $calculateLiabilitiesSectionTitle = "";
 
-    $dropdownLinkTitle = "";
-    $dropdownLink = "";
+       $calculateBorrowedTitle = "";
+       $calculateBorrowedAnnotation = "";
 
-    $priceSilver = "";
-    $priceGold = "";
+       $calculateWagesTitle = "";
+       $calculateWagesAnnotation = "";
 
-    if (isset($parameters['tab_calc_title'])) {
-        $tabCalculatorTitle = $parameters['tab_calc_title'];
-    }
+       $calculateTaxesTitle = "";
+       $calculateTaxesAnnotation = "";
 
-    if (isset($parameters['tab_what_zakat_title'])) {
-        $tabWhatZakatTitle = $parameters['tab_what_zakat_title'];
-    }
+       $whatIsZakatTitle = "";
+       $whatIsZakatText = "";
 
-    if (isset($parameters['w_i_zakat_title'])) {
-        $whatIsZakatTitle = $parameters['w_i_zakat_title'];
-    }
+       $whatIsObligatoryTitle = "";
+       $whatIsObligatoryText = "";
 
-    if (isset($parameters['w_i_zakat_text'])) {
-        $whatIsZakatText = $parameters['w_i_zakat_text'];
-    }
+       $whatIsWhyWeDonateTitle = "";
+       $whatIsWhyWeDonateText = "";
+
+       $whatIsReceiveTitle = "";
+       $whatIsReceiveText = "";
+
+       $whatIsHowCalculatedTitle = "";
+       $whatIsHowCalculatedText = "";
+
+       $whatIsHowNisaabTitle = "";
+       $whatIsHowNisaabText = "";
+
+       $whatIsShouldUseTitle = "";
+       $whatIsShouldUseText = "";
+
+       $whatIsGoldTitle = "";
+       $whatIsGoldText = "";
+
+       $whatIsSilverTitle = "";
+       $whatIsSilverText = "";
+
+       $btnTitle = "";
+       $btnLink = "";
+
+       $dropdownWhatDoINeedTitle = "";
+       $dropdownWhatDoINeedText = "";
+
+       $dropdownLinkTitle = "";
+       $dropdownLink = "";
+
+       $priceSilver = "";
+       $priceGold = "";
+
+       if (isset($parameters['tab_calc_title'])) {
+           $tabCalculatorTitle = $parameters['tab_calc_title'];
+       }
+
+       if (isset($parameters['tab_what_zakat_title'])) {
+           $tabWhatZakatTitle = $parameters['tab_what_zakat_title'];
+       }
+
+       if (isset($parameters['calc_base_value_nisaab_title'])) {
+           $calculateBaseValueNisaabTitle = $parameters['calc_base_value_nisaab_title'];
+       }
+
+       if (isset($parameters['calc_below_title'])) {
+           $calculateBelowTitle = $parameters['calc_below_title'];
+       }
+
+       if (isset($parameters['calc_your_assets_section_title'])) {
+           $calculateYourAssetsSectionTitle = $parameters['calc_your_assets_section_title'];
+       }
+
+       if (isset($parameters['calc_value_gold_title'])) {
+           $calculateValueOfGoldTitle = $parameters['calc_value_gold_title'];
+       }
+
+       if (isset($parameters['calc_value_gold_annotation'])) {
+           $calculateValueOfGoldAnnotation = $parameters['calc_value_gold_annotation'];
+       }
+
+       if (isset($parameters['calc_value_silver_title'])) {
+           $calculateValueOfSilverTitle = $parameters['calc_value_silver_title'];
+       }
+
+       if (isset($parameters['calc_value_silver_annotation'])) {
+           $calculateValueOfSilverAnnotation = $parameters['calc_value_silver_annotation'];
+       }
+
+       if (isset($parameters['calc_cash_hand_title'])) {
+           $calculateCashInHandTitle = $parameters['calc_cash_hand_title'];
+       }
+
+       if (isset($parameters['calc_cash_hand_annotation'])) {
+           $calculateCashInHandAnnotation = $parameters['calc_cash_hand_annotation'];
+       }
+
+       if (isset($parameters['calc_cash_deposited_title'])) {
+           $calculateCashDepositedTitle = $parameters['calc_cash_deposited_title'];
+       }
+
+       if (isset($parameters['calc_cash_deposited_annotation'])) {
+           $calculateCashDepositedAnnotation = $parameters['calc_cash_deposited_annotation'];
+       }
+
+       if (isset($parameters['calc_given_title'])) {
+           $calculateGivenTitle = $parameters['calc_given_title'];
+       }
+
+       if (isset($parameters['calc_given_annotation'])) {
+           $calculateGivenAnnotation = $parameters['calc_given_annotation'];
+       }
+
+       if (isset($parameters['calc_other_title'])) {
+           $calculateOtherTitle = $parameters['calc_other_title'];
+       }
+
+       if (isset($parameters['calc_other_annotation'])) {
+           $calculateOtherAnnotation = $parameters['calc_other_annotation'];
+       }
+
+       if (isset($parameters['calc_trade_goods_section_title'])) {
+           $calculateTradeGoodsSectionTitle = $parameters['calc_trade_goods_section_title'];
+       }
+
+       if (isset($parameters['calc_value_stock_title'])) {
+           $calculateValueOfStockTitle = $parameters['calc_value_stock_title'];
+       }
+
+       if (isset($parameters['calc_value_stock_annotation'])) {
+           $calculateValueOfStockAnnotation = $parameters['calc_value_stock_annotation'];
+       }
+
+       if (isset($parameters['calc_liabilities_section_title'])) {
+           $calculateLiabilitiesSectionTitle = $parameters['calc_liabilities_section_title'];
+       }
+
+       if (isset($parameters['calc_borrowed_title'])) {
+           $calculateBorrowedTitle = $parameters['calc_borrowed_title'];
+       }
+
+       if (isset($parameters['calc_borrowed_annotation'])) {
+           $calculateBorrowedAnnotation = $parameters['calc_borrowed_annotation'];
+       }
+
+       if (isset($parameters['calc_wages_title'])) {
+           $calculateWagesTitle = $parameters['calc_wages_title'];
+       }
+
+       if (isset($parameters['calc_wages_annotation'])) {
+           $calculateWagesAnnotation = $parameters['calc_wages_annotation'];
+       }
+
+       if (isset($parameters['calc_taxes_title'])) {
+           $calculateTaxesTitle = $parameters['calc_taxes_title'];
+       }
+
+       if (isset($parameters['calc_taxes_annotation'])) {
+           $calculateTaxesAnnotation = $parameters['calc_taxes_annotation'];
+       }
+
+       if (isset($parameters['w_i_zakat_title'])) {
+           $whatIsZakatTitle = $parameters['w_i_zakat_title'];
+       }
+
+       if (isset($parameters['w_i_zakat_text'])) {
+           $whatIsZakatText = $parameters['w_i_zakat_text'];
+       }
 
 
-    if (isset($parameters['w_i_obligatory_title'])) {
-        $whatIsObligatoryTitle = $parameters['w_i_obligatory_title'];
-    }
+       if (isset($parameters['w_i_obligatory_title'])) {
+           $whatIsObligatoryTitle = $parameters['w_i_obligatory_title'];
+       }
 
-    if (isset($parameters['w_i_obligatory_text'])) {
-        $whatIsObligatoryText = $parameters['w_i_obligatory_text'];
-    }
-
-
-    if (isset($parameters['w_i_donate_title'])) {
-        $whatIsWhyWeDonateTitle = $parameters['w_i_donate_title'];
-    }
-
-    if (isset($parameters['w_i_donate_text'])) {
-        $whatIsWhyWeDonateText = $parameters['w_i_donate_text'];
-    }
+       if (isset($parameters['w_i_obligatory_text'])) {
+           $whatIsObligatoryText = $parameters['w_i_obligatory_text'];
+       }
 
 
-    if (isset($parameters['w_i_receive_title'])) {
-        $whatIsReceiveTitle = $parameters['w_i_receive_title'];
-    }
+       if (isset($parameters['w_i_donate_title'])) {
+           $whatIsWhyWeDonateTitle = $parameters['w_i_donate_title'];
+       }
 
-    if (isset($parameters['w_i_receive_text'])) {
-        $whatIsReceiveText = $parameters['w_i_receive_text'];
-    }
-
-
-    if (isset($parameters['w_i_calc_title'])) {
-        $whatIsHowCalculatedTitle = $parameters['w_i_calc_title'];
-    }
-
-    if (isset($parameters['w_i_calc_text'])) {
-        $whatIsHowCalculatedText = $parameters['w_i_calc_text'];
-    }
+       if (isset($parameters['w_i_donate_text'])) {
+           $whatIsWhyWeDonateText = $parameters['w_i_donate_text'];
+       }
 
 
-    if (isset($parameters['w_i_nisaab_title'])) {
-        $whatIsHowNisaabTitle = $parameters['w_i_nisaab_title'];
-    }
+       if (isset($parameters['w_i_receive_title'])) {
+           $whatIsReceiveTitle = $parameters['w_i_receive_title'];
+       }
 
-    if (isset($parameters['w_i_nisaab_text'])) {
-        $whatIsHowNisaabText = $parameters['w_i_nisaab_text'];
-    }
-
-
-    if (isset($parameters['w_i_should_title'])) {
-        $whatIsShouldUseTitle = $parameters['w_i_should_title'];
-    }
-
-    if (isset($parameters['w_i_should_text'])) {
-        $whatIsShouldUseText = $parameters['w_i_should_text'];
-    }
+       if (isset($parameters['w_i_receive_text'])) {
+           $whatIsReceiveText = $parameters['w_i_receive_text'];
+       }
 
 
-    if (isset($parameters['w_i_gold_title'])) {
-        $whatIsGoldTitle = $parameters['w_i_gold_title'];
-    }
+       if (isset($parameters['w_i_calc_title'])) {
+           $whatIsHowCalculatedTitle = $parameters['w_i_calc_title'];
+       }
 
-    if (isset($parameters['w_i_gold_text'])) {
-        $whatIsGoldText = $parameters['w_i_gold_text'];
-    }
+       if (isset($parameters['w_i_calc_text'])) {
+           $whatIsHowCalculatedText = $parameters['w_i_calc_text'];
+       }
 
 
-    if (isset($parameters['w_i_silver_title'])) {
-        $whatIsSilverTitle = $parameters['w_i_silver_title'];
-    }
+       if (isset($parameters['w_i_nisaab_title'])) {
+           $whatIsHowNisaabTitle = $parameters['w_i_nisaab_title'];
+       }
 
-    if (isset($parameters['w_i_silver_text'])) {
-        $whatIsSilverText = $parameters['w_i_silver_text'];
-    }
+       if (isset($parameters['w_i_nisaab_text'])) {
+           $whatIsHowNisaabText = $parameters['w_i_nisaab_text'];
+       }
 
-    if (isset($parameters['w_i_btn_title'])) {
-        $btnTitle = $parameters['w_i_btn_title'];
-    }
 
-    if (isset($parameters['w_i_btn_link'])) {
-        $btnLink = $parameters['w_i_btn_link'];
-    }
+       if (isset($parameters['w_i_should_title'])) {
+           $whatIsShouldUseTitle = $parameters['w_i_should_title'];
+       }
 
-    if (isset($parameters['dropdown_title'])) {
-        $dropdownWhatDoINeedTitle = $parameters['dropdown_title'];
-    }
+       if (isset($parameters['w_i_should_text'])) {
+           $whatIsShouldUseText = $parameters['w_i_should_text'];
+       }
 
-    if (isset($parameters['dropdown_text'])) {
-        $dropdownWhatDoINeedText = $parameters['dropdown_text'];
-    }
 
-    if (isset($parameters['dropdown_link_title'])) {
-        $dropdownLinkTitle = $parameters['dropdown_link_title'];
-    }
+       if (isset($parameters['w_i_gold_title'])) {
+           $whatIsGoldTitle = $parameters['w_i_gold_title'];
+       }
 
-    if (isset($parameters['dropdown_link'])) {
-        $dropdownLink = $parameters['dropdown_link'];
-    }
+       if (isset($parameters['w_i_gold_text'])) {
+           $whatIsGoldText = $parameters['w_i_gold_text'];
+       }
 
-    if (isset($parameters['price_silver'])) {
-        $priceSilver = $parameters['price_silver'];
-    }
 
-    if (isset($parameters['price_gold'])) {
-        $priceGold = $parameters['price_gold'];
-    }
+       if (isset($parameters['w_i_silver_title'])) {
+           $whatIsSilverTitle = $parameters['w_i_silver_title'];
+       }
+
+       if (isset($parameters['w_i_silver_text'])) {
+           $whatIsSilverText = $parameters['w_i_silver_text'];
+       }
+
+       if (isset($parameters['w_i_btn_title'])) {
+           $btnTitle = $parameters['w_i_btn_title'];
+       }
+
+       if (isset($parameters['w_i_btn_link'])) {
+           $btnLink = $parameters['w_i_btn_link'];
+       }
+
+       if (isset($parameters['dropdown_title'])) {
+           $dropdownWhatDoINeedTitle = $parameters['dropdown_title'];
+       }
+
+       if (isset($parameters['dropdown_text'])) {
+           $dropdownWhatDoINeedText = $parameters['dropdown_text'];
+       }
+
+       if (isset($parameters['dropdown_link_title'])) {
+           $dropdownLinkTitle = $parameters['dropdown_link_title'];
+       }
+
+       if (isset($parameters['dropdown_link'])) {
+           $dropdownLink = $parameters['dropdown_link'];
+       }
+
+       if (isset($parameters['price_silver'])) {
+           $priceSilver = $parameters['price_silver'];
+       }
+
+       if (isset($parameters['price_gold'])) {
+           $priceGold = $parameters['price_gold'];
+       }
+
 
 @endphp
 
@@ -200,7 +339,7 @@
                 <div class="row align-items-end gutter-5">
                     <div class="col-7">
                         <div class="form-group mb-0">
-                            <label><b>Base value of nisaab</b></label>
+                            <label><b>{{ $calculateBaseValueNisaabTitle }}</b></label>
                             <select class="form-control" id="currency">
                                 <option value="{{ $priceSilver }}">Silver</option>
                                 <option value="{{ $priceGold }}">Gold</option>
@@ -211,30 +350,30 @@
                 </div>
                 <div class="pt-5"></div>
 
-                <div>Enter below, your <b>total</b> assets from the past lunar year, that apply to you. </div>
+                <div>{!! $calculateBelowTitle !!}</div>
                 <div class="line"></div>
-                <div class="text-uppercase"><b>your assets</b></div>
+                <div class="text-uppercase"><b>{{ $calculateYourAssetsSectionTitle }}</b></div>
                 <div class="pt-5"></div>
 
                 <div class="form-group">
-                    <label><b>value of gold</b></label>
+                    <label><b>{{ $calculateValueOfGoldTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                    <small>*Some helper text right here, to assure user of correct decision making.</small>
+                    <small>{{ $calculateValueOfGoldAnnotation }}</small>
                 </div>
                 <div class="form-group">
-                    <label><b>value of silver</b></label>
+                    <label><b>{{ $calculateValueOfSilverTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                    <small>*Some helper text right here, to assure user of correct decision making.</small>
+                    <small>{{ $calculateValueOfSilverAnnotation }}</small>
                 </div>
                 <div class="form-group">
-                    <label><b>Cash in hand / in bank accounts</b></label>
+                    <label><b>{{ $calculateCashInHandTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                    <small>*Some helper text right here, to assure user of correct decision making.</small>
+                    <small>{{ $calculateCashInHandAnnotation }}</small>
                 </div>
                 <div class="form-group">
-                    <label><b>cash deposited for future purpose</b></label>
+                    <label><b>{{ $calculateCashDepositedTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="£ 0.00">
-                    <small>*E.g. Saving for Hajj</small>
+                    <small>{{ $calculateCashDepositedAnnotation }}</small>
                 </div>
                 <div class="form-group">
                     <label><b>Given out in loans</b></label>
@@ -309,7 +448,7 @@
                         </div>
                     </div>
                     <div class="pl-4 pr-4">
-                        
+
                         <a href="#" class="btn btn-danger w-100" zakat-donate-btn>Donate my Zakat</a>
                     </div>
                 </div>

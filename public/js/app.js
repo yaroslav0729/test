@@ -103471,7 +103471,7 @@ $(function () {
     $(divAssets).find('b').html('£' + convertMonetary(asset.toFixed(2)));
     var divZakat = $(zakatPayable).find('.money-val');
 
-    if (asset > metalPrice) {
+    if (asset >= metalPrice) {
       zakat = asset * 0.025;
       $('#zakat-pay').addClass('bg-danger-light');
       $(divZakat).addClass('text-danger');
