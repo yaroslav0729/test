@@ -101,7 +101,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
  * For LGPL see License.txt in the project root for license information.
  * For commercial licenses see https://www.tiny.cloud/
  *
- * Version: 5.6.0 (2020-11-18)
+ * Version: 5.5.1 (2020-10-01)
  */
 (function () {
   'use strict';
@@ -501,16 +501,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return [x];
   };
 
-  var get = function get(xs, i) {
-    return i >= 0 && i < xs.length ? Optional.some(xs[i]) : Optional.none();
-  };
-
   var head = function head(xs) {
-    return get(xs, 0);
+    return xs.length === 0 ? Optional.none() : Optional.some(xs[0]);
   };
 
   var last = function last(xs) {
-    return get(xs, xs.length - 1);
+    return xs.length === 0 ? Optional.none() : Optional.some(xs[xs.length - 1]);
   };
 
   var findMap = function findMap(arr, f) {
@@ -1101,7 +1097,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     });
   };
 
-  var get$1 = function get$1(obj, key) {
+  var get = function get(obj, key) {
     return has(obj, key) ? Optional.from(obj[key]) : Optional.none();
   };
 
@@ -1111,16 +1107,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   var hasNonNullableKey = function hasNonNullableKey(obj, key) {
     return has(obj, key) && obj[key] !== undefined && obj[key] !== null;
-  };
-
-  var isEmpty = function isEmpty(r) {
-    for (var x in r) {
-      if (hasOwnProperty.call(r, x)) {
-        return false;
-      }
-    }
-
-    return true;
   };
 
   var validSectionList = ['tfoot', 'thead', 'tbody', 'colgroup'];
@@ -1250,12 +1236,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   var isText = isType$1(TEXT);
   var isDocument = isType$1(DOCUMENT);
   var isDocumentFragment = isType$1(DOCUMENT_FRAGMENT);
-
-  var isTag = function isTag(tag) {
-    return function (e) {
-      return isElement(e) && name(e) === tag;
-    };
-  };
 
   var owner = function owner(element) {
     return SugarElement.fromDom(element.dom.ownerDocument);
@@ -1423,13 +1403,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   function ClosestOrAncestor(is, ancestor, scope, a, isRoot) {
-    if (is(scope, a)) {
-      return Optional.some(scope);
-    } else if (isFunction(isRoot) && isRoot(scope)) {
-      return Optional.none();
-    } else {
-      return ancestor(scope, a, isRoot);
-    }
+    return is(scope, a) ? Optional.some(scope) : isFunction(isRoot) && isRoot(scope) ? Optional.none() : ancestor(scope, a, isRoot);
   }
 
   var ancestor = function ancestor(scope, predicate, isRoot) {
@@ -1533,13 +1507,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     });
   };
 
-  var get$2 = function get$2(element, key) {
+  var get$1 = function get$1(element, key) {
     var v = element.dom.getAttribute(key);
     return v === null ? undefined : v;
   };
 
   var getOpt = function getOpt(element, key) {
-    return Optional.from(get$2(element, key));
+    return Optional.from(get$1(element, key));
   };
 
   var remove = function remove(element, key) {
@@ -1586,7 +1560,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     });
   };
 
-  var get$3 = function get$3(element, property) {
+  var get$2 = function get$2(element, property) {
     var dom = element.dom;
     var styles = window.getComputedStyle(dom);
     var r = styles.getPropertyValue(property);
@@ -1646,7 +1620,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   var getCssValue = function getCssValue(element, property) {
-    return parseInt(get$3(element, property), 10);
+    return parseInt(get$2(element, property), 10);
   };
 
   var minWidth = constant(10);
@@ -1658,11 +1632,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   var filterFirstLayer = function filterFirstLayer(scope, selector, predicate) {
     return bind(children(scope), function (x) {
-      if (is(x, selector)) {
-        return predicate(x) ? [x] : [];
-      } else {
-        return filterFirstLayer(x, selector, predicate);
-      }
+      return is(x, selector) ? predicate(x) ? [x] : [] : filterFirstLayer(x, selector, predicate);
     });
   };
 
@@ -1695,9 +1665,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   var columns = function columns(ancestor) {
-    return bind(columnGroups(ancestor), function (columnGroup) {
-      return children$2(columnGroup, 'col');
-    });
+    return firstLayer(ancestor, 'col');
   };
 
   var table = function table(element, isRoot) {
@@ -1709,9 +1677,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   var columnGroups = function columnGroups(ancestor) {
-    return table(ancestor).fold(constant([]), function (table) {
-      return children$2(table, 'colgroup');
-    });
+    return firstLayer(ancestor, 'colgroup');
   };
 
   var fromRowsOrColGroups = function fromRowsOrColGroups(elems, getSection) {
@@ -2090,7 +2056,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   var api = NodeValue(isText, 'text');
 
-  var get$4 = function get$4(element) {
+  var get$3 = function get$3(element) {
     return api.get(element);
   };
 
@@ -2134,7 +2100,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     };
 
     var isNonEditable = function isNonEditable(element) {
-      return isElement(element) && get$2(element, 'contenteditable') === 'false';
+      return isElement(element) && get$1(element, 'contenteditable') === 'false';
     };
 
     var comparePosition = function comparePosition(element, other) {
@@ -2158,13 +2124,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         predicate: descendants
       }),
       styles: constant({
-        get: get$3,
+        get: get$2,
         getRaw: getRaw,
         set: set$1,
         remove: remove$1
       }),
       attrs: constant({
-        get: get$2,
+        get: get$1,
         set: set,
         remove: remove,
         copyTo: copyAttributesTo
@@ -2200,7 +2166,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         isText: isText,
         isComment: isComment,
         isElement: isElement,
-        getText: get$4,
+        getText: get$3,
         setText: set$2,
         isBoundary: isBoundary,
         isEmptyTag: isEmptyTag,
@@ -2720,10 +2686,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return nu;
   };
 
-  var transferableAttributes = {
-    scope: ['row', 'col']
-  };
-
   var createCell = function createCell() {
     var td = SugarElement.fromTag('td');
     append(td, SugarElement.fromTag('br'));
@@ -2776,16 +2738,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }).getOr(newCell);
   };
 
-  var cloneAppropriateAttributes = function cloneAppropriateAttributes(original, clone) {
-    each$1(transferableAttributes, function (validAttributes, attributeName) {
-      return getOpt(original, attributeName).filter(function (attribute) {
-        return contains(validAttributes, attribute);
-      }).each(function (attribute) {
-        return set(clone, attributeName, attribute);
-      });
-    });
-  };
-
   var cellOperations = function cellOperations(mutate, doc, formatsToClone) {
     var cloneCss = function cloneCss(prev, clone) {
       copy(prev.element, clone);
@@ -2803,7 +2755,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       var lastNode = formats.length > 0 ? cloneFormats(prev.element, td, formats) : td;
       append(lastNode, SugarElement.fromTag('br'));
       cloneCss(prev, td);
-      cloneAppropriateAttributes(prev.element, td);
       mutate(prev.element, td);
       return td;
     };
@@ -3057,89 +3008,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return context.fold(onNone, onOnly, onLeft, onMiddle, onRight);
   };
 
-  var cat = function cat(arr) {
-    var r = [];
-
-    var push = function push(x) {
-      r.push(x);
-    };
-
-    for (var i = 0; i < arr.length; i++) {
-      arr[i].each(push);
-    }
-
-    return r;
-  };
-
-  var lift2 = function lift2(oa, ob, f) {
-    return oa.isSome() && ob.isSome() ? Optional.some(f(oa.getOrDie(), ob.getOrDie())) : Optional.none();
-  };
-
-  var bindFrom = function bindFrom(a, f) {
-    return a !== undefined && a !== null ? f(a) : Optional.none();
-  };
-
-  function Dimension(name, getOffset) {
-    var set = function set(element, h) {
-      if (!isNumber(h) && !h.match(/^[0-9]+$/)) {
-        throw new Error(name + '.set accepts only positive integer values. Value was ' + h);
-      }
-
-      var dom = element.dom;
-
-      if (isSupported$1(dom)) {
-        dom.style[name] = h + 'px';
-      }
-    };
-
-    var get = function get(element) {
-      var r = getOffset(element);
-
-      if (r <= 0 || r === null) {
-        var css = get$3(element, name);
-        return parseFloat(css) || 0;
-      }
-
-      return r;
-    };
-
-    var getOuter = get;
-
-    var aggregate = function aggregate(element, properties) {
-      return foldl(properties, function (acc, property) {
-        var val = get$3(element, property);
-        var value = val === undefined ? 0 : parseInt(val, 10);
-        return isNaN(value) ? acc : acc + value;
-      }, 0);
-    };
-
-    var max = function max(element, value, properties) {
-      var cumulativeInclusions = aggregate(element, properties);
-      var absoluteMax = value > cumulativeInclusions ? value - cumulativeInclusions : 0;
-      return absoluteMax;
-    };
-
-    return {
-      set: set,
-      get: get,
-      getOuter: getOuter,
-      aggregate: aggregate,
-      max: max
-    };
-  }
-
-  var api$1 = Dimension('width', function (element) {
-    return element.dom.offsetWidth;
-  });
-
-  var get$5 = function get$5(element) {
-    return api$1.get(element);
-  };
-
-  var getOuter = function getOuter(element) {
-    return api$1.getOuter(element);
-  };
-
   var columns$1 = function columns$1(warehouse) {
     var grid = warehouse.grid;
     var cols = range(grid.columns, identity);
@@ -3255,20 +3123,69 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   var getDirection = function getDirection(element) {
-    return get$3(element, 'direction') === 'rtl' ? 'rtl' : 'ltr';
+    return get$2(element, 'direction') === 'rtl' ? 'rtl' : 'ltr';
   };
 
-  var api$2 = Dimension('height', function (element) {
+  function Dimension(name, getOffset) {
+    var set = function set(element, h) {
+      if (!isNumber(h) && !h.match(/^[0-9]+$/)) {
+        throw new Error(name + '.set accepts only positive integer values. Value was ' + h);
+      }
+
+      var dom = element.dom;
+
+      if (isSupported$1(dom)) {
+        dom.style[name] = h + 'px';
+      }
+    };
+
+    var get = function get(element) {
+      var r = getOffset(element);
+
+      if (r <= 0 || r === null) {
+        var css = get$2(element, name);
+        return parseFloat(css) || 0;
+      }
+
+      return r;
+    };
+
+    var getOuter = get;
+
+    var aggregate = function aggregate(element, properties) {
+      return foldl(properties, function (acc, property) {
+        var val = get$2(element, property);
+        var value = val === undefined ? 0 : parseInt(val, 10);
+        return isNaN(value) ? acc : acc + value;
+      }, 0);
+    };
+
+    var max = function max(element, value, properties) {
+      var cumulativeInclusions = aggregate(element, properties);
+      var absoluteMax = value > cumulativeInclusions ? value - cumulativeInclusions : 0;
+      return absoluteMax;
+    };
+
+    return {
+      set: set,
+      get: get,
+      getOuter: getOuter,
+      aggregate: aggregate,
+      max: max
+    };
+  }
+
+  var api$1 = Dimension('height', function (element) {
     var dom = element.dom;
     return inBody(element) ? dom.getBoundingClientRect().height : dom.offsetHeight;
   });
 
-  var get$6 = function get$6(element) {
-    return api$2.get(element);
+  var get$4 = function get$4(element) {
+    return api$1.get(element);
   };
 
-  var getOuter$1 = function getOuter$1(element) {
-    return api$2.getOuter(element);
+  var getOuter = function getOuter(element) {
+    return api$1.getOuter(element);
   };
 
   var r = function r(left, top) {
@@ -3331,6 +3248,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return boxPosition(dom);
   };
 
+  var api$2 = Dimension('width', function (element) {
+    return element.dom.offsetWidth;
+  });
+
+  var get$5 = function get$5(element) {
+    return api$2.get(element);
+  };
+
+  var getOuter$1 = function getOuter$1(element) {
+    return api$2.getOuter(element);
+  };
+
   var rowInfo = function rowInfo(row, y) {
     return {
       row: row,
@@ -3347,7 +3276,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   var rtlEdge = function rtlEdge(cell) {
     var pos = absolute(cell);
-    return pos.left + getOuter(cell);
+    return pos.left + getOuter$1(cell);
   };
 
   var ltrEdge = function ltrEdge(cell) {
@@ -3371,7 +3300,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   var getBottomEdge = function getBottomEdge(index, cell) {
-    return rowInfo(index, getTop(cell) + getOuter$1(cell));
+    return rowInfo(index, getTop(cell) + getOuter(cell));
   };
 
   var findPositions = function findPositions(getInnerEdge, getOuterEdge, array) {
@@ -3487,12 +3416,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   var getProp = function getProp(elm, name, fallback) {
-    return toNumber(get$3(elm, name), fallback);
+    return toNumber(get$2(elm, name), fallback);
   };
 
   var getCalculatedHeight = function getCalculatedHeight(cell) {
     var height = cell.dom.getBoundingClientRect().height;
-    var boxSizing = get$3(cell, 'box-sizing');
+    var boxSizing = get$2(cell, 'box-sizing');
 
     if (boxSizing === 'border-box') {
       return height;
@@ -3508,7 +3437,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   var getCalculatedWidth = function getCalculatedWidth(cell) {
     var width = cell.dom.getBoundingClientRect().width;
-    var boxSizing = get$3(cell, 'box-sizing');
+    var boxSizing = get$2(cell, 'box-sizing');
 
     if (boxSizing === 'border-box') {
       return width;
@@ -3523,7 +3452,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   var getHeight = function getHeight(cell) {
-    return needManualCalc() ? getCalculatedHeight(cell) : getProp(cell, 'height', get$6(cell));
+    return needManualCalc() ? getCalculatedHeight(cell) : getProp(cell, 'height', get$4(cell));
   };
 
   var getWidth = function getWidth(cell) {
@@ -3574,13 +3503,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     var value = getHeightValue(cell);
 
     if (!value) {
-      return get$6(cell);
+      return get$4(cell);
     }
 
-    return normalizePixelSize(value, cell, get$6, setHeight);
+    return normalizePixelSize(value, cell, get$4, setHeight);
   };
 
-  var get$7 = function get$7(cell, type, f) {
+  var get$6 = function get$6(cell, type, f) {
     var v = f(cell);
     var span = getSpan(cell, type);
     return v / span;
@@ -3589,7 +3518,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   var getRawWidth = function getRawWidth(element) {
     var cssWidth = getRaw(element, 'width');
     return cssWidth.fold(function () {
-      return Optional.from(get$2(element, 'width'));
+      return Optional.from(get$1(element, 'width'));
     }, function (width) {
       return Optional.some(width);
     });
@@ -3651,7 +3580,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   var getHeight$1 = function getHeight$1(cell) {
-    return get$7(cell, 'rowspan', getTotalHeight);
+    return get$6(cell, 'rowspan', getTotalHeight);
   };
 
   var getGenericWidth = function getGenericWidth(cell) {
@@ -3691,7 +3620,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   var percentageBasedSizeRegex = constant(rPercentageBasedSizeRegex);
   var pixelBasedSizeRegex = constant(rPixelBasedSizeRegex);
-  var isCol = isTag('col');
 
   var getRaw$1 = function getRaw$1(cell, property, getter) {
     return getRaw(cell, property).fold(function () {
@@ -3702,11 +3630,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   var getRawW = function getRawW(cell, tableSize) {
-    var fallback = function fallback(e) {
-      return isCol(e) ? get$5(e) : getPixelWidth(e, tableSize);
-    };
-
-    return getRaw$1(cell, 'width', fallback);
+    return getRaw$1(cell, 'width', function (e) {
+      return getPixelWidth(e, tableSize);
+    });
   };
 
   var getRawH = function getRawH(cell) {
@@ -3719,38 +3645,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     });
   };
 
-  var isValidColumn = function isValidColumn(cell) {
-    return !isCol(cell) || getRaw(cell, 'width').isSome();
-  };
-
-  var getDimension = function getDimension(cellOpt, index, backups, filter, getter, fallback) {
-    return cellOpt.filter(filter).fold(function () {
-      return fallback(deduce(backups, index));
-    }, function (cell) {
-      return getter(cell);
+  var getWidthFrom = function getWidthFrom(warehouse, getWidth, fallback, tableSize) {
+    var columns = Warehouse.hasColumns(warehouse) ? justCols(warehouse) : columns$1(warehouse);
+    var backups = map(columns, function (cellOption) {
+      return cellOption.map(width.edge);
     });
-  };
-
-  var getWidthFrom = function getWidthFrom(warehouse, table, getWidth, fallback, tableSize) {
-    var columnCells = columns$1(warehouse);
-    var columns = Warehouse.hasColumns(warehouse) ? justCols(warehouse) : columnCells;
-    var backups = [Optional.some(width.edge(table))].concat(map(width.positions(columnCells, table), function (pos) {
-      return pos.map(function (p) {
-        return p.x;
-      });
-    }));
-    var colFilter = not(hasColspan);
     return map(columns, function (cellOption, c) {
-      return getDimension(cellOption, c, backups, colFilter, function (column) {
-        if (isValidColumn(column)) {
-          return getWidth(column, tableSize);
-        } else {
-          var cell = bindFrom(columnCells[c], identity);
-          return getDimension(cell, c, backups, colFilter, function (cell) {
-            return fallback(Optional.some(get$5(cell)));
-          }, fallback);
-        }
-      }, fallback);
+      var columnCell = cellOption.filter(not(hasColspan));
+      return columnCell.fold(function () {
+        var deduced = deduce(backups, c);
+        return fallback(deduced);
+      }, function (cell) {
+        return getWidth(cell, tableSize);
+      });
     });
   };
 
@@ -3760,12 +3667,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }).getOr('');
   };
 
-  var getRawWidths = function getRawWidths(warehouse, table, tableSize) {
-    return getWidthFrom(warehouse, table, getRawW, getDeduced, tableSize);
+  var getRawWidths = function getRawWidths(warehouse, tableSize) {
+    return getWidthFrom(warehouse, getRawW, getDeduced, tableSize);
   };
 
-  var getPercentageWidths = function getPercentageWidths(warehouse, table, tableSize) {
-    return getWidthFrom(warehouse, table, getPercentageWidth, function (deduced) {
+  var getPercentageWidths = function getPercentageWidths(warehouse, tableSize) {
+    return getWidthFrom(warehouse, getPercentageWidth, function (deduced) {
       return deduced.fold(function () {
         return tableSize.minCellWidth();
       }, function (cellWidth) {
@@ -3774,32 +3681,36 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }, tableSize);
   };
 
-  var getPixelWidths = function getPixelWidths(warehouse, table, tableSize) {
-    return getWidthFrom(warehouse, table, getPixelWidth, function (deduced) {
+  var getPixelWidths = function getPixelWidths(warehouse, tableSize) {
+    return getWidthFrom(warehouse, getPixelWidth, function (deduced) {
       return deduced.getOrThunk(tableSize.minCellWidth);
     }, tableSize);
   };
 
-  var getHeightFrom = function getHeightFrom(warehouse, table, direction, getHeight, fallback) {
+  var getHeightFrom = function getHeightFrom(warehouse, direction, getHeight, fallback) {
     var rows = rows$1(warehouse);
-    var backups = [Optional.some(direction.edge(table))].concat(map(direction.positions(rows, table), function (pos) {
-      return pos.map(function (p) {
-        return p.y;
-      });
-    }));
+    var backups = map(rows, function (cellOption) {
+      return cellOption.map(direction.edge);
+    });
     return map(rows, function (cellOption, c) {
-      return getDimension(cellOption, c, backups, not(hasRowspan), getHeight, fallback);
+      var rowCell = cellOption.filter(not(hasRowspan));
+      return rowCell.fold(function () {
+        var deduced = deduce(backups, c);
+        return fallback(deduced);
+      }, function (cell) {
+        return getHeight(cell);
+      });
     });
   };
 
-  var getPixelHeights = function getPixelHeights(warehouse, table, direction) {
-    return getHeightFrom(warehouse, table, direction, getHeight$1, function (deduced) {
+  var getPixelHeights = function getPixelHeights(warehouse, direction) {
+    return getHeightFrom(warehouse, direction, getHeight$1, function (deduced) {
       return deduced.getOrThunk(minHeight);
     });
   };
 
-  var getRawHeights = function getRawHeights(warehouse, table, direction) {
-    return getHeightFrom(warehouse, table, direction, getRawH, getDeduced);
+  var getRawHeights = function getRawHeights(warehouse, direction) {
+    return getHeightFrom(warehouse, direction, getRawH, getDeduced);
   };
 
   var total = function total(start, end, measures) {
@@ -3893,7 +3804,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   var adjustHeight = function adjustHeight(table, delta, index, direction) {
     var warehouse = Warehouse.fromTable(table);
-    var heights = getPixelHeights(warehouse, table, direction);
+    var heights = getPixelHeights(warehouse, direction);
     var newHeights = map(heights, function (dy, i) {
       return index === i ? Math.max(delta + dy, minHeight()) : dy;
     });
@@ -4039,17 +3950,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     };
   };
 
-  var only = function only(element, isResizable) {
+  var only = function only(element) {
     var parent = Optional.from(element.dom.documentElement).map(SugarElement.fromDom).getOr(element);
     return {
       parent: constant(parent),
       view: constant(element),
-      origin: constant(SugarPosition(0, 0)),
-      isResizable: isResizable
+      origin: constant(SugarPosition(0, 0))
     };
   };
 
-  var detached = function detached(editable, chrome, isResizable) {
+  var detached = function detached(editable, chrome) {
     var origin = function origin() {
       return absolute(chrome);
     };
@@ -4057,17 +3967,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return {
       parent: constant(chrome),
       view: constant(editable),
-      origin: origin,
-      isResizable: isResizable
+      origin: origin
     };
   };
 
-  var body$1 = function body$1(editable, chrome, isResizable) {
+  var body$1 = function body$1(editable, chrome) {
     return {
       parent: constant(chrome),
       view: constant(editable),
-      origin: constant(SugarPosition(0, 0)),
-      isResizable: isResizable
+      origin: constant(SugarPosition(0, 0))
     };
   };
 
@@ -4262,7 +4170,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     optWidth.each(function (newWidth) {
       var widthUnit = getUnit(newWidth);
       var totalWidth = get$5(table);
-      var oldWidths = getRawWidths(warehouse, table, tableSize);
+      var oldWidths = getRawWidths(warehouse, tableSize);
       var nuWidths = redistribute(oldWidths, totalWidth, newWidth);
 
       if (Warehouse.hasColumns(warehouse)) {
@@ -4275,8 +4183,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     });
     optHeight.each(function (newHeight) {
       var hUnit = getUnit(newHeight);
-      var totalHeight = get$6(table);
-      var oldHeights = getRawHeights(warehouse, table, height);
+      var totalHeight = get$4(table);
+      var oldHeights = getRawHeights(warehouse, height);
       var nuHeights = redistribute(oldHeights, totalHeight, newHeight);
       redistributeToH(nuHeights, rows, cells, hUnit);
       set$1(table, 'height', newHeight);
@@ -4686,7 +4594,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   var fromRawEvent$1 = fromRawEvent;
 
   var read = function read(element, attr) {
-    var value = get$2(element, attr);
+    var value = get$1(element, attr);
     return value === undefined || value === '' ? [] : value.split(' ');
   };
 
@@ -4715,7 +4623,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return element.dom.classList !== undefined;
   };
 
-  var get$8 = function get$8(element) {
+  var get$7 = function get$7(element) {
     return read(element, 'class');
   };
 
@@ -4736,7 +4644,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   var cleanClass = function cleanClass(element) {
-    var classList = supports(element) ? element.dom.classList : get$8(element);
+    var classList = supports(element) ? element.dom.classList : get$7(element);
 
     if (classList.length === 0) {
       remove(element, 'class');
@@ -4864,7 +4772,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   var isContentEditableTrue = function isContentEditableTrue(elm) {
-    return get$2(elm, 'contenteditable') === 'true';
+    return get$1(elm, 'contenteditable') === 'true';
   };
 
   var findClosestContentEditable = function findClosestContentEditable(target, isRoot) {
@@ -4954,33 +4862,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   var resizeColBar = resolve$1('resizer-cols');
   var BAR_THICKNESS = 7;
 
-  var resizableRows = function resizableRows(warehouse, isResizable) {
-    return bind(warehouse.all, function (row, i) {
-      return isResizable(row.element) ? [i] : [];
-    });
-  };
-
-  var resizableColumns = function resizableColumns(warehouse, isResizable) {
-    var resizableCols = [];
-    range(warehouse.grid.columns, function (index) {
-      var colElmOpt = Warehouse.getColumnAt(warehouse, index).map(function (col) {
-        return col.element;
-      });
-
-      if (colElmOpt.forall(isResizable)) {
-        resizableCols.push(index);
-      }
-    });
-    return filter(resizableCols, function (colIndex) {
-      var columnCells = Warehouse.filterItems(warehouse, function (cell) {
-        return cell.column === colIndex;
-      });
-      return forall(columnCells, function (cell) {
-        return isResizable(cell.element);
-      });
-    });
-  };
-
   var destroy = function destroy(wire) {
     var previous = descendants$1(wire.parent(), '.' + resizeBar);
     each(previous, remove$2);
@@ -5013,36 +4894,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     });
   };
 
-  var refreshGrid = function refreshGrid(warhouse, wire, table, rows, cols) {
+  var refreshGrid = function refreshGrid(wire, table, rows, cols) {
     var position = absolute(table);
-    var isResizable = wire.isResizable;
     var rowPositions = rows.length > 0 ? height.positions(rows, table) : [];
-    var resizableRowBars = rowPositions.length > 0 ? resizableRows(warhouse, isResizable) : [];
-    var resizableRowPositions = filter(rowPositions, function (_pos, i) {
-      return exists(resizableRowBars, function (barIndex) {
-        return i === barIndex;
-      });
-    });
-    refreshRow(wire, resizableRowPositions, position, getOuter(table));
+    refreshRow(wire, rowPositions, position, getOuter$1(table));
     var colPositions = cols.length > 0 ? width.positions(cols, table) : [];
-    var resizableColBars = colPositions.length > 0 ? resizableColumns(warhouse, isResizable) : [];
-    var resizableColPositions = filter(colPositions, function (_pos, i) {
-      return exists(resizableColBars, function (barIndex) {
-        return i === barIndex;
-      });
-    });
-    refreshCol(wire, resizableColPositions, position, getOuter$1(table));
+    refreshCol(wire, colPositions, position, getOuter(table));
   };
 
   var refresh = function refresh(wire, table) {
     destroy(wire);
-
-    if (wire.isResizable(table)) {
-      var warehouse = Warehouse.fromTable(table);
-      var rows = rows$1(warehouse);
-      var cols = columns$1(warehouse);
-      refreshGrid(warehouse, wire, table, rows, cols);
-    }
+    var warehouse = Warehouse.fromTable(table);
+    var rows = rows$1(warehouse);
+    var cols = columns$1(warehouse);
+    refreshGrid(wire, table, rows, cols);
   };
 
   var each$2 = function each$2(wire, f) {
@@ -5078,7 +4943,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     var hoverTable = Optional.none();
 
     var getResizer = function getResizer(element, type) {
-      return Optional.from(get$2(element, type));
+      return Optional.from(get$1(element, type));
     };
 
     mutation.events.drag.bind(function (event) {
@@ -5265,12 +5130,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   var fireTableSelectionClear = function fireTableSelectionClear(editor) {
     editor.fire('TableSelectionClear');
-  };
-
-  var fireTableModified = function fireTableModified(editor, table, data) {
-    editor.fire('TableModified', _assign(_assign({}, data), {
-      table: table
-    }));
   };
 
   var defaultTableToolbar = 'tableprops tabledelete | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol';
@@ -5501,15 +5360,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     };
 
     var zero = constant(0);
-
-    var getWidths = function getWidths(warehouse, tableSize) {
-      return getPixelWidths(warehouse, table, tableSize);
-    };
-
     return {
       width: getWidth,
       pixelWidth: getWidth,
-      getWidths: getWidths,
+      getWidths: getPixelWidths,
       getCellDelta: zero,
       singleColumnWidth: constant([0]),
       minCellWidth: zero,
@@ -5545,14 +5399,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       pixelWidth.set(get$5(table));
     };
 
-    var getWidths = function getWidths(warehouse, tableSize) {
-      return getPercentageWidths(warehouse, table, tableSize);
-    };
-
     return {
       width: floatWidth.get,
       pixelWidth: pixelWidth.get,
-      getWidths: getWidths,
+      getWidths: getPercentageWidths,
       getCellDelta: getCellDelta,
       singleColumnWidth: singleColumnWidth,
       minCellWidth: minCellWidth,
@@ -5579,14 +5429,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       width.set(newWidth);
     };
 
-    var getWidths = function getWidths(warehouse, tableSize) {
-      return getPixelWidths(warehouse, table, tableSize);
-    };
-
     return {
       width: getWidth,
       pixelWidth: getWidth,
-      getWidths: getWidths,
+      getWidths: getPixelWidths,
       getCellDelta: getCellDelta,
       singleColumnWidth: singleColumnWidth,
       minCellWidth: minWidth,
@@ -5631,7 +5477,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     noneSize: noneSize
   };
 
-  var get$9 = function get$9(editor, table) {
+  var get$8 = function get$8(editor, table) {
     if (isPercentagesForced(editor)) {
       var width = getRawWidth$1(editor, table.dom).filter(isPercentage).getOrThunk(function () {
         return getPercentTableWidth$1(table);
@@ -5672,12 +5518,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   var enforcePercentage = function enforcePercentage(editor, table) {
-    var tableSizing = get$9(editor, table);
+    var tableSizing = get$8(editor, table);
     convertToPercentSize(table, tableSizing);
   };
 
   var enforcePixels = function enforcePixels(editor, table) {
-    var tableSizing = get$9(editor, table);
+    var tableSizing = get$8(editor, table);
     convertToPixelSize(table, tableSizing);
   };
 
@@ -5688,7 +5534,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
     if (!Warehouse.hasColumns(warehouse)) {
       each(cells(table), function (cell) {
-        var computedWidth = get$3(cell, 'width');
+        var computedWidth = get$2(cell, 'width');
         set$1(cell, 'width', computedWidth);
         remove(cell, 'width');
       });
@@ -5709,20 +5555,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return container;
   };
 
-  var get$a = function get$a(editor, isResizable) {
-    return editor.inline ? ResizeWire.body(getBody$1(editor), createContainer(), isResizable) : ResizeWire.only(SugarElement.fromDom(editor.getDoc()), isResizable);
+  var get$9 = function get$9(editor, _container) {
+    return editor.inline ? ResizeWire.body(getBody$1(editor), createContainer()) : ResizeWire.only(SugarElement.fromDom(editor.getDoc()));
   };
 
   var remove$6 = function remove$6(editor, wire) {
     if (editor.inline) {
       remove$2(wire.parent());
     }
-  };
-
-  var barResizerPrefix = 'bar-';
-
-  var isResizable = function isResizable(elm) {
-    return get$2(elm, 'data-mce-resize') !== 'false';
   };
 
   var getResizeHandler = function getResizeHandler(editor) {
@@ -5741,11 +5581,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     };
 
     var lazyWire = function lazyWire() {
-      return wire.getOr(ResizeWire.only(SugarElement.fromDom(editor.getBody()), isResizable));
+      return wire.getOr(ResizeWire.only(SugarElement.fromDom(editor.getBody())));
     };
 
     var lazySizing = function lazySizing(table) {
-      return get$9(editor, table);
+      return get$8(editor, table);
     };
 
     var lazyResizingBehaviour = function lazyResizingBehaviour() {
@@ -5758,10 +5598,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
     var afterCornerResize = function afterCornerResize(table, origin, width) {
       var isRightEdgeResize = endsWith(origin, 'e');
-
-      if (startRawW === '') {
-        enforcePercentage(editor, table);
-      }
 
       if (width !== startW && startRawW !== '') {
         set$1(table, 'width', startRawW);
@@ -5790,7 +5626,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     };
 
     editor.on('init', function () {
-      var rawWire = get$a(editor, isResizable);
+      var rawWire = get$9(editor);
       wire = Optional.some(rawWire);
 
       if (hasObjectResizing(editor) && hasTableResizeBars(editor)) {
@@ -5802,7 +5638,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         });
         sz.events.beforeResize.bind(function (event) {
           var rawTable = event.table.dom;
-          fireObjectResizeStart(editor, rawTable, getPixelWidth$1(rawTable), getPixelHeight(rawTable), barResizerPrefix + event.type);
+          fireObjectResizeStart(editor, rawTable, getPixelWidth$1(rawTable), getPixelHeight(rawTable), 'bar-' + event.type);
         });
         sz.events.afterResize.bind(function (event) {
           var table = event.table;
@@ -5812,7 +5648,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             editor.selection.setRng(rng);
             editor.focus();
           });
-          fireObjectResized(editor, rawTable, getPixelWidth$1(rawTable), getPixelHeight(rawTable), barResizerPrefix + event.type);
+          fireObjectResized(editor, rawTable, getPixelWidth$1(rawTable), getPixelHeight(rawTable), 'bar-' + event.type);
           editor.undoManager.add();
         });
         resize = Optional.some(sz);
@@ -5833,10 +5669,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           enforcePercentage(editor, table);
         }
 
-        if (isNoneSizing$1(table) && startsWith(e.origin, barResizerPrefix)) {
-          enforcePercentage(editor, table);
-        }
-
         startW = e.width;
         startRawW = isResponsiveForced(editor) ? '' : getRawWidth$1(editor, targetElm).getOr('');
       }
@@ -5846,6 +5678,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
       if (isTable(targetElm)) {
         var table = SugarElement.fromDom(targetElm);
+
+        if (startRawW === '') {
+          enforcePercentage(editor, table);
+        }
+
         var origin_1 = e.origin;
 
         if (startsWith(origin_1, 'corner-')) {
@@ -5853,7 +5690,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
 
         removeDataStyle(table);
-        fireTableModified(editor, table.dom);
       }
     });
     editor.on('SwitchMode', function () {
@@ -5970,6 +5806,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       rows: result.fail,
       cols: result.pass
     };
+  };
+
+  var cat = function cat(arr) {
+    var r = [];
+
+    var push = function push(x) {
+      r.push(x);
+    };
+
+    for (var i = 0; i < arr.length; i++) {
+      arr[i].each(push);
+    }
+
+    return r;
+  };
+
+  var lift2 = function lift2(oa, ob, f) {
+    return oa.isSome() && ob.isSome() ? Optional.some(f(oa.getOrDie(), ob.getOrDie())) : Optional.none();
   };
 
   var setIfNot = function setIfNot(element, property, value, ignore) {
@@ -6937,7 +6791,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
     var advancedBr = function advancedBr(children) {
       return forall(children, function (c) {
-        return isBr(c) || isText(c) && get$4(c).trim().length === 0;
+        return isBr(c) || isText(c) && get$3(c).trim().length === 0;
       });
     };
 
@@ -7017,27 +6871,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 
   var uniqueRows = function uniqueRows(details) {
-    var rowCompilation = function rowCompilation(rest, detail) {
-      var rowExists = exists(rest, function (currentDetail) {
+    return foldl(details, function (rest, detail) {
+      return exists(rest, function (currentDetail) {
         return currentDetail.row === detail.row;
-      });
-      return rowExists ? rest : rest.concat([detail]);
-    };
-
-    return foldl(details, rowCompilation, []).sort(function (detailA, detailB) {
+      }) ? rest : rest.concat([detail]);
+    }, []).sort(function (detailA, detailB) {
       return detailA.row - detailB.row;
     });
   };
 
   var uniqueColumns = function uniqueColumns(details) {
-    var uniqueCheck = function uniqueCheck(rest, detail) {
-      var columnExists = exists(rest, function (currentDetail) {
+    return foldl(details, function (rest, detail) {
+      return exists(rest, function (currentDetail) {
         return currentDetail.column === detail.column;
-      });
-      return columnExists ? rest : rest.concat([detail]);
-    };
-
-    return foldl(details, uniqueCheck, []).sort(function (detailA, detailB) {
+      }) ? rest : rest.concat([detail]);
+    }, []).sort(function (detailA, detailB) {
       return detailA.column - detailB.column;
     });
   };
@@ -7087,31 +6935,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return bundle(newGrid, detail.row, detail.column);
   };
 
-  var opMakeRowsHeader = function opMakeRowsHeader(initialGrid, details, comparator, genWrappers) {
-    var rows = uniqueRows(details);
-
-    var replacer = function replacer(currentGrid, row) {
-      return replaceRow(currentGrid, row.row, comparator, genWrappers.replaceOrInit);
-    };
-
-    var newGrid = foldl(rows, replacer, initialGrid);
-    return bundle(newGrid, details[0].row, details[0].column);
-  };
-
-  var opMakeColumnHeader = function opMakeColumnHeader(initialGrid, detail, comparator, genWrappers) {
-    var newGrid = replaceColumn(initialGrid, detail.column, comparator, genWrappers.replaceOrInit);
+  var opMakeColumnHeader = function opMakeColumnHeader(grid, detail, comparator, genWrappers) {
+    var newGrid = replaceColumn(grid, detail.column, comparator, genWrappers.replaceOrInit);
     return bundle(newGrid, detail.row, detail.column);
-  };
-
-  var opMakeColumnsHeader = function opMakeColumnsHeader(initialGrid, details, comparator, genWrappers) {
-    var columns = uniqueColumns(details);
-
-    var replacer = function replacer(currentGrid, column) {
-      return replaceColumn(currentGrid, column.column, comparator, genWrappers.replaceOrInit);
-    };
-
-    var newGrid = foldl(columns, replacer, initialGrid);
-    return bundle(newGrid, details[0].row, details[0].column);
   };
 
   var opUnmakeRowHeader = function opUnmakeRowHeader(grid, detail, comparator, genWrappers) {
@@ -7119,31 +6945,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return bundle(newGrid, detail.row, detail.column);
   };
 
-  var opUnmakeRowsHeader = function opUnmakeRowsHeader(initialGrid, details, comparator, genWrappers) {
-    var rows = uniqueRows(details);
-
-    var replacer = function replacer(currentGrid, row) {
-      return replaceRow(currentGrid, row.row, comparator, genWrappers.replaceOrInit);
-    };
-
-    var newGrid = foldl(rows, replacer, initialGrid);
-    return bundle(newGrid, details[0].row, details[0].column);
-  };
-
-  var opUnmakeColumnHeader = function opUnmakeColumnHeader(initialGrid, detail, comparator, genWrappers) {
-    var newGrid = replaceColumn(initialGrid, detail.column, comparator, genWrappers.replaceOrInit);
+  var opUnmakeColumnHeader = function opUnmakeColumnHeader(grid, detail, comparator, genWrappers) {
+    var newGrid = replaceColumn(grid, detail.column, comparator, genWrappers.replaceOrInit);
     return bundle(newGrid, detail.row, detail.column);
-  };
-
-  var opUnmakeColumnsHeader = function opUnmakeColumnsHeader(initialGrid, details, comparator, genWrappers) {
-    var columns = uniqueColumns(details);
-
-    var replacer = function replacer(currentGrid, column) {
-      return replaceColumn(currentGrid, column.column, comparator, genWrappers.replaceOrInit);
-    };
-
-    var newGrid = foldl(columns, replacer, initialGrid);
-    return bundle(newGrid, details[0].row, details[0].column);
   };
 
   var opEraseColumns = function opEraseColumns(grid, details, _comparator, _genWrappers) {
@@ -7185,9 +6989,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     var mergedGrid = merge$1(startAddress, grid, gridB, pasteDetails.generators, comparator);
     return mergedGrid.fold(function () {
       return outcome(grid, Optional.some(pasteDetails.element));
-    }, function (newGrid) {
-      var cursor = elementFromGrid(newGrid, pasteDetails.row, pasteDetails.column);
-      return outcome(newGrid, cursor);
+    }, function (nuGrid) {
+      var cursor = elementFromGrid(nuGrid, pasteDetails.row, pasteDetails.column);
+      return outcome(nuGrid, cursor);
     });
   };
 
@@ -7275,13 +7079,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   var eraseColumns = run(opEraseColumns, onCells, resize, prune, Generators.modification);
   var eraseRows = run(opEraseRows, onCells, noop, prune, Generators.modification);
   var makeColumnHeader = run(opMakeColumnHeader, onCell, noop, noop, Generators.transform('row', 'th'));
-  var makeColumnsHeader = run(opMakeColumnsHeader, onCells, noop, noop, Generators.transform('row', 'th'));
   var unmakeColumnHeader = run(opUnmakeColumnHeader, onCell, noop, noop, Generators.transform(null, 'td'));
-  var unmakeColumnsHeader = run(opUnmakeColumnsHeader, onCells, noop, noop, Generators.transform(null, 'td'));
   var makeRowHeader = run(opMakeRowHeader, onCell, noop, noop, Generators.transform('col', 'th'));
-  var makeRowsHeader = run(opMakeRowsHeader, onCells, noop, noop, Generators.transform('col', 'th'));
   var unmakeRowHeader = run(opUnmakeRowHeader, onCell, noop, noop, Generators.transform(null, 'td'));
-  var unmakeRowsHeader = run(opUnmakeRowsHeader, onCells, noop, noop, Generators.transform(null, 'td'));
   var mergeCells = run(opMergeCells, onMergable, noop, noop, Generators.merging);
   var unmergeCells = run(opUnmergeCells, onUnmergable, resize, noop, Generators.merging);
   var pasteCells = run(opPasteCells, onPaste, resize, noop, Generators.modification);
@@ -7432,7 +7232,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return lift2(cellOpt, rowsOpt, function (cell, rows) {
       return filter(rows, function (row) {
         return exists(fromDom$1(row.dom.cells), function (rowCell) {
-          return get$2(rowCell, selector) === '1' || eq(rowCell, cell);
+          return get$1(rowCell, selector) === '1' || eq(rowCell, cell);
         });
       });
     }).getOr([]);
@@ -7459,7 +7259,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var wire = lazyWire();
         var doc = SugarElement.fromDom(editor.getDoc());
         var generators = cellOperations(mutate, doc, cloneFormats);
-        var sizing = get$9(editor, table);
+        var sizing = get$8(editor, table);
         return guard(table) ? operation(wire, table, target, generators, sizing).bind(function (result) {
           each(result.newRows, function (row) {
             fireNewRow(editor, row.dom);
@@ -7493,7 +7293,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     var pasteCells$1 = execute(pasteCells, always, noop, lazyWire);
 
     var extractType = function extractType(args, validTypes) {
-      return get$1(args, 'type').filter(function (type) {
+      return get(args, 'type').filter(function (type) {
         return contains(validTypes, type);
       });
     };
@@ -7515,8 +7315,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       });
     };
 
-    var makeColumnsHeader$1 = execute(makeColumnsHeader, always, noop, lazyWire);
-    var unmakeColumnsHeader$1 = execute(unmakeColumnsHeader, always, noop, lazyWire);
+    var makeColumnHeader$1 = execute(makeColumnHeader, always, noop, lazyWire);
+    var unmakeColumnHeader$1 = execute(unmakeColumnHeader, always, noop, lazyWire);
 
     var getTableRowType = function getTableRowType(editor) {
       var rows = getRowsFromSelection(getSelectionStart(editor), ephemera.selected);
@@ -7567,8 +7367,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       pasteCells: pasteCells$1,
       setTableCellType: setTableCellType,
       setTableRowType: setTableRowType,
-      makeColumnsHeader: makeColumnsHeader$1,
-      unmakeColumnsHeader: unmakeColumnsHeader$1,
+      makeColumnHeader: makeColumnHeader$1,
+      unmakeColumnHeader: unmakeColumnHeader$1,
       getTableRowType: getTableRowType,
       getTableCellType: getTableCellType,
       getTableColType: getTableColType
@@ -7666,7 +7466,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     return table;
   };
 
-  var get$b = function get$b(element) {
+  var get$a = function get$a(element) {
     return element.dom.innerHTML;
   };
 
@@ -7674,7 +7474,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     var container = SugarElement.fromTag('div');
     var clone = SugarElement.fromDom(element.dom.cloneNode(true));
     append(container, clone);
-    return get$b(container);
+    return get$a(container);
   };
 
   var placeCaretInCell = function placeCaretInCell(editor, cell) {
@@ -7706,13 +7506,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       attributes: getDefaultAttributes(editor),
       colGroups: useColumnGroup(editor)
     };
-    editor.undoManager.ignore(function () {
-      var table = render$1(rows, columns, rowHeaders, colHeaders, getTableHeaderType(editor), options);
-      set(table, 'data-mce-id', '__mce');
-      var html = getOuter$2(table);
-      editor.insertContent(html);
-      editor.addVisual();
-    });
+    var table = render$1(rows, columns, rowHeaders, colHeaders, getTableHeaderType(editor), options);
+    set(table, 'data-mce-id', '__mce');
+    var html = getOuter$2(table);
+    editor.insertContent(html);
     return descendant$1(getBody$1(editor), 'table[data-mce-id="__mce"]').map(function (table) {
       if (isPixelsForced(editor)) {
         enforcePixels(editor, table);
@@ -7768,21 +7565,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     };
   };
 
-  var insertTable = function insertTable(editor) {
-    return function (columns, rows, options) {
-      if (options === void 0) {
-        options = {};
-      }
-
-      var table = insertTableWithDataValidation(editor, rows, columns, options, 'Invalid values for insertTable - rows and columns values are required to insert a table.');
-      editor.undoManager.add();
-      return table;
-    };
-  };
-
   var getApi = function getApi(editor, clipboard, resizeHandler, selectionTargets) {
     return {
-      insertTable: insertTable(editor),
+      insertTable: function insertTable(columns, rows, options) {
+        if (options === void 0) {
+          options = {};
+        }
+
+        return insertTableWithDataValidation(editor, rows, columns, options, 'Invalid values for insertTable - rows and columns values are required to insert a table.');
+      },
       setClipboardRows: setClipboardElements(clipboard.setRows),
       getClipboardRows: getClipboardElements(clipboard.getRows),
       setClipboardCols: setClipboardElements(clipboard.setColumns),
@@ -8047,9 +7838,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
     var extractAdvancedStyleData = function extractAdvancedStyleData(dom) {
       return {
-        borderstyle: get$1(style, 'border-style').getOr(''),
-        bordercolor: rgbToHex(dom)(get$1(style, 'border-color').getOr('')),
-        backgroundcolor: rgbToHex(dom)(get$1(style, 'background-color').getOr(''))
+        borderstyle: get(style, 'border-style').getOr(''),
+        bordercolor: rgbToHex(dom)(get(style, 'border-color').getOr('')),
+        backgroundcolor: rgbToHex(dom)(get(style, 'background-color').getOr(''))
       };
     };
 
@@ -8073,7 +7864,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         };
       }
 
-      return get$1(attrs, 'border').fold(function () {
+      return get(attrs, 'border').fold(function () {
         return {};
       }, function (border) {
         return {
@@ -8085,14 +7876,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     var advStyle = hasAdvTableTab ? extractAdvancedStyleData(editor.dom) : {};
 
     var getCellPaddingCellSpacing = function getCellPaddingCellSpacing() {
-      var spacing = get$1(style, 'border-spacing').or(get$1(attrs, 'cellspacing')).fold(function () {
+      var spacing = get(style, 'border-spacing').or(get(attrs, 'cellspacing')).fold(function () {
         return {};
       }, function (cellspacing) {
         return {
           cellspacing: cellspacing
         };
       });
-      var padding = get$1(style, 'border-padding').or(get$1(attrs, 'cellpadding')).fold(function () {
+      var padding = get(style, 'border-padding').or(get(attrs, 'cellpadding')).fold(function () {
         return {};
       }, function (cellpadding) {
         return {
@@ -8337,9 +8128,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     var isSingleCell = cells.length === 1;
 
     if (cells.length >= 1) {
-      var tableOpt = table(cells[0]);
       getSelectedCells(cells).each(function (selectedCells) {
-        each(selectedCells, function (item) {
+        return each(selectedCells, function (item) {
           var cellElement = item.element;
           var cellElm = data.celltype && getNodeName(cellElement) !== data.celltype ? dom.rename(cellElement, data.celltype) : cellElement;
           var modifier = isSingleCell ? DomModifier.normal(editor, cellElm) : DomModifier.ifTruthy(editor, cellElm);
@@ -8365,9 +8155,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             applyVAlign(editor, cellElm, data.valign);
           }
         });
-      });
-      tableOpt.each(function (table) {
-        return fireTableModified(editor, table.dom);
       });
     }
   };
@@ -8519,9 +8306,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         unApplyAlign(editor, rowElm);
         applyAlign(editor, rowElm, data.align);
       }
-    });
-    table(SugarElement.fromDom(rows[0])).each(function (table) {
-      return fireTableModified(editor, table.dom);
     });
   };
 
@@ -8716,7 +8500,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
     attrs.style = dom.serializeStyle(_assign(_assign({}, getDefaultStyles(editor)), styles));
     dom.setAttribs(tableElm, _assign(_assign({}, getDefaultAttributes(editor)), attrs));
-    fireTableModified(editor, tableElm);
   };
 
   var onSubmitTableForm = function onSubmitTableForm(editor, tableElm, api) {
@@ -8887,7 +8670,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
 
             removeDataStyle(table);
-            fireTableModified(editor, table.dom);
           });
         }
       });
@@ -8897,21 +8679,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       return table(cell, isRoot);
     };
 
-    var postExecute = function postExecute(table) {
-      return function (rng) {
-        editor.selection.setRng(rng);
-        editor.focus();
-        cellSelection.clear(table);
-        removeDataStyle(table);
-        fireTableModified(editor, table.dom);
-      };
-    };
-
     var actOnSelection = function actOnSelection(execute) {
       return getSelectionStartCell$1(editor).each(function (cell) {
         getTableFromCell(cell).each(function (table) {
           var targets = forMenu(selections, table, cell);
-          execute(table, targets).each(postExecute(table));
+          execute(table, targets).each(function (rng) {
+            editor.selection.setRng(rng);
+            editor.focus();
+            cellSelection.clear(table);
+            removeDataStyle(table);
+          });
         });
       });
     };
@@ -8944,7 +8721,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return getTableFromCell(cell).each(function (table) {
             var generators = paste(SugarElement.fromDom(editor.getDoc()));
             var targets = pasteRows(selections, cell, clonedRows, generators);
-            execute(table, targets).each(postExecute(table));
+            execute(table, targets).each(function (rng) {
+              editor.selection.setRng(rng);
+              editor.focus();
+              cellSelection.clear(table);
+            });
           });
         });
       });
@@ -9016,30 +8797,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }, function (func, name) {
       return editor.addCommand(name, func);
     });
-
-    var fireTableModifiedForSelection = function fireTableModifiedForSelection(editor, tableOpt) {
-      tableOpt.each(function (table) {
-        fireTableModified(editor, table.dom);
-      });
-    };
-
     each$1({
       mceTableCellType: function mceTableCellType(_ui, args) {
-        var tableOpt = table(getSelectionStart(editor), isRoot);
-        actions.setTableCellType(editor, args);
-        fireTableModifiedForSelection(editor, tableOpt);
+        return actions.setTableCellType(editor, args);
       },
       mceTableRowType: function mceTableRowType(_ui, args) {
-        var tableOpt = table(getSelectionStart(editor), isRoot);
-        actions.setTableRowType(editor, args);
-        fireTableModifiedForSelection(editor, tableOpt);
+        return actions.setTableRowType(editor, args);
       }
     }, function (func, name) {
       return editor.addCommand(name, func);
     });
     editor.addCommand('mceTableColType', function (_ui, args) {
-      return get$1(args, 'type').each(function (type) {
-        return actOnSelection(type === 'th' ? actions.makeColumnsHeader : actions.unmakeColumnsHeader);
+      return get(args, 'type').each(function (type) {
+        return actOnSelection(type === 'th' ? actions.makeColumnHeader : actions.unmakeColumnHeader);
       });
     });
     each$1({
@@ -9059,10 +8829,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
     });
     editor.addCommand('mceTableApplyCellStyle', function (_ui, args) {
-      var getFormatName = function getFormatName(style) {
-        return 'tablecell' + style.toLowerCase().replace('-', '');
-      };
-
       if (!isObject(args)) {
         return;
       }
@@ -9073,24 +8839,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         return;
       }
 
-      var validArgs = filter$1(args, function (value, style) {
-        return editor.formatter.has(getFormatName(style)) && isString(value);
-      });
+      each$1(args, function (value, style) {
+        var formatName = 'tablecell' + style.toLowerCase().replace('-', '');
 
-      if (isEmpty(validArgs)) {
-        return;
-      }
-
-      each$1(validArgs, function (value, style) {
-        each(cells, function (cell) {
-          DomModifier.normal(editor, cell.dom).setFormat(getFormatName(style), value);
-        });
-      });
-      getTableFromCell(cells[0]).each(function (table) {
-        return fireTableModified(editor, table.dom, {
-          structure: false,
-          style: true
-        });
+        if (editor.formatter.has(formatName) && isString(value)) {
+          each(cells, function (cell) {
+            DomModifier.normal(editor, cell.dom).setFormat(formatName, value);
+          });
+        }
       });
     });
   };
@@ -9510,7 +9266,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       return r.getBoundingClientRect();
     };
 
-    var length = get$4(textnode).length;
+    var length = get$3(textnode).length;
     var offset = searchForPoint(rectForOffset, x, y, rect.right, length);
     return rangeForOffset(offset);
   };
@@ -9621,15 +9377,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     });
   };
 
-  var availableSearch = function () {
-    if (document.caretPositionFromPoint) {
-      return caretPositionFromPoint;
-    } else if (document.caretRangeFromPoint) {
-      return caretRangeFromPoint;
-    } else {
-      return searchFromPoint;
-    }
-  }();
+  var availableSearch = document.caretPositionFromPoint ? caretPositionFromPoint : document.caretRangeFromPoint ? caretRangeFromPoint : searchFromPoint;
 
   var fromPoint$1 = function fromPoint$1(win, x, y) {
     var doc = SugarElement.fromDom(win.document);
@@ -9787,7 +9535,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }).bind(doGetExact);
   };
 
-  var get$c = function get$c(win) {
+  var get$b = function get$b(win) {
     return getExact(win).map(function (range) {
       return SimSelection.exact(range.start, range.soffset, range.finish, range.foffset);
     });
@@ -10178,7 +9926,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
   var gatherer = function gatherer(cand, gather, isRoot) {
     return gather(cand, isRoot).bind(function (target) {
-      return isText(target) && get$4(target).trim().length === 0 ? gatherer(target, gather, isRoot) : Optional.some(target);
+      return isText(target) && get$3(target).trim().length === 0 ? gatherer(target, gather, isRoot) : Optional.some(target);
     });
   };
 
@@ -10698,7 +10446,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     isForward: isKey(37)
   };
 
-  var get$d = function get$d(_DOC) {
+  var get$c = function get$c(_DOC) {
     var doc = _DOC !== undefined ? _DOC.dom : document;
     var x = doc.body.scrollLeft || doc.documentElement.scrollLeft;
     var y = doc.body.scrollTop || doc.documentElement.scrollTop;
@@ -10729,7 +10477,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     };
 
     var getSelection = function getSelection() {
-      return get$c(win).map(function (exactAdt) {
+      return get$b(win).map(function (exactAdt) {
         return convertToRange(win, exactAdt);
       });
     };
@@ -10754,7 +10502,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         toStart = false;
       }
 
-      get$c(win).each(function (sel) {
+      get$b(win).each(function (sel) {
         return sel.fold(function (rng) {
           return rng.collapse(toStart);
         }, function (startSitu, finishSitu) {
@@ -10785,7 +10533,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     };
 
     var getScrollY = function getScrollY() {
-      var pos = get$d(SugarElement.fromDom(win.document));
+      var pos = get$c(SugarElement.fromDom(win.document));
       return pos.top;
     };
 
@@ -11485,11 +11233,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       };
     };
 
-    var insertTableAction = function insertTableAction(data) {
-      editor.execCommand('mceInsertTable', false, {
-        rows: data.numRows,
-        columns: data.numColumns
+    var insertTableAction = function insertTableAction(_a) {
+      var numRows = _a.numRows,
+          numColumns = _a.numColumns;
+      editor.undoManager.transact(function () {
+        insert$1(editor, numColumns, numRows, 0, 0);
       });
+      editor.addVisual();
     };
 
     var tableProperties = {
@@ -11730,7 +11480,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/node_modules/tinymce/plugins/table/plugin.js */"./node_modules/tinymce/plugins/table/plugin.js");
+module.exports = __webpack_require__(/*! C:\OSPanel\domains\islamichelp\node_modules\tinymce\plugins\table\plugin.js */"./node_modules/tinymce/plugins/table/plugin.js");
 
 
 /***/ })
