@@ -684,6 +684,9 @@
 .mobile-template .join-cause form button i {
   margin: 0;
 }
+.mobile-template .join-cause form input {
+  width: 100%;
+}
 .mobile-template .join-cause .img {
   padding-bottom: 80%;
   margin: 0 -30px;
