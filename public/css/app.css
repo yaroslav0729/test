@@ -15202,9 +15202,6 @@ a#clear_all_btn:hover {
     background: #aaa;
     z-index: 10;
 }
-/* .mobile-template .wrapper {
-padding-top: 108px !important;
-} */
 .toast-title{font-weight:700}
 .toast-message{-ms-word-wrap:break-word;word-wrap:break-word}
 .toast-message a,.toast-message label{color:#FFF}
