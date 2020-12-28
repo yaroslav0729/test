@@ -24,8 +24,8 @@ class CreateEditCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'slug' => 'required',
+            'name' => 'required|max:100',
+            'slug' => 'required|max:255',
         ];
     }
 }
