@@ -258,10 +258,6 @@
     'parameters' => $parameters
 ])
 
-@include('modules.presentation.related_pages', [
-    'parameters' => $parameters
-])
-
 <section class="lets-join">
     <div class="wrap">
         <div class="row gutter-0 align-items-center">
