@@ -230,12 +230,26 @@ $(function () {
         hiddenForm.removeClass('d-none')
     })
 
+    function validateEmail(email) 
+    {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
     $(document).on('click', '#subscription_sbmt', function(e) {
 
         e.preventDefault()
 
         var form = $('#subscription_form');
         var formData = new FormData(form[0]);
+
+        let email = form.find('input[name="email"]').val()
+        let validate = validateEmail(email)
+
+        if (!validate) {
+            toastr.warning('Enter valid email address','Wrong email')
+            return 
+        }
 
         $.ajax({
             url     : form.attr('action'),
