@@ -28,7 +28,16 @@ class CampaignCreateEditRequest extends FormRequest
             'description' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'country_id' => 'required'
+            'country_id' => 'required',
+            'prices' => 'page_prices',
+            'prices_new' => 'page_prices'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'prices_new.page_prices' => 'Enter value for all prices',
         ];
     }
 }

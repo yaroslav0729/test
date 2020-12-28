@@ -45,6 +45,14 @@ class AppServiceProvider extends ServiceProvider
             return !$query->count();
         });
 
+        Validator::extend('page_prices', function ($value, $parameters) {
+            foreach ($parameters as $parameter) {
+                if (!is_numeric($parameter))    return false;
+            }
+
+            return true;
+        });
+
         View::share([
             'headerMenuItem' => MenuHelper::groupByLevels(
                 MenuItem::rootMenuByDestination(MenuItem::HEADER_MENU)
