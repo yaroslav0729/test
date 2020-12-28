@@ -27,7 +27,7 @@ $categories = \App\Models\CampaignCategory::all();
                 </div>
                 <div class="col-2">
                     <div class="form-group" currency="£">
-                        <input type="number" name="amount" class="form-control" placeholder="Enter amount">
+                        <input type="number" name="amount" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                     </div>
                 </div>
                 <div class="col-2">
