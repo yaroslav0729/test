@@ -104074,6 +104074,7 @@ $(function () {
     var form = $(this).closest('form');
     var amountId = $(this).data('amount_id');
     $('[amount-countries]').addClass('d-none');
+    $('[amount-countries] select').attr('disabled', 'disabled');
     var countriesEl = $(form).find(' [amount-countries][data-amount_id="' + amountId + '"]');
     var countOpt = $('option', countriesEl).length;
 
@@ -104081,6 +104082,7 @@ $(function () {
       countriesEl.removeClass('d-none');
     }
 
+    countriesEl.find('select').removeAttr('disabled');
     var price = $(this).find('input[name="price"]').val();
     $(this).closest('form').find('input[name="amount"]').val(price);
     changeDonateCategDropdown(countriesEl);

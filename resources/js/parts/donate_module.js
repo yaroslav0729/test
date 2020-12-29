@@ -16,13 +16,16 @@ $(function () {
         let form = $(this).closest('form')
         let amountId = $(this).data('amount_id')
         $('[amount-countries]').addClass('d-none')
+        $('[amount-countries] select').attr('disabled', 'disabled');
         let countriesEl = $(form).find(' [amount-countries][data-amount_id="' + amountId +'"]');
         let countOpt = $('option', countriesEl).length
 
         if (countOpt > 1) {
-            countriesEl.removeClass('d-none')
+            countriesEl.removeClass('d-none')  
         }
-        
+
+        countriesEl.find('select').removeAttr('disabled');
+
         let price = $(this).find('input[name="price"]').val()
         $(this).closest('form').find('input[name="amount"]').val(price)
 

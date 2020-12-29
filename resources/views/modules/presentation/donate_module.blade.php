@@ -48,6 +48,8 @@ foreach ($amount as $key => $item) {
     }
 }
 
+$allCategories = \App\Models\CampaignCategory::all();  
+
 @endphp
 
 <div class="body">
@@ -97,6 +99,9 @@ foreach ($amount as $key => $item) {
                                     <div class="form-group">
                                         <select class="form-control" name="categories">
                                             {{-- will be replaced by js --}}
+                                            @foreach($allCategories as $category) 
+                                                <option value="{{ $category->name }}"> {{ $category->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -138,6 +143,9 @@ foreach ($amount as $key => $item) {
                                     <div class="form-group">
                                         <select class="form-control" name="categories">
                                             {{-- will be replaced by js --}}
+                                            @foreach($allCategories as $category) 
+                                                <option value="{{ $category->name }}"> {{ $category->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -193,6 +201,9 @@ foreach ($amount as $key => $item) {
                                     <div class="form-group">
                                         <select class="form-control" name="categories">
                                             {{-- will be replaced by js --}}
+                                            @foreach($allCategories as $category) 
+                                                <option value="{{ $category->name }}"> {{ $category->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
