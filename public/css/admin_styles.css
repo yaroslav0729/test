@@ -1,6 +1,9 @@
 h1 {
     font-weight: bold;
 }
+#admin_content {
+    min-height: 100vh;
+}
 #admin_content .btn{
     min-width: 0;
 }
@@ -22,6 +25,7 @@ h1 {
 }
 #left_menu {
     padding: 20px;
+    min-height: 100vh;
 }
 #left_menu ul {
     margin: 0;

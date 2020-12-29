@@ -12,7 +12,7 @@
 
 @section('content')
 
-<div id="admin_content" class="bg-gray-100 flex-auto h-screen">
+<div id="admin_content" class="bg-gray-100 flex-auto">
     <div class="p-5 pb-8 lg:w-1/2">
         <h1>{{ $pageTitle }}</h1>
 
