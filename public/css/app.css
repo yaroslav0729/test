@@ -15211,6 +15211,8 @@ a#clear_all_btn:hover {
     color: #000;
     box-shadow: 0 0 0 2px #000000 inset !important;  
 }
+.lets-join a p {color: #101525;}
+.lets-join a:hover {-webkit-text-decoration-color: #101525;text-decoration-color: #101525;}
 .toast-title{font-weight:700}
 .toast-message{-ms-word-wrap:break-word;word-wrap:break-word}
 .toast-message a,.toast-message label{color:#FFF}

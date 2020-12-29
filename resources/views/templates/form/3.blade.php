@@ -232,6 +232,8 @@
     </div>
 </div>
 
+@include('modules.admin.lets_join')
+
 <div class="col-12 mt-5">
     @include('modules.admin.join_the_cause_subscribe2', [
         'parameters' => $parameters
