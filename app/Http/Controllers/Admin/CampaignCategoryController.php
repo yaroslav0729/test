@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CampaignCategory;
+use App\Http\Requests\CampaignCategoryRequest;
 
 class CampaignCategoryController extends Controller
 {
@@ -36,7 +37,7 @@ class CampaignCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CampaignCategoryRequest $request)
     {
         $campaignCategory = CampaignCategory::create($request->all());
 
@@ -74,7 +75,7 @@ class CampaignCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CampaignCategoryRequest $request, $id)
     {
         $campaignCategory = CampaignCategory::findOrFail($id);
         $campaignCategory->update($request->all());

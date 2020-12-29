@@ -24,7 +24,7 @@ class CampaignCreateEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:255',
             'description' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
