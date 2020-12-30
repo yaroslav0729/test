@@ -44,7 +44,7 @@
     <div class="wrap">
         <div class="title">
             <span>Current Projects</span>
-            <a href="{{ $featuredCompaignLink }}" class="text-underline text-dark view-more letter-spacing-1"><b>FEATURED CAMPING</b></a>
+            <a href="{{ $featuredCompaignLink }}" class="text-underline text-dark view-more letter-spacing-1"><b>FEATURED CAMPAIGN</b></a>
             <i class="moon-icons-arrow-down"></i>
         </div>
         <div class="body">
