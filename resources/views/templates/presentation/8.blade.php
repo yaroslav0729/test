@@ -248,7 +248,7 @@
                 <div class="swiper-slide">
                     <div class="row gutter-0 align-content-center">
                         <div class="col-6 img" style="background-image: url('{{ ${'lifeChangingPhoto' . $i} }}')">
-                            <a href="#" class="btn btn-info">Donate to this project &nbsp;&nbsp;<i class="fas fa-plus"></i></a>
+                            <a href="#" class="btn btn-info">Donate to this project &nbsp;&nbsp;<i class="moon-icons-plus"></i></a>
                         </div>
                         <div class="col-6 text">
                             <div>{{ ${'lifeChangingPhrase' . $i} }}</div>

@@ -218,7 +218,7 @@
                     <div class="black-line"></div>
                     <div class="text bg-danger-light">
                         {{ ${'lifeChangingPhrase' . $i} }}
-                        <a href="#" class="btn btn-info">Donate to this project &nbsp;&nbsp;<i class="fas fa-plus"></i></a>
+                        <a href="#" class="btn btn-info">Donate to this project &nbsp;&nbsp;<i class="moon-icons-plus"></i></a>
                     </div>
                 </div>
             @endfor
