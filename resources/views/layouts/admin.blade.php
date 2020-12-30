@@ -20,9 +20,9 @@
     <body class="font-sans antialiased">
         <div class="wrapper h-100" style="padding-top:0">
 
-            <div class="d-flex h-100" id="app">
+            <div class="flex flex-row" id="app">
                 @include('admin.parts.left-menu')
-                <div class="flex-grow-1 p-4">
+                <div class="flex-grow-1 pl-4">
                     @include('admin.parts.messages-block')
                           @yield('content')
                 </div>

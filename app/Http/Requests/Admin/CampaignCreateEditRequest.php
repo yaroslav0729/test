@@ -24,11 +24,20 @@ class CampaignCreateEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:255',
             'description' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'country_id' => 'required'
+            'country_id' => 'required',
+            'prices' => 'page_prices',
+            'prices_new' => 'page_prices'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'prices_new.page_prices' => 'Enter value for all prices',
         ];
     }
 }
