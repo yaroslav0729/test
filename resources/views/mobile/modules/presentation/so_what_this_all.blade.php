@@ -4,8 +4,7 @@
     $latestMissionText  = "";
     $latestMissionDate = "";
     $applyNowLink = "";
-    $soWhatP1 = "";
-    $soWhatP2 = "";
+    $soWhatText = "";
 
     if (isset($parameters['so_what_img'])) {
         $soWhatImg = $parameters['so_what_img'];    
@@ -23,12 +22,8 @@
         $applyNowLink = $parameters['apply_now_link'];    
     }
 
-    if (isset($parameters['so_what_p1'])) {
-        $soWhatP1 = $parameters['so_what_p1'];    
-    }
-
-    if (isset($parameters['so_what_p2'])) {
-        $soWhatP2 = $parameters['so_what_p2'];    
+    if (isset($parameters['so_what_text'])) {
+        $soWhatText = $parameters['so_what_text'];    
     }
     
 @endphp
@@ -40,10 +35,7 @@
     </div>
     <div class="bg-red p-4">
         <p class="font-size-16 text-white mb-0">
-            {{ $soWhatP1 }}
-        </p>
-        <p class="font-size-16 text-white mb-0">
-            {{ $soWhatP2 }}
+            {{ $soWhatText }}
         </p>
     </div>
 

@@ -301,6 +301,10 @@ class Template
             case self::MISSION_POSSIBLE: {
 
                 $rules = [
+                    'parameters.so_what_text' => 'max:455',
+                    'parameters.col_text1' => 'max:160',
+                    'parameters.col_text2' => 'max:160',
+                    'parameters.col_text3' => 'max:160',
                 ];
 
                 break;

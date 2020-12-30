@@ -4,8 +4,7 @@
     $latestMissionText  = "";
     $latestMissionDate = "";
     $applyNowLink = "";
-    $soWhatP1 = "";
-    $soWhatP2 = "";
+    $soWhatText = "";
 
     if (isset($parameters['so_what_img'])) {
         $soWhatImg = $parameters['so_what_img'];    
@@ -23,12 +22,9 @@
         $applyNowLink = $parameters['apply_now_link'];    
     }
 
-    if (isset($parameters['so_what_p1'])) {
-        $soWhatP1 = $parameters['so_what_p1'];    
-    }
-
-    if (isset($parameters['so_what_p2'])) {
-        $soWhatP2 = $parameters['so_what_p2'];    
+    if (isset($parameters['so_what_text'])) {
+        $soWhatText = $parameters['so_what_text'];  
+        $soWhatText = str_replace("\r\n", '<br>', $soWhatText);  
     }
     
 @endphp
@@ -49,8 +45,7 @@
         </div>
         <div class="col-6 bg-red pl-5 pr-5 d-flex align-items-center">
             <div>
-                <p class="font-size-16 text-white  pl-5 pr-5">{{ $soWhatP1 }}</p>
-                <p class="font-size-16 text-white  pl-5 pr-5 mb-0">{{ $soWhatP2 }}</p>
+                <p class="font-size-16 text-white  pl-5 pr-5">{!! $soWhatText !!}</p>
             </div>
         </div>
     </div>
