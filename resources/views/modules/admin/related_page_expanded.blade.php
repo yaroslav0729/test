@@ -16,30 +16,25 @@
     }
 @endphp
 
-<div class="row">
-    <div class="col-12 col-lg-6">
-        <div class="form-group">
-            <label>Relation page title:</label>
-            <input class="form-control" name="parameters[rel_page_title]" placeholder="Relation page title" value="{{ $relPageTitle }}" />
-        </div>
+    <div class="form-group">
+        <label>Relation page title:</label>
+        <input class="form-control" name="parameters[rel_page_title]" placeholder="Relation page title" value="{{ $relPageTitle }}" />
     </div>
-    <div class="col-12 col-lg-6">
-        <div class="form-group">
-            <label>Relation page link title</label>
-            <input class="form-control" name="parameters[rel_page_link_title]" placeholder="Relation page link title" value="{{ $relPageLinkTitle }}" />
-        </div>
+
+    <div class="form-group">
+        <label>Relation page link title</label>
+        <input class="form-control" name="parameters[rel_page_link_title]" placeholder="Relation page link title" value="{{ $relPageLinkTitle }}" />
     </div>
-    <div class="col-12 col-lg-6">
-        <div class="form-group">
-            <label>Relation page link:</label>
-            <input class="form-control" name="parameters[rel_page_link]" placeholder="Relation page link" value="{{ $relPageLink }}" />
-        </div>
+
+    <div class="form-group">
+        <label>Relation page link:</label>
+        <input class="form-control" name="parameters[rel_page_link]" placeholder="Relation page link" value="{{ $relPageLink }}" />
     </div>
-    <div class="col-12 col-lg-6">
-        @include('modules.admin.related_pages', [
-            'parameters' => $parameters
-        ])
-    </div>
+
+    @include('modules.admin.related_pages', [
+        'parameters' => $parameters
+    ])
+
 </div>
 
 
