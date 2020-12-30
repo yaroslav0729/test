@@ -312,6 +312,18 @@ class Template
 
                 break;
             }
+
+            case self::PROJECT_PAGE: {
+
+                $rules = [
+                    'parameters.what_happens_text' => 'max:180',
+                    'parameters.still_need_text1' => 'max:50',
+                    'parameters.still_need_text2' => 'max:50',
+                    'parameters.still_need_text3' => 'max:50',
+                ];
+
+                break;
+            }
         }
 
         return $rules;
