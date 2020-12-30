@@ -6,10 +6,12 @@
     $ourValuesVideo = "";
     $mapImage = "";
     $mapAlternativeImage = "";
+    $hdrColorType = "";
 
     $storyActive = $parameters['story_active'] ?? [];
 
     for ($i=1; $i<=4; $i++) {
+        $actionActive[$i] = "";
         $actionName[$i] = "";
         $actionPhoto[$i] = "";
         $actionSlogan[$i] = "";
@@ -37,9 +39,18 @@
 
     $lifeChangingBlockTitle = "";
     $lifeChangingBlockText = "";
+    $lifeChangingBlockTextMobile = "";
+
+    if (isset($parameters['hdr_color_type'])) {
+        $hdrColorType = $parameters['hdr_color_type'];
+    }
 
     if (isset($parameters['background_image'])) {
         $bgImage = $parameters['background_image'];
+    }
+
+    if (isset($parameters['our_mission_title'])) {
+        $ourMissionTitle = $parameters['our_mission_title'];
     }
 
     if (isset($parameters['our_values_description'])) {
@@ -50,10 +61,6 @@
         $ourValuesVideo = $parameters['our_values_video'];
     }
 
-    if (isset($parameters['our_mission_title'])) {
-        $ourMissionTitle = $parameters['our_mission_title'];
-    }
-
     if (isset($parameters['map_image'])) {
         $mapImage = $parameters['map_image'];
     }
@@ -62,7 +69,7 @@
         $mapAlternativeImage = $parameters['map_alt_image'];
     }
 
-    $actionActive = $parameters['action_active'] ?? [];
+/*    $actionActive = $parameters['action_active'] ?? [];*/
 
     for ($i=1; $i<=4; $i++){
         if (isset($parameters['action_active_' . $i])) {
@@ -87,8 +94,6 @@
             $actionLearnMoreLink[$i] = $parameters['action_learn_more_link_' . $i];
         }
     }
-
-    $storyActive = $parameters['story_active'] ?? [];
 
     for ($i=1; $i<=3; $i++){
         if (isset($parameters["story_year_{$i}"])) {
@@ -120,6 +125,13 @@
     if (isset($parameters['changing_block_text'])) {
         $lifeChangingBlockText = $parameters['changing_block_text'];
     }
+
+    if (isset($parameters['changing_block_text_mobile'])) {
+        $lifeChangingBlockTextMobile = $parameters['changing_block_text_mobile'];
+    }
+
+$ourValuesActive = false;
+$ourValuesActiveLink = false;
 
 @endphp
 
@@ -164,11 +176,12 @@
                 <div class="tab-content" id="nav-tabContent">
                     @for ($i = 1; $i <= 4; $i++)
                         @if(in_array($i, $actionActive ))
-                            <div class="tab-pane fade show @if($i === 1)active @endif" id="nav-{{ $i }}"
+                            <div class="tab-pane fade show @if($ourValuesActive === false)active @endif"
+                                 id="nav-{{ $i }}"
                                  role="tabpanel">
                                 <div class="row gutter-0">
                                     <div class="col-6 img"
-                                         style="background-image: url('{{ $actionPhoto[$i] }}')">                                        &nbsp;
+                                         style="background-image: url('{{ $actionPhoto[$i] }}')"> &nbsp;
                                     </div>
                                     <div class="col-6 {{ $colorNameClass[$i] }} text">
                                         <div>
@@ -181,6 +194,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @php ($ourValuesActive = true)
                         @endif
                     @endfor
                 </div>
@@ -189,9 +203,11 @@
                 <div class="nav flex-column nav-pills" id="nav-tab" role="tablist">
                     @for ($i = 1; $i <= 4; $i++)
                         @if(in_array($i, $actionActive ))
-                            <a class="nav-link @if($i === 1)active @endif" data-toggle="tab" href="#nav-{{ $i }}"
+                            <a class="nav-link @if($ourValuesActiveLink === false)active @endif" data-toggle="tab"
+                               href="#nav-{{ $i }}"
                                role="tab"
                                aria-selected="true">{{ $actionName[$i] }}</a>
+                            @php ($ourValuesActiveLink = true)
                         @endif
                     @endfor
                 </div>
@@ -201,37 +217,39 @@
 @endempty
 
 @empty(!$storyActive)
-<section class="our-story-swiper" swiper-wrapper="our-story">
-    <div class="wrap">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                @for ($i = 1; $i <= 3; $i++)
-                    @if(in_array($i, $storyActive ))
-                    <div class="swiper-slide d-flex align-items-start">
-                        <div class="img-box">
-                            <div class="bg-warning">
-                                <div class="img"
-                                     style="background-image: url('{{ ${'storyPhoto' . $i} }}')"></div>
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="row title">
-                                <div class="col-6"><span class="d-inline-block pl-5">{{ ${'storyYear' . $i} }}</span>
+    <section class="our-story-swiper" swiper-wrapper="our-story">
+        <div class="wrap">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @for ($i = 1; $i <= 3; $i++)
+                        @if(in_array($i, $storyActive ))
+                            <div class="swiper-slide d-flex align-items-start">
+                                <div class="img-box">
+                                    <div class="bg-warning">
+                                        <div class="img"
+                                             style="background-image: url('{{ ${'storyPhoto' . $i} }}')"></div>
+                                    </div>
                                 </div>
-                                <div class="col-6 text-right"><span>OUR STORY</span></div>
+                                <div class="box">
+                                    <div class="row title">
+                                        <div class="col-6"><span
+                                                class="d-inline-block pl-5">{{ ${'storyYear' . $i} }}</span>
+                                        </div>
+                                        <div class="col-6 text-right"><span>OUR STORY</span></div>
+                                    </div>
+                                    <div class="black-line"></div>
+                                    <p class="pl-5 pr-5">{!! ${'storyText' . $i} !!}</p>
+                                </div>
                             </div>
-                            <div class="black-line"></div>
-                            <p class="pl-5 pr-5">{!! ${'storyText' . $i} !!}</p>
-                        </div>
-                    </div>
-                    @endif
-                @endfor
+                        @endif
+                    @endfor
+                </div>
+                <div class="swiper-pagination"></div>
             </div>
+            <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
+
         </div>
-        <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
-        <div class="swiper-pagination"></div>
-    </div>
-</section>
+    </section>
 @endempty
 
 <section class="mb-5">
@@ -239,29 +257,32 @@
 </section>
 
 @empty(!$changingActive)
-<section class="promo-project-swiper" swiper-wrapper="our-support">
-    <div class="wrap bg-primary-light">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-            @for ($i = 1; $i <= 2; $i++)
-                @if(in_array($i, $changingActive ))
-                <div class="swiper-slide">
-                    <div class="row gutter-0 align-content-center">
-                        <div class="col-6 img" style="background-image: url('{{ ${'lifeChangingPhoto' . $i} }}')">
-                            <a href="#" class="btn btn-info">Donate to this project &nbsp;&nbsp;<i class="moon-icons-plus"></i></a>
-                        </div>
-                        <div class="col-6 text">
-                            <div>{{ ${'lifeChangingPhrase' . $i} }}</div>
-                        </div>
-                    </div>
+    <section class="promo-project-swiper" swiper-wrapper="our-support">
+        <div class="wrap @if($hdrColorType === 'blue') bg-primary-light @else bg-danger-light @endif">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @for ($i = 1; $i <= 2; $i++)
+                        @if(in_array($i, $changingActive ))
+                            <div class="swiper-slide">
+                                <div class="row gutter-0 align-content-center">
+                                    <div class="col-6 img"
+                                         style="background-image: url('{{ ${'lifeChangingPhoto' . $i} }}')">
+                                        <a href="{{ \App\Models\Page::getSinglePageUrl(\App\Models\Template::PROJECTS_PAGE) }}"
+                                           class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate
+                                            to this project &nbsp;&nbsp;<i class="moon-icons-plus"></i></a>
+                                    </div>
+                                    <div class="col-6 text">
+                                        <div>{{ ${'lifeChangingPhrase' . $i} }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endfor
                 </div>
-                @endif
-            @endfor
+                <a href="#" class="next swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
             </div>
-            <a href="#" class="next swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
         </div>
-    </div>
-</section>
+    </section>
 @endempty
 
 <section class="blog-article-body">
@@ -275,7 +296,7 @@
 
 <div class="pt-5 pb-5"></div>
 
-<section class="discover-more bg-light">
+{{--<section class="discover-more bg-light">
     <div class="wrap">
         <div class="title">
             <div class="row">
@@ -292,6 +313,10 @@
             'parameters' => $parameters
         ])
     </div>
-</section>
+</section>--}}
+
+@include('modules.presentation.related_page_expanded', [
+            'parameters' => $parameters
+        ])
 
 @include('modules.presentation.join_the_cause_subscribe')
