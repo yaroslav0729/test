@@ -307,6 +307,7 @@ class Template
                     'parameters.col_text3' => 'max:160',
                     'parameters.exp_quote' => 'max:160',
                     'parameters.our_latest_text2' => 'max:170',
+                    'parameters.be_part_text' => 'max:210',
                 ];
 
                 break;
