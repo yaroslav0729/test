@@ -21,11 +21,30 @@
         <div class="title">
             <div class="row">
                 <div class="col-7">
-                    <b class="font-size-30 mr-4 text-uppercase">{{ $relPageTitle }}</b>
+                    <b class="font-size-30 mr-4 text-uppercase">
+                        @if ($relPageTitle === "")
+                            DISCOVER MORE
+                        @else
+                            {{ $relPageTitle }}
+                        @endif
+                    </b>
                 </div>
                 <div class="col-5 text-right">
-                    <a href="{{ $relPageLink }}" class="text-uppercase text-underline"><b>{{ $relPageLinkTitle }}</b> <i
-                            class="moon-icons-arrow-right"></i></a>
+                    <a href="
+                    @if ($relPageLink === "")
+                        /blog-page
+                    @else
+                        {{ $relPageLink }}
+                    @endif
+                        " class="text-uppercase text-underline">
+                        <b>
+                            @if ($relPageLinkTitle === "")
+                                VISIT NEWSROOM
+                            @else
+                                {{ $relPageLinkTitle }}
+                            @endif
+
+                        </b> <i class="moon-icons-arrow-right"></i></a>
                 </div>
             </div>
         </div>

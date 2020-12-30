@@ -1,19 +1,37 @@
 @php
     $bgImage = "";
+    $upperPhrase = "";
+    $bottomPhrase = "";
+
+    $headText = "";
 
     $headOfficeTitle = "";
     $headOfficeText = "";
     $foreignOfficeTitle = "";
     $foreignOfficeText = "";
 
+    $emailTitle = "";
     $email = "";
+
     $instagramLink = "";
     $facebookLink = "";
     $youtubeLink = "";
     $twitterLink = "";
 
+    if (isset($parameters['upper_phrase'])) {
+        $upperPhrase = $parameters['upper_phrase'];
+    }
+
+    if (isset($parameters['bottom_phrase'])) {
+        $bottomPhrase = $parameters['bottom_phrase'];
+    }
+
     if (isset($parameters['background_image'])) {
         $bgImage = $parameters['background_image'];
+    }
+
+    if (isset($parameters['head_text'])) {
+        $headText = $parameters['head_text'];
     }
 
     if (isset($parameters['head_office_title'])) {
@@ -30,6 +48,10 @@
 
     if (isset($parameters['foreign_office_text'])) {
         $foreignOfficeText = $parameters['foreign_office_text'];
+    }
+
+    if (isset($parameters['contact_email_title'])) {
+        $emailTitle = $parameters['contact_email_title'];
     }
 
     if (isset($parameters['contact_email'])) {
@@ -55,13 +77,13 @@
 @endphp
 
 <section class="who-we-are-head" style="background-image: url({{ $bgImage }});">
-    <div>SAY HELLO</div>
-    <h1>Get in touch</h1>
+    <div>{{ $upperPhrase }}</div>
+    <h1>{{ $bottomPhrase }}</h1>
 </section>
 
 <section class="contacts">
     <div class="wrap">
-        <h2>Contact your nearest Islamic Help Branch today </h2>
+        <h2>{{ $headText }}</h2>
         <div class="row gutter-30">
             <div class="col-3">
                 <h3>{{ $headOfficeTitle }}</h3>
@@ -72,7 +94,7 @@
                 <p>{!! $foreignOfficeText !!}</p>
             </div>
             <div class="col-3">
-                <h3>Email Us</h3>
+                <h3>{{ $emailTitle }}</h3>
                 <p>{{ $email }}</p>
             </div>
             <div class="col-3">
@@ -88,22 +110,10 @@
     </div>
 </section>
 
-<section class="discover-more bg-light">
-    <div class="wrap">
-        <div class="title">
-            <div class="row">
-                <div class="col-7">
-                    <b class="font-size-30 mr-4 text-uppercase">make a difference today</b>
-                </div>
-                <div class="col-5 text-right">
-                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i class="moon-icons-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-        @include('modules.presentation.related_pages', [
-            'parameters' => $parameters
-        ])
-    </div>
-</section>
+
+@include('modules.presentation.related_page_expanded', [
+    'parameters' => $parameters
+])
+
 
 @include('modules.presentation.join_the_cause_subscribe')

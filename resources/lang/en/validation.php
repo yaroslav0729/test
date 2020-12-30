@@ -214,6 +214,106 @@ return [
         'parameters.dropdown_link_title' => 'Link title',
         'parameters.dropdown_link' => 'Link',
         /*--------------------- End Zakat Calculator ------------------------*/
+
+        /*--------------------- Who we are ------------------------*/
+        'parameters.background_image' => 'Background image',
+        'parameters.our_mission_title' => 'Our mission title',
+        'parameters.our_values_description' => 'Our values description',
+        'parameters.our_values_video' => 'Our values video',
+        'parameters.map_image' => 'Map image path',
+        'parameters.map_alt_image' => 'Map alternative image path',
+
+        'parameters.action_active_1' => 'Active slide',
+        'parameters.action_active_2' => 'Active slide',
+        'parameters.action_active_3' => 'Active slide',
+        'parameters.action_active_4' => 'Active slide',
+
+        'parameters.action_name_1' => 'Name',
+        'parameters.action_name_2' => 'Name',
+        'parameters.action_name_3' => 'Name',
+        'parameters.action_name_4' => 'Name',
+
+        'parameters.action_photo_1' => 'Photo',
+        'parameters.action_photo_2' => 'Photo',
+        'parameters.action_photo_3' => 'Photo',
+        'parameters.action_photo_4' => 'Photo',
+
+        'parameters.action_slogan_1' => 'Slogan',
+        'parameters.action_slogan_2' => 'Slogan',
+        'parameters.action_slogan_3' => 'Slogan',
+        'parameters.action_slogan_4' => 'Slogan',
+
+        'parameters.action_title_1' => 'Title',
+        'parameters.action_title_2' => 'Title',
+        'parameters.action_title_3' => 'Title',
+        'parameters.action_title_4' => 'Title',
+
+        'parameters.action_description_1' => 'Description',
+        'parameters.action_description_2' => 'Description',
+        'parameters.action_description_3' => 'Description',
+        'parameters.action_description_4' => 'Description',
+
+        'parameters.action_learn_more_link_1' => 'Learn more link',
+        'parameters.action_learn_more_link_2' => 'Learn more link',
+        'parameters.action_learn_more_link_3' => 'Learn more link',
+        'parameters.action_learn_more_link_4' => 'Learn more link',
+
+        'parameters.story_active.0' => 'Active slide',
+        'parameters.story_active.1' => 'Active slide',
+        'parameters.story_active.2' => 'Active slide',
+        'parameters.story_active.3' => 'Active slide',
+
+        'parameters.story_year_1' => 'Year',
+        'parameters.story_year_2' => 'Year',
+        'parameters.story_year_3' => 'Year',
+        'parameters.story_year_4' => 'Year',
+
+        'parameters.story_photo_1' => 'Photo',
+        'parameters.story_photo_2' => 'Photo',
+        'parameters.story_photo_3' => 'Photo',
+        'parameters.story_photo_4' => 'Photo',
+
+        'parameters.story_text_1' => 'Text',
+        'parameters.story_text_2' => 'Text',
+        'parameters.story_text_3' => 'Text',
+        'parameters.story_text_4' => 'Text',
+
+        'parameters.changing_block_title' => 'Life changing support title',
+        'parameters.changing_block_text' => 'Life changing support text',
+        'parameters.changing_block_text_mobile' => 'Life changing support text for mobile',
+
+        'parameters.changing_active.0' => 'Active slide',
+        'parameters.changing_active.1' => 'Active slide',
+
+        'parameters.changing_block_photo_1' => 'Photo',
+        'parameters.changing_block_photo_2' => 'Photo',
+        'parameters.changing_block_phrase_1' => 'Phrase',
+        'parameters.changing_block_phrase_3' => 'Phrase',
+
+        /*--------------------- End Who we are ------------------------*/
+
+        /*--------------------- Contact ------------------------*/
+        'parameters.upper_phrase' => 'Upper Phrase',
+        'parameters.bottom_phrase' => 'Bottom Phrase',
+        'parameters.background_image' => 'Background image path',
+
+        'parameters.head_text' => 'Head text',
+
+        'parameters.head_office_title' => 'Head office title',
+        'parameters.head_office_text' => 'Head office text',
+        'parameters.foreign_office_title' => 'Foreign office title',
+        'parameters.foreign_office_text' => 'Foreign office text',
+
+        'parameters.contact_email_title' => 'Email title',
+        'parameters.contact_email' => 'Email',
+
+        'parameters.instagram_link' => 'Instagram link',
+        'parameters.facebook_link' => 'Facebook link',
+        'parameters.youtube_link' => 'Youtube link',
+        'parameters.twitter_link' => 'Twitter link',
+
+        /*--------------------- End Contact ------------------------*/
     ],
 
 ];
+

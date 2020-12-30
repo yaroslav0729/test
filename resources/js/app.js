@@ -221,7 +221,9 @@ $(function () {
 
     //~~~~~~~~~~~~ Join the cause - subscribe form ~~~~~~~~~~~~~~~~~~~
 
-    $(document).on('click', '#join_the_cause_show_form', function() {
+    $(document).on('click', '#join_the_cause_show_form', function(e) {
+
+        e.preventDefault();
 
         let mainForm =  $('.join-cause-main')
         let hiddenForm = $('.join-cause-hidden')
@@ -230,7 +232,7 @@ $(function () {
         hiddenForm.removeClass('d-none')
     })
 
-    function validateEmail(email) 
+    function validateEmail(email)
     {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
@@ -248,7 +250,7 @@ $(function () {
 
         if (!validate) {
             toastr.warning('Enter valid email address','Wrong email')
-            return 
+            return
         }
 
         $.ajax({
@@ -775,7 +777,7 @@ function initSwiper(){
                 prevEl: key + ' .swiper-button-prev',
             },
             pagination: {
-                el: key + ' .swiper-pagination'
+                el: key + ' .swiper-pagination',
             }
         };
 

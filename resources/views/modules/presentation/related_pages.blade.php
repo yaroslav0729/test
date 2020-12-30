@@ -1,8 +1,8 @@
 @php
     $relPageCatId = "";
-    
+
     if (isset($parameters['rel_page_category'])) {
-        $relPageCatId = (int)$parameters['rel_page_category'];    
+        $relPageCatId = (int)$parameters['rel_page_category'];
     }
 
     $relatedPages = \App\Models\Module::getRelatedPages($relPageCatId);
@@ -25,7 +25,7 @@
                         <span class="text font-size-16">{{ $page->preview_text }}</span>
                         </span>
                     </a>
-                </div>   
+                </div>
             @endforeach
         </div>
     </div>
