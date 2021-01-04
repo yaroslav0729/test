@@ -217,8 +217,10 @@ class Template
             case self::THANK_YOU_DONATE_PAGE: {
 
                 $rules = [
-                    'parameters.donation_text' => 'required|max:60',
+                    'parameters.donation_text' => 'required',
+                    'parameters.donation_article_title' => 'required|max:60',
                     'parameters.donation_video' => 'required',
+                    'parameters.donation_link_title' => 'required',
                     'parameters.donation_link' => 'required',
                 ];
 
