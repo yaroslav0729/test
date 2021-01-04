@@ -134,7 +134,7 @@ return [
             'rule-name' => 'custom-message',
         ],
         'parameters.amount' => [
-            'amount_text' => 'Amount text lenght error - max 60 charters',
+            'amount_text' => 'Amount donation text lenght error - max 60 charters',
         ],
     ],
 
