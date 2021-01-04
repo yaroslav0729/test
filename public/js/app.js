@@ -103160,11 +103160,21 @@ __webpack_require__(/*! ./parts/donate_module.js */ "./resources/js/parts/donate
 
 __webpack_require__(/*! ./parts/cart.js */ "./resources/js/parts/cart.js");
 
+__webpack_require__(/*! ./functions.js */ "./resources/js/functions.js");
+
 var MODAL_FORM_LOCK = false;
 $(function () {
   new Vue({
     el: '#app'
-  });
+  }); // $('.donate-today-card .list .item').on('click', function () {
+  //     $('.donate-today-card .list .item').removeClass('active');
+  //     console.log('click')
+  //     var $this = $(this)
+  //     setTimeout(function () {
+  //         $this.addClass('active');
+  //     }, 100)
+  // })
+
   $(document).on('submit', '[modal-form]', function (event) {
     event.preventDefault();
 
@@ -103333,7 +103343,8 @@ $(function () {
   } //~~~~~~~~~~~~ Join the cause - subscribe form ~~~~~~~~~~~~~~~~~~~
 
 
-  $(document).on('click', '#join_the_cause_show_form', function () {
+  $(document).on('click', '#join_the_cause_show_form', function (e) {
+    e.preventDefault();
     var mainForm = $('.join-cause-main');
     var hiddenForm = $('.join-cause-hidden');
     mainForm.addClass('d-none');
@@ -103805,6 +103816,26 @@ function initMenuSwiper() {
     });
   });
 }
+
+/***/ }),
+
+/***/ "./resources/js/functions.js":
+/*!***********************************!*\
+  !*** ./resources/js/functions.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  $(document).on('click', '.donate-today-card .list .item', function () {
+    $('.donate-today-card .list .item').removeClass('active');
+    console.log('click');
+    var $this = $(this);
+    setTimeout(function () {
+      $this.addClass('active');
+    }, 100);
+  });
+});
 
 /***/ }),
 

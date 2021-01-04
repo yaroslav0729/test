@@ -27,6 +27,7 @@ require('../assets/vendor/MediaManager/js/manager')
 require('./parts/project_tiles.js')
 require('./parts/donate_module.js')
 require('./parts/cart.js')
+require('./functions.js')
 
 var MODAL_FORM_LOCK = false
 
@@ -35,6 +36,17 @@ $(function () {
     new Vue({
         el: '#app'
     })
+
+    // $('.donate-today-card .list .item').on('click', function () {
+    //     $('.donate-today-card .list .item').removeClass('active');
+
+    //     console.log('click')
+
+    //     var $this = $(this)
+    //     setTimeout(function () {
+    //         $this.addClass('active');
+    //     }, 100)
+    // })
 
     $(document).on('submit', '[modal-form]', function (event) {
         event.preventDefault();
