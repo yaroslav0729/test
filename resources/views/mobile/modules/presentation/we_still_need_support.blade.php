@@ -50,7 +50,7 @@ if (isset($parameters['still_need_text3'])) {
             @endempty
         </div>
 
-        <div class="list donate-today-card-swiper">
+        <div class="list donate-today-card-swiper" swiper-wrapper="we_still_need">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -75,14 +75,6 @@ if (isset($parameters['still_need_text3'])) {
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-
-        <script>
-            var swiper = new Swiper('.donate-today-card-swiper .swiper-container', {
-                pagination: {
-                    el: '.donate-today-card-swiper .swiper-pagination'
-                }
-            });
-        </script>
 
     </div>
 </section>

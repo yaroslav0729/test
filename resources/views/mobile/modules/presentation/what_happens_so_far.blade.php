@@ -94,15 +94,6 @@
                 <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
                 <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
             </div>
-
-            <script>
-                var swiper = new Swiper('.help-info-swiper .swiper-container', {
-                    navigation: {
-                        nextEl: '.help-info-swiper .swiper-button-next',
-                        prevEl: '.help-info-swiper .swiper-button-prev',
-                    },
-                });
-            </script>
         </div>
     </div>
 </section>

@@ -103148,7 +103148,7 @@ __webpack_require__(/*! bootstrap-input-spinner */ "./node_modules/bootstrap-inp
 
 
 
-swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__["Navigation"]]);
+swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__["Navigation"], swiper__WEBPACK_IMPORTED_MODULE_0__["Pagination"]]);
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
@@ -103166,15 +103166,7 @@ var MODAL_FORM_LOCK = false;
 $(function () {
   new Vue({
     el: '#app'
-  }); // $('.donate-today-card .list .item').on('click', function () {
-  //     $('.donate-today-card .list .item').removeClass('active');
-  //     console.log('click')
-  //     var $this = $(this)
-  //     setTimeout(function () {
-  //         $this.addClass('active');
-  //     }, 100)
-  // })
-
+  });
   $(document).on('submit', '[modal-form]', function (event) {
     event.preventDefault();
 

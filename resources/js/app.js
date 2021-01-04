@@ -14,9 +14,9 @@ window.Swiper = Swiper*/
 require('bootstrap-input-spinner');
 
 import Swiper from 'swiper';
-import SwiperCore, { Navigation } from 'swiper';
+import SwiperCore, { Navigation, Pagination } from 'swiper';
 
-SwiperCore.use([Navigation]);
+SwiperCore.use([Navigation, Pagination]);
 
 import { initWysiwyg } from './admin_parts/init_tiny-mce';
 
@@ -36,17 +36,6 @@ $(function () {
     new Vue({
         el: '#app'
     })
-
-    // $('.donate-today-card .list .item').on('click', function () {
-    //     $('.donate-today-card .list .item').removeClass('active');
-
-    //     console.log('click')
-
-    //     var $this = $(this)
-    //     setTimeout(function () {
-    //         $this.addClass('active');
-    //     }, 100)
-    // })
 
     $(document).on('submit', '[modal-form]', function (event) {
         event.preventDefault();
@@ -774,6 +763,7 @@ function areElementsEmpty(selector)
 }
 
 function initSwiper(){
+
     $('[swiper-wrapper]').each(function() {
         let key = '[swiper-wrapper="'+ $(this).attr('swiper-wrapper') +'"]';
 
@@ -795,6 +785,7 @@ function initSwiper(){
 
         let swiper = new Swiper(key + ' .swiper-container', options);
     })
+
 }
 
 function initTriggers() {
