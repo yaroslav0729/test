@@ -366,10 +366,11 @@ class Template
             case self::PROJECT_PAGE: {
 
                 $rules = [
+                    'parameters.donate_text' => 'max:100',
                     'parameters.what_happens_text' => 'max:180',
-                    'parameters.still_need_text1' => 'max:50',
-                    'parameters.still_need_text2' => 'max:50',
-                    'parameters.still_need_text3' => 'max:50',
+                    'parameters.still_need_text1' => 'max:60',
+                    'parameters.still_need_text2' => 'max:60',
+                    'parameters.still_need_text3' => 'max:60',
                 ];
 
                 break;
