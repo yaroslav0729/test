@@ -368,6 +368,7 @@ class Template
             case self::PROJECT_PAGE: {
 
                 $rules = [
+                    'parameters.proj_heading' => 'max:30',
                     'parameters.amount' => 'amount_text',
                     'parameters.donate_text' => 'max:100',
                     'parameters.what_happens_text' => 'max:180',
