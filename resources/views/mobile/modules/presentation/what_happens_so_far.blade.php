@@ -75,7 +75,7 @@
         <img src="{{ $bgImage }}" alt="" class="w-100">
         @endempty
 
-        <div class="help-info-swiper">
+        <div class="help-info-swiper" swiper-wrapper="what_happens">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
