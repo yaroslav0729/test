@@ -1,7 +1,9 @@
 @php
 
     $donationText = "";
+    $donationArticleTitle = "";
     $donationVideo = "";
+    $donationVideoLinkTitle = "";
     $donationVideoLink = "";
 
 
@@ -9,8 +11,16 @@
         $donationText = $parameters['donation_text'];
     }
 
+    if (isset($parameters['donation_article_title'])) {
+        $donationArticleTitle = $parameters['donation_article_title'];
+    }
+
     if (isset($parameters['donation_video'])) {
         $donationVideo = $parameters['donation_video'];
+    }
+
+    if (isset($parameters['donation_link_title'])) {
+        $donationVideoLinkTitle = $parameters['donation_link_title'];
     }
 
     if (isset($parameters['donation_link'])) {
@@ -70,7 +80,7 @@
         <div class="box">
             <p><b>You know what else is awesome?<br>Our latest story right here:</b></p>
             <div class="black-line"></div>
-            <p>"Article title placement here with a maximum of 60 characters."</p>
+            <p>{{ $donationArticleTitle }}</p>
             <div class="pt-3"></div>
             <div class="img-video play-tr videoWrapper" style="">
                 <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $donationVideo }}"
@@ -80,7 +90,7 @@
             </div>
 
             <div class="text-right">
-                <a href="{{ $donationVideoLink }}" class="btn  btn-warning">VIEW STORY</a>
+                <a href="{{ $donationVideoLink }}" class="btn btn-warning">{{ $donationVideoLinkTitle }}</a>
             </div>
         </div>
     </div>
