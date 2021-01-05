@@ -103297,7 +103297,8 @@ $(function () {
     });
   });
   Object(_admin_parts_init_tiny_mce__WEBPACK_IMPORTED_MODULE_1__["initWysiwyg"])();
-  initSwiper();
+  initSwiper(); //resizeSliderItems();
+
   setTimeout(initTriggers, 100); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   $(document).on('change', '[name="template"]', selectTemplateRequest);
@@ -103382,23 +103383,22 @@ $(function () {
       }
     });
   }); //~~~~~~~~~~~~~~~~~ Current projects slider ~~~~~~~~~~~~~~~~~~
-
-  function resizeSliderItems() {
-    var max = 0;
-
-    for (var i = 1; i < 4; i++) {
-      var el = $('.current-projects-list .slide_' + i + ' span.descr');
-      el.height('auto');
-      var h1 = el.height();
-
-      if (h1 > max) {
-        max = h1;
-      }
-    }
-
-    $('.current-projects-list span.descr').height(max);
-  } //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+  // function resizeSliderItems() {
+  //     let max = 0
+  //     for (let i = 1; i<4; i++) {
+  //         let els = $('.current-projects-list span.descr')
+  //         els.height('auto');
+  //         els.each(function( index ) {
+  //             let el = $(this)
+  //             let h1 = el.height()
+  //             if (h1 > max) {
+  //                 max = h1
+  //             }
+  //         });
+  //     }
+  //     $('.current-projects-list span.descr').height(max)
+  // }
+  //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   $(document).on('submit', '[prices-form]', function (event) {
     //event.preventDefault();

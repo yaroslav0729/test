@@ -177,6 +177,7 @@ $(function () {
 
     initWysiwyg();
     initSwiper();
+    //resizeSliderItems();
 
     setTimeout(initTriggers, 100);
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -282,24 +283,26 @@ $(function () {
 
     //~~~~~~~~~~~~~~~~~ Current projects slider ~~~~~~~~~~~~~~~~~~
 
-    function resizeSliderItems() {
+    // function resizeSliderItems() {
 
-        let max = 0
+    //     let max = 0
 
-        for (let i = 1; i<4; i++) {
-            let el = $('.current-projects-list .slide_' + i + ' span.descr')
+    //     for (let i = 1; i<4; i++) {
+    //         let els = $('.current-projects-list span.descr')
+    //         els.height('auto');
 
-            el.height('auto');
+    //         els.each(function( index ) {
+    //             let el = $(this)
+                
+    //             let h1 = el.height()
+    //             if (h1 > max) {
+    //                 max = h1
+    //             }
+    //         });
+    //     }
 
-            let h1 = el.height()
-
-            if (h1 > max) {
-                max = h1
-            }
-        }
-
-        $('.current-projects-list span.descr').height(max)
-    }
+    //     $('.current-projects-list span.descr').height(max)
+    // }
 
     //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
