@@ -27,15 +27,18 @@ $text2 = "";
 $text3 = "";
 
 if (isset($parameters['still_need_text1'])) {
-    $text1 = $parameters['still_need_text1'];    
+    $text1 = $parameters['still_need_text1'];
+    $text1 = str_replace("\r\n", '<br>', $text1);      
 }
 
 if (isset($parameters['still_need_text2'])) {
-    $text2 = $parameters['still_need_text2'];    
+    $text2 = $parameters['still_need_text2'];
+    $text2 = str_replace("\r\n", '<br>', $text2);
 }
 
 if (isset($parameters['still_need_text3'])) {
-    $text3 = $parameters['still_need_text3'];    
+    $text3 = $parameters['still_need_text3'];
+    $text3 = str_replace("\r\n", '<br>', $text3); 
 }
 
 @endphp
@@ -52,15 +55,15 @@ if (isset($parameters['still_need_text3'])) {
         <div class="list d-flex justify-content-center">
             <div class="item">
                 <div>£<b>{{ $digit1 }}</b></div>
-                {{ $text1 }}
+                {!! $text1 !!}
             </div>
             <div class="item active-color-info">
                 <div>£<b>{{ $digit2 }}</b></div>
-                {{ $text2 }}
+                {!! $text2 !!}
             </div>
             <div class="item active-color-danger">
                 <div>£<b>{{ $digit3 }}</b></div>
-                {{ $text3 }}
+                {!! $text3 !!}
             </div>
         </div>
     </div>

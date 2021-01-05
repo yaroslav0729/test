@@ -1,15 +1,26 @@
 @php
 
     $donationText = "";
+    $donationArticleTitle = "";
     $donationVideo = "";
+    $donationVideoLinkTitle = "";
     $donationVideoLink = "";
+
 
     if (isset($parameters['donation_text'])) {
         $donationText = $parameters['donation_text'];
     }
 
+    if (isset($parameters['donation_article_title'])) {
+        $donationArticleTitle = $parameters['donation_article_title'];
+    }
+
     if (isset($parameters['donation_video'])) {
         $donationVideo = $parameters['donation_video'];
+    }
+
+    if (isset($parameters['donation_link_title'])) {
+        $donationVideoLinkTitle = $parameters['donation_link_title'];
     }
 
     if (isset($parameters['donation_link'])) {
@@ -71,7 +82,7 @@
     <div class="box">
         <p><b>You know what else is awesome?<br>Our latest story right here:</b></p>
         <div class="black-line"></div>
-        <p></p>
+        <p>{{ $donationArticleTitle }}</p>
         <div class="pt-3"></div>
         <div class="img-video play-tr videoWrapper" style="">
             <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $donationVideo }}"
@@ -79,7 +90,7 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
         </div>
-        <a href="{{ $donationVideoLink }}" class="btn btn-info">VIEW STORY</a>
+        <a href="{{ $donationVideoLink }}" class="btn btn-info">{{ $donationVideoLinkTitle }}</a>
     </div>
     <div class="text-center">
         <svg class="decor-wave size-20 style-white d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">

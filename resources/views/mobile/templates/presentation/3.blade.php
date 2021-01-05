@@ -233,7 +233,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
     </div>
 </section>
 
-<div class="help-info-swiper">
+<div class="help-info-swiper" swiper-wrapper="help_info">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -252,15 +252,6 @@ if (isset($parameters['our_work_sadiqah_link'])) {
         <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
         <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
     </div>
-
-    <script>
-        var swiper = new Swiper('.help-info-swiper .swiper-container', {
-            navigation: {
-                nextEl: '.help-info-swiper .swiper-button-next',
-                prevEl: '.help-info-swiper .swiper-button-prev',
-            },
-        });
-    </script>
 </div>
 
 <section class="current-projects" swiper-wrapper="slider-mobile-1">
@@ -363,6 +354,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
             <b>WHAT'S NEW</b>
         </div>
         <div>
+            <div swiper-wrapper="whats-new">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -404,15 +396,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
-
-            <script>
-                var swiper = new Swiper('.whats-new .swiper-container', {
-                    pagination: {
-                        el: '.whats-new .swiper-pagination'
-                    }
-                });
-            </script>
-
+            </div>
 
             <div class="down-link">
                 <a href="#">visit newsroom</a>

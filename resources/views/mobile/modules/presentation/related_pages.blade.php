@@ -13,12 +13,12 @@
         <div class="title">
             <b class="font-size-25 text-uppercase">Related topics</b>
         </div>
-        <div class="current-projects-list current-projects-swiper">
+        <div class="current-projects-list current-projects-swiper" swiper-wrapper="rel_pages">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     @foreach ($relatedPages as $page)
                         <div class="swiper-slide">
-                            <a href="#" class="item">
+                            <a href="{{ $page->slug }}" class="item">
                                 @isset($page->preview_img)
                                 <span class="img" style="background-image: url(img/content/discover-more-1.jpg)"></span>
                                 @else

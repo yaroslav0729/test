@@ -1,8 +1,8 @@
 @php
     $relPageCatId = "";
-    
+
     if (isset($parameters['rel_page_category'])) {
-        $relPageCatId = (int)$parameters['rel_page_category'];    
+        $relPageCatId = (int)$parameters['rel_page_category'];
     }
 
     $relatedPages = \App\Models\Module::getRelatedPages($relPageCatId);
@@ -13,7 +13,7 @@
         <div class="row">
             @foreach ($relatedPages as $page)
                 <div class="col-4">
-                    <a href="#" class="item">
+                    <a href="{{ $page->slug }}" class="item">
                         @isset($page->preview_img)
                             <span class="img" style="background-repeat:no-repeat; background-image: url(/{{ $page->preview_img }})"></span>
                         @else
@@ -25,7 +25,7 @@
                         <span class="text font-size-16">{{ $page->preview_text }}</span>
                         </span>
                     </a>
-                </div>   
+                </div>
             @endforeach
         </div>
     </div>

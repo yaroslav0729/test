@@ -14,9 +14,9 @@ window.Swiper = Swiper*/
 require('bootstrap-input-spinner');
 
 import Swiper from 'swiper';
-import SwiperCore, { Navigation } from 'swiper';
+import SwiperCore, { Navigation, Pagination } from 'swiper';
 
-SwiperCore.use([Navigation]);
+SwiperCore.use([Navigation, Pagination]);
 
 import { initWysiwyg } from './admin_parts/init_tiny-mce';
 
@@ -27,6 +27,7 @@ require('../assets/vendor/MediaManager/js/manager')
 require('./parts/project_tiles.js')
 require('./parts/donate_module.js')
 require('./parts/cart.js')
+require('./functions.js')
 
 var MODAL_FORM_LOCK = false
 
@@ -221,7 +222,9 @@ $(function () {
 
     //~~~~~~~~~~~~ Join the cause - subscribe form ~~~~~~~~~~~~~~~~~~~
 
-    $(document).on('click', '#join_the_cause_show_form', function() {
+    $(document).on('click', '#join_the_cause_show_form', function(e) {
+
+        e.preventDefault();
 
         let mainForm =  $('.join-cause-main')
         let hiddenForm = $('.join-cause-hidden')
@@ -230,7 +233,7 @@ $(function () {
         hiddenForm.removeClass('d-none')
     })
 
-    function validateEmail(email) 
+    function validateEmail(email)
     {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
@@ -248,7 +251,7 @@ $(function () {
 
         if (!validate) {
             toastr.warning('Enter valid email address','Wrong email')
-            return 
+            return
         }
 
         $.ajax({
@@ -760,6 +763,7 @@ function areElementsEmpty(selector)
 }
 
 function initSwiper(){
+
     $('[swiper-wrapper]').each(function() {
         let key = '[swiper-wrapper="'+ $(this).attr('swiper-wrapper') +'"]';
 
@@ -775,12 +779,13 @@ function initSwiper(){
                 prevEl: key + ' .swiper-button-prev',
             },
             pagination: {
-                el: key + ' .swiper-pagination'
+                el: key + ' .swiper-pagination',
             }
         };
 
         let swiper = new Swiper(key + ' .swiper-container', options);
     })
+
 }
 
 function initTriggers() {

@@ -1,18 +1,28 @@
 @php
     $title = "";
-    $text = "";
-    $image = "";
-    
+    $textBefore = "";
+    $textAfter = "";
+    $imageBefore = "";
+    $imageAfter = "";
+
     if (isset($parameters['subscribe_title'])) {
-        $title = $parameters['subscribe_title'];    
+        $title = $parameters['subscribe_title'];
     }
 
-    if (isset($parameters['subscribe_text'])) {
-        $text = $parameters['subscribe_text'];    
+    if (isset($parameters['subscribe_text_before'])) {
+        $textBefore = $parameters['subscribe_text_before'];
     }
 
-    if (isset($parameters['subscribe_img'])) {
-        $image = $parameters['subscribe_img'];    
+    if (isset($parameters['subscribe_text_after'])) {
+        $textAfter = $parameters['subscribe_text_after'];
+    }
+
+    if (isset($parameters['subscribe_img_before'])) {
+        $imageBefore = $parameters['subscribe_img_before'];
+    }
+
+    if (isset($parameters['subscribe_img_after'])) {
+        $imageAfter = $parameters['subscribe_img_after'];
     }
 @endphp
 
@@ -33,15 +43,15 @@
                         </p>
                     </div>
                     <p  class="font-size-20 mb-5">
-                        @if ($text === "")
-                            There are so many ways to help, make sure you stay in the loop and <a href="#" class="text-underline text-dark">sign up</a> to our Newsletter!
+                        @if ($textBefore === "")
+                            There are so many ways to help, make sure you stay in the loop and <a href="#" id="join_the_cause_show_form" class="text-underline text-dark">sign up</a> to our Newsletter!
                         @else
-                            {{ $text }}
+                            {!! $textBefore !!}
                         @endif
                     </p>
                 </div>
                 <div class="col-5 pr-4">
-                        @if ($image === "")
+                        @if ($imageBefore === "")
                             <img src="img/content/join-cause-2.jpg" alt="" class="w-100">
                         @else
                             <img src="{{ $image }}" alt="" class="w-100">
@@ -101,17 +111,34 @@
     -16z"/>
                             </g>
                         </svg>
-                        <p class="font-size-30"><b>JOIN THE CAUSE</b></p>
+                        <p class="font-size-30">
+                            <b>
+                                @if ($title === "")
+                                    JOIN THE CAUSE
+                                @else
+                                    {{ $title }}
+                                @endif
+                            </b>
+                        </p>
                     </div>
                     <p  class="font-size-20">
-                        There are so many ways to help, make sure you stay in the loop and sign up to our Newsletter or find out more about our latest
-                        <br>
-                        <a href="#"  class="text-underline text-dark">Mission Impossible Tour</a>.
+                        @if ($textAfter === "")
+                            There are so many ways to help, make sure you stay in the loop and sign up to our Newsletter or find out more about our latest
+                            <br>
+                            <a href="#"  class="text-underline text-dark">Mission Impossible Tour</a>.
+                        @else
+                            {!! $textAfter !!}
+                        @endif
+
                     </p>
                 </div>
             </div>
             <div class="col-12 col-xl-6">
-                <img src="/img/content/join-cause-3.jpg" alt="" class="w-100">
+                @if ($imageAfter === "")
+                    <img src="/img/content/join-cause-3.jpg" alt="" class="w-100">
+                @else
+                    <img src="{{ $imageAfter }}" alt="" class="w-100">
+                @endif
                 <form id="subscription_form" action="{{ route('subscribe') }}" method="POST" class="d-flex">
                     @csrf
                     <input type="text" name="email" placeholder="Your email address" class="flex-grow-1">

@@ -4,8 +4,7 @@
     $latestMissionText  = "";
     $latestMissionDate = "";
     $applyNowLink = "";
-    $soWhatP1 = "";
-    $soWhatP2 = "";
+    $soWhatText = "";
 
     if (isset($parameters['so_what_img'])) {
         $soWhatImg = $parameters['so_what_img'];    
@@ -23,13 +22,11 @@
         $applyNowLink = $parameters['apply_now_link'];    
     }
 
-    if (isset($parameters['so_what_p1'])) {
-        $soWhatP1 = $parameters['so_what_p1'];    
+    if (isset($parameters['so_what_text'])) {
+        $soWhatText = $parameters['so_what_text'];
     }
 
-    if (isset($parameters['so_what_p2'])) {
-        $soWhatP2 = $parameters['so_what_p2'];    
-    }
+    
     
 @endphp
 
@@ -41,13 +38,8 @@
 </div>
 
 <div class="form-group">
-    <label>So what paragraph 1:</label>
-    <input class="form-control" name="parameters[so_what_p1]" placeholder="Insert text" value="{{ $soWhatP1 }}" />
-</div>
-
-<div class="form-group">
-    <label>So what paragraph 2:</label>
-    <input class="form-control" name="parameters[so_what_p2]" placeholder="Insert text" value="{{ $soWhatP2 }}" />
+    <label>So what text:</label>
+    <textarea class="form-control" name="parameters[so_what_text]" placeholder="Insert text">{{ $soWhatText }}</textarea>
 </div>
 
 <div class="form-group">

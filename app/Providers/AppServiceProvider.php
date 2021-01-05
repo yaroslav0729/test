@@ -53,6 +53,16 @@ class AppServiceProvider extends ServiceProvider
             return true;
         });
 
+        Validator::extend('amount_text', function ($value, $parameters) {
+            foreach ($parameters as $parameter) {
+                if (isset($parameter['text'])) {
+                    if (strlen($parameter['text']) > 60) return false;    
+                }
+            }
+
+            return true;
+        });
+
         View::share([
             'headerMenuItem' => MenuHelper::groupByLevels(
                 MenuItem::rootMenuByDestination(MenuItem::HEADER_MENU)

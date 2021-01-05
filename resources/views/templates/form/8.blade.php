@@ -6,8 +6,12 @@
     $ourValuesVideo = "";
     $mapImage = "";
     $mapAlternativeImage = "";
+    $hdrColorType = "";
+
+    $storyActive = $parameters['story_active'] ?? [];
 
     for ($i=1; $i<=4; $i++) {
+        $actionActive[$i] = "";
         $actionName[$i] = "";
         $actionPhoto[$i] = "";
         $actionSlogan[$i] = "";
@@ -29,6 +33,11 @@
 
     $lifeChangingBlockTitle = "";
     $lifeChangingBlockText = "";
+    $lifeChangingBlockTextMobile = "";
+
+    if (isset($parameters['hdr_color_type'])) {
+        $hdrColorType = $parameters['hdr_color_type'];
+    }
 
     if (isset($parameters['background_image'])) {
         $bgImage = $parameters['background_image'];
@@ -54,7 +63,7 @@
         $mapAlternativeImage = $parameters['map_alt_image'];
     }
 
-     $actionActive = $parameters['action_active'] ?? [];
+    /* $actionActive = $parameters['action_active'] ?? [];*/
 
     for ($i=1; $i<=4; $i++){
         if (isset($parameters['action_active_' . $i])) {
@@ -79,8 +88,6 @@
             $actionLearnMoreLink[$i] = $parameters['action_learn_more_link_' . $i];
         }
     }
-
-    $storyActive = $parameters['story_active'] ?? [];
 
     for ($i=1; $i<=3; $i++){
         if (isset($parameters["story_year_{$i}"])) {
@@ -108,8 +115,13 @@
     if (isset($parameters['changing_block_title'])) {
         $lifeChangingBlockTitle = $parameters['changing_block_title'];
     }
+
     if (isset($parameters['changing_block_text'])) {
         $lifeChangingBlockText = $parameters['changing_block_text'];
+    }
+
+    if (isset($parameters['changing_block_text_mobile'])) {
+        $lifeChangingBlockTextMobile = $parameters['changing_block_text_mobile'];
     }
 
 @endphp
@@ -118,7 +130,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Background image:</label>
-            <input class="form-control" required name="parameters[background_image]"
+            <input class="form-control" name="parameters[background_image]"
                    placeholder="Insert background image path"
                    value="{{ $bgImage }}"/>
         </div>
@@ -127,7 +139,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Our mission title:</label>
-            <input class="form-control" required name="parameters[our_mission_title]" placeholder="Our mission title"
+            <input class="form-control" name="parameters[our_mission_title]" placeholder="Our mission title"
                    value="{{ $ourMissionTitle }}"/>
         </div>
     </div>
@@ -135,7 +147,7 @@
     <div class="col-12 col-lg-6 mt-5">
         <div class="form-group">
             <label>Our values description:</label>
-            <textarea class="form-control" required name="parameters[our_values_description]"
+            <textarea class="form-control" name="parameters[our_values_description]"
                       placeholder="Our values description">{{ $ourValuesDescription }}</textarea>
         </div>
     </div>
@@ -143,7 +155,7 @@
     <div class="col-12 col-lg-6 mt-5">
         <div class="form-group">
             <label>Our values video:</label>
-            <input class="form-control" required name="parameters[our_values_video]"
+            <input class="form-control" name="parameters[our_values_video]"
                    placeholder="Insert youtube video link"
                    value="{{ $ourValuesVideo }}"/>
         </div>
@@ -152,7 +164,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Map image path:</label>
-            <input class="form-control" required name="parameters[map_image]"
+            <input class="form-control" name="parameters[map_image]"
                    placeholder="Insert map image path"
                    value="{{ $mapImage }}"/>
         </div>
@@ -161,7 +173,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Map alternative image path:</label>
-            <input class="form-control" required name="parameters[map_alt_image]"
+            <input class="form-control" name="parameters[map_alt_image]"
                    placeholder="Insert map alternative image path"
                    value="{{ $mapAlternativeImage }}"/>
         </div>
@@ -186,7 +198,7 @@
                 <div class="row mt-3">
                     <div class="col-12">
                         <div class="form-check">
-                            <input class="form-check-input" name="parameters[action_active][]" type="checkbox"
+                            <input class="form-check-input" name="parameters[action_active_{{ $i }}]" type="checkbox"
                                    value="{{ $i }}" id="defaultCheck{{ $i }}"
                                    @if(in_array($i, $actionActive ))checked @endif>
                             <label class="form-check-label" for="defaultCheck{{ $i }}">
@@ -298,7 +310,7 @@
                     <div class="col-12 col-lg-6 mt-2">
                         <div class="form-group">
                             <label>Text:</label>
-                            <textarea class="form-control" name="parameters[story_text_{{ $i }}]"
+                            <textarea class="form-control" rows="3" name="parameters[story_text_{{ $i }}]"
                                       placeholder="Life changing support text">{!! ${'storyText' . $i} !!}</textarea>
                         </div>
                     </div>
@@ -309,24 +321,22 @@
 </div>
 
 <div class="row mt-5">
-    <div class="col-12">
+    <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Life changing support title:</label>
-            <input class="form-control" required name="parameters[changing_block_title]"
+            <input class="form-control" name="parameters[changing_block_title]"
                    placeholder="Life changing support title"
                    value="{{ $lifeChangingBlockTitle }}"/>
         </div>
-
-        <div class="form-group">
-            <label>Life changing support text:</label>
-            <textarea wysiwyg-editor id="main_html" class="form-control" name="parameters[changing_block_text]"
-                      placeholder="Life changing support text">{{ $lifeChangingBlockText }}</textarea>
-        </div>
     </div>
 
-</div>
-
-<div class="row mt-5">
+    <div class="form-group col-12 col-lg-6">
+        <label>Header color style</label>
+        <select name="parameters[hdr_color_type]" class="form-control">
+            <option value="blue" @if(($hdrColorType) === 'blue') selected @endif>Blue</option>
+            <option value="red" @if(($hdrColorType) === 'red') selected @endif>Red</option>
+        </select>
+    </div>
     @for ($i = 1; $i <= 2; $i++)
         <div class="col-12 col-lg-6 mt-2">
             <div class="form-check">
@@ -334,31 +344,51 @@
                        value="{{ $i }}" id="defaultCheck{{ $i }}"
                        @if(in_array($i, $changingActive ))checked @endif>
                 <label class="form-check-label" for="defaultCheck{{ $i }}">
-                    Active slide
+                    Active slide {{ $i }}
                 </label>
             </div>
             <div class="form-group mt-2">
                 <label>Photo:</label>
-                <input class="form-control" required name="parameters[changing_block_photo_{{ $i }}]"
+                <input class="form-control" name="parameters[changing_block_photo_{{ $i }}]"
                        placeholder="Insert photo path"
                        value="{!! ${'lifeChangingPhoto' . $i} !!}"/>
             </div>
             <div class="form-group">
                 <label>Phrase:</label>
-                <input class="form-control" required name="parameters[changing_block_phrase_{{ $i }}]"
+                <input class="form-control" name="parameters[changing_block_phrase_{{ $i }}]"
                        placeholder="Phrase"
                        value="{!! ${'lifeChangingPhrase' . $i} !!}"/>
             </div>
         </div>
     @endfor
+
+    <div class="col-12 mt-3">
+        <div class="form-group">
+            <label>Life changing support text:</label>
+            <textarea wysiwyg-editor id="main_html" class="form-control" name="parameters[changing_block_text]"
+                      placeholder="Life changing support text">{{ $lifeChangingBlockText }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Life changing support text (for mobile - max 460ch ):</label>
+            <textarea class="form-control" rows="3" name="parameters[changing_block_text_mobile]"
+                      placeholder="Life changing support text (mobile)">{{ $lifeChangingBlockTextMobile }}</textarea>
+        </div>
+    </div>
+
+
 </div>
 
 <div class="row mt-5">
     <div class="col-12">
-        @include('modules.admin.related_pages', [
+        @include('modules.admin.related_page_expanded', [
             'parameters' => $parameters
         ])
+    </div>
+</div>
 
+<div class="row mt-5">
+    <div class="col-12">
         @include('modules.admin.join_the_cause_subscribe', [
             'parameters' => $parameters
         ])

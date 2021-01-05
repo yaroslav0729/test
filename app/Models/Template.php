@@ -152,6 +152,7 @@ class Template
                     'parameters.our_values_description' => 'required',
                     'parameters.our_values_video' => 'required',
                     'parameters.map_image' => 'required',
+                    'parameters.map_alt_image' => 'required',
 
                     'parameters.action_name_1' => 'required_if:parameters.action_active_1,1',
                     'parameters.action_name_2' => 'required_if:parameters.action_active_2,2',
@@ -167,6 +168,47 @@ class Template
                     'parameters.action_slogan_2' => 'required_if:parameters.action_active_2,2',
                     'parameters.action_slogan_3' => 'required_if:parameters.action_active_3,3',
                     'parameters.action_slogan_4' => 'required_if:parameters.action_active_4,4',
+
+                    'parameters.action_title_1' => 'required_if:parameters.action_active_1,1',
+                    'parameters.action_title_2' => 'required_if:parameters.action_active_2,2',
+                    'parameters.action_title_3' => 'required_if:parameters.action_active_3,3',
+                    'parameters.action_title_4' => 'required_if:parameters.action_active_4,4',
+
+                    'parameters.action_description_1' => 'required_if:parameters.action_active_1,1',
+                    'parameters.action_description_2' => 'required_if:parameters.action_active_2,2',
+                    'parameters.action_description_3' => 'required_if:parameters.action_active_3,3',
+                    'parameters.action_description_4' => 'required_if:parameters.action_active_4,4',
+
+                    'parameters.action_learn_more_link_1' => 'required_if:parameters.action_active_1,1',
+                    'parameters.action_learn_more_link_2' => 'required_if:parameters.action_active_2,2',
+                    'parameters.action_learn_more_link_3' => 'required_if:parameters.action_active_3,3',
+                    'parameters.action_learn_more_link_4' => 'required_if:parameters.action_active_4,4',
+
+                    'parameters.story_year_1' => 'required_if:parameters.story_active.0,1',
+                    'parameters.story_year_2' => 'required_if:parameters.story_active.1,2',
+                    'parameters.story_year_3' => 'required_if:parameters.story_active.2,3',
+                    'parameters.story_year_4' => 'required_if:parameters.story_active.3,4',
+
+                    'parameters.story_photo_1' => 'required_if:parameters.story_active.0,1',
+                    'parameters.story_photo_2' => 'required_if:parameters.story_active.1,2',
+                    'parameters.story_photo_3' => 'required_if:parameters.story_active.2,3',
+                    'parameters.story_photo_4' => 'required_if:parameters.story_active.3,4',
+
+                    'parameters.story_text_1' => 'required_if:parameters.story_active.0,1',
+                    'parameters.story_text_2' => 'required_if:parameters.story_active.1,2',
+                    'parameters.story_text_3' => 'required_if:parameters.story_active.2,3',
+                    'parameters.story_text_4' => 'required_if:parameters.story_active.3,4',
+
+                    'parameters.changing_block_title' => 'required',
+                    'parameters.changing_block_text' => 'required',
+                    'parameters.changing_block_text_mobile' => 'required|max:460',
+
+                    'parameters.changing_block_photo_1' => 'required_if:parameters.changing_active.0,1',
+                    'parameters.changing_block_photo_2' => 'required_if:parameters.changing_active.1,2',
+
+                    'parameters.changing_block_phrase_1' => 'required_if:parameters.changing_active.0,1',
+                    'parameters.changing_block_phrase_2' => 'required_if:parameters.changing_active.1,2',
+
                 ];
 
                 break;
@@ -175,8 +217,10 @@ class Template
             case self::THANK_YOU_DONATE_PAGE: {
 
                 $rules = [
-                    'parameters.donation_text' => 'required|max:60',
+                    'parameters.donation_text' => 'required',
+                    'parameters.donation_article_title' => 'required|max:60',
                     'parameters.donation_video' => 'required',
+                    'parameters.donation_link_title' => 'required',
                     'parameters.donation_link' => 'required',
                 ];
 
@@ -186,10 +230,18 @@ class Template
             case self::CONTACT_PAGE: {
 
                 $rules = [
+                    'parameters.upper_phrase' => 'required',
+                    'parameters.bottom_phrase' => 'required',
                     'parameters.background_image' => 'required',
+
+                    'parameters.head_text' => 'required',
+
                     'parameters.head_office_title' => 'required',
-                    'parameters.foreign_office_title' => 'required',
                     'parameters.head_office_text' => 'required',
+                    'parameters.foreign_office_title' => 'required',
+                    'parameters.foreign_office_text' => 'required',
+
+                    'parameters.contact_email_title' => 'required',
                     'parameters.contact_email' => 'email:rfc',
                     'parameters.instagram_link' => 'required',
                     'parameters.facebook_link' => 'required',
@@ -301,6 +353,28 @@ class Template
             case self::MISSION_POSSIBLE: {
 
                 $rules = [
+                    'parameters.so_what_text' => 'max:455',
+                    'parameters.col_text1' => 'max:160',
+                    'parameters.col_text2' => 'max:160',
+                    'parameters.col_text3' => 'max:160',
+                    'parameters.exp_quote' => 'max:160',
+                    'parameters.our_latest_text2' => 'max:170',
+                    'parameters.be_part_text' => 'max:210',
+                ];
+
+                break;
+            }
+
+            case self::PROJECT_PAGE: {
+
+                $rules = [
+                    'parameters.proj_heading' => 'max:30',
+                    'parameters.amount' => 'amount_text',
+                    'parameters.donate_text' => 'max:100',
+                    'parameters.what_happens_text' => 'max:180',
+                    'parameters.still_need_text1' => 'max:60',
+                    'parameters.still_need_text2' => 'max:60',
+                    'parameters.still_need_text3' => 'max:60',
                 ];
 
                 break;

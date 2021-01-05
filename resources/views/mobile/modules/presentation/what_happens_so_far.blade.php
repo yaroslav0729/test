@@ -75,7 +75,7 @@
         <img src="{{ $bgImage }}" alt="" class="w-100">
         @endempty
 
-        <div class="help-info-swiper">
+        <div class="help-info-swiper" swiper-wrapper="what_happens">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -94,15 +94,6 @@
                 <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
                 <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
             </div>
-
-            <script>
-                var swiper = new Swiper('.help-info-swiper .swiper-container', {
-                    navigation: {
-                        nextEl: '.help-info-swiper .swiper-button-next',
-                        prevEl: '.help-info-swiper .swiper-button-prev',
-                    },
-                });
-            </script>
         </div>
     </div>
 </section>
