@@ -100,45 +100,6 @@
 
 @empty(!$hdrTypeActive)
 
-    {{-- <section class="main-page-header style-3" swiper-wrapper="header1" style="background-image: url('img/content/main-page-header-3.jpg');">
-         <div class="swiper-container">
-             <div class="swiper-wrapper">
-             @for ($i = 1; $i <= 4; $i++)
-                 @if(in_array($i, $hdrTypeActive ))
-                     <div class="swiper-slide">
-                         <div class="row">
-                             <div class="col-6">
-                                 <div class="donate-progress">
-                                     <div class="row mb-3">
-                                         <div class="col-12 text-right"><b>14</b></div>
-                                         <div class="col-6">
-                                             £2'642 / £10'000 RAISED</div>
-                                         <div class="col-6 text-right">DAY TO GO</div>
-                                     </div>
-                                     <div class="line green"><div style="width: 40%"></div></div>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="row">
-                             <div class="col-6">
-                                 <div class="body">
-                                     <div class="mb-4">
-                                         <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
-                                     </div>
-                                     <div class="title mb-3">{!! $hdrTitle[$i] !!}</div>
-                                     <p class="mb-5">{!! $hdrText[$i] !!}</p>
-                                     <a href="#" class="btn btn-info">Donate now</a>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 @endif
-             @endfor
-             </div>
-         </div>
-         <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
-         <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
-     </section>--}}
 <section class="main-page-header style-{{ $hdrTypeValue }}" swiper-wrapper="header2" style="display: none1">
         <div class="wrap">
             <div class="swiper-container">
@@ -254,9 +215,9 @@
     </div>
 </section>
 
-@include('modules.presentation.current_projects', [
-    'parameters' => $parameters
-])
+@include('modules.presentation.current_projects')
+
+@include('modules.presentation.latest_projects')
 
 @include('modules.presentation.lets_join')
 

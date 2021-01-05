@@ -69,24 +69,6 @@
     </div>
 </section>
 
-<section class="current-projects-list">
-    <div class="wrap">
-        <div class="row">
-            @for ($i = 1; $i < 4; $i++)
-                <div class="col-4 slide_{{ $i }}">
-                    <a href="#" class="item">
-                        <span class="img slide-img" style="background-image: url({{ $slideImage[$i] }})"></span>
-                        <span class="descr">
-                            <span class="name font-weight-bold  font-size-16 slide-title">{{ $slideTitle[$i] }}</span>
-                            <span class="text font-size-16 slide-text">{{ $slideText[$i] }}</span>
-                        </span>
-                    </a>
-                </div>
-            @endfor
-        </div>
-    </div>
-</section>
-
 <div class="d-none slider_data">
     @for ($i = 0; $i < 4; $i++)
         <div class="slide_{{ $i }}">

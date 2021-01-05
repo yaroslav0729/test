@@ -11,6 +11,19 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Project
 {
+    public static function getLatest()
+    {
+        $pages = Page::whereHas('pageInstances', function (Builder $query) {
+            $query->where('template', Template::PROJECT_PAGE);
+        })
+        ->published()
+        ->limit(3)
+        ->orderBy('created_at', 'asc')
+        ->get();
+
+        return $pages;
+    }
+
     public static function getAllProjects()
     {
         $pages = Page::whereHas('pageInstances', function (Builder $query) {
