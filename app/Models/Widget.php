@@ -6,10 +6,12 @@ class Widget
 {
     const WIDGET_QUOTE = 1;
     const WIDGET_VIDEO_CAROUSEL = 2; // example {video-carousel|0GZSfBuhf6Y|XxkTM5fyabo}
+    const WIDGET_SLIDER = 3; // example {slider|/storage/name1.jpg|/storage/04/name2.jpg}
 
     const ALL_WIDGETS = [
         self::WIDGET_QUOTE,
         self::WIDGET_VIDEO_CAROUSEL,
+        self::WIDGET_SLIDER,
     ];
 
     public static function getWidgetName($widget)
@@ -17,6 +19,7 @@ class Widget
         switch ($widget) {
             case self::WIDGET_QUOTE:return 'quote';
             case self::WIDGET_VIDEO_CAROUSEL:return 'video-carousel';
+            case self::WIDGET_SLIDER:return 'slider';
         }
     }
 
