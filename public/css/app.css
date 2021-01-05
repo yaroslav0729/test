@@ -10023,7 +10023,7 @@ header .top-bar .basket {
 }
 header .top-bar .phone i {
   display: inline-block;
-  background: url(/images/ico-Phone.svg?7d7f841f10b6a7c9b84c82dae0f19806) no-repeat;
+  background: url(/images/ico-Phone.svg?c0838b9ddef6625586d506c7468e99e2) no-repeat;
   background-size: contain;
   width: 25px;
   height: 25px;
@@ -11859,23 +11859,23 @@ input[type='number'].color-danger + .input-group .btn {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  padding-top: 73%;
+  padding-top: 72%;
   border-bottom: 4px solid #F5C15D;
   position: relative;
 }
-.current-projects .body .view-more {
+.current-projects .view-more {
   background: #F5C15D;
   width: 60px;
   height: 60px;
-  position: absolute;
-  bottom: -4px;
-  right: -60px;
+  position: relative;
+  bottom: 38px;
+  left: 100%;
   text-align: center;
   font-size: 30px;
   line-height: 60px;
   color: #fff;
 }
-.current-projects .body .view-more:hover {
+.current-projects .view-more:hover {
   background: #F7796A;
 }
 .current-projects-list,
@@ -15220,6 +15220,12 @@ a#clear_all_btn:hover {
 }
 .lets-join a p {color: #101525;}
 .lets-join a:hover {-webkit-text-decoration-color: #101525;text-decoration-color: #101525;}
+.current-projects .swiper-button-next:after {
+    content: '' !important;
+}
+.current-projects a.swiper-button-next:hover {
+    text-decoration: none;
+}
 .toast-title{font-weight:700}
 .toast-message{-ms-word-wrap:break-word;word-wrap:break-word}
 .toast-message a,.toast-message label{color:#FFF}

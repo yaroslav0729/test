@@ -103397,53 +103397,8 @@ $(function () {
     }
 
     $('.current-projects-list span.descr').height(max);
-  }
+  } //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  var currentSlide = 0;
-  $(document).on('click', '#current-proj-next-slide', function (e) {
-    e.preventDefault();
-    currentSlide++;
-
-    if (currentSlide >= 4) {
-      currentSlide = 0;
-    }
-
-    var data = [];
-
-    for (var i = 0; i < 4; i++) {
-      var dataEl = $('.slider_data .slide_' + i);
-      var title = dataEl.find('.slider_data_title').text();
-      var text = dataEl.find('.slider_data_text').text();
-      var img = dataEl.find('.slider_data_img').text();
-      var readmore = dataEl.find('.slider_data_readmore').text();
-      data.push({
-        'title': title,
-        'text': text,
-        'img': img,
-        'readmore': readmore
-      });
-    }
-
-    var el1 = $('.current-projects');
-    el1.find('.slide-title').html(data[currentSlide].title);
-    el1.find('.slide-text').html(data[currentSlide].text);
-    el1.find('.slide-img').css('background-image', "url(" + data[currentSlide].img + ")");
-    el1.find('.slide-readmore').attr('href', data[currentSlide].readmore);
-    var dataCou = currentSlide + 1;
-    if (dataCou >= 4) dataCou = 0;
-
-    for (var _i = 1; _i < 4; _i++) {
-      var el2 = $('.current-projects-list .slide_' + _i);
-      dataCou = currentSlide + _i;
-      if (dataCou >= 4) dataCou = dataCou - 4;
-      el2.find('.slide-title').html(data[dataCou].title);
-      el2.find('.slide-text').html(data[dataCou].text);
-      el2.find('.slide-img').css('background-image', "url(" + data[dataCou].img + ")");
-      el2.find('.slide-readmore').attr('href', data[dataCou].readmore);
-    }
-
-    resizeSliderItems();
-  }); //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   $(document).on('submit', '[prices-form]', function (event) {
     //event.preventDefault();
@@ -104334,12 +104289,12 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app_admin.css */"./resources/css/app_admin.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
-module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/mobile.css */"./resources/css/mobile.css");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app_admin.css */"./resources/css/app_admin.css");
+__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/mobile.css */"./resources/css/mobile.css");
 
 
 /***/ })

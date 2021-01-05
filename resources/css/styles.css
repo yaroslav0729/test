@@ -2022,23 +2022,23 @@ input[type='number'].color-danger + .input-group .btn {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  padding-top: 73%;
+  padding-top: 72%;
   border-bottom: 4px solid #F5C15D;
   position: relative;
 }
-.current-projects .body .view-more {
+.current-projects .view-more {
   background: #F5C15D;
   width: 60px;
   height: 60px;
-  position: absolute;
-  bottom: -4px;
-  right: -60px;
+  position: relative;
+  bottom: 38px;
+  left: 100%;
   text-align: center;
   font-size: 30px;
   line-height: 60px;
   color: #fff;
 }
-.current-projects .body .view-more:hover {
+.current-projects .view-more:hover {
   background: #F7796A;
 }
 .current-projects-list,

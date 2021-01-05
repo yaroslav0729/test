@@ -301,58 +301,6 @@ $(function () {
         $('.current-projects-list span.descr').height(max)
     }
 
-    var currentSlide = 0;
-
-    $(document).on('click', '#current-proj-next-slide', function(e) {
-        e.preventDefault()
-
-        currentSlide++;
-        if (currentSlide >= 4) {
-            currentSlide = 0;
-        }
-
-        let data = [];
-        for (let i=0; i<4; i++) {
-
-            let dataEl = $('.slider_data .slide_' + i)
-            let title = dataEl.find('.slider_data_title').text()
-            let text = dataEl.find('.slider_data_text').text()
-            let img = dataEl.find('.slider_data_img').text()
-            let readmore = dataEl.find('.slider_data_readmore').text()
-
-            data.push({
-                'title': title,
-                'text': text,
-                'img': img,
-                'readmore': readmore,
-            })
-        }
-
-        let el1 = $('.current-projects')
-
-        el1.find('.slide-title').html(data[currentSlide].title)
-        el1.find('.slide-text').html(data[currentSlide].text)
-        el1.find('.slide-img').css('background-image', "url(" + data[currentSlide].img + ")")
-        el1.find('.slide-readmore').attr('href', data[currentSlide].readmore)
-
-        var dataCou = currentSlide + 1
-        if (dataCou >= 4) dataCou = 0;
-
-        for (let i = 1; i<4; i++) {
-            let el2 = $('.current-projects-list .slide_' + i)
-
-            dataCou = currentSlide + i
-            if (dataCou >= 4) dataCou = dataCou - 4;
-
-            el2.find('.slide-title').html(data[dataCou].title)
-            el2.find('.slide-text').html(data[dataCou].text)
-            el2.find('.slide-img').css('background-image', "url(" + data[dataCou].img + ")")
-            el2.find('.slide-readmore').attr('href', data[dataCou].readmore)
-        }
-
-        resizeSliderItems()
-    })
-
     //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     $(document).on('submit', '[prices-form]', function (event) {
