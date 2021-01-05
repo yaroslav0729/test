@@ -4,11 +4,11 @@
     $importantInfo = "";
 
     if (isset($parameters['important_title'])) {
-        $importantInfoTitle = $parameters['important_title'];    
+        $importantInfoTitle = $parameters['important_title'];
     }
 
     if (isset($parameters['important_text'])) {
-        $importantInfo = $parameters['important_text'];    
+        $importantInfo = $parameters['important_text'];
     }
 
 @endphp
@@ -17,7 +17,7 @@
 
 <div class="form-group">
     <label>Important info title</label>
-    <input class="form-control" required name="parameters[important_title]" placeholder="Insert important info title" value="{{ $importantInfoTitle }}" />
+    <input class="form-control" name="parameters[important_title]" placeholder="Insert important info title" value="{{ $importantInfoTitle }}" />
 </div>
 
 <div class="form-group">

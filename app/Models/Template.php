@@ -88,21 +88,28 @@ class Template
             case self::EVENT_PAGE: {
 
                 $rules = [
-                    'parameters.preview_position' => 'required',
+                    'parameters.event_title' => 'required|max:60',
+                    'parameters.event_description' => 'required|max:150',
                     'parameters.event_type_participate' => 'required',
+                    'parameters.preview_position' => 'required',
+                    'parameters.event_link_text' => 'required',
+                    'parameters.event_link' => 'required',
+
                     'parameters.event_start_date' => 'required|date',
                     'parameters.event_start_time' => 'required|date_format:H:i',
                     'parameters.event_end_date' => 'nullable|date|after_or_equal:parameters.event_start_date',
                     'parameters.event_end_time' => 'nullable|date_format:H:i|after:parameters.event_start_time',
                     'parameters.event_end_sale_date' => 'required|date|before:parameters.event_start_date',
-                    'parameters.event_entry_price' => 'nullable|numeric|min:1',
-                    'parameters.event_link' => 'required',
+
                     'parameters.event_details_entry' => 'required',
+                    'parameters.event_entry_price' => 'nullable|numeric|min:1',
                     'parameters.event_details_organiser' => 'required',
-                    //'parameters.event_details_speaker' => 'required',
+                    'parameters.event_details_speaker' => 'required',
                     'parameters.event_details_contact' => 'required',
-                    //'parameters.information_title' => 'required',
+
+                    'parameters.information_title' => 'required',
                     'parameters.information_text' => 'required',
+                    'parameters.information_text_mobile' => 'required|max:460',
                 ];
 
                 break;
@@ -256,6 +263,10 @@ class Template
 
                 $rules = [
                     'parameters.per_page' => 'numeric|min:1',
+                    'parameters.need_title' => 'required',
+                    'parameters.need_text' => 'required|max:170',
+                    'parameters.need_link_text' => 'required',
+                    'parameters.need_link' => 'required',
                 ];
 
                 break;

@@ -293,7 +293,7 @@ $(function () {
 
     //         els.each(function( index ) {
     //             let el = $(this)
-                
+
     //             let h1 = el.height()
     //             if (h1 > max) {
     //                 max = h1
@@ -372,7 +372,14 @@ $(function () {
         const section = $('#events');
         const inputs = $('#events input');
 
-        areElementsEmpty('#events input') === true ? $(section).removeClass('view-btn') : $(section).addClass('view-btn')
+        if (areElementsEmpty('#events input') === true) {
+            $(section).removeClass('view-btn');
+            $('.swiper').show();
+        }
+        else {
+            $(section).addClass('view-btn');
+            $('.swiper').hide();
+        }
     });
 
 

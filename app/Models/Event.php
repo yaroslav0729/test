@@ -66,7 +66,7 @@ class Event extends Model
         $dataEvent = [];
 
         $dataEvent['page_id'] = $data['page_id'];
-        $dataEvent['name'] = $data['name'];
+        $dataEvent['name'] = $data['parameters']['event_title'];
         $dataEvent['start_date'] = $data['parameters']['event_start_date'];
         $dataEvent['start_time'] = $data['parameters']['event_start_time'];
         $dataEvent['location'] = $data['parameters']['preview_position'];

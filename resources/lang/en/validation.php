@@ -325,6 +325,42 @@ return [
         'parameters.donation_link' => 'View story link',
 
         /*--------------------- End Thank you for donation ------------------------*/
+
+        /*--------------------- Event --------------*/
+        'parameters.event_title' => 'Event title',
+        'parameters.event_description' => 'Event description',
+        'parameters.event_type_participate' => 'Event details entry',
+        'parameters.preview_position' => 'Preview position',
+        'parameters.event_link_text' => 'Event link text',
+        'parameters.event_link' => 'Event link',
+
+        'parameters.event_start_date' => 'Event start date',
+        'parameters.event_start_time' => 'Event start time',
+        'parameters.event_end_date' => 'Event end date',
+        'parameters.event_end_time' => 'Event end time',
+        'parameters.event_end_sale_date' => 'Event sales end on',
+
+        'parameters.event_details_entry' => 'Event details entry',
+        'parameters.event_entry_price' => 'Event price',
+        'parameters.event_details_organiser' => 'Event details organiser',
+        'parameters.event_details_speaker' => 'Event details speaker',
+        'parameters.event_details_contact' => 'Event details contact',
+
+        'parameters.information_title' => 'Information title',
+        'parameters.information_text' => 'Information text',
+        'parameters.information_text_mobile' => 'Information text for mobile',
+
+        /*--------------------- End Event ------------------------*/
+
+        /*--------------------- Events --------------*/
+        'parameters.per_page' => 'Number events per page',
+
+        'parameters.need_title' => 'Islamic Help needs module Title',
+        'parameters.need_text' => 'Islamic Help needs module Text',
+        'parameters.need_link_text' => 'Islamic Help needs module Link text',
+        'parameters.need_link' => 'Islamic Help needs module Link',
+
+        /*--------------------- End Events ------------------------*/
     ],
 
 ];

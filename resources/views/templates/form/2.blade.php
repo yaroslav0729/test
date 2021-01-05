@@ -1,5 +1,7 @@
 @php
 
+    $eventTitle = "";
+    $eventDescription = "";
     $previewPosition = "";
     $eventTypeParticipate = "";
 
@@ -20,6 +22,15 @@
 
     $informationTitle ="";
     $informationText ="";
+    $informationTextMobile ="";
+
+    if (isset($parameters['event_title'])) {
+        $eventTitle = $parameters['event_title'];
+    }
+
+    if (isset($parameters['event_description'])) {
+        $eventDescription = $parameters['event_description'];
+    }
 
     if (isset($parameters['preview_position'])) {
         $previewPosition = $parameters['preview_position'];
@@ -93,8 +104,26 @@
         $informationText = $parameters['information_text'];
     }
 
+    if (isset($parameters['information_text_mobile'])) {
+        $informationTextMobile = $parameters['information_text_mobile'];
+    }
+
 @endphp
 <div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <label>Event title (max 60 characters):</label>
+            <input class="form-control" required name="parameters[event_title]"
+                   placeholder="Insert Event title" value="{{ $eventTitle }}"/>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-group">
+            <label>Event description (max 150 characters):</label>
+            <textarea class="form-control" name="parameters[event_description]"
+                      placeholder="Event description">{{ $eventDescription }}</textarea>
+        </div>
+    </div>
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Event details entry:</label>
@@ -235,7 +264,17 @@
                       name="parameters[information_text]">{{ $informationText }}</textarea>
         </div>
     </div>
+
+    <div class="col-12">
+        <div class="form-group">
+            <label>Information text for mobile (max 460 characters):</label>
+            <textarea class="form-control" name="parameters[information_text_mobile]"
+                      placeholder="Information text for mobile" rows="3">{{ $informationTextMobile }} </textarea>
+        </div>
+    </div>
 </div>
+
+
 
 <div class="row mt-5">
     <div class="col-12">

@@ -1,5 +1,6 @@
 @php
 
+    $eventDescription = "";
     $previewPosition = "";
 
     $eventStartDate = "";
@@ -15,6 +16,12 @@
 
     $importantInformationTitle = "";
     $importantInformationText = "";
+
+    $informationTextMobile ="";
+
+    if (isset($parameters['event_description'])) {
+        $eventDescription = $parameters['event_description'];
+    }
 
     if (isset($parameters['preview_position'])) {
         $previewPosition = $parameters['preview_position'];
@@ -76,6 +83,10 @@
         $informationText = $parameters['information_text'];
     }
 
+    if (isset($parameters['information_text_mobile'])) {
+        $informationTextMobile = $parameters['information_text_mobile'];
+    }
+
     $event = $pageInstance->page()->first()->event()->first();
 
 @endphp
@@ -91,7 +102,7 @@
     <div class="box">
         <span class="place"><i class="fal fa-map-marker-alt"></i> <span class="text-dark">{{ $event->location }}</span></span>
         <h1>{{ $event->name }}</h1>
-        <p>{{ $pageInstance->preview_text }}</p>
+        <p>{!! $eventDescription !!}</p>
 
     </div>
 </section>
@@ -191,11 +202,21 @@
     </div>
 </section>
 
+<section class="blog-article-body">
+    <div class="wrap">
+        <div class="body">
+            <h2>{{ $informationTitle }}</h2>
+            {!! $informationTextMobile !!}
+            <div class="pb-4"></div>
+        </div>
+    </div>
+</section>
+
+@include('modules.presentation.share_this')
+
 @include('modules.presentation.important_information', [
     'parameters' => $parameters
 ])
-
-@include('modules.presentation.share_this')
 
 @include('modules.presentation.related_page_expanded', [
     'parameters' => $parameters
