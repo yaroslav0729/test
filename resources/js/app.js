@@ -282,6 +282,25 @@ $(function () {
 
     //~~~~~~~~~~~~~~~~~ Current projects slider ~~~~~~~~~~~~~~~~~~
 
+    function resizeSliderItems() {
+
+        let max = 0
+
+        for (let i = 1; i<4; i++) {
+            let el = $('.current-projects-list .slide_' + i + ' span.descr')
+
+            el.height('auto');
+
+            let h1 = el.height()
+
+            if (h1 > max) {
+                max = h1
+            }
+        }
+
+        $('.current-projects-list span.descr').height(max)
+    }
+
     var currentSlide = 0;
 
     $(document).on('click', '#current-proj-next-slide', function(e) {
@@ -331,7 +350,7 @@ $(function () {
             el2.find('.slide-readmore').attr('href', data[dataCou].readmore)
         }
 
-
+        resizeSliderItems()
     })
 
     //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

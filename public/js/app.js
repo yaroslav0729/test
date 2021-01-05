@@ -103383,6 +103383,22 @@ $(function () {
     });
   }); //~~~~~~~~~~~~~~~~~ Current projects slider ~~~~~~~~~~~~~~~~~~
 
+  function resizeSliderItems() {
+    var max = 0;
+
+    for (var i = 1; i < 4; i++) {
+      var el = $('.current-projects-list .slide_' + i + ' span.descr');
+      el.height('auto');
+      var h1 = el.height();
+
+      if (h1 > max) {
+        max = h1;
+      }
+    }
+
+    $('.current-projects-list span.descr').height(max);
+  }
+
   var currentSlide = 0;
   $(document).on('click', '#current-proj-next-slide', function (e) {
     e.preventDefault();
@@ -103425,6 +103441,8 @@ $(function () {
       el2.find('.slide-img').css('background-image', "url(" + data[dataCou].img + ")");
       el2.find('.slide-readmore').attr('href', data[dataCou].readmore);
     }
+
+    resizeSliderItems();
   }); //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   $(document).on('submit', '[prices-form]', function (event) {
