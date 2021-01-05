@@ -2,6 +2,13 @@ $(function () {
 
     var cartTimeout;
 
+    $(document).on('hide.bs.modal', '#cartModal', function (e) {
+        $('header .basket').removeClass('open')
+    })
+    $(document).on('show.bs.modal', '#cartModal', function (e) {
+        $('header .basket').addClass('open')
+    })
+
     $(document).on('change', '#cartModal input[type="number"]', function (e) {
         e.preventDefault()
 
