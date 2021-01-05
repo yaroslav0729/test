@@ -296,25 +296,6 @@ $ourValuesActiveLink = false;
 
 <div class="pt-5 pb-5"></div>
 
-{{--<section class="discover-more bg-light">
-    <div class="wrap">
-        <div class="title">
-            <div class="row">
-                <div class="col-7">
-                    <b class="font-size-30 mr-4 text-uppercase">Discover more</b>
-                </div>
-                <div class="col-5 text-right">
-                    <a href="#" class="text-uppercase text-underline"><b>visit newsroom</b> <i
-                            class="moon-icons-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-        @include('modules.presentation.related_pages', [
-            'parameters' => $parameters
-        ])
-    </div>
-</section>--}}
-
 @include('modules.presentation.related_page_expanded', [
             'parameters' => $parameters
         ])
