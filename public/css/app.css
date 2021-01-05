@@ -10023,7 +10023,7 @@ header .top-bar .basket {
 }
 header .top-bar .phone i {
   display: inline-block;
-  background: url(/images/ico-Phone.svg?c0838b9ddef6625586d506c7468e99e2) no-repeat;
+  background: url(/images/ico-Phone.svg?7d7f841f10b6a7c9b84c82dae0f19806) no-repeat;
   background-size: contain;
   width: 25px;
   height: 25px;
@@ -10240,6 +10240,10 @@ header .down-bar ul li a:hover {
   color: #F7796A;
 }
 header.only-menu + * {
+  margin-top: -108px;
+}
+header.only-menu + .header-menu + .who-we-are-head,
+header.only-menu + .header-menu + .blog-article-head {
   margin-top: -108px;
 }
 header.only-menu .down-bar.bg-white {
@@ -10787,6 +10791,7 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 .btn i {
   margin: 0 5px;
   transform: scale(1.4);
+  vertical-align: middle;
 }
 .btn.btn-lg {
   font-size: 25px;
@@ -11192,6 +11197,7 @@ input[type='number'].color-danger + .input-group .btn {
   padding-right: 60px;
   position: relative;
   display: flex;
+  min-height: 460px;
 }
 .main-page-header.style-1 .body > .left,
 .main-page-header.style-2 .body > .left {
@@ -11843,10 +11849,11 @@ input[type='number'].color-danger + .input-group .btn {
   top: 70px;
 }
 .current-projects .body .left {
+  min-height: 469px;
   border-radius: 5px 0 5px 5px;
   background-color: #FFF;
   box-shadow: 0 18px 35px 0 rgba(104, 110, 117, 0.2);
-  padding: 103px 105px 85px 63px;
+  padding: 95px 105px 63px 63px;
 }
 .current-projects .body .img {
   background-size: cover;

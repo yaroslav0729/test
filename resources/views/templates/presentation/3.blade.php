@@ -164,8 +164,8 @@
                                            class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate
                                             now</a>
                                     </div>
-                                    <div class="right"
-                                         style="background-image: url('{{ $hdrBgImage[$i] }}')"></div>
+                                    <a href="{{ $hdrLearnMoreLink[$i] }}" class="right"
+                                         style="background-image: url('{{ $hdrBgImage[$i] }}')"></a>
                                     <a href="#" class="view-more swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
                                 </div>
                             </div>

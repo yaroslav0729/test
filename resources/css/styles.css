@@ -416,6 +416,10 @@ header .down-bar ul li a:hover {
 header.only-menu + * {
   margin-top: -108px;
 }
+header.only-menu + .header-menu + .who-we-are-head,
+header.only-menu + .header-menu + .blog-article-head {
+  margin-top: -108px;
+}
 header.only-menu .down-bar.bg-white {
   background: #fff;
   box-shadow: 0 18px 35px 0 rgba(104, 110, 117, 0.1);
@@ -1356,6 +1360,7 @@ input[type='number'].color-danger + .input-group .btn {
   padding-right: 60px;
   position: relative;
   display: flex;
+  min-height: 460px;
 }
 .main-page-header.style-1 .body > .left,
 .main-page-header.style-2 .body > .left {
@@ -2007,10 +2012,11 @@ input[type='number'].color-danger + .input-group .btn {
   top: 70px;
 }
 .current-projects .body .left {
+  min-height: 469px;
   border-radius: 5px 0 5px 5px;
   background-color: #FFF;
   box-shadow: 0 18px 35px 0 rgba(104, 110, 117, 0.2);
-  padding: 103px 105px 85px 63px;
+  padding: 95px 105px 63px 63px;
 }
 .current-projects .body .img {
   background-size: cover;

@@ -5,7 +5,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
 
 @endphp
 
-<div class="modal fade1" id="cartModal" tabindex="-1" >
+<div class="modal fade" id="cartModal" tabindex="-1" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
