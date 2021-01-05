@@ -36,21 +36,21 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Title:</label>
-            <input class="form-control" required name="parameters[need_title]"
+            <input class="form-control" name="parameters[need_title]"
                    placeholder="Title" value="{{ $needTitle }}"/>
         </div>
     </div>
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Text</label>
-            <textarea class="form-control" name="parameters[need_text]">{{ $needText }}</textarea>
+            <textarea class="form-control" name="parameters[need_text]">{!! $needText !!}</textarea>
         </div>
     </div>
 
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Link text:</label>
-            <input class="form-control" required name="parameters[need_link_text]"
+            <input class="form-control" name="parameters[need_link_text]"
                    placeholder="Link text" value="{{ $needLinkText }}"/>
         </div>
     </div>
@@ -58,7 +58,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Link:</label>
-            <input class="form-control" required name="parameters[need_link]"
+            <input class="form-control" name="parameters[need_link]"
                    placeholder="Insert link" value="{{ $needLink }}"/>
         </div>
     </div>
@@ -66,7 +66,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Photo:</label>
-            <input class="form-control" required name="parameters[need_photo]"
+            <input class="form-control" name="parameters[need_photo]"
                    placeholder="Insert image path" value="{{ $needPhoto }}"/>
         </div>
     </div>
