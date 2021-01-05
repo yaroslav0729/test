@@ -961,6 +961,7 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 .btn i {
   margin: 0 5px;
   transform: scale(1.4);
+  vertical-align: middle;
 }
 .btn.btn-lg {
   font-size: 25px;
