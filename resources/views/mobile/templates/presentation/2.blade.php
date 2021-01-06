@@ -14,8 +14,8 @@
     $eventDetailsSpeaker = "";
     $eventDetailsContact = "";
 
-    $importantInformationTitle = "";
-    $importantInformationText = "";
+    $informationTitle = "";
+    $informationText = "";
 
     $informationTextMobile ="";
 
