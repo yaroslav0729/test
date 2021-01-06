@@ -113,7 +113,7 @@
     <div class="col-12">
         <div class="form-group">
             <label>Event title (max 60 characters):</label>
-            <input class="form-control" required name="parameters[event_title]"
+            <input class="form-control" name="parameters[event_title]"
                    placeholder="Insert Event title" value="{{ $eventTitle }}"/>
         </div>
     </div>
@@ -140,7 +140,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Preview position:</label>
-            <input class="form-control" required name="parameters[preview_position]"
+            <input class="form-control" name="parameters[preview_position]"
                    placeholder="Insert preview position name" value="{{ $previewPosition }}"/>
         </div>
     </div>
@@ -148,7 +148,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Event link text:</label>
-            <input class="form-control" required name="parameters[event_link_text]" placeholder="Insert event link text"
+            <input class="form-control" name="parameters[event_link_text]" placeholder="Insert event link text"
                    value="{{ $eventLinkText }}"/>
         </div>
     </div>
@@ -156,7 +156,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Event link:</label>
-            <input class="form-control" required name="parameters[event_link]" placeholder="Insert event link"
+            <input class="form-control" name="parameters[event_link]" placeholder="Insert event link"
                    value="{{ $eventLink }}"/>
         </div>
     </div>
@@ -166,7 +166,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Event start date (GMT):</label>
-            <input type="date" class="form-control" required name="parameters[event_start_date]"
+            <input type="date" class="form-control" name="parameters[event_start_date]"
                    placeholder="Choice start event date" value="{{ $eventStartDate }}"/>
         </div>
     </div>
@@ -174,7 +174,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Event start time (GMT 00:00 - 24:00):</label>
-            <input type="time" class="form-control" required name="parameters[event_start_time]"
+            <input type="time" class="form-control" name="parameters[event_start_time]"
                    placeholder="Insert start event time" value="{{ $eventStartTime }}"/>
         </div>
     </div>
@@ -198,7 +198,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Event sales end on (GMT):</label>
-            <input type="date" class="form-control" required name="parameters[event_end_sale_date]"
+            <input type="date" class="form-control" name="parameters[event_end_sale_date]"
                    placeholder="Choice start event date" value="{{ $eventEndSaleDate }}"/>
         </div>
     </div>
@@ -229,7 +229,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Event details organiser:</label>
-            <input class="form-control" required name="parameters[event_details_organiser]"
+            <input class="form-control" name="parameters[event_details_organiser]"
                    placeholder="Insert event details organiser" value="{{ $eventDetailsOrganiser }}"/>
         </div>
     </div>
@@ -243,7 +243,7 @@
     <div class="col-12 col-lg-6">
         <div class="form-group">
             <label>Event details contact:</label>
-            <input class="form-control" required name="parameters[event_details_contact]"
+            <input class="form-control" name="parameters[event_details_contact]"
                    placeholder="Insert event details contact" value="{{ $eventDetailsContact }}"/>
         </div>
     </div>
