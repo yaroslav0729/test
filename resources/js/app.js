@@ -177,7 +177,7 @@ $(function () {
 
     initWysiwyg();
     initSwiper();
-    //resizeSliderItems();
+    resizeRelatedTopicsItems();
 
     setTimeout(initTriggers, 100);
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -281,28 +281,32 @@ $(function () {
 
     });
 
-    //~~~~~~~~~~~~~~~~~ Current projects slider ~~~~~~~~~~~~~~~~~~
+    //~~~~~~~~~~~~~~~~~ Related topics module ~~~~~~~~~~~~~~~~~~
 
-    // function resizeSliderItems() {
+    $( window ).on('resize', function() {
+        resizeRelatedTopicsItems();
+    });
 
-    //     let max = 0
+    function resizeRelatedTopicsItems() {
 
-    //     for (let i = 1; i<4; i++) {
-    //         let els = $('.current-projects-list span.descr')
-    //         els.height('auto');
+        let max = 0
 
-    //         els.each(function( index ) {
-    //             let el = $(this)
+        for (let i = 1; i<4; i++) {
+            let els = $('.current-projects-list span.descr')
+            els.height('auto');
 
-    //             let h1 = el.height()
-    //             if (h1 > max) {
-    //                 max = h1
-    //             }
-    //         });
-    //     }
+            els.each(function( index ) {
+                let el = $(this)
 
-    //     $('.current-projects-list span.descr').height(max)
-    // }
+                let h1 = el.height()
+                if (h1 > max) {
+                    max = h1
+                }
+            });
+        }
+
+        $('.current-projects-list span.descr').height(max)
+    }
 
     //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
