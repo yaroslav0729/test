@@ -82,6 +82,9 @@ a#clear_all_btn:hover {
 .lets-join a p {color: #101525;}
 .lets-join a:hover {text-decoration-color: #101525;}
 
+.current-projects .swiper-button-next {
+    z-index: 9;
+}
 .current-projects .swiper-button-next:after {
     content: '' !important;
 }
