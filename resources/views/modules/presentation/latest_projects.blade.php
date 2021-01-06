@@ -14,8 +14,8 @@
                     <a href="{{ $project->slug }}" class="item">
                         <span class="img slide-img" style="background-image: url({{ $project->preview_img }})"></span>
                         <span class="descr">
-                            <span class="name font-weight-bold  font-size-16 slide-title">{{ $project->title }}</span>
-                            <span class="text font-size-16 slide-text">{{ $project->preview_text }}</span>
+                            <span class="name font-weight-bold  font-size-16 slide-title">{{ \App\Helpers\StrHelper::lengthLimit($project->title, 20) }}</span>
+                            <span class="text font-size-16 slide-text">{{ \App\Helpers\StrHelper::lengthLimit($project->preview_text, 60) }}</span>
                         </span>
                     </a>
                 </div>

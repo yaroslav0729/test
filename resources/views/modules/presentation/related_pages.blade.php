@@ -21,8 +21,8 @@
                         @endisset
 
                         <span class="descr">
-                        <span class="name font-size-16"><b>{{ $page->name }}</b></span>
-                        <span class="text font-size-16">{{ $page->preview_text }}</span>
+                        <span class="name font-size-16"><b>{{ \App\Helpers\StrHelper::lengthLimit($page->name, 20) }}</b></span>
+                        <span class="text font-size-16">{{ \App\Helpers\StrHelper::lengthLimit($page->preview_text, 60) }}</span>
                         </span>
                     </a>
                 </div>

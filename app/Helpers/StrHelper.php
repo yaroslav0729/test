@@ -25,4 +25,13 @@ class StrHelper
         return Str::before($string, '[') . $strBetween . Str::after($string, ']');
     }
 
+    public static function lengthLimit($str, $limit)
+    {
+        if (strlen($str) > $limit) {
+            return substr($str, 0, $limit) . '...';
+        } else {
+            return $str;
+        }
+    }
+
 }
