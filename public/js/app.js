@@ -103448,7 +103448,14 @@ $(function () {
   $(document).on('input', '#events input', function (event) {
     var section = $('#events');
     var inputs = $('#events input');
-    areElementsEmpty('#events input') === true ? $(section).removeClass('view-btn') : $(section).addClass('view-btn');
+
+    if (areElementsEmpty('#events input') === true) {
+      $(section).removeClass('view-btn');
+      $('.swiper').show();
+    } else {
+      $(section).addClass('view-btn');
+      $('.swiper').hide();
+    }
   }); //~~~~~~~~~~~~~~~~~~ toggle value currency on the Calculator page ~~~~~~~~~~~~~~~~~~~~
 
   $(document).on('change', '#currency', function () {
@@ -103813,11 +103820,20 @@ $(function () {
 
 $(function () {
   var cartTimeout;
+
+  function testAnim(x) {
+    $('#cartModal .modal-dialog').attr('class', 'modal-dialog animate__animated ' + x);
+  }
+
+  ;
   $(document).on('hide.bs.modal', '#cartModal', function (e) {
     $('header .basket').removeClass('open');
+    testAnim('animate__bounceOut');
   });
   $(document).on('show.bs.modal', '#cartModal', function (e) {
-    $('header .basket').addClass('open');
+    $('header .basket').addClass('open'); //testAnim('animate__fadeInDown');
+
+    testAnim('animate__bounceOut');
   });
   $(document).on('change', '#cartModal input[type="number"]', function (e) {
     e.preventDefault();

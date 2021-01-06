@@ -11,6 +11,8 @@
 @import 'app_additional_styles.css';
 @import "toastr";
 
+@import "animate.css/animate.css";
+
 .blockquote {
  background: #E9F6F8
 }
