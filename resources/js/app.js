@@ -404,12 +404,14 @@ $(function () {
         return strDate;
     }
 
-    function initDate(){
+    function initDate() {
         let dateField = ('#date-picker');
-        $('#date-picker-real').val($(dateField).val());
 
-        let reverseStr = reverseDate($(dateField).val());
-        $(dateField).val(reverseStr.replace(/\-/g, '.'));
+        if ($(dateField).val() !== undefined) {
+            $('#date-picker-real').val($(dateField).val());
+            let reverseStr = reverseDate($(dateField).val());
+            $(dateField).val(reverseStr.replace(/\-/g, '.'));
+        }
     }
 
 
