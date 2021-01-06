@@ -177,9 +177,10 @@ $(function () {
 
     initWysiwyg();
     initSwiper();
-    resizeRelatedTopicsItems();
 
+    setTimeout(resizeRelatedTopicsItems, 100);
     setTimeout(initTriggers, 100);
+    
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     $(document).on('change', '[name="template"]', selectTemplateRequest);

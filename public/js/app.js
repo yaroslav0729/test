@@ -103298,7 +103298,7 @@ $(function () {
   });
   Object(_admin_parts_init_tiny_mce__WEBPACK_IMPORTED_MODULE_1__["initWysiwyg"])();
   initSwiper();
-  resizeRelatedTopicsItems();
+  setTimeout(resizeRelatedTopicsItems, 100);
   setTimeout(initTriggers, 100); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   $(document).on('change', '[name="template"]', selectTemplateRequest);
