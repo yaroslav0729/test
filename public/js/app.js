@@ -103821,19 +103821,17 @@ $(function () {
 $(function () {
   var cartTimeout;
 
-  function testAnim(x) {
-    $('#cartModal .modal-dialog').attr('class', 'modal-dialog animate__animated ' + x);
+  function cartAnim(x) {
+    $('#cartModal .modal-dialog').attr('class', 'modal-dialog animated ' + x);
   }
 
   ;
   $(document).on('hide.bs.modal', '#cartModal', function (e) {
     $('header .basket').removeClass('open');
-    testAnim('animate__bounceOut');
   });
   $(document).on('show.bs.modal', '#cartModal', function (e) {
-    $('header .basket').addClass('open'); //testAnim('animate__fadeInDown');
-
-    testAnim('animate__bounceOut');
+    $('header .basket').addClass('open');
+    cartAnim('fadeInDown');
   });
   $(document).on('change', '#cartModal input[type="number"]', function (e) {
     e.preventDefault();
