@@ -103828,11 +103828,18 @@ $(function () {
 
 $(function () {
   var cartTimeout;
+
+  function cartAnim(x) {
+    $('#cartModal .modal-dialog').attr('class', 'modal-dialog animated ' + x);
+  }
+
+  ;
   $(document).on('hide.bs.modal', '#cartModal', function (e) {
     $('header .basket').removeClass('open');
   });
   $(document).on('show.bs.modal', '#cartModal', function (e) {
     $('header .basket').addClass('open');
+    cartAnim('fadeInDown');
   });
   $(document).on('change', '#cartModal input[type="number"]', function (e) {
     e.preventDefault();
