@@ -180,7 +180,7 @@ $(function () {
 
     setTimeout(resizeRelatedTopicsItems, 100);
     setTimeout(initTriggers, 100);
-    
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     $(document).on('change', '[name="template"]', selectTemplateRequest);
@@ -370,6 +370,48 @@ $(function () {
         $(mapBlock).attr('style', 'background-image: url("' + altSrc + '")');
         this.remove();
     });
+
+    //~~~~~~~~~~~~~~~~~~ input type=date manipulation ~~~~~~~~~~~~~~~~~~~~
+
+    initDate();
+
+    $(document).on('focus', '#date-picker', function (event) {
+        let valStr = $(this).val();
+        $(this).attr('type', 'date');
+
+        if (valStr !== '') {
+            let replaceStr = valStr.replace(/\./g, '-');
+            $(this).val(reverseDate(replaceStr));
+        }
+
+    });
+
+    $(document).on('blur', '#date-picker', function (event) {
+        let valStr = $(this).val();
+        $('#date-picker-real').val(valStr);
+        $(this).attr('type', 'text');
+
+        $(this).val(reverseDate(valStr).replace(/\-/g, '.'));
+
+    });
+
+    function reverseDate(strDate) {
+        if (strDate !== '') {
+            let splitedStrArr = strDate.split('-');
+            strDate = splitedStrArr.reverse().join('-');
+        }
+
+        return strDate;
+    }
+
+    function initDate(){
+        let dateField = ('#date-picker');
+        $('#date-picker-real').val($(dateField).val());
+
+        let reverseStr = reverseDate($(dateField).val());
+        $(dateField).val(reverseStr.replace(/\-/g, '.'));
+    }
+
 
     //~~~~~~~~~~~~~~~~~~ toggle search button on the Events page ~~~~~~~~~~~~~~~~~~~~
 

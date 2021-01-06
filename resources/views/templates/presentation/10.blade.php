@@ -21,13 +21,6 @@
         'date' => 'date',
     ]);
 
-    if (!$validator->fails()) {
-         $query->whereDate('start_date', '=', $keywordDate)
-         ->orWhereNotNull('end_date')
-         ->whereDate('start_date', '<=', $keywordDate)
-         ->whereDate('end_date', '>=', $keywordDate);
-    }
-
     if (!empty($keywordType)) {
         $query->where('entry_type', $keywordType);
     }
@@ -35,6 +28,20 @@
     if (!empty($keywordTypeParticipate)) {
         $query->where('event_type', $keywordTypeParticipate);
     }
+
+    if (!$validator->fails()) {
+         $query->whereDate('start_date', '=', $keywordDate)
+         ->orWhereNotNull('end_date')
+         ->where('name', 'LIKE', "%$keywordName%")
+         ->where('location', 'LIKE', "%$keywordLocation%")
+         ->where('entry_type', $keywordType)
+         ->where('event_type', $keywordTypeParticipate)
+         ->whereDate('start_date', '<=', $keywordDate)
+         ->whereDate('end_date', '>=', $keywordDate);
+    }
+
+    $getUrlTypeParams = http_build_query(Request::except('type'));
+    $getUrlParticipateParams = http_build_query(Request::except('participate'));
 
     $events = $query->orderBy('start_date')->paginate($perPage);
     $eventsForSlide = $events->count() < 3 ? \App\Models\Event::whereDate('start_date', '>=', now())->orderBy('start_date')->take(3)->get() : $events->take(3);
@@ -134,19 +141,25 @@
                     <div class="col-4">
                         <div class="form-group">
                             <label>EVENT NAME</label>
-                            <input type="text" class="form-control" name="name" value="{{ $keywordName }}">
+                            <input type="text" class="form-control" name="name" value="{{ $keywordName }}"
+                                   placeholder="All Events">
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="form-group">
                             <label>LOCATION</label>
-                            <input type="text" class="form-control" name="location" value="{{ $keywordLocation }}">
+                            <input type="text" class="form-control" name="location" value="{{ $keywordLocation }}"
+                                   placeholder="United Kingdom">
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="form-group">
                             <label>DATE</label>
-                            <input type="date" name="date" class="form-control" value="{{ $keywordDate }}">
+                            <div class="date-input">
+                                <input type="text" class="form-control picker" value="{{ $keywordDate }}"
+                                       placeholder="All dates" id="date-picker">
+                                <input type="date" hidden name="date" id="date-picker-real">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -169,9 +182,14 @@
                                 EVENT TYPE
                             </button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                @foreach (\App\Models\Event::ALL_TYPES_ENTRY as $typeId => $typeLabel)
-                                    <a class="dropdown-item"
-                                       href="{{ url($pageInstance->slug) . '?type=' . $typeId }}">{{ $typeLabel }}</a>
+                                @foreach (\App\Models\Event::ALL_TYPES_ENTRY as $typeId => $typeLabel)ора
+                                <a class="dropdown-item"
+                                   href="
+                                       @if(Str::contains(url()->full(), '?') and $getUrlTypeParams !=='')
+                                   {{ Request::path() . '?' . $getUrlTypeParams . '&type=' . $typeId }}
+                                   @else
+                                   {{ Request::path() . '?type=' . $typeId }}
+                                   @endif ">{{ $typeLabel }}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -185,7 +203,12 @@
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                 @foreach (\App\Models\Event::ALL_TYPE_EVENT as $typeId => $typeEvent)
                                     <a class="dropdown-item"
-                                       href="{{ url($pageInstance->slug) . '?participate=' . $typeId }}">{{ $typeEvent }}</a>
+                                       href="
+                                       @if(Str::contains(url()->full(), '?') and $getUrlParticipateParams !== '')
+                                       {{ Request::path() . '?' . $getUrlParticipateParams . '&participate=' . $typeId }}
+                                       @else
+                                       {{Request::path() . '?participate=' . $typeId }}
+                                       @endif ">{{ $typeEvent }}</a>
                                 @endforeach
                             </div>
                         </div>
