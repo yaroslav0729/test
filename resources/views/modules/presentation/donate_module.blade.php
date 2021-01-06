@@ -107,7 +107,7 @@ $allCategories = \App\Models\CampaignCategory::all();
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group" currency="£">
-                                        <input name="amount" type="number" class="form-control" placeholder="Enter amount">
+                                        <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -151,7 +151,7 @@ $allCategories = \App\Models\CampaignCategory::all();
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group" currency="£">
-                                        <input name="amount" type="number" class="form-control" placeholder="Enter amount">
+                                        <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -209,7 +209,7 @@ $allCategories = \App\Models\CampaignCategory::all();
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group" currency="£">
-                                        <input name="amount" type="number" class="form-control" placeholder="Enter amount">
+                                        <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                                     </div>
                                 </div>
                                 <div class="col-2">

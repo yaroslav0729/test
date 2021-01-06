@@ -98,7 +98,7 @@ foreach ($amount as $key => $item) {
 
                     <div class="pt-3"></div>
                     <div class="form-group" currency="£">
-                        <input name="amount" type="text" class="form-control" placeholder="Enter amount">
+                        <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="categories">
@@ -130,7 +130,7 @@ foreach ($amount as $key => $item) {
 
                     <div class="pt-3"></div>
                     <div class="form-group" currency="£">
-                        <input name="amount" type="text" class="form-control" placeholder="Enter amount">
+                        <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="categories">
@@ -175,7 +175,7 @@ foreach ($amount as $key => $item) {
 
                     <div class="pt-3"></div>
                     <div class="form-group" currency="£">
-                        <input name="amount" type="text" class="form-control" placeholder="Enter amount">
+                        <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="categories">
