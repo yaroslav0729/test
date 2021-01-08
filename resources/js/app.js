@@ -369,6 +369,7 @@ $(function () {
         let altSrc = $(mapBlock).attr('alt-src');
         $(mapBlock).attr('style', 'background-image: url("' + altSrc + '")');
         this.remove();
+        $('.gw-map-btn').css('margin-top', 0);
     });
 
     //~~~~~~~~~~~~~~~~~~ input type=date manipulation ~~~~~~~~~~~~~~~~~~~~

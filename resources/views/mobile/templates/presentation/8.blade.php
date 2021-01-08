@@ -137,7 +137,8 @@
 
 <section class="our-values">
     <div class="title">OUR VALUES</div>
-    <p class="pr-5">{!! $ourValuesDescription !!}</p>
+    <p>{!! $ourValuesDescription !!}</p>
+    <div class="pb-4"></div>
     <div class="img-video play-tr videoWrapper" style="">
         <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $ourValuesVideo }}"
                 frameborder="0"
@@ -153,7 +154,7 @@
 
 @empty(!$actionActive)
 <section class="mb-5">
-    <p class="font-size-20 text-uppercase"><b>Our values in action</b></p>
+    <p class="font-size-16 text-uppercase"><b>Our values in action</b></p>
     <div class="black-line"></div>
 </section>
 <section class="values-action" swiper-wrapper="our-values">

@@ -1186,6 +1186,10 @@
   width: calc(100% + 40px);
   margin: 0 -20px;
 }
+.mobile-template .our-values .title {
+  font-size: 16px;
+  padding-bottom: 7px;
+}
 .mobile-template .our-values .img-video {
   top: 0;
   margin: 0 -30px;
@@ -1279,7 +1283,7 @@
   display: none;
 }
 .mobile-template .our-story-swiper .swiper-slide .title {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 900;
   letter-spacing: 1px;
   line-height: 26px;
