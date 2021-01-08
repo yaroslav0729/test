@@ -49,7 +49,7 @@
             <i class="moon-icons-arrow-down"></i>
         </div>
 
-        <div swiper-wrapper="current_projects">
+        <div swiper-wrapper="current_projects" class="box-1">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     @for($i = 0; $i < 4; $i++)
@@ -58,18 +58,18 @@
                                 <div class="row gutter-0">
                                     <div class="col-6">
                                         <div class="left">
-                                            <p class="font-size-30 mb-3 font-weight-bold text-uppercase slide-title">{{ $slideTitle[$i] }}</p>
-                                            <p class="font-size-16 mb-5 slide-text">{{ $slideText[$i] }}</p>
-                                            <div>
-                                                <a href="{{ $readMoreLink[$i] }}" class="btn btn-outline-primary mr-4 slide-readmore">Read more</a>
-                                                <a href="#" class="btn btn-primary">Donate now</a>
+                                            <div class="text">
+                                                <p class="font-size-30 mb-3 font-weight-bold text-uppercase slide-title">{{ $slideTitle[$i] }}</p>
+                                                <p class="font-size-16 mb-5 slide-text">{{ $slideText[$i] }}</p>
+                                                <div class="actions">
+                                                    <a href="{{ $readMoreLink[$i] }}" class="btn btn-outline-primary mr-4 slide-readmore">Read more</a>
+                                                    <a href="#" class="btn btn-primary">Donate now</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="img slide-img" style="background-image: url({{ $slideImage[$i] }})">
-                                            
-                                        </div>
+                                        <div class="img" style="background-image: url({{ $slideImage[$i] }})"></div>
                                     </div>
                                 </div>
                             </div>

@@ -459,6 +459,7 @@ footer {
   .current-projects {
 	padding: 56px 13px;
 	margin-bottom: 0;
+	background: #F6F8FB;
 	.wrap {padding: 0}
 	.title {
 	  margin-bottom: 55px;
@@ -482,8 +483,19 @@ footer {
 		border-radius: 5px 5px 0 0;
 		z-index: 2;
 		position: relative;
+		margin: 0;
+		min-height: 10px;
 		.btn {margin-bottom: -24px;}
 	  }
+	  .img {
+		position: static;
+		bottom: 0;
+		border: 0;
+		padding-top: 73%;
+	  }
+	}
+	.swiper-container .swiper-slide {
+	  padding: 0;
 	}
 	.swiper-pagination {
 	  position: relative;

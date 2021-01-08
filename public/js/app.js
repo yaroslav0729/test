@@ -103451,7 +103451,44 @@ $(function () {
     var altSrc = $(mapBlock).attr('alt-src');
     $(mapBlock).attr('style', 'background-image: url("' + altSrc + '")');
     this.remove();
-  }); //~~~~~~~~~~~~~~~~~~ toggle search button on the Events page ~~~~~~~~~~~~~~~~~~~~
+  }); //~~~~~~~~~~~~~~~~~~ input type=date manipulation ~~~~~~~~~~~~~~~~~~~~
+
+  initDate();
+  $(document).on('focus', '#date-picker', function (event) {
+    var valStr = $(this).val();
+    $(this).attr('type', 'date');
+
+    if (valStr !== '') {
+      var replaceStr = valStr.replace(/\./g, '-');
+      $(this).val(reverseDate(replaceStr));
+    }
+  });
+  $(document).on('blur', '#date-picker', function (event) {
+    var valStr = $(this).val();
+    $('#date-picker-real').val(valStr);
+    $(this).attr('type', 'text');
+    $(this).val(reverseDate(valStr).replace(/\-/g, '.'));
+  });
+
+  function reverseDate(strDate) {
+    if (strDate !== '') {
+      var splitedStrArr = strDate.split('-');
+      strDate = splitedStrArr.reverse().join('-');
+    }
+
+    return strDate;
+  }
+
+  function initDate() {
+    var dateField = '#date-picker';
+
+    if ($(dateField).val() !== undefined) {
+      $('#date-picker-real').val($(dateField).val());
+      var reverseStr = reverseDate($(dateField).val());
+      $(dateField).val(reverseStr.replace(/\-/g, '.'));
+    }
+  } //~~~~~~~~~~~~~~~~~~ toggle search button on the Events page ~~~~~~~~~~~~~~~~~~~~
+
 
   $(document).on('input', '#events input', function (event) {
     var section = $('#events');
@@ -104317,12 +104354,12 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app_admin.css */"./resources/css/app_admin.css");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
-module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/mobile.css */"./resources/css/mobile.css");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app_admin.css */"./resources/css/app_admin.css");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/mobile.css */"./resources/css/mobile.css");
 
 
 /***/ })

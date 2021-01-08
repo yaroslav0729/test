@@ -1955,12 +1955,22 @@ input[type='number'].color-danger + .input-group .btn {
   line-height: 30px;
 }
 .current-projects {
-  background: #F6F8FB;
   padding: 76px 0 0;
   margin-bottom: 136px;
+  position: relative;
+}
+.current-projects:before {
+  content: "";
+  display: block;
+  background: #F6F8FB;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 62px;
 }
 .current-projects .wrap {
-  padding: 0 180px 0 180px;
+  padding: 0 150px;
 }
 .current-projects .title {
   position: relative;
@@ -2009,36 +2019,59 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .current-projects .body {
   position: relative;
-  top: 70px;
 }
 .current-projects .body .left {
   min-height: 469px;
   border-radius: 5px 0 5px 5px;
   background-color: #FFF;
-  box-shadow: 0 18px 35px 0 rgba(104, 110, 117, 0.2);
-  padding: 95px 105px 63px 63px;
+  box-shadow: 0 5px 30px 0 rgba(104, 110, 117, 0.2);
+  padding: 95px 105px 0 63px;
+  position: relative;
+  margin-bottom: 15px;
+}
+.current-projects .body .left .actions {
+  position: absolute;
+  left: 63px;
+  right: 20px;
+  bottom: 63px;
 }
 .current-projects .body .img {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  padding-top: 72%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 63px;
   border-bottom: 4px solid #F5C15D;
+}
+.current-projects .swiper-container {
+  padding-top: 70px;
+}
+.current-projects .swiper-container .swiper-slide {
+  padding: 0 30px;
+}
+.current-projects .swiper-container .swiper-slide .row {
   position: relative;
 }
-.current-projects .view-more {
+.current-projects .box-1 {
+  position: relative;
+}
+.current-projects .box-1 .view-more {
   background: #F5C15D;
   width: 60px;
   height: 60px;
-  position: relative;
-  bottom: 38px;
-  left: 100%;
+  position: absolute;
+  bottom: 63px;
+  right: -30px;
   text-align: center;
   font-size: 30px;
   line-height: 60px;
   color: #fff;
+  top: auto;
 }
-.current-projects .view-more:hover {
+.current-projects .box-1 .view-more:hover {
   background: #F7796A;
 }
 .current-projects-list,
@@ -5285,36 +5318,4 @@ input[type='number'].color-danger + .input-group .btn {
   display: inline-block;
   margin: 0 7px;
 }
-/*------------------------------------vb--------*/
-.date-input input[type="text"] {
-    padding-bottom: 10px;
-    height: 37px;
-}
-
-.picker {
-    position: relative;
-}
-
-.picker::-webkit-calendar-picker-indicator {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    color: transparent;
-    background: transparent;
-}
-
-.picker:after {
-    background-image: url(/img/datepicker.png);
-    font-weight: 900;
-    content: "";
-    color: #555;
-    padding: 0 5px;
-    background-repeat: no-repeat;
-    width: 14px;
-    height: 8px;
-}
-/*------------------------------------vb--------*/
 /*# sourceMappingURL=styles.css.map */
