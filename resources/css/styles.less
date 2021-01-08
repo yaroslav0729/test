@@ -63,6 +63,8 @@ body {
 body * {
     box-sizing: border-box;
     outline: none !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 
@@ -2048,12 +2050,12 @@ input[type='number'].color-danger  + .input-group {
 }
 
 .join-cause-2 {
-    padding: 110px 0;
-    margin-bottom: 100px;
+    padding: 110px 0 95px;
+    margin-bottom: 40px;
     overflow: hidden;
     .wrap {
         position: relative;
-        padding: 0 137px;
+        padding: 0 137px 0 180px;
         & > div {
             position: relative;
             padding: 0 10px 0 107px;
@@ -2076,9 +2078,12 @@ input[type='number'].color-danger  + .input-group {
             }
         }
     }
-    p { line-height: 40px;}
+    p {
+        line-height: 40px;
+        letter-spacing: normal;
+    }
     .decor-plus {
-        font-size: 35px;
+        font-size: 30px;
         position: absolute; right: -20px; top: 47px;
     }
     img {
@@ -2393,7 +2398,7 @@ input[type='number'].color-danger  + .input-group {
             letter-spacing: 1px;
             i {
                 display: inline-block;
-                font-size: 30px;
+                font-size: 40px;
                 vertical-align: middle;
                 margin-left: 10px;
                 position: relative; top: -2px;
@@ -3474,12 +3479,13 @@ input[type='number'].color-danger  + .input-group {
     .btn {
         position: absolute; left: 50%; top: 50%;
         transform: translate(-50%, -50%);
+        width: 182px;
     }
 }
 
 .values-action {
     padding: 0;
-    margin-bottom: 142px;
+    margin-bottom: 122px;
     .img {
         background-size: cover;
         background-repeat: no-repeat;

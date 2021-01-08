@@ -166,7 +166,7 @@ $ourValuesActiveLink = false;
 </section>
 
 @empty(!$actionActive)
-    <section class="mb-5">
+    <section class="mb-5 mt-n5">
         <p class="font-size-20 text-uppercase"><b>Our values in action</b></p>
         <div class="black-line"></div>
     </section>

@@ -9812,6 +9812,8 @@ body {
 body * {
   box-sizing: border-box;
   outline: none !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .wrapper {
   padding-top: 195px;
@@ -12321,13 +12323,13 @@ input[type='number'].color-danger + .input-group .btn {
   transform: scale(1.4);
 }
 .join-cause-2 {
-  padding: 110px 0;
-  margin-bottom: 100px;
+  padding: 110px 0 95px;
+  margin-bottom: 40px;
   overflow: hidden;
 }
 .join-cause-2 .wrap {
   position: relative;
-  padding: 0 137px;
+  padding: 0 137px 0 180px;
 }
 .join-cause-2 .wrap > div {
   position: relative;
@@ -12358,9 +12360,10 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .join-cause-2 p {
   line-height: 40px;
+  letter-spacing: normal;
 }
 .join-cause-2 .decor-plus {
-  font-size: 35px;
+  font-size: 30px;
   position: absolute;
   right: -20px;
   top: 47px;
@@ -12702,7 +12705,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .discover-more .title a i {
   display: inline-block;
-  font-size: 30px;
+  font-size: 40px;
   vertical-align: middle;
   margin-left: 10px;
   position: relative;
@@ -13837,10 +13840,11 @@ input[type='number'].color-danger + .input-group .btn {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  width: 182px;
 }
 .values-action {
   padding: 0;
-  margin-bottom: 142px;
+  margin-bottom: 122px;
 }
 .values-action .img {
   background-size: cover;
