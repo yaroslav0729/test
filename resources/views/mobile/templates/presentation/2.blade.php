@@ -210,9 +210,8 @@
             <div class="pb-4"></div>
         </div>
     </div>
+    @include('modules.presentation.share_this')
 </section>
-
-@include('modules.presentation.share_this')
 
 @include('modules.presentation.important_information', [
     'parameters' => $parameters

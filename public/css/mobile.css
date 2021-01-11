@@ -205,6 +205,14 @@
   overflow-x: hidden;
   overflow-y: scroll;
 }
+.mobile-template .header-menu .logo {
+  width: 54px;
+  height: 50px;
+}
+.mobile-template .header-menu .logo img {
+  width: 54px !important;
+  height: 50px !important;
+}
 .mobile-template .header-menu .line {
   width: 260px;
   height: 4px;
@@ -240,10 +248,13 @@
 .mobile-template .header-menu .top .search-btn,
 .mobile-template .header-menu .top .close-menu {
   color: #101525;
-  font-size: 23px;
+  font-size: 30px;
   font-weight: 900;
   letter-spacing: 1px;
   line-height: 22px;
+}
+.mobile-template .header-menu .top .search-btn {
+  font-size: 23px;
 }
 .mobile-template .header-menu .top .close-menu {
   font-size: 27px;
@@ -260,7 +271,7 @@
   display: block;
   padding: 0;
   font-size: 20px;
-  line-height: 50px;
+  line-height: 48px;
 }
 .mobile-template .header-menu .level-0 > ul li a {
   font-weight: 900;
@@ -268,6 +279,7 @@
 }
 .mobile-template .header-menu .level-0 > ul.menu-2 li {
   font-size: 16px;
+  line-height: 40px;
 }
 .mobile-template .header-menu .level-0 > ul.menu-2 li a {
   color: #101525;
@@ -281,6 +293,14 @@
 }
 .mobile-template .header-menu .title + div {
   padding-left: 0;
+}
+.mobile-template .header-menu .title a {
+  color: inherit;
+  font-size: 30px;
+  vertical-align: middle;
+  position: relative;
+  top: -3px;
+  margin-right: 5px;
 }
 .mobile-template .header-menu .menu {
   margin: 0;
@@ -299,6 +319,13 @@
   text-align: left;
   padding: 21px 30px 22px 49px;
   margin: 0 0 4px -49px;
+  position: relative;
+}
+.mobile-template .header-menu .projects-group-swiper .item i {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%) scale(1.4);
 }
 .mobile-template .header-menu .categories {
   background: #101525;
@@ -689,6 +716,11 @@
 .mobile-template .join-cause {
   padding: 70px 13px 50px;
 }
+.mobile-template .join-cause .title + p {
+  font-size: 16px !important;
+  letter-spacing: normal;
+  line-height: 1.5;
+}
 .mobile-template .join-cause form {
   padding: 20px 0 0;
   background: transparent;
@@ -790,11 +822,14 @@
 }
 .mobile-template .donate-today .body .donate-today-sheet .item > span > span:first-child span:first-child {
   font-size: 16px;
+  font-weight: 500;
   line-height: 1;
 }
 .mobile-template .donate-today .body .donate-today-sheet .item > span > span:last-child {
   font-size: 14px;
   padding: 0 10px;
+  line-height: 21px;
+  padding: 5px 10px;
 }
 .mobile-template .donate-today .body .donate-today-sheet .item input:checked + span {
   box-shadow: none;
@@ -976,6 +1011,9 @@
 }
 .mobile-template .blog-article-body {
   padding: 0 20px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
 }
 .mobile-template .blog-article-body .blog-video {
   padding-right: 0;
@@ -992,6 +1030,13 @@
   font-size: 16px;
   line-height: 1.6;
   padding-left: 17px;
+}
+.mobile-template .blog-article-body p,
+.mobile-template .blog-article-body ul,
+.mobile-template .blog-article-body ol {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
 }
 .mobile-template .blockquote {
   padding: 15px 0px 15px 15px;
@@ -1265,6 +1310,7 @@
 .mobile-template .our-story-swiper .swiper-slide .img-box {
   width: auto;
   margin: 0 -30px;
+  position: relative;
 }
 .mobile-template .our-story-swiper .swiper-slide .img-box > div {
   box-shadow: none;
@@ -1276,6 +1322,22 @@
   top: 0;
   left: 0;
   border-bottom: 4px solid #101525;
+}
+.mobile-template .our-story-swiper .swiper-slide .img-box .swiper-button-next {
+  background: #101525;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+  top: auto;
+  text-align: center;
+  font-size: 30px;
+  line-height: 60px;
+  color: #fff;
+}
+.mobile-template .our-story-swiper .swiper-slide .img-box .swiper-button-next:hover {
+  background: #F7796A;
 }
 .mobile-template .our-story-swiper .swiper-slide .box {
   width: 100%;
@@ -1324,10 +1386,10 @@
   padding: 60px 0;
 }
 .mobile-template .values-action .swiper-slide > i {
-  font-size: 25px;
+  font-size: 30px;
   position: absolute;
   right: 30px;
-  top: 30px;
+  top: 45px;
   color: #000;
 }
 .mobile-template .values-action .swiper-slide > i:after {
@@ -1365,6 +1427,9 @@
   position: absolute;
   right: 0;
   bottom: 25px;
+}
+.mobile-template .values-action .swiper-slide .img .place i {
+  color: #8d8fa7;
 }
 .mobile-template .values-action .swiper-pagination {
   position: relative;

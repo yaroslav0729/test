@@ -479,7 +479,6 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   display: inline-block;
   height: 42px;
   width: 42px;
-  background-color: #E3EFFE;
   vertical-align: middle;
   border-radius: 50%;
 }
@@ -2538,8 +2537,8 @@ input[type='number'].color-danger + .input-group .btn {
   top: 47px;
 }
 .share-box {
-  position: fixed;
-  top: 50%;
+  position: absolute;
+  top: 250px;
   right: 100px;
   white-space: nowrap;
   transform-origin: 100% 100%;
@@ -2772,6 +2771,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .blog-article-body {
   padding: 0 180px;
+  position: relative;
 }
 .blog-article-body .body {
   max-width: 800px;

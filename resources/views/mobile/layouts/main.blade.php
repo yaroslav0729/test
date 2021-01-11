@@ -35,12 +35,12 @@
     </header>
 
     <div class="header-menu" level="0">
-        <div class="row top">
+        <div class="row top align-items-center">
             <div class="col-4"><a href="#" style="display: none" class="back"><i class="moon-icons-arrow-left"></i></a></div>
             <div class="col-4 text-center"><a href="#" class="search-btn"><i class="fas fa-search"></i></a></div>
             <div class="col-4 text-right"><a href="#" class="close-menu"><i class="far fa-times"></i></a></div>
         </div>
-        <a href="{{ route('index') }}" class="logo"><span><img src="/img/logo.png" width="26" height="26" /></span></a>
+        <a href="{{ route('index') }}" class="logo"><img src="/img/logo.png" width="26" height="26" /></a>
         <div class="level-0">
             <ul class="menu-1">
                 @isset($headerMenuItem[0])
@@ -68,7 +68,8 @@
                 @endforeach
                 <li><a href="#">Login</a></li>
                 <li><a href="#">+ Create Account</a></li>
-                <li>Hotline: <b class="text-info">0121 446 5682</b></li>
+                <li>HOTLINE: <b class="text-info">0121 446 5682</b></li>
+                <li><a href="#" class="search-btn"><i class="fas fa-search"></i></a></li>
             </ul>
         </div>
 
@@ -76,7 +77,10 @@
         @isset ($headerMenuItem[1])
             @foreach ($headerMenuItem[1] as $groupId => $menuGroupItem)
                 <div style="display: none" class="level-1" data-group-id="{{ $groupId }}">
-                    <div class="title">{{ $menuGroupItem['parent_text'] }}</div>
+                    <div class="title">
+                        <a href="#" class="back"><i class="moon-icons-arrow-left"></i></a>
+                        {{ $menuGroupItem['parent_text'] }}
+                    </div>
                     <div class="line"></div>
                     @if ($menuGroupItem['max_depth'] >= 2)
                         <div class="projects-group-swiper">
@@ -104,6 +108,7 @@
                                 @foreach ($menuGroupItem['items'] as $menuItem)
                                     <li><a href="{{ $menuItem->link }}">{{ $menuItem->text }}</a></li>
                                 @endforeach
+                                <li><a href="#" class="search-btn"><i class="fas fa-search"></i></a></li>
                             </ul>
                         </div>
                     @endif

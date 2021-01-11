@@ -219,6 +219,7 @@
             {!! $informationText !!}
         </div>
     </div>
+    @include('modules.presentation.share_this')
 </section>
 
 {{--<section class="blog-article-body">
@@ -240,8 +241,6 @@
         </div>
     </div>
 </section>--}}
-
-@include('modules.presentation.share_this')
 
 <div class="pt-5"></div>
 
