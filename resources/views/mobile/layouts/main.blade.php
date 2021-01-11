@@ -36,8 +36,8 @@
 
     <div class="header-menu" level="0">
         <div class="row top align-items-center">
-            <div class="col-4"><a href="#" style="display: none" class="back"><i class="moon-icons-arrow-left"></i></a></div>
-            <div class="col-4 text-center"><a href="#" class="search-btn"><i class="fas fa-search"></i></a></div>
+            <div class="col-4"><a href="#" style="display: none" class="icon_left_1 back"><i class="moon-icons-arrow-left"></i></a></div>
+            <div class="col-4 text-center"><a href="#" class="icon_search_1 d-none search-btn"><i class="fas fa-search"></i></a></div>
             <div class="col-4 text-right"><a href="#" class="close-menu"><i class="far fa-times"></i></a></div>
         </div>
         <a href="{{ route('index') }}" class="logo"><img src="/img/logo.png" width="26" height="26" /></a>
@@ -78,7 +78,7 @@
             @foreach ($headerMenuItem[1] as $groupId => $menuGroupItem)
                 <div style="display: none" class="level-1" data-group-id="{{ $groupId }}">
                     <div class="title">
-                        <a href="#" class="back"><i class="moon-icons-arrow-left"></i></a>
+                        <a href="#" class="icon_left_2 back"><i class="moon-icons-arrow-left"></i></a>
                         {{ $menuGroupItem['parent_text'] }}
                     </div>
                     <div class="line"></div>
@@ -120,7 +120,10 @@
         @isset ($headerMenuItem[2])
             @foreach ($headerMenuItem[2] as $groupId => $menuGroupItem)
                 <div style="display: none" class="level-2" data-group-id="{{ $groupId }}">
-                    <div class="title">{{ $menuGroupItem['parent_text'] }}</div>
+                    <div class="title">
+                        <a href="#" class="icon_left_2 back"><i class="moon-icons-arrow-left"></i></a>
+                        {{ $menuGroupItem['parent_text'] }}
+                    </div>
                     <div class="line"></div>
                     <div class="categories">
                         <ul>
