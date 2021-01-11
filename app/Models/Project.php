@@ -86,6 +86,32 @@ class Project
         }
     }
 
+    public static function getProjectCampaignsCountries($pageInstance)
+    {
+        $amount = [];
+
+        if (isset($pageInstance->parameters['amount'])) {
+            $amount = $pageInstance->parameters['amount'];  
+        }
+
+        $campaignsCountries = [];
+
+        foreach ($amount as $key => $item) {
+            if (isset($item['campaigns'])) {
+                $campaigns = [];
+                foreach ($item['campaigns'] as $campId) {
+                    $campName = \App\Models\Campaign::getCountryNameForPrice($campId, $item['value'], $item['type']);
+                    
+                    if (isset($campName))
+                    $campaigns[$campId] = $campName;
+                }
+                $campaignsCountries[$key] = $campaigns; 
+            }
+        }
+
+        return $campaignsCountries;
+    }
+
     public static function getProjectCampaignsCateg($pageInstance)
     {
         $amount = [];

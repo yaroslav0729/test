@@ -1,46 +1,36 @@
+{{--
+
+This module depends from donate_module. 
+All items - single ptice items from donate module
+
+--}}
+
 @php
+    $moduleTitle = "";
 
-$moduleTitle = "";
+    if (isset($parameters['still_need_title'])) {
+        $moduleTitle = $parameters['still_need_title'];    
+    }
 
-if (isset($parameters['still_need_title'])) {
-    $moduleTitle = $parameters['still_need_title'];    
-}
+    $singleItems = [];
 
-$digit1 = "";
-$digit2 = "";
-$digit3 = "";
+    $amount = null;
 
-if (isset($parameters['still_need_digit1'])) {
-    $digit1 = $parameters['still_need_digit1'];    
-}
+    if (isset($parameters['amount'])) {
+        $amount = $parameters['amount'];  
+    }
 
-if (isset($parameters['still_need_digit2'])) {
-    $digit2 = $parameters['still_need_digit2'];    
-}
+    foreach ($amount as $amountKey => $item) {
+        if (isset($item['type']) && ((int)$item['type'] === \App\Models\CampaignPrice::TYPE_SINGLE)) {
+            $singleItems[$amountKey] = $item;
+        }
+    }
 
-if (isset($parameters['still_need_digit3'])) {
-    $digit3 = $parameters['still_need_digit3'];    
-}
+    $campaignsCountries = \App\Models\Project::getProjectCampaignsCountries($pageInstance);
 
-$text1 = "";
-$text2 = "";
-$text3 = "";
-
-if (isset($parameters['still_need_text1'])) {
-    $text1 = $parameters['still_need_text1'];
-    $text1 = str_replace("\r\n", '<br>', $text1);      
-}
-
-if (isset($parameters['still_need_text2'])) {
-    $text2 = $parameters['still_need_text2'];
-    $text2 = str_replace("\r\n", '<br>', $text2);
-}
-
-if (isset($parameters['still_need_text3'])) {
-    $text3 = $parameters['still_need_text3'];
-    $text3 = str_replace("\r\n", '<br>', $text3); 
-}
-
+    if (!isset($isEmergency)) {
+        $isEmergency = false;
+    }
 @endphp
 
 <section class="donate-today-card">
@@ -53,18 +43,33 @@ if (isset($parameters['still_need_text3'])) {
             @endempty
         </div>
         <div class="list d-flex justify-content-center">
-            <div class="item">
-                <div>£<b>{{ $digit1 }}</b></div>
-                {!! $text1 !!}
-            </div>
-            <div class="item active-color-info">
-                <div>£<b>{{ $digit2 }}</b></div>
-                {!! $text2 !!}
-            </div>
-            <div class="item active-color-danger">
-                <div>£<b>{{ $digit3 }}</b></div>
-                {!! $text3 !!}
-            </div>
+            
+            @php
+                $loopCou = 0;    
+            @endphp
+            @foreach ($singleItems as $itemKey => $item)
+                @if(count($campaignsCountries[$itemKey])>0) {{-- price exists & ok in campaign --}}
+                    <div class="item @if($isEmergency) active-color-danger @else active-color-info @endisset" data-item_num='{{ $itemKey }}'>
+                        <div>£<b>{{ $item['value'] }}</b></div>
+                        {!! $item['text'] !!}
+                    </div>
+                @endif 
+                
+                @php
+                    $loopCou++;
+                    $nextRow = false;
+                    if (($loopCou % 3 === 0) && (count($singleItems) > $loopCou)) {
+                        $nextRow = true;
+                    }    
+                @endphp
+
+                @if($nextRow) 
+                    </div>
+                    <div class="list d-flex justify-content-center pt-3">
+                @endif
+            @endforeach
+            
+
         </div>
     </div>
 </section>

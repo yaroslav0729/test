@@ -31,20 +31,9 @@ if (isset($parameters['amount'])) {
     $amount = $parameters['amount'];  
 }
 
-$campaignsCountries = [];
+$campaignsCountries = \App\Models\Project::getProjectCampaignsCountries($pageInstance);
 
 foreach ($amount as $key => $item) {
-    if (isset($item['campaigns'])) {
-        $campaigns = [];
-        foreach ($item['campaigns'] as $campId) {
-            $campName = \App\Models\Campaign::getCountryNameForPrice($campId, $item['value'], $item['type']);
-            
-            if (isset($campName))
-            $campaigns[$campId] = $campName;
-        }
-        $campaignsCountries[$key] = $campaigns; 
-    }
-
     if ((isset($item['type'])) && ((int)$item['type']) === \App\Models\CampaignPrice::TYPE_SINGLE) {
         $useSingleTab = true;
     }
