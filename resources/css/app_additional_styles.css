@@ -91,3 +91,8 @@ a#clear_all_btn:hover {
 .current-projects a.swiper-button-next:hover {
     text-decoration: none;
 }
+
+#cartModal .animated {
+    -webkit-animation-duration: 0.2s;
+    animation-duration: 0.2;
+}
