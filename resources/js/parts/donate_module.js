@@ -2,7 +2,15 @@ $(function () {
 
     //~~~~~~~~~~~~ show countries dropdown if click on amount ~~~~
 
-    
+    $(document).on('click', '#still_need_support .item', function () {
+        let itemKey = $(this).data('item_num')
+        let donateEl = $('[select-amount][data-amount_id="' + itemKey + '"]');
+
+        let donateModulePosition = $('.donate-today-sheet').offset().top;
+        $('html, body').animate({scrollTop: donateModulePosition}, 1000);
+
+        donateEl.click()
+    });
 
     $(document).on('click', '[select-appeal-tab]', function () {
         let period = $(this).data('period')

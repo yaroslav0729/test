@@ -104127,6 +104127,15 @@ $(function () {
 
 $(function () {
   //~~~~~~~~~~~~ show countries dropdown if click on amount ~~~~
+  $(document).on('click', '#still_need_support .item', function () {
+    var itemKey = $(this).data('item_num');
+    var donateEl = $('[select-amount][data-amount_id="' + itemKey + '"]');
+    var donateModulePosition = $('.donate-today-sheet').offset().top;
+    $('html, body').animate({
+      scrollTop: donateModulePosition
+    }, 1000);
+    donateEl.click();
+  });
   $(document).on('click', '[select-appeal-tab]', function () {
     var period = $(this).data('period');
     var form = $(this).closest('form');

@@ -33,7 +33,7 @@ All items - single ptice items from donate module
     }
 @endphp
 
-<section class="donate-today-card">
+<section class="donate-today-card" id="still_need_support">
     <div class="wrap">
         <div class="title">
             @empty($moduleTitle)
