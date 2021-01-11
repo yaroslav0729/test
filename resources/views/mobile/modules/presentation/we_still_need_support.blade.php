@@ -39,12 +39,12 @@ $moduleTitle = "";
         </div>
 
         <div class="list donate-today-card-swiper" swiper-wrapper="we_still_need">
-            <div class="swiper-container">
+            <div class="swiper-container" id="still_need_support">
                 <div class="swiper-wrapper">
                     @foreach ($singleItems as $itemKey => $item)
                         @if(count($campaignsCountries[$itemKey])>0) {{-- price exists & ok in campaign --}}
                             <div class="swiper-slide">
-                                <div class="item @if($isEmergency) active-color-danger @else active-color-info @endisset">
+                                <div class="item @if($isEmergency) active-color-danger @else active-color-info @endisset" data-item_num='{{ $itemKey }}'>
                                     <div>£<b>{{ $item['value'] }}</b></div>
                                     {{ $item['text'] }}
                                 </div>
