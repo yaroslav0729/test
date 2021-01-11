@@ -1,3 +1,9 @@
+@php
+    if ((isset($isColorInfo)) && ($isColorInfo == true))    {
+        $class = 'active-color-info';
+    }
+@endphp
+
 @foreach ($amount as $amountKey => $item)
     @if(isset($item['type']) && ((int)$item['type'] === $donateOptionsType))
         
