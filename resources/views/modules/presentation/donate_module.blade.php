@@ -58,6 +58,7 @@ $allCategories = \App\Models\CampaignCategory::all();
     </div>
     <div class="row gutter-0">
         <div class="col-6">
+{{--            if 1-2 tabs - col-7--}}
             <div class="media">
                 @empty($donateImg)
                     <img src="img/content/donate-today-1.jpg" alt="" class="w-100">
@@ -65,8 +66,18 @@ $allCategories = \App\Models\CampaignCategory::all();
                     <img src="{{ $donateImg }}" alt="" class="w-100">
                 @endempty
             </div>
+            <div class="descr">
+                <div>
+                    @empty($donateText)
+                        Your subtitle/copy can go here, max of 100ch ut perspi unde omnis iste natus demiour sit voluptatem, abilloum inventore.
+                    @else
+                        {{ $donateText }}
+                    @endempty
+                </div>
+            </div>
         </div>
         <div class="col-6">
+            {{--            if 1-2 tabs - col-5--}}
             <div class="donate-today-sheet">
 
                 <nav>
@@ -230,13 +241,6 @@ $allCategories = \App\Models\CampaignCategory::all();
                 </div>
             </div>
         </div>
-        <div class="descr"><div>
-            @empty($donateText)
-                Your subtitle/copy can go here, max of 100ch ut perspi unde omnis iste natus demiour sit voluptatem, abilloum inventore.
-            @else 
-                {{ $donateText }}
-            @endempty
-        </div></div>
 
     </div>
 </div>
