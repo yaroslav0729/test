@@ -126,14 +126,14 @@
             </div>
             <div class="col-3">
                 <a href="#">
-                    <span style="background-image: url(img/ico-Paym.png)"></span>
+                    <span style="background-image: url(img/ico-Paym.png?1)"></span>
                     <p><b>By Mobile</b></p>
                     <i href="#">MORE DETAILS</i>
                 </a>
             </div>
             <div class="col-3">
                 <a href="#">
-                    <span style="background-image: url(img/ico-Paypal.png)"></span>
+                    <span style="background-image: url(img/ico-Paypal.svg?1)"></span>
                     <p><b>Paypal</b></p>
                     <i href="#">MORE DETAILS</i>
                 </a>

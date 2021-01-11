@@ -156,6 +156,10 @@
   width: 26px;
   margin-right: 10px;
 }
+.mobile-template header .top-bar .logo span img {
+  width: 26px;
+  height: 25px;
+}
 .mobile-template header .top-bar .open-head-menu {
   background: url(/images/ico-menu.svg?b32c6ab29bb5e10c1209a79be3d8be6c) no-repeat;
   background-size: 25px 25px;
