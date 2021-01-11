@@ -34,7 +34,9 @@
         </div>
         <div class="pt-5"></div>
 
-        @include('modules.presentation.donate_module')
+        @include('modules.presentation.donate_module', [
+            'colorInfo' => true
+        ])
 
     </div>
 </section>

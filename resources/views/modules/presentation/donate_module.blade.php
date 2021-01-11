@@ -13,7 +13,13 @@
         $donateText = $parameters['donate_text'];    
     }
 
-    if (!isset($isEmergency)) $isEmergency = false;
+    if (!isset($isEmergency)) {
+        $isEmergency = false;
+    }
+
+    if ((isset($colorInfo)) && (!$isEmergency)) {
+        $isColorInfo = true;
+    }
 
 @endphp
 
@@ -83,10 +89,10 @@ $allCategories = \App\Models\CampaignCategory::all();
                 <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                         @isset($useSingleTab)
-                        <a run-trigger="click" class="nav-link active @if($isEmergency) color-red @endif"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true" donate-filter data-filter="single">Single Donation</a>
+                        <a run-trigger="click" class="nav-link active @isset($isColorInfo) color-info @endisset @if($isEmergency) color-red @endif"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true" donate-filter data-filter="single">Single Donation</a>
                         @endisset
                         @isset($useMonthlyTab)
-                        <a class="nav-link @if($isEmergency) color-red @else color-info @endif @empty($useSingleTab) active @endempty"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false" donate-filter data-filter="monthly">Monthly Donation</a>
+                        <a class="nav-link @isset($isColorInfo) color-info @endisset @if($isEmergency) color-red @endif @empty($useSingleTab) active @endempty"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false" donate-filter data-filter="monthly">Monthly Donation</a>
                         @endisset
                         @isset($useAppeal)
                         <a class="nav-link color-red"  data-toggle="tab" href="#nav-3" role="tab"  aria-selected="false" donate-filter data-filter="appeal">Appeal Donation</a>
@@ -129,7 +135,7 @@ $allCategories = \App\Models\CampaignCategory::all();
                             </div>
                             <div class="pt-3"></div>
                             <div class="text-center">
-                                <button type="button" class="btn btn-danger border-white btn-submit"
+                                <button type="button" class="btn @isset($isColorInfo) btn-info @else btn-danger @endisset border-white btn-submit"
                                 donate-btn
                                 >Donate</button>
                             </div>
@@ -143,7 +149,6 @@ $allCategories = \App\Models\CampaignCategory::all();
 
                             @include('modules.presentation.parts.donate_options',[
                                 'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY,
-                                'class' => 'active-color-info'
                             ])
 
                             <input type="hidden" value="monthly" name="period" />
@@ -173,7 +178,7 @@ $allCategories = \App\Models\CampaignCategory::all();
                             </div>
                             <div class="pt-3"></div>
                             <div class="text-center">
-                                <button type="button" class="btn @if($isEmergency) btn-danger @else btn-info @endif border-white btn-submit"
+                                <button type="button" class="btn @isset($isColorInfo) btn-info @else btn-danger @endisset @if($isEmergency) btn-danger @endif border-white btn-submit"
                                 donate-btn
                                 >Donate</button>
                             </div>

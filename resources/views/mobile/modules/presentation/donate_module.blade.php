@@ -15,6 +15,10 @@
 
     if (!isset($isEmergency)) $isEmergency = false;
 
+    if ((isset($colorInfo)) && (!$isEmergency)) {
+        $isColorInfo = true;
+    }
+
 @endphp
 
 @php
@@ -75,10 +79,10 @@ foreach ($amount as $key => $item) {
         <nav>
             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                 @isset($useSingleTab)
-                <a class="nav-link color-info active" run-trigger="click"  data-toggle="tab" href="#nav-1" role="tab" donate-filter data-filter="single" aria-selected="true">Single</a>
+                <a class="nav-link @isset($isColorInfo) color-info @endisset @if($isEmergency) color-red @endif active" run-trigger="click"  data-toggle="tab" href="#nav-1" role="tab" donate-filter data-filter="single" aria-selected="true">Single</a>
                 @endisset
                 @isset($useMonthlyTab)
-                <a class="nav-link color-info"  data-toggle="tab" href="#nav-2" role="tab" donate-filter data-filter="monthly"  aria-selected="false">Monthly</a>
+                <a class="nav-link @isset($isColorInfo) color-info @endisset @if($isEmergency) color-red @endif "  data-toggle="tab" href="#nav-2" role="tab" donate-filter data-filter="monthly"  aria-selected="false">Monthly</a>
                 @endisset
                 @isset($useAppeal)
                 <a class="nav-link color-red"  data-toggle="tab" href="#nav-3" role="tab" donate-filter data-filter="appeal"  aria-selected="false">Appeal</a>
@@ -111,7 +115,7 @@ foreach ($amount as $key => $item) {
 
                     <div class="pt-3"></div>
                     <div class="text-center">
-                        <button class="btn btn-info border-white btn-submit w-100"
+                        <button class="btn @isset($isColorInfo) btn-info @else btn-danger @endisset border-white btn-submit w-100"
                         donate-btn
                         >Donate</button>
                     </div>
@@ -125,7 +129,6 @@ foreach ($amount as $key => $item) {
                     @csrf
                     @include('modules.presentation.parts.donate_options',[
                         'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY,
-                        'class' => 'active-color-info'
                     ])
 
                     <div class="pt-3"></div>
@@ -142,7 +145,7 @@ foreach ($amount as $key => $item) {
                     </div>
                     <div class="pt-3"></div>
                     <div class="text-center">
-                        <button class="btn btn-info border-white btn-submit w-100"
+                        <button class="btn @isset($isColorInfo) btn-info @else btn-danger @endisset border-white btn-submit w-100"
                         donate-btn
                         >Donate</button>
                     </div>
@@ -187,7 +190,7 @@ foreach ($amount as $key => $item) {
                     </div>
                     <div class="pt-3"></div>
                     <div class="text-center">
-                        <button class="btn btn-info border-white btn-submit w-100"
+                        <button class="btn btn-danger border-white btn-submit w-100"
                         donate-btn
                         >Donate</button>
                     </div>

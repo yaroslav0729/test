@@ -6,6 +6,8 @@
         $mainHtml = $parameters['main_html'];    
     }
 
+    $isEmergency = \App\Models\Project::isEmergency($pageInstance);
+
 @endphp
 
 <div class="pt-4"></div>
@@ -16,7 +18,9 @@
             <i class="moon-icons-arrow-down"></i>
         </div>
 
-        @include('modules.presentation.donate_module')
+        @include('modules.presentation.donate_module', [
+            'colorInfo' => true
+        ])
         
     </div>
 </section>
