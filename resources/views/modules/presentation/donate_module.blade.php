@@ -58,12 +58,24 @@ $allCategories = \App\Models\CampaignCategory::all();
 
 @endphp
 
+@php
+
+$col1Class = 'col-6';
+$col2Class = 'col-6';
+
+if (!isset($useAppeal)) {
+    $col1Class = 'col-7';
+    $col2Class = 'col-5';
+}
+    
+@endphp
+
 <div class="body">
     <div id="donate_module_options" class="alert alert-warning d-none">
         {{ json_encode($campaignCategories) }}
     </div>
     <div class="row gutter-0">
-        <div class="col-6">
+        <div class="{{ $col1Class }}">
 {{--            if 1-2 tabs - col-7--}}
             <div class="media">
                 @empty($donateImg)
@@ -82,7 +94,7 @@ $allCategories = \App\Models\CampaignCategory::all();
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="{{ $col2Class }}">
             {{--            if 1-2 tabs - col-5--}}
             <div class="donate-today-sheet">
 
