@@ -102,7 +102,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
         </div>
 
         <div class="text-center mb-4">
-            <img src="img/payments-image.png" alt="" class="img-fluid">
+            <img src="img/payments-image.png?1" alt="" class="img-fluid">
         </div>
 
         
