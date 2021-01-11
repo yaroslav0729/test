@@ -2,41 +2,29 @@
 
 $moduleTitle = "";
 
-if (isset($parameters['still_need_title'])) {
-    $moduleTitle = $parameters['still_need_title'];    
-}
+    if (isset($parameters['still_need_title'])) {
+        $moduleTitle = $parameters['still_need_title'];    
+    }
 
-$digit1 = "";
-$digit2 = "";
-$digit3 = "";
+    $singleItems = [];
 
-if (isset($parameters['still_need_digit1'])) {
-    $digit1 = $parameters['still_need_digit1'];    
-}
+    $amount = null;
 
-if (isset($parameters['still_need_digit2'])) {
-    $digit2 = $parameters['still_need_digit2'];    
-}
+    if (isset($parameters['amount'])) {
+        $amount = $parameters['amount'];  
+    }
 
-if (isset($parameters['still_need_digit3'])) {
-    $digit3 = $parameters['still_need_digit3'];    
-}
+    foreach ($amount as $amountKey => $item) {
+        if (isset($item['type']) && ((int)$item['type'] === \App\Models\CampaignPrice::TYPE_SINGLE)) {
+            $singleItems[$amountKey] = $item;
+        }
+    }
 
-$text1 = "";
-$text2 = "";
-$text3 = "";
+    $campaignsCountries = \App\Models\Project::getProjectCampaignsCountries($pageInstance);
 
-if (isset($parameters['still_need_text1'])) {
-    $text1 = $parameters['still_need_text1'];    
-}
-
-if (isset($parameters['still_need_text2'])) {
-    $text2 = $parameters['still_need_text2'];    
-}
-
-if (isset($parameters['still_need_text3'])) {
-    $text3 = $parameters['still_need_text3'];    
-}
+    if (!isset($isEmergency)) {
+        $isEmergency = false;
+    }
 
 @endphp
 
@@ -53,24 +41,17 @@ if (isset($parameters['still_need_text3'])) {
         <div class="list donate-today-card-swiper" swiper-wrapper="we_still_need">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="item">
-                            <div>£<b>{{ $digit1 }}</b></div>
-                            {{ $text1 }}
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="item active-color-info">
-                            <div>£<b>{{ $digit2 }}</b></div>
-                            {{ $text2 }}
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="item active-color-danger">
-                            <div>£<b>{{ $digit2 }}</b></div>
-                            {{ $text3 }}
-                        </div>
-                    </div>
+                    @foreach ($singleItems as $itemKey => $item)
+                        @if(count($campaignsCountries[$itemKey])>0) {{-- price exists & ok in campaign --}}
+                            <div class="swiper-slide">
+                                <div class="item @if($isEmergency) active-color-danger @else active-color-info @endisset">
+                                    <div>£<b>{{ $item['value'] }}</b></div>
+                                    {{ $item['text'] }}
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                    
                 </div>
                 <div class="swiper-pagination"></div>
             </div>

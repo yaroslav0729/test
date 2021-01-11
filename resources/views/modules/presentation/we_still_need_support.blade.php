@@ -69,7 +69,6 @@ All items - single ptice items from donate module
                 @endif
             @endforeach
             
-
         </div>
     </div>
 </section>
