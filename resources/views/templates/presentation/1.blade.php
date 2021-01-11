@@ -97,9 +97,8 @@
             </div>
             <div class="pt-5 pb-2"></div>
         </div>
+    @include('modules.presentation.share_this')
 </section>
-
-@include('modules.presentation.share_this')
 
 <section class="discover-more bg-danger-light">
     <div class="wrap">

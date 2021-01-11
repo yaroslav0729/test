@@ -198,6 +198,11 @@ header {
   overflow-x: hidden;
   overflow-y: scroll;
 
+  .logo {
+	width: 54px; height: 50px;
+	img {width: 54px !important; height: 50px !important;}
+  }
+
   .line {
 	width: 260px;
 	height: 4px;
@@ -239,11 +244,12 @@ header {
 
 	a, .search-btn, .close-menu {
 	  color: #101525;
-	  font-size: 23px;
+	  font-size: 30px;
 	  font-weight: 900;
 	  letter-spacing: 1px;
 	  line-height: 22px;
 	}
+	.search-btn {font-size: 23px;}
 
 	.close-menu {
 	  font-size: 27px;
@@ -263,7 +269,7 @@ header {
 	  display: block;
 	  padding: 0;
 	  font-size: 20px;
-	  line-height: 50px;
+	  line-height: 48px;
 
 	  a {
 		font-weight: 900;
@@ -273,7 +279,7 @@ header {
 
 	&.menu-2 li {
 	  font-size: 16px;
-
+	  line-height: 40px;
 	  a {
 		color: #101525;
 	  }
@@ -289,6 +295,14 @@ header {
 
 	& + div {
 	  padding-left: 0;
+	}
+	a {
+	  color: inherit;
+	  font-size: 30px;
+	  vertical-align: middle;
+	  position: relative;
+	  top: -3px;
+	  margin-right: 5px;
 	}
   }
 
@@ -313,6 +327,11 @@ header {
 	  text-align: left;
 	  padding: 21px 30px 22px 49px;
 	  margin: 0 0 4px -49px;
+	  position: relative;
+	  i {
+		position: absolute; top: 50%; right: 15px;
+		transform: translateY(-50%) scale(1.4);
+	  }
 	}
   }
 
@@ -682,6 +701,11 @@ footer {
 
   .join-cause {
 	padding: 70px 13px 50px;
+	.title + p {
+	  font-size: 16px !important;
+	  letter-spacing: normal;
+	  line-height: 1.5;
+	}
 	form {
 	  padding: 20px 0 0;
 	  background: transparent;
@@ -703,6 +727,7 @@ footer {
 	  background-repeat: no-repeat;
 	  background-position: 50% 0%;
 	}
+
 	&.with-glyph {
 	  position: relative;
 	  padding-top: 134px;
@@ -771,6 +796,7 @@ footer {
 				span {
 				  &:first-child {
 					font-size: 16px;
+					font-weight: 500;
 					line-height: 1;
 				  }
 				}
@@ -778,6 +804,8 @@ footer {
 			  &:last-child {
 				font-size: 14px;
 				padding: 0 10px;
+				line-height: 21px;
+				padding: 5px 10px;
 			  }
 			}
 		  }
@@ -962,6 +990,14 @@ footer {
 	  font-size: 16px;
 	  line-height: 1.6;
 	  padding-left: 17px;
+	}
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1.7;
+	p, ul , ol {
+	  font-size: 16px;
+	  font-weight: 500;
+	  line-height: 1.7;
 	}
   }
 
@@ -1230,6 +1266,7 @@ footer {
 	  .img-box {
 		width: auto;
 		margin: 0 -30px;
+		position: relative;
 		& > div {
 		  box-shadow: none;
 		  margin-right: 0;
@@ -1239,6 +1276,16 @@ footer {
 		  padding-bottom: 55%;
 		  top: 0; left: 0;
 		  border-bottom: 4px solid #101525;
+		}
+		.swiper-button-next {
+		  background: #101525;
+		  width: 60px; height: 60px;
+		  position: absolute; bottom: 0; right: 20px; top: auto;
+		  text-align: center;
+		  font-size: 30px;
+		  line-height: 60px;
+		  color: #fff;
+		  &:hover {background: #F7796A}
 		}
 	  }
 	  .box {
@@ -1279,8 +1326,8 @@ footer {
 	  padding: 60px 0;
 	  //height: 100vh;
 	  & > i {
-		font-size: 25px;
-		position: absolute; right: 30px; top: 30px;
+		font-size: 30px;
+		position: absolute; right: 30px; top: 45px;
 		color: #000;
 		&:after {display: none}
 	  }
@@ -1303,6 +1350,7 @@ footer {
 		  color: #fff;
 		  border-radius: 5px 0  0 5px;
 		  position: absolute; right: 0; bottom: 25px;
+		  i {color: #8d8fa7}
 		}
 	  }
 	}

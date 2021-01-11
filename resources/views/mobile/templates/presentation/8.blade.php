@@ -169,7 +169,7 @@
                         <p class="text-2">{!! $actionTitle[$i] !!}</p>
                         <p class="text-3">{!! $actionDescription[$i] !!}</p>
                     </div>
-                    <div><a href="{{ $actionLearnMoreLink[$i] }}" class="btn btn-dark br-0"><b>LEARN MORE</b></a></div>
+                    <div><a href="{{ $actionLearnMoreLink[$i] }}" class="btn btn-primary-dark br-0"><b>Learn more</b></a></div>
                     <div class="img" style="background-image: url({{ $actionPhoto[$i] }})">&nbsp;
                         <span class="place"><i class="fal fa-map-marker-alt"></i> ROHINGYA</span>
                     </div>
@@ -200,6 +200,7 @@
                         <div class="bg-warning">
                             <div class="img" style="background-image: url({{ ${'storyPhoto' . $i} }})"></div>
                         </div>
+                        <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
                     </div>
                 </div>
                 @endfor
@@ -239,11 +240,11 @@
 <section class="blog-article-body">
     <div class="body">
         <h2>{{ $lifeChangingBlockTitle }}</h2>
-        {!! $lifeChangingBlockTextMobile !!}
+        <p>{!! $lifeChangingBlockTextMobile !!}</p>
     </div>
 </section>
 
-<div class="pt-5 pb-5"></div>
+<div class="pt-2 pb-2"></div>
 
 @include('modules.presentation.related_page_expanded', [
     'parameters' => $parameters

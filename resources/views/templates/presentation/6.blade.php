@@ -50,11 +50,10 @@
             {!! $mainHtml !!}
         </div>
     </div>
+    @include('modules.presentation.share_this')
 </section>
 
 <div class="pt-5"></div>
-
-@include('modules.presentation.share_this')
 
 @include('modules.presentation.what_happens_so_far')
 

@@ -89,6 +89,7 @@
             {!! $articleHtml !!}
         </div>
     </div>
+    @include('modules.presentation.share_this')
 </section>
 
 <section class="mission-impossible">
@@ -107,8 +108,6 @@
 </section>
 
 <div class="pt-5"></div>
-
-@include('modules.presentation.share_this')
 
 <section class="discover-more bg-danger-light">
     <div class="wrap">

@@ -18,6 +18,8 @@
                 <input type="radio" name="price" value="{{ $item['value'] }}">
                 <span class="d-flex align-items-center">
                     <span><span>
+                        <i  class="moon-icons-plus decor-plus"></i>
+
                         <object class="currency_sign">£</object>
                         <b>@isset($item['value']) {{ $item['value'] }} @endisset</b></span></span>
                     <span>@isset($item['text']) {{ $item['text'] }} @endisset</span>

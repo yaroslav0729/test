@@ -32,7 +32,7 @@
             <p class="font-size-25">
                 <b>
                 @empty($title)
-                    JOIN THE CAUSE
+                    Join the cause!
                 @else
                     {{ $title }}
                 @endif
