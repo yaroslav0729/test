@@ -4,12 +4,6 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles();
     
 @endphp
 
-<div class="alert alert-warning">
-    @php
-        //dd($articles);
-    @endphp
-</div>
-
 <section class="newsroom-list">
     <div class="title">
         <span>Trending</span>
