@@ -171,7 +171,7 @@
                     </div>
                     <div><a href="{{ $actionLearnMoreLink[$i] }}" class="btn btn-primary-dark br-0"><b>Learn more</b></a></div>
                     <div class="img" style="background-image: url({{ $actionPhoto[$i] }})">&nbsp;
-                        <span class="place"><i class="fal fa-map-marker-alt"></i> ROHINGYA</span>
+                        <span class="place"><i class="fal fa-map-marker-alt"></i>{{ $actionName[$i] }}</span>
                     </div>
                 </div>
                 @endif
