@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('header')
-    @include('parts.header')
+    @include($headerTemplate ?? 'parts.header')
 @endsection
 
 @section('content')

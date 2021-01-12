@@ -17,28 +17,29 @@ class Template
     const VOLUNTEER_PAGE = 11;
     const MISSION_POSSIBLE = 12;
     const VOLUNTEER_START_PAGE = 13;
+    const NEWSROOM_PAGE = 14;
     const CALCULATOR_PAGE = 20;
 
     const TEST_PAGE = 100;
 
 
     const ALL_TEMPLATES = [
-        self::BLOG_PAGE,
-        self::EVENT_PAGE,
         self::INDEX_PAGE,
+        self::BLOG_PAGE,
         self::COMMON_CONTENT_PAGE,
-        self::TEST_PAGE,
+        self::PROJECTS_PAGE,
+        self::PROJECT_PAGE,
+        self::EVENT_PAGE,
+        self::EVENTS_PAGE,
         self::WHO_WE_ARE_PAGE,
         self::THANK_YOU_DONATE_PAGE,
         self::CONTACT_PAGE,
-        self::PROJECTS_PAGE,
-        self::PROJECT_PAGE,
-        self::EVENTS_PAGE,
         self::CALCULATOR_PAGE,
         self::VOLUNTEER_PAGE,
-        self::MISSION_POSSIBLE,
         self::VOLUNTEER_START_PAGE,
-
+        self::MISSION_POSSIBLE,
+        self::NEWSROOM_PAGE,
+        //self::TEST_PAGE,
     ];
 
     public static function getLabel($type)
@@ -59,6 +60,7 @@ class Template
             case self::CALCULATOR_PAGE:return "Zakat calculator page";
             case self::MISSION_POSSIBLE:return "Mission possible page";
             case self::VOLUNTEER_START_PAGE:return "Volunteers get started page";
+            case self::NEWSROOM_PAGE:return "Newsroom page";
 
             default:return "Unknown template type";
         }
@@ -69,6 +71,15 @@ class Template
         $rules = [];
 
         switch ($template) {
+            case self::NEWSROOM_PAGE: {
+
+                $rules = [
+                    
+                ];
+
+                break;
+            }
+
             case self::BLOG_PAGE: {
 
                 $rules = [

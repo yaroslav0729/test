@@ -83,7 +83,7 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
-        View::composer(['page', 'page_short_header'], function ($view) {
+        View::composer('page', function ($view) {
             /** @var PageInstanceService $pageInstanceService */
             $pageInstanceService = resolve(PageInstanceService::class);
             $slug = request()->route('slug', 'index');

@@ -114,8 +114,17 @@ class PageController extends Controller
     public function preview($id)
     {
         $pageInstance = PageInstance::where('id', $id)->firstOrFail();
+        
+        $html = $pageInstance->renderTemplate()->render();
+        $html = \App\Models\Widget::replaceMonikers($html);
 
-        return view('page', compact('pageInstance'));
+        $headerTemplate = 'parts.header_short';
+
+        if ($pageInstance->template === \App\Models\Template::NEWSROOM_PAGE) {
+            $headerTemplate = 'parts.header_newsroom';
+        }
+
+        return view('page', compact('html', 'headerTemplate'));
     }
 
     public function restore($id)

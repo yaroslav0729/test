@@ -45,10 +45,12 @@
             <input type="text" name="email" placeholder="Your email address" class="flex-grow-1">
             <button type="submit" id="subscription_sbmt" ><i class="far fa-chevron-right"></i></button>
         </form>
-        @if ($imageBefore === "")
-            <div class="img" style="background-image: url( img/content/join-cause-2.jpg )"></div>
-        @else
-            <div class="img" style="background-image: url({{ $imageBefore }})"></div>
-        @endif
+        @empty($disableImageBefore)
+            @if ($imageBefore === "")
+                <div class="img" style="background-image: url( img/content/join-cause-2.jpg )"></div>
+            @else
+                <div class="img" style="background-image: url({{ $imageBefore }})"></div>
+            @endif
+        @endempty
     </div>
 </section>

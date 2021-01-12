@@ -60,6 +60,12 @@ class PageController extends Controller
         $html = $pageInstance->renderTemplate()->render();
         $html = \App\Models\Widget::replaceMonikers($html);
 
-        return view('page_short_header', compact('html'));
+        $headerTemplate = 'parts.header_short';
+
+        if ($pageInstance->template === \App\Models\Template::NEWSROOM_PAGE) {
+            $headerTemplate = 'parts.header_newsroom';
+        }
+
+        return view('page', compact('html', 'headerTemplate'));
     }
 }

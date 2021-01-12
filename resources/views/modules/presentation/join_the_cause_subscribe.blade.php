@@ -44,13 +44,13 @@
                     </div>
                     <p  class="font-size-20 mb-5">
                         @if ($textBefore === "")
-                            There are so many ways to help, make sure you<br>stay in the loop and <a href="#" id="join_the_cause_show_form" class="text-underline text-dark">sign up</a> to our Newsletter!
+                            There are so many ways to help, make sure you stay in the loop and <a href="#" id="join_the_cause_show_form" class="text-underline text-dark">sign up</a> to our Newsletter!
                         @else
                             {!! $textBefore !!}
                         @endif
                     </p>
                 </div>
-                <div class="col-4 pr-4">
+                <div class="col-5 pr-4">
                         @if ($imageBefore === "")
                             <img src="img/content/join-cause-2.jpg" alt="" class="w-100">
                         @else
