@@ -114,7 +114,6 @@
         </div>
         <div class="swiper">
             <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
-            <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
         </div>
     </div>
 </section>
@@ -126,67 +125,62 @@
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn form-control dropdown-toggle"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            EVENT TYPE
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <input type="hidden" id="per-page" value="{{ $perPage }}">
+                    <div class="form-group">
+                        <select name="type" class="form-control filter" id="filter-type">
+                            <option value="">EVENT TYPE</option>
                             @foreach (\App\Models\Event::ALL_TYPES_ENTRY as $typeId => $typeLabel)
-                                <a class="dropdown-item"
-                                   href="{{ url($pageInstance->slug) . '?type=' . $typeId }}">{{ $typeLabel }}</a>
+                                <option class="events-filter" value="{{ $typeId }}">{{ $typeLabel }}</option>
                             @endforeach
-                        </div>
+                        </select>
                     </div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn form-control dropdown-toggle"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            LIVE EVENTS
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <div class="form-group">
+                        <select name="type" class="form-control filter" id="filter-participate">
+                            <option value="">LIVE EVENTS</option>
                             @foreach (\App\Models\Event::ALL_TYPE_EVENT as $typeId => $typeEvent)
-                                <a class="dropdown-item"
-                                   href="{{ url($pageInstance->slug) . '?participate=' . $typeId }}">{{ $typeEvent }}</a>
+                                <option class="events-filter" value="{{ $typeId }}">{{ $typeEvent }}</option>
                             @endforeach
-                        </div>
+                        </select>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="list">
-        @foreach($events as $event)
-            <div class="item">
-                <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}" class="img d-block"
-                   style="background-image: url({{ $event->page->getActualPageInstanceAttribute()->preview_img }})">
-                    <span class="price">
-                     @if($event->entry_type === \App\Models\Event::ENTRY_PAID)
-                            £{{ $event->page->getActualPageInstanceAttribute()->parameters['event_entry_price'] }}
-                        @else
-                            {{ \App\Models\Event::ALL_TYPES_ENTRY[$event->entry_type] }}
-                        @endif
+    <div id="events-content">
+        <div class="list">
+            @foreach($events as $event)
+                <div class="item">
+                    <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}" class="img d-block"
+                       style="background-image: url({{ $event->page->getActualPageInstanceAttribute()->preview_img }})">
+                        <span class="price">
+                         @if($event->entry_type === \App\Models\Event::ENTRY_PAID)
+                                £{{ $event->page->getActualPageInstanceAttribute()->parameters['event_entry_price'] }}
+                            @else
+                                {{ \App\Models\Event::ALL_TYPES_ENTRY[$event->entry_type] }}
+                            @endif
+                        </span>
+                    </a>
+                    <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}" class="tl d-block">
+                        {{ $event->name }}</a>
+                    <span class="time d-block"><i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($event->start_time)->format('h:ia') }}</span>
+                    <span class="row">
+                        <span class="col-7">
+                            <span class="place"><i class="fal fa-map-marker-alt"></i>{{ $event->location }}</span>
+                        </span>
+                        <span class="col-5 text-right">
+                            <span class="date">{{ $event->start_date->format('M') }}<span>{{ $event->start_date->format('d') }}</span></span>
+                        </span>
                     </span>
-                </a>
-                <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}" class="tl d-block">
-                    {{ $event->name }}</a>
-                <span class="time d-block"><i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($event->start_time)->format('h:ia') }}</span>
-                <span class="row">
-                    <span class="col-7">
-                        <span class="place"><i class="fal fa-map-marker-alt"></i>{{ $event->location }}</span>
-                    </span>
-                    <span class="col-5 text-right">
-                        <span class="date">{{ $event->start_date->format('M') }}<span>{{ $event->start_date->format('d') }}</span></span>
-                    </span>
-                </span>
-            </div>
-        @endforeach
-    </div>
-    <div class="pagination justify-content-center">
-        {{ $events->links() }}
+                </div>
+            @endforeach
+        </div>
+        <div class="pagination justify-content-center">
+            {{ $events->links() }}
+        </div>
     </div>
 </section>
 

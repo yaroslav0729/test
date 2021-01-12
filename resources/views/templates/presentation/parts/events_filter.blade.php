@@ -6,26 +6,26 @@
                     <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}"
                        class="img d-block"
                        style="background-image: url({{ $event->page->getActualPageInstanceAttribute()->preview_img }})">
-                                    <span class="price text-uppercase">
-                                        @if($event->entry_type === \App\Models\Event::ENTRY_PAID)
-                                            £{{ $event->page->getActualPageInstanceAttribute()->parameters['event_entry_price'] }}
-                                        @else
-                                            {{ \App\Models\Event::ALL_TYPES_ENTRY[$event->entry_type] }}
-                                        @endif
-                                    </span>
+                        <span class="price text-uppercase">
+                            @if($event->entry_type === \App\Models\Event::ENTRY_PAID)
+                                £{{ $event->page->getActualPageInstanceAttribute()->parameters['event_entry_price'] }}
+                            @else
+                                {{ \App\Models\Event::ALL_TYPES_ENTRY[$event->entry_type] }}
+                            @endif
+                        </span>
                     </a>
                     <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}"
                        class="tl d-block">{{ $event->name }}</a>
                     <span class="time d-block"><i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($event->start_time)->format('h:i') }}</span>
                     <span class="row">
-                            <span class="col-7">
-                                <span class="place"><i class="fal fa-map-marker-alt"></i>{{ $event->location }}</span>
-                            </span>
-                            <span class="col-5 text-right">
-                                <span
-                                    class="date">{{ $event->start_date->format('M') }}<span>{{ $event->start_date->format('d') }}</span></span>
-                            </span>
+                        <span class="col-7">
+                            <span class="place"><i class="fal fa-map-marker-alt"></i>{{ $event->location }}</span>
                         </span>
+                        <span class="col-5 text-right">
+                            <span
+                                class="date">{{ $event->start_date->format('M') }}<span>{{ $event->start_date->format('d') }}</span></span>
+                        </span>
+                    </span>
                 </div>
             </div>
         @endforeach
