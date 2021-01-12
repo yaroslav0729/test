@@ -1,3 +1,33 @@
+@php
+
+    $mainTitle = '';
+    $minsText = '';
+    $mainText = '';
+    $watchLink = '';
+    $video = '';
+
+    if (isset($parameters['main_title'])) {
+        $mainTitle = $parameters['main_title'];    
+    }
+
+    if (isset($parameters['mins_text'])) {
+        $minsText = $parameters['mins_text'];    
+    }
+
+    if (isset($parameters['main_text'])) {
+        $mainText = $parameters['main_text'];    
+    }
+
+    if (isset($parameters['watch_link'])) {
+        $watchLink = $parameters['watch_link'];    
+    }
+
+    if (isset($parameters['main_video'])) {
+        $video = $parameters['main_video'];    
+    }
+
+@endphp
+
 <section class="newsroom-tabs">
     <nav class="general-content-tabs">
         <div class="nav nav-tabs nav-fill"  role="tablist">
@@ -12,14 +42,19 @@
 <section class="blog-article-head">
     <div class="wrap no-brd pt-0">
         <div class="article-text">
-            <div class="img-video" style="background-image: url(img/content/blog-video-1.jpg)"><i class="fas fa-play-circle"></i></div>
+            <div class="img-video videoWrapper" style="background: #aaa">
+                @empty($video) 
+                    <i class="fas fa-play-circle"></i>
+                @endempty
+                <iframe width="1280" height="720" src="{{ $video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
             <div class="article-text">
                 <p class="font-size-12 mb-0"><b>Featured article</b></p>
-                <h1 class="mb-3  pb-0">Article title right here, lorem ipsum 90ch.</h1>
-                <div class="date"><span class="text-danger">7mins</span></div>
-                <p>460 Characters perspiciais und omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
+                <h1 class="mb-3  pb-0">{{ $mainTitle }}</h1>
+                <div class="date"><span class="text-danger">{{ $minsText }}</span></div>
+                <p>{{ $mainText }}</p>
                 <div>
-                    <a href="#" class="btn btn-red">Watch now</a>
+                    <a href="{{ $watchLink }}" class="btn btn-red">Watch now</a>
                 </div>
             </div>
         </div>
