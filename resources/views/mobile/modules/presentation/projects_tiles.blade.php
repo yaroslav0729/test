@@ -37,7 +37,7 @@
 
                 @php
                             
-                    if ($tileCou < 2) {
+                    if ($tileCou < 5) {
                         $tileCou++;
                     } else {
                         $tileCou = 0;
@@ -54,8 +54,7 @@
             @endforeach
 
         </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+
         <div class="swiper-pagination"></div>
     </div>
 </div>
