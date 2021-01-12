@@ -6,8 +6,6 @@
 
     $keywordName = Request::get('name');
     $keywordLocation = Request::get('location');
-    $keywordType = Request::get('type');
-    $keywordTypeParticipate = Request::get('participate');
     $keywordDate = Request::get('date');
 
     $query = \App\Models\Event::whereDate('start_date', '>=', now());
@@ -21,27 +19,14 @@
         'date' => 'date',
     ]);
 
-    if (!empty($keywordType)) {
-        $query->where('entry_type', $keywordType);
-    }
-
-    if (!empty($keywordTypeParticipate)) {
-        $query->where('event_type', $keywordTypeParticipate);
-    }
-
     if (!$validator->fails()) {
          $query->whereDate('start_date', '=', $keywordDate)
          ->orWhereNotNull('end_date')
          ->where('name', 'LIKE', "%$keywordName%")
          ->where('location', 'LIKE', "%$keywordLocation%")
-         ->where('entry_type', $keywordType)
-         ->where('event_type', $keywordTypeParticipate)
          ->whereDate('start_date', '<=', $keywordDate)
          ->whereDate('end_date', '>=', $keywordDate);
     }
-
-    $getUrlTypeParams = http_build_query(Request::except('type'));
-    $getUrlParticipateParams = http_build_query(Request::except('participate'));
 
     $events = $query->orderBy('start_date')->paginate($perPage);
     $eventsForSlide = $events->count() < 3 ? \App\Models\Event::whereDate('start_date', '>=', now())->orderBy('start_date')->take(3)->get() : $events->take(3);
@@ -176,80 +161,32 @@
                 </div>
                 <div class="col-6 text-right">
                     <div class="form-group d-inline-block mr-3">
-                        <div class="btn-group" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn form-control dropdown-toggle"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                EVENT TYPE
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                @foreach (\App\Models\Event::ALL_TYPES_ENTRY as $typeId => $typeLabel)ора
-                                <a class="dropdown-item"
-                                   href="
-                                       @if(Str::contains(url()->full(), '?') and $getUrlTypeParams !=='')
-                                   {{ Request::path() . '?' . $getUrlTypeParams . '&type=' . $typeId }}
-                                   @else
-                                   {{ Request::path() . '?type=' . $typeId }}
-                                   @endif ">{{ $typeLabel }}</a>
+                        <input type="hidden" id="per-page" value="{{ $perPage }}">
+                        <div class="form-group">
+                            <select name="type" class="form-control filter" id="filter-type">
+                                <option value="">EVENT TYPE</option>
+                                @foreach (\App\Models\Event::ALL_TYPES_ENTRY as $typeId => $typeLabel)
+                                    <option class="events-filter" value="{{ $typeId }}">{{ $typeLabel }}</option>
                                 @endforeach
-                            </div>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group d-inline-block">
-                        <div class="btn-group" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn form-control dropdown-toggle"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                LIVE EVENTS
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <div class="form-group">
+                            <select name="type" class="form-control filter" id="filter-participate">
+                                <option value="">LIVE EVENTS</option>
                                 @foreach (\App\Models\Event::ALL_TYPE_EVENT as $typeId => $typeEvent)
-                                    <a class="dropdown-item"
-                                       href="
-                                       @if(Str::contains(url()->full(), '?') and $getUrlParticipateParams !== '')
-                                       {{ Request::path() . '?' . $getUrlParticipateParams . '&participate=' . $typeId }}
-                                       @else
-                                       {{Request::path() . '?participate=' . $typeId }}
-                                       @endif ">{{ $typeEvent }}</a>
+                                    <option class="events-filter" value="{{ $typeId }}">{{ $typeEvent }}</option>
                                 @endforeach
-                            </div>
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="list">
-                <div class="row">
-                    @foreach($events as $event)
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="item">
-                                <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}"
-                                   class="img d-block"
-                                   style="background-image: url({{ $event->page->getActualPageInstanceAttribute()->preview_img }})">
-                                    <span class="price text-uppercase">
-                                        @if($event->entry_type === \App\Models\Event::ENTRY_PAID)
-                                            £{{ $event->page->getActualPageInstanceAttribute()->parameters['event_entry_price'] }}
-                                        @else
-                                            {{ \App\Models\Event::ALL_TYPES_ENTRY[$event->entry_type] }}
-                                        @endif
-                                    </span>
-                                </a>
-                                <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}"
-                                   class="tl d-block">{{ $event->name }}</a>
-                                <span class="time d-block"><i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($event->start_time)->format('h:i') }}</span>
-                                <span class="row">
-                            <span class="col-7">
-                                <span class="place"><i class="fal fa-map-marker-alt"></i>{{ $event->location }}</span>
-                            </span>
-                            <span class="col-5 text-right">
-                                <span
-                                    class="date">{{ $event->start_date->format('M') }}<span>{{ $event->start_date->format('d') }}</span></span>
-                            </span>
-                        </span>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-            <div class="pagination justify-content-center">
-                {{ $events->links() }}
+            <div id="events-content">
+                @include('templates.presentation.parts.events_filter', [
+                    'events' => $events,
+                ])
             </div>
         </div>
     </section>
