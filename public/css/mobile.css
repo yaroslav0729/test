@@ -837,7 +837,7 @@
 .mobile-template .donate-projects-list {
   padding: 48px 20px 0;
   background: transparent;
-  margin-bottom: 72px;
+  margin-bottom: 50px;
 }
 .mobile-template .donate-projects-list .title {
   padding-top: 44px;
@@ -881,6 +881,25 @@
   height: 40px;
   text-align: center;
   line-height: 38px;
+}
+.mobile-template .donate-projects-list .swiper-container {
+  padding-bottom: 40px;
+}
+.mobile-template .donate-projects-list .swiper-container .swiper-pagination {
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.mobile-template .donate-projects-list .swiper-container .swiper-pagination .swiper-pagination-bullet {
+  flex: 1 1 auto;
+  height: 8px;
+  width: 40px;
+  background-color: #888;
+  border-radius: 0;
+  margin: 0 10px;
+}
+.mobile-template .donate-projects-list .swiper-container .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: #F7796A;
 }
 .mobile-template .about-donation {
   padding: 0 20px;

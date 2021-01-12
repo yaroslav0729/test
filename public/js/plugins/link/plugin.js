@@ -1575,7 +1575,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/node_modules/tinymce/plugins/link/plugin.js */"./node_modules/tinymce/plugins/link/plugin.js");
+module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/tinymce/plugins/link/plugin.js */"./node_modules/tinymce/plugins/link/plugin.js");
 
 
 /***/ })

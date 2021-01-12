@@ -818,7 +818,7 @@ footer {
   .donate-projects-list {
 	padding: 48px 20px 0;
 	background: transparent;
-	margin-bottom: 72px;
+	margin-bottom: 50px;
 	.title {
 	  padding-top: 44px;
 	  border: 0;
@@ -853,6 +853,24 @@ footer {
 		}
 	  }
 	}
+	.swiper-container {
+	  padding-bottom: 40px;
+	  .swiper-pagination {
+		bottom: 0;
+		display: flex;
+		flex-wrap: wrap;
+		.swiper-pagination-bullet {
+		  flex: 1 1 auto;
+		  height: 8px;
+		  width: 40px;
+		  background-color: #888;
+		  border-radius: 0;
+		  margin: 0 10px;
+		  &.swiper-pagination-bullet-active {background-color: #F7796A;}
+		}
+	  }
+	}
+
   }
 
   .about-donation {
