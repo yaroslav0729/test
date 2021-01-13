@@ -18,7 +18,7 @@
                     <span class="descr">
                         <span class="name font-size-16"><b>{{ \App\Helpers\StrHelper::lengthLimit($topic->preview_text, 50) }}</b></span>
                         <span class="text font-size-20 mb-3"><b>{{ \App\Helpers\StrHelper::lengthLimit($topic->title, 60) }}</b></span>
-                        <span class="date">{{ date('d F', strtotime($topic->published_at)) }}, 2020 BY AHMED SALEM</span>
+                        <span class="date">{{ date('d F Y', strtotime($topic->published_at)) }}, BY AHMED SALEM</span>
                         <i class="moon-icons-plus"></i>
                     </span>
                 </a>
