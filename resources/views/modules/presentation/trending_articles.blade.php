@@ -1,11 +1,16 @@
 @php
 
-$page = (int) request()->get('trending_articles');
+if (isset($selectedPage)) {
+    $page = $selectedPage;
+} else {
+    $page = (int) request()->get('trending_articles');
+}
+
 $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
 
 @endphp
 
-<section class="newsroom-list">
+<section class="newsroom-list" trending-articles>
     <div class="title">
         <span>Trending</span>
         <i>Trending articles</i>
@@ -17,7 +22,7 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
 
     <div class="pt-5 pb-5"></div>
 
-    <div class="row gutter-30">
+    <div class="row gutter-30" trending-articles-body>
         @foreach ($articles as $article)
             @php
                 $item = $article->actual_page_instance;    
@@ -39,7 +44,7 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
 
     <div class="pt-5 pb-5"></div>
 
-    <ul class="pagination justify-content-center">
+    <ul class="pagination justify-content-center" trending-articles-pagination>
         {{ $articles->links('parts.custom_paginator') }}
     </ul>
 </section>

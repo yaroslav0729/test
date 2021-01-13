@@ -722,8 +722,6 @@ $(function () {
                     $('.header-menu .top .back').show();
                 }
 
-                console.log('open sub menu')
-
                 if ($(targetMenuContainer).has('.projects-group-swiper').length) {
                     $('.header-menu').removeClass('dark-theme');
 
@@ -731,15 +729,12 @@ $(function () {
                     $('.icon_search_1').removeClass('d-none')
                     $('.icon_left_2').addClass('d-none')
 
-                    console.log('icon 2 hide')
                 } else {
                     $('.header-menu').addClass('dark-theme');
 
                     $('.icon_left_1').addClass('d-none')
                     $('.icon_search_1').addClass('d-none')
                     $('.icon_left_2').removeClass('d-none')
-
-                    console.log('icon 2 show')
                 }
 
                 $(menuContainer).hide();
@@ -775,8 +770,6 @@ $(function () {
             targetContainer.show();
         }
 
-        console.log('back click')
-
         if ($(targetContainer).has('.projects-group-swiper').length || currentLevel === 1) {
             headerMenuContainer.removeClass('dark-theme');
 
@@ -784,15 +777,12 @@ $(function () {
             $('.icon_search_1').removeClass('d-none')
             $('.icon_left_2').addClass('d-none')
 
-            console.log('back click 1')
         } else {
             headerMenuContainer.addClass('dark-theme');
 
             $('.icon_left_1').addClass('d-none')
             $('.icon_search_1').addClass('d-none')
             $('.icon_left_2').removeClass('d-none')
-
-            console.log('back click 2')
         }
 
         if (currentLevel - 1 <= 0) {
@@ -803,7 +793,6 @@ $(function () {
 
     $('.mobile-template .toggle-menu').on('click', function (e) {
         $('.mobile-template .toggle-menu').next().toggle();
-        console.log('footer2');
     });
 
     $('.header-menu .close-menu').click(function (e) {
@@ -824,6 +813,31 @@ $(function () {
     $('header .top-bar .ico-menu').on('click', function () {
         $('header .expand-bar').toggleClass('open');
     })
+
+    //~~~~~~~~~~~~~~~~~~~~~~~ Trending articles module ~~~~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('click', '[trending-articles] .pagination a', function (e) {
+        e.preventDefault()
+
+        let path = $(this).attr('href');
+        
+        const url = new URL(path);
+        let page = url.searchParams.get('trending_articles')
+        let data = {}
+        let apiUrl = '/api/get_trending_articles/' + page
+
+        $.get(apiUrl, data, refreshTrendingArticles, 'json');
+
+    });
+
+    function refreshTrendingArticles(response) {
+
+        let newBody = $('[trending-articles-body]', response.html)
+        $('[trending-articles-body]').html(newBody.html())
+        
+        let newPagination = $('[trending-articles-pagination]', response.html)
+        $('[trending-articles-pagination]').html(newPagination.html())
+    }
 
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
