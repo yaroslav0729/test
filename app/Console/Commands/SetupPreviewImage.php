@@ -1,18 +1,22 @@
 <?php
 
 namespace App\Console\Commands;
-use App\Models\PageInstance;
-use voku\helper\HtmlDomParser;
 
+use App\Console\Commands\Parts\MediaParser2;
+use App\Models\PageInstance;
+use DB;
 use Illuminate\Console\Command;
+use voku\helper\HtmlDomParser;
 
 class SetupPreviewImage extends Command
 {
+    protected $wpConnection;
+
     /**
      * The name and signature of the console command.
      *
      * php artisan setup_preview_images
-     * 
+     *
      * @var string
      */
     protected $signature = 'setup_preview_images';
@@ -43,9 +47,20 @@ class SetupPreviewImage extends Command
     {
         $this->info('Command started');
 
+        $this->wpConnection = DB::connection('wp');
+
+        $parser = new MediaParser2($this->wpConnection);
+
+        $parser->parse();
+
+        $this->info('Complete successfully!');
+    }
+
+    protected function setupFirstImage()
+    {
         $items = PageInstance::where('slug', 'like', '%' . 'media-centre/news/' . '%')->
-        whereNull('preview_img')
-        ->get();
+            whereNull('preview_img')
+            ->get();
 
         foreach ($items as $item) {
             $html = '';
@@ -60,16 +75,13 @@ class SetupPreviewImage extends Command
             if (count($images)) {
                 $item->preview_img = $images[0];
                 $item->save();
-                 
+
                 $this->info('Article id: ' . $item->id . ' saved');
             }
-            
+
         }
-         
 
         $this->info('Count pages: ' . $items->count());
-
-        $this->info('Complete successfully!');
     }
 
     private function findAllImages($el)
