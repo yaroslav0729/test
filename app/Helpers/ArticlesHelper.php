@@ -8,7 +8,7 @@ use \App\Models\Template;
 
 class ArticlesHelper
 {
-    const TRENDING_ARTICLES_PER_PAGE = 4;
+    const TRENDING_ARTICLES_PER_PAGE = 8;
 
     public static function getNewsroomArticles(int $page = 1)
     {
