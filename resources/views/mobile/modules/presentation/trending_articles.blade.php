@@ -5,41 +5,44 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
 
 @endphp
 
-<section class="newsroom-list">
+<section class="newsroom-list" >
     <div class="title">
-        <span>Trending</span>
-        <i>Trending articles</i>
+        <div>
+            <span>Trending</span>
+            <i>Trending articles</i>
+        </div>
         <div>
             <button class="btn btn-white">SORT BY DATE</button>
             <button class="btn btn-primary-dark">FILTER BY TOPIC</button>
         </div>
     </div>
 
-    <div class="pt-5 pb-5"></div>
-
-    <div class="row gutter-30">
+    <div class="row">
         @foreach ($articles as $article)
             @php
                 $item = $article->actual_page_instance;    
             @endphp
-            <div class="col-12 col-md-6">
+
+            <div class="col-12">
                 <div class="item">
                     <div>
                         <a href="{{ $item->slug }}" class="tl">{{ \App\Helpers\StrHelper::lengthLimit($item->title, 50) }}</a>
-                        <p>{{ \App\Helpers\StrHelper::lengthLimit($item->preview_text, 40) }}</p>
-                        <div class="date" style="text-transform: uppercase">
-                            {{ date('d F', strtotime($pageInstance->published_at)) }}<span>•</span>BY AHMED SALEM<span>•</span><b>{{ \App\Helpers\ArticlesHelper::getMinRead($item) }}min read</b>
+                        <div class="date">
+                            <div><b>{{ \App\Helpers\ArticlesHelper::getMinRead($item) }}min read</b></div>
+                            {{ date('d F', strtotime($pageInstance->published_at)) }}
+                            <span>•</span>BY AHMED SALEM
                         </div>
                     </div>
                     <a href="{{ $item->slug }}" class="img" style="background-image: url({{ $item->preview_img }})"></a>
                 </div>
-            </div>    
+            </div>
         @endforeach
+        
     </div>
 
-    <div class="pt-5 pb-5"></div>
+    <div class="pt-3 pb-3"></div>
 
     <ul class="pagination justify-content-center">
-        {{ $articles->links('parts.custom_paginator') }}
+        {{ $articles->onEachSide(0)->links('parts.custom_paginator') }}
     </ul>
 </section>
