@@ -1,7 +1,8 @@
 @php
 
-$articles = \App\Helpers\ArticlesHelper::getNewsroomArticles();
-    
+$page = (int) request()->get('trending_articles');
+$articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
+
 @endphp
 
 <section class="newsroom-list">
@@ -39,18 +40,6 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles();
     <div class="pt-5 pb-5"></div>
 
     <ul class="pagination justify-content-center">
-        <li class="page-item">
-            <a class="page-link arrow" href="#" aria-label="Previous">
-                <i class="far fa-chevron-left"></i>
-            </a>
-        </li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link arrow" href="#" aria-label="Next">
-                <i class="far fa-chevron-right"></i>
-            </a>
-        </li>
+        {{ $articles->links('parts.custom_paginator') }}
     </ul>
 </section>

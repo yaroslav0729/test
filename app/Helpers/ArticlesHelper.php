@@ -8,8 +8,14 @@ use \App\Models\Template;
 
 class ArticlesHelper
 {
-    public static function getNewsroomArticles()
+    const TRENDING_ARTICLES_PER_PAGE = 4;
+
+    public static function getNewsroomArticles(int $page = 1)
     {
+        if ($page < 1) {
+            $page = 1;
+        }
+
         $pages = Page::whereHas('pageInstances', function (Builder $query) {
             $query->where('template', Template::COMMON_CONTENT_PAGE)
                     ->where('slug', 'like', '%' . 'media-centre/news/' . '%');
@@ -17,8 +23,7 @@ class ArticlesHelper
         })
         ->published()
         ->orderBy('created_at', 'desc')
-        ->limit(4)
-        ->get();
+        ->paginate(self::TRENDING_ARTICLES_PER_PAGE, ['*'], 'trending_articles', $page);
 
         return $pages;
     }
