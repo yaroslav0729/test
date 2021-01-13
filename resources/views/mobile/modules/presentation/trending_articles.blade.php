@@ -29,7 +29,7 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
                         <a href="{{ $item->slug }}" class="tl">{{ \App\Helpers\StrHelper::lengthLimit($item->title, 50) }}</a>
                         <div class="date">
                             <div><b>{{ \App\Helpers\ArticlesHelper::getMinRead($item) }}min read</b></div>
-                            {{ date('d F', strtotime($pageInstance->published_at)) }}
+                            {{ date('d F', strtotime($item->published_at)) }}
                             <span>•</span>BY AHMED SALEM
                         </div>
                     </div>

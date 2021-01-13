@@ -47,4 +47,20 @@ class ArticlesHelper
         return $minRead;
     }
 
+    public static function getPopularTopics()
+    {
+        $pages = Page::whereHas('pageInstances', function (Builder $query) {
+            $query->where('template', Template::COMMON_CONTENT_PAGE)
+                    ->where('slug', 'like', '%' . 'media-centre/news/' . '%')
+                    ->where('preview_img', '<>', '');
+
+        })
+        ->published()
+        ->limit(3)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        return $pages;
+    }
+
 }

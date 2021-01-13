@@ -28,7 +28,7 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
                         <a href="{{ $item->slug }}" class="tl">{{ \App\Helpers\StrHelper::lengthLimit($item->title, 50) }}</a>
                         <p>{{ \App\Helpers\StrHelper::lengthLimit($item->preview_text, 40) }}</p>
                         <div class="date" style="text-transform: uppercase">
-                            {{ date('d F', strtotime($pageInstance->published_at)) }}<span>•</span>BY AHMED SALEM<span>•</span><b>{{ \App\Helpers\ArticlesHelper::getMinRead($item) }}min read</b>
+                            {{ date('d F', strtotime($item->published_at)) }}<span>•</span>BY AHMED SALEM<span>•</span><b>{{ \App\Helpers\ArticlesHelper::getMinRead($item) }}min read</b>
                         </div>
                     </div>
                     <a href="{{ $item->slug }}" class="img" style="background-image: url({{ $item->preview_img }})"></a>

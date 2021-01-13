@@ -69,49 +69,7 @@
 
 <div class="pt-5 pb-5"></div>
 
-<section class="popular-topic-list">
-    <div class="title">
-        <b class="font-size-30 mr-4 text-uppercase">POPULAR TOPICS</b>
-    </div>
-    <div class="row gutter-5">
-        <div class="col-4">
-            <div class="num">01</div>
-            <a href="#" class="item">
-                <span class="img" style="background-image: url(img/content/popular-topic-list1.jpg)"></span>
-                <span class="descr">
-                    <span class="name font-size-16"><b>CHARITY</b></span>
-                    <span class="text font-size-20 mb-3"><b>Article title placement here with a maximum of 60 characters.</b></span>
-                    <span class="date">April 06, 2020 BY AHMED SALEM</span>
-                    <i class="moon-icons-plus"></i>
-                </span>
-            </a>
-        </div>
-        <div class="col-4">
-            <div class="num">02</div>
-            <a href="#" class="item">
-                <span class="img" style="background-image: url(img/content/popular-topic-list2.jpg)"></span>
-                <span class="descr">
-                    <span class="name font-size-16"><b>EVENT</b></span>
-                    <span class="text font-size-20 mb-3"><b>Article title placement here with a maximum of 60 characters.</b></span>
-                    <span class="date">April 06, 2020 BY AHMED SALEM</span>
-                    <i class="moon-icons-plus"></i>
-                </span>
-            </a>
-        </div>
-        <div class="col-4">
-            <div class="num">03</div>
-            <a href="#" class="item">
-                <span class="img" style="background-image: url(img/content/popular-topic-list3.jpg)"></span>
-                <span class="descr">
-                    <span class="name font-size-16"><b>PROJECT</b></span>
-                    <span class="text font-size-20 mb-3"><b>Article title placement here with a maximum of 60 characters.</b></span>
-                    <span class="date">April 06, 2020 BY AHMED SALEM</span>
-                    <i class="moon-icons-plus"></i>
-                </span>
-            </a>
-        </div>
-    </div>
-</section>
+@include('modules.presentation.popular_topics')
 
 @include('modules.presentation.join_the_cause_subscribe')
 
