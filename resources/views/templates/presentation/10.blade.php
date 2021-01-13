@@ -7,12 +7,22 @@
     $keywordName = Request::get('name');
     $keywordLocation = Request::get('location');
     $keywordDate = Request::get('date');
+    $keywordType = Request::get('type');
+    $keywordTypeParticipate = Request::get('participate');
 
     $query = \App\Models\Event::whereDate('start_date', '>=', now());
 
     if (!empty($keywordName) || !empty($keywordLocation)) {
          $query->where('name', 'LIKE', "%$keywordName%")
          ->where('location', 'LIKE', "%$keywordLocation%");
+    }
+
+    if (!empty($keywordType)) {
+        $query->where('entry_type', $keywordType);
+    }
+
+    if (!empty($keywordTypeParticipate)) {
+        $query->where('event_type', $keywordTypeParticipate);
     }
 
     $validator = Illuminate\Support\Facades\Validator::make(['date' => $keywordDate], [
@@ -24,6 +34,8 @@
          ->orWhereNotNull('end_date')
          ->where('name', 'LIKE', "%$keywordName%")
          ->where('location', 'LIKE', "%$keywordLocation%")
+         ->where('entry_type', $keywordType)
+         ->where('event_type', $keywordTypeParticipate)
          ->whereDate('start_date', '<=', $keywordDate)
          ->whereDate('end_date', '>=', $keywordDate);
     }
@@ -166,7 +178,9 @@
                             <select name="type" class="form-control filter" id="filter-type">
                                 <option value="">EVENT TYPE</option>
                                 @foreach (\App\Models\Event::ALL_TYPES_ENTRY as $typeId => $typeLabel)
-                                    <option class="events-filter" value="{{ $typeId }}">{{ $typeLabel }}</option>
+                                    <option class="events-filter" value="{{ $typeId }}"
+                                            @if($typeId === intval($keywordType)) selected @endif
+                                    >{{ $typeLabel }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -176,7 +190,9 @@
                             <select name="type" class="form-control filter" id="filter-participate">
                                 <option value="">LIVE EVENTS</option>
                                 @foreach (\App\Models\Event::ALL_TYPE_EVENT as $typeId => $typeEvent)
-                                    <option class="events-filter" value="{{ $typeId }}">{{ $typeEvent }}</option>
+                                    <option class="events-filter" value="{{ $typeId }}"
+                                            @if($typeId === intval($keywordTypeParticipate)) selected @endif
+                                    >{{ $typeEvent }}</option>
                                 @endforeach
                             </select>
                         </div>
