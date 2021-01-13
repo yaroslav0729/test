@@ -1745,10 +1745,10 @@ input[type='number'].color-danger  + .input-group {
 .current-projects-list, .popular-topic-list {
     margin-bottom: 145px;
     .wrap {
-        border-bottom: 4px solid #101525;
         padding: 0 46px;
         margin: 0 -60px;
     }
+    &.down-dark-line .wrap {border-bottom: 4px solid #101525;}
     .item {
         display: block;
         text-decoration: none;
@@ -3508,6 +3508,7 @@ input[type='number'].color-danger  + .input-group {
         background-position: 50% 50%;
     }
     .text {
+        padding: 74px 113px 43px 52px;
         .text-1 {
             color: #101525;
             font-size: 35px;
@@ -3537,7 +3538,6 @@ input[type='number'].color-danger  + .input-group {
             line-height: 22px;
             text-decoration: underline;
         }
-        padding: 74px 52px 43px;
     }
     .values-action-nav {
         background: #101525;
@@ -3573,12 +3573,13 @@ input[type='number'].color-danger  + .input-group {
 
 .our-story-swiper {
     margin-bottom: 124px;
+    padding-right: 120px;
     .wrap {
         position: relative;
         z-index: 1;
     }
     .swiper-slide {
-        padding: 20px;
+        padding: 20px 20px 40px;
         .img-box {
             width: 40%;
             margin-top: 85px;
@@ -3598,6 +3599,7 @@ input[type='number'].color-danger  + .input-group {
             }
         }
         .box {
+            min-height: 505px;
             width: 60%;
             padding: 47px 59px 50px;
             position: relative;
@@ -3606,8 +3608,8 @@ input[type='number'].color-danger  + .input-group {
                 display: block;
                 background: url(../img/Line-styling.png) no-repeat;
                 background-size: contain;
-                height: 197px; width: 196px;
-                position: absolute; right: 103%; bottom: -10px;
+                height: 220px; width: 220px;
+                position: absolute; right: 103%; bottom: -35px;
                 opacity: 0.1;
             }
         }

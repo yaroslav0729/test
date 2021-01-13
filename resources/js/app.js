@@ -871,29 +871,31 @@ function areElementsEmpty(selector)
 }
 
 function initSwiper(){
+    setTimeout(function () {
+        $('[swiper-wrapper]').each(function() {
+            let key = '[swiper-wrapper="'+ $(this).attr('swiper-wrapper') +'"]';
+            let autoHeight = $(this).attr('swiper-autoHeight');
 
-    $('[swiper-wrapper]').each(function() {
-        let key = '[swiper-wrapper="'+ $(this).attr('swiper-wrapper') +'"]';
+            let options = {
+                loop: function (){
+                    return !!$(this).hasClass('loop');
+                },
+                autoHeight: (autoHeight ? true : false),
+                spaceBetween:  parseInt($(this).attr('space-between') ?? 0),
+                centeredSlides: ($(this).attr('centered-slides') ?? false),
+                slidesPerView:  ($(this).attr('slides-per-view') ?? 1),
+                navigation: {
+                    nextEl: key + ' .swiper-button-next',
+                    prevEl: key + ' .swiper-button-prev',
+                },
+                pagination: {
+                    el: key + ' .swiper-pagination',
+                }
+            };
 
-        let options = {
-            loop: function (){
-                return !!$(this).hasClass('loop');
-            },
-            spaceBetween:  parseInt($(this).attr('space-between') ?? 0),
-            centeredSlides: ($(this).attr('centered-slides') ?? false),
-            slidesPerView:  ($(this).attr('slides-per-view') ?? 1),
-            navigation: {
-                nextEl: key + ' .swiper-button-next',
-                prevEl: key + ' .swiper-button-prev',
-            },
-            pagination: {
-                el: key + ' .swiper-pagination',
-            }
-        };
-
-        let swiper = new Swiper(key + ' .swiper-container', options);
-    })
-
+            let swiper = new Swiper(key + ' .swiper-container', options);
+        })
+    }, 200)
 }
 
 function initTriggers() {

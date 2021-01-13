@@ -99,8 +99,8 @@
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-        <div class="text-center mt-5 mb-4">
-            <a href="@if ($relPageLink === "") /blog-page @else{{ $relPageLink }} @endif" class="text-uppercase text-underline text-danger font-size-16">
+        <div class="text-center mt-5 mb-2">
+            <a href="@if ($relPageLink === "") /blog-page @else{{ $relPageLink }} @endif" class="text-uppercase text-danger font-size-16">
                 <b>
                     @if ($relPageLinkTitle === "")
                         VISIT NEWSROOM
@@ -108,7 +108,7 @@
                         {{ $relPageLinkTitle }}
                     @endif
                 </b>
-                <i class="moon-icons-arrow-right font-size-20"></i></a>
+                <i class="moon-icons-arrow-right font-size-40"></i></a>
         </div>
     </div>
 </section>

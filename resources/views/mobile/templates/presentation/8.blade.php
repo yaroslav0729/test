@@ -216,7 +216,7 @@
 </section>
 
 @empty(!$changingActive)
-<section class="promo-project-swiper" swiper-wrapper="our-support">
+<section class="promo-project-swiper" swiper-wrapper="our-support" swiper-autoHeight="true">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             @for ($i = 1; $i <= 2; $i++)

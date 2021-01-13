@@ -647,21 +647,32 @@ footer {
 	}
 	.swiper-container {
 	  margin-bottom: 0;
-	  .swiper-slide {padding-bottom: 50px;}
+	  .swiper-slide {
+		padding-bottom: 50px;
+		opacity: 0.4;
+		&.swiper-slide-active {
+		  opacity: 1;
+		  padding-right: 60px;
+		  .item .descr {margin-left: 25px;}
+		  & + .swiper-slide {margin-left: -40px;}
+		}
+	  }
 	  .swiper-pagination {
-		position: relative;
-		text-align: center;
+		padding-bottom: 0;
 		bottom: 0;
-		margin-top: 0px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 		.swiper-pagination-bullet {
-		  background: #DAE7F9;
-		  border-radius: 0;
+		  flex: 1 1 auto;
 		  height: 4px;
 		  width: 40px;
-		  min-width: 10px;
-		  margin-right: 10px;
+		  max-width: 90px;
+		  background-color: #DAE7F9;
+		  border-radius: 0;
+		  margin: 0 10px;
 		  opacity: 1;
-		  &.swiper-pagination-bullet-active {background: #2CAABB}
+		  &.swiper-pagination-bullet-active {background-color: #2CAABB;}
 		}
 	  }
 	}
@@ -859,6 +870,7 @@ footer {
 		bottom: 0;
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: center;
 		.swiper-pagination-bullet {
 		  flex: 1 1 auto;
 		  height: 8px;
@@ -1115,23 +1127,27 @@ footer {
   }
 
   .current-projects-list {
+	.swiper-container {border-bottom: 0}
+	.swiper-wrapper {margin-bottom: 10px}
 	.swiper-pagination {
-	  position: relative;
-	  text-align: center;
+	  padding-bottom: 0;
 	  bottom: 0;
-	  margin-top: 0;
+	  display: flex;
+	  flex-wrap: wrap;
+	  justify-content: center;
 	  .swiper-pagination-bullet {
-		background: #DAE7F9;
-		border-radius: 0;
+		flex: 1 1 auto;
 		height: 4px;
 		width: 40px;
-		min-width: 10px;
-		margin-right: 10px;
+		max-width: 90px;
+		background-color: #DAE7F9;
+		border-radius: 0;
+		margin: 0 10px;
 		opacity: 1;
-		&.swiper-pagination-bullet-active {background: #2CAABB}
+		&.swiper-pagination-bullet-active {background-color: #F7796A;}
 	  }
 	}
-	.item {margin-bottom: 30px}
+	.item {margin-bottom: 0px}
   }
 
   .share-box {
@@ -1311,6 +1327,7 @@ footer {
 		padding: 0;
 		box-shadow: none;
 		border-radius: 0;
+		min-height: auto;
 		&:after {display: none;}
 	  }
 	  .title {
