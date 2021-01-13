@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -107,5 +108,49 @@ class Event extends Model
         }
 
         return new static($attributes);
+    }
+
+    public static function searchByParam(array $params)
+    {
+        $query = \App\Models\Event::whereDate('start_date', '>=', now());
+
+        $name = $params['name'] ?? '';
+        $location = $params['location'] ?? '';
+        $date = $params['date'] ?? '';
+
+        if ($name) {
+            $query->where('name', 'LIKE', "%$name%");
+        }
+
+        if ($location) {
+            $query->where('location', 'LIKE', "%$location%");
+        }
+
+        $validatorDate = Validator::make(['date' => $date], [
+            'date' => 'date',
+        ]);
+
+        if ($params['type']) {
+            $query->where('entry_type', $params['type']);
+        }
+
+        if ($params['participate']) {
+            $query->where('event_type', $params['participate']);
+        }
+
+      if ($date && !$validatorDate->fails()) {
+            $query->whereDate('start_date', '=', $date)
+                ->orWhereNotNull('end_date')
+                ->where('name', 'LIKE', "%$name%")
+                ->where('location', 'LIKE', "%$location%")
+                ->where('entry_type', $params['type'])
+                ->where('event_type', $params['participate'])
+                ->whereDate('start_date', '<=', $date)
+                ->whereDate('end_date', '>=', $date);
+        }
+
+        $events = $query->orderBy('start_date')->paginate($params['perPage']);
+
+        return $events;
     }
 }

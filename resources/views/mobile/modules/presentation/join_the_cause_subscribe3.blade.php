@@ -29,11 +29,5 @@
             <input type="text" name="email" placeholder="Your email address" class="flex-grow-1">
             <button type="submit" id="subscription_sbmt" ><i class="far fa-chevron-right"></i></button>
         </form>
-        @if ($image === "")
-            <div class="img" style="background-image: url( img/content/join-cause-2.jpg )"></div>
-        @else
-            <div class="img" style="background-image: url({{ $image }})"></div>
-        @endif
-
     </div>
 </section>

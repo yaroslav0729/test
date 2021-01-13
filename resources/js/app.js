@@ -198,6 +198,57 @@ $(function () {
 
         initWysiwyg()
     }
+    //~~~~~~~~~~~~~~~~~~~~~~ Filter Events type on Events page ~~~~~~~~~~~~~~~~
+
+    $(document).on('click', '.filter', function () {
+
+        let data = {};
+
+        data['type'] = $('#filter-type').val();
+        data['participate'] = $('#filter-participate').val();
+        data['perPage'] = $('#per-page').val();
+
+        let existUlrParams = getUrlVars()
+
+        if (existUlrParams.length > 1) {
+          data['name'] = existUlrParams.name;
+          data['location'] = existUlrParams.location;
+          data['date'] = existUlrParams.date;
+        }
+
+        $.ajax({
+            url     : '/Events',
+            methods : 'GET',
+            data    : data,
+            success : function (response) {
+                if (response.status === 'success') {
+                    $('#events-content').html(response.html);
+                }
+            },
+            error: function() {
+                toastr.error('Unknown error ','Error');
+            }
+        });
+
+    });
+
+    /**
+     * Split QueryString to params
+     */
+    function getUrlVars()
+    {
+        let vars = [], hash;
+        let hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+        for(let i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+
+        return vars;
+    }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~ Video-carousel widget ~~~~~~~~~~~~~~~~
 
