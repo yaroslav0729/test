@@ -33,7 +33,7 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
                             <span>•</span>BY AHMED SALEM
                         </div>
                     </div>
-                    <a href="{{ $item->slug }}" class="img" style="background-image: url(img/content/explore-past-missions1.jpg)"></a>
+                    <a href="{{ $item->slug }}" class="img" style="background-image: url({{ $item->preview_img }})"></a>
                 </div>
             </div>
         @endforeach
