@@ -30,8 +30,8 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
             <div class="col-12 col-md-6">
                 <div class="item">
                     <div>
-                        <a href="{{ $item->slug }}" class="tl">{{ \App\Helpers\StrHelper::lengthLimit($item->title, 50) }}</a>
-                        <p>{{ \App\Helpers\StrHelper::lengthLimit($item->preview_text, 40) }}</p>
+                        <a href="{{ $item->slug }}" class="tl">{!! \App\Helpers\StrHelper::lengthLimit($item->title, 50) !!}</a>
+                        <p>{!! \App\Helpers\StrHelper::lengthLimit($item->preview_text, 40) !!}</p>
                         <div class="date" style="text-transform: uppercase">
                             {{ date('d F', strtotime($item->published_at)) }}<span>•</span>BY AHMED SALEM<span>•</span><b>{{ \App\Helpers\ArticlesHelper::getMinRead($item) }}min read</b>
                         </div>

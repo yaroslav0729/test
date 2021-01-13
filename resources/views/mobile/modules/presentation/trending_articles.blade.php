@@ -31,7 +31,7 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
             <div class="col-12">
                 <div class="item">
                     <div>
-                        <a href="{{ $item->slug }}" class="tl">{{ \App\Helpers\StrHelper::lengthLimit($item->title, 50) }}</a>
+                        <a href="{{ $item->slug }}" class="tl">{!! \App\Helpers\StrHelper::lengthLimit($item->title, 50) !!}</a>
                         <div class="date">
                             <div><b>{{ \App\Helpers\ArticlesHelper::getMinRead($item) }}min read</b></div>
                             {{ date('d F', strtotime($item->published_at)) }}
