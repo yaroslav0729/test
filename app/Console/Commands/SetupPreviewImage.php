@@ -50,8 +50,9 @@ class SetupPreviewImage extends Command
         $this->wpConnection = DB::connection('wp');
 
         $parser = new MediaParser2($this->wpConnection);
-
         $parser->parse();
+
+        $this->setupFirstImage();
 
         $this->info('Complete successfully!');
     }
@@ -59,8 +60,10 @@ class SetupPreviewImage extends Command
     protected function setupFirstImage()
     {
         $items = PageInstance::where('slug', 'like', '%' . 'media-centre/news/' . '%')->
-            whereNull('preview_img')
-            ->get();
+            where(function ($query) {
+                $query->whereNull('preview_img')
+                    ->orWhere('preview_img', '');
+            })->get();
 
         foreach ($items as $item) {
             $html = '';
