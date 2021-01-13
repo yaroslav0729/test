@@ -257,7 +257,7 @@ $ourValuesActiveLink = false;
 </section>
 
 @empty(!$changingActive)
-    <section class="promo-project-swiper" swiper-wrapper="our-support">
+    <section class="promo-project-swiper" swiper-wrapper="our-support" swiper-autoHeight="true">
         <div class="wrap @if($hdrColorType === 'blue') bg-primary-light @else bg-danger-light @endif">
             <div class="swiper-container">
                 <div class="swiper-wrapper">

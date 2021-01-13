@@ -2,7 +2,7 @@
     $latestProjects = \App\Models\Project::getLatest();
 @endphp
 
-<section class="current-projects-list">
+<section class="current-projects-list down-dark-line">
     <div class="wrap">
         <div class="row">
             @foreach($latestProjects as $page)

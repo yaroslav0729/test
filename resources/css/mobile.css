@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: 0.2;
+  opacity: .2;
 }
 .other-way-give-mobile .phone {
   font-family: Lato;
@@ -665,24 +665,37 @@
 }
 .mobile-template .whats-new .swiper-container .swiper-slide {
   padding-bottom: 50px;
+  opacity: 0.4;
+}
+.mobile-template .whats-new .swiper-container .swiper-slide.swiper-slide-active {
+  opacity: 1;
+  padding-right: 60px;
+}
+.mobile-template .whats-new .swiper-container .swiper-slide.swiper-slide-active .item .descr {
+  margin-left: 25px;
+}
+.mobile-template .whats-new .swiper-container .swiper-slide.swiper-slide-active + .swiper-slide {
+  margin-left: -40px;
 }
 .mobile-template .whats-new .swiper-container .swiper-pagination {
-  position: relative;
-  text-align: center;
+  padding-bottom: 0;
   bottom: 0;
-  margin-top: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .mobile-template .whats-new .swiper-container .swiper-pagination .swiper-pagination-bullet {
-  background: #DAE7F9;
-  border-radius: 0;
+  flex: 1 1 auto;
   height: 4px;
   width: 40px;
-  min-width: 10px;
-  margin-right: 10px;
+  max-width: 90px;
+  background-color: #DAE7F9;
+  border-radius: 0;
+  margin: 0 10px;
   opacity: 1;
 }
 .mobile-template .whats-new .swiper-container .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background: #2CAABB;
+  background-color: #2CAABB;
 }
 .mobile-template .whats-new .down-link {
   position: relative;
@@ -889,6 +902,7 @@
   bottom: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .mobile-template .donate-projects-list .swiper-container .swiper-pagination .swiper-pagination-bullet {
   flex: 1 1 auto;
@@ -1156,26 +1170,34 @@
 .mobile-template .discover-more.bg-danger-light .current-projects-list .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: #F7796A;
 }
+.mobile-template .current-projects-list .swiper-container {
+  border-bottom: 0;
+}
+.mobile-template .current-projects-list .swiper-wrapper {
+  margin-bottom: 10px;
+}
 .mobile-template .current-projects-list .swiper-pagination {
-  position: relative;
-  text-align: center;
+  padding-bottom: 0;
   bottom: 0;
-  margin-top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .mobile-template .current-projects-list .swiper-pagination .swiper-pagination-bullet {
-  background: #DAE7F9;
-  border-radius: 0;
+  flex: 1 1 auto;
   height: 4px;
   width: 40px;
-  min-width: 10px;
-  margin-right: 10px;
+  max-width: 90px;
+  background-color: #DAE7F9;
+  border-radius: 0;
+  margin: 0 10px;
   opacity: 1;
 }
 .mobile-template .current-projects-list .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background: #2CAABB;
+  background-color: #F7796A;
 }
 .mobile-template .current-projects-list .item {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 .mobile-template .share-box {
   position: relative;
@@ -1363,6 +1385,7 @@
   padding: 0;
   box-shadow: none;
   border-radius: 0;
+  min-height: auto;
 }
 .mobile-template .our-story-swiper .swiper-slide .box:after {
   display: none;

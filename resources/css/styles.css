@@ -1016,10 +1016,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   background-color: #3A7BF5 !important;
 }
 .text-info {
-  color: #2caabb !important;
+  color: #2caabb  !important;
 }
 .text-dark {
-  color: #101525 !important;
+  color: #101525  !important;
 }
 .text-red {
   color: #FF5D4A !important;
@@ -2090,9 +2090,12 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .current-projects-list .wrap,
 .popular-topic-list .wrap {
-  border-bottom: 4px solid #101525;
   padding: 0 46px;
   margin: 0 -60px;
+}
+.current-projects-list.down-dark-line .wrap,
+.popular-topic-list.down-dark-line .wrap {
+  border-bottom: 4px solid #101525;
 }
 .current-projects-list .item,
 .popular-topic-list .item {
@@ -3415,7 +3418,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: 0.5;
+  opacity: .5;
 }
 .about-donation .body .item span {
   display: inline-block;
@@ -3626,7 +3629,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: 0.5;
+  opacity: .5;
 }
 .order-cart-list .total {
   background: #FFF6F3;
@@ -4026,7 +4029,7 @@ input[type='number'].color-danger + .input-group .btn {
   background-position: 50% 50%;
 }
 .values-action .text {
-  padding: 74px 52px 43px;
+  padding: 74px 113px 43px 52px;
 }
 .values-action .text .text-1 {
   color: #101525;
@@ -4098,13 +4101,14 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .our-story-swiper {
   margin-bottom: 124px;
+  padding-right: 120px;
 }
 .our-story-swiper .wrap {
   position: relative;
   z-index: 1;
 }
 .our-story-swiper .swiper-slide {
-  padding: 20px;
+  padding: 20px 20px 40px;
 }
 .our-story-swiper .swiper-slide .img-box {
   width: 40%;
@@ -4127,6 +4131,7 @@ input[type='number'].color-danger + .input-group .btn {
   left: -20px;
 }
 .our-story-swiper .swiper-slide .box {
+  min-height: 505px;
   width: 60%;
   padding: 47px 59px 50px;
   position: relative;
@@ -4136,11 +4141,11 @@ input[type='number'].color-danger + .input-group .btn {
   display: block;
   background: url(../img/Line-styling.png) no-repeat;
   background-size: contain;
-  height: 197px;
-  width: 196px;
+  height: 220px;
+  width: 220px;
   position: absolute;
   right: 103%;
-  bottom: -10px;
+  bottom: -35px;
   opacity: 0.1;
 }
 .our-story-swiper .swiper-slide .title {
