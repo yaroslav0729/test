@@ -104214,6 +104214,7 @@ $(function () {
     $('html, body').animate({
       scrollTop: donateModulePosition
     }, 1000);
+    $('a[data-filter="single"]').click();
     donateEl.click();
   });
   $(document).on('click', '[select-appeal-tab]', function () {
