@@ -40,7 +40,7 @@
 <section class="explore-past-missions bg-red">
     <div class="row">
         <div class="col-12 col-md-4 pr-5">
-            <p class="font-size-40 text-white mb-3">
+            <p class="font-size-40 text-white mb-3 line-height-13">
                 @empty($exploreTitle)
                 <b>Explore past Missions</b>
                 @else

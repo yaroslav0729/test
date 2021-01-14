@@ -35,7 +35,7 @@
 
 <section class="experience-lifetime">
     <p class="font-size-30 mb-0"><b>{{ $expTitle }}</b></p>
-    <p class="font-size-16 mb-5 text-danger">{{ $expText2 }}</p>
+    <p class="font-size-16 mb-4 text-danger">{{ $expText2 }}</p>
     <p class="font-size-40 mb-1 text-danger">{{ $expDate1 }}</p>
     <p class="font-size-16 mb-3"><b>{{ $expText3 }}</b></p>
     <div class="pr-0 pr-md-5">

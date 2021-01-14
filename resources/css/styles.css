@@ -815,6 +815,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   width: 323px;
   height: 25px;
 }
+.decor-wave.size-32 {
+  width: 424px;
+  height: 32px;
+}
 .decor-wave.size-40 {
   width: 535px;
   height: 40px;
@@ -854,6 +858,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 .font-size-25 {
   font-size: 25px !important;
   line-height: 30px;
+}
+.font-size-27 {
+  font-size: 27px !important;
+  line-height: 1.2;
 }
 .font-size-30 {
   font-size: 30px !important;
@@ -1044,6 +1052,18 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 }
 .letter-spacing-1 {
   letter-spacing: 1px;
+}
+.line-height-1 {
+  line-height: 1;
+}
+.line-height-13 {
+  line-height: 1.3;
+}
+.line-height-15 {
+  line-height: 1.5;
+}
+.line-height-17 {
+  line-height: 1.7;
 }
 b,
 strong,
@@ -1781,19 +1801,40 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 700;
   line-height: 18px;
 }
-.help-info-swiper .swiper-container .swiper-slide:nth-child(1) span:nth-child(1):before {
+.help-info-swiper .swiper-container .swiper-slide:nth-child(1) span:nth-child(1):before,
+.help-info-swiper .swiper-container .swiper-slide:nth-child(5) span:nth-child(1):before,
+.help-info-swiper .swiper-container .swiper-slide:nth-child(9) span:nth-child(1):before,
+.help-info-swiper .swiper-container .swiper-slide:nth-child(13) span:nth-child(1):before {
   background-color: #F5C15D;
 }
-.help-info-swiper .swiper-container .swiper-slide:nth-child(2) span:nth-child(1):before {
+.help-info-swiper .swiper-container .swiper-slide:nth-child(2) span:nth-child(1):before,
+.help-info-swiper .swiper-container .swiper-slide:nth-child(6) span:nth-child(1):before,
+.help-info-swiper .swiper-container .swiper-slide:nth-child(10) span:nth-child(1):before,
+.help-info-swiper .swiper-container .swiper-slide:nth-child(14) span:nth-child(1):before {
   background-color: #2CAABB;
 }
-.help-info-swiper .swiper-container .swiper-slide:nth-child(3) span:nth-child(1):before {
+.help-info-swiper .swiper-container .swiper-slide:nth-child(3) span:nth-child(1):before,
+.help-info-swiper .swiper-container .swiper-slide:nth-child(7) span:nth-child(1):before,
+.help-info-swiper .swiper-container .swiper-slide:nth-child(11) span:nth-child(1):before,
+.help-info-swiper .swiper-container .swiper-slide:nth-child(15) span:nth-child(1):before {
   background-color: #E3EFFE;
 }
-.help-info-swiper .swiper-container .swiper-slide:nth-child(4) span:nth-child(1):before {
+.help-info-swiper .swiper-container .swiper-slide:nth-child(4) span:nth-child(1):before,
+.help-info-swiper .swiper-container .swiper-slide:nth-child(8) span:nth-child(1):before,
+.help-info-swiper .swiper-container .swiper-slide:nth-child(12) span:nth-child(1):before,
+.help-info-swiper .swiper-container .swiper-slide:nth-child(16) span:nth-child(1):before {
   background-color: #3A7BF5;
 }
-.help-info-swiper .swiper-button-prev,
+.help-info-swiper .swiper-button-prev {
+  background: #FED4C2;
+  width: 3px;
+  height: 49px;
+  border-radius: 100px;
+  left: 30px;
+}
+.help-info-swiper .swiper-button-prev:after {
+  display: none;
+}
 .help-info-swiper .swiper-button-next {
   font-size: 35px;
   width: 60px;
@@ -1802,7 +1843,6 @@ input[type='number'].color-danger + .input-group .btn {
   line-height: 60px;
   color: #FED4C2;
 }
-.help-info-swiper .swiper-button-prev:after,
 .help-info-swiper .swiper-button-next:after {
   display: none;
 }
@@ -4930,7 +4970,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-size: 65px;
   position: absolute;
   top: 50%;
-  right: 0;
+  right: -12px;
   transform: translateY(-50%);
 }
 .how-does-work {
@@ -5026,10 +5066,13 @@ input[type='number'].color-danger + .input-group .btn {
   bottom: 0;
   border-radius: 5px 0 5px 0;
   padding-right: 50px;
+  padding: 10px 15px;
+  text-align: left;
+  min-width: 70%;
 }
 .experience-lifetime {
   padding-top: 137px;
-  padding-bottom: 143px;
+  padding-bottom: 135px;
 }
 .experience-lifetime .img-video {
   padding-bottom: 69%;
@@ -5052,7 +5095,7 @@ input[type='number'].color-danger + .input-group .btn {
   line-height: 44px;
 }
 .our-latest-mission .text {
-  padding: 83px 66px 83px 180px;
+  padding: 70px 66px 70px 180px;
 }
 .our-latest-mission .text .tl {
   font-size: 40px;
@@ -5073,7 +5116,7 @@ input[type='number'].color-danger + .input-group .btn {
   bottom: 37px;
 }
 .swiper-mission-impossible {
-  padding: 0;
+  padding: 0 0 124px;
 }
 .swiper-mission-impossible .swiper-slide {
   width: 22%;

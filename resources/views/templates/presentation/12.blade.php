@@ -51,7 +51,7 @@
     </div>
 </section>
 
-<div class="pt-5 pb-5 bg-light"></div>
+{{--<div class="pt-5 pb-5 bg-light"></div>--}}
 
 @include('modules.presentation.so_what_this_all')
 

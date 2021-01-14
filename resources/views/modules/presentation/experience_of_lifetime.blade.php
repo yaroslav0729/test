@@ -55,7 +55,7 @@
             <p class="font-size-45 mb-1 text-danger">{{ $expDate1 }}</p>
             <p class="font-size-20 mb-3"><b>{{ $expText3 }}</b></p>
             <div class="pr-0 pr-md-5">
-                <p class="font-size-16 mb-5">
+                <p class="font-size-16">
                     {{ $expQuote }}
                 </p>
             </div>

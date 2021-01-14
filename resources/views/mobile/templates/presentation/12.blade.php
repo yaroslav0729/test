@@ -18,7 +18,7 @@
     </div>
 </section>
 
-<section class="pt-3 pb-3 pl-4 pr-4">
+<section class="pt-4 pb-4 pl-5 pr-5">
     <p class="font-size-16 mb-0"><b>THE NEXT STEP TO<br>VOLUNTEERING, MAKE IMPACTS<br>TO GLOBAL COMMUNITIES.</b></p>
 </section>
 

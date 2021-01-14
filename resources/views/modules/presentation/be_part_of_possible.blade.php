@@ -20,8 +20,8 @@
 
 <section class="be-part-possible bg-red">
     <div class="row align-items-center">
-        <div class="col-12 col-md-6">
-            <div class="help-info-grid">
+        <div class="col-12 col-md-6 text-right">
+            <div class="help-info-grid pr-5">
                 <div>
                     <span>8.2k</span>
                     <span>Meals provided</span>
