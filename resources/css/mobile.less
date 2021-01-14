@@ -1,3 +1,14 @@
+
+.clearfix () {
+  &:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+  }
+}
+
 .modal-quick-donation {
   display: none;
   padding: 0 20px 30px;
@@ -1601,14 +1612,50 @@ footer {
 	  padding: 20px 40px;
 	  border-radius: 0;
 	  margin: 0 -20px 34px;
-	  .top > b {font-size: 25px;}
-	  .bottom {top: 80px;}
+	  .top {
+		& > b {font-size: 25px;}
+		.toggle-title > div i {margin: 0 10px 0 0}
+	  }
+	  .bottom {
+		top: 80px;
+		z-index: 3;
+		padding: 0 23px 47px;
+		.line {margin: 0 0 30px}
+		div {
+		  padding: 0;
+		  p {padding: 0}
+		}
+	  }
 	}
+	.blockquote {margin-bottom: 0; margin-top: 50px}
+	.general-content-tabs {padding: 0;}
 	.wrap {
-	  padding: 0 20px 58px;
+	  padding: 0 20px 0;
 	}
 	.text {padding: 0}
-
+	.form-group label {color: #101525}
+	.base-value {
+	  position: relative;
+	  padding: 20px 0;
+	  & > div {
+		position: relative;
+		z-index: 2;
+	  }
+	  &:before {
+		content: "";
+		display: block;
+		background: url(../img/Line-styling.png) no-repeat;
+		background-size: contain;
+		height: 172px;
+		width: 172px;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		opacity: 0.08;
+		z-index: 1;
+		transform: translateY(-56%);
+	  }
+	}
 	.calc {
 	  position: relative;
 	  .position-relative {z-index: 2}
@@ -1639,13 +1686,24 @@ footer {
 		  margin-bottom: 15px;
 		}
 	  }
+	  .btn {width: 150px;}
 	}
 	.down {
 	  margin: 0 -20px;
 	  padding: 0;
 	  .total {
-		display: block;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
 	  }
+
+	}
+	.last-btn {
+	  text-align: center;
+	  background: #d4e0ef;
+	  margin: 0 -20px;
+	  .btn {transform: translateY(-50%);}
 	}
   }
 

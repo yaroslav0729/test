@@ -786,6 +786,7 @@ header {
     line-height: 1;
     padding: 17px 14px;
     border-radius: 5px;
+    position: relative;
     &-red {
         color: #fff;
         background: #FF5D4A;
@@ -847,6 +848,12 @@ header {
         background: #fff;
         border-color: #fff;
     }
+    &.disabled {
+        color: #7E87A4;
+        background: #E5E9F2;
+        border-color: #E5E9F2;
+        opacity: 1;
+    }
 
     &-outline-warning {
         background: #fff;
@@ -859,7 +866,7 @@ header {
         box-shadow: 0 0 0 2px #fff !important;
     }
     &.h-form-control {
-        padding: 20px 14px 21px;
+        padding: 19px 14px 20px;
     }
     i {
         margin: 0 5px;
@@ -871,6 +878,10 @@ header {
         font-size: 25px;
         padding: 23px 20px;
         min-width: 180px;
+    }
+    &.w-auto {
+        min-width: 10px;
+        max-width: 100%;
     }
 }
 
@@ -955,7 +966,7 @@ b, strong, .font-weight-bold {font-weight: 900}
     font-weight: 500;
     height: auto;
     color: #101525;
-    padding: 17px 19px;
+    padding: 16px 19px;
     box-shadow: none !important;
     outline: none !important;
     font-family: @baseFont;
@@ -4125,7 +4136,7 @@ input[type='number'].color-danger  + .input-group {
 
 .calculator {
     padding-top: 67px;
-    padding-bottom: 193px;
+    padding-bottom: 128px;
     position: relative;
     &:before {
         content: '';
@@ -4137,15 +4148,16 @@ input[type='number'].color-danger  + .input-group {
     .wrap {
         box-shadow: 0 10px 25px 0 rgba(104,110,117,0.15);
         border-radius: 5px;
-        padding: 0 90px 58px;
+        padding: 0 40px 58px;
         background: #fff;
         overflow: hidden;
     }
+    .general-content-tabs {padding: 0 50px;}
     .title {
         background: #231F51;
         padding: 38px 40px 25px;
         border-radius: 5px 5px 0 0;
-        margin: 0 -90px;
+        margin: 0 -40px;
         margin-bottom: 40px;
         position: relative;
         .top {
@@ -4164,6 +4176,13 @@ input[type='number'].color-danger  + .input-group {
                 text-align: right;
                 color: #FFF;
                 cursor: pointer;
+                & > div {
+                    i {
+                        font-size: 20px;
+                        margin-left: 10px;
+                        position: relative; top: 1px;
+                    }
+                }
                 div + div {
                     display: none;
                     background: #101525;
@@ -4173,7 +4192,14 @@ input[type='number'].color-danger  + .input-group {
                     text-align: center;
                     font-size: 26px;
                     line-height: 41px;
-                    i {position: relative; left: 1px;}
+                    i {
+                        position: relative; left: 1px;
+                        font-size: 15px;
+                        margin-left: 0;
+                        line-height: 31px;
+                        transform: scale(1.4);
+                        top: -4px;
+                    }
                 }
                 &.open {
                     div {display: none}
@@ -4184,13 +4210,13 @@ input[type='number'].color-danger  + .input-group {
         .bottom {
             display: none;
             background: #231F51;
-            padding: 0 0 25px;
+            padding: 0 0 47px;
             position: absolute; left: 0; right: 0; top: 107px;
             z-index: 2;
             &.open {display: block}
             .line {
                 background: #fff;
-                margin: 0 0 30px;
+                margin: 0 40px 30px;
             }
             div {
                 color: #FFF;
@@ -4200,6 +4226,7 @@ input[type='number'].color-danger  + .input-group {
                     font-size: 16px;
                     font-weight: 500;
                     line-height: 30px;
+                    padding: 0 40px;
                 }
             }
         }
@@ -4213,6 +4240,10 @@ input[type='number'].color-danger  + .input-group {
         background: #101525;
         margin: 18px 0;
     }
+    .form-group[currency]:after {
+        transform: translate(0);
+        top: 45px;
+    }
     .calc {
         .item {
             border-radius: 5px;
@@ -4225,10 +4256,11 @@ input[type='number'].color-danger  + .input-group {
             line-height: 30px;
             .row {border-bottom: 1px solid #101525}
         }
+        .btn {width: 180px;}
     }
     .down {
-        padding: 40px;
-        margin: 70px -90px -58px;
+        padding: 41px 40px;
+        margin: 70px -40px -58px;
         .total {
             display: inline-block;
             border-radius: 5px;
@@ -4250,7 +4282,7 @@ input[type='number'].color-danger  + .input-group {
     }
 
     .text {
-        padding: 0 57px;
+        padding: 0 90px;
         position: relative;
         h2 {
             font-size: 25px;
@@ -4263,6 +4295,14 @@ input[type='number'].color-danger  + .input-group {
             font-weight: 500;
             line-height: 30px;
             margin-bottom: 20px;
+        }
+        & + div {padding: 0 50px;}
+    }
+    .btn {
+        position: relative;
+        .moon-icons-arrow-right {
+            position: absolute; top: 50%; right: 15px;
+            transform: translateY(-50%) scale(1.9);
         }
     }
 }

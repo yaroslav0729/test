@@ -1697,14 +1697,60 @@
 .mobile-template .calculator .title .top > b {
   font-size: 25px;
 }
+.mobile-template .calculator .title .top .toggle-title > div i {
+  margin: 0 10px 0 0;
+}
 .mobile-template .calculator .title .bottom {
   top: 80px;
+  z-index: 3;
+  padding: 0 23px 47px;
+}
+.mobile-template .calculator .title .bottom .line {
+  margin: 0 0 30px;
+}
+.mobile-template .calculator .title .bottom div {
+  padding: 0;
+}
+.mobile-template .calculator .title .bottom div p {
+  padding: 0;
+}
+.mobile-template .calculator .blockquote {
+  margin-bottom: 0;
+  margin-top: 50px;
+}
+.mobile-template .calculator .general-content-tabs {
+  padding: 0;
 }
 .mobile-template .calculator .wrap {
-  padding: 0 20px 58px;
+  padding: 0 20px 0;
 }
 .mobile-template .calculator .text {
   padding: 0;
+}
+.mobile-template .calculator .form-group label {
+  color: #101525;
+}
+.mobile-template .calculator .base-value {
+  position: relative;
+  padding: 20px 0;
+}
+.mobile-template .calculator .base-value > div {
+  position: relative;
+  z-index: 2;
+}
+.mobile-template .calculator .base-value:before {
+  content: "";
+  display: block;
+  background: url(/images/Line-styling.png?b03a87dd394747a88d56e0d8ba1cafa2) no-repeat;
+  background-size: contain;
+  height: 172px;
+  width: 172px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  opacity: 0.08;
+  z-index: 1;
+  transform: translateY(-56%);
 }
 .mobile-template .calculator .calc {
   position: relative;
@@ -1739,12 +1785,26 @@
   padding-bottom: 20px;
   margin-bottom: 15px;
 }
+.mobile-template .calculator .calc .btn {
+  width: 150px;
+}
 .mobile-template .calculator .down {
   margin: 0 -20px;
   padding: 0;
 }
 .mobile-template .calculator .down .total {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.mobile-template .calculator .last-btn {
+  text-align: center;
+  background: #d4e0ef;
+  margin: 0 -20px;
+}
+.mobile-template .calculator .last-btn .btn {
+  transform: translateY(-50%);
 }
 .mobile-template .head-mission-impossible {
   padding: 0;

@@ -905,6 +905,7 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   line-height: 1;
   padding: 17px 14px;
   border-radius: 5px;
+  position: relative;
 }
 .btn-red {
   color: #fff;
@@ -967,6 +968,12 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   background: #fff;
   border-color: #fff;
 }
+.btn.disabled {
+  color: #7E87A4;
+  background: #E5E9F2;
+  border-color: #E5E9F2;
+  opacity: 1;
+}
 .btn-outline-warning {
   background: #fff;
   border-color: #F5C15D;
@@ -978,7 +985,7 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   box-shadow: 0 0 0 2px #fff !important;
 }
 .btn.h-form-control {
-  padding: 20px 14px 21px;
+  padding: 19px 14px 20px;
 }
 .btn i {
   margin: 0 5px;
@@ -989,6 +996,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   font-size: 25px;
   padding: 23px 20px;
   min-width: 180px;
+}
+.btn.w-auto {
+  min-width: 10px;
+  max-width: 100%;
 }
 .bg-info {
   background-color: #2caabb !important;
@@ -1124,7 +1135,7 @@ strong,
   font-weight: 500;
   height: auto;
   color: #101525;
-  padding: 17px 19px;
+  padding: 16px 19px;
   box-shadow: none !important;
   outline: none !important;
   font-family: 'Noto Sans JP', sans-serif;
@@ -4726,7 +4737,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .calculator {
   padding-top: 67px;
-  padding-bottom: 193px;
+  padding-bottom: 128px;
   position: relative;
 }
 .calculator:before {
@@ -4743,15 +4754,18 @@ input[type='number'].color-danger + .input-group .btn {
 .calculator .wrap {
   box-shadow: 0 10px 25px 0 rgba(104, 110, 117, 0.15);
   border-radius: 5px;
-  padding: 0 90px 58px;
+  padding: 0 40px 58px;
   background: #fff;
   overflow: hidden;
+}
+.calculator .general-content-tabs {
+  padding: 0 50px;
 }
 .calculator .title {
   background: #231F51;
   padding: 38px 40px 25px;
   border-radius: 5px 5px 0 0;
-  margin: 0 -90px;
+  margin: 0 -40px;
   margin-bottom: 40px;
   position: relative;
 }
@@ -4771,6 +4785,12 @@ input[type='number'].color-danger + .input-group .btn {
   color: #FFF;
   cursor: pointer;
 }
+.calculator .title .top .toggle-title > div i {
+  font-size: 20px;
+  margin-left: 10px;
+  position: relative;
+  top: 1px;
+}
 .calculator .title .top .toggle-title div + div {
   display: none;
   background: #101525;
@@ -4785,6 +4805,11 @@ input[type='number'].color-danger + .input-group .btn {
 .calculator .title .top .toggle-title div + div i {
   position: relative;
   left: 1px;
+  font-size: 15px;
+  margin-left: 0;
+  line-height: 31px;
+  transform: scale(1.4);
+  top: -4px;
 }
 .calculator .title .top .toggle-title.open div {
   display: none;
@@ -4795,7 +4820,7 @@ input[type='number'].color-danger + .input-group .btn {
 .calculator .title .bottom {
   display: none;
   background: #231F51;
-  padding: 0 0 25px;
+  padding: 0 0 47px;
   position: absolute;
   left: 0;
   right: 0;
@@ -4807,7 +4832,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .calculator .title .bottom .line {
   background: #fff;
-  margin: 0 0 30px;
+  margin: 0 40px 30px;
 }
 .calculator .title .bottom div {
   color: #FFF;
@@ -4818,6 +4843,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-size: 16px;
   font-weight: 500;
   line-height: 30px;
+  padding: 0 40px;
 }
 .calculator .general-content-tabs .nav-tabs .nav-link.active {
   background: #F1F7FE;
@@ -4827,6 +4853,10 @@ input[type='number'].color-danger + .input-group .btn {
   height: 1px;
   background: #101525;
   margin: 18px 0;
+}
+.calculator .form-group[currency]:after {
+  transform: translate(0);
+  top: 45px;
 }
 .calculator .calc .item {
   border-radius: 5px;
@@ -4841,9 +4871,12 @@ input[type='number'].color-danger + .input-group .btn {
 .calculator .calc .item .row {
   border-bottom: 1px solid #101525;
 }
+.calculator .calc .btn {
+  width: 180px;
+}
 .calculator .down {
-  padding: 40px;
-  margin: 70px -90px -58px;
+  padding: 41px 40px;
+  margin: 70px -40px -58px;
 }
 .calculator .down .total {
   display: inline-block;
@@ -4864,7 +4897,7 @@ input[type='number'].color-danger + .input-group .btn {
   margin-left: 18px;
 }
 .calculator .text {
-  padding: 0 57px;
+  padding: 0 90px;
   position: relative;
 }
 .calculator .text h2 {
@@ -4878,6 +4911,18 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   line-height: 30px;
   margin-bottom: 20px;
+}
+.calculator .text + div {
+  padding: 0 50px;
+}
+.calculator .btn {
+  position: relative;
+}
+.calculator .btn .moon-icons-arrow-right {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%) scale(1.9);
 }
 .contacts {
   background: #fff url(../img/bg-contact-map.jpg) no-repeat 100% 50%;

@@ -309,7 +309,7 @@
             <div class="top">
                 <b>Your Zakat Calculator</b>
                 <div class="toggle-title">
-                    <div>{{ $dropdownWhatDoINeedTitle }} <i class="far fa-chevron-down"></i></div>
+                    <div><i class="far fa-chevron-down"></i>{{ $dropdownWhatDoINeedTitle }}</div>
                 </div>
             </div>
             <div class="bottom">
@@ -320,7 +320,7 @@
                 </div>
                 <div class="pt-4"></div>
                 <div>
-                    <span class="toggle-title font-size-14 text-white"><i class="far fa-chevron-up mr-2"></i> CLOSE</span>
+                    <span class="toggle-title font-size-14 text-white"><i class="far fa-chevron-up mr-2 font-size-20"></i> CLOSE</span>
                 </div>
             </div>
         </div>
@@ -336,7 +336,7 @@
         </nav>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="tab-1" role="tabpanel" >
-                <div class="row align-items-end gutter-5">
+                <div class="row align-items-end gutter-5 base-value">
                     <div class="col-7">
                         <div class="form-group mb-0">
                             <label><b>{{ $calculateBaseValueNisaabTitle }}</b></label>
@@ -350,69 +350,76 @@
                 </div>
                 <div class="pt-5"></div>
 
-                <div>{!! $calculateBelowTitle !!}</div>
-                <div class="line"></div>
+                <div class="pb-4">{!! $calculateBelowTitle !!}</div>
+                <div class="black-line mb-4"></div>
                 <div class="text-uppercase"><b>{{ $calculateYourAssetsSectionTitle }}</b></div>
                 <div class="pt-5"></div>
 
-                <div class="form-group">
+                <div class="form-group" currency="£">
                     <label><b>{{ $calculateValueOfGoldTitle }}</b></label>
-                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <input type="number" class="form-control debit-money" placeholder="0.00">
                     <small>{{ $calculateValueOfGoldAnnotation }}</small>
                 </div>
-                <div class="form-group">
+                <div class="line"></div>
+                <div class="form-group" currency="£">
                     <label><b>{{ $calculateValueOfSilverTitle }}</b></label>
-                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <input type="number" class="form-control debit-money" placeholder="0.00">
                     <small>{{ $calculateValueOfSilverAnnotation }}</small>
                 </div>
-                <div class="form-group">
+                <div class="line"></div>
+                <div class="form-group" currency="£">
                     <label><b>{{ $calculateCashInHandTitle }}</b></label>
-                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <input type="number" class="form-control debit-money" placeholder="0.00">
                     <small>{{ $calculateCashInHandAnnotation }}</small>
                 </div>
-                <div class="form-group">
+                <div class="line"></div>
+                <div class="form-group" currency="£">
                     <label><b>{{ $calculateCashDepositedTitle }}</b></label>
-                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <input type="number" class="form-control debit-money" placeholder="0.00">
                     <small>{{ $calculateCashDepositedAnnotation }}</small>
                 </div>
-                <div class="form-group">
+                <div class="line"></div>
+                <div class="form-group" currency="£">
                     <label><b>{{ $calculateGivenTitle }}</b></label>
-                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <input type="number" class="form-control debit-money" placeholder="0.00">
                     <small>{{ $calculateGivenAnnotation }}</small>
                 </div>
-                <div class="form-group">
+                <div class="line"></div>
+                <div class="form-group" currency="£">
                     <label><b>{{ $calculateOtherTitle }}</b></label>
-                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <input type="number" class="form-control debit-money" placeholder="0.00">
                     <small>{{ $calculateOtherAnnotation }}</small>
                 </div>
 
-                <div class="pt-5"></div>
-                <div class="line"></div>
+                <div class="pt-4"></div>
+                <div class="black-line mb-4"></div>
                 <div class="text-uppercase"><b>{{ $calculateTradeGoodsSectionTitle }}</b></div>
                 <div class="pt-5"></div>
-                <div class="form-group">
+                <div class="form-group" currency="£">
                     <label><b>{{ $calculateValueOfStockTitle }}</b></label>
-                    <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                    <input type="number" class="form-control debit-money" placeholder="0.00">
                     <small>{{ $calculateValueOfStockAnnotation }}</small>
                 </div>
 
-                <div class="pt-5"></div>
-                <div class="line"></div>
+                <div class="pt-4"></div>
+                <div class="black-line mb-4"></div>
                 <div class="text-uppercase"><b>{{ $calculateLiabilitiesSectionTitle }}</b></div>
                 <div class="pt-5"></div>
-                <div class="form-group">
+                <div class="form-group" currency="£">
                     <label><b>{{ $calculateBorrowedTitle }}</b></label>
-                    <input type="number" class="form-control credit-money" placeholder="£ 0.00">
+                    <input type="number" class="form-control credit-money" placeholder="0.00">
                     <small>{{ $calculateTaxesAnnotation }}</small>
                 </div>
-                <div class="form-group">
+                <div class="line"></div>
+                <div class="form-group" currency="£">
                     <label><b>{{ $calculateWagesTitle }}</b></label>
-                    <input type="number" class="form-control credit-money" placeholder="£ 0.00">
+                    <input type="number" class="form-control credit-money" placeholder="0.00">
                     <small>{{ $calculateWagesAnnotation }}</small>
                 </div>
-                <div class="form-group">
+                <div class="line"></div>
+                <div class="form-group" currency="£">
                     <label><b>{{ $calculateTaxesTitle }}</b></label>
-                    <input type="number" class="form-control credit-money" placeholder="£ 0.00">
+                    <input type="number" class="form-control credit-money" placeholder="0.00">
                     <small>{{ $calculateTaxesAnnotation }}</small>
                 </div>
                 <div class="pt-5"></div>
@@ -423,7 +430,7 @@
                     <div class="font-size-25 mb-5 text-center"><b>Calculate my Zakat</b></div>
                     <div class="text-center mb-3 position-relative">
                         <button id="btn-reset" class="btn btn-secondary mr-1">Reset</button>
-                        <button id="btn-calculate" class="btn btn-info ml-1">Calculated</button>
+                        <button id="btn-calculate" class="btn btn-info ml-1">Calculate now</button>
                     </div>
                     <div class="item" id="total-assets">
                         <div><b>Total Assets</b><br>
@@ -440,18 +447,19 @@
                 <div class="down">
                     <div class="bg-danger-light pt-4 pb-4 pl-4 pr-4 mb-4 zakat-payable">
                         <div class="total">
-                            ZAKAT TOTAL
-                            <div class="d-inline money-val">
+                            <div>ZAKAT TOTAL</div>
+                            <div class="money-val">
                                 <b>£0.00</b>
                                 <input name="zakat_value" type="hidden">
                             </div>
                         </div>
                     </div>
                     <div class="pl-4 pr-4">
-
-                        <a href="#" class="btn btn-danger w-100" zakat-donate-btn>Donate my Zakat</a>
+                        <a href="#" class="btn btn-danger w-100 disabled" zakat-donate-btn>Donate my Zakat <i class="moon-icons-arrow-right"></i></a>
                     </div>
                 </div>
+                <br>
+                <br>
             </div>
             <div class="tab-pane fade" id="tab-2" role="tabpanel">
 
@@ -462,44 +470,41 @@
 
                     <h2>{{ $whatIsObligatoryTitle }}</h2>
                     <p>{!! $whatIsObligatoryText !!}</p>
-                    <div class="pt-5"></div>
+                    <div class="pt-4"></div>
 
                     <h2>{{ $whatIsWhyWeDonateTitle }}</h2>
                     <p>{!! $whatIsWhyWeDonateText !!}</p>
-                    <div class="pt-5"></div>
+                    <div class="pt-4"></div>
 
                     <h2>{{ $whatIsReceiveTitle }}</h2>
                     <p>{!! $whatIsReceiveText !!}</p>
-                    <div class="pt-5"></div>
+                    <div class="pt-4"></div>
 
                     <h2>{{ $whatIsHowCalculatedTitle }}</h2>
                     <p>{!! $whatIsHowCalculatedText !!}</p>
-                    <div class="pt-5"></div>
+                    <div class="pt-4"></div>
 
                     <h2>{{ $whatIsHowNisaabTitle }}</h2>
                     <p>{!! $whatIsHowNisaabText !!}</p>
-                    <div class="pt-5"></div>
+                    <div class="pt-4"></div>
 
                     <h2>{{ $whatIsShouldUseTitle }}</h2>
                     <p>{!! $whatIsShouldUseText !!}</p>
-                    <div class="pt-5"></div>
+                    <div class="pt-4"></div>
                 </div>
 
-                <div class="bg-primary-light p-4 mb-3 ml-n4 mr-n4">
-                    <p class="font-size-20"><b>{{ $whatIsGoldTitle }}</b></p>
-                    <div class="line"></div>
+                <div class="bg-primary-light p-5 mb-3 ml-n5 mr-n5">
+                    <p class="font-size-25"><b>{{ $whatIsGoldTitle }}</b></p>
                     <p class="font-size-16">{!! $whatIsGoldText !!}
                     </p>
                 </div>
 
-                <div class="bg-primary-light p-4 mb-3 ml-n4 mr-n4">
-                    <p class="font-size-20"><b>{{ $whatIsSilverTitle }}</b></p>
-                    <div class="line"></div>
-                    <p class="font-size-16">{!! $whatIsSilverText !!}
-                    </p>
+                <div class="bg-primary-light p-5 ml-n5 mr-n5">
+                    <p class="font-size-25"><b>{{ $whatIsSilverTitle }}</b></p>
+                    <p class="font-size-16">{!! $whatIsSilverText !!}</p>
+                    <br>
                 </div>
-                <div class="pt-5"></div>
-                <div class="text-center">
+                <div class="last-btn">
                     <a href="{{ $btnLink }}" class="btn btn-info">{{ $btnTitle }}</a>
                 </div>
             </div>

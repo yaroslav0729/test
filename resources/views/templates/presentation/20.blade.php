@@ -359,7 +359,7 @@
                 </div>
                 <div class="pt-5"></div>
 
-                <div>{!! $calculateBelowTitle !!}</div>
+                <div class="font-size-16">{!! $calculateBelowTitle !!}</div>
                 <div class="line"></div>
                 <div class="text-right text-uppercase"><b>{{ $calculateYourAssetsSectionTitle }}</b></div>
                 <div class="pt-5"></div>
@@ -367,16 +367,16 @@
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-5">
-                        <div class="form-group">
+                        <div class="form-group" currency="£">
                             <label><b>{{ $calculateValueOfGoldTitle }}</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                            <input type="number" class="form-control debit-money" placeholder="0.00">
                             <small>{{ $calculateValueOfGoldAnnotation }}</small>
                         </div>
                     </div>
                     <div class="col-5">
-                        <div class="form-group">
+                        <div class="form-group" currency="£">
                             <label><b>{{ $calculateValueOfSilverTitle }}</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                            <input type="number" class="form-control debit-money" placeholder="0.00">
                             <small>{{ $calculateValueOfSilverAnnotation }}</small>
                         </div>
                     </div>
@@ -384,16 +384,16 @@
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-5">
-                        <div class="form-group">
+                        <div class="form-group" currency="£">
                             <label><b>{{ $calculateCashInHandTitle }}</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                            <input type="number" class="form-control debit-money" placeholder="0.00">
                             <small>{{ $calculateCashInHandAnnotation }}</small>
                         </div>
                     </div>
                     <div class="col-5">
-                        <div class="form-group">
+                        <div class="form-group" currency="£">
                             <label><b>{{ $calculateCashDepositedTitle }}</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                            <input type="number" class="form-control debit-money" placeholder="0.00">
                             <small>{{ $calculateCashDepositedAnnotation }}</small>
                         </div>
                     </div>
@@ -401,16 +401,16 @@
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-5">
-                        <div class="form-group">
+                        <div class="form-group" currency="£">
                             <label><b>{{ $calculateGivenTitle }}</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                            <input type="number" class="form-control debit-money" placeholder="0.00">
                             <small>{{ $calculateGivenAnnotation }}</small>
                         </div>
                     </div>
                     <div class="col-5">
-                        <div class="form-group">
+                        <div class="form-group" currency="£">
                             <label><b>{{ $calculateOtherTitle }}</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                            <input type="number" class="form-control debit-money" placeholder="0.00">
                             <small>{{ $calculateOtherAnnotation }}</small>
                         </div>
                     </div>
@@ -424,9 +424,9 @@
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-5">
-                        <div class="form-group">
+                        <div class="form-group" currency="£">
                             <label><b>{{ $calculateValueOfStockTitle }}</b></label>
-                            <input type="number" class="form-control debit-money" placeholder="£ 0.00">
+                            <input type="number" class="form-control debit-money" placeholder="0.00">
                             <small>{{ $calculateValueOfStockAnnotation }}</small>
                         </div>
                     </div>
@@ -440,16 +440,16 @@
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-5">
-                        <div class="form-group">
+                        <div class="form-group" currency="£">
                             <label><b>{{ $calculateBorrowedTitle }}</b></label>
-                            <input type="number" class="form-control credit-money" placeholder="£ 0.00">
+                            <input type="number" class="form-control credit-money" placeholder="0.00">
                             <small>{{ $calculateTaxesAnnotation }}</small>
                         </div>
                     </div>
                     <div class="col-5">
-                        <div class="form-group">
+                        <div class="form-group" currency="£">
                             <label><b>{{ $calculateWagesTitle }}</b></label>
-                            <input type="number" class="form-control credit-money" placeholder="£ 0.00">
+                            <input type="number" class="form-control credit-money" placeholder="0.00">
                             <small>{{ $calculateWagesAnnotation }}</small>
                         </div>
                     </div>
@@ -457,9 +457,9 @@
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-5">
-                        <div class="form-group">
+                        <div class="form-group" currency="£">
                             <label><b>{{ $calculateTaxesTitle }}</b></label>
-                            <input type="number" class="form-control credit-money" placeholder="£ 0.00">
+                            <input type="number" class="form-control credit-money" placeholder="0.00">
                             <small>{{ $calculateTaxesAnnotation }}</small>
                         </div>
                     </div>
@@ -539,16 +539,18 @@
                     <div class="pt-5"></div>
                 </div>
 
-                <div class="bg-primary-light p-5 mb-2 br-5">
-                    <p class="font-size-20"><b>{{ $whatIsGoldTitle }}</b></p>
-                    <div class="line"></div>
-                    <p class="font-size-16">{!! $whatIsGoldText !!}</p>
-                </div>
+                <div>
+                    <div class="bg-primary-light p-5 mb-2 br-5">
+                        <p class="font-size-25"><b>{{ $whatIsGoldTitle }}</b></p>
+                        <div class="line"></div>
+                        <p class="font-size-16">{!! $whatIsGoldText !!}</p>
+                    </div>
 
-                <div class="bg-primary-light p-5 mb-2 br-5">
-                    <p class="font-size-20"><b>{{ $whatIsSilverTitle }}</b></p>
-                    <div class="line"></div>
-                    <p class="font-size-16">{{ $whatIsSilverText }}</p>
+                    <div class="bg-primary-light p-5 mb-2 br-5">
+                        <p class="font-size-25"><b>{{ $whatIsSilverTitle }}</b></p>
+                        <div class="line"></div>
+                        <p class="font-size-16">{{ $whatIsSilverText }}</p>
+                    </div>
                 </div>
 
                 <div class="pt-5"></div>
