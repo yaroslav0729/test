@@ -568,7 +568,9 @@ axios.all = function all(promises) {
   return Promise.all(promises);
 };
 
-axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
+axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js"); // Expose isAxiosError
+
+axios.isAxiosError = __webpack_require__(/*! ./helpers/isAxiosError */ "./node_modules/axios/lib/helpers/isAxiosError.js");
 module.exports = axios; // Allow use of default import syntax in TypeScript
 
 module.exports["default"] = axios;
@@ -1501,6 +1503,30 @@ module.exports = function isAbsoluteURL(url) {
   // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
   // by any combination of letters, digits, plus, period, or hyphen.
   return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+};
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isAxiosError.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAxiosError.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Determines whether the payload is an error thrown by Axios
+ *
+ * @param {*} payload The value to test
+ * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false
+ */
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+module.exports = function isAxiosError(payload) {
+  return _typeof(payload) === 'object' && payload.isAxiosError === true;
 };
 
 /***/ }),
@@ -103740,20 +103766,16 @@ $(function () {
           $('.header-menu .top .back').show();
         }
 
-        console.log('open sub menu');
-
         if ($(targetMenuContainer).has('.projects-group-swiper').length) {
           $('.header-menu').removeClass('dark-theme');
           $('.icon_left_1').removeClass('d-none');
           $('.icon_search_1').removeClass('d-none');
           $('.icon_left_2').addClass('d-none');
-          console.log('icon 2 hide');
         } else {
           $('.header-menu').addClass('dark-theme');
           $('.icon_left_1').addClass('d-none');
           $('.icon_search_1').addClass('d-none');
           $('.icon_left_2').removeClass('d-none');
-          console.log('icon 2 show');
         }
 
         $(menuContainer).hide();
@@ -103778,20 +103800,16 @@ $(function () {
       targetContainer.show();
     }
 
-    console.log('back click');
-
     if ($(targetContainer).has('.projects-group-swiper').length || currentLevel === 1) {
       headerMenuContainer.removeClass('dark-theme');
       $('.icon_left_1').removeClass('d-none');
       $('.icon_search_1').removeClass('d-none');
       $('.icon_left_2').addClass('d-none');
-      console.log('back click 1');
     } else {
       headerMenuContainer.addClass('dark-theme');
       $('.icon_left_1').addClass('d-none');
       $('.icon_search_1').addClass('d-none');
       $('.icon_left_2').removeClass('d-none');
-      console.log('back click 2');
     }
 
     if (currentLevel - 1 <= 0) {
@@ -103801,10 +103819,20 @@ $(function () {
   });
   $('.mobile-template .toggle-menu').on('click', function (e) {
     $('.mobile-template .toggle-menu').next().toggle();
-    console.log('footer2');
   });
   $('.header-menu .close-menu').click(function (e) {
     e.preventDefault();
+    closeMenu();
+  });
+  $(document).mouseup(function (e) {
+    var container = $(".header-menu");
+
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+      closeMenu();
+    }
+  });
+
+  function closeMenu() {
     $('.header-menu').removeClass('open');
 
     if ($('body').hasClass('mobile-template')) {
@@ -103816,11 +103844,41 @@ $(function () {
     } else {
       $('[menu-group]').hide();
     }
-  });
+  }
+
   $('header .top-bar .ico-menu').on('click', function () {
     $('header .expand-bar').toggleClass('open');
-  }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  }); //~~~~~~~~~~~~~~~~~~~~~~~ Play menu video in modal ~~~~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('click', '.trigger', function (e) {
+    e.preventDefault();
+    var theModal = $(this).data("target");
+    var videoSRC = $(this).attr("src");
+    var videoSRCauto = videoSRC + "?autoplay=1";
+    $(theModal + ' iframe').attr('src', videoSRCauto);
+    $(theModal).on('hidden.bs.modal', function (e) {
+      $(theModal + ' iframe').attr('src', '');
+    });
+  }); //~~~~~~~~~~~~~~~~~~~~~~~ Trending articles module ~~~~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('click', '[trending-articles] .pagination a', function (e) {
+    e.preventDefault();
+    var path = $(this).attr('href');
+    var url = new URL(path);
+    var page = url.searchParams.get('trending_articles');
+    var data = {};
+    var apiUrl = '/api/get_trending_articles/' + page;
+    $.get(apiUrl, data, refreshTrendingArticles, 'json');
+  });
+
+  function refreshTrendingArticles(response) {
+    var newBody = $('[trending-articles-body]', response.html);
+    $('[trending-articles-body]').html(newBody.html());
+    var newPagination = $('[trending-articles-pagination]', response.html);
+    $('[trending-articles-pagination]').html(newPagination.html());
+  } //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   //$("input[type='number']").inputSpinner()
+
 
   $("[input_number_spinner]").inputSpinner();
   $(function () {
@@ -104090,6 +104148,8 @@ $(function () {
     form.find('input[name="amount"]').val(price); //form.submit()
 
     sendFormAndRefreshCard(form);
+    $('#proj_tiles_modal_popup').modal('hide'); // for mobile version
+
     $('[tiles-popup]').addClass('d-none');
     $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
   });
@@ -104098,8 +104158,7 @@ $(function () {
     var newCart = $('.modal-body', response.cart_html);
     $('#cartModal .modal-body').html(newCart.html());
     var newCartDonate = $(response.cart_donate);
-    $('.about-donation').html(newCartDonate.html()); //$("input[type='number']").inputSpinner()
-
+    $('.about-donation').html(newCartDonate.html());
     $("[input_number_spinner]").inputSpinner();
     $('.basket #sum').text(response.sum);
 
@@ -104164,12 +104223,6 @@ $(function () {
 
     sendFormAndRefreshCard(form);
   });
-  $(document).on('click', '.basket', function (e) {
-    $('.basket').addClass('bell-animate');
-    setTimeout(function () {
-      $('.basket').removeClass('bell-animate');
-    }, 1100);
-  });
   $(document).on('click', '[donate-btn]', function (e) {
     e.preventDefault();
     var form = $(this).closest('form');
@@ -104205,6 +104258,7 @@ $(function () {
     $('html, body').animate({
       scrollTop: donateModulePosition
     }, 1000);
+    $('a[data-filter="single"]').click();
     donateEl.click();
   });
   $(document).on('click', '[select-appeal-tab]', function () {
@@ -104283,11 +104337,12 @@ $(function () {
     var el = $('.tiles-popup_' + projId + ' form');
     var options = [];
     options = getPopupOptions(projId);
-    popup.find('.project_popup_options').text(JSON.stringify(options));
+    $('.project_popup_options').text(JSON.stringify(options));
     restoreOptions(el, options);
     changeCampaignsDropdown(el);
     changeCategoriesDropdown(el);
     popup.removeClass('d-none');
+    $('#proj_tiles_modal_popup').modal('show'); // for mobile version
   });
   $(document).on('click', '[tiles-popup] .close', function () {
     $('[tiles-popup]').addClass('d-none');
@@ -104353,7 +104408,7 @@ $(function () {
     var type = form.find('select[name="period"]').val();
     var price = form.find('select[name="price_' + type + '"]').val();
     var campaign = form.find('select[name="campaigns"]').val();
-    var options = $(element).closest('.form').find('.project_popup_options').html();
+    var options = $('.project_popup_options').html();
     options = JSON.parse(options);
     options = options[type];
     var campaigns = null;
@@ -104393,7 +104448,7 @@ $(function () {
     var form = $(element).closest('form');
     var type = form.find('select[name="period"]').val();
     var price = form.find('select[name="price_' + type + '"]').val();
-    var options = $(element).closest('.form').find('.project_popup_options').html();
+    var options = $('.project_popup_options').html();
     options = JSON.parse(options);
     options = options[type];
     var campaigns = null;
@@ -104435,12 +104490,12 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app_admin.css */"./resources/css/app_admin.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
-module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/mobile.css */"./resources/css/mobile.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app_admin.css */"./resources/css/app_admin.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+module.exports = __webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/mobile.css */"./resources/css/mobile.css");
 
 
 /***/ })

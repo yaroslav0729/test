@@ -795,9 +795,24 @@ $(function () {
         $('.mobile-template .toggle-menu').next().toggle();
     });
 
+    //~~~~~~~~~~~~~~~~~~~~~~~ Close Main menu ~~~~~~~~~~~~~~~~~~~~~~~
+
     $('.header-menu .close-menu').click(function (e) {
         e.preventDefault();
+        closeMenu();
+    });
 
+    $(document).mouseup(function(e)
+    {
+        let container = $(".header-menu");
+        if (!container.is(e.target) && container.has(e.target).length === 0)
+        {
+            closeMenu();
+        }
+    });
+
+    function closeMenu()
+    {
         $('.header-menu').removeClass('open')
         if ($('body').hasClass('mobile-template')) {
             $('.header-menu').removeClass('dark-theme')
@@ -808,11 +823,27 @@ $(function () {
         } else {
             $('[menu-group]').hide();
         }
-    });
+    }
+
 
     $('header .top-bar .ico-menu').on('click', function () {
         $('header .expand-bar').toggleClass('open');
     })
+
+    //~~~~~~~~~~~~~~~~~~~~~~~ Play menu video in modal ~~~~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('click', '.trigger', function (e) {
+       e.preventDefault();
+
+       let theModal = $(this).data("target");
+       let videoSRC = $(this).attr("src");
+       let videoSRCauto = videoSRC + "?autoplay=1";
+
+       $(theModal + ' iframe').attr('src', videoSRCauto);
+       $(theModal).on('hidden.bs.modal', function(e) {
+           $(theModal + ' iframe').attr('src', '');
+       });
+    });
 
     //~~~~~~~~~~~~~~~~~~~~~~~ Trending articles module ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -820,7 +851,7 @@ $(function () {
         e.preventDefault()
 
         let path = $(this).attr('href');
-        
+
         const url = new URL(path);
         let page = url.searchParams.get('trending_articles')
         let data = {}
@@ -834,7 +865,7 @@ $(function () {
 
         let newBody = $('[trending-articles-body]', response.html)
         $('[trending-articles-body]').html(newBody.html())
-        
+
         let newPagination = $('[trending-articles-pagination]', response.html)
         $('[trending-articles-pagination]').html(newPagination.html())
     }
