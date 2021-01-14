@@ -16,13 +16,15 @@ $(function () {
         let options = [];
         options = getPopupOptions(projId)
 
-        popup.find('.project_popup_options').text(JSON.stringify(options))
+        $('.project_popup_options').text(JSON.stringify(options))
 
         restoreOptions(el, options)
         changeCampaignsDropdown(el)
         changeCategoriesDropdown(el)
 
         popup.removeClass('d-none')
+
+        $('#proj_tiles_modal_popup').modal('show') // for mobile version
     });
 
     $(document).on('click', '[tiles-popup] .close', function () {
@@ -111,7 +113,7 @@ $(function () {
         let price = form.find('select[name="price_' + type + '"]').val()
         let campaign = form.find('select[name="campaigns"]').val()
 
-        let options = $(element).closest('.form').find('.project_popup_options').html()
+        let options = $('.project_popup_options').html()
         options = JSON.parse(options)
         options = options[type]
 
@@ -155,7 +157,7 @@ $(function () {
         let type = form.find('select[name="period"]').val()
         let price = form.find('select[name="price_' + type + '"]').val()
 
-        let options = $(element).closest('.form').find('.project_popup_options').html()
+        let options = $('.project_popup_options').html()
         options = JSON.parse(options)
         options = options[type]
 

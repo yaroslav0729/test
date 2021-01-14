@@ -104099,6 +104099,8 @@ $(function () {
     form.find('input[name="amount"]').val(price); //form.submit()
 
     sendFormAndRefreshCard(form);
+    $('#proj_tiles_modal_popup').modal('hide'); // for mobile version
+
     $('[tiles-popup]').addClass('d-none');
     $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
   });
@@ -104171,13 +104173,7 @@ $(function () {
     var form = $(this).closest('form'); //form.submit()
 
     sendFormAndRefreshCard(form);
-  }); // $(document).on('click', '.basket', function (e) {
-  //     $('.basket').addClass('bell-animate')
-  //     setTimeout(function() {
-  //         $('.basket').removeClass('bell-animate');
-  //     }, 1100 );
-  // });
-
+  });
   $(document).on('click', '[donate-btn]', function (e) {
     e.preventDefault();
     var form = $(this).closest('form');
@@ -104292,11 +104288,12 @@ $(function () {
     var el = $('.tiles-popup_' + projId + ' form');
     var options = [];
     options = getPopupOptions(projId);
-    popup.find('.project_popup_options').text(JSON.stringify(options));
+    $('.project_popup_options').text(JSON.stringify(options));
     restoreOptions(el, options);
     changeCampaignsDropdown(el);
     changeCategoriesDropdown(el);
     popup.removeClass('d-none');
+    $('#proj_tiles_modal_popup').modal('show'); // for mobile version
   });
   $(document).on('click', '[tiles-popup] .close', function () {
     $('[tiles-popup]').addClass('d-none');
@@ -104362,7 +104359,7 @@ $(function () {
     var type = form.find('select[name="period"]').val();
     var price = form.find('select[name="price_' + type + '"]').val();
     var campaign = form.find('select[name="campaigns"]').val();
-    var options = $(element).closest('.form').find('.project_popup_options').html();
+    var options = $('.project_popup_options').html();
     options = JSON.parse(options);
     options = options[type];
     var campaigns = null;
@@ -104402,7 +104399,7 @@ $(function () {
     var form = $(element).closest('form');
     var type = form.find('select[name="period"]').val();
     var price = form.find('select[name="price_' + type + '"]').val();
-    var options = $(element).closest('.form').find('.project_popup_options').html();
+    var options = $('.project_popup_options').html();
     options = JSON.parse(options);
     options = options[type];
     var campaigns = null;

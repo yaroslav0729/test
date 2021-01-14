@@ -178,7 +178,9 @@ $(function () {
 
         //form.submit()
         sendFormAndRefreshCard(form)
-        $('[tiles-popup]').addClass('d-none')
+
+        $('#proj_tiles_modal_popup').modal('hide') // for mobile version
+        $('[tiles-popup]').addClass('d-none')   
         $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
     });
 
