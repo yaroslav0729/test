@@ -104107,8 +104107,7 @@ $(function () {
     var newCart = $('.modal-body', response.cart_html);
     $('#cartModal .modal-body').html(newCart.html());
     var newCartDonate = $(response.cart_donate);
-    $('.about-donation').html(newCartDonate.html()); //$("input[type='number']").inputSpinner()
-
+    $('.about-donation').html(newCartDonate.html());
     $("[input_number_spinner]").inputSpinner();
     $('.basket #sum').text(response.sum);
 
@@ -104172,13 +104171,13 @@ $(function () {
     var form = $(this).closest('form'); //form.submit()
 
     sendFormAndRefreshCard(form);
-  });
-  $(document).on('click', '.basket', function (e) {
-    $('.basket').addClass('bell-animate');
-    setTimeout(function () {
-      $('.basket').removeClass('bell-animate');
-    }, 1100);
-  });
+  }); // $(document).on('click', '.basket', function (e) {
+  //     $('.basket').addClass('bell-animate')
+  //     setTimeout(function() {
+  //         $('.basket').removeClass('bell-animate');
+  //     }, 1100 );
+  // });
+
   $(document).on('click', '[donate-btn]', function (e) {
     e.preventDefault();
     var form = $(this).closest('form');

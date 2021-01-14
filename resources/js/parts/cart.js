@@ -190,17 +190,18 @@ $(function () {
         let newCartDonate = $(response.cart_donate)
         $('.about-donation').html(newCartDonate.html())
 
-        //$("input[type='number']").inputSpinner()
         $("[input_number_spinner]").inputSpinner()
 
         $('.basket #sum').text(response.sum)
 
         if (response.sum > 0) {
             $('.basket span').removeClass('d-none')
+
             $('.basket').addClass('bell-animate')
             setTimeout(function() {
                 $('.basket').removeClass('bell-animate');
             }, 3100 );
+
         } else {
             $('.basket span').addClass('d-none')
             $('.basket').removeClass('bell-animate')
@@ -270,13 +271,6 @@ $(function () {
         //form.submit()
         sendFormAndRefreshCard(form)
     })
-
-    $(document).on('click', '.basket', function (e) {
-        $('.basket').addClass('bell-animate')
-        setTimeout(function() {
-            $('.basket').removeClass('bell-animate');
-        }, 1100 );
-    });
 
     $(document).on('click', '[donate-btn]', function (e) {
         e.preventDefault()
