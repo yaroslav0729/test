@@ -32,5 +32,5 @@
     </div>
 </div>
 <div class="pagination justify-content-center">
-    {{ $events->links() }}
+    {{ $events->appends(request()->except('page'))->links() }}
 </div>

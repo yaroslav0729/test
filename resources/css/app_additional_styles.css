@@ -96,3 +96,7 @@ a#clear_all_btn:hover {
     -webkit-animation-duration: 0.2s;
     animation-duration: 0.2;
 }
+
+#proj_tiles_modal_popup .modal-header{
+    background: #F97866;
+}

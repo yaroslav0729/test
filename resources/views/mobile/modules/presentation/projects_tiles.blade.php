@@ -1,4 +1,11 @@
 <div class="donate-projects-list w-100" swiper-wrapper="project-tiles">
+
+    <div class="project_popup_options alert alert-warning d-none">
+        {{-- Options will be here --}}
+    </div>
+
+    @include('modules.presentation.parts.project_tiles_modal_wrapper')
+
     <div class="swiper-container">
         <div class="swiper-wrapper">
 
@@ -29,8 +36,6 @@
                             <div class="add" data-id="{{ $projInstance->id}}">
                                 <i class="moon-icons-plus"></i>
                             </div>
-
-                            @include('modules.presentation.parts.projects_tiles_popup', ['popupKey' => $projInstance->id])
                         </div>
                     </div>
                 </div>

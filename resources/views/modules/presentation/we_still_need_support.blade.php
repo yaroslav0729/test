@@ -48,6 +48,11 @@ All items - single ptice items from donate module
                 $loopCou = 0;    
             @endphp
             @foreach ($singleItems as $itemKey => $item)
+
+                @if($loopCou==3) 
+                    @continue 
+                @endif
+
                 @if(count($campaignsCountries[$itemKey])>0) {{-- price exists & ok in campaign --}}
                     <div class="item @if($isEmergency) active-color-danger @else active-color-info @endisset" data-item_num='{{ $itemKey }}'>
                         <div>£<b>{{ $item['value'] }}</b></div>
@@ -57,16 +62,8 @@ All items - single ptice items from donate module
                 
                 @php
                     $loopCou++;
-                    $nextRow = false;
-                    if (($loopCou % 3 === 0) && (count($singleItems) > $loopCou)) {
-                        $nextRow = true;
-                    }    
                 @endphp
 
-                @if($nextRow) 
-                    </div>
-                    <div class="list d-flex justify-content-center pt-3">
-                @endif
             @endforeach
             
         </div>

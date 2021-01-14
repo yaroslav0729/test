@@ -8,10 +8,6 @@ $projPageInstance = $project->actual_page_instance;
     <i class="fal fa-check close"></i>
     <div class="name">Environmental sustainabilty</div>
 
-    <div class="project_popup_options alert alert-warning d-none">
-        
-    </div>
-
     <form action="{{ route('cart.add') }}" method="post">
         @csrf
         <div class="form-group">

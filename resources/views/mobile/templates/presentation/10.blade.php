@@ -4,29 +4,10 @@
         $perPage = (int)$parameters['per_page'] > 0 ? (int)$parameters['per_page'] : 6;
     }
 
-    $keywordName = Request::get('name');
-    $keywordLocation = Request::get('location');
     $keywordType = Request::get('type');
     $keywordTypeParticipate = Request::get('participate');
-    $keywordDate = Request::get('date');
 
     $query = \App\Models\Event::whereDate('start_date', '>=', now());
-
-    if (!empty($keywordName) || !empty($keywordLocation)) {
-         $query->where('name', 'LIKE', "%$keywordName%")
-         ->where('location', 'LIKE', "%$keywordLocation%");
-    }
-
-    $validator = Illuminate\Support\Facades\Validator::make(['date' => $keywordDate], [
-        'date' => 'date',
-    ]);
-
-    if (!$validator->fails()) {
-         $query->whereDate('start_date', '=', $keywordDate)
-         ->orWhereNotNull('end_date')
-         ->whereDate('start_date', '<=', $keywordDate)
-         ->whereDate('end_date', '>=', $keywordDate);
-    }
 
     if (!empty($keywordType)) {
         $query->where('entry_type', $keywordType);
@@ -130,7 +111,9 @@
                         <select name="type" class="form-control filter" id="filter-type">
                             <option value="">EVENT TYPE</option>
                             @foreach (\App\Models\Event::ALL_TYPES_ENTRY as $typeId => $typeLabel)
-                                <option class="events-filter" value="{{ $typeId }}">{{ $typeLabel }}</option>
+                                <option class="events-filter" value="{{ $typeId }}"
+                                    @if($typeId === intval($keywordType)) selected @endif
+                                >{{ $typeLabel }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -142,7 +125,9 @@
                         <select name="type" class="form-control filter" id="filter-participate">
                             <option value="">LIVE EVENTS</option>
                             @foreach (\App\Models\Event::ALL_TYPE_EVENT as $typeId => $typeEvent)
-                                <option class="events-filter" value="{{ $typeId }}">{{ $typeEvent }}</option>
+                                <option class="events-filter" value="{{ $typeId }}"
+                                        @if($typeId === intval($keywordTypeParticipate)) selected @endif
+                                >{{ $typeEvent }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -179,7 +164,7 @@
             @endforeach
         </div>
         <div class="pagination justify-content-center">
-            {{ $events->links() }}
+            {{ $events->appends(request()->except('page'))->links() }}
         </div>
     </div>
 </section>

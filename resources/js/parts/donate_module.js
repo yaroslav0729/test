@@ -9,6 +9,7 @@ $(function () {
         let donateModulePosition = $('.donate-today-sheet').offset().top;
         $('html, body').animate({scrollTop: donateModulePosition}, 1000);
 
+        $('a[data-filter="single"]').click()
         donateEl.click()
     });
 

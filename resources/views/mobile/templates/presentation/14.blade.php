@@ -64,62 +64,7 @@
 
 @include('modules.presentation.trending_articles')
 
-<section class="popular-topic-list">
-    <div class="title">
-        <b>POPULAR TOPICS</b>
-    </div>
-        <div class="current-projects-list current-projects-swiper">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="#" class="item">
-                            <span class="img" style="background-image: url(img/content/popular-topic-list1.jpg)"></span>
-                            <span class="descr">
-                                <span class="name font-size-16"><b>CHARITY</b></span>
-                                <span class="num">01</span>
-                                <span class="text font-size-16 mb-3"><b>Article title placement here with a maximum of 60 characters.</b></span>
-                                <span class="date">April 06, 2020 BY AHMED SALEM</span>
-                                <i class="moon-icons-plus"></i>
-                            </span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="item">
-                            <span class="img" style="background-image: url(img/content/popular-topic-list2.jpg)"></span>
-                            <span class="descr">
-                                <span class="name font-size-16"><b>EVENT</b></span>
-                                <span class="num">02</span>
-                                <span class="text font-size-16 mb-3"><b>Article title placement here with a maximum of 60 characters.</b></span>
-                                <span class="date">April 06, 2020 BY AHMED SALEM</span>
-                                <i class="moon-icons-plus"></i>
-                            </span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="item">
-                            <span class="img" style="background-image: url(img/content/popular-topic-list3.jpg)"></span>
-                            <span class="descr">
-                                <span class="name font-size-16"><b>PROJECT</b></span>
-                                <span class="num">03</span>
-                                <span class="text font-size-16 mb-3"><b>Article title placement here with a maximum of 60 characters.</b></span>
-                                <span class="date">April 06, 2020 BY AHMED SALEM</span>
-                                <i class="moon-icons-plus"></i>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
-
-        <script>
-            var swiper = new Swiper('.current-projects-swiper .swiper-container', {
-                pagination: {
-                    el: '.current-projects-swiper .swiper-pagination'
-                }
-            });
-        </script>
-</section>
+@include('modules.presentation.popular_topics')
 
 <section class="mission-impossible">
     <div class="title no-brd">Mission Impossible</div>

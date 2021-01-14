@@ -1,11 +1,16 @@
 @php
 
-$page = (int) request()->get('trending_articles');
+if (isset($selectedPage)) {
+    $page = $selectedPage;
+} else {
+    $page = (int) request()->get('trending_articles');
+}
+
 $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
 
 @endphp
 
-<section class="newsroom-list" >
+<section class="newsroom-list" trending-articles>
     <div class="title">
         <div>
             <span>Trending</span>
@@ -17,7 +22,7 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" trending-articles-body>
         @foreach ($articles as $article)
             @php
                 $item = $article->actual_page_instance;    
@@ -26,10 +31,10 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
             <div class="col-12">
                 <div class="item">
                     <div>
-                        <a href="{{ $item->slug }}" class="tl">{{ \App\Helpers\StrHelper::lengthLimit($item->title, 50) }}</a>
+                        <a href="{{ $item->slug }}" class="tl">{!! \App\Helpers\StrHelper::lengthLimit($item->title, 50) !!}</a>
                         <div class="date">
                             <div><b>{{ \App\Helpers\ArticlesHelper::getMinRead($item) }}min read</b></div>
-                            {{ date('d F', strtotime($pageInstance->published_at)) }}
+                            {{ date('d F', strtotime($item->published_at)) }}
                             <span>•</span>BY AHMED SALEM
                         </div>
                     </div>
@@ -37,12 +42,11 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
                 </div>
             </div>
         @endforeach
-        
     </div>
 
     <div class="pt-3 pb-3"></div>
 
-    <ul class="pagination justify-content-center">
+    <ul class="pagination justify-content-center" trending-articles-pagination>
         {{ $articles->onEachSide(0)->links('parts.custom_paginator') }}
     </ul>
 </section>

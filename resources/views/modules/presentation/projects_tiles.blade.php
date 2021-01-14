@@ -1,4 +1,9 @@
 <div class="current-projects-list w-100" swiper-wrapper="project-tiles">
+
+    <div class="project_popup_options alert alert-warning d-none">
+        {{-- Options will be here --}}
+    </div>
+
     <div class="swiper-container">
         <div class="swiper-wrapper">
 
