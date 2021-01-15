@@ -102,6 +102,29 @@ class MediaParser2 extends AbstractParser
         $posts = $this->getMediaCenterPosts();
     }
 
+    public function disablePagesWith301Redirect()
+    {
+        $posts = $this->wpConnection->table('wp_redirects')
+            ->get();
+
+        foreach ($posts as $post) {
+            $localPage = PageInstance::where('slug', $post->url_from)->first();
+
+            if ($localPage) {
+                
+                if ($localPage->page->status === Page::PAGE_STATUS_PUBLISHED) {
+
+                    $this->info('Found local post needs to redirect - id: ' . $localPage->id . ', slug: ' . $localPage->slug);
+
+                    $localPage->page->status = Page::PAGE_STATUS_NOT_PUBLISHED;
+                    $localPage->page->save();
+                }
+            }
+        }
+            
+        
+    }
+
     protected function getLocalPost($postName)
     {
         $items = PageInstance::where('slug', 'media-centre/news/' . $postName)->get();

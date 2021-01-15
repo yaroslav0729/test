@@ -50,12 +50,13 @@ class SetupPreviewImage extends Command
         $this->wpConnection = DB::connection('wp');
 
         $parser = new MediaParser2($this->wpConnection);
-        //$parser->parse();
-
+        
+        $parser->parse();
         $parser->updateWpIdMediaCenter();
+        $parser->disablePagesWith301Redirect();
 
-        //$this->setupFirstImage();
-
+        $this->setupFirstImage();
+        
         $this->info('Complete successfully!');
     }
 
