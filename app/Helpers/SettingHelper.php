@@ -77,7 +77,7 @@ class SettingHelper
     public static function listArray(): array
     {
         return [
-            self::VIDEO_LINK_ON_MAIN_MENU => 'Links to video on Main menu',
+            self::VIDEO_LINK_ON_MAIN_MENU => 'Link to a video for the Main menu',
         ];
     }
 
