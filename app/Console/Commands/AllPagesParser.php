@@ -6,6 +6,7 @@ use App\Console\Commands\Parts\EventsParser;
 use App\Console\Commands\Parts\MediaParser;
 use App\Console\Commands\Parts\ProjectsParser;
 use App\Console\Commands\Parts\DefaultTemplateParser;
+use App\Console\Commands\Parts\BlogParser;
 use DB;
 use Illuminate\Console\Command;
 
@@ -21,6 +22,7 @@ class AllPagesParser extends Command
      * php artisan parse:all_pages --parser=media
      * php artisan parse:all_pages --parser=events
      * php artisan parse:all_pages --parser=default_template
+     * php artisan parse:all_pages --parser=blog
      *
      * @var string
      */
@@ -79,6 +81,9 @@ class AllPagesParser extends Command
         if (($parserOption === 'default_template') || (!$parserOption)) {
             $this->parseDefaultTemplatePages();
         }
+        if (($parserOption === 'blog') || (!$parserOption)) {
+            $this->parseBlogPages();
+        }
 
         $this->info('Parsing complete!');
     }
@@ -115,6 +120,15 @@ class AllPagesParser extends Command
         $this->info('Default template pages parser:');
 
         $defParser = new DefaultTemplateParser($this->wpConnection);
+
+        $defParser->parse();    
+    }
+
+    protected function parseBlogPages()
+    {
+        $this->info('Blog pages parser:');
+
+        $defParser = new BlogParser($this->wpConnection);
 
         $defParser->parse();    
     }
