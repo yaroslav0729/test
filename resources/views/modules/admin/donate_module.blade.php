@@ -32,11 +32,13 @@
     <li class="nav-item">
         <a class="nav-link" id="tab-slide-2" data-toggle="tab" href="#slide_2" role="tab" aria-controls="tab-slide-2" aria-selected="false">Monthly donation</a>
     </li>
+    {{-- 
     @isset($useAppeal)
     <li class="nav-item">
         <a class="nav-link" id="tab-slide-3" data-toggle="tab" href="#slide_3" role="tab" aria-controls="tab-slide-3" aria-selected="false">Appeal donation</a>
     </li>
-    @endisset
+    @endisset 
+    --}}
 </ul>
 
 <div class="tab-content" id="myTabContent">
@@ -52,10 +54,12 @@
             'donationType' => \App\Models\CampaignPrice::TYPE_MONTHLY
         ])
     </div>
+    {{-- 
     @isset($useAppeal)
     <div class="tab-pane fade" id="slide_3" role="tabpanel" aria-labelledby="tab-slide-3">
         Appeal donation
     </div>
-    @endisset
+    @endisset 
+    --}}
 </div>
 

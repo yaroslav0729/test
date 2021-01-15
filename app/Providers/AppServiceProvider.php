@@ -63,6 +63,36 @@ class AppServiceProvider extends ServiceProvider
             return true;
         });
 
+        Validator::extend('amount_limit_items', function ($value, $parameters) { // amount_limit_items
+            
+            if (isset($parameters['amount'])) {
+                
+                $singleCou = 0;
+                $monthlyCou = 0;
+                
+                foreach ($parameters['amount'] as $amount) {
+                    if (isset($amount['type'])) {
+                        if ((int) $amount['type'] === \App\Models\CampaignPrice::TYPE_SINGLE) {
+                            $singleCou++;
+    
+                        } else if ((int) $amount['type'] === \App\Models\CampaignPrice::TYPE_MONTHLY) {
+                            $monthlyCou++;
+                        }
+                    }
+                }
+
+                if (!in_array($singleCou, [0, 3, 5])) {
+                    return false;
+                }
+
+                if (!in_array($monthlyCou, [0, 3, 5])) {
+                    return false;
+                }
+            }
+
+            return true;
+        });
+
         View::share([
             'headerMenuItem' => MenuHelper::groupByLevels(
                 MenuItem::rootMenuByDestination(MenuItem::HEADER_MENU)
