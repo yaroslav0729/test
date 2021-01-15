@@ -1001,6 +1001,29 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   min-width: 10px;
   max-width: 100%;
 }
+.btn-fb {
+  background: #44619d;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  margin: 20px auto;
+  max-width: 250px;
+  padding: 8px;
+  text-align: center;
+  -webkit-transition: .2s;
+  transition: .2s;
+  cursor: pointer;
+}
+.btn-fb:hover {
+  color: #fff;
+}
+.btn-fb i {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.btn-fb span {
+  font-size: 12px;
+}
 .bg-info {
   background-color: #2caabb !important;
 }
@@ -3727,6 +3750,102 @@ input[type='number'].color-danger + .input-group .btn {
   background: #101525;
   margin: 12px 0;
 }
+.loginModal .modal-dialog {
+  max-width: 600px;
+}
+.loginModal .modal-content {
+  box-shadow: 15px 15px 15px 3px rgba(0, 0, 0, 0.2);
+  background: #f4f1e9;
+  border-radius: 0;
+  border: 0;
+}
+.loginModal .modal-body {
+  padding: 30px 30px 0;
+}
+.loginModal .modal-body .close {
+  float: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.loginModal .modal-body .h2 {
+  color: #9f303c;
+  line-height: 1;
+  margin: 0;
+}
+.loginModal .modal-body p {
+  font-size: 12px;
+  color: #252121;
+  margin: 16px 0;
+}
+.loginModal .modal-body .line {
+  background: #ccc;
+  height: 1px;
+  margin: 32px 0;
+  position: relative;
+}
+.loginModal .modal-body .line.or:after {
+  background: #f4f1e9;
+  color: #666;
+  content: 'or';
+  font-size: 14px;
+  font-weight: 500;
+  height: 20px;
+  left: 50%;
+  line-height: 20px;
+  margin: -10px -20px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 40px;
+}
+.loginModal .modal-body .form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #252121;
+  text-transform: none;
+  margin: 0 0 10px;
+  padding: 0;
+}
+.loginModal .modal-body .form-group .form-control {
+  border: 1px solid #ccc;
+  font-size: 15px;
+  color: #252121;
+  background: #fff !important;
+  padding: 7px 15px;
+}
+.loginModal .modal-body .footer {
+  background: #e6e2da;
+  border-top: 1px solid #ccc;
+  font-size: 13px;
+  margin: 30px -30px 0;
+  padding: 12px 30px 15px;
+  text-align: center;
+}
+.loginModal .modal-body .footer a {
+  color: #df3144;
+  text-decoration: underline;
+}
+.loginModal .modal-body .checkbox {
+  line-height: 1;
+  padding-left: 22px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.loginModal .modal-body .checkbox span {
+  border-radius: 3px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  box-shadow: 0 0 0 1px #dcd7ca;
+  top: -1px;
+}
+.loginModal .modal-body .checkbox span i {
+  font-size: 12px;
+  color: #9f303c;
+  left: 2px;
+  top: 1px;
+}
 #cartModal {
   top: 100px;
   height: calc(100% - 100px);
@@ -5462,6 +5581,7 @@ input[type='number'].color-danger + .input-group .btn {
   width: 14px;
   height: 8px;
 }
+/*------------------------------------vb--------*/
 .page-404 {
   margin-top: -110px;
   display: flex;

@@ -66,8 +66,8 @@
                 @foreach ($additionalHeaderMenuItem as $menuItem)
                     <li><a href="{{ $menuItem->formatted_link }}">{{ $menuItem->text }}</a></li>
                 @endforeach
-                <li><a href="#">Login</a></li>
-                <li><a href="#">+ Create Account</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#createModal">+ Create Account</a></li>
                 <li>HOTLINE: <b class="text-info">0121 446 5682</b></li>
                 <li><a href="#" class="search-btn"><i class="fas fa-search"></i></a></li>
             </ul>

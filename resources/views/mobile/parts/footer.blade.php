@@ -39,3 +39,4 @@
 </footer>
 
 @include('parts.modal_cart')
+@include('parts.modal_login')

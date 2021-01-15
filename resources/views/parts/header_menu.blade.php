@@ -156,8 +156,8 @@
                     </ul>
                 </div>
                 <div class="col-4 text-right">
-                    <a href="#" class="text-info mr-4">Login</a>
-                    <a href="#" class=" mr-4">+ Create account</a>
+                    <a href="#" class="text-info mr-4" data-toggle="modal" data-target="#loginModal">Login</a>
+                    <a href="#" class=" mr-4" data-toggle="modal" data-target="#createModal">+ Create account</a>
                     <a href="#" class="close-menu"><i class="far fa-times"></i></a>
                 </div>
             </div>
