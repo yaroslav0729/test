@@ -245,6 +245,7 @@ return [
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
 
         'StrHelper' => App\Helpers\StrHelper::class,
+        'Setting' => App\Helpers\SettingHelper::class,
     ],
 
 ];

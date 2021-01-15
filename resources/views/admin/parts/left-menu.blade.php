@@ -13,6 +13,7 @@
         <li><a href="{{ route('admin.subscription.index') }}"><i class="fas fa-book"></i>Subscriptions</a></li>
         <li><a href="{{ route('admin.email_logs.index') }}"><i class="fas fa-envelope-open-text"></i>Email logs</a></li>
         <li><a href="{{ route('media.index') }}"><i class="fas fa-photo-video"></i>Media</a></li>
+        <li><a href="{{ route('admin.settings.index') }}"><i class="fas fa-photo-video"></i>Settings</a></li>
     </ul>
     <br><br>
 

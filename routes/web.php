@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\EmailLogController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\MenuItemController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CartController;
@@ -50,6 +51,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         Route::resource('email_logs', EmailLogController::class, ['as' => 'admin'])->only([
             'index', 'show', 'destroy',
         ]);
+
+        Route::get('settings', [SettingController::class, 'index'])->name('admin.settings.index');
+        Route::post('settings', [SettingController::class, 'update'])->name('admin.settings.update');
+
         Route::get('/email_logs/show_email/{email_log}', [EmailLogController::class, 'showEmail'])->name('admin.email_logs.show_email');
         Route::post('/email_logs/resend/{email_log}', [EmailLogController::class, 'resend'])->name('admin.email_logs.resend');
 
@@ -66,7 +71,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
             ])
             ->group(function () {
                 Route::get('/', [MenuItemController::class, 'index'])->name('admin.menu_items.index');
-                
+
                 Route::get('/{menuSlug}', [MenuItemController::class, 'show'])->name('admin.menu_items.show');
                 Route::get('/{parent}', [MenuItemController::class, 'showSubmenu'])->name('admin.menu_items.show_submenu');
 
