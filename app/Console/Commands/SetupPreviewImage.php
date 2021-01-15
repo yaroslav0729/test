@@ -50,9 +50,11 @@ class SetupPreviewImage extends Command
         $this->wpConnection = DB::connection('wp');
 
         $parser = new MediaParser2($this->wpConnection);
-        $parser->parse();
+        //$parser->parse();
 
-        $this->setupFirstImage();
+        $parser->updateWpIdMediaCenter();
+
+        //$this->setupFirstImage();
 
         $this->info('Complete successfully!');
     }
