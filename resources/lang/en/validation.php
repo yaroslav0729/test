@@ -136,6 +136,9 @@ return [
         'parameters.amount' => [
             'amount_text' => 'Amount donation text lenght error - max 60 charters',
         ],
+        'parameters' => [
+            'amount_limit_items' => 'Single & Monthly tabs should have only 3 or 5 items of amounts'
+        ]
     ],
 
     /*

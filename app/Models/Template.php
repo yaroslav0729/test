@@ -390,6 +390,7 @@ class Template
             case self::PROJECT_PAGE: {
 
                 $rules = [
+                    'parameters' => 'amount_limit_items',
                     'parameters.proj_heading' => 'max:30',
                     'parameters.amount' => 'amount_text',
                     'parameters.donate_text' => 'max:100',
@@ -397,6 +398,14 @@ class Template
                     'parameters.still_need_text1' => 'max:60',
                     'parameters.still_need_text2' => 'max:60',
                     'parameters.still_need_text3' => 'max:60',
+                ];
+
+                break;
+            }
+
+            case self::PROJECTS_PAGE: {
+                $rules = [
+                    'parameters' => 'amount_limit_items'    
                 ];
 
                 break;
