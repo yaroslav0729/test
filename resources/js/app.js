@@ -804,11 +804,16 @@ $(function () {
 
     $(document).mouseup(function(e)
     {
-        let container = $(".header-menu");
+        let container = $('.header-menu');
         if (!container.is(e.target) && container.has(e.target).length === 0)
         {
             closeMenu();
         }
+    });
+
+    //~~~~~~~~~~~~~~~~~~~~~~~ Close Main when click on the sliders!!! ~~~~~~~~~~~~~~~~~~~~~~~
+    $(document).on('click', '[swiper-wrapper]', function (e) {
+        closeMenu();
     });
 
     function closeMenu()
