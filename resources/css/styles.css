@@ -5462,17 +5462,19 @@ input[type='number'].color-danger + .input-group .btn {
   width: 14px;
   height: 8px;
 }
-.page-404 div {
+.page-404 {
+  margin-top: -110px;
+  display: flex;
+  min-height: 300px;
+  align-items: center;
+  justify-content: center;
+}
+.page-404 .text {
+  text-align: center;
   color: #F7796A;
   font-size: 70px;
   font-weight: 900;
-  line-height: 85px;
-  margin-bottom: 40px;
-}
-.page-404 .text {
-  margin-left: 224px;
-  max-width: 572px;
-  vertical-align: top;
+  line-height: 1.2;
 }
 /*------------------------------------vb--------*/
 /*# sourceMappingURL=styles.css.map */
