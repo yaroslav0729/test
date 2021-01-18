@@ -30,7 +30,7 @@
     <div class="wrap">
         <div>
             <div class="row align-items-center">
-                <div class="col-7">
+                <div class="col-7 pr-5">
                     <div class="title mb-3">
                         <p class="font-size-30">
                             <b>
@@ -50,7 +50,8 @@
                         @endif
                     </p>
                 </div>
-                <div class="col-5 pr-4">
+                <div class="col-1"></div>
+                <div class="col-4 pr-4">
                         @if ($imageBefore === "")
                             <img src="img/content/join-cause-2.jpg" alt="" class="w-100">
                         @else

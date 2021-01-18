@@ -12429,7 +12429,7 @@ input[type='number'].color-danger + .input-group .btn {
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 50px;
+  bottom: 37px;
   width: 1900px;
 }
 .join-cause-2 .wrap > div:after {
@@ -12844,6 +12844,10 @@ input[type='number'].color-danger + .input-group .btn {
   line-height: 26px;
   margin: 0;
   position: relative;
+}
+.mission-impossible .text + div .btn {
+  padding: 21px 21px 22px;
+  min-width: 10px;
 }
 .mission-impossible .img {
   background-size: cover;
@@ -14290,13 +14294,17 @@ input[type='number'].color-danger + .input-group .btn {
   position: relative;
   margin-top: -10px;
 }
+.events-home-swiper .title {
+  border-bottom: 4px solid #101525;
+  padding-left: 94px;
+}
 .events-home-swiper .wrap {
   position: relative;
   border-radius: 5px !important;
   overflow: hidden;
 }
 .events-home-swiper .swiper-container {
-  padding-top: 35px;
+  padding-top: 30px;
 }
 .events-home-swiper .swiper-slide .img {
   background-size: cover;
@@ -14353,7 +14361,7 @@ input[type='number'].color-danger + .input-group .btn {
   color: #FFF;
   font-size: 30px;
   font-weight: 700;
-  line-height: 44px;
+  line-height: 32px;
 }
 .events-home-swiper .swiper {
   background: #2CAABB;
@@ -14380,6 +14388,16 @@ input[type='number'].color-danger + .input-group .btn {
 .events-home-swiper .swiper .swiper-button-next:after {
   display: none;
 }
+.events-home-swiper .swiper .swiper-button-next {
+  font-size: 15px;
+  font-weight: 900;
+  width: auto;
+  margin-left: 18px;
+}
+.events-home-swiper .swiper .swiper-button-next i {
+  font-size: 43px;
+  margin-left: 8px;
+}
 .events-home-swiper .swiper .swiper-button-prev {
   margin-left: -30px;
 }
@@ -14388,17 +14406,17 @@ input[type='number'].color-danger + .input-group .btn {
   margin: -55px 0 80px;
   position: relative;
   z-index: 2;
-  margin-right: 170px;
+  margin-right: 200px;
 }
 .events-home-search-form:after {
   content: "";
   display: block;
   background: url(/images/Line-styling.png?b03a87dd394747a88d56e0d8ba1cafa2) no-repeat;
   background-size: contain;
-  height: 197px;
-  width: 196px;
+  height: 228px;
+  width: 228px;
   position: absolute;
-  left: -50px;
+  left: -6px;
   bottom: -90px;
   opacity: 0.1;
   z-index: -1;
@@ -14407,7 +14425,7 @@ input[type='number'].color-danger + .input-group .btn {
   background-color: #231F51;
   box-shadow: 0 18px 35px 0 rgba(104, 110, 117, 0.35);
   border-radius: 5px;
-  padding: 24px 30px;
+  padding: 23px 30px;
 }
 .events-home-search-form .form-group {
   margin-bottom: 0;
@@ -14569,7 +14587,7 @@ input[type='number'].color-danger + .input-group .btn {
   border-color: #EFEFF4;
   background-color: #EFEFF4 !important;
   font-size: 12px;
-  padding: 10px 15px;
+  padding: 13px 15px;
   font-weight: 900;
 }
 .upcoming-events select.form-control {

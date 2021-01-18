@@ -47,12 +47,12 @@
 
 @empty(!$eventsForSlide->count())
 
-    <section class="pt-5">
-        <p class="mb-3"><b>OUR FEATURED EVENT</b></p>
-        <div class="black-line"></div>
-    </section>
-
     <section class="events-home-swiper" swiper-wrapper="events-slider">
+        <div class="title">
+            <p class="mb-3"><b>OUR FEATURED EVENT</b></p>
+        </div>
+{{--        <div class="black-line"></div>--}}
+
         <div class="wrap">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
@@ -125,8 +125,7 @@
                 </div>
             </div>
             <div class="swiper">
-                <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
-                <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
+                <div class="swiper-button-next">NEXT <i class="moon-icons-arrow-right"></i></div>
             </div>
         </div>
     </section>
@@ -167,9 +166,9 @@
 
     <section class="upcoming-events bg-light">
         <div class="wrap">
-            <div class="row align-items-center mb-5">
+            <div class="row align-items-center mb-4">
                 <div class="col-6">
-                    <p class="font-size-30"><b>Upcoming Events</b></p>
+                    <p class="font-size-30 pl-5 mt-n3"><b>Upcoming Events</b></p>
                 </div>
                 <div class="col-6 text-right">
                     <div class="form-group d-inline-block mr-3">
