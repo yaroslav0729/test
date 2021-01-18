@@ -12780,7 +12780,7 @@ input[type='number'].color-danger + .input-group .btn {
   padding-left: 47px;
 }
 .discover-more {
-  padding: 67px 180px 0;
+  padding: 81px 180px 0;
 }
 .discover-more .title {
   margin-bottom: 65px;
@@ -12793,7 +12793,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .discover-more .title a i {
   display: inline-block;
-  font-size: 40px;
+  font-size: 45px;
   vertical-align: middle;
   margin-left: 10px;
   position: relative;
@@ -13983,6 +13983,7 @@ input[type='number'].color-danger + .input-group .btn {
   padding-bottom: 13px;
   margin-bottom: 52px;
   color: #FFF;
+  text-transform: uppercase;
 }
 .who-we-are-head h1 {
   color: #FFF;

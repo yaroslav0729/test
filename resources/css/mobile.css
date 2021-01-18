@@ -1941,6 +1941,10 @@
   padding: 52px 30px 78px;
   margin-bottom: 47px;
 }
+.mobile-template .contacts {
+  padding: 30px 30px 50px;
+  background-size: cover;
+}
 /*------------------------------------vb--------*/
 .page-404 {
   margin-top: -57px;
