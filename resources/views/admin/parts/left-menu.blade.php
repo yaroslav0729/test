@@ -14,6 +14,7 @@
         <li><a href="{{ route('admin.email_logs.index') }}"><i class="fas fa-envelope-open-text"></i>Email logs</a></li>
         <li><a href="{{ route('media.index') }}"><i class="fas fa-photo-video"></i>Media</a></li>
         <li><a href="{{ route('admin.settings.index') }}"><i class="fas fa-cog"></i>Settings</a></li>
+        <li><a href="{{ route('admin.redirects.index') }}"><i class="fas fa-directions"></i>Redirects</a></li>
     </ul>
     <br><br>
 

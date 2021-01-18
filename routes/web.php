@@ -8,11 +8,11 @@ use App\Http\Controllers\Admin\EmailLogController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\MenuItemController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
+use App\Http\Controllers\Admin\RedirectController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SitemapController;
@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
             'index', 'show',
         ]);
 
+        Route::resource('redirects', RedirectController::class, ['as' => 'admin']);
+
         Route::resource('email_logs', EmailLogController::class, ['as' => 'admin'])->only([
             'index', 'show', 'destroy',
         ]);
@@ -68,7 +70,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
             ->where([
                 'parent' => '\d+',
                 'menuItem' => '\d+',
-                'menuSlug' => implode('|', MenuItem::ALL_SLUG_MENU)
+                'menuSlug' => implode('|', MenuItem::ALL_SLUG_MENU),
             ])
             ->group(function () {
                 Route::get('/', [MenuItemController::class, 'index'])->name('admin.menu_items.index');
