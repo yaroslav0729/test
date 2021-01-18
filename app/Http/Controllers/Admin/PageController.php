@@ -39,6 +39,7 @@ class PageController extends Controller
         if (!empty($nameFilter)) {
             $pages = $pages->whereHas('pageInstances', function (Builder $query) use ($nameFilter) {
                 $query->where('name', 'like',  '%' . $nameFilter . '%');
+                $query->orWhere('slug', 'like',  '%' . $nameFilter . '%');
             });
         }
 
