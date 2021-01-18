@@ -326,10 +326,10 @@
         </div>
         <nav class="general-content-tabs">
             <ul class="nav nav-tabs nav-fill" id="myTab">
-                <li class="nav-item">
-                    <a class="nav-link active" id="tab-1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-selected="true">{{ $tabCalculatorTitle }}</a>
+                <li class="nav-item col-6 pl-0 pr-0">
+                    <a class="nav-link active text-uppercase" id="tab-1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-selected="true">Calculator</a>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item col-6 pl-0 pr-0" role="presentation">
                     <a class="nav-link" id="tab-2-tab" data-toggle="tab" href="#tab-2" role="tab"  aria-selected="false">{{ $tabWhatZakatTitle }}</a>
                 </li>
             </ul>
@@ -408,7 +408,7 @@
                 <div class="form-group" currency="£">
                     <label><b>{{ $calculateBorrowedTitle }}</b></label>
                     <input type="number" class="form-control credit-money" placeholder="0.00">
-                    <small>{{ $calculateTaxesAnnotation }}</small>
+                    <small>{{ $calculateBorrowedAnnotation }}</small>
                 </div>
                 <div class="line"></div>
                 <div class="form-group" currency="£">

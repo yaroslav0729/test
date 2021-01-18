@@ -88,7 +88,7 @@
                                             >
                                                 {{ $subItemMenu->text }}
                                                 @if($subItemMenu->is_group)
-                                                    <i class="far fa-plus"></i>
+                                                    <i class="far fa-plus float-right mr-4"></i>
                                                 @endif
                                             </a>
                                             @if ($loop->last)
