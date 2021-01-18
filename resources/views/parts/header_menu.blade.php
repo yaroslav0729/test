@@ -2,12 +2,13 @@
     <div class="wrap">
         <div class="row align-items-center">
             <div class="col-9">
-                <a href="{{ route('index') }}" class="logo"><span><img src="/img/logo.png" width="35" height="35" style="margin: 8px 0 0 8px" /></span></a>
+                <a href="{{ route('index') }}" class="logo">
+                    <span><img src="/img/logo.png" width="35" height="35" style="margin: 8px 0 0 8px" /></span></a>
                 <ul class="d-inline-flex justify-content-between">
                     @isset ($headerMenuItem[0])
                         @foreach($headerMenuItem[0] as $itemMenu)
-                            <li 
-                                opened-menu-item 
+                            <li
+                                opened-menu-item
                                 data-id="{{ $itemMenu->id }}"
                             >
                                 <a href="#">{{ $itemMenu->text }}</a>
@@ -39,9 +40,21 @@
                             @endforeach
                         </div>
                         <div class="black-line">
-                            <div class="head-menu-video" style="background-image: url(/img/content/Winter-A-2-1200x800.jpg)">
-                                <i class="fas fa-play-circle"></i>
-                                <div class="name">IH LATEST <b>WINTER APPEAL</b></div>
+                           <div class="head-menu-video">
+                               <div class="img-video play-tr videoWrapper" style="">
+                                   <iframe
+                                       @if(Setting::get(Setting::VIDEO_LINK_ON_MAIN_MENU))
+                                       src="https://www.youtube.com/embed/{{ Setting::get(Setting::VIDEO_LINK_ON_MAIN_MENU) }}"
+                                       @endif
+                                           frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                   <div class="overlay trigger"
+                                        @if(Setting::get(Setting::VIDEO_LINK_ON_MAIN_MENU))
+                                            src="https://www.youtube.com/embed/{{ Setting::get(Setting::VIDEO_LINK_ON_MAIN_MENU) }}"
+                                        @else
+                                            src=""
+                                        @endif
+                                        data-target="#videoModal" data-toggle="modal"></div>
+                               </div>
                             </div>
                         </div>
                     @else
@@ -63,7 +76,7 @@
                                                 @if($loop->index !== 0) </div> @endif
                                                 <div class="swiper-slide">
                                             @endif
-                                            <a 
+                                            <a
                                                 @if($subItemMenu->is_group)
                                                     href="#"
                                                     menu-group-show
@@ -107,9 +120,21 @@
                     </div>
 
                     <div class="black-line no-line">
-                        <div class="head-menu-video" style="background-image: url(img/content/persnickety-prints-6A_qiLrWRyY-unsplash.jpg)">
-                            <i class="fas fa-play-circle"></i>
-                            <div class="name">IH sponsorships <b>orphans</b></div>
+                        <div class="head-menu-video">
+                            <div class="img-video play-tr videoWrapper" style="">
+                                <iframe
+                                    @if(Setting::get(Setting::VIDEO_LINK_ON_MAIN_MENU))
+                                        src="https://www.youtube.com/embed/{{ Setting::get(Setting::VIDEO_LINK_ON_MAIN_MENU) }}"
+                                    @endif
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <div class="overlay trigger"
+                                     @if(Setting::get(Setting::VIDEO_LINK_ON_MAIN_MENU))
+                                        src="https://www.youtube.com/embed/{{ Setting::get(Setting::VIDEO_LINK_ON_MAIN_MENU) }}"
+                                     @else
+                                         src=""
+                                     @endif
+                                     data-target="#videoModal" data-toggle="modal"></div>
+                            </div>
                         </div>
                     </div>
 
@@ -145,7 +170,7 @@
                 </div>
             @endforeach
         @endisset
-        
+
         <div>
             <div class="row align-items-center down-menu">
                 <div class="col-8">
@@ -156,10 +181,34 @@
                     </ul>
                 </div>
                 <div class="col-4 text-right">
-                    <a href="#" class="text-info mr-4" data-toggle="modal" data-target="#loginModal">Login</a>
-                    <a href="#" class=" mr-4" data-toggle="modal" data-target="#createModal">+ Create account</a>
+                    @guest
+                        <a href="#" class="text-info mr-4" data-toggle="modal" data-target="#loginModal">Login</a>
+                        <a href="#" class=" mr-4" data-toggle="modal" data-target="#createModal">+ Create account</a>
+                    @else
+                        <a href="{{ route('dashboard') }}" class="text-info mr-4">Dashboard</a>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); $('form#logout_form').submit();" class=" mr-4">Logout</a>
+
+                        <form id="logout_form" class="d-none" method="POST" action="{{ route('logout') }}">
+                            @csrf
+                        </form>
+                    @endguest
+
                     <a href="#" class="close-menu"><i class="far fa-times"></i></a>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe
+                    @if(Setting::get(Setting::VIDEO_LINK_ON_MAIN_MENU))
+                        src="https://www.youtube.com/embed/{{ Setting::get(Setting::VIDEO_LINK_ON_MAIN_MENU) }}"
+                    @endif
+                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>

@@ -201,7 +201,7 @@ $(function () {
     //~~~~~~~~~~~~~~~~~~~~~~ Filter Events type on Events page ~~~~~~~~~~~~~~~~
 
     $(document).on('click', '.filter', function () {
-
+        let pathName = window.location.pathname;
         let data = {};
 
         data['type'] = $('#filter-type').val();
@@ -217,7 +217,7 @@ $(function () {
         }
 
         $.ajax({
-            url     : '/Events',
+            url     : pathName,
             methods : 'GET',
             data    : data,
             success : function (response) {
@@ -662,7 +662,7 @@ $(function () {
 
     function toggleMenuGroup(state, event) {
 
-        event.preventDefault();
+         event.preventDefault();
 
         let menuGroupId = $(event.target).closest('[data-menu-group-id]').data('menu-group-id');
         let menuGroupContainer = $(`[menu-group][data-menu-group-id=${menuGroupId}]`);
@@ -804,11 +804,16 @@ $(function () {
 
     $(document).mouseup(function(e)
     {
-        let container = $(".header-menu");
+        let container = $('.header-menu');
         if (!container.is(e.target) && container.has(e.target).length === 0)
         {
             closeMenu();
         }
+    });
+
+    //~~~~~~~~~~~~~~~~~~~~~~~ Close Main when click on the sliders!!! ~~~~~~~~~~~~~~~~~~~~~~~
+    $(document).on('click', '[swiper-wrapper]', function (e) {
+        closeMenu();
     });
 
     function closeMenu()
