@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: 0.2;
+  opacity: .2;
 }
 .other-way-give-mobile .phone {
   font-family: Lato;
@@ -1503,8 +1503,8 @@
   display: block;
   background: url(/images/Line-styling.png?b03a87dd394747a88d56e0d8ba1cafa2) no-repeat;
   background-size: contain;
-  height: 197px;
-  width: 196px;
+  height: 223px;
+  width: 223px;
   position: absolute;
   right: 0;
   bottom: -120px;
@@ -1522,6 +1522,10 @@
   position: relative;
   top: -19px;
   margin-bottom: 15px;
+  color: #fff;
+}
+.mobile-template .events-home-swiper .swiper-slide .text .place i {
+  color: #9496B0;
 }
 .mobile-template .events-home-swiper .swiper-slide .text > div {
   padding: 0 25px 25px;
@@ -1553,7 +1557,7 @@
 .mobile-template .events-home-swiper .swiper .swiper-button-next {
   display: inline-block;
   background: #2CAABB;
-  padding: 5px 15px;
+  padding: 7px 10px;
   width: auto;
   height: auto;
   transform: translate(0, 0) !important;
@@ -1567,6 +1571,7 @@
 }
 .mobile-template .upcoming-events {
   padding: 0 10px 85px;
+  margin-bottom: 45px;
 }
 .mobile-template .upcoming-events .title {
   padding: 30px 15px 20px;

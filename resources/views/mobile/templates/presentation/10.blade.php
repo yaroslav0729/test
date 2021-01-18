@@ -99,11 +99,11 @@
     </div>
 </section>
 
-<section class="upcoming-events">
+<section class="upcoming-events bg-light">
     <div class="title">
         <p class="font-size-30"><b>Upcoming Events</b></p>
         <br>
-        <div class="row">
+        <div class="row gutter-5">
             <div class="col-6">
                 <div class="form-group">
                     <input type="hidden" id="per-page" value="{{ $perPage }}">
@@ -151,8 +151,8 @@
                     </a>
                     <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}" class="tl d-block">
                         {{ $event->name }}</a>
-                    <span class="time d-block"><i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($event->start_time)->format('h:ia') }}</span>
-                    <span class="row">
+                    <span class="time d-block ml-3"><i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($event->start_time)->format('h:ia') }}</span>
+                    <span class="row ml-0">
                         <span class="col-7">
                             <span class="place"><i class="fal fa-map-marker-alt"></i>{{ $event->location }}</span>
                         </span>
