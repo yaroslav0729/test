@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: .2;
+  opacity: 0.2;
 }
 .other-way-give-mobile .phone {
   font-family: Lato;
@@ -1285,6 +1285,12 @@
 .mobile-template .our-values .img-video {
   top: 0;
   margin: 0 -30px;
+}
+.mobile-template .values-action-title p {
+  color: #101525;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
 }
 .mobile-template .gw-map-btn {
   margin: 0 0 20px;

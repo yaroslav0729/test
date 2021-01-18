@@ -498,6 +498,7 @@ $(function () {
     $(document).on('click', '#btn-calculate', function () {
         const totalAssets = $('#total-assets');
         const zakatPayable = $('.zakat-payable');
+        const btnDonateMobile = $('#btn-donate-mobile');
 
         let debitCollection = $('.debit-money');
         let creditCollection = $('.credit-money');
@@ -526,14 +527,15 @@ $(function () {
 
             let zakatValue = convertMonetary(zakat.toFixed(2))
             $(divZakat).find('b').html('£' + zakatValue);
-            $(divZakat).find('input[name="zakat_value"]').val(zakatValue)
-
+            $(divZakat).find('input[name="zakat_value"]').val(zakatValue);
+            $(btnDonateMobile).removeClass('disabled');
         } else {
             $('#zakat-pay').removeClass('bg-danger-light');
 
             $(divZakat).removeClass('text-danger');
             $(divZakat).find('b').html('£0.00');
             $(divZakat).find('input[name="zakat_value"]').val(0)
+            $(btnDonateMobile).addClass('disabled');
         }
     });
 
@@ -542,6 +544,7 @@ $(function () {
     $(document).on('click', '#btn-reset', function () {
         const totalAssets = $('#total-assets');
         const zakatPayable = $('.zakat-payable');
+        const btnDonateMobile = $('#btn-donate-mobile');
 
         let debitCollection = $('.debit-money');
         let creditCollection = $('.credit-money');
@@ -555,8 +558,11 @@ $(function () {
         const divZakat = $(zakatPayable).find('.money-val').removeClass('text-danger');
         $(divZakat).find('b').html('£0.00');
 
+        $(btnDonateMobile).addClass('disabled');
+
         setElementsInputEmpty(debitCollection);
         setElementsInputEmpty(creditCollection);
+
 
         //~~~~~~~~~~~~~~~~~~ Set input collection empty~~~~~~~~~~~~~~~~~~~~
         function setElementsInputEmpty(selector)

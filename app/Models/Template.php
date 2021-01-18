@@ -74,7 +74,7 @@ class Template
             case self::NEWSROOM_PAGE: {
 
                 $rules = [
-                    
+
                 ];
 
                 break;
@@ -171,6 +171,8 @@ class Template
                     'parameters.our_values_video' => 'required',
                     'parameters.map_image' => 'required',
                     'parameters.map_alt_image' => 'required',
+
+                    'parameters.our_values_action_description' => 'required',
 
                     'parameters.action_name_1' => 'required_if:parameters.action_active_1,1',
                     'parameters.action_name_2' => 'required_if:parameters.action_active_2,2',
@@ -405,7 +407,7 @@ class Template
 
             case self::PROJECTS_PAGE: {
                 $rules = [
-                    'parameters' => 'amount_limit_items'    
+                    'parameters' => 'amount_limit_items'
                 ];
 
                 break;

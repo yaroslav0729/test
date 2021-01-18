@@ -3,6 +3,7 @@
     $bgImage = "";
     $ourMissionTitle = "";
     $ourValuesDescription = "";
+    $ourValuesInActionDescription = "";
     $ourValuesVideo = "";
     $mapImage = "";
     $mapAlternativeImage = "";
@@ -93,6 +94,10 @@
         }
     }
 
+    if (isset($parameters['our_values_action_description'])) {
+        $ourValuesInActionDescription = $parameters['our_values_action_description'];
+    }
+
     for ($i=1; $i<=3; $i++){
         if (isset($parameters["story_year_{$i}"])) {
             ${'storyYear' . $i} = $parameters["story_year_{$i}"];
@@ -153,9 +158,10 @@
 </section>
 
 @empty(!$actionActive)
-<section class="mb-5">
+<section class="mb-5 values-action-title">
     <p class="font-size-16 text-uppercase"><b>Our values in action</b></p>
     <div class="black-line"></div>
+    <p class="mt-4">{!! $ourValuesInActionDescription !!}</p>
 </section>
 <section class="values-action" swiper-wrapper="our-values">
     <div class="swiper-container">

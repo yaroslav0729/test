@@ -16,6 +16,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\SocialController;
 use App\Models\MenuItem;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -126,5 +127,8 @@ Route::prefix('paypal')->group(function () {
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 
-Route::get('/test', [Controller::class, 'test']);
+Route::get('auth/facebook', [SocialController::class, 'facebookRedirect'])->name('auth_facebook');
+Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
+
+//Route::get('/test', [Controller::class, 'test']);
 Route::get('/{slug}', [PageController::class, 'showFromSlug'])->where('slug', '.*');

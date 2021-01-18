@@ -455,7 +455,7 @@
                         </div>
                     </div>
                     <div class="pl-4 pr-4">
-                        <a href="#" class="btn btn-danger w-100 disabled" zakat-donate-btn>Donate my Zakat <i class="moon-icons-arrow-right"></i></a>
+                        <a id="btn-donate-mobile" href="#" class="btn btn-danger w-100 disabled" zakat-donate-btn>Donate my Zakat<i class="moon-icons-arrow-right"></i></a>
                     </div>
                 </div>
                 <br>

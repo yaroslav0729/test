@@ -217,7 +217,6 @@
     'parameters' => $parameters
 ])
 
-@include('modules.presentation.related_page_expanded', [
+@include('modules.presentation.related_pages', [
     'parameters' => $parameters
 ])
-

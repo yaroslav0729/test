@@ -8,7 +8,7 @@
     $relatedPages = \App\Models\Module::getRelatedPages($relPageCatId);
 @endphp
 
-<section class="discover-more bg-danger-light">
+<section class="discover-more bg-light">
     <div class="wrap">
         <div class="title">
             <b class="font-size-25 text-uppercase">Related topics</b>

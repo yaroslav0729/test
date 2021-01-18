@@ -103055,7 +103055,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/src/index.js):\nSyntaxError: Unexpected token < in JSON at position 0\n    at JSON.parse (<anonymous>)\n    at Object.parseSourceMapInput (/Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/postcss/node_modules/source-map/lib/util.js:433:15)\n    at new SourceMapConsumer (/Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/postcss/node_modules/source-map/lib/source-map-consumer.js:17:22)\n    at PreviousMap.consumer (/Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/postcss/lib/previous-map.js:67:28)\n    at new Input (/Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/postcss/lib/input.js:91:22)\n    at parse (/Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/postcss/lib/parse.js:13:15)\n    at new LazyResult (/Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/postcss/lib/lazy-result.js:64:16)\n    at Processor.<anonymous> (/Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/postcss/lib/processor.js:142:12)\n    at Processor.process (/Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/postcss/lib/processor.js:121:23)\n    at Promise.resolve.then.then (/Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/postcss-loader/src/index.js:141:8)\n    at process._tickCallback (internal/process/next_tick.js:68:7)\n    at runLoaders (/Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/webpack/lib/NormalModule.js:316:20)\n    at /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Promise.resolve.then.then.catch (/Users/ivansusanin/Documents/work/www/Islamic-Help.lo/node_modules/postcss-loader/src/index.js:208:9)\n    at process._tickCallback (internal/process/next_tick.js:68:7)");
 
 /***/ }),
 
@@ -103560,6 +103560,7 @@ $(function () {
   $(document).on('click', '#btn-calculate', function () {
     var totalAssets = $('#total-assets');
     var zakatPayable = $('.zakat-payable');
+    var btnDonateMobile = $('#btn-donate-mobile');
     var debitCollection = $('.debit-money');
     var creditCollection = $('.credit-money');
     var metalPrice = isNaN(+$('#currency').val()) ? 0 : +$('#currency').val();
@@ -103580,17 +103581,20 @@ $(function () {
       var zakatValue = convertMonetary(zakat.toFixed(2));
       $(divZakat).find('b').html('£' + zakatValue);
       $(divZakat).find('input[name="zakat_value"]').val(zakatValue);
+      $(btnDonateMobile).removeClass('disabled');
     } else {
       $('#zakat-pay').removeClass('bg-danger-light');
       $(divZakat).removeClass('text-danger');
       $(divZakat).find('b').html('£0.00');
       $(divZakat).find('input[name="zakat_value"]').val(0);
+      $(btnDonateMobile).addClass('disabled');
     }
   }); //~~~~~~~~~~~~~~~~~~ Set empty and clear Class for input fields ~~~~~~~~~~~~~~~~~~~~
 
   $(document).on('click', '#btn-reset', function () {
     var totalAssets = $('#total-assets');
     var zakatPayable = $('.zakat-payable');
+    var btnDonateMobile = $('#btn-donate-mobile');
     var debitCollection = $('.debit-money');
     var creditCollection = $('.credit-money');
     $('#total-zakat').find('.money-val').removeClass('text-danger');
@@ -103600,6 +103604,7 @@ $(function () {
     $(divVal).find('b').html('£0.00');
     var divZakat = $(zakatPayable).find('.money-val').removeClass('text-danger');
     $(divZakat).find('b').html('£0.00');
+    $(btnDonateMobile).addClass('disabled');
     setElementsInputEmpty(debitCollection);
     setElementsInputEmpty(creditCollection); //~~~~~~~~~~~~~~~~~~ Set input collection empty~~~~~~~~~~~~~~~~~~~~
 

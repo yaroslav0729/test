@@ -3,6 +3,7 @@
     $bgImage = "";
     $ourMissionTitle = "";
     $ourValuesDescription = "";
+    $ourValuesInActionDescription = "";
     $ourValuesVideo = "";
     $mapImage = "";
     $mapAlternativeImage = "";
@@ -61,6 +62,10 @@
 
     if (isset($parameters['map_alt_image'])) {
         $mapAlternativeImage = $parameters['map_alt_image'];
+    }
+
+    if (isset($parameters['our_values_action_description'])) {
+        $ourValuesInActionDescription = $parameters['our_values_action_description'];
     }
 
     /* $actionActive = $parameters['action_active'] ?? [];*/
@@ -181,7 +186,15 @@
 </div>
 
 <div class="form-group mt-5">
-    <label>Our values in Action:</label>
+    <label class="font-weight-bold">Our values in Action:</label>
+    <div class="mt-2">
+        <div class="form-group">
+            <label>Our values in action description (for mobile):</label>
+            <textarea class="form-control" name="parameters[our_values_action_description]"
+                      placeholder="Our values in action description (for mobile)">{{ $ourValuesInActionDescription }}</textarea>
+        </div>
+    </div>
+
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             @for ($i = 1; $i <= 4; $i++)
@@ -266,7 +279,7 @@
 </div>
 
 <div class="form-group mt-5">
-    <label>Our story:</label>
+    <label class="font-weight-bold">Our story:</label>
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             @for ($i = 1; $i <= 3; $i++)

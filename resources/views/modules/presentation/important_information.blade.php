@@ -4,16 +4,16 @@
     $importantInfo = "";
 
     if (isset($parameters['important_title'])) {
-        $importantInfoTitle = $parameters['important_title'];    
+        $importantInfoTitle = $parameters['important_title'];
     }
 
     if (isset($parameters['important_text'])) {
-        $importantInfo = $parameters['important_text'];    
+        $importantInfo = $parameters['important_text'];
     }
 
 @endphp
 
-<section class="join-cause">
+<section class="join-cause bg-light">
     <div class="wrap">
         <div class="title mb-5">
             <p class="font-size-30"><b>{{ $importantInfoTitle }}</b></p>
