@@ -222,12 +222,14 @@ return [
         /*--------------------- End Zakat Calculator ------------------------*/
 
         /*--------------------- Who we are ------------------------*/
-        'parameters.background_image' => 'Background image',
+        'parameters.background_image' => 'Background image path',
         'parameters.our_mission_title' => 'Our mission title',
         'parameters.our_values_description' => 'Our values description',
         'parameters.our_values_video' => 'Our values video',
         'parameters.map_image' => 'Map image path',
         'parameters.map_alt_image' => 'Map alternative image path',
+
+        'parameters.our_values_action_description' => 'Our values in action description (for mobile)',
 
         'parameters.action_active_1' => 'Active slide',
         'parameters.action_active_2' => 'Active slide',
@@ -301,7 +303,6 @@ return [
         /*--------------------- Contact ------------------------*/
         'parameters.upper_phrase' => 'Upper Phrase',
         'parameters.bottom_phrase' => 'Bottom Phrase',
-        'parameters.background_image' => 'Background image path',
 
         'parameters.head_text' => 'Head text',
 
