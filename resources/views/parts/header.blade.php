@@ -4,6 +4,9 @@ $cartSum = \App\Models\CartItem::getCartSum();
 
 @endphp
 
+@include('parts.header_menu')
+
+
 <header>
     <div class="top-bar">
         <div class="wrap">
@@ -46,5 +49,5 @@ $cartSum = \App\Models\CartItem::getCartSum();
     </div>
 </header>
 
-@include('parts.header_menu')
+
 

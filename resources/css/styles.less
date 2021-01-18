@@ -2268,7 +2268,7 @@ input[type='number'].color-danger  + .input-group {
     line-height: 22px;
     i {
         font-size: 30px;
-        margin-right: 21px;
+        margin-right: 13px;
         vertical-align: middle;
         position: relative; top: -2px;
     }
@@ -2432,7 +2432,9 @@ input[type='number'].color-danger  + .input-group {
             font-size: 30px;
             line-height: 60px;
             color: #fff;
+            top: auto; bottom: 0;
             &:hover {background: #F7796A}
+            &:after {display: none}
         }
     }
     .cite {
@@ -2448,7 +2450,7 @@ input[type='number'].color-danger  + .input-group {
 .discover-more {
     padding: 81px 180px 0;
     .title {
-        margin-bottom: 65px;
+        margin: 0 -15px 65px;
         a {
             position: relative;
             display: inline-block;
@@ -4153,7 +4155,7 @@ input[type='number'].color-danger  + .input-group {
     img {border-radius: 5px;}
     .box {
         padding-right: 10px;
-        margin-right: -70px;
+        margin-right: -100px;
         position: relative;
         z-index: 2;
         h1 {
@@ -4187,6 +4189,22 @@ input[type='number'].color-danger  + .input-group {
                 font-weight: 700;
                 line-height: 27px;
             }
+        }
+    }
+    .wrap {
+        position: relative;
+        &:after {
+            content: "";
+            display: block;
+            background: url(../img/Line-styling.png) no-repeat;
+            background-size: contain;
+            height: 220px;
+            width: 220px;
+            position: absolute;
+            left: -125px;
+            top: 58%;
+            opacity: 0.07;
+            transform: translateY(-50%);
         }
     }
 }

@@ -132,7 +132,7 @@
                 <div>
                     <div>
                         <div><b>Event entry:</b></div>
-                        <div class="text-danger"><b>
+                        <div class="text-danger  text-uppercase"><b>
                             @if($event->entry_type === \App\Models\Event::ENTRY_PAID)
                                 £{{ $eventEntryPrice }}
                             @else

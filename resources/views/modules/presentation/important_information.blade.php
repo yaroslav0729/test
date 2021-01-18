@@ -18,7 +18,7 @@
         <div class="title mb-5">
             <p class="font-size-30"><b>{{ $importantInfoTitle }}</b></p>
         </div>
-        <p class="font-size-20">
+        <p class="font-size-16" style="line-height: 26px; font-weight: 500">
             {{ $importantInfo }}
         </p>
     </div>

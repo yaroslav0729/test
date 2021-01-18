@@ -2738,7 +2738,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .btn-back i {
   font-size: 30px;
-  margin-right: 21px;
+  margin-right: 13px;
   vertical-align: middle;
   position: relative;
   top: -2px;
@@ -2914,15 +2914,19 @@ input[type='number'].color-danger + .input-group .btn {
   width: 60px;
   height: 60px;
   position: absolute;
-  bottom: 0;
   right: 0;
   text-align: center;
   font-size: 30px;
   line-height: 60px;
   color: #fff;
+  top: auto;
+  bottom: 0;
 }
 .blog-article-body .blog-video .view-more:hover {
   background: #F7796A;
+}
+.blog-article-body .blog-video .view-more:after {
+  display: none;
 }
 .blog-article-body .cite {
   color: #101525;
@@ -2936,7 +2940,7 @@ input[type='number'].color-danger + .input-group .btn {
   padding: 81px 180px 0;
 }
 .discover-more .title {
-  margin-bottom: 65px;
+  margin: 0 -15px 65px;
 }
 .discover-more .title a {
   position: relative;
@@ -4755,7 +4759,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .event-info-head .box {
   padding-right: 10px;
-  margin-right: -70px;
+  margin-right: -100px;
   position: relative;
   z-index: 2;
 }
@@ -4792,6 +4796,22 @@ input[type='number'].color-danger + .input-group .btn {
   font-size: 30px;
   font-weight: 700;
   line-height: 27px;
+}
+.event-info-head .wrap {
+  position: relative;
+}
+.event-info-head .wrap:after {
+  content: "";
+  display: block;
+  background: url(../img/Line-styling.png) no-repeat;
+  background-size: contain;
+  height: 220px;
+  width: 220px;
+  position: absolute;
+  left: -125px;
+  top: 58%;
+  opacity: 0.07;
+  transform: translateY(-50%);
 }
 .event-info-descr {
   margin-bottom: 98px;

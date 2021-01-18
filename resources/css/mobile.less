@@ -1164,8 +1164,8 @@ footer {
   .share-box {
 	position: relative; top: 0; right: 0;
 	transform: rotate(0);
-	text-align: right;
-	padding: 0 20px;
+	//text-align: right;
+	padding: 0;
 	margin-bottom: 30px;
 	span:after {display: none;}
 	a {
@@ -1173,6 +1173,7 @@ footer {
 	  padding: 10px;
 	  transform: rotate(0);
 	}
+	.stat {transform: rotate(0);}
   }
 
   .blog-article-head {
@@ -1583,10 +1584,10 @@ footer {
 		  background: #3A7BF5;
 		  color: #fff;
 		  text-align: center;
-		  font-size: 32px;
+		  font-size: 24px;
 		  margin-left: 0;
 		  border-radius: 50%;
-		  line-height: 46px;
+		  line-height: 49px;
 		  vertical-align: middle;
 		}
 	  }
@@ -1594,16 +1595,24 @@ footer {
 	.down {
 	  .title {
 		margin: 0;
-		padding: 24px 20px 19px 25px;
+		padding: 24px 10px 19px 37px;
+		letter-spacing: 0.5px;
 	  }
 	  .title + div {
 		background: #F8F7FA;
 		margin-bottom: 32px;
 		border-radius: 0 0 5px 5px;
-		padding: 10px 10px;
+		padding: 10px 22px;
 		input[type='number'] + .input-group {
 		  width: 130px;
 		}
+		& > div {padding: 0 16px;}
+	  }
+	  & > div + div {
+		margin-left: -10px;
+		margin-right: -10px;
+		.title {border-radius: 0}
+		.title + div {border-radius: 0}
 	  }
 	}
   }
@@ -1835,7 +1844,11 @@ footer {
   .contacts {
 	padding: 30px 30px 50px;
 	background-size: cover;
+  }
 
+  .btn-back i {
+	font-size: 37px;
+	margin-right: 5px;
   }
 
 }

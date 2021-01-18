@@ -1,3 +1,5 @@
+@include('parts.header_menu')
+
 <header  class="only-menu">
     <div class="down-bar">
         <div class="wrap">
@@ -28,5 +30,3 @@
         </div>
     </div>
 </header>
-
-@include('parts.header_menu')
