@@ -1,5 +1,6 @@
 <div id="left_menu" class="">
     <ul>
+        <li><a href="{{ route('index') }}" target="_blank"><i class="far fa-home"></i>Home page</a></li>
         @role(\App\Models\User::ROLE_ADMIN)
             <li><a href="{{ route('admin.index') }}"><i class="fas fa-user-shield"></i>Admin panel</a></li>
         @endrole

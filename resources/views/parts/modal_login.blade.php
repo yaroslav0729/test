@@ -12,16 +12,22 @@
                 </div>
 
                 <div class="line or"></div>
-                <form action="/">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Email address <sup>*</sup></label>
-                                <input type="text" class="form-control" placeholder="example@islamichelp.org.uk">
+                                <input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="example@islamichelp.org.uk" value="{{ old('email') }}" required autocomplete="email">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="mt-n2">
                                 <label class="checkbox">
-                                    <input type="checkbox" checked>
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                     <span><i class="fas fa-check"></i></span>
                                     Remember Me
                                 </label>
@@ -30,7 +36,13 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Password <sup>*</sup></label>
-                                <input type="text" class="form-control" placeholder="*******">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="********">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="mt-n2">
                                 <a href="javascript:void(0)" onclick="$('.forgot-pass').css('display', 'block')" class="font-size-12 text-dark letter-spacing-0">Forgot password?</a>
@@ -86,18 +98,32 @@
                 </div>
 
                 <div class="line or"></div>
-                <form action="/">
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>First Name <sup>*</sup></label>
-                                <input type="text" class="form-control" placeholder="Matt">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Matt">
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Last Name <sup>*</sup></label>
-                                <input type="text" class="form-control" placeholder="Tennant">
+                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" placeholder="Tennant">
+
+                                @error('last_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -106,13 +132,25 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Email address <sup>*</sup></label>
-                                <input type="text" class="form-control" placeholder="example@islamichelp.org.uk">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="example@islamichelp.org.uk">
+                            
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Password <sup>*</sup></label>
-                                <input type="text" class="form-control" placeholder="*******">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="********">
+                                
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>

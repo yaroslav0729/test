@@ -181,8 +181,18 @@
                     </ul>
                 </div>
                 <div class="col-4 text-right">
-                    <a href="#" class="text-info mr-4" data-toggle="modal" data-target="#loginModal">Login</a>
-                    <a href="#" class=" mr-4" data-toggle="modal" data-target="#createModal">+ Create account</a>
+                    @guest
+                        <a href="#" class="text-info mr-4" data-toggle="modal" data-target="#loginModal">Login</a>
+                        <a href="#" class=" mr-4" data-toggle="modal" data-target="#createModal">+ Create account</a>
+                    @else
+                        <a href="{{ route('dashboard') }}" class="text-info mr-4">Dashboard</a>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); $('form#logout_form').submit();" class=" mr-4">Logout</a>
+
+                        <form id="logout_form" class="d-none" method="POST" action="{{ route('logout') }}">
+                            @csrf
+                        </form>
+                    @endguest
+
                     <a href="#" class="close-menu"><i class="far fa-times"></i></a>
                 </div>
             </div>
