@@ -568,7 +568,9 @@ axios.all = function all(promises) {
   return Promise.all(promises);
 };
 
-axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
+axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js"); // Expose isAxiosError
+
+axios.isAxiosError = __webpack_require__(/*! ./helpers/isAxiosError */ "./node_modules/axios/lib/helpers/isAxiosError.js");
 module.exports = axios; // Allow use of default import syntax in TypeScript
 
 module.exports["default"] = axios;
@@ -1501,6 +1503,30 @@ module.exports = function isAbsoluteURL(url) {
   // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
   // by any combination of letters, digits, plus, period, or hyphen.
   return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+};
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isAxiosError.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAxiosError.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Determines whether the payload is an error thrown by Axios
+ *
+ * @param {*} payload The value to test
+ * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false
+ */
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+module.exports = function isAxiosError(payload) {
+  return _typeof(payload) === 'object' && payload.isAxiosError === true;
 };
 
 /***/ }),
@@ -103560,6 +103586,7 @@ $(function () {
   $(document).on('click', '#btn-calculate', function () {
     var totalAssets = $('#total-assets');
     var zakatPayable = $('.zakat-payable');
+    var btnDonateMobile = $('#btn-donate-mobile');
     var debitCollection = $('.debit-money');
     var creditCollection = $('.credit-money');
     var metalPrice = isNaN(+$('#currency').val()) ? 0 : +$('#currency').val();
@@ -103580,17 +103607,20 @@ $(function () {
       var zakatValue = convertMonetary(zakat.toFixed(2));
       $(divZakat).find('b').html('£' + zakatValue);
       $(divZakat).find('input[name="zakat_value"]').val(zakatValue);
+      $(btnDonateMobile).removeClass('disabled');
     } else {
       $('#zakat-pay').removeClass('bg-danger-light');
       $(divZakat).removeClass('text-danger');
       $(divZakat).find('b').html('£0.00');
       $(divZakat).find('input[name="zakat_value"]').val(0);
+      $(btnDonateMobile).addClass('disabled');
     }
   }); //~~~~~~~~~~~~~~~~~~ Set empty and clear Class for input fields ~~~~~~~~~~~~~~~~~~~~
 
   $(document).on('click', '#btn-reset', function () {
     var totalAssets = $('#total-assets');
     var zakatPayable = $('.zakat-payable');
+    var btnDonateMobile = $('#btn-donate-mobile');
     var debitCollection = $('.debit-money');
     var creditCollection = $('.credit-money');
     $('#total-zakat').find('.money-val').removeClass('text-danger');
@@ -103600,6 +103630,7 @@ $(function () {
     $(divVal).find('b').html('£0.00');
     var divZakat = $(zakatPayable).find('.money-val').removeClass('text-danger');
     $(divZakat).find('b').html('£0.00');
+    $(btnDonateMobile).addClass('disabled');
     setElementsInputEmpty(debitCollection);
     setElementsInputEmpty(creditCollection); //~~~~~~~~~~~~~~~~~~ Set input collection empty~~~~~~~~~~~~~~~~~~~~
 
@@ -104469,12 +104500,12 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app_admin.css */"./resources/css/app_admin.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
-module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/mobile.css */"./resources/css/mobile.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app_admin.css */"./resources/css/app_admin.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+module.exports = __webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/mobile.css */"./resources/css/mobile.css");
 
 
 /***/ })
