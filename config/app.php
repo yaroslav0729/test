@@ -184,6 +184,7 @@ return [
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
 
         App\Providers\StrHelperServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -246,6 +247,7 @@ return [
 
         'StrHelper' => App\Helpers\StrHelper::class,
         'Setting' => App\Helpers\SettingHelper::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

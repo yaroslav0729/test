@@ -6,7 +6,7 @@
                 <div class="text-center">
                     <div class="h2">Login</div>
                     <p>You can use your email address or your Facebook profile to log in</p>
-                    <a class="btn-fb" href="//www.facebook.com/v3.2/dialog/oauth?client_id=2322573224428800&amp;scope=email&amp;redirect_uri=https://www.islamichelp.org.uk/wp-json/facebook/auth">
+                    <a class="btn-fb" href="{{ route('auth_facebook') }}">
                         <i class="fab fa-facebook-f"></i><span>Login with Facebook</span>
                     </a>
                 </div>
