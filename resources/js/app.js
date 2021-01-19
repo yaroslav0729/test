@@ -67,6 +67,8 @@ $(function () {
                 stub.removeAttr('disabled');
                 MODAL_FORM_LOCK = false;
 
+                //console.log(response)
+
                 if ('content' in response) {
                     let element = $('#response-content');
                     element.html(response.content);
@@ -90,11 +92,6 @@ $(function () {
                     window.location.href = response.redirect;
                     return;
                 }
-
-                /*if (response.html) {
-                    showModalResponse(response);
-                    return;
-                }*/
 
                 if (response.messageSuccess) {
                     $('#modal-message-success').html(response.messageSuccess);
@@ -883,8 +880,6 @@ $(function () {
 
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    //$("input[type='number']").inputSpinner()
     $("[input_number_spinner]").inputSpinner()
 
     $('.important-information .read-more').click(function (e) {

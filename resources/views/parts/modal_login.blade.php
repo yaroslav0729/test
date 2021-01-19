@@ -1,4 +1,4 @@
-<div class="modal fade loginModal" id="loginModal" tabindex="-1" >
+<div class="modal fade loginModal" id="loginModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">
@@ -12,18 +12,23 @@
                 </div>
 
                 <div class="line or"></div>
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('login') }}" modal-form>
                     @csrf
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Email address <sup>*</sup></label>
                                 <input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="example@islamichelp.org.uk" value="{{ old('email') }}" required autocomplete="email">
-                                @error('email')
+                                
+                                {{-- @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror --}}
+
+                                <div data-error="email" class="invalid-feedback">
+                                </div>
+
                             </div>
                             <div class="mt-n2">
                                 <label class="checkbox">
@@ -36,13 +41,17 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Password <sup>*</sup></label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="********">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="********">
 
-                                @error('password')
+                                {{-- @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror --}}
+
+                                <div data-error="password" class="invalid-feedback">
+                                </div>
+
                             </div>
                             <div class="mt-n2">
                                 <a href="javascript:void(0)" onclick="$('.forgot-pass').css('display', 'block')" class="font-size-12 text-dark letter-spacing-0">Forgot password?</a>
@@ -63,7 +72,7 @@
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('password.email') }}">
+                <form method="POST" action="{{ route('password.email') }}" modal-form>
                     @csrf
                     <div class="forgot-pass" style="display: none">
                         <div class="line"></div>
@@ -73,11 +82,15 @@
                                     <label>Forgot password? <sup>*</sup></label>
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="example@islamichelp.org.uk">
                                     
-                                    @error('email')
+                                    {{-- @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror
+                                    @enderror --}}
+
+                                    <div data-error="email" class="invalid-feedback">
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="col-12 col-md-4 pt-4">
@@ -113,7 +126,7 @@
                 </div>
 
                 <div class="line or"></div>
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('register') }}" modal-form>
                     @csrf
                     <div class="row">
                         <div class="col-12 col-md-6">
@@ -121,11 +134,14 @@
                                 <label>First Name <sup>*</sup></label>
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Matt">
 
-                                @error('name')
+                                {{-- @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror --}}
+
+                                <div data-error="name" class="invalid-feedback">
+                                </div>
 
                             </div>
                         </div>
@@ -134,11 +150,15 @@
                                 <label>Last Name <sup>*</sup></label>
                                 <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" placeholder="Tennant">
 
-                                @error('last_name')
+                                {{-- @error('last_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror --}}
+
+                                <div data-error="last_name" class="invalid-feedback">
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -149,11 +169,14 @@
                                 <label>Email address <sup>*</sup></label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="example@islamichelp.org.uk">
                             
-                                @error('email')
+                                {{-- @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror --}}
+
+                                <div data-error="email" class="invalid-feedback">
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
@@ -161,11 +184,15 @@
                                 <label>Password <sup>*</sup></label>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="********">
                                 
-                                @error('password')
+                                {{-- @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror --}}
+
+                                <div data-error="password" class="invalid-feedback">
+                                </div>
+
                             </div>
                         </div>
                     </div>
