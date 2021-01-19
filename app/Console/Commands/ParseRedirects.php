@@ -69,7 +69,7 @@ class ParseRedirects extends Command
             if (!$locRedirect) {
                 $locRedirect = Redirect::create([
                     'url_from' => StrHelper::deleteTrailingSlash($redirect->url_from),
-                    'url_to', $this->findPostSlug($redirect->url_to),
+                    'url_to' => $this->findPostSlug($redirect->url_to),
                     'type' => $redirect->status,
                 ]);
             } else {
