@@ -66,13 +66,18 @@
                     </div>
                 </form>
 
-                @if (session('status'))
+                {{-- @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
                     </div>
-                @endif
+                @endif --}}
 
-                <form method="POST" action="{{ route('password.email') }}" modal-form>
+                <div class="alert alert-success" style="display: none;">
+                    <span id="modal-message-success">
+                    </span>
+                </div>
+
+                <form method="POST" action="{{ route('password.email') }}" modal-form >
                     @csrf
                     <div class="forgot-pass" style="display: none">
                         <div class="line"></div>

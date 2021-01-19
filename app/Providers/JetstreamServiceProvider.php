@@ -40,6 +40,18 @@ class JetstreamServiceProvider extends ServiceProvider
             \Laravel\Fortify\Contracts\RegisterResponse::class,
             \App\Http\Responses\RegisterResponse::class
         );
+
+        // register new ForgotPassword
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\SuccessfulPasswordResetLinkRequestResponse::class,
+            \App\Http\Responses\ForgotPasswordResponse::class
+        );
+
+        // register new ForgotPassword - failed
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\FailedPasswordResetLinkRequestResponse::class,
+            \App\Http\Responses\ForgotPasswordResponseFail::class
+        );
     }
 
     /**
