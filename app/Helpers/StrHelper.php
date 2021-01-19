@@ -34,4 +34,14 @@ class StrHelper
         }
     }
 
+    public static function deleteTrailingSlash($str)
+    {
+        $lastSym = substr($str, -1);
+
+        if ($lastSym === '/') {
+            $str = substr_replace($str, "", -1);
+        }
+        return $str;
+    }
+
 }
