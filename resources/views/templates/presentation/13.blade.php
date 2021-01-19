@@ -49,14 +49,16 @@
 <section class="head-Volunteer">
     <!--step 1-->
 
-    @empty($mainTitle)
-    <h1>Great! You've taken<br>the first step in doing<br>good, let's get<br>cracking then.</h1>
-    @else
-    <h1>{!! $mainTitle !!}</h1>
-    @endempty
-    
-    <a href="{{ $startLink }}"><button class="btn btn-outline-primary btn-lg btn-black">Start</button></a>
+    <div class="pl-5">
+        @empty($mainTitle)
+            <h1>Great! You've taken<br>the first step in doing<br>good, let's get<br>cracking then.</h1>
+        @else
+            <h1>{!! $mainTitle !!}</h1>
+        @endempty
 
+        <a href="{{ $startLink }}"><button class="btn btn-outline-primary btn-lg btn-black">Start</button></a>
+    </div>
+    @include('modules.presentation.share_this')
 </section>
 
 <section class="how-does-work with-lines">

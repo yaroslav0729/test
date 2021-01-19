@@ -15233,6 +15233,10 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .head-Volunteer {
   padding: 55px 150px 48px 180px;
+  position: relative;
+}
+.head-Volunteer .share-box {
+  top: 350px;
 }
 .head-Volunteer h1 {
   font-size: 70px;

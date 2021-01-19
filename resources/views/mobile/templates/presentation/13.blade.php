@@ -44,29 +44,31 @@
 
 @endphp
 
-<div class="pt-5 bp-5"></div>
 <section class="head-Volunteer">
     <!--step 1-->
     <h1>{!! $mainTitle !!}</h1>
     <a href="{{ $startLink }}"><button class="btn btn-outline-primary btn-black">Start</button></a>
 </section>
 
-<section class="how-does-work pt-4">
+<section class="how-does-work with-lines pt-4">
     <div class="title">
         <p>Why should I volunteer?</p>
         <span>Find the mission you love</span>
     </div>
     <div class="item">
+        <img src="img/ico-apply-online.svg" alt="">
         <div class="num">01</div>
         <div>{{ $colTitle1 }}</div>
         <p>{{ $colText1 }}</p>
     </div>
     <div class="item">
+        <img src="img/ico-email.svg" alt="">
         <div class="num">02</div>
         <div>{{ $colTitle2 }}</div>
         <p>{{ $colText2 }}</p>
     </div>
     <div class="item pl-0 pl-md-5">
+        <img src="img/ico-post.svg" alt="">
         <div class="num">03</div>
         <div>{{ $colTitle3 }}</div>
         <p>{{ $colText3 }}</p>
