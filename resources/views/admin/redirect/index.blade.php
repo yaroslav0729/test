@@ -29,7 +29,7 @@
                     <tr>
                         <td class="border px-4 py-2">{{ $redirect->id }}</td>
                         <td class="border px-4 py-2">{{ $redirect->url_from }}</td>
-                        <td class="border px-4 py-2">{{ $redirect->url_to }}</td>
+                        <td class="border px-4 py-2"><a href="{{ url($redirect->url_to) }}" target="_blank">{{ $redirect->url_to }}</a></td>
                         <td class="border px-4 py-2">{{ $redirect->type }}</td>
                         <td class="border px-4 py-2">{{ $redirect->created_at->format('d/m/Y') }}</td>
                         <td class="border px-4 py-2 action_td">
