@@ -143,6 +143,7 @@
         <p>Why should I volunteer?</p>
         <span>Find the mission you love</span>
     </div>
+    <div class="pt-5"></div>
     <div class="row">
         <div class="col pr-0 pr-md-5">
             <div class="item">
@@ -169,22 +170,24 @@
 </section>
 
 
-<section class="explore-past-missions bg-danger-light">
+<section class="explore-past-missions style-2 bg-danger-light">
     <div class="row">
-        <div class="col-12 col-md-4 pr-5">
-            @empty($exploreTitle)
-            <p class="font-size-40 mb-3"><b>Explore past projects</b></p>
-            @else
-            <p class="font-size-40 mb-3"><b>{{ $exploreTitle }}</b></p>
-            @endempty
+        <div class="col-12 col-md-5 pr-5">
+            <div class="pr-5">
+                @empty($exploreTitle)
+                    <p class="font-size-40 mb-3"><b>Explore past projects</b></p>
+                @else
+                    <p class="font-size-40 mb-3"><b>{{ $exploreTitle }}</b></p>
+                @endempty
 
-            @empty($exploreTitle)
-            <p class="font-size-16 mb-5">210 Characters undos omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. </p>
-            @else
-            <p class="font-size-16 mb-5">{{ $exploreText }}</p>
-            @endempty
+                @empty($exploreTitle)
+                    <p class="font-size-16 mb-5">210 Characters undos omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. </p>
+                @else
+                    <p class="font-size-16 mb-5">{{ $exploreText }}</p>
+                @endempty
+            </div>
 
-            <svg class="decor-wave size-70 style-danger" style="position: relative; top: 50px; left: -200%" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+            <svg class="decor-wave size-80 style-danger mt-n4" style="position: relative; top: 50px; left: -160%" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
                    fill="#000000" stroke="none">
                     <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
@@ -228,7 +231,7 @@
             </svg>
 
         </div>
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-7">
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="item mt-n4">
@@ -288,7 +291,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6 pl-5">
+        <div class="col-12 col-md-5 pl-4">
             @empty($interestedTitle)
             <p class="font-size-40 mb-3"><b>Interested? Volunteer today</b></p>
             @else 
@@ -304,6 +307,7 @@
                 <a href="{{ $volonteerNowLink }}" class="btn btn-red">Volunteer now!</a>
             </div>
         </div>
+        <div class="col-12 col-md-1"></div>
     </div>
 </section>
 
@@ -311,7 +315,7 @@
 
 @include('modules.presentation.mission_possible')
 
-<div class="pt-5 pb-5"></div>
+<div class="pt-5 pb-4"></div>
 
 @include('modules.presentation.related_page_expanded')
 

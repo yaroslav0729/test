@@ -59,6 +59,12 @@ footer.style-3 {
 footer.style-4 {
   background: #2CAABB;
 }
+footer.style-5 {
+  background: #F7796A;
+}
+footer.style-5 .menu > li > a:hover {
+  color: #000;
+}
 footer .social {
   padding-top: 5px;
 }
@@ -826,6 +832,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 .decor-wave.size-70 {
   width: 974px;
   height: 73px;
+}
+.decor-wave.size-80 {
+  width: 1060px;
+  height: 80px;
 }
 .decor-wave.opacity-20 {
   opacity: 0.2;
@@ -5241,13 +5251,14 @@ input[type='number'].color-danger + .input-group .btn {
   display: block;
   background: url(../img/Line-styling.png) no-repeat;
   background-size: contain;
-  height: 504px;
-  width: 504px;
+  height: 400px;
+  width: 400px;
   position: absolute;
   z-index: -1;
   left: calc(200px);
-  top: 200px;
+  top: 300px;
   opacity: 0.03;
+  transform: rotate(45deg);
 }
 .explore-past-missions {
   padding-top: 103px;
@@ -5273,6 +5284,12 @@ input[type='number'].color-danger + .input-group .btn {
   text-align: left;
   min-width: 70%;
 }
+.explore-past-missions.bg-danger-light .item .place {
+  background: #fff;
+}
+.explore-past-missions.style-2 {
+  padding: 144px 125px 100px 180px;
+}
 .experience-lifetime {
   padding-top: 137px;
   padding-bottom: 135px;
@@ -5281,7 +5298,7 @@ input[type='number'].color-danger + .input-group .btn {
   padding-bottom: 69%;
 }
 .be-part-possible {
-  padding: 115px 240px;
+  padding: 80px 240px 115px;
 }
 .our-latest-mission {
   padding: 113px 0 93px;
@@ -5382,12 +5399,12 @@ input[type='number'].color-danger + .input-group .btn {
   display: block;
   background: url(../img/Line-styling.png) no-repeat;
   background-size: contain;
-  height: 357px;
-  width: 357px;
+  height: 400px;
+  width: 400px;
   position: absolute;
   z-index: -1;
   left: 10px;
-  bottom: 50px;
+  bottom: 150px;
   opacity: 0.03;
 }
 .head-Volunteer:after {
@@ -5400,7 +5417,7 @@ input[type='number'].color-danger + .input-group .btn {
   position: absolute;
   z-index: -1;
   right: 30px;
-  bottom: -240px;
+  bottom: -60px;
   opacity: 0.03;
 }
 .head-Volunteer .box {
@@ -5411,6 +5428,7 @@ input[type='number'].color-danger + .input-group .btn {
   margin: 0 -95px 0 -115px;
   margin-top: -270px;
   margin-bottom: 90px;
+  padding: 29px 130px 29px 120px;
 }
 .head-Volunteer .box p {
   font-size: 20px;

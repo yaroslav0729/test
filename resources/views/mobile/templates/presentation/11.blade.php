@@ -111,17 +111,19 @@
     <h1>{{ $mainTitle }}</h1>
     @endempty
 
-    <img src="img/content/Volunteer1.jpg" alt="" class="w-100">
+    <div class="img">
+        <img src="img/content/Volunteer1.jpg" alt="" class="w-100">
+    </div>
     <div class="box text-center">
         <p class="font-size-12 text-uppercase mb-4"><b>Latest mission</b></p>
-        <p class="font-size-30 font-weight-light text-uppercase mb-0">{{ $latestMissionText }}</p>
+        <p class="font-size-30 font-weight-light mb-0">{{ $latestMissionText }}</p>
         <p class="font-size-16 text-uppercase mb-4"><b>{{ $latestMissionDate }}</b></p>
         <a href="{{ $applyLink }}" class="btn btn-primary">Apply now</a>
     </div>
 </section>
 
 
-<section class="how-does-work pt-4">
+<section class="how-does-work with-lines pt-4">
     <div class="title">
         <p>Why should I volunteer?</p>
         <span>Find the mission you love</span>
@@ -143,12 +145,12 @@
     </div>
 </section>
 
-<section class="explore-past-missions bg-danger-light">
+<section class="explore-past-missions bg-danger-light mb-0">
     <div class="row">
         <div class="col-12">
             <p class="font-size-30 mb-3"><b>{{ $exploreTitle }}</b></p>
             <p class="font-size-16 mb-5">{{ $exploreText }}</p>
-            <svg class="decor-wave size-40 style-danger" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+            <svg class="decor-wave size-40 style-danger" style="position: relative; left: -100%" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
                     <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
     -86 3 -99 26 -135 63 -94 129 -129 263 -139 246 -18 368 -100 648 -439 168
@@ -235,8 +237,8 @@
                     <span>Wells built</span>
                 </div>
             </div>
+            <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
-            <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
         </div>
     </div>
     <div class="pt-5"></div>
@@ -250,6 +252,5 @@
 
 @include('modules.presentation.mission_possible')
 
-<div class="pt-4 pb-3"></div>
 
 @include('modules.presentation.related_pages')

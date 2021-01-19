@@ -105,6 +105,10 @@ footer {
     &.style-2 {background: #E3EFFE}
     &.style-3 {background: #FED4C2}
     &.style-4 {background: #2CAABB}
+    &.style-5 {
+        background: #F7796A;
+        .menu > li > a:hover {color: #000}
+    }
 
     .social {
         padding-top: 5px;
@@ -749,6 +753,7 @@ header {
     &.size-32 {width: 424px; height: 32px;}
     &.size-40 {width: 535px; height: 40px;}
     &.size-70 {width: 974px; height: 73px;}
+    &.size-80 {width: 1060px; height: 80px;}
     &.opacity-20 {opacity: .2}
 }
 
@@ -4620,13 +4625,14 @@ input[type='number'].color-danger  + .input-group {
         display: block;
         background: url(../img/Line-styling.png) no-repeat;
         background-size: contain;
-        height: 504px;
-        width: 504px;
+        height: 400px;
+        width: 400px;
         position: absolute;
         z-index: -1;
         left: calc(~'200px');
-        top: 200px;
+        top: 300px;
         opacity: 0.03;
+        transform: rotate(45deg);
     }
 }
 
@@ -4651,6 +4657,10 @@ input[type='number'].color-danger  + .input-group {
             min-width: 70%;
         }
     }
+    &.bg-danger-light .item .place {background: #fff}
+    &.style-2 {
+        padding: 144px 125px 100px 180px;
+    }
 }
 
 .experience-lifetime {
@@ -4662,7 +4672,7 @@ input[type='number'].color-danger  + .input-group {
 }
 
 .be-part-possible {
-    padding: 115px 240px;
+    padding: 80px 240px 115px;
 }
 
 .our-latest-mission {
@@ -4757,12 +4767,12 @@ input[type='number'].color-danger  + .input-group {
         display: block;
         background: url(../img/Line-styling.png) no-repeat;
         background-size: contain;
-        height: 357px;
-        width: 357px;
+        height: 400px;
+        width: 400px;
         position: absolute;
         z-index: -1;
         left: 10px;
-        bottom: 50px;
+        bottom: 150px;
         opacity: 0.03;
     }
     &:after {
@@ -4775,7 +4785,7 @@ input[type='number'].color-danger  + .input-group {
         position: absolute;
         z-index: -1;
         right: 30px;
-        bottom: -240px;
+        bottom: -60px;
         opacity: 0.03;
     }
     .box {
@@ -4786,6 +4796,7 @@ input[type='number'].color-danger  + .input-group {
         margin: 0 -95px 0 -115px;
         margin-top: -270px;
         margin-bottom: 90px;
+        padding: 29px 130px 29px 120px;
         p {
             font-size: 20px;
             font-weight: 900;

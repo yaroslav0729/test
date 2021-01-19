@@ -1162,7 +1162,7 @@
   padding: 67px 20px 30px;
 }
 .mobile-template .discover-more .title {
-  margin-bottom: 33px;
+  margin: 0 0 33px;
 }
 .mobile-template .discover-more.bg-danger-light .current-projects-list .swiper-pagination .swiper-pagination-bullet {
   background-color: rgba(247, 121, 106, 0.2);
@@ -1285,6 +1285,12 @@
 .mobile-template .our-values .img-video {
   top: 0;
   margin: 0 -30px;
+}
+.mobile-template .values-action-title p {
+  color: #101525;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
 }
 .mobile-template .gw-map-btn {
   margin: 0 0 20px;
@@ -1861,6 +1867,9 @@
 .mobile-template .our-latest-mission .text {
   padding: 57px 27px 30px 30px;
 }
+.mobile-template .our-latest-mission .text .tl {
+  text-transform: none;
+}
 .mobile-template .our-latest-mission .img {
   padding-top: 77%;
 }
@@ -1921,7 +1930,15 @@
 .mobile-template .how-does-work .item p {
   margin-bottom: 35px;
 }
+.mobile-template .how-does-work.with-lines:after {
+  width: 300px;
+  height: 300px;
+  top: 80px;
+  left: auto;
+  right: -19%;
+}
 .mobile-template .explore-past-missions {
+  overflow: hidden;
   padding: 53px 30px 75px;
   margin-bottom: 58px;
 }
@@ -1947,6 +1964,12 @@
 .mobile-template .explore-past-missions .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background-color: #fff;
 }
+.mobile-template .explore-past-missions.bg-danger-light .swiper-pagination .swiper-pagination-bullet {
+  background-color: #FF5D4A;
+}
+.mobile-template .explore-past-missions.bg-danger-light .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: #FF5D4A;
+}
 .mobile-template .experience-lifetime {
   padding: 0 30px;
 }
@@ -1964,6 +1987,33 @@
 .mobile-template .btn-back i {
   font-size: 37px;
   margin-right: 5px;
+}
+.mobile-template .head-Volunteer:after {
+  display: none;
+}
+.mobile-template .head-Volunteer h1 {
+  font-size: 40px;
+  line-height: 45px;
+  padding-top: 0;
+  margin: 0 0 23px;
+}
+.mobile-template .head-Volunteer p {
+  text-transform: none;
+}
+.mobile-template .head-Volunteer .img {
+  margin: 0 -30px;
+}
+.mobile-template .head-Volunteer .box {
+  margin: -140px 0px 0;
+  padding: 38px 38px 55px;
+}
+.mobile-template .head-Volunteer:before {
+  width: 200px;
+  height: 200px;
+  bottom: auto;
+  top: 135px;
+  left: auto;
+  right: 0;
 }
 /*------------------------------------vb--------*/
 .page-404 {

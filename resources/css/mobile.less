@@ -1128,7 +1128,8 @@ footer {
 
   .discover-more {
 	padding: 67px 20px 30px;
-	.title {margin-bottom: 33px;}
+	.title {
+	  margin: 0 0 33px;}
 	&.bg-danger-light {
 	  .current-projects-list .swiper-pagination .swiper-pagination-bullet {
 		background-color: rgba(247,121,106,0.2);
@@ -1755,6 +1756,7 @@ footer {
 	}
 	.text {
 	  padding: 57px 27px 30px 30px;
+	  .tl {text-transform: none;}
 	}
 	.img {
 	  padding-top: 77%;
@@ -1814,9 +1816,16 @@ footer {
 	  div {margin-bottom: 10px;}
 	  p {margin-bottom: 35px;}
 	}
+	&.with-lines:after {
+	  width: 300px; height: 300px;
+	  top: 80px;
+	  left: auto;
+	  right: -19%;
+ 	}
   }
 
   .explore-past-missions {
+	overflow: hidden;
 	padding: 53px 30px 75px;
 	margin-bottom: 58px;
 	.swiper-container {padding-bottom: 43px;}
@@ -1835,6 +1844,14 @@ footer {
 		border-radius: 0;
 		margin: 0 10px;
 		&.swiper-pagination-bullet-active {background-color: #fff;}
+	  }
+	}
+	&.bg-danger-light {
+	  .swiper-pagination {
+		.swiper-pagination-bullet {
+		  background-color: #FF5D4A;
+		  &.swiper-pagination-bullet-active {background-color: #FF5D4A;}
+		}
 	  }
 	}
   }
@@ -1857,6 +1874,27 @@ footer {
   .btn-back i {
 	font-size: 37px;
 	margin-right: 5px;
+  }
+
+  .head-Volunteer {
+	&:after {display: none}
+	h1 {
+	  font-size: 40px;
+	  line-height: 45px;
+	  padding-top: 0;
+	  margin: 0 0 23px;
+	}
+	p {text-transform: none}
+	.img {margin: 0 -30px;}
+	.box {
+	  margin: -140px 0px 0;
+	  padding: 38px 38px 55px;
+	}
+	&:before {
+	  width: 200px; height: 200px;
+	  bottom: auto; top:  135px;
+	  left: auto; right: 0;
+	}
   }
 
 }
