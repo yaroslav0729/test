@@ -13,13 +13,20 @@
 
 @endphp
 
-<section class="join-cause bg-light">
+
+<section class="important-information bg-light">
     <div class="wrap">
         <div class="title mb-2">
-        <p class="font-size-16 text-uppercase"><b>{{ $importantInfoTitle }}</b></p>
+            <p class="font-size-16"><b>{{ $importantInfoTitle }}</b></p>
         </div>
-        <p class="font-size-16">
-            {{ $importantInfo }}
-        </p>
+        <div class="text">
+            <p>{{ $importantInfo }}</p>
+
+            <div class="descr">
+                <p>{{ $importantInfo }}</p>
+                <p>{{ $importantInfo }}</p>
+            </div>
+        </div>
+        <a href="javascript:void(0)" class="read-more">READ MORE</a>
     </div>
 </section>

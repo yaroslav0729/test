@@ -5642,6 +5642,46 @@ input[type='number'].color-danger + .input-group .btn {
   width: 14px;
   height: 8px;
 }
+.important-information {
+  padding: 0 155px 0 180px;
+}
+.important-information .wrap {
+  position: relative;
+  padding: 73px 0 65px;
+}
+.important-information p {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 500;
+}
+.important-information .text .descr {
+  max-height: 0;
+  overflow: hidden;
+}
+.important-information .text .descr.open {
+  max-height: 10000px;
+}
+.important-information .read-more {
+  color: #F7796A;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 0.88px;
+  line-height: 40px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-decoration: none !important;
+}
+.important-information .read-more:after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #F7796A;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
 /*------------------------------------vb--------*/
 .page-404 {
   margin-top: -110px;

@@ -887,6 +887,11 @@ $(function () {
     //$("input[type='number']").inputSpinner()
     $("[input_number_spinner]").inputSpinner()
 
+    $('.important-information .read-more').click(function (e) {
+        e.stopPropagation();
+        $(this).prev().find('.descr').toggleClass('open')
+    })
+
     $(function() {
         $('footer .menu > li > a').on('click', function (e) {
             e.preventDefault();

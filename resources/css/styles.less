@@ -4953,6 +4953,42 @@ input[type='number'].color-danger  + .input-group {
     height: 8px;
 }
 
+.important-information {
+    padding: 0 155px 0 180px;
+    .wrap {
+        position: relative;
+        padding: 73px 0 65px;
+    }
+    p {
+        font-size: 16px;
+        line-height: 26px;
+        font-weight: 500;
+    }
+    .text {
+        .descr {
+            max-height: 0;
+            overflow: hidden;
+            &.open {max-height: 10000px;}
+        }
+    }
+    .read-more {
+        color: #F7796A;
+        font-weight: 900;
+        font-size: 14px;
+        letter-spacing: 0.88px;
+        line-height: 40px;
+        position: absolute; left: 0; bottom: 0;
+        text-decoration: none !important;
+        &:after {
+            content: "";
+            display: block;
+            width: 60px; height: 4px;
+            background: #F7796A;
+            position: absolute; left: 0; bottom: 0;
+        }
+    }
+}
+
 /*------------------------------------vb--------*/
 .page-404 {
     margin-top: -110px;
