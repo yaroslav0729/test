@@ -87,12 +87,17 @@ class ParseRedirects extends Command
         $wpId = (int) $url;
 
         if ($wpId === 0) {
-            return $url;
+            return $this->removeDomainFromUrl($url);
         } else {
             $url = $this->getFullSlug($url);
         }
 
         return $url;
+    }
+
+    protected function removeDomainFromUrl($url)
+    {
+        return str_replace('https://www.islamichelp.org.uk/', '', $url);
     }
 
     protected function getFullSlug($id)
