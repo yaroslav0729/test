@@ -102,16 +102,6 @@ class MediaParser2 extends AbstractParser
         $posts = $this->getMediaCenterPosts();
     }
 
-    protected function replaceLastSlash($str)
-    {
-        $lastSym = substr($str, -1);
-
-        if ($lastSym === '/') {
-            $str = substr_replace($str, "", -1);
-        }
-        return $str;
-    }
-
     public function disablePagesWith301Redirect()
     {
         $posts = $this->wpConnection->table('wp_redirects')
@@ -119,7 +109,7 @@ class MediaParser2 extends AbstractParser
 
         foreach ($posts as $post) {
 
-            $urlFrom = $this->replaceLastSlash($post->url_from);
+            $urlFrom = \App\Helpers\StrHelper::deleteTrailingSlash($post->url_from);
 
             $localPage = PageInstance::where('slug', $urlFrom)->first();
 

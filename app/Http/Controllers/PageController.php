@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Page;
 use App\Models\PageInstance;
+use App\Models\Redirect;
 use App\Models\Template;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -40,13 +41,19 @@ class PageController extends Controller
 
     public function showFromSlug($slug, Request $request)
     {
+        $slug = \App\Helpers\StrHelper::deleteTrailingSlash($slug);
+
         if ($slug === 'index') {
             return redirect('/');
         }
 
+        if (Redirect::slugHasRedirect($slug)) {
+            return Redirect::redirectFromSlug($slug);
+        }
+
         $pageInstance = PageInstance::where('slug', $slug)
             ->where('actual', true)
-            ->whereHas('page', function(Builder $queryPage) {
+            ->whereHas('page', function (Builder $queryPage) {
                 $queryPage->published();
             })
             ->firstOrFail();
@@ -62,13 +69,6 @@ class PageController extends Controller
                 'status' => 'success',
             ]);
         }
-
-        $pageInstance = PageInstance::where('slug', $slug)
-            ->where('actual', true)
-            ->whereHas('page', function(Builder $queryPage) {
-                $queryPage->published();
-            })
-            ->firstOrFail();
 
         SEOMeta::setTitle($pageInstance->title);
         SEOMeta::setDescription($pageInstance->description);
