@@ -30,20 +30,40 @@ if (isset($page)) {
     $keywords = old('keywords');
 }
 
-//dd($pageInstance->parameters['amount']);
-
 @endphp
 
 @extends('layouts.admin')
 
 @section('content')
 
-<div id="admin_content" class="flex-auto">
+<div id="admin_content" class="flex-auto pt-3">
 
     <div class="alert alert-danger" style="display: none;">
         <ul id="modal-errors">
         </ul>
     </div>
+
+    @if($pageInstance->hasFromRedirect())
+        <div class="alert alert-danger">
+            This page is redirected to other url:
+            <ul>
+            @foreach ($pageInstance->getFromRedirects() as $redirect)
+                <li>{{ url($redirect->url_to) }}</li>
+            @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if($pageInstance->hasToRedirect())
+        <div class="alert alert-info">
+            This page has redirects from other pages: 
+            <ul>
+            @foreach ($pageInstance->getToRedirects() as $key => $redirect)
+                <li>{{ $key + 1 }}) {{ url($redirect->url_from) }}</li>
+            @endforeach
+            </ul>
+        </div>
+    @endif
 
     <form action="{{ $actionRoute }}" method="post" class="pb-3" modal-form>
             @csrf

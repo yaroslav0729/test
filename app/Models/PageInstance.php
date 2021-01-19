@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\Category;
 use App\Models\CampaignPrice;
+use App\Models\Redirect;
 
 class PageInstance extends Model
 {
@@ -216,5 +217,33 @@ class PageInstance extends Model
         } else {
             return null;
         }
+    }
+
+    public function hasFromRedirect()
+    {
+        $redirects = Redirect::where('url_from', $this->slug)->get();
+
+        return count($redirects) ? true : false; 
+    }
+
+    public function getFromRedirects()
+    {
+        $redirects = Redirect::where('url_from', $this->slug)->get();
+
+        return $redirects; 
+    }
+
+    public function hasToRedirect()
+    {
+        $redirects = Redirect::where('url_to', $this->slug)->get();
+
+        return count($redirects) ? true : false; 
+    }
+
+    public function getToRedirects()
+    {
+        $redirects = Redirect::where('url_to', $this->slug)->get();
+
+        return $redirects; 
     }
 }
