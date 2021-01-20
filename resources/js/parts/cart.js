@@ -135,7 +135,7 @@ $(function () {
 
     $(function() {
         $('.btn-modal-quick-donation').on('click', function () {
-            $('.modal-quick-donation').show();
+            $('.modal-quick-donation').fadeIn( "fast" );
             $('.modal-quick-donation .close').on('click', function () {
                 $('.modal-quick-donation').hide();
             })
