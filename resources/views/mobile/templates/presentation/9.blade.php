@@ -4,6 +4,7 @@
     $donationArticleTitle = "";
     $donationVideo = "";
     $donationVideoLinkTitle = "";
+    $donationVideoLinkTitleMobile = "";
     $donationVideoLink = "";
 
 
@@ -23,6 +24,10 @@
         $donationVideoLinkTitle = $parameters['donation_link_title'];
     }
 
+    if (isset($parameters['donation_link_title_mobile'])) {
+        $donationVideoLinkTitleMobile = $parameters['donation_link_title_mobile'];
+    }
+
     if (isset($parameters['donation_link'])) {
         $donationVideoLink = $parameters['donation_link'];
     }
@@ -30,9 +35,9 @@
 @endphp
 
 <div class="thank-you-page">
-    <div class="text">
-        <div>{!! \App\Helpers\StrHelper::addSpanWithClass($donationText, 'text-dark') !!}</div>
-        <p>You're awesome.</p>
+    <div class="text pl-2">
+        <div class="pl-4 pr-4 pt-2 pb-2">{!! \App\Helpers\StrHelper::addSpanWithClass($donationText, 'text-dark-blue') !!}</div>
+        <p class="text-left pl-4 pt-2">You're awesome.</p>
         <div class="text-center">
             <svg class="decor-wave size-20 style-red d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
@@ -89,8 +94,9 @@
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
+            <a href="{{ $donationVideoLink }}" class="btn btn-info">{{ $donationVideoLinkTitleMobile }}</a>
         </div>
-        <a href="{{ $donationVideoLink }}" class="btn btn-info">{{ $donationVideoLinkTitle }}</a>
+
     </div>
     <div class="text-center">
         <svg class="decor-wave size-20 style-white d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">

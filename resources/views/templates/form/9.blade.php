@@ -4,6 +4,7 @@
     $donationArticleTitle = "";
     $donationVideo = "";
     $donationVideoLinkTitle = "";
+    $donationVideoLinkTitleMobile = "";
     $donationVideoLink = "";
 
 
@@ -21,6 +22,10 @@
 
     if (isset($parameters['donation_link_title'])) {
         $donationVideoLinkTitle = $parameters['donation_link_title'];
+    }
+
+    if (isset($parameters['donation_link_title_mobile'])) {
+        $donationVideoLinkTitleMobile = $parameters['donation_link_title_mobile'];
     }
 
     if (isset($parameters['donation_link'])) {
@@ -54,6 +59,15 @@
             <input class="form-control" name="parameters[donation_video]"
                    placeholder="Insert youtube video link"
                    value="{{ $donationVideo }}"/>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <div class="form-group">
+            <label>View story link title (mobile):</label>
+            <input class="form-control" name="parameters[donation_link_title_mobile]"
+                   placeholder="View story link title (mobile)"
+                   value="{{ $donationVideoLinkTitleMobile }}"/>
         </div>
     </div>
 
