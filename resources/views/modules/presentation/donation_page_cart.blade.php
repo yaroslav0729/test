@@ -66,9 +66,9 @@ $cartSum = \App\Models\CartItem::getCartSum();
                                     <div>
                                         <table class="w-100">
                                             <tr>
-                                                <td><p class="font-size-20 mb-0">{{ (int)$cartItem[0]->period === \App\Models\CampaignPrice::TYPE_SINGLE ? 'Single' : 'Monthly' }} payment</p></td>
-                                                <td><input type="number" input_number_spinner data-id="{{ $cartItem[0]->id }}" value="{{ count($cartItem) }}" min="0" max="1000" step="1" class="color-danger"/></td>
-                                                <td class="text-right"><p class="font-size-20 mb-0"><b>£{{ $cartItem[0]->amount }}</b></p></td>
+                                                <td style="width: 220px"><p class="font-size-20 mb-0">{{ (int)$cartItem[0]->period === \App\Models\CampaignPrice::TYPE_SINGLE ? 'Single' : 'Monthly' }} payment</p></td>
+                                                <td class="text-center"><input type="number" input_number_spinner data-id="{{ $cartItem[0]->id }}" value="{{ count($cartItem) }}" min="0" max="1000" step="1" class="color-danger"/></td>
+                                                <td style="width: 100px" class="text-right"><p class="font-size-20 mb-0"><b>£{{ $cartItem[0]->amount }}</b></p></td>
                                             </tr>
                                         </table>
                                     </div>
