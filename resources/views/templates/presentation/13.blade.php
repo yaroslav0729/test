@@ -8,6 +8,8 @@
     $colText2 = "";
     $colTitle3 = "";
     $colText3 = "";
+    $howDoText = "";
+    $findMissionText = "";
 
     if (isset($parameters['main_title'])) {
         $mainTitle = $parameters['main_title'];
@@ -42,6 +44,14 @@
         $colText3 = $parameters['col_text3'];    
     }
 
+    if (isset($parameters['how_do_text'])) {
+        $howDoText = $parameters['how_do_text'];    
+    }
+
+    if (isset($parameters['find_mission'])) {
+        $findMissionText = $parameters['find_mission'];    
+    }
+
 @endphp
 
 
@@ -63,8 +73,18 @@
 
 <section class="how-does-work with-lines">
     <div class="title">
+        @empty($howDoText)
         <p>How do I do this? </p>
+        @else
+        <p>{{ $howDoText }}</p>
+        @endempty
+
+        @empty($findMissionText)
         <span>Find the mission you love</span>
+        @else
+        <span>{{ $findMissionText }}</span>
+        @endempty
+        
     </div>
     <div class="row">
         <div class="col pr-0 pr-md-5">

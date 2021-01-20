@@ -8,6 +8,8 @@
     $colText2 = "";
     $colTitle3 = "";
     $colText3 = "";
+    $howDoText = "";
+    $findMissionText = "";
 
     if (isset($parameters['main_title'])) {
         $mainTitle = $parameters['main_title'];
@@ -42,6 +44,14 @@
         $colText3 = $parameters['col_text3'];    
     }
 
+    if (isset($parameters['how_do_text'])) {
+        $howDoText = $parameters['how_do_text'];    
+    }
+
+    if (isset($parameters['find_mission'])) {
+        $findMissionText = $parameters['find_mission'];    
+    }
+
 @endphp
 
 <section class="head-Volunteer">
@@ -52,8 +62,8 @@
 
 <section class="how-does-work with-lines pt-4">
     <div class="title">
-        <p>Why should I volunteer?</p>
-        <span>Find the mission you love</span>
+        <p>{{ $howDoText }}</p>
+        <span>{{ $findMissionText }}</span>
     </div>
     <div class="item">
         <img src="img/ico-apply-online.svg" alt="">

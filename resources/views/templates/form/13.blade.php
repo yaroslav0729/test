@@ -8,6 +8,8 @@
     $colText2 = "";
     $colTitle3 = "";
     $colText3 = "";
+    $howDoText = "";
+    $findMissionText = "";
 
     if (isset($parameters['main_title'])) {
         $mainTitle = $parameters['main_title'];    
@@ -41,6 +43,14 @@
         $colText3 = $parameters['col_text3'];    
     }
 
+    if (isset($parameters['how_do_text'])) {
+        $howDoText = $parameters['how_do_text'];    
+    }
+
+    if (isset($parameters['find_mission'])) {
+        $findMissionText = $parameters['find_mission'];    
+    }
+
 @endphp
 
 <div class="form-group">
@@ -52,6 +62,18 @@
     <label>Start link:</label>
     <input class="form-control"  name="parameters[start_link]" placeholder="Insert link url" value="{{ $startLink }}" />
 </div>
+
+<div class="form-group">
+    <label>How do text:</label>
+    <input class="form-control"  name="parameters[how_do_text]" placeholder="Insert text" value="{{ $howDoText }}" />
+</div>
+
+<div class="form-group">
+    <label>Find mission:</label>
+    <input class="form-control"  name="parameters[find_mission]" placeholder="Insert text" value="{{ $findMissionText }}" />
+</div>
+
+
 
 <div class="form-group">
     <label>Colimn 1 title:</label>
