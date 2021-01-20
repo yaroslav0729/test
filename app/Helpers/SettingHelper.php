@@ -10,6 +10,18 @@ use Illuminate\Support\Facades\Schema;
 class SettingHelper
 {
     const VIDEO_LINK_ON_MAIN_MENU = 100;
+    const ZAKAT_FIT_CAMPAIGN_CATEGORY = 101;
+
+    /**
+     * @return string[]
+     */
+    public static function listArray(): array
+    {
+        return [
+            self::VIDEO_LINK_ON_MAIN_MENU => 'Link to a video for the Main menu',
+            self::ZAKAT_FIT_CAMPAIGN_CATEGORY => 'Which Campaign category fit Zakat',
+        ];
+    }
 
     /**
      * @return string[]
@@ -18,6 +30,7 @@ class SettingHelper
     {
         return [
             self::VIDEO_LINK_ON_MAIN_MENU => 'videoLinks',
+            self::ZAKAT_FIT_CAMPAIGN_CATEGORY => 'whichCategoryFitZakat'
         ];
     }
 
@@ -44,7 +57,6 @@ class SettingHelper
      */
     public static function get(int $type): ?string
     {
-
         if (!Schema::hasTable('setting_records')) {
             return null;
         }
@@ -68,17 +80,6 @@ class SettingHelper
         }
 
         return null;
-    }
-
-
-    /**
-     * @return string[]
-     */
-    public static function listArray(): array
-    {
-        return [
-            self::VIDEO_LINK_ON_MAIN_MENU => 'Link to a video for the Main menu',
-        ];
     }
 
     /**

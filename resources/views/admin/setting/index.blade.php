@@ -16,10 +16,23 @@
                     <div class="form-group">
                         <label>{{ Setting::name(Setting::VIDEO_LINK_ON_MAIN_MENU) }}:</label>
                         <div class="input-group">
-                            <input type="text" name="{{ Setting::nameShort(Setting::VIDEO_LINK_ON_MAIN_MENU) }}" class="form-control" placeholder="" value="{{ old(Setting::nameShort(Setting::VIDEO_LINK_ON_MAIN_MENU),
+                            <input type="text" name="{{ Setting::nameShort(Setting::VIDEO_LINK_ON_MAIN_MENU) }}"
+                                   class="form-control" placeholder="" value="{{ old(Setting::nameShort(Setting::VIDEO_LINK_ON_MAIN_MENU),
                             Setting::get(Setting::VIDEO_LINK_ON_MAIN_MENU)) }}">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label>{{ Setting::name(Setting::ZAKAT_FIT_CAMPAIGN_CATEGORY) }}:</label>
+                        <select name="{{ Setting::nameShort(Setting::ZAKAT_FIT_CAMPAIGN_CATEGORY) }}"
+                                class="form-control">
+                            @foreach ($campaignCategories as $category)
+                                <option value="{{ $category->id }}"
+                                        @if((int)$zakat === $category->id) selected @endif > {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <button type="submit" class="btn btn-info">Submit</button>
                 </form>
             </div>
