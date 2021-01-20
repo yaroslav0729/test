@@ -86,6 +86,8 @@ class PageController extends Controller
 
         if ($pageInstance->template === \App\Models\Template::NEWSROOM_PAGE) {
             $headerTemplate = 'parts.header_newsroom';
+        } else if ($pageInstance->template === \App\Models\Template::MISSION_POSSIBLE)  {
+            $headerTemplate = 'parts.header_short_white';
         }
 
         return view('page', compact('html', 'headerTemplate'));
