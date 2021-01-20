@@ -2,9 +2,14 @@
     use App\Models\Category;
     $categories = Category::all();
     $relPageCatId = "";
+    $bgClass = '';
 
     if (isset($parameters['rel_page_category'])) {
         $relPageCatId = (int)$parameters['rel_page_category'];
+    }
+
+    if (isset($parameters['bg_rel_class'])) {
+        $bgClass = $parameters['bg_rel_class'];
     }
 @endphp
 
@@ -19,4 +24,9 @@
                     @if($relPageCatId === $category->id) selected @endif>{{ $category->name }}</option>
         @endforeach
     </select>
+</div>
+
+<div class="form-group">
+    <label>Background class:</label>
+    <input class="form-control" name="parameters[bg_rel_class]" placeholder="Example - bg-light" value="{{ $bgClass }}" />
 </div>

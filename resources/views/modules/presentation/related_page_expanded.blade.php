@@ -2,6 +2,7 @@
     $relPageTitle = "";
     $relPageLinkTitle = "";
     $relPageLink = "";
+    $bgClass = "";
 
     if (isset($parameters['rel_page_title'])) {
         $relPageTitle = $parameters['rel_page_title'];
@@ -14,9 +15,14 @@
     if (isset($parameters['rel_page_link'])) {
         $relPageLink = $parameters['rel_page_link'];
     }
+
+    if (isset($parameters['bg_class'])) {
+        $bgClass = $parameters['bg_class'];
+    }
+
 @endphp
 
-<section class="discover-more bg-light">
+<section class="discover-more @empty($bgClass) bg-light @else {{ $bgClass }} @endempty">
     <div class="wrap">
         <div class="title">
             <div class="row">

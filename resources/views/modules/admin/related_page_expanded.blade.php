@@ -2,6 +2,7 @@
     $relPageTitle = "";
     $relPageLinkTitle = "";
     $relPageLink = "";
+    $bgClass = "";
 
     if (isset($parameters['rel_page_title'])) {
         $relPageTitle = $parameters['rel_page_title'];
@@ -13,6 +14,10 @@
 
     if (isset($parameters['rel_page_link'])) {
         $relPageLink = $parameters['rel_page_link'];
+    }
+
+    if (isset($parameters['bg_class'])) {
+        $bgClass = $parameters['bg_class'];
     }
 @endphp
 
@@ -31,6 +36,11 @@
 <div class="form-group">
     <label>Relation page link (/blog-page - by default):</label>
     <input class="form-control" name="parameters[rel_page_link]" placeholder="Relation page link" value="{{ $relPageLink }}" />
+</div>
+
+<div class="form-group">
+    <label>Background class:</label>
+    <input class="form-control" name="parameters[bg_class]" placeholder="Example - bg-light" value="{{ $bgClass }}" />
 </div>
 
 @include('modules.admin.related_pages', [

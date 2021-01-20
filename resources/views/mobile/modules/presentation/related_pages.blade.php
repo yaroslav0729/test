@@ -1,14 +1,20 @@
 @php
     $relPageCatId = "";
+    $bgClass = '';
 
     if (isset($parameters['rel_page_category'])) {
         $relPageCatId = (int)$parameters['rel_page_category'];
     }
 
     $relatedPages = \App\Models\Module::getRelatedPages($relPageCatId);
+
+    if (isset($parameters['bg_rel_class'])) {
+        $bgClass = $parameters['bg_rel_class'];
+    }
+
 @endphp
 
-<section class="discover-more bg-light">
+<section class="discover-more @empty($bgClass) bg-light @else {{ $bgClass }} @endempty">
     <div class="wrap">
         <div class="title">
             <b class="font-size-25 text-uppercase">Related topics</b>

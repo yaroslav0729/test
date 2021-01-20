@@ -4,6 +4,7 @@
     $relPageLink = "";
 
     $relPageCatId = "";
+    $bgClass = '';
 
     if (isset($parameters['rel_page_category'])) {
         $relPageCatId = (int)$parameters['rel_page_category'];
@@ -22,9 +23,14 @@
     if (isset($parameters['rel_page_link'])) {
         $relPageLink = $parameters['rel_page_link'];
     }
+
+    if (isset($parameters['bg_class'])) {
+        $bgClass = $parameters['bg_class'];
+    }
+
 @endphp
 
-<section class="discover-more bg-light" swiper-wrapper="related">
+<section class="discover-more @empty($bgClass) bg-light @else {{ $bgClass }} @endempty" swiper-wrapper="related">
     <div class="wrap">
         <div class="title text-center">
             <b class="font-size-25 text-uppercase d-inline-block mb-3">
