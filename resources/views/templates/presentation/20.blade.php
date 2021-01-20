@@ -301,6 +301,13 @@
         $priceGold = $parameters['price_gold'];
     }
 
+$projects = \App\Models\Project::getAllProjects();
+
+$pagesShuffled = $projects->shuffle();
+$pagesSliced = $pagesShuffled->slice(0,3);
+
+$categoryNameFitZakat = \App\Models\CampaignCategory::find(Setting::get(Setting::ZAKAT_FIT_CAMPAIGN_CATEGORY));
+
 @endphp
 
 <section class="calculator">
@@ -501,9 +508,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 text-right">
-                            <a href="#" class="btn btn-danger" zakat-donate-btn>Donate my Zakat</a>
-                        </div>
+                            <div class="col-6 text-right">
+                                <a href="#" class="btn btn-danger" zakat-donate-btn>Donate my Zakat</a>
+                                <input type="hidden" id="zakat-category" value="@if($categoryNameFitZakat) {{ $categoryNameFitZakat->name }} @endif">
+                            </div>
                     </div>
                 </div>
             </div>
@@ -561,3 +569,10 @@
         </div>
     </div>
 </section>
+
+@include('modules.presentation.projects_related', [
+    'parameters' => $parameters,
+    'projects' => $pagesSliced,
+])
+
+@include('templates.presentation.parts.add_to_cart_popup')

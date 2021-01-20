@@ -25,6 +25,7 @@ class SettingRequest extends FormRequest
     {
         return [
             'videoLinks' => 'required|min:5',
+            'whichCategoryFitZakat' => 'required',
         ];
     }
 }

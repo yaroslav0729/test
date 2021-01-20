@@ -1,6 +1,12 @@
 $(function () {
 
     var cartTimeout;
+    const thankYouPage = $('.thank-you-page');
+
+    /*----------- hide basket in the Thank you Page (mobile) ------------*/
+    if ( thankYouPage.length > 0 && $(window).width() <= '995') {
+        $('.basket').addClass('d-none');
+    }
 
     function cartAnim(x) {
         $('#cartModal .modal-dialog').attr('class', 'modal-dialog animated ' + x);
@@ -107,6 +113,16 @@ $(function () {
         e.preventDefault()
 
         let amount = $('input[name="zakat_value"]').val()
+        let category = $('#zakat-category').val();
+
+        if (amount < 5) {
+            //toastr.warning('Sorry, your donation amount must be at least £5')
+            $('.modal-at-least-5').modal('show')
+            return
+        }
+
+        $('#add_to_cart_popup .amount').text(convertMonetary(amount));
+        $('#add_to_cart_popup .period').text('Zakat');
 
         $.ajax({
             url     : '/cart/add',
@@ -117,12 +133,14 @@ $(function () {
             },
             data    : {
                 amount: amount,
+                categories: category,
                 note: "Zakat calculator donation"
             },
             success : function (response, textStatus, jqXHR)
             {
                 if (response.success) {
                     refreshCardAddHtml(response)
+                    $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
                 }
             },
             error: function(response) {
@@ -131,6 +149,11 @@ $(function () {
             }
         });
     });
+
+    //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
+    function convertMonetary(value) {
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+    }
 
 
     $(function() {
@@ -180,7 +203,7 @@ $(function () {
         sendFormAndRefreshCard(form)
 
         $('#proj_tiles_modal_popup').modal('hide') // for mobile version
-        $('[tiles-popup]').addClass('d-none')   
+        $('[tiles-popup]').addClass('d-none')
         $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
     });
 

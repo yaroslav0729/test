@@ -490,12 +490,14 @@ $(function () {
         $(btnCurrency).html('£' + value);
     });
 
+
     //~~~~~~~~~~~~~~~~~~ toggle value currency on the Calculator page ~~~~~~~~~~~~~~~~~~~~
 
     $(document).on('click', '#btn-calculate', function () {
         const totalAssets = $('#total-assets');
         const zakatPayable = $('.zakat-payable');
         const btnDonateMobile = $('#btn-donate-mobile');
+        const sectionProjects = $('.donate-projects-list');
 
         let debitCollection = $('.debit-money');
         let creditCollection = $('.credit-money');
@@ -515,6 +517,8 @@ $(function () {
         const divZakat = $(zakatPayable).find('.money-val');
 
         if (asset >= metalPrice) {
+            sectionProjects.removeClass('d-none');
+
             zakat = asset * 0.025;
 
             $('#zakat-pay').addClass('bg-danger-light');
@@ -522,12 +526,14 @@ $(function () {
 
             $('#total-zakat').find('.money-val').addClass('text-danger');
 
-            let zakatValue = convertMonetary(zakat.toFixed(2))
+            let zakatValue = convertMonetary(zakat.toFixed(2));
+
             $(divZakat).find('b').html('£' + zakatValue);
-            $(divZakat).find('input[name="zakat_value"]').val(zakatValue);
+            $(divZakat).find('input[name="zakat_value"]').val(zakat.toFixed(2));
             $(btnDonateMobile).removeClass('disabled');
         } else {
             $('#zakat-pay').removeClass('bg-danger-light');
+            sectionProjects.addClass('d-none');
 
             $(divZakat).removeClass('text-danger');
             $(divZakat).find('b').html('£0.00');
@@ -542,6 +548,7 @@ $(function () {
         const totalAssets = $('#total-assets');
         const zakatPayable = $('.zakat-payable');
         const btnDonateMobile = $('#btn-donate-mobile');
+        const sectionProjects = $('.donate-projects-list');
 
         let debitCollection = $('.debit-money');
         let creditCollection = $('.credit-money');
@@ -549,6 +556,7 @@ $(function () {
         $('#total-zakat').find('.money-val').removeClass('text-danger');
         $(totalAssets).removeClass('bg-primary-light');
         $('#zakat-pay').removeClass('bg-danger-light');
+        sectionProjects.addClass('d-none');
 
         const divVal = $(totalAssets).find('.money-val').removeClass('text-info');
         $(divVal).find('b').html('£0.00');
@@ -556,6 +564,7 @@ $(function () {
         $(divZakat).find('b').html('£0.00');
 
         $(btnDonateMobile).addClass('disabled');
+        $(divZakat).find('input[name="zakat_value"]').val('0.00');
 
         setElementsInputEmpty(debitCollection);
         setElementsInputEmpty(creditCollection);

@@ -5,17 +5,15 @@ $(function () {
     //~~~~~~~~~~~~~~~~~~ Project tiles ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     $(document).on('click', '.donate-projects-list .add', function () {
-        
+
         let projId = $(this).data('id')
         let popup = $('.tiles-popup_' + projId)
-
         $('[tiles-popup]').addClass('d-none')
 
         let el = $('.tiles-popup_' + projId + ' form')
 
         let options = [];
         options = getPopupOptions(projId)
-
         $('.project_popup_options').text(JSON.stringify(options))
 
         restoreOptions(el, options)
@@ -28,7 +26,7 @@ $(function () {
     });
 
     $(document).on('click', '[tiles-popup] .close', function () {
-        
+
         $('[tiles-popup]').addClass('d-none')
     });
 
@@ -36,21 +34,21 @@ $(function () {
 
         let htmlOptions = ''
         options.single.forEach(function(item, i, arr) {
-            htmlOptions = htmlOptions + '<option value=' + item.price + '>' + item.price + '</option>'    
+            htmlOptions = htmlOptions + '<option value=' + item.price + '>' + item.price + '</option>'
         });
 
         el.find('select[name="price_single"]').html(htmlOptions)
 
         htmlOptions = ''
         options.monthly.forEach(function(item, i, arr) {
-            htmlOptions = htmlOptions + '<option value=' + item.price + '>' + item.price + '</option>'    
+            htmlOptions = htmlOptions + '<option value=' + item.price + '>' + item.price + '</option>'
         });
 
         el.find('select[name="price_monthly"]').html(htmlOptions)
 
         let firstPrice = options.single[0].campaigns
 
-        htmlOptions = '' 
+        htmlOptions = ''
         for (key in firstPrice) {
             htmlOptions = htmlOptions + '<option value=' + key + '>' + firstPrice[key].name + '</option>'
         }
@@ -80,7 +78,7 @@ $(function () {
     //~~~~~~~~~~~~~~~~ Project tiles filters ~~~~~~~~~~~~~~~~~~~~~~
 
     $(document).on('click', '[donate-filter]', function () {
-        
+
         let filter = $(this).data('filter')
 
         $('[filter-projects]').addClass('d-none')
@@ -88,7 +86,7 @@ $(function () {
     });
 
     $(document).on('change', '[tiles-options-type]', function () {
-        
+
         let key = $(this).data('key')
         let val = $(this).val()
         $('.tiles-popup_' + key + ' [tiles-option-price]').addClass('d-none')
@@ -103,7 +101,7 @@ $(function () {
 
     $(document).on('change', '[tiles-campaigns]', function () {
 
-        changeCategoriesDropdown(this) 
+        changeCategoriesDropdown(this)
     });
 
     function changeCategoriesDropdown(element)
@@ -120,18 +118,18 @@ $(function () {
         let campaigns = null;
 
         if (options === undefined) return
-        
+
         for (let i=0;i<options.length; i++) {
             if (options[i]['price'] === price) {
                 campaigns = options[i]['campaigns'];
-                break; 
+                break;
             }
         }
         campaigns = campaigns[campaign]
 
         let categHtml = ''
         let categories = []
-        
+
         for (var campaigIndex in campaigns) {
             categories = campaigns[campaigIndex]
         }
@@ -145,9 +143,9 @@ $(function () {
         categEl.html(categHtml)
 
         if (categories.length < 2) {
-            categEl.addClass('d-none')    
+            categEl.addClass('d-none')
         } else {
-            categEl.removeClass('d-none')   
+            categEl.removeClass('d-none')
         }
     }
 
@@ -168,7 +166,7 @@ $(function () {
         for (let i=0;i<options.length; i++) {
             if (options[i]['price'] === price) {
                 campaigns = options[i]['campaigns'];
-                break; 
+                break;
             }
         }
 
@@ -177,16 +175,16 @@ $(function () {
         for (var campaigIndex in campaigns) {
             let optName = campaigns[campaigIndex]['name']
             campSelectHtml = campSelectHtml + '<option value="' + campaigIndex +  '">' + optName  + '</option>'
-        }  
-        
+        }
+
         let campEl = $(element).closest('.form').find('[tiles-campaigns]')
         campEl.html(campSelectHtml)
 
         if (campaigns !== null) {
             if (Object.keys(campaigns).length < 2) {
-                campEl.addClass('d-none')    
+                campEl.addClass('d-none')
             } else {
-                campEl.removeClass('d-none')   
+                campEl.removeClass('d-none')
             }
         }
     }

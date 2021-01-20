@@ -241,6 +241,7 @@ class Template
                     'parameters.donation_article_title' => 'required|max:60',
                     'parameters.donation_video' => 'required',
                     'parameters.donation_link_title' => 'required',
+                    'parameters.donation_link_title_mobile' => 'required',
                     'parameters.donation_link' => 'required',
                 ];
 
@@ -355,6 +356,10 @@ class Template
                     'parameters.dropdown_text' => 'required',
                     'parameters.dropdown_link_title' => 'required',
                     'parameters.dropdown_link' => 'required',
+
+                    'parameters.donate_to_title' => 'required',
+                    'parameters.donate_to_text' => 'required|max:100',
+
                 ];
 
                 break;

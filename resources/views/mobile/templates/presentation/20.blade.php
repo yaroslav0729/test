@@ -300,6 +300,11 @@
            $priceGold = $parameters['price_gold'];
        }
 
+    $projects = \App\Models\Project::getAllProjects();
+
+    $pagesShuffled = $projects->shuffle();
+    $pagesSliced = $pagesShuffled->slice(0,3);
+
 
 @endphp
 
@@ -509,6 +514,10 @@
                 </div>
             </div>
         </div>
-
     </div>
 </section>
+
+@include('modules.presentation.projects_related', [
+    'parameters' => $parameters,
+    'projects' => $pagesSliced,
+])

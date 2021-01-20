@@ -26,7 +26,7 @@
                         <div class="swiper-slide">
                             <a href="{{ $page->slug }}" class="item">
                                 @isset($page->preview_img)
-                                <span class="img" style="background-image: url(img/content/discover-more-1.jpg)"></span>
+                                <span class="img" style="background-image: url({{ $page->preview_img }})"></span>
                                 @else
                                 <span class="img" style="background: #eee"></span>
                                 @endisset

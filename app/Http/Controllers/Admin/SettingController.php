@@ -5,13 +5,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\SettingHelper;
 use App\Http\Requests\Admin\SettingRequest;
+use App\Models\CampaignCategory;
 
 
 class SettingController
 {
     public function index()
     {
-        return view('admin.setting.index');
+        $campaignCategories = CampaignCategory::all();
+        $zakat = SettingHelper::get(SettingHelper::ZAKAT_FIT_CAMPAIGN_CATEGORY);
+
+        return view('admin.setting.index', compact('campaignCategories', 'zakat'));
     }
 
 

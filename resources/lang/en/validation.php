@@ -326,6 +326,7 @@ return [
         'parameters.donation_article_title' => 'Article title',
         'parameters.donation_video' => 'Youtube video link',
         'parameters.donation_link_title' => 'View story link title',
+        'parameters.donation_link_title_mobile' => 'View story link title (mobile)',
         'parameters.donation_link' => 'View story link',
 
         /*--------------------- End Thank you for donation ------------------------*/

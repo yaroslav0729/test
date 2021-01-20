@@ -712,8 +712,12 @@
             </div>
         </div>
     </div>
-
 </div>
+<div class="mt-4"></div>
+
+@include('modules.admin.projects_related', [
+    'parameters' => $parameters,
+])
 
 
 

@@ -568,7 +568,9 @@ axios.all = function all(promises) {
   return Promise.all(promises);
 };
 
-axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
+axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js"); // Expose isAxiosError
+
+axios.isAxiosError = __webpack_require__(/*! ./helpers/isAxiosError */ "./node_modules/axios/lib/helpers/isAxiosError.js");
 module.exports = axios; // Allow use of default import syntax in TypeScript
 
 module.exports["default"] = axios;
@@ -1501,6 +1503,30 @@ module.exports = function isAbsoluteURL(url) {
   // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
   // by any combination of letters, digits, plus, period, or hyphen.
   return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+};
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/helpers/isAxiosError.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAxiosError.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Determines whether the payload is an error thrown by Axios
+ *
+ * @param {*} payload The value to test
+ * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false
+ */
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+module.exports = function isAxiosError(payload) {
+  return _typeof(payload) === 'object' && payload.isAxiosError === true;
 };
 
 /***/ }),
@@ -103556,6 +103582,7 @@ $(function () {
     var totalAssets = $('#total-assets');
     var zakatPayable = $('.zakat-payable');
     var btnDonateMobile = $('#btn-donate-mobile');
+    var sectionProjects = $('.donate-projects-list');
     var debitCollection = $('.debit-money');
     var creditCollection = $('.credit-money');
     var metalPrice = isNaN(+$('#currency').val()) ? 0 : +$('#currency').val();
@@ -103569,16 +103596,18 @@ $(function () {
     var divZakat = $(zakatPayable).find('.money-val');
 
     if (asset >= metalPrice) {
+      sectionProjects.removeClass('d-none');
       zakat = asset * 0.025;
       $('#zakat-pay').addClass('bg-danger-light');
       $(divZakat).addClass('text-danger');
       $('#total-zakat').find('.money-val').addClass('text-danger');
       var zakatValue = convertMonetary(zakat.toFixed(2));
       $(divZakat).find('b').html('£' + zakatValue);
-      $(divZakat).find('input[name="zakat_value"]').val(zakatValue);
+      $(divZakat).find('input[name="zakat_value"]').val(zakat.toFixed(2));
       $(btnDonateMobile).removeClass('disabled');
     } else {
       $('#zakat-pay').removeClass('bg-danger-light');
+      sectionProjects.addClass('d-none');
       $(divZakat).removeClass('text-danger');
       $(divZakat).find('b').html('£0.00');
       $(divZakat).find('input[name="zakat_value"]').val(0);
@@ -103590,16 +103619,19 @@ $(function () {
     var totalAssets = $('#total-assets');
     var zakatPayable = $('.zakat-payable');
     var btnDonateMobile = $('#btn-donate-mobile');
+    var sectionProjects = $('.donate-projects-list');
     var debitCollection = $('.debit-money');
     var creditCollection = $('.credit-money');
     $('#total-zakat').find('.money-val').removeClass('text-danger');
     $(totalAssets).removeClass('bg-primary-light');
     $('#zakat-pay').removeClass('bg-danger-light');
+    sectionProjects.addClass('d-none');
     var divVal = $(totalAssets).find('.money-val').removeClass('text-info');
     $(divVal).find('b').html('£0.00');
     var divZakat = $(zakatPayable).find('.money-val').removeClass('text-danger');
     $(divZakat).find('b').html('£0.00');
     $(btnDonateMobile).addClass('disabled');
+    $(divZakat).find('input[name="zakat_value"]').val('0.00');
     setElementsInputEmpty(debitCollection);
     setElementsInputEmpty(creditCollection); //~~~~~~~~~~~~~~~~~~ Set input collection empty~~~~~~~~~~~~~~~~~~~~
 
@@ -103977,6 +104009,12 @@ $(function () {
 
 $(function () {
   var cartTimeout;
+  var thankYouPage = $('.thank-you-page');
+  /*----------- hide basket in the Thank you Page (mobile) ------------*/
+
+  if (thankYouPage.length > 0 && $(window).width() <= '995') {
+    $('.basket').addClass('d-none');
+  }
 
   function cartAnim(x) {
     $('#cartModal .modal-dialog').attr('class', 'modal-dialog animated ' + x);
@@ -104070,6 +104108,16 @@ $(function () {
   $(document).on('click', '[zakat-donate-btn]', function (e) {
     e.preventDefault();
     var amount = $('input[name="zakat_value"]').val();
+    var category = $('#zakat-category').val();
+
+    if (amount < 5) {
+      //toastr.warning('Sorry, your donation amount must be at least £5')
+      $('.modal-at-least-5').modal('show');
+      return;
+    }
+
+    $('#add_to_cart_popup .amount').text(convertMonetary(amount));
+    $('#add_to_cart_popup .period').text('Zakat');
     $.ajax({
       url: '/cart/add',
       type: 'post',
@@ -104079,18 +104127,25 @@ $(function () {
       },
       data: {
         amount: amount,
+        categories: category,
         note: "Zakat calculator donation"
       },
       success: function success(response, textStatus, jqXHR) {
         if (response.success) {
           refreshCardAddHtml(response);
+          $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
         }
       },
       error: function error(response) {
         toastr.error('Unknown error ', 'Error');
       }
     });
-  });
+  }); //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
+
+  function convertMonetary(value) {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+  }
+
   $(function () {
     $('.btn-modal-quick-donation').on('click', function () {
       $('.modal-quick-donation').fadeIn("fast");
@@ -104472,12 +104527,12 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app_admin.css */"./resources/css/app_admin.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
-module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/mobile.css */"./resources/css/mobile.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app_admin.css */"./resources/css/app_admin.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+module.exports = __webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/mobile.css */"./resources/css/mobile.css");
 
 
 /***/ })
