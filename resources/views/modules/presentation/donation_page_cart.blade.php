@@ -8,6 +8,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
 <section class="about-donation" id="about-donation">
     <div class="wrap">
 
+        @if($cartSum === 0)
         <div class="body no-donate">
             <div class="row align-items-center gutter-0">
                 <div class="col-6">
@@ -25,7 +26,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                 </div>
             </div>
         </div>
-
+        @else
         <div class="body donated">
             <div class="row align-items-center">
                 <div class="col-7">
@@ -100,6 +101,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                 </div>
             </div>
         </div>
+        @endif
 
         <div class="text-center mb-4">
             <img src="img/payments-image.png?1" alt="" class="img-fluid d-inline-block" style="max-width: 570px">

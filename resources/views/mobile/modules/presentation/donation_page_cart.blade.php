@@ -6,6 +6,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
 @endphp
 
 <section class="about-donation" id="about-donation">
+    @if($cartSum === 0)
     <div class="body no-donate">
         <div class="text-center">
             <p class="mb-4">No matter the amount, your support could mean everything to someone...</p>
@@ -57,9 +58,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
             <div class="price">£{{ $cartSum }}</div>
         </div>
     </div>
-    <br>
-    <br>
-
+    @else
     <div class="body donated">
         <p class="font-size-20 mb-4 text-center"><b>Your donation so far...</b></p>
         <div class="text-center">
@@ -174,4 +173,5 @@ $cartSum = \App\Models\CartItem::getCartSum();
             </div>
         </div>
     </div>
+    @endif
 </section>
