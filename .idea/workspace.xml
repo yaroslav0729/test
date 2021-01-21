@@ -2,13 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/styles.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/styles.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/templates/presentation/5.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/presentation/5.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/mobile/templates/presentation/13.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mobile/templates/presentation/13.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe2.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe2.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/modules/presentation/latest_projects.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modules/presentation/latest_projects.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/modules/presentation/related_pages.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modules/presentation/related_pages.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/templates/presentation/1.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/presentation/1.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/templates/presentation/4.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/presentation/4.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/templates/presentation/6.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/presentation/6.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/templates/presentation/8.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/presentation/8.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar/" />
@@ -31,17 +39,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="241" column="8" selection-start-line="241" selection-start-column="8" selection-end-line="241" selection-end-column="8" />
+            <state relative-caret-position="243">
+              <caret line="3933" column="11" lean-forward="true" selection-start-line="3933" selection-start-column="11" selection-end-line="3933" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/templates/presentation/5.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/templates/presentation/1.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="72" column="43" selection-start-line="72" selection-start-column="43" selection-end-line="72" selection-end-column="43" />
+            <state relative-caret-position="316">
+              <caret line="80" column="24" lean-forward="true" selection-start-line="80" selection-start-column="24" selection-end-line="80" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -67,36 +75,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>donate-today-card-swiper</find>
-      <find>.wrapper</find>
-      <find>header</find>
-      <find>heade</find>
-      <find>head</find>
-      <find>class=&quot;top-bar&quot;</find>
-      <find>down-bar</find>
-      <find>.basket</find>
-      <find>parts.header</find>
-      <find>header_short</find>
-      <find>headerTemplate</find>
-      <find>bg-white</find>
-      <find>down-bar bg-white</find>
-      <find>main-pa</find>
-      <find>section</find>
-      <find>max-width: 1300px</find>
-      <find>current-projects</find>
-      <find>header</find>
-      <find>donate-tod</find>
       <find>&quot;donate-today</find>
       <find>class=&quot;donate-projects-list&quot;</find>
-      <find>donate-today-card</find>
       <find>.header-menu</find>
       <find>events-home-swiper</find>
       <find>.mission-impossible</find>
       <find>join-cause-2</find>
-      <find>1300</find>
       <find>footer</find>
       <find>footer</find>
       <find>@media screen  and (min-width: 1023px) and (max-width: 1300px) {</find>
+      <find>&quot;current-projects-list&quot;</find>
+      <find>col-12 col-lg-12 col-xl-6</find>
+      <find>class=&quot;join-cause pt-0 pb-0 mt-3 join-cause-hidden</find>
+      <find>&lt;div class=&quot;current-projects-list&quot;&gt;</find>
+      <find>donate-today-card</find>
+      <find>related_pages</find>
+      <find>current-projects-list down-dark-line</find>
+      <find>a</find>
+      <find>current-projects-slider</find>
+      <find>.current-projects-list</find>
+      <find>.current-projects-list</find>
+      <find>values-action</find>
+      <find>1300</find>
+      <find>.our-story</find>
+      <find>.our-</find>
+      <find>.our-st</find>
+      <find>class=&quot;our-story-swiper&quot;</find>
+      <find>promo-project-swiper</find>
+      <find>.values-action</find>
+      <find>class=&quot;blog-article-head&quot;</find>
+      <find>.promo-project-swiper</find>
     </findStrings>
     <replaceStrings>
       <replace>fal fa-arrow-right</replace>
@@ -117,9 +125,9 @@
       <dir>$PROJECT_DIR$/public</dir>
       <dir>$PROJECT_DIR$/resources/css</dir>
       <dir>$PROJECT_DIR$/resources/js</dir>
-      <dir>$PROJECT_DIR$/resources</dir>
       <dir>$PROJECT_DIR$/resources/views/mobile</dir>
       <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/resources</dir>
       <dir>$PROJECT_DIR$/resources/views</dir>
     </dirStrings>
   </component>
@@ -129,12 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/templates/presentation/12.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/modules/presentation/explore_past_missions.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/modules/presentation/experience_of_lifetime.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/modules/presentation/be_part_of_possible.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/mobile/modules/presentation/mission_possible.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/mobile/modules/presentation/our_latest_mission.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/templates/presentation/12.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/modules/presentation/so_what_this_all.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/modules/presentation/experience_of_lifetime.blade.php" />
@@ -146,7 +148,6 @@
         <option value="$PROJECT_DIR$/resources/views/mobile/layouts/main.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/parts/footer.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/parts/modal_login.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/templates/presentation/10.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/modules/presentation/join_the_cause_subscribe.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/templates/presentation/10.blade.php" />
@@ -156,7 +157,6 @@
         <option value="$PROJECT_DIR$/resources/views/templates/presentation/2.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/templates/presentation/11.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/templates/presentation/11.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/mobile/templates/presentation/13.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/templates/presentation/13.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/parts/header_menu.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/functions.js" />
@@ -167,8 +167,6 @@
         <option value="$PROJECT_DIR$/resources/views/modules/presentation/donate_module.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/modules/presentation/parts/donate_options.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/templates/presentation/3.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/templates/presentation/6.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/modules/presentation/what_happens_so_far.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/modules/presentation/donate_module.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/modules/presentation/what_happens_so_far.blade.php" />
@@ -179,6 +177,16 @@
         <option value="$PROJECT_DIR$/resources/views/parts/header_short_white.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/parts/header.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/templates/presentation/5.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe2.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/templates/presentation/6.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/templates/presentation/4.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/mobile/templates/presentation/13.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/modules/presentation/related_pages.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/modules/presentation/latest_projects.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/templates/presentation/8.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/templates/presentation/1.blade.php" />
         <option value="$PROJECT_DIR$/resources/css/styles.less" />
       </list>
     </option>
@@ -360,6 +368,21 @@
               <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="presentation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="parts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -446,7 +469,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="203837000" />
+    <option name="totallyTimeSpent" value="207547000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -462,10 +485,10 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.2267525" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2267525" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="npm" order="3" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" sideWeight="0.49785408" visible="true" weight="0.19257222" />
+      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49785408" visible="true" weight="0.19257222" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50214595" side_tool="true" weight="0.32684284" />
       <window_info anchor="bottom" id="Version Control" order="3" />
@@ -487,45 +510,10 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/parts/modal_cart.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/payment.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="87" column="116" lean-forward="true" selection-start-line="87" selection-start-column="75" selection-end-line="87" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/mobile/layouts/main.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="68" column="77" selection-start-line="68" selection-start-column="77" selection-end-line="68" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/parts/footer.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="41" selection-start-line="41" selection-end-line="41" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/mobile/parts/footer.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
           <caret line="41" column="29" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="52" column="35" selection-start-line="52" selection-start-column="35" selection-end-line="52" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -727,13 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/modules/presentation/related_pages.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="10" lean-forward="true" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/templates/presentation/6.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
@@ -745,13 +726,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="176" column="33" selection-start-line="176" selection-start-column="33" selection-end-line="176" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -832,10 +806,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
+    <entry file="file://$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe2.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="92" column="26" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/templates/presentation/3.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="307" column="43" selection-start-line="307" selection-start-column="43" selection-end-line="307" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/modules/presentation/related_pages.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/modules/presentation/latest_projects.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
-          <caret line="241" column="8" selection-start-line="241" selection-start-column="8" selection-end-line="241" selection-end-column="8" />
+          <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/templates/presentation/8.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="237" column="57" selection-start-line="237" selection-start-column="57" selection-end-line="237" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/templates/presentation/1.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="80" column="24" lean-forward="true" selection-start-line="80" selection-start-column="24" selection-end-line="80" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="3933" column="11" lean-forward="true" selection-start-line="3933" selection-start-column="11" selection-end-line="3933" selection-end-column="11" />
         </state>
       </provider>
     </entry>

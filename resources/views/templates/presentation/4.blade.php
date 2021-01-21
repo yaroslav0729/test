@@ -49,9 +49,12 @@
 
 </section>
 
-@include('modules.presentation.related_pages', [
-    'parameters' => $parameters
-])
+<section>
+    @include('modules.presentation.related_pages', [
+        'parameters' => $parameters
+    ])
+</section>
+
 
 @include('modules.presentation.join_the_cause_subscribe')
 

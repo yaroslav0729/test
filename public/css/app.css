@@ -9796,6 +9796,10 @@ readers do not read off random characters that represent icons */
 .moon-icons-plus:before {
   content: "\E906";
 }
+a[href^=tel] {
+  text-decoration: inherit;
+  color: inherit;
+}
 body,
 html {
   height: 100%;
@@ -12105,6 +12109,13 @@ input[type='number'].color-danger + .input-group .btn {
 .popular-topic-list .item .descr .name {
   display: block;
 }
+@media screen and (min-width: 1023px) and (max-width: 1300px) {
+  .current-projects-list .wrap,
+  .popular-topic-list .wrap {
+    padding: 0;
+    margin: 0;
+  }
+}
 .popular-topic-list {
   margin: 0;
   padding: 0 130px;
@@ -14247,6 +14258,24 @@ input[type='number'].color-danger + .input-group .btn {
 .values-action .values-action-nav .nav .nav-link:nth-child(4):before {
   background-color: #2caabb;
 }
+@media screen and (min-width: 1023px) and (max-width: 1300px) {
+  .values-action {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .values-action .text {
+    padding: 74px 30px 43px 30px;
+  }
+  .values-action .text .text-1 {
+    font-size: 30px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .values-action .text .text-2 {
+    font-size: 23px;
+    line-height: 1.5;
+  }
+}
 .our-story-swiper {
   margin-bottom: 124px;
   padding-right: 120px;
@@ -14346,8 +14375,15 @@ input[type='number'].color-danger + .input-group .btn {
 .our-story-swiper .swiper-button-prev {
   right: 125px;
 }
+@media screen and (min-width: 1023px) and (max-width: 1300px) {
+  .our-story-swiper {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
 .promo-project-swiper {
   margin-bottom: 50px;
+  overflow: hidden;
 }
 .promo-project-swiper .wrap {
   border-top: 4px solid #101525;
@@ -15598,6 +15634,11 @@ input[type='number'].color-danger + .input-group .btn {
 .newsroom-list .item .date span {
   display: inline-block;
   margin: 0 7px;
+}
+@media screen and (min-width: 1023px) and (max-width: 1300px) {
+  .newsroom-list {
+    padding-right: 60px !important;
+  }
 }
 /*------------------------------------vb--------*/
 .date-input input[type="text"] {

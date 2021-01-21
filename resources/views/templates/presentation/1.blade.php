@@ -71,6 +71,7 @@
             {!! $articleHtml !!}
         </div>
     </div>
+    @include('modules.presentation.share_this')
 </section>
 
 <div class="pt-5"></div>
@@ -97,7 +98,6 @@
             </div>
             <div class="pt-5 pb-2"></div>
         </div>
-    @include('modules.presentation.share_this')
 </section>
 
 @include('modules.presentation.related_page_expanded', [

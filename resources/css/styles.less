@@ -43,6 +43,11 @@
     &:focus:-ms-input-placeholder      {opacity: 0 !important; transition: opacity 0.3s;}
 }
 
+a[href^=tel] {
+    text-decoration:inherit;
+    color: inherit;
+}
+
 
 @baseFont : 'Noto Sans JP', sans-serif;//  l 300, r 400, m 500, b 700, bl 900
 
@@ -1828,6 +1833,7 @@ input[type='number'].color-danger  + .input-group {
     }
 }
 
+
 .current-projects-list, .popular-topic-list {
     margin-bottom: 145px;
     .wrap {
@@ -1858,6 +1864,12 @@ input[type='number'].color-danger  + .input-group {
             margin-top: -40px;
             span {display: block}
             .name {display: block;}
+        }
+    }
+    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+        .wrap {
+            padding: 0;
+            margin: 0;
         }
     }
 }
@@ -3810,6 +3822,22 @@ input[type='number'].color-danger  + .input-group {
             }
         }
     }
+    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        .text {
+            padding: 74px 30px 43px 30px;
+            .text-1 {
+                font-size: 30px;
+                line-height: 1.5;
+                margin-bottom: 20px;
+            }
+            .text-2 {
+			    font-size: 23px;
+                line-height: 1.5;
+			}
+        }
+    }
 }
 
 .our-story-swiper {
@@ -3894,11 +3922,15 @@ input[type='number'].color-danger  + .input-group {
         &:after {display: none}
     }
     .swiper-button-prev {right: 125px;}
+    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
 }
 
 .promo-project-swiper {
     margin-bottom: 50px;
-    //overflow: hidden;
+    overflow: hidden;
     .wrap {
         border-top: 4px solid #101525;
         border-bottom: 4px solid #101525;
@@ -3949,8 +3981,8 @@ input[type='number'].color-danger  + .input-group {
         font-size: 30px;
         font-weight: 900;
         line-height: 44px;
-
     }
+
 }
 
 
@@ -5014,6 +5046,9 @@ input[type='number'].color-danger  + .input-group {
                 margin: 0 7px;
             }
         }
+    }
+    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+        padding-right: 60px !important;
     }
 }
 
