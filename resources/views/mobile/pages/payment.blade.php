@@ -107,7 +107,7 @@
         </div>
 
         <div class="gift-aid-sheet">
-            <div class="mb-4 text-right"><img src="img/Gift-aid-logo-white.png" alt="" class="img-fluid"></div>
+            <div class="mb-4 text-right"><img src="/img/Gift-aid-logo-white.png" alt="" class="img-fluid"></div>
             <div class="pl-4 pr-4 mb-4">
                 <p class="font-size-25 text-white"><b>Make your donation go 25% further, for free!</b></p>
                 <p class="font-size-16 text-white">If you are a UK taxpayer, the value of your gift can be increased by 25% under the Gift Aid scheme at no extra cost to you.</p>
