@@ -54,6 +54,7 @@ foreach ($amount as $key => $item) {
 
 @endphp
 
+<div class="black-line"></div>
 <div class="body">
     <div id="donate_module_options" class="alert alert-warning d-none">
         {{ json_encode($campaignCategories) }}
@@ -67,9 +68,9 @@ foreach ($amount as $key => $item) {
     </div>
 
     @empty($donateText)
-    <div class="mb-5 font-size-18">Your subtitle/copy can go here, max of 100ch ut perspi unde omnis iste natus demiour sit voluptatem, abilloum inventore.</div>
+    <div class="mb-5 pt-3 font-size-18"><b>Your subtitle/copy can go here, max of 100ch ut perspi unde omnis iste natus demiour sit voluptatem, abilloum inventore.</b></div>
     @else
-    <div class="mb-5 font-size-18">{{ $donateText }}</div>
+    <div class="mb-5 pt-3 font-size-18"><b>{{ $donateText }}</b></div>
     @endempty
 
     <div class="black-line"></div>
@@ -115,9 +116,7 @@ foreach ($amount as $key => $item) {
 
                     <div class="pt-3"></div>
                     <div class="text-center">
-                        <button class="btn @isset($isColorInfo) btn-info @else btn-danger @endisset border-white btn-submit w-100"
-                        donate-btn
-                        >Donate</button>
+                        <button class="btn @isset($isColorInfo) btn-info @else btn-danger @endisset border-white btn-submit w-100" donate-btn>Donate now</button>
                     </div>
                 </form>
             </div>
@@ -145,9 +144,7 @@ foreach ($amount as $key => $item) {
                     </div>
                     <div class="pt-3"></div>
                     <div class="text-center">
-                        <button class="btn @isset($isColorInfo) btn-info @else btn-danger @endisset border-white btn-submit w-100"
-                        donate-btn
-                        >Donate</button>
+                        <button class="btn @isset($isColorInfo) btn-info @else btn-danger @endisset border-white btn-submit w-100" donate-btn>Donate now</button>
                     </div>
                 </form>
             </div>
@@ -190,9 +187,7 @@ foreach ($amount as $key => $item) {
                     </div>
                     <div class="pt-3"></div>
                     <div class="text-center">
-                        <button class="btn btn-danger border-white btn-submit w-100"
-                        donate-btn
-                        >Donate</button>
+                        <button class="btn btn-danger border-white btn-submit w-100" donate-btn>Donate now</button>
                     </div>
                 </form>
             </div>

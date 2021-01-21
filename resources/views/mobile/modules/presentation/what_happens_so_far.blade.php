@@ -52,7 +52,7 @@
 @endphp
 
 <section class="whats-happened-far">
-    <p style="padding-left: 30px;" class="font-size-12 mb-4"><b>ISLAMIC HELP'S RESULTS</b></p>
+    <p style="padding-left: 30px;" class="font-size-12 mb-4 pb-2"><b>ISLAMIC HELP'S RESULTS</b></p>
     <div class="black-line"></div>
     <div class="body">
         @empty($moduleTitle)

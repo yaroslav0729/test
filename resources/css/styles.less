@@ -1389,10 +1389,16 @@ input[type='number'].color-danger  + .input-group {
     white-space: nowrap;
     position: relative;
     z-index: 2;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
     & > div {
         display: inline-block;
         position: relative;
         padding: 0 35px;
+        flex: 1 1 auto;
         span {
             text-align: center;
             display: block;
@@ -2615,7 +2621,15 @@ input[type='number'].color-danger  + .input-group {
                             text-align: center;
                             width: 140px;
                             flex: 0 0 140px;
-                            border-right: 4px dashed #fff;
+                            position: relative;
+                            &:after {
+                                content: "";
+                                display: block;
+                                width: 4px;
+                                position: absolute;
+                                top: 0; right: 0; bottom: 0;
+                                background: url(../img/border-v.png) repeat-y 0 0;
+                            }
                             span {
                                 display: block;
                                 font-size: 15px;
@@ -2642,6 +2656,7 @@ input[type='number'].color-danger  + .input-group {
                     &:checked + span {
                         background: #101525;
                         color: #fff;
+                        & > span:first-child:after {opacity: .2}
                     }
                 }
                 &.active-color-red {
@@ -2760,7 +2775,7 @@ input[type='number'].color-danger  + .input-group {
           div {
             position: relative;
             font-size: 50px;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 74px;
             margin-bottom: 20px;
             padding-bottom: 16px;
@@ -3510,7 +3525,6 @@ input[type='number'].color-danger  + .input-group {
                     padding: 40px 10px;
                     width: 100%;
                     & > div {
-                        padding: 0 10%;
                         span {
                             &:nth-child(1) {
                                 font-size: 40px;

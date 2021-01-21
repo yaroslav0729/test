@@ -792,10 +792,10 @@
   margin-bottom: 30px;
 }
 .mobile-template .donate-today .title .moon-icons-arrow-down {
-  font-size: 37px;
+  font-size: 43px;
   left: auto;
-  top: 22px;
-  right: 0;
+  top: 38px;
+  right: 20px;
 }
 .mobile-template .donate-today .body {
   box-shadow: none;
@@ -833,8 +833,11 @@
   flex: 0 0 85px;
   border: 0;
 }
+.mobile-template .donate-today .body .donate-today-sheet .item > span > span:first-child object {
+  letter-spacing: -3px !important;
+}
 .mobile-template .donate-today .body .donate-today-sheet .item > span > span:first-child span:first-child {
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 500;
   line-height: 1;
 }
@@ -1138,23 +1141,33 @@
   right: 0;
   transform: translateX(-20px);
 }
+.mobile-template .donate-today-card .list .item {
+  max-width: 280px;
+  margin: 0 auto;
+}
+.mobile-template .donate-today-card .donate-today-card-swiper .swiper-container {
+  padding-bottom: 35px;
+}
 .mobile-template .donate-today-card .swiper-pagination {
-  position: relative;
-  text-align: center;
+  padding-bottom: 0;
   bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 25px;
 }
 .mobile-template .donate-today-card .swiper-pagination .swiper-pagination-bullet {
-  background: #DAE7F9;
-  border-radius: 0;
+  flex: 1 1 auto;
   height: 4px;
-  width: 70px;
-  min-width: 10px;
-  margin-right: 10px;
+  width: 40px;
+  max-width: 90px;
+  background-color: #DAE7F9;
+  border-radius: 0;
+  margin: 0 10px;
   opacity: 1;
 }
 .mobile-template .donate-today-card .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background: #101525;
+  background-color: #101525;
 }
 .mobile-template .join-cause {
   padding: 60px 30px;

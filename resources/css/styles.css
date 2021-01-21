@@ -1680,11 +1680,15 @@ input[type='number'].color-danger + .input-group .btn {
   white-space: nowrap;
   position: relative;
   z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 .help-info > div {
   display: inline-block;
   position: relative;
   padding: 0 35px;
+  flex: 1 1 auto;
 }
 .help-info > div span {
   text-align: center;
@@ -3121,7 +3125,17 @@ input[type='number'].color-danger + .input-group .btn {
   text-align: center;
   width: 140px;
   flex: 0 0 140px;
-  border-right: 4px dashed #fff;
+  position: relative;
+}
+.donate-today .body .donate-today-sheet .item > span > span:first-child:after {
+  content: "";
+  display: block;
+  width: 4px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: url(../img/border-v.png) repeat-y 0 0;
 }
 .donate-today .body .donate-today-sheet .item > span > span:first-child span {
   display: block;
@@ -3151,6 +3165,9 @@ input[type='number'].color-danger + .input-group .btn {
 .donate-today .body .donate-today-sheet .item input:checked + span {
   background: #101525;
   color: #fff;
+}
+.donate-today .body .donate-today-sheet .item input:checked + span > span:first-child:after {
+  opacity: 0.2;
 }
 .donate-today .body .donate-today-sheet .item.active-color-red input:checked + span {
   background: #F7796A;
@@ -3260,7 +3277,7 @@ input[type='number'].color-danger + .input-group .btn {
 .donate-today-card .list .item div {
   position: relative;
   font-size: 50px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 74px;
   margin-bottom: 20px;
   padding-bottom: 16px;
@@ -4061,9 +4078,6 @@ input[type='number'].color-danger + .input-group .btn {
 .whats-happened-far .body .text .info .help-info {
   padding: 40px 10px;
   width: 100%;
-}
-.whats-happened-far .body .text .info .help-info > div {
-  padding: 0 10%;
 }
 .whats-happened-far .body .text .info .help-info > div span:nth-child(1) {
   font-size: 40px;

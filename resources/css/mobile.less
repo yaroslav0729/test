@@ -782,9 +782,10 @@ footer {
 	  text-align: center;
 	  margin-bottom: 30px;
 	  .moon-icons-arrow-down {
-		font-size: 37px;
-		left: auto; top: 22px;
-		right: 0;
+		font-size: 43px;
+		left: auto;
+		top: 38px;
+		right: 20px;
 	  }
 	}
 	.body {
@@ -816,9 +817,10 @@ footer {
 				width: 85px;
 				flex: 0 0 85px;
 				border: 0;
+				object {letter-spacing: -3px !important}
 				span {
 				  &:first-child {
-					font-size: 16px;
+					font-size: 19px;
 					font-weight: 500;
 					line-height: 1;
 				  }
@@ -1106,20 +1108,29 @@ footer {
 		}
 	  }
 	}
+	.list .item {
+	  max-width: 280px;
+	  margin: 0 auto;
+	}
+	.donate-today-card-swiper .swiper-container {padding-bottom: 35px;}
+
 	.swiper-pagination {
-	  position: relative;
-	  text-align: center;
+	  padding-bottom: 0;
 	  bottom: 0;
+	  display: flex;
+	  flex-wrap: wrap;
+	  justify-content: center;
 	  margin-top: 25px;
 	  .swiper-pagination-bullet {
-		background: #DAE7F9;
-		border-radius: 0;
+		flex: 1 1 auto;
 		height: 4px;
-		width: 70px;
-		min-width: 10px;
-		margin-right: 10px;
+		width: 40px;
+		max-width: 90px;
+		background-color: #DAE7F9;
+		border-radius: 0;
+		margin: 0 10px;
 		opacity: 1;
-		&.swiper-pagination-bullet-active {background: #101525}
+		&.swiper-pagination-bullet-active {background-color: #101525;}
 	  }
 	}
   }
