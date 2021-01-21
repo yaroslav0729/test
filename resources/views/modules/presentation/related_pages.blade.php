@@ -10,7 +10,7 @@
 
 <div class="current-projects-list">
     <div class="wrap">
-        <div class="row">
+        <div class="row gutter-5">
             @foreach ($relatedPages as $page)
                 <div class="col-4">
                     <a href="{{ $page->slug }}" class="item">

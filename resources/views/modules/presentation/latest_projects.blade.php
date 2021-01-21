@@ -4,7 +4,7 @@
 
 <section class="current-projects-list down-dark-line">
     <div class="wrap">
-        <div class="row">
+        <div class="row gutter-5">
             @foreach($latestProjects as $page)
                 @php
                     $project = $page->actual_page_instance;
