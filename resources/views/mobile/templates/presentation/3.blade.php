@@ -251,8 +251,8 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                 <span>Volunteers this year</span>
             </div>
         </div>
+        <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
-        <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
     </div>
 </div>
 

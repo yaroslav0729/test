@@ -10043,7 +10043,7 @@ header .top-bar .basket {
 }
 header .top-bar .phone i {
   display: inline-block;
-  background: url(/images/ico-Phone.svg?c0838b9ddef6625586d506c7468e99e2) no-repeat;
+  background: url(/images/ico-Phone.svg?7d7f841f10b6a7c9b84c82dae0f19806) no-repeat;
   background-size: contain;
   width: 25px;
   height: 25px;
@@ -10849,7 +10849,7 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   max-width: 250px;
   padding: 8px;
   text-align: center;
-  transition: 0.2s;
+  transition: .2s;
   cursor: pointer;
 }
 .btn-fb:hover {
@@ -10896,10 +10896,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   background-color: #3A7BF5 !important;
 }
 .text-info {
-  color: #2caabb !important;
+  color: #2caabb  !important;
 }
 .text-dark {
-  color: #101525 !important;
+  color: #101525  !important;
 }
 .text-red {
   color: #FF5D4A !important;
@@ -12907,7 +12907,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .donate-today .title .moon-icons-arrow-down {
   color: #101525;
-  font-size: 50px;
+  font-size: 60px;
   position: absolute;
   left: 20px;
   top: 30px;
@@ -12979,6 +12979,9 @@ input[type='number'].color-danger + .input-group .btn {
 .donate-today .body .donate-today-sheet .item > span > span:first-child span:first-child {
   font-size: 40px;
   line-height: 59px;
+}
+.donate-today .body .donate-today-sheet .item > span > span:first-child span:first-child object {
+  letter-spacing: -7px;
 }
 .donate-today .body .donate-today-sheet .item > span > span:last-child {
   font-size: 15px;
@@ -13052,9 +13055,6 @@ input[type='number'].color-danger + .input-group .btn {
 .donate-today .body .nav-tabs .nav-link.color-info.active:after {
   background: #2CAABB;
 }
-.donate-today .body .tab-content {
-  padding: 0 40px;
-}
 .donate-today-card {
   padding-bottom: 93px;
   padding-top: 150px;
@@ -13065,7 +13065,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .donate-today-card .title {
   text-align: center;
-  margin-bottom: 71px;
+  margin-bottom: 91px;
 }
 .donate-today-card .title span {
   display: inline-block;
@@ -13092,7 +13092,8 @@ input[type='number'].color-danger + .input-group .btn {
   text-align: center;
 }
 .donate-today-card .list .item {
-  min-width: 220px;
+  width: 100%;
+  max-width: 220px;
   font-size: 15px;
   font-weight: 900;
   line-height: 24px;
@@ -13373,7 +13374,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: 0.5;
+  opacity: .5;
 }
 .about-donation .body .item span {
   display: inline-block;
@@ -13584,7 +13585,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: 0.5;
+  opacity: .5;
 }
 .order-cart-list .total {
   background: #FFF6F3;
@@ -13861,7 +13862,7 @@ input[type='number'].color-danger + .input-group .btn {
   overflow: hidden;
 }
 .whats-happened-far .black-line {
-  margin-right: 180px;
+  margin-right: 270px;
 }
 .whats-happened-far .body .tl {
   font-size: 30px;
