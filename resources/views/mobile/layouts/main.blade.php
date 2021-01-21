@@ -13,7 +13,7 @@
  {{--   @yield('header')--}}
 
 @php
-    $cartSum = \App\Models\CartItem::getCartSum(); 
+    $cartSum = \App\Models\CartItem::getCartSum();
 @endphp
 
     <header>
@@ -48,8 +48,8 @@
                         <li>
                             <a
                                 @if ($menuItem->is_group)
-                                    href="#" 
-                                    class="open-submenu" 
+                                    href="#"
+                                    class="open-submenu"
                                     data-target="{{ $menuItem->id }}"
                                 @else
                                     href="{{ $menuItem->link }}"
@@ -85,10 +85,10 @@
                     @if ($menuGroupItem['max_depth'] >= 2)
                         <div class="projects-group-swiper">
                             @foreach ($menuGroupItem['items'] as $menuItem)
-                                <a 
+                                <a
                                     @if ($menuItem->is_group)
-                                        href="#" 
-                                        class="item open-submenu" 
+                                        href="#"
+                                        class="item open-submenu"
                                         data-target="{{ $menuItem->id }}"
                                     @else
                                         href="{{ $menuItem->link }}"
@@ -161,6 +161,7 @@
     @yield('content')
     @include('templates.presentation.parts.add_to_cart_popup')
     @include('templates.presentation.parts.at_least_5_popup')
+    @include('cookieConsent::index')
     @include('parts.footer')
 </div><!--wrapper-->
 </body>

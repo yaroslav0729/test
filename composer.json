@@ -24,6 +24,7 @@
         "livewire/livewire": "^2.0",
         "paypal/paypal-checkout-sdk": "1.0.1",
         "spatie/eloquent-sortable": "^3.10",
+        "spatie/laravel-cookie-consent": "^2.12",
         "spatie/laravel-permission": "^3.17",
         "voku/simple_html_dom": "^4.7"
     },
