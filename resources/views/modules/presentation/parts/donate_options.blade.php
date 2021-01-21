@@ -21,7 +21,7 @@
                     <span>
                         <span>
                             <object class="currency_sign">£</object>
-                            <b>@isset($item['value']) {{ $item['value'] }} @endisset</b>
+                            <b>@isset($item['value']){{$item['value']}}@endisset</b>
                         </span>
                     @if($donateOptionsType === \App\Models\CampaignPrice::TYPE_SINGLE)
                         <span>JUST ONCE</span>

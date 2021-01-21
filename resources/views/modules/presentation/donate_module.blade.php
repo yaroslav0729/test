@@ -113,7 +113,7 @@ if (!isset($useAppeal)) {
 
                             <div class="pt-3"></div>
                             <div class="row gutter-5">
-                                <div class="col-6">
+                                <div class="col-5">
                                     <div class="form-group">
                                         <select class="form-control" name="categories">
                                             {{-- will be replaced by js --}}
@@ -128,7 +128,7 @@ if (!isset($useAppeal)) {
                                         <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                                     </div>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-3">
                                     <div class="form-group">
                                         @include('modules.presentation.parts.currency_selector')
                                     </div>
@@ -156,7 +156,7 @@ if (!isset($useAppeal)) {
 
                             <div class="pt-3"></div>
                             <div class="row gutter-5">
-                                <div class="col-6">
+                                <div class="col-5">
                                     <div class="form-group">
                                         <select class="form-control" name="categories">
                                             {{-- will be replaced by js --}}
@@ -171,7 +171,7 @@ if (!isset($useAppeal)) {
                                         <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                                     </div>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-3">
                                     <div class="form-group">
                                         @include('modules.presentation.parts.currency_selector')
                                     </div>
@@ -214,7 +214,7 @@ if (!isset($useAppeal)) {
 
                             <div class="pt-3"></div>
                             <div class="row gutter-5">
-                                <div class="col-6">
+                                <div class="col-5">
                                     <div class="form-group">
                                         <select class="form-control" name="categories">
                                             {{-- will be replaced by js --}}
@@ -229,7 +229,7 @@ if (!isset($useAppeal)) {
                                         <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                                     </div>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-3">
                                     <div class="form-group">
                                         @include('modules.presentation.parts.currency_selector')
                                     </div>

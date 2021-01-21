@@ -61,4 +61,6 @@
 
 @include('modules.presentation.important_information')
 
+<div class="pt-5"></div>
+
 @include('modules.presentation.related_pages')
