@@ -183,6 +183,15 @@ $(function () {
         $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
     });
 
+    $(document).on('click', '[quick-donation] .btn-period', function (e) {
+        $('[quick-donation] .btn-period').removeClass('active');
+        $(this).addClass('active');
+        var period = $(this).data('period')
+        var form = $(this).closest('form');
+
+        form.find('select[name="period"]').val(period);
+    });
+
     $(document).on('click', '[tiles-popup] .btn_sbmt', function (e) {
         e.preventDefault()
 

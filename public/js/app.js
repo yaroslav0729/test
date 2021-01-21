@@ -568,9 +568,7 @@ axios.all = function all(promises) {
   return Promise.all(promises);
 };
 
-axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js"); // Expose isAxiosError
-
-axios.isAxiosError = __webpack_require__(/*! ./helpers/isAxiosError */ "./node_modules/axios/lib/helpers/isAxiosError.js");
+axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
 module.exports = axios; // Allow use of default import syntax in TypeScript
 
 module.exports["default"] = axios;
@@ -1503,30 +1501,6 @@ module.exports = function isAbsoluteURL(url) {
   // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
   // by any combination of letters, digits, plus, period, or hyphen.
   return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
-};
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/isAxiosError.js":
-/*!********************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/isAxiosError.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Determines whether the payload is an error thrown by Axios
- *
- * @param {*} payload The value to test
- * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false
- */
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-module.exports = function isAxiosError(payload) {
-  return _typeof(payload) === 'object' && payload.isAxiosError === true;
 };
 
 /***/ }),
@@ -104170,6 +104144,13 @@ $(function () {
 
     $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
   });
+  $(document).on('click', '[quick-donation] .btn-period', function (e) {
+    $('[quick-donation] .btn-period').removeClass('active');
+    $(this).addClass('active');
+    var period = $(this).data('period');
+    var form = $(this).closest('form');
+    form.find('select[name="period"]').val(period);
+  });
   $(document).on('click', '[tiles-popup] .btn_sbmt', function (e) {
     e.preventDefault();
     var form = $(this).closest('form');
@@ -104527,12 +104508,12 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app_admin.css */"./resources/css/app_admin.css");
-__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
-module.exports = __webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/mobile.css */"./resources/css/mobile.css");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app_admin.css */"./resources/css/app_admin.css");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/mobile.css */"./resources/css/mobile.css");
 
 
 /***/ })
