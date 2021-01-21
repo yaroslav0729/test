@@ -30,6 +30,6 @@
     {{-- footer --}}
     @stack('styles')
     @stack('scripts')
-    <script src="{{ asset("js/app.js") }}"></script>
+    <script src="{{ asset("js/widgets/media-manager.js") }}"></script>
 </body>
 </html>

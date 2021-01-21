@@ -20,10 +20,6 @@ SwiperCore.use([Navigation, Pagination]);
 
 import { initWysiwyg } from './admin_parts/init_tiny-mce';
 
-window.Vue = require('vue')
-
-require('../assets/vendor/MediaManager/js/manager')
-
 require('./parts/project_tiles.js')
 require('./parts/donate_module.js')
 require('./parts/cart.js')
@@ -32,10 +28,6 @@ require('./functions.js')
 var MODAL_FORM_LOCK = false
 
 $(function () {
-
-    new Vue({
-        el: '#app'
-    })
 
     $(document).on('submit', '[modal-form]', function (event) {
         event.preventDefault();

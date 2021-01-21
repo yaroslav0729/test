@@ -53,6 +53,8 @@ mix.js('resources/js/app.js', 'public/js')
 
     .version();
 
+mix.js('resources/js/admin_parts/media-manager.js', 'public/js/widgets');
+
 // MediaManager
 mix.sass('resources/assets/vendor/MediaManager/sass/manager.scss', 'public/assets/vendor/MediaManager/style.css')
     .copyDirectory('resources/assets/vendor/MediaManager/dist', 'public/assets/vendor/MediaManager')

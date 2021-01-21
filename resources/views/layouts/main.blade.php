@@ -18,6 +18,7 @@
             @endif
 
             @yield('content')
+            @include('cookieConsent::index')
             @include('parts.footer')
         </div>
         @include('templates.presentation.parts.add_to_cart_popup')
