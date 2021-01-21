@@ -41,7 +41,7 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Password <sup>*</sup></label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="********">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="********">
 
                                 {{-- @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -85,7 +85,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="form-group">
                                     <label>Forgot password? <sup>*</sup></label>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="example@islamichelp.org.uk">
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="example@islamichelp.org.uk">
                                     
                                     {{-- @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -172,7 +172,7 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Email address <sup>*</sup></label>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="example@islamichelp.org.uk">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="example@islamichelp.org.uk">
                             
                                 {{-- @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -187,7 +187,7 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Password <sup>*</sup></label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="********">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="********">
                                 
                                 {{-- @error('password')
                                     <span class="invalid-feedback" role="alert">
