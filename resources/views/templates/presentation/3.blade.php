@@ -291,7 +291,7 @@
         </div>
         <div>
             <div class="row gutter-5">
-                <div class="col-12 col-lg-12 col-xl-6">
+                <div class="col-12 col-md-6 col-xl-6">
                     <div class="item vertical">
                         <a class="img" href="#">
                             <span style="background-image: url(img/content/whats-new-1.jpg)"></span>
@@ -305,7 +305,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-12 col-xl-6">
+                <div class="col-12 col-md-6 col-xl-6">
                     <div class="item">
                         <a class="img" href="#">
                         <span style="background-image: url(img/content/whats-new-2.jpg)">

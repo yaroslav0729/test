@@ -232,10 +232,10 @@ $ourValuesActiveLink = false;
                                 </div>
                                 <div class="box">
                                     <div class="row title">
-                                        <div class="col-6"><span
+                                        <div class="col-4"><span
                                                 class="d-inline-block pl-5">{{ ${'storyYear' . $i} }}</span>
                                         </div>
-                                        <div class="col-6 text-right"><span>OUR STORY</span></div>
+                                        <div class="col-8 text-right"><span>OUR STORY</span></div>
                                     </div>
                                     <div class="black-line"></div>
                                     <p class="pl-5 pr-5">{!! ${'storyText' . $i} !!}</p>

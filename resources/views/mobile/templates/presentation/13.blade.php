@@ -89,4 +89,6 @@
 
 <div class="pt-4 pb-3"></div>
 
-@include('modules.presentation.related_pages')
+<section>
+    @include('modules.presentation.related_pages')
+</section>

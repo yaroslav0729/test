@@ -90,7 +90,7 @@
     </div>
 </section>
 
-<section class="join-cause pt-0 pb-0 mt-3 join-cause-hidden d-none">
+<section class="join-cause pb-0 mt-3 join-cause-hidden d-none">
     <div class="wrap">
         <div class="row align-items-center">
             <div class="col-12 col-xl-6 pr-5">

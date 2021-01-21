@@ -63,4 +63,6 @@
 
 <div class="pt-5"></div>
 
-@include('modules.presentation.related_pages')
+<section>
+    @include('modules.presentation.related_pages')
+</section>
