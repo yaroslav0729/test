@@ -157,6 +157,8 @@ class CartController extends Controller
 
             $order->save();
         } else {
+            $sum = $sum * 100 ;
+
             $payment = new GlobalPay($sum, 'GBP', [
                 'email' => $request->get('email'),
                 'first_name' => $request->get('first_name'),

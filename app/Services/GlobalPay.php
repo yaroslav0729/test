@@ -36,6 +36,7 @@ class GlobalPay
             "ORDER_ID" => $this->orderId,
             "AMOUNT" => $this->amount,
             "CURRENCY" => $this->currency,
+            "AUTO_SETTLE_FLAG" => "1",
             "HPP_VERSION" => "2",
             "HPP_LANG" => "en",
             "HPP_CUSTOMER_EMAIL" => $this->data['email'],
