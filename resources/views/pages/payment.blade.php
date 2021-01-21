@@ -135,7 +135,7 @@
             <div class="pt-5"></div>
 
             <div class="gift-aid-sheet">
-                <div class="mb-4"><img src="img/Gift-aid-logo-white.png" alt="" class="img-fluid"></div>
+                <div class="mb-4"><img src="/img/Gift-aid-logo-white.png" alt="" class="img-fluid"></div>
                 <div class="pl-4 pr-4 mb-4">
                     <p class="font-size-20 text-white"><b>Make your donation go 25% further, for free!</b></p>
                     <p class="font-size-16 text-white">If you are a UK taxpayer, the value of your gift can be increased by 25% under the Gift Aid scheme at no extra cost to you. For example with Gift Aid, for every £1 you donate we'll receive £1.25, and it doesn't cost you a penny.</p>
@@ -244,7 +244,7 @@
                                 <div class="form-group">
                                     <label class="row gutter-0 d-flex">
                                         <b class="col-6 d-block">CARD NUMBER</b>
-                                        <span class="col-6 text-right d-block"><img src="img/payment-global.png" alt=""></span>
+                                        <span class="col-6 text-right d-block"><img src="/img/payment-global.png" alt=""></span>
                                     </label>
                                     <input type="text" class="form-control">
                                 </div>

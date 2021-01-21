@@ -17,6 +17,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\GlobalPayController;
+use App\Http\Controllers\Controller;
 use App\Models\MenuItem;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -125,6 +127,11 @@ Route::prefix('cart')->group(function () {
 Route::prefix('paypal')->group(function () {
     Route::get('/payment_success', [PaymentController::class, 'paypalPaymentSuccess'])->name('paypal.payment.success');
     Route::get('/payment_cancel', [PaymentController::class, 'paypalPaymentCancel'])->name('paypal.payment.cancel');
+});
+
+Route::prefix('globalpay')->group(function () {
+    Route::get('/get_pay_link', [GlobalPayController::class, 'getPayLink'])->name('globalpay.get_pay_link');
+    Route::match(['get', 'post'], '/payment_result', [GlobalPayController::class, 'result'])->name('globalpay.result');
 });
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');

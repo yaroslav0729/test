@@ -9,6 +9,7 @@ use App\Models\CampaignPrice;
 use App\Models\Donation;
 use App\Models\Order;
 use App\Models\Currency;
+use App\Services\GlobalPay;
 use App\Services\Paypal;
 
 class CartController extends Controller
@@ -155,6 +156,30 @@ class CartController extends Controller
             $payLink = $response->result->links[1]->href;
 
             $order->save();
+        } else {
+            $payment = new GlobalPay($sum, 'GBP', [
+                'email' => $request->get('email'),
+                'first_name' => $request->get('first_name'),
+                'last_name' => $request->get('last_name'),
+                'post_code' => $request->get('post_code'),
+                'phone' => $request->get('phone'),
+                'address_1' => $request->get('address_1'),
+                'address_2' => $request->get('address_2'),
+                'city' => $request->get('city'),
+                'notes' => $request->get('notes'),
+                'country' => $request->get('country'),
+            ]);
+            $order->order_id = $payment->orderId;
+
+            $responce = $payment->getPayLink();
+
+            if (isset($responce['hppPayByLink'])) {
+                $payLink = $responce['hppPayByLink'];    
+            } else {
+                dd($responce);
+            }
+
+            $order->save();    
         }
 
         if (empty($payLink)) {
