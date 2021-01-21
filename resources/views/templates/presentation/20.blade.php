@@ -320,7 +320,7 @@ $categoryNameFitZakat = \App\Models\CampaignCategory::find(Setting::get(Setting:
                     </div>
                     <div class="col-6 text-right">
                         <div class="toggle-title">
-                            <div>{{ $dropdownWhatDoINeedTitle }} <i class="far fa-chevron-down"></i></div>
+                            <div class="text-uppercase">{{ $dropdownWhatDoINeedTitle }} <i class="far fa-chevron-down"></i></div>
                             <div><i class="fal fa-times"></i></div>
                         </div>
                     </div>
@@ -328,7 +328,7 @@ $categoryNameFitZakat = \App\Models\CampaignCategory::find(Setting::get(Setting:
             </div>
             <div class="bottom">
                 <div class="line"></div>
-                <div class="font-size-16"><b>{{ $dropdownWhatDoINeedTitle }}</b></div>
+                <div class="font-size-16 text-uppercase"><b>{{ $dropdownWhatDoINeedTitle }}</b></div>
                 <div class="pt-5"></div>
                 <div>
                     <p>{!! $dropdownWhatDoINeedText !!}</p>

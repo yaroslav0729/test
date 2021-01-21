@@ -59,8 +59,6 @@ $(function () {
                 stub.removeAttr('disabled');
                 MODAL_FORM_LOCK = false;
 
-                //console.log(response)
-
                 if ('content' in response) {
                     let element = $('#response-content');
                     element.html(response.content);

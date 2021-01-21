@@ -122,7 +122,7 @@ $(function () {
         }
 
         $('#add_to_cart_popup .amount').text(convertMonetary(amount));
-        $('#add_to_cart_popup .period').text('Zakat');
+        $('#add_to_cart_popup .period').text('Single');
 
         $.ajax({
             url     : '/cart/add',
