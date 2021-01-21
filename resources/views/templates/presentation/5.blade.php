@@ -35,14 +35,14 @@
     <div class="wrap">
         <div class="title">
             <div class="row align-items-center">
-                <div class="col-6">
+                <div class="col-8 col-md-8 col-xl-6">
                     @empty($mainTitle)
                         <p class="font-size-60"><b>Donate today</b></p>
                     @else
                         <p class="font-size-60"><b>{{ $mainTitle }}</b></p>
                     @endempty
                 </div>
-                <div class="col-6 text-right">
+                <div class="col-4 col-md-4 col-xl-6 text-right">
                     <a href="{{ \App\Models\Page::getSinglePageUrl(\App\Models\Template::CALCULATOR_PAGE) }}" class="text-underline text-uppercase text-dark"><b>calculate my zakat</b></a>
                 </div>
             </div>
@@ -70,7 +70,7 @@
     <div class="title">
         <div class="wrap">
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-xl-6">
                     @empty($donateToProjTitle)
                         <p class="font-size-30"><b>Donate to a project too?</b></p>
                     @else

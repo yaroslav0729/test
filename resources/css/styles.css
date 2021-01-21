@@ -31,6 +31,12 @@ section {
   padding-left: 180px;
   padding-right: 180px;
 }
+@media screen and (min-width: 1023px) and (max-width: 1300px) {
+  section {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+  }
+}
 .no-brd {
   border: none !important;
 }
@@ -183,6 +189,12 @@ footer.style-3 .menu > li > a {
 footer.style-2 .menu > li .sub-menu li a,
 footer.style-3 .menu > li .sub-menu li a {
   color: #101525;
+}
+@media screen and (min-width: 1023px) and (max-width: 1300px) {
+  footer {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+  }
 }
 .wrapper.header-fixed {
   padding-top: 195px;
@@ -470,6 +482,14 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link {
 }
 header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   color: #101525;
+}
+@media screen and (max-width: 1300px) {
+  header .top-bar {
+    padding: 30px 20px 33px 20px;
+  }
+  header .down-bar {
+    padding: 18px 84px;
+  }
 }
 .header-menu {
   display: block;
@@ -772,6 +792,12 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 .header-menu .projects-group-swiper .item:hover {
   background: #101525;
   color: #fff;
+}
+@media screen and (min-width: 1023px) and (max-width: 1300px) {
+  .header-menu {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+  }
 }
 .black-line,
 .red-line {
@@ -1614,6 +1640,12 @@ input[type='number'].color-danger + .input-group .btn {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+@media screen and (max-width: 1300px) {
+  .quick-donation {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+}
 .img-video {
   background-size: cover;
   background-repeat: no-repeat;
@@ -1675,6 +1707,11 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .who-we-are .text {
   padding: 17px 40px 0;
+}
+@media screen and (max-width: 1300px) {
+  .who-we-are {
+    margin-right: 0;
+  }
 }
 .help-info {
   border-radius: 5px;
@@ -2177,6 +2214,11 @@ input[type='number'].color-danger + .input-group .btn {
 .current-projects .box-1 .view-more:hover {
   background: #F7796A;
 }
+@media screen and (max-width: 1300px) {
+  .current-projects .wrap {
+    padding: 0 20px 0 40px;
+  }
+}
 .current-projects-list,
 .popular-topic-list {
   margin-bottom: 145px;
@@ -2306,7 +2348,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .widget-about-project {
   margin-bottom: 128px;
-  padding: 0;
+  padding: 0 !important;
 }
 .widget-about-project .view-more {
   display: block;
@@ -2631,6 +2673,11 @@ input[type='number'].color-danger + .input-group .btn {
   border-radius: 5px;
   position: relative;
   top: 47px;
+}
+@media screen and (min-width: 1023px) and (max-width: 1300px) {
+  .join-cause-2 .wrap {
+    padding: 0 30px;
+  }
 }
 .share-box {
   position: absolute;
@@ -3034,6 +3081,18 @@ input[type='number'].color-danger + .input-group .btn {
   border-radius: 0;
   color: #231F51;
 }
+@media screen and (min-width: 1023px) and (max-width: 1300px) {
+  .mission-impossible {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .mission-impossible .title {
+    margin: 0 30px;
+  }
+  .mission-impossible .text {
+    padding-left: 30px;
+  }
+}
 .donate-today {
   padding: 0 78px 127px;
   position: relative;
@@ -3230,6 +3289,11 @@ input[type='number'].color-danger + .input-group .btn {
 .donate-today .body .nav-tabs .nav-link.color-info.active:after {
   background: #2CAABB;
 }
+@media screen and (max-width: 1300px) {
+  .donate-today .title {
+    padding: 0;
+  }
+}
 .donate-today-card {
   padding-bottom: 93px;
   padding-top: 150px;
@@ -3316,6 +3380,12 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .donate-today-card.emergency .list .item {
   background: #FFF2ED;
+}
+@media screen and (min-width: 1023px) and (max-width: 1300px) {
+  .donate-today-card .title span:before {
+    left: -100px;
+    transform: translateX(0);
+  }
 }
 .donate-projects-list {
   background: #f7faff;
@@ -4108,6 +4178,12 @@ input[type='number'].color-danger + .input-group .btn {
   background-repeat: no-repeat;
   background-position: 50% 0%;
 }
+@media screen and (max-width: 1300px) {
+  .whats-happened-far {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
 .general-content-tabs {
   margin-bottom: 49px;
 }
@@ -4494,7 +4570,7 @@ input[type='number'].color-danger + .input-group .btn {
   line-height: 44px;
 }
 .events-home-swiper {
-  padding: 0 80px;
+  padding: 20px 80px 0;
   position: relative;
   margin-top: -10px;
 }
@@ -4510,7 +4586,7 @@ input[type='number'].color-danger + .input-group .btn {
 .events-home-swiper .swiper-container {
   padding-top: 30px;
 }
-.events-home-swiper .swiper-slide events-home-swiper .img {
+.events-home-swiper .swiper-slide .img {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -4604,6 +4680,18 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .events-home-swiper .swiper .swiper-button-prev {
   margin-left: -30px;
+}
+@media screen and (min-width: 1023px) and (max-width: 1300px) {
+  .events-home-swiper .title {
+    padding-left: 55px;
+  }
+  .events-home-swiper .swiper-slide .text > div {
+    padding: 34px 30px 120px;
+  }
+  .events-home-swiper .swiper-slide .text > div .tl {
+    font-size: 23px;
+    line-height: 1.5;
+  }
 }
 .events-home-search-form {
   padding: 0 80px;
@@ -4796,6 +4884,12 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .upcoming-events select.form-control {
   background-image: url(../img/arrow-down-yellow.svg) !important;
+}
+@media screen and (min-width: 1023px) and (max-width: 1300px) {
+  .upcoming-events .wrap {
+    padding-left: 0px !important;
+    padding-right: 10px !important;
+  }
 }
 .event-info-head {
   padding: 53px 180px 70px;
