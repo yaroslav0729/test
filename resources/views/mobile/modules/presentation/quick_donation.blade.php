@@ -55,11 +55,20 @@ $categories = \App\Models\CampaignCategory::all();
         </div>
         <div class="close"><i class="fal fa-times"></i></div>
         <div class="title">Quick Donation</div>
+
         <div class="form-group">
+            <button class="btn-period active" type="button" data-period="single">Single</button>
+            <button class="btn-period" type="button" data-period="monthly">Monthly</button>
+        </div>
+
+        <div class="form-group d-none">
             <select class="form-control" name="period">
                 <option value="single">Single donation</option>
                 <option value="monthly">Monthly donation</option>
             </select>
+        </div>
+        <div class="form-group" currency="£">
+            <input type="number" name="amount" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5" pattern="\d*" inputmode="numeric">
         </div>
         <div class="form-group">
             <select class="form-control" name="categories">
@@ -67,9 +76,6 @@ $categories = \App\Models\CampaignCategory::all();
                     <option value="{{ $category->name }}"> {{ $category->name }}</option>
                 @endforeach
             </select>
-        </div>
-        <div class="form-group" currency="£">
-            <input type="number" name="amount" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5" pattern="\d*" inputmode="numeric">
         </div>
         <br>
         <div>

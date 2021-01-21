@@ -15679,6 +15679,20 @@ a#clear_all_btn:hover {
 #proj_tiles_modal_popup .modal-header{
     background: #F97866;
 }
+.modal-quick-donation .btn-period {
+    width:calc(50% - 2px);
+    background: #fff;
+    border: 0px;
+    height: 52px;
+    line-height: 48px;
+    font-weight: 900;
+    font-size: 15px;
+    border-bottom:4px solid #E3EFFE;
+}
+.modal-quick-donation .btn-period.active{
+    background: #E3EFFE;
+    border-bottom:4px solid #101525;
+}
 .toast-title{font-weight:700}
 .toast-message{-ms-word-wrap:break-word;word-wrap:break-word}
 .toast-message a,.toast-message label{color:#FFF}
