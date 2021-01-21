@@ -103870,12 +103870,17 @@ $(function () {
     e.stopPropagation();
     $(this).prev().find('.descr').toggleClass('open');
   });
-  $(function () {
-    $('footer .menu > li > a').on('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      $(this).parent().toggleClass('open');
-    });
+  $('footer .menu > li > a').on('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).parent().toggleClass('open');
+  });
+  $(window).scroll(function () {
+    if ($(window).scrollTop() > 115) {
+      $('.wrapper').addClass('header-fixed');
+    } else {
+      $('.wrapper').removeClass('header-fixed');
+    }
   });
 }); //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
 
