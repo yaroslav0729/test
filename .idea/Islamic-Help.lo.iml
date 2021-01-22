@@ -13,6 +13,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/paypal/paypal-checkout-sdk" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paypal/paypalhttp" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/eloquent-sortable" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-cookie-consent" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/debug" />
     </content>
     <orderEntry type="inheritedJdk" />

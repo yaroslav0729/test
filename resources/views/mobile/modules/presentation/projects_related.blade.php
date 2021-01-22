@@ -39,7 +39,8 @@
                                         <div><a href="{{ url('/' . $projInstance->slug) }}"
                                                 class="font-size-14 text-uppercase text-info"><b>LEARN MORE</b></a>
                                         </div>
-                                        <div zakat-donate-btn class="add-zakat" data-id="{{ $projInstance->id}}">
+
+                                        <div zakat-donate-btn class="add" data-id="{{ $projInstance->id}}">
                                             <i class="moon-icons-plus"></i>
                                         </div>
                                     </div>

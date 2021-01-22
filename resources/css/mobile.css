@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: 0.2;
+  opacity: .2;
 }
 .other-way-give-mobile .phone {
   font-family: Lato;
@@ -398,6 +398,12 @@
   position: absolute;
   left: 0;
   bottom: 0;
+}
+.mobile-template footer.bg-info-yellow .toggle-menu {
+  color: #101525;
+}
+.mobile-template footer.bg-info-yellow .toggle-menu:after {
+  background: #101525;
 }
 .mobile-template .main-page-header {
   padding: 0;
