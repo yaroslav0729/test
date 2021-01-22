@@ -136,6 +136,8 @@ class EventsParser extends AbstractParser
             default:$typeParticipate = Event::EVENT_ONLINE;
         }
 
+        $parameters['event_title'] = $event->post_title;
+
         $eventsDate = $this->getOption($options, 'events_date');
         $eventsDate = $this->getDate($eventsDate);
         $parameters['event_start_date'] = $eventsDate;
