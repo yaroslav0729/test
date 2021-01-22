@@ -21,7 +21,7 @@
 @endphp
 
 @if($projects)
-    <section class="donate-projects-list ">
+    <section class="donate-projects-list d-none">
         <div class="title text-center">
             <p><b>{{ $donateToProjMobileTitle }}</b></p>
         </div>
