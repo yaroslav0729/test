@@ -399,6 +399,12 @@
   left: 0;
   bottom: 0;
 }
+.mobile-template footer.bg-info-yellow .toggle-menu {
+  color: #101525;
+}
+.mobile-template footer.bg-info-yellow .toggle-menu:after {
+  background: #101525;
+}
 .mobile-template .main-page-header {
   padding: 0;
 }

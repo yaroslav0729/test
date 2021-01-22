@@ -1,4 +1,4 @@
-<footer class="{{ $footerClass }}">
+<footer class="{{ $configTemplate['footerClassName'] }}">
     <div class="wrap">
         <div class="row">
             <div class="col-8">
@@ -30,9 +30,9 @@
         </div>
         <div class="copy text-right">
             IslamicHelp   2020 <span>|</span>
-            
+
             @foreach ($additionalFooterMenuItem as $menuItem)
-                <a href="{{ $menuItem->link }}">{{ $menuItem->text }}</a> <span>|</span> 
+                <a href="{{ $menuItem->link }}">{{ $menuItem->text }}</a> <span>|</span>
             @endforeach
             Registered Charity Number:  1160490 <span>|</span> Company Number:  0938212
         </div>

@@ -1,7 +1,7 @@
 @include('parts.header_menu')
 
 <header  class="only-menu">
-    <div class="down-bar bg-white">
+    <div class="down-bar {{ $configTemplate['headerClassName'] }}">
         <div class="wrap">
             <div class="row align-items-center">
                 <div class="col-8">

@@ -106,11 +106,16 @@ section {
 
 footer {
     padding: 62px 116px 68px 180px;
-    &.style-1 {background: #231F51}
+   /* &.style-1 {background: #231F51}*/
+    &.bg-primary {background: #231F51}
     &.style-2 {background: #E3EFFE}
     &.style-3 {background: #FED4C2}
-    &.style-4 {background: #2CAABB}
-    &.style-5 {
+   /* &.style-4 {background: #2CAABB}*/
+    &.bg-info {background: #2CAABB}
+    &.bg-primary-light {background: #e3effe}
+    &.bg-info-yellow {background: #fed5c2}
+
+    &.bg-info-red {
         background: #F7796A;
         .menu > li > a:hover {color: #000}
     }
@@ -206,7 +211,7 @@ footer {
             }
         }
     }
-    &.style-2, &.style-3 {
+    &.style-2, &.style-3, &.bg-primary-light, &.bg-info-yellow  {
         .social a {color: #101525;}
         .copy {
           opacity: 1;

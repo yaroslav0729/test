@@ -35,8 +35,9 @@ class PageController extends Controller
 
         $html = $pageInstance->renderTemplate()->render();
         $html = \App\Models\Widget::replaceMonikers($html);
+        $configTemplate = Template::getConfigureTemplate($pageInstance->template);
 
-        return view('page', compact('html'));
+        return view('page', compact('html', 'configTemplate'));
     }
 
     public function showFromSlug($slug, Request $request)
@@ -81,14 +82,8 @@ class PageController extends Controller
 
         $html = $pageInstance->renderTemplate()->render();
         $html = \App\Models\Widget::replaceMonikers($html);
+        $configTemplate = Template::getConfigureTemplate($pageInstance->template);
 
-        
-        $headerColorClass = 'blue';
-
-        if ($pageInstance->template === \App\Models\Template::MISSION_POSSIBLE)  {
-            $headerColorClass = 'white';
-        } 
-
-        return view('page', compact('html', 'headerColorClass'));
+        return view('page', compact('html', 'configTemplate'));
     }
 }

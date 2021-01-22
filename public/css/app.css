@@ -9851,8 +9851,10 @@ section {
 }
 footer {
   padding: 62px 116px 68px 180px;
+  /* &.style-1 {background: #231F51}*/
+  /* &.style-4 {background: #2CAABB}*/
 }
-footer.style-1 {
+footer.bg-primary {
   background: #231F51;
 }
 footer.style-2 {
@@ -9861,13 +9863,19 @@ footer.style-2 {
 footer.style-3 {
   background: #FED4C2;
 }
-footer.style-4 {
+footer.bg-info {
   background: #2CAABB;
 }
-footer.style-5 {
+footer.bg-primary-light {
+  background: #e3effe;
+}
+footer.bg-info-yellow {
+  background: #fed5c2;
+}
+footer.bg-info-red {
   background: #F7796A;
 }
-footer.style-5 .menu > li > a:hover {
+footer.bg-info-red .menu > li > a:hover {
   color: #000;
 }
 footer .social {
@@ -9968,28 +9976,40 @@ footer .menu > li .sub-menu li a {
   white-space: normal;
 }
 footer.style-2 .social a,
-footer.style-3 .social a {
+footer.style-3 .social a,
+footer.bg-primary-light .social a,
+footer.bg-info-yellow .social a {
   color: #101525;
 }
 footer.style-2 .copy,
-footer.style-3 .copy {
+footer.style-3 .copy,
+footer.bg-primary-light .copy,
+footer.bg-info-yellow .copy {
   opacity: 1;
   color: #101525;
 }
 footer.style-2 .copy a,
-footer.style-3 .copy a {
+footer.style-3 .copy a,
+footer.bg-primary-light .copy a,
+footer.bg-info-yellow .copy a {
   color: #101525;
 }
 footer.style-2 .menu > li:after,
-footer.style-3 .menu > li:after {
+footer.style-3 .menu > li:after,
+footer.bg-primary-light .menu > li:after,
+footer.bg-info-yellow .menu > li:after {
   background: #101525;
 }
 footer.style-2 .menu > li > a,
-footer.style-3 .menu > li > a {
+footer.style-3 .menu > li > a,
+footer.bg-primary-light .menu > li > a,
+footer.bg-info-yellow .menu > li > a {
   color: #101525;
 }
 footer.style-2 .menu > li .sub-menu li a,
-footer.style-3 .menu > li .sub-menu li a {
+footer.style-3 .menu > li .sub-menu li a,
+footer.bg-primary-light .menu > li .sub-menu li a,
+footer.bg-info-yellow .menu > li .sub-menu li a {
   color: #101525;
 }
 @media screen and (min-width: 1023px) and (max-width: 1300px) {

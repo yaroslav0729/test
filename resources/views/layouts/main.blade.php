@@ -19,7 +19,7 @@
 
             @yield('content')
             @include('cookieConsent::index')
-            @include('parts.footer')
+            @yield('footer')
         </div>
         @include('templates.presentation.parts.add_to_cart_popup')
         @include('templates.presentation.parts.at_least_5_popup')

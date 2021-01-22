@@ -17,7 +17,7 @@
 @endphp
 
     <header>
-        <div class="top-bar">
+        <div class="top-bar {{ $configTemplate['headerMobileClassName'] ?? $configTemplate['headerClassName'] }}">
             <div class="wrap">
                 <div class="row align-items-center">
                     <div class="col-6">

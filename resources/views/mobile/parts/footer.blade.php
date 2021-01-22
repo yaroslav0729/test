@@ -1,11 +1,11 @@
-<footer class="{{ $footerClass }}">
+<footer class="{{ $configTemplate['footerClassName'] }}">
     <div class="wrap">
         <div class="toggle-menu"><b>EXPAND NAVIGATION</b></div>
         <div style="display: none">
             <ul class="menu">
                 @foreach ($footerMenuItem as $menuItem)
                     <li>
-                        <a 
+                        <a
                             href="#"
                         >
                             {{ $menuItem->text }}

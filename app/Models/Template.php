@@ -66,6 +66,97 @@ class Template
         }
     }
 
+    const CONFIGURE_TEMPLATES = [
+        self::INDEX_PAGE => [
+            'headerClassName' => 'bg-primary-light',
+            'footerClassName' => 'bg-primary',
+            'headerType' => 'parts.header',
+        ],
+        self::CALCULATOR_PAGE => [
+            'headerClassName' => 'bg-white',
+            'footerClassName' => 'bg-primary-light',
+            'headerType' => 'parts.header_short',
+        ],
+        self::PROJECTS_PAGE => [
+            'headerClassName' => 'bg-white',
+            'footerClassName' => 'bg-primary-light',
+            'headerType' => 'parts.header_short',
+        ],
+        self::WHO_WE_ARE_PAGE => [
+            'headerClassName' => 'bg-white',
+            'footerClassName' => 'bg-primary',
+            'headerType' => 'parts.header_short',
+        ],
+        self::EVENT_PAGE => [
+            'headerClassName' => 'bg-white',
+            'headerMobileClassName' => 'bg-primary-light',
+            'footerClassName' => 'bg-primary',
+            'headerType' => 'parts.header_short',
+        ],
+        self::EVENTS_PAGE => [
+            'headerClassName' => 'bg-white',
+            'headerMobileClassName' => 'bg-primary-light',
+            'footerClassName' => 'bg-primary',
+            'headerType' => 'parts.header_short',
+        ],
+        self::CONTACT_PAGE => [
+            'headerClassName' => 'bg-white',
+            'footerClassName' => 'bg-primary',
+            'headerType' => 'parts.header_short',
+        ],
+
+        self::PROJECT_PAGE => [
+            'headerClassName' => 'bg-primary-light',
+            'footerClassName' => 'bg-info',
+            'headerType' => 'parts.header_short',
+        ],
+
+        self::MISSION_POSSIBLE => [
+            'headerClassName' => 'bg-white',
+            'footerClassName' => 'bg-info',
+            'headerType' => 'parts.header_short',
+        ],
+
+        self::VOLUNTEER_PAGE => [
+            'headerClassName' => 'bg-white',
+            'footerClassName' => 'bg-info-red',
+            'headerType' => 'parts.header_short',
+        ],
+
+        self::VOLUNTEER_START_PAGE => [
+            'headerClassName' => 'bg-white',
+            'footerClassName' => 'bg-info-red',
+            'headerType' => 'parts.header_short',
+        ],
+
+        self::NEWSROOM_PAGE => [
+            'headerClassName' => 'bg-primary-light',
+            'footerClassName' => 'bg-info',
+            'headerType' => 'parts.header_short',
+        ],
+
+        self::THANK_YOU_DONATE_PAGE => [
+            'headerClassName' => 'bg-white',
+            'footerClassName' => 'bg-info-yellow',
+            'headerType' => 'parts.header_short',
+        ],
+
+    ];
+
+
+    public static function getConfigureTemplate(int $type)
+    {
+        if (array_key_exists($type, self::CONFIGURE_TEMPLATES)) {
+            return self::CONFIGURE_TEMPLATES[$type];
+        }
+
+        return [
+            'headerClassName' => 'bg-primary-light',
+            'footerClassName' => 'bg-primary',
+            'headerType' => 'parts.header_short',
+        ];
+    }
+
     public static function getValidationRules($template)
     {
         $rules = [];
