@@ -219,6 +219,12 @@ return [
         'parameters.dropdown_text' => 'What do I need text',
         'parameters.dropdown_link_title' => 'Link title',
         'parameters.dropdown_link' => 'Link',
+
+        'parameters.donate_to_title' => 'Donate to project title',
+        'parameters.donate_to_title_mobile' => 'Donate to project title(mobile)',
+        'parameters.donate_to_text' => 'Donate to project text',
+
+
         /*--------------------- End Zakat Calculator ------------------------*/
 
         /*--------------------- Who we are ------------------------*/

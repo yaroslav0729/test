@@ -19,7 +19,7 @@
         <div class="title">
             <div class="wrap">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12">
                         @empty($donateToProjTitle)
                             <p class="font-size-30"><b>Donate to a project too?</b></p>
                         @else

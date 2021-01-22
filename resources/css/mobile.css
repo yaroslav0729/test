@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: .2;
+  opacity: 0.2;
 }
 .other-way-give-mobile .phone {
   font-family: Lato;
@@ -893,7 +893,8 @@
 .mobile-template .donate-projects-list .item .descr .name {
   height: auto;
 }
-.mobile-template .donate-projects-list .item .descr .add {
+.mobile-template .donate-projects-list .item .descr .add,
+.mobile-template .donate-projects-list .item .descr .add-related {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -2044,6 +2045,13 @@
 }
 .page-404 .text {
   font-size: 35px;
+}
+.bg-btn-red {
+  background: #f7796a !important;
+  color: #ffffff;
+}
+.bg-btn-red a {
+  color: #ffffff !important;
 }
 /*------------------------------------vb--------*/
 /*# sourceMappingURL=mobile.css.map */

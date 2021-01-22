@@ -6,6 +6,13 @@
         $donateToProjTitle = $parameters['donate_to_title'];
     }
 
+    $donateToProjMobileTitle = "";
+
+    if (isset($parameters['donate_to_title_mobile'])) {
+        $donateToProjMobileTitle = $parameters['donate_to_title_mobile'];
+    }
+
+
     $donateToProjText = "";
 
     if (isset($parameters['donate_to_text'])) {
@@ -19,6 +26,11 @@
 <div class="form-group">
     <label>Donate to project title:</label>
     <input class="form-control" required name="parameters[donate_to_title]" placeholder="Text value here" value="{{ $donateToProjTitle }}" />
+</div>
+
+<div class="form-group">
+    <label>Donate to project title(mobile):</label>
+    <input class="form-control" required name="parameters[donate_to_title_mobile]" placeholder="Text value here" value="{{ $donateToProjMobileTitle }}" />
 </div>
 
 <div class="form-group">

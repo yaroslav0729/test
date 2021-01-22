@@ -6,6 +6,12 @@
         $donateToProjTitle = $parameters['donate_to_title'];
     }
 
+    $donateToProjMobileTitle = "";
+
+    if (isset($parameters['donate_to_title_mobile'])) {
+        $donateToProjMobileTitle = $parameters['donate_to_title_mobile'];
+    }
+
     $donateToProjText = "";
 
     if (isset($parameters['donate_to_text'])) {
@@ -15,9 +21,9 @@
 @endphp
 
 @if($projects)
-    <section class="donate-projects-list d-none">
+    <section class="donate-projects-list ">
         <div class="title text-center">
-            <p><b>{{ $donateToProjTitle }}</b></p>
+            <p><b>{{ $donateToProjMobileTitle }}</b></p>
         </div>
         <div class="row filter_projects_appeal" filter-projects>
             <div class="donate-projects-list w-100">
@@ -40,7 +46,7 @@
                                                 class="font-size-14 text-uppercase text-info"><b>LEARN MORE</b></a>
                                         </div>
 
-                                        <div zakat-donate-btn class="add" data-id="{{ $projInstance->id}}">
+                                        <div zakat-donate-btn class="add-related" data-id="{{ $projInstance->id}}">
                                             <i class="moon-icons-plus"></i>
                                         </div>
                                     </div>

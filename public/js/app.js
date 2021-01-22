@@ -40192,14 +40192,29 @@ $(function () {
     $(btnDonateMobile).addClass('disabled');
     $(divZakat).find('input[name="zakat_value"]').val('0.00');
     setElementsInputEmpty(debitCollection);
-    setElementsInputEmpty(creditCollection); //~~~~~~~~~~~~~~~~~~ Set input collection empty~~~~~~~~~~~~~~~~~~~~
+    setElementsInputEmpty(creditCollection);
+    clearRelatedProjects(); //~~~~~~~~~~~~~~~~~~ Set input collection empty~~~~~~~~~~~~~~~~~~~~
 
     function setElementsInputEmpty(selector) {
       $(selector).filter(function () {
         return $(this).val() !== '';
       }).val('');
     }
-  }); //~~~~~~~~~~~~~~~~~~ Open dropdown menu 'What do I need'  ~~~~~~~~~~~~~~~~~~~~
+  });
+
+  function clearRelatedProjects() {
+    $('.add-related').each(function () {
+      var blockProject = $(this).closest(".descr");
+      var icon = $(blockProject).find('i');
+      $(blockProject).removeClass('bg-btn-red');
+
+      if ($(icon).hasClass('moon-icons-check')) {
+        $(icon).removeClass('moon-icons-check');
+        $(icon).addClass('moon-icons-plus');
+      }
+    });
+  } //~~~~~~~~~~~~~~~~~~ Open dropdown menu 'What do I need'  ~~~~~~~~~~~~~~~~~~~~
+
 
   $(document).on('click', '.calculator .title .toggle-title', function () {
     $(this).toggleClass('open');
@@ -40668,7 +40683,16 @@ $(function () {
       }
     });
   }
+  /*----------- change button donate after click (mobile) ------------*/
 
+
+  $(document).on('click', '.add-related', function () {
+    var blockProject = $(this).closest('.descr');
+    var icon = $(blockProject).find('i');
+    $(icon).removeClass('moon-icons-plus');
+    $(icon).addClass('moon-icons-check');
+    $(blockProject).addClass('bg-btn-red');
+  });
   $(document).on('click', '[zakat-donate-btn]', function (e) {
     e.preventDefault();
     var amount = $('input[name="zakat_value"]').val();
@@ -41098,12 +41122,12 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app_admin.css */"./resources/css/app_admin.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
-module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/mobile.css */"./resources/css/mobile.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app_admin.css */"./resources/css/app_admin.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+module.exports = __webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/mobile.css */"./resources/css/mobile.css");
 
 
 /***/ })

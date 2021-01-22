@@ -314,12 +314,12 @@
             <div class="top">
                 <b>Your Zakat Calculator</b>
                 <div class="toggle-title">
-                    <div><i class="far fa-chevron-down"></i>{{ $dropdownWhatDoINeedTitle }}</div>
+                    <div class="text-uppercase"><i class="far fa-chevron-down"></i>{{ $dropdownWhatDoINeedTitle }}</div>
                 </div>
             </div>
             <div class="bottom">
                 <div class="line"></div>
-                <div class="font-size-14 mb-3"><b>{{ $dropdownWhatDoINeedTitle }}</b></div>
+                <div class="font-size-14 mb-3 text-uppercase"><b>{{ $dropdownWhatDoINeedTitle }}</b></div>
                 <div>
                     <p>{!! $dropdownWhatDoINeedText !!}</p>
                 </div>

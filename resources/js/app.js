@@ -559,6 +559,8 @@ $(function () {
         setElementsInputEmpty(debitCollection);
         setElementsInputEmpty(creditCollection);
 
+        clearRelatedProjects();
+
 
         //~~~~~~~~~~~~~~~~~~ Set input collection empty~~~~~~~~~~~~~~~~~~~~
         function setElementsInputEmpty(selector)
@@ -567,8 +569,22 @@ $(function () {
                 return $(this).val() !== '';
             }).val('');
         }
-
     });
+
+    function clearRelatedProjects()
+    {
+        $('.add-related').each(function () {
+            let blockProject =  $(this).closest(".descr");
+            const icon = $(blockProject).find('i');
+
+            $(blockProject).removeClass('bg-btn-red');
+
+            if($(icon).hasClass('moon-icons-check')) {
+                $(icon).removeClass('moon-icons-check');
+                $(icon).addClass('moon-icons-plus');
+            }
+        });
+    }
 
 
 //~~~~~~~~~~~~~~~~~~ Open dropdown menu 'What do I need'  ~~~~~~~~~~~~~~~~~~~~

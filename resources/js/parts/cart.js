@@ -109,6 +109,16 @@ $(function () {
         });
     }
 
+    /*----------- change button donate after click (mobile) ------------*/
+    $(document).on('click', '.add-related', function () {
+        const blockProject = $(this).closest('.descr');
+        const icon = $(blockProject).find('i');
+
+        $(icon).removeClass('moon-icons-plus');
+        $(icon).addClass('moon-icons-check');
+        $(blockProject).addClass('bg-btn-red');
+    });
+
     $(document).on('click', '[zakat-donate-btn]', function (e) {
         e.preventDefault()
 

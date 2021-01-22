@@ -449,6 +449,7 @@ class Template
                     'parameters.dropdown_link' => 'required',
 
                     'parameters.donate_to_title' => 'required',
+                    'parameters.donate_to_title_mobile' => 'required',
                     'parameters.donate_to_text' => 'required|max:100',
 
                 ];
