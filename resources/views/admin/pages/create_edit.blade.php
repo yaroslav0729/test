@@ -43,27 +43,29 @@ if (isset($page)) {
         </ul>
     </div>
 
-    @if($pageInstance->hasFromRedirect())
-        <div class="alert alert-danger">
-            This page is redirected to other url:
-            <ul>
-            @foreach ($pageInstance->getFromRedirects() as $redirect)
-                <li>{{ url($redirect->url_to) }}</li>
-            @endforeach
-            </ul>
-        </div>
-    @endif
-
-    @if($pageInstance->hasToRedirect())
-        <div class="alert alert-info">
-            This page has redirects from other pages: 
-            <ul>
-            @foreach ($pageInstance->getToRedirects() as $key => $redirect)
-                <li>{{ $key + 1 }}) {{ url($redirect->url_from) }}</li>
-            @endforeach
-            </ul>
-        </div>
-    @endif
+    @isset($page)
+        @if($pageInstance->hasFromRedirect())
+            <div class="alert alert-danger">
+                This page is redirected to other url:
+                <ul>
+                @foreach ($pageInstance->getFromRedirects() as $redirect)
+                    <li>{{ url($redirect->url_to) }}</li>
+                @endforeach
+                </ul>
+            </div>
+        @endif
+    
+        @if($pageInstance->hasToRedirect())
+            <div class="alert alert-info">
+                This page has redirects from other pages: 
+                <ul>
+                @foreach ($pageInstance->getToRedirects() as $key => $redirect)
+                    <li>{{ $key + 1 }}) {{ url($redirect->url_from) }}</li>
+                @endforeach
+                </ul>
+            </div>
+        @endif
+    @endisset
 
     <form action="{{ $actionRoute }}" method="post" class="pb-3" modal-form>
             @csrf
