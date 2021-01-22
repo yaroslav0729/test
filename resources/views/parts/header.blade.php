@@ -2,8 +2,9 @@
 
 $cartSum = \App\Models\CartItem::getCartSum(); 
 
-
-$classColor = (isset($header_color)) ? 'white' : '';
+if (!isset($headerColorClass)) {
+    $headerColorClass = 'blue';
+}
 
 @endphp
 
@@ -28,7 +29,7 @@ $classColor = (isset($header_color)) ? 'white' : '';
             </div>
         </div>
     </div>
-    <div class="down-bar {{$classColor}}">
+    <div class="down-bar {{$headerColorClass}}">
         <div class="wrap">
             <div class="row align-items-center">
                 <div class="col-9">

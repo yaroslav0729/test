@@ -82,14 +82,13 @@ class PageController extends Controller
         $html = $pageInstance->renderTemplate()->render();
         $html = \App\Models\Widget::replaceMonikers($html);
 
-        $headerTemplate = 'parts.header_short';
+        
+        $headerColorClass = 'blue';
 
-        if ($pageInstance->template === \App\Models\Template::NEWSROOM_PAGE) {
-            $headerTemplate = 'parts.header_newsroom';
-        } else if ($pageInstance->template === \App\Models\Template::MISSION_POSSIBLE)  {
-            $headerTemplate = 'parts.header_short_white';
-        }
+        if ($pageInstance->template === \App\Models\Template::MISSION_POSSIBLE)  {
+            $headerColorClass = 'white';
+        } 
 
-        return view('page', compact('html', 'headerTemplate'));
+        return view('page', compact('html', 'headerColorClass'));
     }
 }
