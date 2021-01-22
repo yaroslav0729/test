@@ -39,9 +39,9 @@ class MenuItemRequest extends FormRequest
 
         return array_merge(
             [
-                'text' => array_merge(['required'], !empty($textValues) ? [ Rule::in(array_keys($textValues)) ] : []),
+                'text' => array_merge(['required', 'max:255'], !empty($textValues) ? [ Rule::in(array_keys($textValues)) ] : []),
             ], 
-            !$isGroup ? [ 'link' => 'required' ] : [],
+            !$isGroup ? [ 'link' => 'required|max:255' ] : [],
             $menuItem || $isAdditional ? [] : [ 'is_group' => 'nullable|boolean' ]
         );
     }
