@@ -2,6 +2,7 @@
 
     $importantInfoTitle = "";
     $importantInfo = "";
+    $importantInfoLong = "";
 
     if (isset($parameters['important_title'])) {
         $importantInfoTitle = $parameters['important_title'];
@@ -9,6 +10,10 @@
 
     if (isset($parameters['important_text'])) {
         $importantInfo = $parameters['important_text'];
+    }
+
+    if (isset($parameters['important_text_long'])) {
+        $importantInfoLong = $parameters['important_text_long'];
     }
 
 @endphp
@@ -23,4 +28,9 @@
 <div class="form-group">
     <label>Important info text</label>
     <textarea class="form-control" placeholder="Insert important info text" name="parameters[important_text]">{{ $importantInfo }}</textarea>
+</div>
+
+<div class="form-group">
+    <label>Important info full text</label>
+    <textarea class="form-control" placeholder="Insert important info text" name="parameters[important_text_long]">{{ $importantInfoLong }}</textarea>
 </div>
