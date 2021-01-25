@@ -11972,6 +11972,9 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   line-height: 30px;
 }
+.our-work + .current-projects-slider .current-projects {
+  margin-bottom: 36px;
+}
 .current-projects {
   padding: 76px 0 0;
   margin-bottom: 136px;
@@ -15821,7 +15824,7 @@ input[type='number'].color-danger + .input-group .btn {
     background-color: #F7796A;
 }
 .current-projects-list .wrap {
-    padding-bottom: 50px;
+    padding-bottom: 20px;
 }
 .current-projects-list .swiper-container {
     border-bottom: 4px solid #101525;
