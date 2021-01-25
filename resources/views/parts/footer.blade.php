@@ -19,7 +19,7 @@
             </div>
             <div class="col-1"></div>
             <div class="col-3">
-                <div class="social d-flex justify-content-between">
+                <div class="social d-flex justify-content-between pl-5 pr-3">
                     @foreach ($socialMenu as $menuItem)
                         <a href="{{ $menuItem->link }}">
                             <i class="{{ $socialMenuIcons[$menuItem->text] ?? '' }}"></i>
