@@ -22,11 +22,11 @@
 
 @if($projects)
     <section class="donate-projects-list d-none">
-        <div class="title text-center">
+        <div class="title text-center pb-0">
             <p><b>{{ $donateToProjMobileTitle }}</b></p>
         </div>
         <div class="row filter_projects_appeal" filter-projects>
-            <div class="donate-projects-list w-100">
+            <div class="donate-projects-list w-100 pt-4">
                 <div class="project_popup_options alert alert-warning d-none">
                     {{-- Options will be here --}}
                 </div>
