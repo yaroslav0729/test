@@ -99,7 +99,7 @@
 
     </div>
     <div class="text-center">
-        <svg class="decor-wave size-20 style-red d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+        <svg class="decor-wave size-20 style-white d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
             <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
                fill="#000000" stroke="none">
                 <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
