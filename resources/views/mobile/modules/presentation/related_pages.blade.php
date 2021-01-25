@@ -8,8 +8,8 @@
 
     $relatedPages = \App\Models\Module::getRelatedPages($relPageCatId);
 
-    if (isset($parameters['bg_rel_class'])) {
-        $bgClass = $parameters['bg_rel_class'];
+    if (isset($parameters['bg_class'])) {
+        $bgClass = $parameters['bg_class'];
     }
 
 @endphp
