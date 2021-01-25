@@ -74,6 +74,7 @@ class Template
         ],
         self::CALCULATOR_PAGE => [
             'headerClassName' => 'white',
+            'headerMobileClassName' => 'bg-white',
             'footerClassName' => 'bg-primary-light',
             'headerType' => 'parts.header',
         ],
