@@ -9881,6 +9881,12 @@ footer.bg-info-red {
 footer.bg-info-red .menu > li > a:hover {
   color: #000;
 }
+footer.bg-primary-light .toggle-menu {
+  color: #000 !important;
+}
+footer.bg-primary-light .toggle-menu:after {
+  background: #000 !important;
+}
 footer .social {
   padding-top: 5px;
 }
@@ -15130,6 +15136,12 @@ input[type='number'].color-danger + .input-group .btn {
   top: 50%;
   right: 15px;
   transform: translateY(-50%) scale(1.9);
+}
+.calculator + .donate-projects-list {
+  padding-bottom: 100px;
+}
+.calculator + .donate-projects-list .current-projects-list {
+  margin-bottom: 0;
 }
 .contacts {
   background: #fff url(/images/bg-contact-map.jpg?d93657af64e226ab0097a0607ef853bc) no-repeat 100% 50%;
