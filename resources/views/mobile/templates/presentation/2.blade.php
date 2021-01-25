@@ -109,10 +109,10 @@
 
 <section class="event-info-descr">
     <div class="wrap">
-        <div class="top">
+        <div class="top pb-5">
             <div>
                 <b><i></i>{{ $event->start_date->format('l jS, F Y') }}</b>
-                <b><i class="clock"></i>
+                <b><i class="clock mt-2"></i>
                     {{ \Carbon\Carbon::parse($event->start_time)->format('h:ia') }}
                     @isset($event->end_time)
                         - {{ \Carbon\Carbon::parse($event->end_time)->format('h:ia') }}
