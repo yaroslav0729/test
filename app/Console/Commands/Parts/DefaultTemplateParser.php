@@ -31,6 +31,15 @@ class DefaultTemplateParser extends AbstractParser
         $this->processPosts($posts);
     }
 
+    protected function isPostInThisGroup($posts, $postId)
+    {
+        foreach ($posts as $post) {
+            if ($post->ID === $postId) return true;
+        }
+
+        return false;
+    }
+
     protected function getEmergencies()
     {
         $posts = $this->wpConnection->table('wp_posts')
@@ -49,7 +58,8 @@ class DefaultTemplateParser extends AbstractParser
             ->where('wp_posts.post_status', 'publish')
             ->orderBy('wp_posts.ID', 'ASC')
             ->where(function ($query) {
-                $query->where('wp_postmeta.meta_key', '_wp_page_template');
+                $query->where('wp_postmeta.meta_key', '_wp_page_template')
+                    ->where('wp_postmeta.meta_value', '<>', '');
             })
             ->get();
 
