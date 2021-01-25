@@ -32,4 +32,4 @@
 
 @include('modules.admin.important_information')
 
-@include('modules.admin.related_pages')
+@include('modules.admin.related_page_expanded')
