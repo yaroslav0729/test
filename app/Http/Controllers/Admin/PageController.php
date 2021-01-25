@@ -119,13 +119,11 @@ class PageController extends Controller
         $html = $pageInstance->renderTemplate()->render();
         $html = \App\Models\Widget::replaceMonikers($html);
 
-        $headerTemplate = 'parts.header_short';
+        $html = $pageInstance->renderTemplate()->render();
+        $html = \App\Models\Widget::replaceMonikers($html);
+        $configTemplate = Template::getConfigureTemplate($pageInstance->template);
 
-        if ($pageInstance->template === \App\Models\Template::NEWSROOM_PAGE) {
-            $headerTemplate = 'parts.header_newsroom';
-        }
-
-        return view('page', compact('html', 'headerTemplate'));
+        return view('page', compact('html', 'configTemplate'));
     }
 
     public function restore($id)

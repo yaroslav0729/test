@@ -68,77 +68,77 @@ class Template
 
     const CONFIGURE_TEMPLATES = [
         self::INDEX_PAGE => [
-            'headerClassName' => 'bg-primary-light',
+            'headerClassName' => 'blue',
             'footerClassName' => 'bg-primary',
             'headerType' => 'parts.header',
         ],
         self::CALCULATOR_PAGE => [
-            'headerClassName' => 'bg-white',
+            'headerClassName' => 'white',
             'footerClassName' => 'bg-primary-light',
-            'headerType' => 'parts.header_short',
+            'headerType' => 'parts.header',
         ],
         self::PROJECTS_PAGE => [
-            'headerClassName' => 'bg-white',
+            'headerClassName' => 'blue',
             'footerClassName' => 'bg-primary-light',
-            'headerType' => 'parts.header_short',
+            'headerType' => 'parts.header',
         ],
         self::WHO_WE_ARE_PAGE => [
-            'headerClassName' => 'bg-white',
+            'headerClassName' => 'blue',
             'footerClassName' => 'bg-primary',
-            'headerType' => 'parts.header_short',
+            'headerType' => 'parts.header',
         ],
         self::EVENT_PAGE => [
-            'headerClassName' => 'bg-white',
+            'headerClassName' => 'blue',
             'headerMobileClassName' => 'bg-primary-light',
             'footerClassName' => 'bg-primary',
-            'headerType' => 'parts.header_short',
+            'headerType' => 'parts.header',
         ],
         self::EVENTS_PAGE => [
-            'headerClassName' => 'bg-white',
+            'headerClassName' => 'blue',
             'headerMobileClassName' => 'bg-primary-light',
             'footerClassName' => 'bg-primary',
-            'headerType' => 'parts.header_short',
+            'headerType' => 'parts.header',
         ],
         self::CONTACT_PAGE => [
-            'headerClassName' => 'bg-white',
+            'headerClassName' => 'blue',
             'footerClassName' => 'bg-primary',
-            'headerType' => 'parts.header_short',
+            'headerType' => 'parts.header',
         ],
 
         self::PROJECT_PAGE => [
-            'headerClassName' => 'bg-primary-light',
+            'headerClassName' => 'blue',
             'footerClassName' => 'bg-info',
-            'headerType' => 'parts.header_short',
+            'headerType' => 'parts.header',
         ],
 
         self::MISSION_POSSIBLE => [
-            'headerClassName' => 'bg-white',
+            'headerClassName' => 'white',
             'footerClassName' => 'bg-info',
-            'headerType' => 'parts.header_short',
+            'headerType' => 'parts.header',
         ],
 
         self::VOLUNTEER_PAGE => [
-            'headerClassName' => 'bg-white',
+            'headerClassName' => 'white',
             'footerClassName' => 'bg-info-red',
-            'headerType' => 'parts.header_short',
+            'headerType' => 'parts.header',
         ],
 
         self::VOLUNTEER_START_PAGE => [
-            'headerClassName' => 'bg-white',
+            'headerClassName' => 'white',
             'footerClassName' => 'bg-info-red',
-            'headerType' => 'parts.header_short',
+            'headerType' => 'parts.header',
         ],
 
         self::NEWSROOM_PAGE => [
-            'headerClassName' => 'bg-primary-light',
+            'headerClassName' => '',
             'footerClassName' => 'bg-info',
-            'headerType' => 'parts.header_short',
+            'headerType' => 'parts.header_newsroom',
         ],
 
         self::THANK_YOU_DONATE_PAGE => [
-            'headerClassName' => 'bg-white',
+            'headerClassName' => 'white',
             'footerClassName' => 'bg-info-yellow',
-            'headerType' => 'parts.header_short',
+            'headerType' => 'parts.header',
         ],
 
     ];
@@ -151,9 +151,9 @@ class Template
         }
 
         return [
-            'headerClassName' => 'bg-primary-light',
+            'headerClassName' => 'blue',
             'footerClassName' => 'bg-primary',
-            'headerType' => 'parts.header_short',
+            'headerType' => 'parts.header',
         ];
     }
 

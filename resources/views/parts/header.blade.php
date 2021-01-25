@@ -2,8 +2,12 @@
 
 $cartSum = \App\Models\CartItem::getCartSum(); 
 
-if (!isset($headerColorClass)) {
-    $headerColorClass = 'blue';
+if (isset($configTemplate['headerClassName'])) {
+    $headerClassName = $configTemplate['headerClassName'];
+}
+
+if (!isset($headerClassName)) {
+    $headerClassName = 'blue';
 }
 
 @endphp
@@ -29,7 +33,7 @@ if (!isset($headerColorClass)) {
             </div>
         </div>
     </div>
-    <div class="down-bar {{$headerColorClass}}">
+    <div class="down-bar {{$headerClassName}}">
         <div class="wrap">
             <div class="row align-items-center">
                 <div class="col-9">
