@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: .2;
+  opacity: 0.2;
 }
 .other-way-give-mobile .phone {
   font-family: Lato;
@@ -1867,7 +1867,7 @@
   left: 0;
   right: 0;
   bottom: -50px;
-  top: 250px;
+  top: 285px;
 }
 .mobile-template .head-mission-impossible {
   padding: 0;
@@ -2060,10 +2060,10 @@
   font-size: 35px;
 }
 .bg-btn-red {
-  background: #f7796a!important;
+  background: #f7796a !important;
   color: #ffffff;
 }
 .bg-btn-red a {
-  color: #ffffff!important;
+  color: #ffffff !important;
 }
 /*------------------------------------vb--------*/
