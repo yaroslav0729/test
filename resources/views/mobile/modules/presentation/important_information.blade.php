@@ -3,6 +3,7 @@
     $importantInfoTitle = "";
     $importantInfo = "";
     $importantInfoLong = "";
+    $bgClassImportant = "";
 
     if (isset($parameters['important_title'])) {
         $importantInfoTitle = $parameters['important_title'];
@@ -16,10 +17,14 @@
         $importantInfoLong = $parameters['important_text_long'];
     }
 
+    if (isset($parameters['bg_class_important'])) {
+        $bgClassImportant = $parameters['bg_class_important'];
+    }
+
 @endphp
 
 
-<section class="important-information bg-light">
+<section class="important-information @empty($bgClassImportant) bg-light @else {{ $bgClassImportant }} @endempty">
     <div class="wrap">
         <div class="title mb-2">
             <p class="font-size-16"><b>{{ $importantInfoTitle }}</b></p>
