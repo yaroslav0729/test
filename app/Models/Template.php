@@ -83,24 +83,24 @@ class Template
             'headerType' => 'parts.header',
         ],
         self::WHO_WE_ARE_PAGE => [
-            'headerClassName' => 'blue',
+            'headerClassName' => 'white',
             'footerClassName' => 'bg-primary',
             'headerType' => 'parts.header',
         ],
         self::EVENT_PAGE => [
-            'headerClassName' => 'blue',
+            'headerClassName' => 'white',
             'headerMobileClassName' => 'bg-primary-light',
             'footerClassName' => 'bg-primary',
             'headerType' => 'parts.header',
         ],
         self::EVENTS_PAGE => [
-            'headerClassName' => 'blue',
+            'headerClassName' => 'white',
             'headerMobileClassName' => 'bg-primary-light',
             'footerClassName' => 'bg-primary',
             'headerType' => 'parts.header',
         ],
         self::CONTACT_PAGE => [
-            'headerClassName' => 'blue',
+            'headerClassName' => 'white',
             'footerClassName' => 'bg-primary',
             'headerType' => 'parts.header',
         ],
