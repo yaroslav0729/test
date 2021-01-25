@@ -916,7 +916,30 @@ $(function () {
         }
     });
 
+    getShareThisCou()
+
 });
+
+function getShareThisCou() {
+    var token = $('div.stat').data('token')
+    var url = $('div.stat').data('url')
+    
+    $.ajax({
+        url: 'https://graph.facebook.com/v3.0/',
+        dataType: 'jsonp',
+        type: 'GET',
+        data: {
+            fields: 'engagement', 
+            access_token: token, 
+            id: url},
+        success: function(data){
+            $('div.stat span').text(data.engagement.share_count);
+        },
+        error: function(data){
+            //console.log(data); // send the error notifications to console
+        }
+    });
+}
 
 
 //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
