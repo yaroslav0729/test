@@ -29,12 +29,9 @@
             </div>
         </div>
         <div class="copy text-right">
-            IslamicHelp   2020 <span>|</span>
-
-            @foreach ($additionalFooterMenuItem as $menuItem)
-                <a href="{{ $menuItem->link }}">{{ $menuItem->text }}</a> <span>|</span>
+            @foreach ($additionalFooterMenuItem as $key => $menuItem)
+                <a href="{{ $menuItem->link }}">{!! $menuItem->text !!}</a> @if(count($additionalFooterMenuItem)-1 > $key)<span>|</span> @endif
             @endforeach
-            Registered Charity Number:  1160490 <span>|</span> Company Number:  0938212
         </div>
     </div>
 </footer>

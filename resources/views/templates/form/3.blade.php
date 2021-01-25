@@ -25,6 +25,7 @@
         $hdrTitle[$i] = "";
         $hdrText[$i] = "";
         $hdrBgImage[$i] = "";
+        $donateLink[$i] = "";
     }
 
     if (isset($parameters['hdr_color_type'])) {
@@ -49,6 +50,9 @@
         }
         if (isset($parameters['hdr_bg_image_' .$i])) {
             $hdrBgImage[$i] = $parameters['hdr_bg_image_' . $i];
+        }
+        if (isset($parameters['hdr_donate_link_' .$i])) {
+            $donateLink[$i] = $parameters['hdr_donate_link_' . $i];
         }
     }
 
@@ -159,11 +163,20 @@
                                       placeholder="Life changing support text">{{ $hdrText[$i] }}</textarea>
                         </div>
                     </div>
+
                     <div class="col-12 col-lg-6">
                         <div class="form-group">
                             <label>Background image name:</label>
                             <input class="form-control" name="parameters[hdr_bg_image_{{ $i }}]"
                                    placeholder="Background image name" value="{{ $hdrBgImage[$i] }}"/>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="form-group">
+                            <label>Donate now link:</label>
+                            <input class="form-control" name="parameters[hdr_donate_link_{{ $i }}]"
+                                   placeholder="Donate now link" value="{{ $donateLink[$i]  }}"/>
                         </div>
                     </div>
                 </div>

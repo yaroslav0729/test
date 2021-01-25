@@ -31,6 +31,7 @@ for ($i=1; $i<=4; $i++) {
     $hdrTitle[$i] = "";
     $hdrText[$i] = "";
     $hdrBgImage[$i] = "";
+    $donateLink[$i] = "";
 }
 
 if (isset($parameters['hdr_color_type'])) {
@@ -58,6 +59,9 @@ for ($i=1; $i<=4; $i++){
     }
     if (isset($parameters['hdr_bg_image_' .$i])) {
         $hdrBgImage[$i] = $parameters['hdr_bg_image_' . $i];
+    }
+    if (isset($parameters['hdr_donate_link_' .$i])) {
+        $donateLink[$i] = $parameters['hdr_donate_link_' . $i];
     }
 }
 
@@ -156,7 +160,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                                         @endif
                                     </div>
                                     <p class="mb-3">{!! $hdrText[$i] !!}</p>
-                                    <a href="#" style="position: relative; z-index: 2" class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate now</a>
+                                    <a href="{{ $donateLink[$i] }}" style="position: relative; z-index: 2" class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate now</a>
                                     <div class="text-right mt-n4 d-block">
                                         <a href="#" class="view-more swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
                                         <div class="black-line"></div>
