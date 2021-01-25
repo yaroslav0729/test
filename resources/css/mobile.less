@@ -1749,6 +1749,17 @@ footer {
 	  margin: 0 -20px;
 	  .btn {transform: translateY(-50%);}
 	}
+	& + .donate-projects-list  {
+	  position: relative;
+	  &:before {
+		content: "";
+		display: block;
+		background: #e3effe;
+		position: absolute; left: 0; right: 0;
+		bottom: -50px;
+		top: 250px;
+	  }
+	}
   }
 
   .head-mission-impossible {

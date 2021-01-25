@@ -119,6 +119,12 @@ footer {
         background: #F7796A;
         .menu > li > a:hover {color: #000}
     }
+    &.bg-primary-light {
+        .toggle-menu {
+            color: #000 !important;
+            &:after {background: #000 !important;}
+        }
+    }
 
     .social {
         padding-top: 5px;
@@ -2909,7 +2915,7 @@ input[type='number'].color-danger  + .input-group {
                     cursor: pointer;
                     display: block;
                     width: 55px; height: 55px;
-                    line-height: 55px;
+                    line-height: 51px;
                     font-size: 28px;
                     color: #fff;
                     background: #F7796A;
@@ -4601,6 +4607,11 @@ input[type='number'].color-danger  + .input-group {
             transform: translateY(-50%) scale(1.9);
         }
     }
+    & + .donate-projects-list  {
+        padding-bottom: 100px;
+        .current-projects-list {margin-bottom: 0}
+    }
+
 }
 
 

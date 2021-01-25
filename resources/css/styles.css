@@ -80,6 +80,12 @@ footer.bg-info-red {
 footer.bg-info-red .menu > li > a:hover {
   color: #000;
 }
+footer.bg-primary-light .toggle-menu {
+  color: #000 !important;
+}
+footer.bg-primary-light .toggle-menu:after {
+  background: #000 !important;
+}
 footer .social {
   padding-top: 5px;
 }
@@ -1075,8 +1081,8 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   max-width: 250px;
   padding: 8px;
   text-align: center;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
+  -webkit-transition: .2s;
+  transition: .2s;
   cursor: pointer;
 }
 .btn-fb:hover {
@@ -1123,10 +1129,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   background-color: #3A7BF5 !important;
 }
 .text-info {
-  color: #2caabb !important;
+  color: #2caabb  !important;
 }
 .text-dark {
-  color: #101525 !important;
+  color: #101525  !important;
 }
 .text-red {
   color: #FF5D4A !important;
@@ -3466,7 +3472,7 @@ input[type='number'].color-danger + .input-group .btn {
   display: block;
   width: 55px;
   height: 55px;
-  line-height: 55px;
+  line-height: 51px;
   font-size: 28px;
   color: #fff;
   background: #F7796A;
@@ -3653,7 +3659,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: 0.5;
+  opacity: .5;
 }
 .about-donation .body .item span {
   display: inline-block;
@@ -3864,7 +3870,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: 0.5;
+  opacity: .5;
 }
 .order-cart-list .total {
   background: #FFF6F3;
@@ -5280,6 +5286,12 @@ input[type='number'].color-danger + .input-group .btn {
   top: 50%;
   right: 15px;
   transform: translateY(-50%) scale(1.9);
+}
+.calculator + .donate-projects-list {
+  padding-bottom: 100px;
+}
+.calculator + .donate-projects-list .current-projects-list {
+  margin-bottom: 0;
 }
 .contacts {
   background: #fff url(../img/bg-contact-map.jpg) no-repeat 100% 50%;

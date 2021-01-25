@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'moon-icons';
   src:
-    url('/fonts/moon-icons.ttf?v1yojz') format('truetype'),
-    url('/fonts/moon-icons.woff?v1yojz') format('woff'),
-    url('/fonts/moon-icons.svg?v1yojz#moon-icons') format('svg');
+    url('/fonts/moon-icons.ttf?v1yojz1') format('truetype'),
+    url('/fonts/moon-icons.woff?v1yojz1') format('woff'),
+    url('/fonts/moon-icons.svg?v1yojz1#moon-icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -48,3 +48,7 @@
 .moon-icons-plus:before {
   content: "\e906";
 }
+.moon-icons-check:before {
+  content: "\e907";
+}
+

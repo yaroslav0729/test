@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: 0.2;
+  opacity: .2;
 }
 .other-way-give-mobile .phone {
   font-family: Lato;
@@ -1856,6 +1856,19 @@
 .mobile-template .calculator .last-btn .btn {
   transform: translateY(-50%);
 }
+.mobile-template .calculator + .donate-projects-list {
+  position: relative;
+}
+.mobile-template .calculator + .donate-projects-list:before {
+  content: "";
+  display: block;
+  background: #e3effe;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -50px;
+  top: 250px;
+}
 .mobile-template .head-mission-impossible {
   padding: 0;
 }
@@ -2047,10 +2060,10 @@
   font-size: 35px;
 }
 .bg-btn-red {
-  background: #f7796a !important;
+  background: #f7796a!important;
   color: #ffffff;
 }
 .bg-btn-red a {
-  color: #ffffff !important;
+  color: #ffffff!important;
 }
 /*------------------------------------vb--------*/

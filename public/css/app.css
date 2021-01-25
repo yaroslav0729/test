@@ -9751,9 +9751,9 @@ readers do not read off random characters that represent icons */
 @font-face {
   font-family: 'moon-icons';
   src:
-    url('/fonts/moon-icons.ttf?v1yojz') format('truetype'),
-    url('/fonts/moon-icons.woff?v1yojz') format('woff'),
-    url('/fonts/moon-icons.svg?v1yojz#moon-icons') format('svg');
+    url('/fonts/moon-icons.ttf?v1yojz1') format('truetype'),
+    url('/fonts/moon-icons.woff?v1yojz1') format('woff'),
+    url('/fonts/moon-icons.svg?v1yojz1#moon-icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -9795,6 +9795,9 @@ readers do not read off random characters that represent icons */
 }
 .moon-icons-plus:before {
   content: "\E906";
+}
+.moon-icons-check:before {
+  content: "\E907";
 }
 a[href^=tel] {
   text-decoration: inherit;
@@ -9877,6 +9880,12 @@ footer.bg-info-red {
 }
 footer.bg-info-red .menu > li > a:hover {
   color: #000;
+}
+footer.bg-primary-light .toggle-menu {
+  color: #000 !important;
+}
+footer.bg-primary-light .toggle-menu:after {
+  background: #000 !important;
 }
 footer .social {
   padding-top: 5px;
@@ -10093,7 +10102,7 @@ header .top-bar .basket {
 }
 header .top-bar .phone i {
   display: inline-block;
-  background: url(/images/ico-Phone.svg?c0838b9ddef6625586d506c7468e99e2) no-repeat;
+  background: url(/images/ico-Phone.svg?7d7f841f10b6a7c9b84c82dae0f19806) no-repeat;
   background-size: contain;
   width: 25px;
   height: 25px;
@@ -10904,7 +10913,7 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   max-width: 250px;
   padding: 8px;
   text-align: center;
-  transition: 0.2s;
+  transition: .2s;
   cursor: pointer;
 }
 .btn-fb:hover {
@@ -10951,10 +10960,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   background-color: #3A7BF5 !important;
 }
 .text-info {
-  color: #2caabb !important;
+  color: #2caabb  !important;
 }
 .text-dark {
-  color: #101525 !important;
+  color: #101525  !important;
 }
 .text-red {
   color: #FF5D4A !important;
@@ -13313,7 +13322,7 @@ input[type='number'].color-danger + .input-group .btn {
   display: block;
   width: 55px;
   height: 55px;
-  line-height: 55px;
+  line-height: 51px;
   font-size: 28px;
   color: #fff;
   background: #F7796A;
@@ -13500,7 +13509,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: 0.5;
+  opacity: .5;
 }
 .about-donation .body .item span {
   display: inline-block;
@@ -13711,7 +13720,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: 0.5;
+  opacity: .5;
 }
 .order-cart-list .total {
   background: #FFF6F3;
@@ -15127,6 +15136,12 @@ input[type='number'].color-danger + .input-group .btn {
   top: 50%;
   right: 15px;
   transform: translateY(-50%) scale(1.9);
+}
+.calculator + .donate-projects-list {
+  padding-bottom: 100px;
+}
+.calculator + .donate-projects-list .current-projects-list {
+  margin-bottom: 0;
 }
 .contacts {
   background: #fff url(/images/bg-contact-map.jpg?d93657af64e226ab0097a0607ef853bc) no-repeat 100% 50%;
