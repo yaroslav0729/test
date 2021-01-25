@@ -19,14 +19,14 @@ if (!isset($headerClassName)) {
     <div class="top-bar">
         <div class="wrap">
             <div class="row align-items-center">
-                <div class="col-6">
+                <div class="col-4 col-lg-6">
                     <a href="{{ route('index') }}" class="logo">
                         <span>
                             <img src="/img/logo.png" width="35" height="35" style="margin: 8px 0 0 8px" />
                         </span> Islamic Help
                     </a>
                 </div>
-                <div class="col-6 text-right">
+                <div class="col-8 col-lg-6 text-right">
                     <div class="phone">020 5000 2400 <i></i></div>
                     @include('parts.basket')
                 </div>

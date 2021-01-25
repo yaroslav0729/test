@@ -191,25 +191,25 @@
             <a href="#" class="text-underline text-dark view-more"><b>OUR WORK</b></a>
         </div>
         <div class="row">
-            <div class="col-3">
+            <div class="col-6 col-lg-3">
                 <a href="{{ $longtermLink }}">
                     <span style="background-image: url(img/ico-leaf.svg)"></span>
                     <p>Longterm Projects</p>
                 </a>
             </div>
-            <div class="col-3">
+            <div class="col-6 col-lg-3">
                 <a href="{{ $emergencyLink }}">
                     <span style="background-image: url(img/ico-alert.svg)"></span>
                     <p>Emergency Relief</p>
                 </a>
             </div>
-            <div class="col-3">
+            <div class="col-6 col-lg-3">
                 <a href="{{ $volunteeringLink }}">
                     <span style="background-image: url(img/ico-motivation.svg)"></span>
                     <p>Volunteering</p>
                 </a>
             </div>
-            <div class="col-3">
+            <div class="col-6 col-lg-3">
                 <a href="{{ $sadiqahLink }}">
                     <span style="background-image: url(img/ico-Saadiqah.svg)"></span>
                     <p>Sadiqah</p>
@@ -231,8 +231,8 @@
                     class="moon-icons-arrow-up"></i></a></div>
     </div>
     <div class="row gutter-0">
-        <div class="col-6 img" style="background-image: url(img/content/widget-about-project-1.jpg)"></div>
-        <div class="col-6 descr d-flex align-items-center">
+        <div class="col-12 col-lg-6 img" style="background-image: url(img/content/widget-about-project-1.jpg)"></div>
+        <div class="col-12 col-lg-6 descr d-flex align-items-center">
             <div>
                 <p class="font-size-30 text-uppercase" style="font-weight: 100"><b>help orphans</b> & the environment
                 </p>
@@ -295,7 +295,7 @@
         </div>
         <div>
             <div class="row gutter-5">
-                <div class="col-12 col-md-6 col-xl-6">
+                <div class="col-12 col-lg-6 col-xl-6">
                     <div class="item vertical">
                         <a class="img" href="#">
                             <span style="background-image: url(img/content/whats-new-1.jpg)"></span>
@@ -309,7 +309,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-xl-6">
+                <div class="col-12 col-lg-6 col-xl-6">
+                    <div class="pt-5 pb-5 pt-lg-0 pb-lg-0"></div>
                     <div class="item">
                         <a class="img" href="#">
                         <span style="background-image: url(img/content/whats-new-2.jpg)">

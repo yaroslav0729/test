@@ -141,13 +141,13 @@ $ourValuesActiveLink = false;
 </section>
 
 <section class="our-values mt-n5">
-    <div class="box">
+    <div class="box pt-4 pt-lg-0">
         <div class="row gutter-0 align-items-center">
-            <div class="col-6">
+            <div class="col-12 col-lg-6">
                 <div class="title">OUR VALUES</div>
                 <p class="pr-5">{!! $ourValuesDescription !!}</p>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-lg-6">
                 <div class="img-video play-tr videoWrapper" style="">
                     <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $ourValuesVideo }}"
                             frameborder="0"
@@ -172,7 +172,7 @@ $ourValuesActiveLink = false;
     </section>
     <section class="values-action">
         <div class="row gutter-0">
-            <div class="col-9">
+            <div class="col-7 col-lg-9">
                 <div class="tab-content" id="nav-tabContent">
                     @for ($i = 1; $i <= 4; $i++)
                         @if(in_array($i, $actionActive ))
@@ -180,10 +180,8 @@ $ourValuesActiveLink = false;
                                  id="nav-{{ $i }}"
                                  role="tabpanel">
                                 <div class="row gutter-0">
-                                    <div class="col-6 img"
-                                         style="background-image: url('{{ $actionPhoto[$i] }}')"> &nbsp;
-                                    </div>
-                                    <div class="col-6 {{ $colorNameClass[$i] }} text">
+                                    <div class="col-0 col-lg-6 img" style="background-image: url('{{ $actionPhoto[$i] }}')"></div>
+                                    <div class="col-12 col-lg-6 {{ $colorNameClass[$i] }} text">
                                         <div>
                                             <p class="text-1">{!! $actionSlogan[$i] !!}</p>
                                             <p class="text-2">{!! $actionTitle[$i] !!}</p>
@@ -199,7 +197,7 @@ $ourValuesActiveLink = false;
                     @endfor
                 </div>
             </div>
-            <div class="col-3 values-action-nav">
+            <div class="col-5 col-lg-3 values-action-nav">
                 <div class="nav flex-column nav-pills" id="nav-tab" role="tablist">
                     @for ($i = 1; $i <= 4; $i++)
                         @if(in_array($i, $actionActive ))

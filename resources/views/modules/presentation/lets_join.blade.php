@@ -66,8 +66,8 @@
 
 <section class="lets-join">
     <div class="wrap">
-        <div class="row gutter-0 align-items-center">
-            <div class="col-6">
+        <div class="row gutter-0 align-items-center mb-4 mb-lg-0">
+            <div class="col-12 col-lg-6">
                 <p class="font-size-45 mb-3" style="font-weight: 100">
                     <b>Let's join</b><br>in progress <b>together</b>
                 </p>
@@ -75,14 +75,14 @@
                     <i class="moon-icons-arrow-right" style="font-size: 130%"></i>
                 </p>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-lg-6">
                 <div class="item">
                     <div class="row gutter-0 align-items-center">
-                        <div class="col-6">
+                        <div class="col-12 col-lg-6">
                             <a href="{{ $link1 }}"><div class="img" style="background-image: url({{ $img1 }})"></div></a>
                         </div>
-                        <div class="col-6">
-                            <div class="pl-4 pr-4">
+                        <div class="col-12 col-lg-6">
+                            <div class="pl-4 pr-4 pt-4 pb-4 pt-lg-0 pb-lg-0">
                                 <a href="{{ $link1 }}"><p class="font-size-16 text-uppercase mb-0 letter-spacing-1"><b>{{ $title1 }}</b></p></a>
                                 <a href="{{ $link1 }}">
                                     <p class="font-size-16 mb-0">
@@ -97,16 +97,16 @@
             </div>
         </div>
 
-        <div class="row  gutter-0 align-items-center">
-            <div class="col-6">
+        <div class="row gutter-0 align-items-center">
+            <div class="col-12 col-lg-6">
                 <div class="item">
                     <div class="row gutter-0 align-items-center">
-                        <div class="col-6">
+                        <div class="col-12 col-lg-6">
                             <a href="{{ $link2 }}"><div class="img-video" style="background-image: url({{ $img2 }})"><i
                                     class="fas fa-play-circle"></i></div></a>
                         </div>
-                        <div class="col-6">
-                            <div class="pl-4 pr-4">
+                        <div class="col-12 col-lg-6">
+                            <div class="pl-4 pr-4 pt-4 pb-4 pt-lg-0 pb-lg-0">
                                 <a href="{{ $link2 }}">
                                 <p class="font-size-16 text-uppercase mb-0 letter-spacing-1"><b>{{ $title2 }}</b></p>
                                 </a>
@@ -121,10 +121,9 @@
                     <a href="{{ $link2 }}" class="more-view bg-danger">{{ $linkText2 }}<i class="moon-icons-plus"></i></a>
                 </div>
             </div>
-            <div class="col-6">
-
-                <div class="pl-5 pr-5">
-                    <div class="pl-5 pr-5">
+            <div class="col-12 col-lg-6">
+                <div class="pl-2 pr-2 pl-lg-5 pr-lg-5">
+                    <div class="pl-2 pr-2 pl-lg-5 pr-lg-5">
                         <svg class="decor-wave style-danger mb-2" version="1.0" xmlns="http://www.w3.org/2000/svg"
                              width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000"
                              preserveAspectRatio="xMidYMid meet">
