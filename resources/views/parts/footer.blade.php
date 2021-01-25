@@ -1,7 +1,7 @@
 <footer class="{{ $configTemplate['footerClassName'] }}">
     <div class="wrap">
         <div class="row">
-            <div class="col-8">
+            <div class="col-12 col-lg-8">
                 <ul class="menu d-flex align-items-start">
                     @foreach($footerMenuItem as $menuItem)
                         <li class="">
@@ -17,8 +17,8 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="col-1"></div>
-            <div class="col-3">
+            <div class="col-12 col-lg-8"></div>
+            <div class="col-12 col-lg-3">
                 <div class="social d-flex justify-content-between pl-5 pr-3">
                     @foreach ($socialMenu as $menuItem)
                         <a href="{{ $menuItem->link }}">

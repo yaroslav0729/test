@@ -7,17 +7,17 @@ $categories = \App\Models\CampaignCategory::all();
         <form action="{{ route('cart.add') }}" method="post">
             @csrf
             <div class="row gutter-5 align-items-center">
-                <div class="col-2 text-center"><b>Quick Donation</b></div>
-                <div class="col-3">
-                    <div class="form-group">
+                <div class="col-12 col-lg-2 text-center"><b class="mb-3 mb-lg-0 d-block">Quick Donation</b></div>
+                <div class="col-6 col-lg-3">
+                    <div class="form-group mb-3 mb-lg-0">
                         <select class="form-control" name="period">
                             <option value="single">Single donation</option>
                             <option value="monthly">Monthly donation</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-3">
-                    <div class="form-group">
+                <div class="col-6 col-lg-3">
+                    <div class="form-group mb-3 mb-lg-0">
                         <select class="form-control" name="categories">
                             @foreach ($categories as $category)
                                 <option value="{{ $category->name }}"> {{ $category->name }}</option>
@@ -25,12 +25,12 @@ $categories = \App\Models\CampaignCategory::all();
                         </select>
                     </div>
                 </div>
-                <div class="col-2">
+                <div class="col-6 col-lg-2">
                     <div class="form-group" currency="£">
                         <input type="number" name="amount" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                     </div>
                 </div>
-                <div class="col-2">
+                <div class="col-6 col-lg-2">
                     <button type="submit" class="btn_sbmt btn btn-danger w-100">Donate now</button>
                 </div>
             </div>

@@ -56,7 +56,7 @@
                         <div class="swiper-slide">
                             <div class="body">
                                 <div class="row gutter-0">
-                                    <div class="col-6">
+                                    <div class="col-12 col-lg-6">
                                         <div class="left">
                                             <div class="text">
                                                 <p class="font-size-30 mb-3 font-weight-bold text-uppercase slide-title">{{ $slideTitle[$i] }}</p>
@@ -68,7 +68,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-lg-6">
                                         <div class="img" style="background-image: url({{ $slideImage[$i] }})"></div>
                                     </div>
                                 </div>

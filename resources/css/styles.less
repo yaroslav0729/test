@@ -88,7 +88,7 @@ body * {
 section {
     padding-left: 180px;
     padding-right: 180px;
-    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         padding-left: 30px !important;
         padding-right: 30px !important;
     }
@@ -232,9 +232,15 @@ footer {
             }
         }
     }
-    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         padding-left: 30px !important;
         padding-right: 30px !important;
+    }
+    @media screen  and (min-width: 767px) and (max-width: 992px) {
+        .menu {
+            flex-wrap: wrap;
+            & > li {width: 50%}
+        }
     }
 }
 
@@ -470,9 +476,14 @@ header {
             }
         }
     }
-    @media screen  and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         .top-bar {padding: 30px 20px 33px 20px}
         .down-bar {padding: 18px 84px;}
+    }
+    @media screen  and (min-width: 767px) and (max-width: 992px) {
+        .top-bar {
+            .basket {margin-right: 50px;}
+        }
     }
 }
 
@@ -746,7 +757,7 @@ header {
             }
         }
     }
-    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         padding-left: 30px !important;
         padding-right: 30px !important;
     }
@@ -1343,6 +1354,18 @@ input[type='number'].color-danger  + .input-group {
             &:after {display: none}
         }
     }
+    @media screen  and (min-width: 767px) and (max-width: 992px) {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+          &.style-1 .body > .left,
+          &.style-2 .body > .left {
+              padding: 40px 20px;
+              .title {
+                  font-size: 35px;
+                  line-height: 1.5;
+              }
+          }
+    }
 }
 
 .quick-donation {
@@ -1847,8 +1870,13 @@ input[type='number'].color-danger  + .input-group {
         }
     }
 
-    @media screen  and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         .wrap {padding: 0 20px 0 40px}
+        .swiper-container .swiper-slide {padding: 0}
+        .body .img {
+            height: 400px;
+            position: static;
+        }
     }
 }
 
@@ -1885,7 +1913,7 @@ input[type='number'].color-danger  + .input-group {
             .name {display: block;}
         }
     }
-    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         .wrap {
             padding: 0;
             margin: 0;
@@ -2002,6 +2030,9 @@ input[type='number'].color-danger  + .input-group {
             color: #fff;
             &:hover {color: #F7796A;}
         }
+    }
+    @media screen  and (min-width: 767px) and (max-width: 992px) {
+        .img {padding-bottom: 40%;}
     }
 }
 
@@ -2214,7 +2245,7 @@ input[type='number'].color-danger  + .input-group {
         position: relative; top: 47px;
     }
 
-    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         .wrap {
            padding: 0 30px;
         }
@@ -2590,7 +2621,7 @@ input[type='number'].color-danger  + .input-group {
         border-radius: 0;
         color: #231F51;
     }
-    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         padding-left: 0px !important;
         padding-right: 0px !important;
         .title {
@@ -2872,7 +2903,7 @@ input[type='number'].color-danger  + .input-group {
         .title span:before {color: #FFF2ED}
         .list .item {background: #FFF2ED}
     }
-    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         .title span:before {
             left: -100px;
             transform: translateX(0);
@@ -3769,6 +3800,9 @@ input[type='number'].color-danger  + .input-group {
         transform: translate(-50%, -50%);
         width: 182px;
     }
+    @media screen  and (min-width: 767px) and (max-width: 992px) {
+        margin: 80px 0 !important;
+    }
 }
 
 .values-action {
@@ -3841,7 +3875,7 @@ input[type='number'].color-danger  + .input-group {
             }
         }
     }
-    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         padding-left: 0px !important;
         padding-right: 0px !important;
         .text {
@@ -3941,9 +3975,24 @@ input[type='number'].color-danger  + .input-group {
         &:after {display: none}
     }
     .swiper-button-prev {right: 125px;}
-    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         padding-left: 0px !important;
         padding-right: 0px !important;
+    }
+    @media screen  and (min-width: 767px) and (max-width: 992px) {
+	  .swiper-slide {
+          flex-direction: column;
+          .img-box {
+              order: 2;
+              width: 100%;
+              overflow: hidden;
+              margin-top: 15px;
+          }
+          .box {
+              width: 100%;
+              &:after {display: none}
+          }
+      }
     }
 }
 
@@ -4002,6 +4051,13 @@ input[type='number'].color-danger  + .input-group {
         line-height: 44px;
     }
 
+    @media screen  and (min-width: 767px) and (max-width: 992px) {
+        .text {
+            font-size: 25px;
+            line-height: 1.5;
+            padding: 30px 45px;
+        }
+    }
 }
 
 
@@ -4108,7 +4164,7 @@ input[type='number'].color-danger  + .input-group {
         }
         .swiper-button-prev {margin-left: -30px;}
     }
-    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         .title {padding-left: 55px;}
         .swiper-slide .text > div {
             padding: 34px 30px 120px;
@@ -4294,7 +4350,7 @@ input[type='number'].color-danger  + .input-group {
     }
     select.form-control {background-image: url(../img/arrow-down-yellow.svg) !important;}
 
-    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         .wrap {
             padding-left: 0px !important;
             padding-right: 10px !important;
@@ -5071,7 +5127,7 @@ input[type='number'].color-danger  + .input-group {
             }
         }
     }
-    @media screen  and (min-width: 1023px) and (max-width: 1300px) {
+    @media screen  and (min-width: 767px) and (max-width: 1300px) {
         padding-right: 60px !important;
     }
 }
