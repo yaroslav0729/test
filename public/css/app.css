@@ -13105,7 +13105,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .donate-today .body .donate-today-sheet .item > span > span:first-child span:first-child {
   font-size: 40px;
-  line-height: 59px;
+  line-height: 43px;
 }
 .donate-today .body .donate-today-sheet .item > span > span:first-child span:first-child object {
   letter-spacing: -7px;
