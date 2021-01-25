@@ -25,6 +25,7 @@
         $hdrTitle[$i] = "";
         $hdrText[$i] = "";
         $hdrBgImage[$i] = "";
+        $donateLink[$i] = "";
     }
 
     if (isset($parameters['hdr_color_type'])) {
@@ -52,6 +53,9 @@
         }
         if (isset($parameters['hdr_bg_image_' .$i])) {
             $hdrBgImage[$i] = $parameters['hdr_bg_image_' . $i];
+        }
+        if (isset($parameters['hdr_donate_link_' .$i])) {
+            $donateLink[$i] = $parameters['hdr_donate_link_' . $i];
         }
     }
 
@@ -121,7 +125,7 @@
                                             @endif
                                         </div>
                                         <p class="mb-5">{!! $hdrText[$i] !!}</p>
-                                        <a href="#"
+                                        <a href="{{ $donateLink[$i] }}"
                                            class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate
                                             now</a>
                                     </div>
