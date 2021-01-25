@@ -49,12 +49,12 @@ $allCategories = \App\Models\CampaignCategory::all();
 
 @php
 
-$col1Class = 'col-6';
-$col2Class = 'col-6';
+$col1Class = 'col-12 col-lg-6';
+$col2Class = 'col-12 col-lg-6';
 
 if (!isset($useAppeal)) {
-    $col1Class = 'col-7';
-    $col2Class = 'col-5';
+    $col1Class = 'col-12 col-lg-7';
+    $col2Class = 'col-12 col-lg-5';
 }
     
 @endphp
