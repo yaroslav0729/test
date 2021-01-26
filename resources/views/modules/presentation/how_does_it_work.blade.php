@@ -81,22 +81,22 @@
         <span>Find the mission you love</span>
     </div>
     <div class="row">
-        <div class="col pr-0 pr-md-5">
+        <div class="col-12 col-lg-4 pr-0 pr-lg-5">
             <div class="item">
                 <div class="num">01</div>
                 <div>{{ $colTitle1 }}</div>
                 <p>{{ $colText1 }}</p>
             </div>
         </div>
-        <div class="col pl-0 pr-0 pl-md-5  pr-0 pr-md-5">
+        <div class="col-12 col-lg-4  pl-3 pr-0 pl-lg-5  pr-0 pr-lg-5">
             <div class="item">
                 <div class="num">02</div>
                 <div>{{ $colTitle2 }}</div>
                 <p>{{ $colText2 }}</p>
             </div>
         </div>
-        <div class="col">
-            <div class="item pl-0 pl-md-5">
+        <div class="col-12 col-lg-4 ">
+            <div class="item pl-0 pl-lg-5">
                 <div class="num">03</div>
                 <div>{{ $colTitle3 }}</div>
                 <p>{{ $colText3 }}</p>

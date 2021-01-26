@@ -20,8 +20,8 @@
 
 <section class="be-part-possible bg-red">
     <div class="row align-items-center">
-        <div class="col-12 col-md-6 text-right">
-            <div class="help-info-grid pr-5">
+        <div class="col-12 col-lg-6 text-right">
+            <div class="help-info-grid pr-3 pr-lg-5 pb-4 pb-lg-0">
                 <div>
                     <span>8.2k</span>
                     <span>Meals provided</span>
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6 pl-5">
+        <div class="col-12 col-lg-6 pl-3 pl-lg-5 ">
             <p class="font-size-40 text-white mb-3"><b>{{ $bePartTitle }}</b></p>
             <p class="font-size-16 text-white mb-5">
                 {{ $bePartText }}

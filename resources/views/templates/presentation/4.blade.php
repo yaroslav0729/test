@@ -33,14 +33,14 @@
     <div class="wrap">
             <div class="pt-5"></div>
             <div class="row align-items-center">
-                <div class="col-4">
+                <div class="col-6 col-lg-4">
                     <div class="author">
                         <div class="img" style="background-image: url(img/content/Avatar1.jpg)"></div>
                         <span>written by <span>|</span> jamaila hamid</span>
                     </div>
                 </div>
                 <div class="col-1"></div>
-                <div class="col-7">
+                <div class="col-5 col-lg-7">
                     <div class="black-line"></div>
                 </div>
             </div>

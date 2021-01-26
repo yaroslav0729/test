@@ -35,7 +35,7 @@
 
 <section class="experience-lifetime">
     <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-lg-6">
             <div class="img-video videoWrapper" style="">
                 <iframe width="1280" height="720"
                         @empty($experienceVideo)
@@ -49,7 +49,7 @@
                         allowfullscreen></iframe>
             </div>
         </div>
-        <div class="col-12 col-md-6 pl-5 pt-3 pb-3">
+        <div class="col-12 col-lg-6 pl-5 pt-3 pb-3">
             <p class="font-size-40 mb-0"><b>{{ $expTitle }}</b></p>
             <p class="font-size-16 mb-5 text-danger">{{ $expText2 }}</p>
             <p class="font-size-45 mb-1 text-danger">{{ $expDate1 }}</p>

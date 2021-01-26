@@ -315,10 +315,10 @@ $categoryNameFitZakat = \App\Models\CampaignCategory::find(Setting::get(Setting:
         <div class="title">
             <div class="top">
                 <div class="row align-items-center">
-                    <div class="col-6">
+                    <div class="col-8">
                         <b>Your Zakat Calculator</b>
                     </div>
-                    <div class="col-6 text-right">
+                    <div class="col-4 text-right">
                         <div class="toggle-title">
                             <div class="text-uppercase">{{ $dropdownWhatDoINeedTitle }} <i class="far fa-chevron-down"></i></div>
                             <div><i class="fal fa-times"></i></div>
@@ -352,8 +352,8 @@ $categoryNameFitZakat = \App\Models\CampaignCategory::find(Setting::get(Setting:
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="tab-1" role="tabpanel" >
                 <div class="row align-items-end gutter-5">
-                    <div class="col-3"></div>
-                    <div class="col-5">
+                    <div class="col-12 col-lg-3"></div>
+                    <div class="col-9 col-lg-5">
                         <div class="form-group mb-0">
                             <label><b>{{ $calculateBaseValueNisaabTitle }}</b></label>
                             <select class="form-control" id="currency">
@@ -362,7 +362,7 @@ $categoryNameFitZakat = \App\Models\CampaignCategory::find(Setting::get(Setting:
                             </select>
                         </div>
                     </div>
-                    <div class="col-1"><button id="btn-currency" class="btn btn-primary h-form-control">£{{ $priceSilver }}</button></div>
+                    <div class="col-3 col-lg-1"><button id="btn-currency" class="btn btn-primary h-form-control">£{{ $priceSilver }}</button></div>
                 </div>
                 <div class="pt-5"></div>
 
@@ -372,15 +372,15 @@ $categoryNameFitZakat = \App\Models\CampaignCategory::find(Setting::get(Setting:
                 <div class="pt-5"></div>
 
                 <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5">
+                    <div class="col-12 col-lg-1"></div>
+                    <div class="col-6 col-lg-5">
                         <div class="form-group" currency="£">
                             <label><b>{{ $calculateValueOfGoldTitle }}</b></label>
                             <input type="number" class="form-control debit-money" placeholder="0.00">
                             <small>{{ $calculateValueOfGoldAnnotation }}</small>
                         </div>
                     </div>
-                    <div class="col-5">
+                    <div class="col-6 col-lg-5">
                         <div class="form-group" currency="£">
                             <label><b>{{ $calculateValueOfSilverTitle }}</b></label>
                             <input type="number" class="form-control debit-money" placeholder="0.00">
@@ -389,15 +389,15 @@ $categoryNameFitZakat = \App\Models\CampaignCategory::find(Setting::get(Setting:
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5">
+                    <div class="col-12 col-lg-1"></div>
+                    <div class="col-6 col-lg-5">
                         <div class="form-group" currency="£">
                             <label><b>{{ $calculateCashInHandTitle }}</b></label>
                             <input type="number" class="form-control debit-money" placeholder="0.00">
                             <small>{{ $calculateCashInHandAnnotation }}</small>
                         </div>
                     </div>
-                    <div class="col-5">
+                    <div class="col-6 col-lg-5">
                         <div class="form-group" currency="£">
                             <label><b>{{ $calculateCashDepositedTitle }}</b></label>
                             <input type="number" class="form-control debit-money" placeholder="0.00">
@@ -406,15 +406,15 @@ $categoryNameFitZakat = \App\Models\CampaignCategory::find(Setting::get(Setting:
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5">
+                    <div class="col-12 col-lg-1"></div>
+                    <div class="col-6 col-lg-5">
                         <div class="form-group" currency="£">
                             <label><b>{{ $calculateGivenTitle }}</b></label>
                             <input type="number" class="form-control debit-money" placeholder="0.00">
                             <small>{{ $calculateGivenAnnotation }}</small>
                         </div>
                     </div>
-                    <div class="col-5">
+                    <div class="col-6 col-lg-5">
                         <div class="form-group" currency="£">
                             <label><b>{{ $calculateOtherTitle }}</b></label>
                             <input type="number" class="form-control debit-money" placeholder="0.00">
@@ -429,8 +429,8 @@ $categoryNameFitZakat = \App\Models\CampaignCategory::find(Setting::get(Setting:
                 <div class="pt-5"></div>
 
                 <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5">
+                    <div class="col-12 col-lg-1"></div>
+                    <div class="col-6 col-lg-5">
                         <div class="form-group" currency="£">
                             <label><b>{{ $calculateValueOfStockTitle }}</b></label>
                             <input type="number" class="form-control debit-money" placeholder="0.00">
@@ -445,15 +445,15 @@ $categoryNameFitZakat = \App\Models\CampaignCategory::find(Setting::get(Setting:
                 <div class="pt-5"></div>
 
                 <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5">
+                    <div class="col-12 col-lg-1"></div>
+                    <div class="col-6 col-lg-5">
                         <div class="form-group" currency="£">
                             <label><b>{{ $calculateBorrowedTitle }}</b></label>
                             <input type="number" class="form-control credit-money" placeholder="0.00">
                             <small>{{ $calculateTaxesAnnotation }}</small>
                         </div>
                     </div>
-                    <div class="col-5">
+                    <div class="col-6 col-lg-5">
                         <div class="form-group" currency="£">
                             <label><b>{{ $calculateWagesTitle }}</b></label>
                             <input type="number" class="form-control credit-money" placeholder="0.00">
@@ -462,8 +462,8 @@ $categoryNameFitZakat = \App\Models\CampaignCategory::find(Setting::get(Setting:
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5">
+                    <div class="col-12 col-lg-1"></div>
+                    <div class="col-6 col-lg-5">
                         <div class="form-group" currency="£">
                             <label><b>{{ $calculateTaxesTitle }}</b></label>
                             <input type="number" class="form-control credit-money" placeholder="0.00">

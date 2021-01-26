@@ -11,7 +11,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
         @if($cartSum === 0)
         <div class="body no-donate">
             <div class="row align-items-center gutter-0">
-                <div class="col-6">
+                <div class="col-12 col-lg-6">
                     <div class="row align-items-center gutter-0">
                         <div class="col-7 text-center">
                             <p class="font-size-20 mb-0"><b>Your donation so far...</b></p>
@@ -21,7 +21,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                         </div>
                     </div>
                 </div>
-                <div class="col-6 line">
+                <div class="col-12 col-lg-6 line relative">
                     <p class="mb-0">No matter the amount, your support could mean everything to someone...</p>
                 </div>
             </div>

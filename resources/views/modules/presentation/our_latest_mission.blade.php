@@ -38,7 +38,7 @@
 
     </div>
     <div class="row gutter-0">
-        <div class="col-7 bg-blue">
+        <div class="col-12 col-lg-7 bg-blue">
             <div class="text">
                 <div class="tl text-white">{{ $ourLatestCountry }}</div>
                 <p class="text-white font-size-20 mb-4 text-uppercase">
@@ -93,7 +93,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-5 img" style="background-image: url(img/content/mission-impossible-1.jpg)">
+        <div class="col-12 col-lg-5 img" style="background-image: url(img/content/mission-impossible-1.jpg)">
             <a href="{{ $ourLatestLink }}" class="btn btn-blue view-more">Apply now</a>
         </div>
     </div>

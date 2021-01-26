@@ -36,16 +36,16 @@
         <i class="moon-icons-arrow-down"></i>
     </div>
     <div class="row gutter-0 mb-4">
-        <div class="col-6">
+        <div class="col-12 col-lg-6">
             @empty($soWhatImg)
             <img src="img/content/so-all-about.jpg" alt="" class="w-100">
             @else
             <img src="{{ $soWhatImg }}" alt="" class="w-100"> 
             @endempty
         </div>
-        <div class="col-6 bg-red pl-5 pr-5 d-flex align-items-center">
+        <div class="col-12 col-lg-6 bg-red p-3 pl-lg-5 pr-lg-5 d-flex align-items-center">
             <div>
-                <p class="font-size-16 text-white  pl-5 pr-5">{!! $soWhatText !!}</p>
+                <p class="font-size-16 text-white pl-0 pr-0 pl-lg-5 pr-lg-5">{!! $soWhatText !!}</p>
             </div>
         </div>
     </div>

@@ -39,7 +39,7 @@
 
 <section class="explore-past-missions bg-red">
     <div class="row">
-        <div class="col-12 col-md-4 pr-5">
+        <div class="col-12 col-lg-4 pr-5">
             <p class="font-size-40 text-white mb-3 line-height-13">
                 @empty($exploreTitle)
                 <b>Explore past Missions</b>
@@ -58,7 +58,8 @@
                 <a href="{{ $donateLink }}" class="btn btn-outline-primary border-white">Donate now</a>
             </div>
         </div>
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-lg-8">
+            <div class="pt-5 pb-3 d-block d-lg-none"></div>
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="item mt-n4">
