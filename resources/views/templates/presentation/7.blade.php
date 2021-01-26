@@ -87,19 +87,19 @@
     <div class="wrap">
         <h2>{{ $headText }}</h2>
         <div class="row gutter-30">
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-6 col-lg-3">
                 <h3>{{ $headOfficeTitle }}</h3>
                 <p>{!! $headOfficeText !!}</p>
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-6 col-lg-3">
                 <h3>{{ $foreignOfficeTitle }}</h3>
                 <p>{!! $foreignOfficeText !!}</p>
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-6 col-lg-3">
                 <h3>{{ $emailTitle }}</h3>
                 <p>{{ $email }}</p>
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-6 col-lg-3">
                 <h3>Connect</h3>
                 <div class="social d-flex justify-content-between">
                     <a href="{{ $instagramLink }}"><i class="fab fa-instagram"></i></a>

@@ -161,7 +161,7 @@
                     <div class="mb-4">
                         <a href="{{ $whoLink }}" class="text-underline text-dark"><b>{{ $whoLinkText }}</b></a>
                     </div>
-                    <p class="font-size-30 mb-2"><b>{!! $whoTitle !!}</b></p>
+                    <p class="font-size-30 mb-2 pr-2"><b>{!! $whoTitle !!}</b></p>
                     <div class="pr-5">
                         <p class="font-size-16 pr-5">{!! $whoText !!}</p>
                     </div>

@@ -37,7 +37,7 @@
         </div>
 
         <div class="row">
-            <div class="col-5 article-text">
+            <div class="col-12 col-lg-5 article-text">
                 <h1>{{ $pageInstance->name }}</h1>
                 <div class="date">
                     <span>{{ $minRead }}</span>
@@ -46,13 +46,13 @@
                 <p>
                     {{ $headerText }}
                 </p>
-                <div class="author">
+                <div class="author mb-4 mb-lg-0">
                     <div class="img" style="background-image: url(img/content/Avatar1.jpg)"></div>
                     <span>written by <span>|</span> {{ $writtenBy }} {{-- $pageInstance->author->name --}}</span>
                 </div>
             </div>
-            <div class="col-1"></div>
-            <div class="col-6">
+            <div class="col-12 col-lg-1"></div>
+            <div class="col-12 col-lg-6">
                 <div class="img-video videoWrapper" style="background: #555">
                     @empty($headerVideo) 
                         <i class="fas fa-play-circle"></i>
@@ -85,14 +85,14 @@
     <div class="wrap">
             <div class="pt-5"></div>
             <div class="row align-items-center">
-                <div class="col-4">
+                <div class="col-6 col-lg-4">
                     <div class="author">
                         <div class="img" style="background-image: url(img/content/Avatar1.jpg)"></div>
                         <span>written by <span>|</span> jamaila hamid</span>
                     </div>
                 </div>
                 <div class="col-1"></div>
-                <div class="col-7">
+                <div class="col-5 col-lg-7">
                     <div class="black-line"></div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div class="col-9">
                 <a href="{{ route('index') }}" class="logo">
-                    <span><img src="/img/logo.png" width="35" height="35" style="margin: 8px 0 0 8px" /></span></a>
+                    <span><img src="/img/logo.png" width="35" height="35" /></span></a>
                 <ul class="d-inline-flex justify-content-between">
                     @isset ($headerMenuItem[0])
                         @foreach($headerMenuItem[0] as $itemMenu)
@@ -62,9 +62,9 @@
                             <div class="black-line"></div>
 
                             <div class="row">
-                                <div class="col-4"></div>
-                                <div class="col-8 text-right">
-                                    <p class="mb=0">Empowering people around the world. Join our movement and find your cause for change.</p>
+                                <div class="col-6 col-lg-4"></div>
+                                <div class="col-6 col-lg-8 text-right">
+                                    <p class="mb-0">Empowering people around the world. Join our movement and find your cause for change.</p>
                                 </div>
                             </div>
 

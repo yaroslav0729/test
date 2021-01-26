@@ -1,4 +1,4 @@
-<footer class="{{ $configTemplate['footerClassName'] }}">
+<footer class="{{ $configTemplate['footerClassName'] ?? 'bg-primary' }}">
     <div class="wrap">
         <div class="row">
             <div class="col-12 col-lg-8">
