@@ -18,6 +18,6 @@ class Controller extends BaseController
 
     public function test()
     {
-        dd('ok');
+        return view('test');
     }
 }
