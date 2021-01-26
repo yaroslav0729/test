@@ -24,4 +24,15 @@ class GlobalPayController extends Controller
 
         return redirect($thanksUrl);
     }
+
+    public function statusUpdate(Request $request)
+    {
+        Log::info('Global pay status update: '. $request);
+
+        return response()->json([
+            'message' => 'Success Global pay status update page',
+            'success' => true,
+            'request' => $request->all()
+        ]); 
+    }
 }

@@ -131,7 +131,8 @@ Route::prefix('paypal')->group(function () {
 
 Route::prefix('globalpay')->group(function () {
     Route::get('/get_pay_link', [GlobalPayController::class, 'getPayLink'])->name('globalpay.get_pay_link');
-    Route::match(['get', 'post'], '/payment_result', [GlobalPayController::class, 'result'])->name('globalpay.result');
+    Route::get('/payment_result', [GlobalPayController::class, 'result'])->name('globalpay.result');
+    Route::post('/payment_status_update', [GlobalPayController::class, 'statusUpdate'])->name('globalpay.status_update');
 });
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
@@ -139,5 +140,5 @@ Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('s
 Route::get('auth/facebook', [SocialController::class, 'facebookRedirect'])->name('auth_facebook');
 Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
 
-//Route::get('/test', [Controller::class, 'test']);
+Route::get('/test', [Controller::class, 'test']);
 Route::get('/{slug}', [PageController::class, 'showFromSlug'])->where('slug', '.*');
