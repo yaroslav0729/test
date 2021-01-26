@@ -32,11 +32,20 @@ class Page extends Model
         'status', 'type', 'wp_id'
     ];
 
-    public static function boot() {
+    /**
+     * Get the Event for the Page.
+     */
+    public function event()
+    {
+        return $this->hasOne('App\Models\Event');
+    }
+
+    public static function boot()
+    {
         parent::boot();
 
-        static::deleting(function($model) {
-             $model->event()->delete();
+        static::deleting(function ($model) {
+            $model->event()->delete();
         });
     }
 
@@ -57,7 +66,7 @@ class Page extends Model
 
     public function scopePublished($query)
     {
-        return $query->where('status', self::PAGE_STATUS_PUBLISHED);    
+        return $query->where('status', self::PAGE_STATUS_PUBLISHED);
     }
 
     public function scopeIndex($query)
@@ -98,17 +107,37 @@ class Page extends Model
     public static function getAllEvents()
     {
         $pages = Page::whereHas('pageInstances', function (Builder $query) {
-            $query->where(['template'=> Template::EVENT_PAGE, 'actual' => 1]);
+            $query->where(['template' => Template::EVENT_PAGE, 'actual' => 1]);
         });
 
         return $pages;
     }
 
     /**
-     * Get the Event for the Page.
+     * Return last blogs
+     *
+     * @param int $count
+     * @return mixed
      */
-    public function event()
+    public static function lastBlogs(int $count)
     {
-        return $this->hasOne('App\Models\Event');
+      return Page::whereHas('pageInstances', function (Builder $query) {
+            $query->where('template', Template::BLOG_PAGE);
+        })->published()
+            ->orderBy('created_at', 'desc')
+            ->take($count)->get();
+    }
+
+    public static function getNewsroomPage()
+    {
+        $newsroomPage = Page::whereHas('pageInstances', function (Builder $query) {
+            $query->where('template', Template::NEWSROOM_PAGE);
+        })->published()->first();
+
+        if (!$newsroomPage) {
+            return null;
+        }
+
+        return $newsroomPage->getActualPageInstanceAttribute();
     }
 }

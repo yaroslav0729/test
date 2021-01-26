@@ -8,42 +8,42 @@
 
 
     if (isset($parameters['min_read'])) {
-        $minRead = $parameters['min_read'];    
+        $minRead = $parameters['min_read'];
     }
 
     if (isset($parameters['hdr_text'])) {
-        $headerText = $parameters['hdr_text'];    
+        $headerText = $parameters['hdr_text'];
     }
 
     if (isset($parameters['written_by'])) {
-        $writtenBy = $parameters['written_by'];    
+        $writtenBy = $parameters['written_by'];
     }
 
     if (isset($parameters['hdr_video'])) {
-        $headerVideo = $parameters['hdr_video'];    
+        $headerVideo = $parameters['hdr_video'];
     }
 
     if (isset($parameters['article_html'])) {
-        $articleHtml = $parameters['article_html'];    
+        $articleHtml = $parameters['article_html'];
     }
 
 @endphp
 
 <div class="form-group">
     <label>Min read parameter:</label>
-    <input class="form-control" required name="parameters[min_read]" placeholder="X min read text" value="{{ $minRead }}" />
+    <input class="form-control" name="parameters[min_read]" placeholder="X min read text" value="{{ $minRead }}" />
 </div>
 <div class="form-group">
     <label>Header text</label>
-    <textarea class="form-control" required name="parameters[hdr_text]" placeholder="Insert header text">{{ $headerText }}</textarea>
+    <textarea class="form-control" name="parameters[hdr_text]" placeholder="Insert header text">{{ $headerText }}</textarea>
 </div>
 <div class="form-group">
     <label>Written by:</label>
-    <input class="form-control" required name="parameters[written_by]" placeholder="Written by" value="{{ $writtenBy }}" />
+    <input class="form-control" name="parameters[written_by]" placeholder="Written by" value="{{ $writtenBy }}" />
 </div>
 <div class="form-group">
     <label>Header video:</label>
-    <input class="form-control" required name="parameters[hdr_video]" placeholder="Insert youtube video link" value="{{ $headerVideo }}" />
+    <input class="form-control" name="parameters[hdr_video]" placeholder="Insert youtube video link" value="{{ $headerVideo }}" />
 </div>
 <div class="form-group">
     <label>Article html</label>

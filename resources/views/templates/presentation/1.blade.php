@@ -6,26 +6,26 @@
     $headerVideo = "";
     $articleHtml = "";
 
-    
+
 
     if (isset($parameters['min_read'])) {
-        $minRead = $parameters['min_read'];    
+        $minRead = $parameters['min_read'];
     }
 
     if (isset($parameters['hdr_text'])) {
-        $headerText = $parameters['hdr_text'];    
+        $headerText = $parameters['hdr_text'];
     }
 
     if (isset($parameters['written_by'])) {
-        $writtenBy = $parameters['written_by'];    
+        $writtenBy = $parameters['written_by'];
     }
 
     if (isset($parameters['hdr_video'])) {
-        $headerVideo = $parameters['hdr_video'];    
+        $headerVideo = $parameters['hdr_video'];
     }
 
     if (isset($parameters['article_html'])) {
-        $articleHtml = $parameters['article_html'];    
+        $articleHtml = $parameters['article_html'];
     }
 
 @endphp
@@ -54,7 +54,7 @@
             <div class="col-12 col-lg-1"></div>
             <div class="col-12 col-lg-6">
                 <div class="img-video videoWrapper" style="background: #555">
-                    @empty($headerVideo) 
+                    @empty($headerVideo)
                         <i class="fas fa-play-circle"></i>
                     @endempty
                     <iframe width="1280" height="720" src="{{ $headerVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -88,7 +88,7 @@
                 <div class="col-6 col-lg-4">
                     <div class="author">
                         <div class="img" style="background-image: url(img/content/Avatar1.jpg)"></div>
-                        <span>written by <span>|</span> jamaila hamid</span>
+                        <span>written by <span>|</span>{{ $writtenBy }}</span>
                     </div>
                 </div>
                 <div class="col-1"></div>

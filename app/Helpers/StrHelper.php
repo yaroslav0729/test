@@ -28,7 +28,7 @@ class StrHelper
     public static function lengthLimit($str, $limit)
     {
         if (strlen($str) > $limit) {
-            return substr($str, 0, $limit) . '...';
+            return mb_substr($str, 0, $limit) . '...';
         } else {
             return $str;
         }

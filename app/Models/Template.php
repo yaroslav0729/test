@@ -436,10 +436,10 @@ class Template
                     'parameters.w_i_should_title' => 'required',
                     'parameters.w_i_should_text' => 'required',
                     'parameters.w_i_gold_title' => 'required',
-                    'parameters.w_i_gold_text' => 'required',
+                    'parameters.w_i_gold_text' => 'required|max:460',
 
                     'parameters.w_i_silver_title' => 'required',
-                    'parameters.w_i_silver_text' => 'required',
+                    'parameters.w_i_silver_text' => 'required|max:460',
 
                     'parameters.w_i_btn_title' => 'required',
                     'parameters.w_i_btn_link' => 'required',
