@@ -295,9 +295,9 @@
     -16z"/>
                     </g>
                 </svg>
-                <b>WHAT'S NEW <i class="moon-icons-arrow-right"></i></b> <a href="{{ \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '#' }}"
-                                                                            class="text-underline text-uppercase letter-spacing-1"><b>visit
-                        newsroom</b></a>
+                <b>WHAT'S NEW <i class="moon-icons-arrow-right"></i></b>
+                <a href="{{ \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '#' }}" class="text-underline text-uppercase letter-spacing-1">
+                    <b>visit newsroom</b></a>
             </div>
             <div>
                 <div class="row gutter-5">
@@ -314,7 +314,7 @@
                                         {{ \App\Helpers\StrHelper::lengthLimit($blogs[0]->getActualPageInstanceAttribute()->name, 30) }}
                                     </b>
                                 </a>
-                                <a class="font-size-16 mb-4 letter-spacing-0 text-dark" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
+                                <a class="font-size-16 mb-4 letter-spacing-0 text-dark text-decoration-none" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
                                     {!! \App\Helpers\StrHelper::lengthLimit($blogs[0]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
                                 </a>
                                 <div class="date mt-4 pb-2">
