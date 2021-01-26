@@ -12,6 +12,10 @@
     </div>
 @endsection
 
+@section('footer')
+    @include('parts.footer')
+@endsection
+
 <script>
 
     function setHeight() {
@@ -29,3 +33,4 @@
     })
 
 </script>
+
