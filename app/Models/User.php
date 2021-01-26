@@ -87,6 +87,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\PostInstance')->where('actual', true);
     }
 
+    public function donations()
+    {
+        return $this->hasMany('App\Models\Donation');
+    }
+
     public function getRoleNameAttribute()
     {
         $roles = $this->getRoleNames();

@@ -27,6 +27,13 @@
                         <td class="border px-4 py-2">{{ $user->role_name }}</td>
                         <td class="border px-4 py-2">{{ $user->created_at->format('d/m/Y') }}</td>
                         <td class="border px-4 py-2 action_td">
+                          
+                          <a href="{{ route('admin.user.show', ['id' => $user->id]) }}">
+                            <button class="btn btn-outline-success action-btn" type="button" title="Show user">
+                              <i class="fas fa-eye"></i>
+                            </button>
+                          </a>
+
                           <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}">
                             <button class="btn btn-info action-btn" type="submit" title="Edit user">
                               <i class="fas fa-edit"></i>

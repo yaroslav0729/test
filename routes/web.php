@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\RedirectController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubscriptionController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
@@ -19,6 +19,7 @@ use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\GlobalPayController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\UserController;
 use App\Models\MenuItem;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +40,7 @@ Route::get('/sitemap.xml', [SitemapController::class, 'sitemap']);
 
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_ADMIN]], function () {
     Route::prefix('admin')->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name('admin.index');
+        Route::get('/', [AdminUserController::class, 'index'])->name('admin.index');
 
         Route::resource('pages', AdminPageController::class, ['as' => 'admin']);
         Route::resource('category', CategoryController::class, ['as' => 'admin']);
@@ -96,9 +97,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
             });
 
         Route::prefix('users')->group(function () {
-            Route::get('edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
-            Route::post('update/{id}', [UserController::class, 'update'])->name('admin.user.update');
-            Route::delete('delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
+            Route::get('show/{id}', [AdminUserController::class, 'show'])->name('admin.user.show');
+            Route::get('edit/{id}', [AdminUserController::class, 'edit'])->name('admin.user.edit');
+            Route::post('update/{id}', [AdminUserController::class, 'update'])->name('admin.user.update');
+            Route::delete('delete/{id}', [AdminUserController::class, 'delete'])->name('admin.user.delete');
         });
 
         Route::get('/get_template_form/{templateId}', [AdminPageController::class, 'getTemplateForm'])->name('admin.get_template_form');
@@ -113,6 +115,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::prefix('user')->group(function () {
+        Route::get('/donations', [UserController::class, 'donations'])->name('user.donations');
+    });
+});
 
 Route::prefix('cart')->group(function () {
     Route::post('/add', [CartController::class, 'add'])->name('cart.add');

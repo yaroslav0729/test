@@ -6,6 +6,7 @@
         @endrole
         <li><a href="{{ route('dashboard') }}"><i class="far fa-list-alt"></i>User dashboard</a></li>
         <li><a href="{{ route('profile.show') }}"><i class="fas fa-user"></i>Profile</a></li>
+        <li><a href="{{ route('user.donations') }}"><i class="fas fa-usd-circle"></i>My donations</a></li>
     </ul>
     <br><br>
 

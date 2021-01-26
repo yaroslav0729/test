@@ -43,4 +43,11 @@ class UserController extends Controller
 
         return redirect()->route('admin.index')->with('status', 'User deleted!');
     }
+
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+
+        return view('admin.user.show', compact('user'));    
+    }
 }
