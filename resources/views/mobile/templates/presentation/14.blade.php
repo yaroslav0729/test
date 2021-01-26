@@ -34,7 +34,7 @@
             <a class="nav-link active"  href="#" >TRENDING</a>
             <a class="nav-link "  href="#" >NEWS</a>
             <a class="nav-link "  href="#" >PRESS</a>
-            <a class="nav-link "  href="#" >IN CINEMA</a>
+            <a class="nav-link "  href="#" >IH CINEMA</a>
         </div>
     </nav>
 </section>

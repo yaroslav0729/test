@@ -23,6 +23,7 @@ import { initWysiwyg } from './admin_parts/init_tiny-mce';
 require('./parts/project_tiles.js')
 require('./parts/donate_module.js')
 require('./parts/cart.js')
+require('./parts/newsroom.js')
 require('./functions.js')
 
 var MODAL_FORM_LOCK = false

@@ -39748,6 +39748,8 @@ __webpack_require__(/*! ./parts/donate_module.js */ "./resources/js/parts/donate
 
 __webpack_require__(/*! ./parts/cart.js */ "./resources/js/parts/cart.js");
 
+__webpack_require__(/*! ./parts/newsroom.js */ "./resources/js/parts/newsroom.js");
+
 __webpack_require__(/*! ./functions.js */ "./resources/js/functions.js");
 
 var MODAL_FORM_LOCK = false;
@@ -40968,6 +40970,22 @@ $(function () {
     var tabClass = $(this).data('tab');
     $('div.' + tabClass).removeClass('d-none');
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+});
+
+/***/ }),
+
+/***/ "./resources/js/parts/newsroom.js":
+/*!****************************************!*\
+  !*** ./resources/js/parts/newsroom.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  $(document).on('click', '.newsroom-tabs .nav-link', function () {
+    $('.newsroom-tabs .nav-link').removeClass('active');
+    $(this).addClass('active');
+  });
 });
 
 /***/ }),
