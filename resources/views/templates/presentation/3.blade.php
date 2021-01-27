@@ -309,7 +309,7 @@
                                 <span class="plus bg-info"><i class="moon-icons-plus"></i></span>
                             </a>
                             <div class="descr">
-                                <a class="font-size-20 letter-spacing-1 mb-0 text-dark d-block" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
+                                <a class="font-size-18 letter-spacing-1 mb-0 text-dark d-block" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
                                     <b>
                                         {{ \App\Helpers\StrHelper::lengthLimit($blogs[0]->getActualPageInstanceAttribute()->name, 30) }}
                                     </b>
@@ -336,7 +336,7 @@
                                 {{--                            <p class="font-size-20 letter-spacing-1 mb-0"><b>Article Video placement 30ch</b></p>
                                                             <p class="font-size-16 mb-4 letter-spacing-0">Subtitle capture copy placed here, 40ch...</p>
                                                             <div class="date">April 06, 2020 BY AHMED SALEM</div>--}}
-                                <a class="font-size-20 letter-spacing-1 mb-0 text-dark d-block" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
+                                <a class="font-size-18 letter-spacing-1 mb-0 text-dark d-block" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
                                     <b>
                                         {{ \App\Helpers\StrHelper::lengthLimit($blogs[1]->getActualPageInstanceAttribute()->name, 30) }}
                                     </b>
@@ -360,7 +360,7 @@
                                 {{--                            <p class="font-size-20 letter-spacing-1 mb-0"><b>Article Video placement 30ch</b></p>
                                                             <p class="font-size-16 mb-4 letter-spacing-0">Subtitle capture copy placed here, 40ch...</p>
                                                             <div class="date">April 06, 2020 BY AHMED SALEM</div>--}}
-                                <a class="font-size-20 letter-spacing-1 mb-0 text-dark d-block" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
+                                <a class="font-size-18 letter-spacing-1 mb-0 text-dark d-block" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
                                     <b>
                                         {{ \App\Helpers\StrHelper::lengthLimit($blogs[2]->getActualPageInstanceAttribute()->name, 30) }}
                                     </b>

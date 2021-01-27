@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: 0.2;
+  opacity: .2;
 }
 .other-way-give-mobile .phone {
   font-family: Lato;
@@ -731,7 +731,7 @@
   right: 0;
   text-align: center;
   font-size: 30px;
-  line-height: 60px;
+  line-height: 53px;
   color: #fff;
 }
 .mobile-template .join-cause {
@@ -2060,10 +2060,10 @@
   font-size: 35px;
 }
 .bg-btn-red {
-  background: #f7796a !important;
+  background: #f7796a!important;
   color: #ffffff;
 }
 .bg-btn-red a {
-  color: #ffffff !important;
+  color: #ffffff!important;
 }
 /*------------------------------------vb--------*/

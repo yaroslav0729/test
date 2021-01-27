@@ -442,7 +442,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
 
             <div class="down-link">
                 <a href="{{ \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '#' }}">visit newsroom</a>
-                <a href="#" class="view-more swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
+                <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
                 <div class="black-line"></div>
             </div>
         </div>
