@@ -625,6 +625,9 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   text-shadow: 0 0 1px #101525;
   text-decoration: underline;
 }
+.header-menu .black-line {
+  height: 5px;
+}
 .header-menu .black-line.no-line {
   background: transparent;
 }
@@ -780,7 +783,7 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   padding-right: 65px;
 }
 .header-menu .projects-group-swiper {
-  margin-top: -100px;
+  margin-top: -88px;
   padding: 0 65px 43px;
 }
 .header-menu .projects-group-swiper .swiper-container {
@@ -854,6 +857,7 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   .header-menu .projects-group-swiper {
     padding-left: 0;
     padding-right: 0;
+    margin-top: -112px;
   }
   .header-menu .projects-group-swiper .item {
     font-size: 12px;
