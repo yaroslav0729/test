@@ -924,6 +924,10 @@ $(function () {
 function getShareThisCou() {
     var token = $('div.stat').data('token')
     var url = $('div.stat').data('url')
+
+    if ((token === undefined) || (url === undefined)) {
+        return
+    }
     
     $.ajax({
         url: 'https://graph.facebook.com/v3.0/',
