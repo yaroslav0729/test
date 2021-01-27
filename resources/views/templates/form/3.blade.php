@@ -18,6 +18,9 @@
     $hdrText = [];
     $hdrBgImage = [];
 
+    $tagText = '';
+    $tagClass = '';
+
     for ($i=1; $i<=4; $i++) {
         $hdrTypeActive[$i] = "";
         $hdrLinkText[$i] = "";
@@ -91,6 +94,14 @@
 
     if (isset($parameters['our_work_sadiqah_link'])) {
         $sadiqahLink = $parameters['our_work_sadiqah_link'];
+    }
+
+    if (isset($parameters['tag_text'])) {
+        $tagText = $parameters['tag_text'];
+    }
+
+    if (isset($parameters['tag_class'])) {
+        $tagClass= $parameters['tag_class'];
     }
 
 @endphp
@@ -184,6 +195,22 @@
         @endfor
     </div>
 </div>
+
+<div class="col-12 col-lg-6 mt-lg-5">
+    <div class="form-group ">
+        <label>Tag text:</label>
+        <input class="form-control" name="parameters[tag_text]" placeholder="Example: Ramathan"
+               value="{{ $tagText }}"/>
+    </div>
+</div>
+<div class="col-12 col-lg-6 mt-lg-5">
+    <div class="form-group ">
+        <label>Tag classes:</label>
+        <input class="form-control" name="parameters[tag_class]" placeholder="Example: bg-info-light text-info"
+               value="{{ $tagClass }}"/>
+    </div>
+</div>
+
 <div class="row col-12">
     <div class="col-12 col-lg-6 mt-5">
         <div class="form-group">

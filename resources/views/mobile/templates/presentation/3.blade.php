@@ -17,6 +17,8 @@ $hdrLearnMoreLink = [];
 $hdrTitle = [];
 $hdrText = [];
 $hdrBgImage = [];
+$tagText = '';
+$tagClass = '';
 
  $featuredCompaignLink = "";
     $slideTitle = [];
@@ -136,6 +138,14 @@ if (isset($parameters['our_work_sadiqah_link'])) {
         }
     }
 
+    if (isset($parameters['tag_text'])) {
+        $tagText = $parameters['tag_text'];
+    }
+
+    if (isset($parameters['tag_class'])) {
+        $tagClass= $parameters['tag_class'];
+    }
+
     $blogs = \App\Models\Page::lastBlogs(4);
 
 @endphp
@@ -150,7 +160,13 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                         <div class="swiper-slide">
                              <div class="body">
                                 <div class="left">
-                                    <div class="tag bg-info-light text-info">Ramathan</div>
+                                    
+                                    @empty($tagText)
+                                        <div class="tag bg-info-light text-info">Ramathan</div>
+                                    @else
+                                        <div class="tag {{ $tagClass }}">{{ $tagText }}</div>
+                                    @endempty
+
                                     <div class="mb-4">
                                         <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
                                     </div>
