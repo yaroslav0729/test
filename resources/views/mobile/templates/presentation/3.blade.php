@@ -150,6 +150,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                         <div class="swiper-slide">
                              <div class="body">
                                 <div class="left">
+                                    <div class="tag bg-info-light text-info">Ramathan</div>
                                     <div class="mb-4">
                                         <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
                                     </div>
@@ -167,9 +168,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                                         <div class="black-line"></div>
                                     </div>
                                 </div>
-                                <a href="{{ $hdrLearnMoreLink[$i] }}" class="right" style="background-image: url('{{ $hdrBgImage[$i] }}')">
-
-                                </a>
+                                <a href="{{ $hdrLearnMoreLink[$i] }}" class="right" style="background-image: url('{{ $hdrBgImage[$i] }}')"></a>
                             </div>
                         </div>
                     @endif
@@ -285,8 +284,8 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                 </div>
                 @endfor
             </div>
+{{--            <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>--}}
             <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
-            <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
             <div class="swiper-pagination"></div>
         </div>
     </div>

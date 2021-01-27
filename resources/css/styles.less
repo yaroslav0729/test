@@ -782,6 +782,8 @@ header {
         .head-menu-video {
             width: 246px;
             right: 0 !important;
+            height: auto;
+            bottom: 0 !important;
         }
         .down-menu a {font-size: 11px;}
     }
@@ -977,6 +979,7 @@ header {
 
 .bg {
     &-info {background-color: #2caabb !important;}
+    &-info-light {background-color: #D5EEF1 !important;}
     &-red {background-color: #FF5D4A !important;}
     &-danger {background-color: #F97866 !important;}
     &-danger-light {background-color: #FFF6F3 !important;}
@@ -1240,7 +1243,7 @@ input[type='number'].color-danger  + .input-group {
             position: absolute; bottom: -4px; right: 0;
             text-align: center;
             font-size: 30px;
-            line-height: 60px;
+            line-height: 53px;
             color: #fff;
             &:hover {background: #F7796A}
         }
@@ -1262,7 +1265,19 @@ input[type='number'].color-danger  + .input-group {
                 background-repeat: no-repeat;
                 background-position: 50% 50%;
             }
-
+            .tag {
+                display: inline-block;
+                border-radius: 0 5px 5px 0;
+                padding: 5px 10px 5px 30px;
+                font-family: Lato;
+                font-size: 14px;
+                font-weight: 900;
+                letter-spacing: 1px;
+                line-height: 17px;
+                text-transform: uppercase;
+                margin-bottom: 19px;
+                margin-left: -29px;
+            }
             .learn-more {letter-spacing: 1px}
             .title {
                 color: #101525;
@@ -2863,6 +2878,7 @@ input[type='number'].color-danger  + .input-group {
         .title {padding: 0}
     }
     @media screen  and (min-width: 767px) and (max-width: 992px) {
+        .title .moon-icons-arrow-down {top: auto; left: 0}
         .body {
             .donate-today-sheet {
                 margin-left: 0;
@@ -3201,12 +3217,15 @@ input[type='number'].color-danger  + .input-group {
         }
     }
     @media screen  and (min-width: 767px) and (max-width: 992px) {
-        .body.no-donate {
-            .line {
-                padding-top: 15px;
-                padding-bottom: 10px;
-                &:after {display: none}
-                p {padding-left: 47px;}
+        .body {
+            margin-top: -15px !important;
+            &.no-donate {
+                .line {
+                    padding-top: 15px;
+                    padding-bottom: 10px;
+                    &:after {display: none}
+                    p {padding-left: 47px;}
+                }
             }
         }
     }
