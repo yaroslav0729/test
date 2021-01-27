@@ -130,7 +130,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                         <div class="swiper-slide">
                              <div class="body">
                                 <div class="left">
-                                    
+
                                     @empty($tagText)
                                         <div class="tag bg-info-light text-info">Ramathan</div>
                                     @else
@@ -319,87 +319,86 @@ if (isset($parameters['our_work_sadiqah_link'])) {
         </div>
         <div>
             <div swiper-wrapper="whats-new">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="item vertical">
-                            <a class="img" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
-                                <span style="background-image: url({{ $blogs[0]->getActualPageInstanceAttribute()->preview_img }})"></span>
-                                <span class="plus bg-info"><i class="moon-icons-plus"></i></span>
-                            </a>
-                            <div class="descr">
-                                <a class="font-size-16 mb-0 text-ellipsis text-dark text-decoration-none" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
-                                    <b>
-                                        {{ \App\Helpers\StrHelper::lengthLimit($blogs[0]->getActualPageInstanceAttribute()->name, 30) }}
-                                    </b>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="item vertical">
+                                <a class="img" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
+                                    <span style="background-image: url({{ $blogs[0]->getActualPageInstanceAttribute()->preview_img }})"></span>
+                                    <span class="plus bg-info"><i class="moon-icons-plus"></i></span>
                                 </a>
-                                <a class="font-size-16 mb-0 text-dark text-decoration-none" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
-                                    {!! \App\Helpers\StrHelper::lengthLimit($blogs[0]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
+                                <div class="descr">
+                                    <a class="font-size-16 mb-0 text-ellipsis text-dark text-decoration-none" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
+                                        <b>
+                                            {{ \App\Helpers\StrHelper::lengthLimit($blogs[0]->getActualPageInstanceAttribute()->name, 30) }}
+                                        </b>
+                                    </a>
+                                    <a class="font-size-16 mb-0 text-dark text-decoration-none" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
+                                        {!! \App\Helpers\StrHelper::lengthLimit($blogs[0]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="item">
+                                <a class="img" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
+                            <span style="background-image: url({{ $blogs[1]->getActualPageInstanceAttribute()->preview_img }})">
+                                <i class="fas fa-play-circle"></i>
+                            </span>
+                                    <span class="plus bg-danger"><i class="moon-icons-plus"></i></span>
                                 </a>
+                                <div class="descr">
+                                    <a class="font-size-16 mb-0 text-ellipsis text-dark text-decoration-none" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
+                                        <b>
+                                            {{ \App\Helpers\StrHelper::lengthLimit($blogs[1]->getActualPageInstanceAttribute()->name, 30) }}
+                                        </b>
+                                    </a>
+                                    <a class="font-size-16 mb-0 text-dark text-decoration-none" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
+                                        {!! \App\Helpers\StrHelper::lengthLimit($blogs[1]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <a class="img" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
+                                    <span style="background-image: url({{ $blogs[2]->getActualPageInstanceAttribute()->preview_img }})"></span>
+                                    <span class="plus bg-warning"><i class="moon-icons-plus"></i></span>
+                                </a>
+                                <div class="descr">
+                                    <a class="font-size-16 mb-0 text-ellipsis text-dark text-decoration-none" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
+                                        <b>
+                                            {{ \App\Helpers\StrHelper::lengthLimit($blogs[2]->getActualPageInstanceAttribute()->name, 30) }}
+                                        </b>
+                                    </a>
+                                    <a class="font-size-16 mb-0 text-dark text-decoration-none" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
+                                        {!! \App\Helpers\StrHelper::lengthLimit($blogs[2]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="item vertical">
+                                <a class="img" href="{{$blogs[3]->getActualPageInstanceAttribute()->slug }}">
+                                    <span style="background-image: url({{ $blogs[3]->getActualPageInstanceAttribute()->preview_img }})"></span>
+                                    <span class="plus bg-info"><i class="moon-icons-plus"></i></span>
+                                </a>
+                                <div class="descr">
+                                    <p class="font-size-16 mb-0 text-ellipsis">
+                                        <b>{{ \App\Helpers\StrHelper::lengthLimit($blogs[3]->getActualPageInstanceAttribute()->name, 30) }}</b>
+                                    </p>
+                                    <p class="font-size-16 mb-0">
+                                        {!! \App\Helpers\StrHelper::lengthLimit($blogs[3]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="item">
-                            <a class="img" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
-                        <span style="background-image: url({{ $blogs[1]->getActualPageInstanceAttribute()->preview_img }})">
-                            <i class="fas fa-play-circle"></i>
-                        </span>
-                                <span class="plus bg-danger"><i class="moon-icons-plus"></i></span>
-                            </a>
-                            <div class="descr">
-                                <a class="font-size-16 mb-0 text-ellipsis text-dark text-decoration-none" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
-                                    <b>
-                                        {{ \App\Helpers\StrHelper::lengthLimit($blogs[1]->getActualPageInstanceAttribute()->name, 30) }}
-                                    </b>
-                                </a>
-                                <a class="font-size-16 mb-0 text-dark text-decoration-none" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
-                                    {!! \App\Helpers\StrHelper::lengthLimit($blogs[1]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <a class="img" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
-                                <span style="background-image: url({{ $blogs[2]->getActualPageInstanceAttribute()->preview_img }})"></span>
-                                <span class="plus bg-warning"><i class="moon-icons-plus"></i></span>
-                            </a>
-                            <div class="descr">
-                                <a class="font-size-16 mb-0 text-ellipsis text-dark text-decoration-none" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
-                                    <b>
-                                        {{ \App\Helpers\StrHelper::lengthLimit($blogs[2]->getActualPageInstanceAttribute()->name, 30) }}
-                                    </b>
-                                </a>
-                                <a class="font-size-16 mb-0 text-dark text-decoration-none" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
-                                    {!! \App\Helpers\StrHelper::lengthLimit($blogs[2]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="item vertical">
-                            <a class="img" href="{{$blogs[3]->getActualPageInstanceAttribute()->slug }}">
-                                <span style="background-image: url({{ $blogs[3]->getActualPageInstanceAttribute()->preview_img }})"></span>
-                                <span class="plus bg-info"><i class="moon-icons-plus"></i></span>
-                            </a>
-                            <div class="descr">
-                                <p class="font-size-16 mb-0 text-ellipsis">
-                                    <b>{{ \App\Helpers\StrHelper::lengthLimit($blogs[3]->getActualPageInstanceAttribute()->name, 30) }}</b>
-                                </p>
-                                <p class="font-size-16 mb-0">
-                                    {!! \App\Helpers\StrHelper::lengthLimit($blogs[3]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                <div class="swiper-pagination"></div>
-            </div>
-            </div>
-
-            <div class="down-link">
-                <a href="{{ \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '#' }}">visit newsroom</a>
-                <a href="#" class="view-more"><i class="moon-icons-arrow-right"></i></a>
-                <div class="black-line"></div>
+                <div class="down-link">
+                    <a href="{{ \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '#' }}">visit newsroom</a>
+                    <a href="#" class="view-more swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
+                    <div class="black-line"></div>
+                </div>
             </div>
         </div>
     </div>
