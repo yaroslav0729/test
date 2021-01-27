@@ -1,4 +1,4 @@
-<footer class="{{ $configTemplate['footerClassName'] }}">
+<footer class="{{ $configTemplate['footerClassName'] ?? 'bg-primary' }}">
     <div class="wrap">
         <div class="toggle-menu"><b>EXPAND NAVIGATION</b></div>
         <div style="display: none">
