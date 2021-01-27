@@ -320,7 +320,9 @@
                                 <div class="date mt-4 pb-2">
                                     {{ $blogs[0]->created_at->format('F d, Y') }}
                                     BY {{ $blogs[0]->getActualPageInstanceAttribute()->parameters['written_by'] ?? '' }}</div>
-                                <div class="stat"><span>1.2k</span></div>{{--TODO insert --}}
+                                <div class="stat" data-token="{{ env('FACEBOOK_KEY') }}|{{ env('FACEBOOK_SECRET')}}"
+                                   data-url="{{ request()->getSchemeAndHttpHost() . '/' .  $blogs[0]->getActualPageInstanceAttribute()->slug }}">
+                                   <span>0</span></div>
                             </div>
                         </div>
                     </div>
@@ -333,9 +335,6 @@
                                 <span class="plus bg-danger"><i class="moon-icons-plus"></i></span>
                             </a>
                             <div class="descr">
-                                {{--                            <p class="font-size-20 letter-spacing-1 mb-0"><b>Article Video placement 30ch</b></p>
-                                                            <p class="font-size-16 mb-4 letter-spacing-0">Subtitle capture copy placed here, 40ch...</p>
-                                                            <div class="date">April 06, 2020 BY AHMED SALEM</div>--}}
                                 <a class="font-size-18 letter-spacing-1 mb-0 text-dark d-block" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
                                     <b>
                                         {{ \App\Helpers\StrHelper::lengthLimit($blogs[1]->getActualPageInstanceAttribute()->name, 30) }}
@@ -357,9 +356,6 @@
                                 <span class="plus bg-warning"><i class="moon-icons-plus"></i></span>
                             </a>
                             <div class="descr">
-                                {{--                            <p class="font-size-20 letter-spacing-1 mb-0"><b>Article Video placement 30ch</b></p>
-                                                            <p class="font-size-16 mb-4 letter-spacing-0">Subtitle capture copy placed here, 40ch...</p>
-                                                            <div class="date">April 06, 2020 BY AHMED SALEM</div>--}}
                                 <a class="font-size-18 letter-spacing-1 mb-0 text-dark d-block" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
                                     <b>
                                         {{ \App\Helpers\StrHelper::lengthLimit($blogs[2]->getActualPageInstanceAttribute()->name, 30) }}

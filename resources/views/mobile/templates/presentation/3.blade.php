@@ -130,24 +130,23 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                         <div class="swiper-slide">
                              <div class="body">
                                 <div class="left">
-
                                     @empty($tagText)
                                         <div class="tag bg-info-light text-info">Ramathan</div>
                                     @else
                                         <div class="tag {{ $tagClass }}">{{ $tagText }}</div>
                                     @endempty
-
-                                    <div class="mb-4">
-                                        <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
-                                    </div>
                                     <div class="title mb-3">
-                                        @if($hdrColorType === 'blue')
-                                            {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-info') !!}
-                                        @else
-                                            {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-danger') !!}
-                                        @endif
+                                        <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-dark text-decoration-none">
+                                            @if($hdrColorType === 'blue')
+                                                {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-info') !!}
+                                            @else
+                                                {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-danger') !!}
+                                            @endif
+                                        </a>
                                     </div>
-                                    <p class="mb-3">{!! $hdrText[$i] !!}</p>
+                                        <a href="{{ $hdrLearnMoreLink[$i] }}" class="mb-3 text-dark text-decoration-none d-block">
+                                            {!! $hdrText[$i] !!}
+                                        </a>
                                     <a href="{{ $donateLink[$i] }}" style="position: relative; z-index: 2" class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate now</a>
                                     <div class="text-right mt-n4 d-block">
                                         <a href="#" class="view-more swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
@@ -396,7 +395,7 @@ if (isset($parameters['our_work_sadiqah_link'])) {
                 </div>
                 <div class="down-link">
                     <a href="{{ \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '#' }}">visit newsroom</a>
-                    <a href="#" class="view-more swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
+                    <a href="{{ \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '#' }}" class="view-more"><i class="moon-icons-arrow-right"></i></a>
                     <div class="black-line"></div>
                 </div>
             </div>
