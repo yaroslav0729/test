@@ -31,15 +31,24 @@
 <section class="newsroom-tabs">
     <nav class="general-content-tabs">
         <div class="nav nav-tabs nav-fill"  role="tablist">
-            <a class="nav-link active"  href="#" >TRENDING</a>
-            <a class="nav-link "  href="#" >NEWS</a>
-            <a class="nav-link "  href="#" >PRESS</a>
-            <a class="nav-link "  href="#" >IH CINEMA</a>
+            <a class="nav-link active" data-active="newsroom_tab_trending"  href="#" >TRENDING</a>
+            <a class="nav-link" data-active="newsroom_tab_news" href="#" >NEWS</a>
+            <a class="nav-link" data-active="newsroom_tab_press" href="#" >PRESS</a>
+            <a class="nav-link" data-active="newsroom_tab_cinema" href="#" >IH CINEMA</a>
         </div>
     </nav>
 </section>
 
-<section class="blog-article-head">
+{{--
+
+newsroom_tab_trending
+newsroom_tab_news
+newsroom_tab_press
+newsroom_tab_cinema
+
+--}}
+
+<section class="blog-article-head newsroom_tab_trending">
     <div class="wrap no-brd">
         <div class="row">
             <div class="col-5 article-text">
@@ -65,11 +74,25 @@
     </div>
 </section>
 
-@include('modules.presentation.trending_articles')
+<div class="newsroom_tab_trending 
+newsroom_tab_news 
+newsroom_tab_press 
+newsroom_tab_cinema">
+    @include('modules.presentation.trending_articles')
+</div>
 
 <div class="pt-5 pb-5"></div>
 
-@include('modules.presentation.popular_topics')
+<div class="newsroom_tab_trending 
+newsroom_tab_news 
+newsroom_tab_press 
+newsroom_tab_cinema">
+    @include('modules.presentation.popular_topics')
+</div>
+
+<div class="newsroom_tab_trending">
+    @include('modules.presentation.mission_possible')
+</div>
 
 @include('modules.presentation.join_the_cause_subscribe')
 

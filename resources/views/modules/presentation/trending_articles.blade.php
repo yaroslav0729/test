@@ -12,8 +12,8 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
 
 <section class="newsroom-list" trending-articles>
     <div class="title">
-        <span>Trending</span>
-        <i>Trending articles</i>
+        <span id="newsroom_title_span">Trending</span>
+        <i id="newsroom_title_i">Trending articles</i>
         <div>
             <button class="btn btn-white">SORT BY DATE</button>
             <button class="btn btn-primary-dark">FILTER BY TOPIC</button>
