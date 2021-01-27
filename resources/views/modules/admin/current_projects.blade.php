@@ -3,6 +3,7 @@
     $slideTitle = [];
     $slideText = [];
     $readMoreLink = [];
+    $donateNowLink = [];
     $slideImage = [];
     
     if (isset($parameters['feat_camp_link'])) {
@@ -32,6 +33,12 @@
             $readMoreLink[$i] = $parameters['read_more_link_' . $i];    
         } else {
             $readMoreLink[$i] = ""; 
+        }
+
+        if (isset($parameters['donate_now_link_' . $i])) {
+            $donateNowLink[$i] = $parameters['donate_now_link_' . $i];    
+        } else {
+            $donateNowLink[$i] = ""; 
         }
     }
     
@@ -74,6 +81,11 @@
             <div class="form-group">
                 <label>Read more {{ $i + 1 }} link:</label>
                 <input class="form-control" name="parameters[read_more_link_{{ $i }}]" placeholder="Read more {{ $i + 1 }} link" value="{{ $readMoreLink[$i] }}" />
+            </div>
+
+            <div class="form-group">
+                <label>Donate now {{ $i + 1 }} link:</label>
+                <input class="form-control" name="parameters[donate_now_link_{{ $i }}]" placeholder="Donate now {{ $i + 1 }} link" value="{{ $donateNowLink[$i] }}" />
             </div>
 
         </div>

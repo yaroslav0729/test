@@ -3,6 +3,7 @@
     $slideTitle = [];
     $slideText = [];
     $readMoreLink = [];
+    $donateNowLink = [];
     $slideImage = [];
     
     if (isset($parameters['feat_camp_link'])) {
@@ -32,6 +33,12 @@
             $readMoreLink[$i] = $parameters['read_more_link_' . $i];    
         } else {
             $readMoreLink[$i] = ""; 
+        }
+
+        if (isset($parameters['donate_now_link_' . $i])) {
+            $donateNowLink[$i] = $parameters['donate_now_link_' . $i];    
+        } else {
+            $donateNowLink[$i] = ""; 
         }
     }
     
@@ -63,7 +70,7 @@
                                                 <p class="font-size-16 mb-5 slide-text">{{ $slideText[$i] }}</p>
                                                 <div class="actions">
                                                     <a href="{{ $readMoreLink[$i] }}" class="btn btn-outline-primary mr-4 slide-readmore">Read more</a>
-                                                    <a href="#" class="btn btn-primary">Donate now</a>
+                                                    <a href="{{ $donateNowLink[$i] }}" class="btn btn-primary">Donate now</a>
                                                 </div>
                                             </div>
                                         </div>

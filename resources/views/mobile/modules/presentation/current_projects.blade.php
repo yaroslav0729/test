@@ -2,6 +2,7 @@
     $slideTitle = [];
     $slideText = [];
     $readMoreLink = [];
+    $donateNowLink = [];
     $slideImage = [];
     
     if (isset($parameters['feat_camp_link'])) {
@@ -32,12 +33,18 @@
         } else {
             $readMoreLink[$i] = ""; 
         }
+
+        if (isset($parameters['donate_now_link_' . $i])) {
+            $donateNowLink[$i] = $parameters['donate_now_link_' . $i];    
+        } else {
+            $donateNowLink[$i] = ""; 
+        }
     }
     
 
 @endphp
 
-<section class="current-projects">
+<section class="current-projects" swiper-wrapper="slider-mobile-1">
     <div class="wrap">
         <div class="title">
             <span>Current Projects</span>
@@ -47,22 +54,22 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 @for ($i = 0; $i < 4; $i++)
-                    <div class="swiper-slide">
-                        <div class="body">
-                            <div class="left">
-                                <p class="font-size-20 mb-3">{{ $slideTitle[$i] }}</p>
-                                <p class="font-size-15 mb-2">{{ $slideText[$i] }}</p>
-                                <div>
-                                    <a href="#" class="btn btn-warning">Donate now</a>
-                                </div>
+                <div class="swiper-slide">
+                    <div class="body">
+                        <div class="left">
+                            <p class="font-size-20 mb-3"><b>{!! $slideTitle[$i] !!}</b></p>
+                            <p class="font-size-15 mb-2">{!! $slideText[$i] !!}</p>
+                            <div>
+                                <a href="{{ $donateNowLink[$i] }}" class="btn btn-warning">Donate now</a>
                             </div>
-                            <div class="img" style="background-image: url({{ $slideImage[$i] }})"></div>
                         </div>
-                    </div>   
+                        <div class="img" style="background-image: url('{{ $slideImage[$i] }}')"></div>
+                    </div>
+                </div>
                 @endfor
             </div>
+{{--            <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>--}}
             <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
-            <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
             <div class="swiper-pagination"></div>
         </div>
     </div>
