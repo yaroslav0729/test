@@ -1,9 +1,5 @@
 @php
 
-$longtermLink = "";
-$emergencyLink = "";
-$volunteeringLink = "";
-$sadiqahLink = "";
 $relatedPages = [];
 $hdrTypeActive = [];
 $hdrColorType = "";
@@ -56,22 +52,6 @@ for ($i=1; $i<=4; $i++){
     if (isset($parameters['hdr_donate_link_' .$i])) {
         $donateLink[$i] = $parameters['hdr_donate_link_' . $i];
     }
-}
-
-if (isset($parameters['our_work_longterm_link'])) {
-    $longtermLink = $parameters['our_work_longterm_link'];
-}
-
-if (isset($parameters['our_work_emergency_link'])) {
-    $emergencyLink = $parameters['our_work_emergency_link'];
-}
-
-if (isset($parameters['our_work_volunteering_link'])) {
-    $volunteeringLink = $parameters['our_work_volunteering_link'];
-}
-
-if (isset($parameters['our_work_sadiqah_link'])) {
-    $sadiqahLink = $parameters['our_work_sadiqah_link'];
 }
 
     if (isset($parameters['feat_camp_link'])) {
