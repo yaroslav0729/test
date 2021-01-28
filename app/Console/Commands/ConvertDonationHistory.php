@@ -79,7 +79,7 @@ class ConvertDonationHistory extends Command
 
             $amount = $donation->amount;
 
-            if ($amount > 1000000) {
+            if ($amount >= 1000000) {
                 $amount = 0; // fix an error in WP database amount 1e38
             }
 
