@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\User;
 use DB;
 use Illuminate\Console\Command;
+use Carbon\Carbon;
 
 class UsersParser extends Command
 {
@@ -71,7 +72,7 @@ class UsersParser extends Command
     {
         $attr = $userData->where('meta_key', $attrName)->first();
 
-        return $attr->meta_value ? $attr->meta_value : '';
+        return isset($attr->meta_value) ? $attr->meta_value : '';
     }
 
     protected function createOrUpdateUsers()
@@ -103,6 +104,23 @@ class UsersParser extends Command
             $localUser->created_at = $wpUser->user_registered;
             $localUser->name = $this->getDataAttr($wpUserData, 'first_name');
             $localUser->last_name = $this->getDataAttr($wpUserData, 'last_name');
+
+            $localUser->title = $this->getDataAttr($wpUserData, 'cf_title');
+            $localUser->address_1 = $this->getDataAttr($wpUserData, 'cf_address_1');
+            $localUser->address_2 = $this->getDataAttr($wpUserData, 'cf_address_2');
+            $localUser->city = $this->getDataAttr($wpUserData, 'cf_city');
+            $localUser->post_code = $this->getDataAttr($wpUserData, 'cf_postcode');
+            $localUser->phone = $this->getDataAttr($wpUserData, 'cf_telephone');
+            $localUser->country = $this->getDataAttr($wpUserData, 'cf_country');
+            $birthday = $this->getDataAttr($wpUserData, 'cf_birthday');
+            
+            if (!empty($birthday)) {
+                $birthday = '16/02/1988';
+                $date = Carbon::createFromFormat('d/m/Y', $birthday);
+
+                $localUser->birthday = $date;
+            }
+                   
             $localUser->save();
         }
     }

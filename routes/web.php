@@ -148,5 +148,5 @@ Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('s
 Route::get('auth/facebook', [SocialController::class, 'facebookRedirect'])->name('auth_facebook');
 Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
 
-Route::get('/test', [Controller::class, 'test']);
+//Route::get('/test', [Controller::class, 'test']);
 Route::get('/{slug}', [PageController::class, 'showFromSlug'])->where('slug', '.*');

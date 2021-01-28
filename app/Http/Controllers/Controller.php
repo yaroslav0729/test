@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 
 use App\Models\Campaign;
 
@@ -18,6 +18,6 @@ class Controller extends BaseController
 
     public function test()
     {
-        return view('test');
+        dd('test');
     }
 }
