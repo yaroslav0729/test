@@ -32,13 +32,15 @@ class AddUserDataFields extends Migration
      */
     public function down()
     {
-        $table->dropColumn('title');
-        $table->dropColumn('birthday');
-        $table->dropColumn('address_1');
-        $table->dropColumn('address_2');
-        $table->dropColumn('city');
-        $table->dropColumn('country');
-        $table->dropColumn('post_code');
-        $table->dropColumn('phone');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('title');
+            $table->dropColumn('birthday');
+            $table->dropColumn('address_1');
+            $table->dropColumn('address_2');
+            $table->dropColumn('city');
+            $table->dropColumn('country');
+            $table->dropColumn('post_code');
+            $table->dropColumn('phone');
+        });
     }
 }
