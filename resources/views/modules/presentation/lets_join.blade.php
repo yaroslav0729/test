@@ -5,6 +5,8 @@
     $text2 = "";
     $img1 = "";
     $img2 = "";
+    $video1 = "";
+    $video2 = "";
     $link1 = "";
     $link2 = "";
     $linkText1 = "";
@@ -36,6 +38,14 @@
 
     if (isset($parameters['lets_img2'])) {
         $img2 = $parameters['lets_img2'];
+    }
+
+    if (isset($parameters['lets_video1'])) {
+        $video1 = $parameters['lets_video1'];
+    }
+
+    if (isset($parameters['lets_video2'])) {
+        $video2 = $parameters['lets_video2'];
     }
 
     if (isset($parameters['lets_link1'])) {
@@ -78,9 +88,20 @@
             <div class="col-12 col-lg-6">
                 <div class="item">
                     <div class="row gutter-0 align-items-center">
+
+                        @empty($video1)
                         <div class="col-12 col-lg-6">
                             <a href="{{ $link1 }}"><div class="img" style="background-image: url({{ $img1 }})"></div></a>
                         </div>
+                        @else
+                        <div class="col-12 col-lg-6 img-video videoWrapper">
+                            <iframe width="400" height="300" src="https://www.youtube.com/embed/{{ $video1 }}"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                        @endempty
+
                         <div class="col-12 col-lg-6">
                             <div class="pl-4 pr-4 pt-4 pb-4 pt-lg-0 pb-lg-0">
                                 <a href="{{ $link1 }}"><p class="font-size-16 text-uppercase mb-0 letter-spacing-1"><b>{{ $title1 }}</b></p></a>
@@ -101,10 +122,18 @@
             <div class="col-12 col-lg-6">
                 <div class="item">
                     <div class="row gutter-0 align-items-center">
+                        @empty($video2)
                         <div class="col-12 col-lg-6">
-                            <a href="{{ $link2 }}"><div class="img-video" style="background-image: url({{ $img2 }})"><i
-                                    class="fas fa-play-circle"></i></div></a>
+                            <a href="{{ $link2 }}"><div class="img" style="background-image: url({{ $img2 }})"></div></a>
                         </div>
+                        @else
+                        <div class="col-12 col-lg-6 img-video videoWrapper">
+                            <iframe width="400" height="300" src="https://www.youtube.com/embed/{{ $video2 }}"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                        @endempty
                         <div class="col-12 col-lg-6">
                             <div class="pl-4 pr-4 pt-4 pb-4 pt-lg-0 pb-lg-0">
                                 <a href="{{ $link2 }}">

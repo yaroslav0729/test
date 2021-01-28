@@ -5,6 +5,8 @@
     $text2 = "";
     $img1 = "";
     $img2 = "";
+    $video1 = "";
+    $video2 = "";
     $link1 = "";
     $link2 = "";
     $linkText1 = "";
@@ -34,6 +36,14 @@
 
     if (isset($parameters['lets_img2'])) {
         $img2 = $parameters['lets_img2'];
+    }
+
+    if (isset($parameters['lets_video1'])) {
+        $video1 = $parameters['lets_video1'];
+    }
+
+    if (isset($parameters['lets_video2'])) {
+        $video2 = $parameters['lets_video2'];
     }
 
     if (isset($parameters['lets_link1'])) {
@@ -71,7 +81,12 @@
 
 <div class="form-group">
     <label>Image 1:</label>
-    <input class="form-control" name="parameters[lets_img1]" placeholder="Insert image" value="{{ $img1 }}" />
+    <input class="form-control" name="parameters[lets_img1]" placeholder="Insert path" value="{{ $img1 }}" />
+</div>
+
+<div class="form-group">
+    <label>Video 1:</label>
+    <input class="form-control" name="parameters[lets_video1]" placeholder="Insert path" value="{{ $video1 }}" />
 </div>
 
 <div class="form-group">
@@ -97,6 +112,11 @@
 <div class="form-group">
     <label>Image 2:</label>
     <input class="form-control" name="parameters[lets_img2]" placeholder="Insert image" value="{{ $img2 }}" />
+</div>
+
+<div class="form-group">
+    <label>Video 2:</label>
+    <input class="form-control" name="parameters[lets_video2]" placeholder="Insert path" value="{{ $video2 }}" />
 </div>
 
 <div class="form-group">
