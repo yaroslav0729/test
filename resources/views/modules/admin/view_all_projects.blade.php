@@ -4,6 +4,7 @@ $img = "";
 $title = "";
 $description = "";
 $link = "";
+$linkAll = "";
 
 if (isset($parameters['view_all_projects_img'])) {
     $img = $parameters['view_all_projects_img'];    
@@ -19,6 +20,10 @@ if (isset($parameters['view_all_projects_description'])) {
 
 if (isset($parameters['view_all_projects_link'])) {
     $link = $parameters['view_all_projects_link'];    
+}
+
+if (isset($parameters['view_all_projects_link_all'])) {
+    $linkAll = $parameters['view_all_projects_link_all'];    
 }
     
 @endphp
@@ -44,7 +49,13 @@ if (isset($parameters['view_all_projects_link'])) {
 </div>
 
 <div class="form-group">
-    <label>Link:</label>
+    <label>Link learn more:</label>
     <input class="form-control" name="parameters[view_all_projects_link]" placeholder="Insert value"
             value="{{ $link }}"/>
+</div>
+
+<div class="form-group">
+    <label>Link view all projects:</label>
+    <input class="form-control" name="parameters[view_all_projects_link_all]" placeholder="Insert value"
+            value="{{ $linkAll }}"/>
 </div>

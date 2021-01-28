@@ -4,6 +4,7 @@ $img = "";
 $title = "";
 $description = "";
 $link = "";
+$linkAll = "";
 
 if (isset($parameters['view_all_projects_img'])) {
     $img = $parameters['view_all_projects_img'];    
@@ -23,12 +24,16 @@ if (isset($parameters['view_all_projects_description'])) {
 if (isset($parameters['view_all_projects_link'])) {
     $link = $parameters['view_all_projects_link'];    
 }
+
+if (isset($parameters['view_all_projects_link_all'])) {
+    $linkAll = $parameters['view_all_projects_link_all'];    
+}
     
 @endphp
 
 <section class="widget-about-project">
     <div class="row gutter-0">
-        <div class="col-6"><a href="#" class="view-more text-underline">VIEW ALL PROJECTS <i
+        <div class="col-6"><a href="{{ $linkAll }}" class="view-more text-underline">VIEW ALL PROJECTS <i
                     class="moon-icons-arrow-up"></i></a></div>
     </div>
     <div class="row gutter-0">
