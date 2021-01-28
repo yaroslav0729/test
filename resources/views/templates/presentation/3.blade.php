@@ -1,10 +1,5 @@
 @php
 
-    $whoVideo = "";
-    $whoLink = "";
-    $whoLinkText = "";
-    $whoTitle = "";
-    $whoText = "";
     $longtermLink = "";
     $emergencyLink = "";
     $volunteeringLink = "";
@@ -57,31 +52,6 @@
         if (isset($parameters['hdr_donate_link_' .$i])) {
             $donateLink[$i] = $parameters['hdr_donate_link_' . $i];
         }
-    }
-
-
-    if (isset($parameters['who_we_are_video'])) {
-        $whoVideo = $parameters['who_we_are_video'];
-    }
-
-    if (isset($parameters['who_we_are_video'])) {
-        $whoVideo = $parameters['who_we_are_video'];
-    }
-
-    if (isset($parameters['who_we_are_link'])) {
-        $whoLink = $parameters['who_we_are_link'];
-    }
-
-    if (isset($parameters['who_we_are_link_text'])) {
-        $whoLinkText = $parameters['who_we_are_link_text'];
-    }
-
-    if (isset($parameters['who_we_are_title'])) {
-        $whoTitle = $parameters['who_we_are_title'];
-    }
-
-    if (isset($parameters['who_we_are_text'])) {
-        $whoText = $parameters['who_we_are_text'];
     }
 
     if (isset($parameters['our_work_longterm_link'])) {
@@ -148,45 +118,7 @@
 
 @include('modules.presentation.quick_donation')
 
-<div class="wrap">
-    <section class="who-we-are">
-        <div class="row gutter-0">
-            <div class="col-6">
-                <div class="img-video play-tr videoWrapper" style="">
-                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $whoVideo }}"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="text">
-                    <div class="mb-4">
-                        <a href="{{ $whoLink }}" class="text-underline text-dark"><b>{{ $whoLinkText }}</b></a>
-                    </div>
-                    <p class="font-size-30 mb-2 pr-2"><b>{!! $whoTitle !!}</b></p>
-                    <div class="pr-5">
-                        <p class="font-size-16 pr-5">{!! $whoText !!}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="help-info">
-            <div>
-                <span>8k</span>
-                <span>People helped</span>
-            </div>
-            <div>
-                <span>36</span>
-                <span>Countries</span>
-            </div>
-            <div>
-                <span>1'407</span>
-                <span>Volunteers this year</span>
-            </div>
-        </div>
-    </section>
-</div>
+@include('modules.presentation.who_we_are')
 
 <section class="our-work">
     <div class="wrap">

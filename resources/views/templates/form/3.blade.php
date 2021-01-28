@@ -1,10 +1,5 @@
 @php
 
-    $whoVideo = "";
-    $whoLink = "";
-    $whoLinkText = "";
-    $whoTitle = "";
-    $whoText = "";
     $longtermLink = "";
     $emergencyLink = "";
     $volunteeringLink = "";
@@ -59,26 +54,6 @@
         }
     }
 
-
-    if (isset($parameters['who_we_are_video'])) {
-        $whoVideo = $parameters['who_we_are_video'];
-    }
-
-    if (isset($parameters['who_we_are_link'])) {
-        $whoLink = $parameters['who_we_are_link'];
-    }
-
-    if (isset($parameters['who_we_are_link_text'])) {
-        $whoLinkText = $parameters['who_we_are_link_text'];
-    }
-
-    if (isset($parameters['who_we_are_title'])) {
-        $whoTitle = $parameters['who_we_are_title'];
-    }
-
-    if (isset($parameters['who_we_are_text'])) {
-        $whoText = $parameters['who_we_are_text'];
-    }
 
     if (isset($parameters['our_work_longterm_link'])) {
         $longtermLink = $parameters['our_work_longterm_link'];
@@ -196,6 +171,7 @@
     </div>
 </div>
 
+<div class="row">
 <div class="col-12 col-lg-6 mt-lg-5">
     <div class="form-group ">
         <label>Tag text:</label>
@@ -210,42 +186,14 @@
                value="{{ $tagClass }}"/>
     </div>
 </div>
-
-<div class="row col-12">
-    <div class="col-12 col-lg-6 mt-5">
-        <div class="form-group">
-            <label>Who we are video:</label>
-            <input class="form-control" required name="parameters[who_we_are_video]" placeholder="Who we are video"
-                   value="{{ $whoVideo }}"/>
-        </div>
-    </div>
-
-    <div class="col-12 col-lg-6 mt-lg-5">
-        <div class="form-group ">
-            <label>Who we are link:</label>
-            <input class="form-control" required name="parameters[who_we_are_link]" placeholder="Who we are link"
-                   value="{{ $whoLink }}"/>
-        </div>
-    </div>
-
-    <div class="form-group col-12 col-lg-6">
-        <label>Who we are link text:</label>
-        <input class="form-control" required name="parameters[who_we_are_link_text]" placeholder="Who we are link text"
-               value="{{ $whoLinkText }}" maxlength="125"/>
-    </div>
-
-    <div class="form-group col-12 col-lg-6">
-        <label>Who we are title:</label>
-        <input class="form-control" required name="parameters[who_we_are_title]" placeholder="Who we are title"
-               value="{{ $whoTitle }}"/>
-    </div>
-
-    <div class="form-group col-12 col-lg-6">
-        <label>Who we are text:</label>
-        <textarea class="form-control" required name="parameters[who_we_are_text]"
-                  placeholder="Insert Who we are text">{{ $whoText }}</textarea>
-    </div>
 </div>
+
+@include('modules.admin.who_we_are')
+
+@include('modules.admin.current_projects')
+
+@include('modules.admin.lets_join')
+
 <div class="row col-12 mt-5">
     <div class="form-group col-12 col-lg-6">
         <label>Our work Longterm projects link:</label>
@@ -272,16 +220,12 @@
     </div>
 </div>
 
-@include('modules.admin.lets_join')
+
 
 <div class="col-12 mt-5">
-    @include('modules.admin.join_the_cause_subscribe2', [
-        'parameters' => $parameters
-    ])
+    @include('modules.admin.join_the_cause_subscribe2')
 </div>
 
-@include('modules.admin.current_projects', [
-    'parameters' => $parameters
-])
+
 
 
