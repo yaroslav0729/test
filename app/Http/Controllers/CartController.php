@@ -23,12 +23,12 @@ class CartController extends Controller
 
         if (isset($request->categories)) {
             $category = CampaignCategory::where('name', $request->categories)->first();
-            
+
             if (isset($category)) {
                 $categoryId = $category->id;
             }
         }
-        
+
         if (isset($request->period)) {
             $period = array_search($request->period, CampaignPrice::ALL_TYPES);
         } else {
@@ -36,7 +36,7 @@ class CartController extends Controller
         }
 
         $note = $request->note;
-        
+
         $cartItem = CartItem::create([
             'amount' => $amount,
             'campaign_id' => $campaignId,
@@ -54,7 +54,7 @@ class CartController extends Controller
                 'cart_html' => view('parts.modal_cart')->render(),
                 'cart_donate' => view('modules.presentation.donation_page_cart')->render(),
                 'sum' => CartItem::getCartSum(),
-            ]); 
+            ]);
         }
 
         return redirect()->back();
@@ -64,7 +64,7 @@ class CartController extends Controller
     {
         $item = CartItem::where('cart_item_id', $itemId)->firstOrFail();
         $deletedItems = $item->removeSameItems();
-        
+
         foreach ($deletedItems as $delItem) {
             $this->sessionCartDelete($delItem);
         }
@@ -79,16 +79,16 @@ class CartController extends Controller
                 'cart_html' => view('parts.modal_cart')->render(),
                 'cart_donate' => view('modules.presentation.donation_page_cart')->render(),
                 'sum' => CartItem::getCartSum(),
-            ]); 
+            ]);
         }
 
-        return redirect()->back(); 
+        return redirect()->back();
     }
 
     public function clear()
     {
         $this->clearCart();
-        
+
         if (request()->ajax()) {
             return response()->json([
                 'message' => 'Success message',
@@ -96,10 +96,10 @@ class CartController extends Controller
                 'cart_html' => view('parts.modal_cart')->render(),
                 'cart_donate' => view('modules.presentation.donation_page_cart')->render(),
                 'sum' => CartItem::getCartSum(),
-            ]); 
+            ]);
         }
 
-        return redirect()->back(); 
+        return redirect()->back();
     }
 
     protected function clearCart()
@@ -119,10 +119,9 @@ class CartController extends Controller
     public function order(Request $request)
     {
         $order = Order::create($request->all());
-
         $cartIds = session()->get('cart');
-        $cartItems = CartItem::whereIn('cart_item_id', $cartIds)->get();
 
+        $cartItems = CartItem::whereIn('cart_item_id', $cartIds)->get();
         $sum = 0;
 
         foreach ($cartItems as $cartItem) {
@@ -151,7 +150,7 @@ class CartController extends Controller
 
         if ($request->pay_method === 'paypal') {
             $response = Paypal::createOrder($sum, 'GBP', 'Order id: ' . $order->id);
-        
+
             $order->order_id = $response->result->id;
             $payLink = $response->result->links[1]->href;
 
@@ -170,18 +169,19 @@ class CartController extends Controller
                 'city' => $request->get('city'),
                 'notes' => $request->get('notes'),
                 'country' => $request->get('country'),
+                'county' => $request->get('county'),
             ]);
             $order->order_id = $payment->orderId;
 
             $responce = $payment->getPayLink();
 
             if (isset($responce['hppPayByLink'])) {
-                $payLink = $responce['hppPayByLink'];    
+                $payLink = $responce['hppPayByLink'];
             } else {
                 dd($responce);
             }
 
-            $order->save();    
+            $order->save();
         }
 
         if (empty($payLink)) {
@@ -227,7 +227,7 @@ class CartController extends Controller
 
             foreach ($deletedItemIds as $cartId) {
                 $this->sessionCartDelete($cartId);
-            }            
+            }
         }
 
         $sameItems = $needItem->getSameItems();

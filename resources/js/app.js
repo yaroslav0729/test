@@ -14,11 +14,10 @@ window.Swiper = Swiper*/
 require('bootstrap-input-spinner');
 
 import Swiper from 'swiper';
-import SwiperCore, { Navigation, Pagination } from 'swiper';
+import SwiperCore, {Navigation, Pagination} from 'swiper';
 
 SwiperCore.use([Navigation, Pagination]);
-
-import { initWysiwyg } from './admin_parts/init_tiny-mce';
+import {initWysiwyg} from './admin_parts/init_tiny-mce';
 
 require('./parts/project_tiles.js')
 require('./parts/donate_module.js')
@@ -919,6 +918,76 @@ $(function () {
 
     getShareThisCou()
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~ Google API manipulations ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    initAutocomplete();
+    let autocomplete;
+
+    const componentForm = {
+        route: "long_name",
+        postal_town: "long_name",
+        administrative_area_level_2: "long_name",
+        postal_code: "short_name",
+    };
+
+    function initAutocomplete() {
+        if ($('#autocomplete').length) {
+            autocomplete = new google.maps.places.Autocomplete(document.getElementById("autocomplete"), {types: ["geocode"]});
+
+            //restricting the set of place fields that are returned to just the address components.
+            autocomplete.setFields(["address_component"]);
+
+            //When the user selects an address from the drop-down, populate the address fields in the form.
+            autocomplete.addListener("place_changed", fillInAddress);
+        }
+    }
+
+
+    function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        const place = autocomplete.getPlace();
+        clearAutocompleteFields();
+
+        $('.manual-address').show();
+
+        for (const component of place.address_components) {
+            const addressType = component.types[0];
+
+            if (componentForm[addressType]) {
+                document.getElementById(addressType).value = component[componentForm[addressType]];
+            }
+
+            if (addressType === 'country') {
+                $("#country option:contains('" + component.long_name + "')").prop('selected', true);
+            }
+
+            if (addressType === 'locality') {
+                if (checkCountry() === true) {
+                    $('#postal_town').val(component.long_name);
+                }
+            }
+        }
+
+        function checkCountry()
+        {
+            for (const componentCheck of place.address_components) {
+                const addressTypeCheck  = componentCheck.types[0];
+
+                if (addressTypeCheck  === 'country' && componentCheck.short_name !== 'GB') {
+                    return true;
+                }
+
+            }
+            return false;
+        }
+    }
+
+
+    function clearAutocompleteFields()
+    {
+        $('.auto-address').each(function (){
+            $(this).val('');
+        });
+    }
 });
 
 function getShareThisCou() {
@@ -928,14 +997,14 @@ function getShareThisCou() {
     if ((token === undefined) || (url === undefined)) {
         return
     }
-    
+
     $.ajax({
         url: 'https://graph.facebook.com/v3.0/',
         dataType: 'jsonp',
         type: 'GET',
         data: {
-            fields: 'engagement', 
-            access_token: token, 
+            fields: 'engagement',
+            access_token: token,
             id: url},
         success: function(data){
             $('div.stat span').text(data.engagement.share_count);
