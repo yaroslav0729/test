@@ -174,6 +174,8 @@
 
 @include('modules.admin.lets_join')
 
+@include('modules.admin.view_all_projects')
+
 
 <div class="col-12 mt-5">
     @include('modules.admin.join_the_cause_subscribe2')

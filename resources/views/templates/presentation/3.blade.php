@@ -108,24 +108,7 @@
 
 @include('modules.presentation.lets_join')
 
-<section class="widget-about-project">
-    <div class="row gutter-0">
-        <div class="col-6"><a href="#" class="view-more text-underline">VIEW ALL PROJECTS <i
-                    class="moon-icons-arrow-up"></i></a></div>
-    </div>
-    <div class="row gutter-0">
-        <div class="col-12 col-lg-6 img" style="background-image: url(img/content/widget-about-project-1.jpg)"></div>
-        <div class="col-12 col-lg-6 descr d-flex align-items-center">
-            <div>
-                <p class="font-size-30 text-uppercase" style="font-weight: 100"><b>help orphans</b> & the environment
-                </p>
-                <p class="font-size-16" style="font-weight: 700">Critical campaign info, 60 ch. lorem ipsum dolor sit
-                    ametas.</p>
-                <a href="#" class="text-underline ">LEARN MORE</a>
-            </div>
-        </div>
-    </div>
-</section>
+@include('modules.presentation.view_all_projects')
 
 @if(count($blogs) >= 3)
     <section class="whats-new">

@@ -120,22 +120,7 @@ for ($i=1; $i<=4; $i++){
 
 @include('modules.presentation.lets_join')
 
-<section class="widget-about-project">
-    <div class="row gutter-0">
-        <div class="col-12 descr">
-            <div class="text-right mb-4">
-                <a href="#"><i class="moon-icons-plus"></i></a>
-            </div>
-            <div>
-                <p class="font-size-25 text-uppercase" style="font-weight: 100"><b>help orphans</b> & the environment</p>
-                <p class="font-size-16" style="font-weight: 700">Critical campaign info, 60 ch. lorem ipsum dolor sit ametas.</p>
-                <a href="#" class="text-underline ">LEARN MORE</a>
-            </div>
-        </div>
-        <div class="col-12 img" style="background-image: url(img/content/widget-about-project-1.jpg)"></div>
-
-    </div>
-</section>
+@include('modules.presentation.view_all_projects')
 
 @if(count($blogs) >= 4)
     <section class="whats-new">
