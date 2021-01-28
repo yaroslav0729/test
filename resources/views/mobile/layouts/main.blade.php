@@ -164,5 +164,6 @@
     @include('cookieConsent::index')
     @include('parts.footer')
 </div><!--wrapper-->
+@yield('scripts')
 </body>
 </html>
