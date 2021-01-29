@@ -139,8 +139,8 @@ Route::prefix('paypal')->group(function () {
 
 Route::prefix('globalpay')->group(function () {
     Route::get('/get_pay_link', [GlobalPayController::class, 'getPayLink'])->name('globalpay.get_pay_link');
-    Route::get('/payment_result', [GlobalPayController::class, 'result'])->name('globalpay.result');
-    Route::post('/payment_status_update', [GlobalPayController::class, 'statusUpdate'])->name('globalpay.status_update');
+    Route::match(['get', 'post'], '/payment_result', [GlobalPayController::class, 'result'])->name('globalpay.result');
+    //Route::post('/payment_status_update', [GlobalPayController::class, 'statusUpdate'])->name('globalpay.status_update');
 });
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');

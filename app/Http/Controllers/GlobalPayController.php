@@ -15,17 +15,7 @@ class GlobalPayController extends Controller
     {
         Log::info('Global pay request: ' . $request);
 
-        $pageInstance = PageInstance::where('template', Template::THANK_YOU_DONATE_PAGE)->actual()->first();
-
-        if (!$pageInstance) {
-            die('Page with template "' . Template::getLabel(Template::THANK_YOU_DONATE_PAGE) . '" is not found.');
-        }
-
-        $html = $pageInstance->renderTemplate()->render();
-        $html = \App\Models\Widget::replaceMonikers($html);
-        $configTemplate = Template::getConfigureTemplate($pageInstance->template);
-
-        return view('page', compact('html', 'configTemplate'));
+        return view('pages.global_pay_result');
     }
 
     public function statusUpdate(Request $request)
