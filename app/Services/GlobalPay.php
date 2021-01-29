@@ -63,8 +63,8 @@ class GlobalPay
             // "CUST_NUM" => "6e027928-c477-4689-a45f-4e138a1f208a",
             // "VAR_REF" => "Acme Corporation",
             // "PROD_ID" => "SKU1000054",
-            "STATUS_UPDATE_URL" => route('globalpay.status_update'),
-            "MERCHANT_RESPONSE_URL" => route('globalpay.result'),
+            //"STATUS_UPDATE_URL" => route('globalpay.status_update'),
+            "MERCHANT_RESPONSE_URL" => 'https://webhook.site/02c2231f-139e-4cb4-862f-06c8e85f38f7', //,route('globalpay.result'),
             "SUPPLEMENTARY_DATA" => "Custom Value"
         ]);
 
