@@ -988,6 +988,20 @@ $(function () {
             $(this).val('');
         });
     }
+
+    let headerSliderTimeout = 0;
+
+    $(document).on('click', '[header-slider-next]', function (e) {
+
+        clearTimeout(headerSliderTimeout);
+
+        headerSliderTimeout = setTimeout(function() {
+            let activeSlide = $('[header-slider-slide].swiper-slide-active');
+
+            $('.main-page-header').removeClass('style-1').removeClass('style-2')
+            $('.main-page-header').addClass(activeSlide.data('style'))
+        }, 800)
+    })
 });
 
 function getShareThisCou() {

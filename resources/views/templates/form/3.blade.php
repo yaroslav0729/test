@@ -1,7 +1,7 @@
 @php
 
     $hdrTypeActive = [];
-    $hdrColorType = "";
+    $hdrColorType = [];
     $hdrLinkText = [];
     $hdrLearnMoreLink = [];
     $hdrTitle = [];
@@ -12,6 +12,7 @@
     $tagClass = '';
 
     for ($i=1; $i<=4; $i++) {
+        $hdrColorType[$i] = "";
         $hdrTypeActive[$i] = "";
         $hdrLinkText[$i] = "";
         $hdrLearnMoreLink[$i] = "";
@@ -21,11 +22,10 @@
         $donateLink[$i] = "";
     }
 
-    if (isset($parameters['hdr_color_type'])) {
-        $hdrColorType = $parameters['hdr_color_type'];
-    }
-
     for ($i=1; $i<=4; $i++){
+        if (isset($parameters['hdr_color_type_' . $i])) {
+            $hdrColorType[$i] = $parameters['hdr_color_type_' . $i];
+        }
         if (isset($parameters['hdr_type_active_' . $i])) {
             $hdrTypeActive[$i] = $parameters['hdr_type_active_' . $i];
         }
@@ -59,13 +59,6 @@
 
 @endphp
 
-<div class="form-group col-12 col-lg-6 mt-1">
-    <label>Header color style</label>
-    <select name="parameters[hdr_color_type]" class="form-control">
-        <option value="blue" @if(($hdrColorType) === 'blue') selected @endif>Blue</option>
-        <option value="red" @if(($hdrColorType) === 'red') selected @endif>Red</option>
-    </select>
-</div>
 <div class="form-group col-12 mt-2">
     <label>Header slider:</label>
     <nav>
@@ -94,6 +87,14 @@
                                 Active block
                             </label>
                         </div>
+                    </div>
+
+                    <div class="form-group col-12 col-lg-6 mt-1">
+                        <label>Header color style</label>
+                        <select name="parameters[hdr_color_type_{{ $i }}]" class="form-control">
+                            <option value="blue" @if(($hdrColorType[$i]) === 'blue') selected @endif>Blue</option>
+                            <option value="red" @if(($hdrColorType[$i]) === 'red') selected @endif>Red</option>
+                        </select>
                     </div>
 
                     <div class="col-12 col-lg-6 mt-3">
