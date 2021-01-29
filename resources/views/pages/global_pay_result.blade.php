@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Payment result</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -19,7 +20,19 @@
 
 @empty($link)
 @else 
-    <a href="{{ url($link->slug) }}">Success page</a>
+    <a id="redirect_link" href="{{ url($link->slug) }}">Success page</a>
+
+    <script type="text/javascript">
+        var link = $('#redirect_link').attr('href')
+        console.log(link)
+
+        $(document).ready(function () {
+            setTimeout(function () {
+                window.location = link;
+            }, 5000);
+        });
+
+    </script>
 @endempty
 </body>
 </html>
