@@ -10303,9 +10303,9 @@ header .down-bar .logo img {
 }
 header .down-bar .basket {
   display: none;
-  position: fixed;
-  top: 33px;
-  right: 22px;
+  position: absolute;
+  top: 16px;
+  right: -50px;
 }
 header .down-bar ul {
   display: block;
