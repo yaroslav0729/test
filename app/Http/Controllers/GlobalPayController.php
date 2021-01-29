@@ -5,16 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Donation;
 use App\Models\Order;
+use App\Traits\SendThankYouEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class GlobalPayController extends Controller
 {
+    use SendThankYouEmail;
+
     public function result(Request $request)
     {
-        Log::info('Global pay request: ' . $request);
-
         if (!empty($request->input('ORDER_ID'))) {
 
             $order = Order::where('order_id', $request->input('ORDER_ID'))->first();
@@ -26,20 +27,11 @@ class GlobalPayController extends Controller
                     $donation->status = Donation::STATUS_COMPLETE;
                     $donation->save();
                 }
+
+                $this->sendThankYouEmail($order);
             }
         }
 
         return view('pages.global_pay_result');
-    }
-
-    public function statusUpdate(Request $request)
-    {
-        Log::info('Global pay status update: ' . $request);
-
-        return response()->json([
-            'message' => 'Success Global pay status update page',
-            'success' => true,
-            'request' => $request->all(),
-        ]);
     }
 }

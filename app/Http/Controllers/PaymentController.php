@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ThankYouDonation;
 use App\Models\Donation;
 use App\Models\Order;
 use App\Models\Page;
 use App\Models\Template;
+use App\Traits\SendThankYouEmail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
+    use SendThankYouEmail;
+
     public function paypalPaymentSuccess(Request $request)
     {
         $orderId = $request->get('token');
@@ -33,19 +34,6 @@ class PaymentController extends Controller
         }
 
         return redirect($thanksUrl);
-    }
-
-    protected function sendThankYouEmail($order)
-    {
-        $emailTo = $order->email;
-        $subject = 'Thank you for donation';
-        $emailFrom = env('MAIL_FROM_ADDRESS');
-
-        if (empty($emailTo)) {
-            return;
-        }
-
-        Mail::to($emailTo)->send(new ThankYouDonation($order, $subject, $emailTo, $emailFrom));
     }
 
     public function paypalPaymentCancel(Request $request)
