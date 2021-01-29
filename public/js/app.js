@@ -39723,6 +39723,82 @@ function initWysiwyg() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
 /* harmony import */ var _admin_parts_init_tiny_mce__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./admin_parts/init_tiny-mce */ "./resources/js/admin_parts/init_tiny-mce.js");
+function _createForOfIteratorHelper(o, allowArrayLike) {
+  var it;
+
+  if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
+    if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+      if (it) o = it;
+      var i = 0;
+
+      var F = function F() {};
+
+      return {
+        s: F,
+        n: function n() {
+          if (i >= o.length) return {
+            done: true
+          };
+          return {
+            done: false,
+            value: o[i++]
+          };
+        },
+        e: function e(_e) {
+          throw _e;
+        },
+        f: F
+      };
+    }
+
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+
+  var normalCompletion = true,
+      didErr = false,
+      err;
+  return {
+    s: function s() {
+      it = o[Symbol.iterator]();
+    },
+    n: function n() {
+      var step = it.next();
+      normalCompletion = step.done;
+      return step;
+    },
+    e: function e(_e2) {
+      didErr = true;
+      err = _e2;
+    },
+    f: function f() {
+      try {
+        if (!normalCompletion && it["return"] != null) it["return"]();
+      } finally {
+        if (didErr) throw err;
+      }
+    }
+  };
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
@@ -40484,7 +40560,98 @@ $(function () {
       $('.wrapper').removeClass('header-fixed');
     }
   });
-  getShareThisCou();
+  getShareThisCou(); //~~~~~~~~~~~~~~~~~~~~~~~~~ Google API manipulations ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  initAutocomplete();
+  var autocomplete;
+  var componentForm = {
+    route: "long_name",
+    postal_town: "long_name",
+    administrative_area_level_2: "long_name",
+    postal_code: "short_name"
+  };
+
+  function initAutocomplete() {
+    if ($('#autocomplete').length) {
+      autocomplete = new google.maps.places.Autocomplete(document.getElementById("autocomplete"), {
+        types: ["geocode"]
+      }); //restricting the set of place fields that are returned to just the address components.
+
+      autocomplete.setFields(["address_component"]); //When the user selects an address from the drop-down, populate the address fields in the form.
+
+      autocomplete.addListener("place_changed", fillInAddress);
+    }
+  }
+
+  function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
+    clearAutocompleteFields();
+    $('.manual-address').show();
+
+    var _iterator = _createForOfIteratorHelper(place.address_components),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var component = _step.value;
+        var addressType = component.types[0];
+
+        if (componentForm[addressType]) {
+          document.getElementById(addressType).value = component[componentForm[addressType]];
+        }
+
+        if (addressType === 'country') {
+          $("#country option:contains('" + component.long_name + "')").prop('selected', true);
+        }
+
+        if (addressType === 'locality') {
+          if (checkCountry() === true) {
+            $('#postal_town').val(component.long_name);
+          }
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    function checkCountry() {
+      var _iterator2 = _createForOfIteratorHelper(place.address_components),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var componentCheck = _step2.value;
+          var addressTypeCheck = componentCheck.types[0];
+
+          if (addressTypeCheck === 'country' && componentCheck.short_name !== 'GB') {
+            return true;
+          }
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+
+      return false;
+    }
+  }
+
+  function clearAutocompleteFields() {
+    $('.auto-address').each(function () {
+      $(this).val('');
+    });
+  }
+
+  $('.main-page-header .swiper-button-next').on('click', function (e) {
+    // let activeSlideStyle = $('.swiper-slide-active').data('style')
+    // console.log('next click', activeSlideStyle)
+    var swiperInstance = document.querySelector('.main-page-header .swiper-container').swiper;
+    console.log('next click', swiperInstance.realIndex);
+  });
 });
 
 function getShareThisCou() {

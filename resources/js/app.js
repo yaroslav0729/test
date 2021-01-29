@@ -988,6 +988,15 @@ $(function () {
             $(this).val('');
         });
     }
+
+    $('.main-page-header .swiper-button-next').on('click', function (e) {
+        
+        // let activeSlideStyle = $('.swiper-slide-active').data('style')
+        // console.log('next click', activeSlideStyle)
+
+        const swiperInstance = document.querySelector('.main-page-header .swiper-container').swiper
+        console.log('next click', swiperInstance.realIndex)
+    })
 });
 
 function getShareThisCou() {
