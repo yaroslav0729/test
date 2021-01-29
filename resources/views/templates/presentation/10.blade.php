@@ -47,7 +47,7 @@
 
 @empty(!$eventsForSlide->count())
 
-    <section class="events-home-swiper" swiper-wrapper="events-slider">
+    <section class="events-home-swiper mt-5" swiper-wrapper="events-slider">
         <div class="title">
             <p class="mb-3"><b>OUR FEATURED EVENT</b></p>
         </div>
