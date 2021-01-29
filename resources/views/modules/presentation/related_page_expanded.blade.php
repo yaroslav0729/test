@@ -84,7 +84,7 @@
                 <div class="col-5 text-right">
                     <a href="
                     @if ($relPageLink === "")
-                        /blog-page
+                        /newsroom
                     @else
                         {{ $relPageLink }}
                     @endif
