@@ -106,7 +106,7 @@
             </div>
         </div>
         <div class="text-center mt-5 mb-2">
-            <a href="@if ($relPageLink === "") /blog-page @else{{ $relPageLink }} @endif" class="text-uppercase text-danger font-size-16">
+            <a href="@if ($relPageLink === "") /newsroom @else{{ $relPageLink }} @endif" class="text-uppercase text-danger font-size-16">
                 <b>
                     @if ($relPageLinkTitle === "")
                         VISIT NEWSROOM
