@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<h1>Successful payment! You will be redirected back</h1>
+<h1>Successful payment! You will be redirected back after 5 sec</h1>
 
 @php
     use \App\Models\PageInstance;

@@ -27,7 +27,7 @@ if (!isset($headerClassName)) {
                     </a>
                 </div>
                 <div class="col-8 col-lg-6 text-right">
-                    <div class="phone">020 5000 2400 <i></i></div>
+                    <div class="phone">0121 446 5682 <i></i></div>
                     @include('parts.basket')
                 </div>
             </div>
