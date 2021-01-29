@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 use App\Models\CampaignCategory;
 use App\Models\CartItem;
@@ -116,7 +117,7 @@ class CartController extends Controller
         return view('pages.payment');
     }
 
-    public function order(Request $request)
+    public function order(OrderRequest $request)
     {
         $order = Order::create($request->all());
         $cartIds = session()->get('cart');

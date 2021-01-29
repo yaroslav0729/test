@@ -5,7 +5,8 @@
 @endsection
 
 @section('scripts')
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('MAP_API_KEY') }}&libraries=places&language=EN" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('MAP_API_KEY') }}&libraries=places&language=EN"
+            defer></script>
 @endsection
 
 
@@ -14,7 +15,6 @@
     @php
         $cartSum = \App\Models\CartItem::getCartSum()
     @endphp
-
 
     <div class="donated-page">
         <section class="box">
@@ -40,10 +40,14 @@
                         </div>
                         <div class="col-5">
                             <div class="form-group">
-                                <label><b>FIRST NAME</b></label>
+                                <label class="@error('first_name') text-danger @enderror"><b>FIRST NAME</b></label>
                                 <input type="text" name="first_name" placeholder="Enter first name..."
-                                       class="form-control">
+                                       class="form-control @error('first_name') border-danger @enderror"
+                                       value="{{ old('first_name') }}">
                             </div>
+                            @error('first_name')
+                            <p class="text-danger ml-3 font-size-14">*{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="pt-3"></div>
@@ -51,16 +55,25 @@
                         <div class="col-1"></div>
                         <div class="col-5">
                             <div class="form-group">
-                                <label><b>LAST NAME</b></label>
+                                <label class="@error('last_name') text-danger @enderror"><b>LAST NAME</b></label>
                                 <input type="text" name="last_name" placeholder="Enter last name..."
-                                       class="form-control">
+                                       class="form-control @error('last_name') border-danger @enderror"
+                                       value="{{ old('last_name') }}">
                             </div>
+                            @error('last_name')
+                            <p class="text-danger ml-3 font-size-14">*{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-5">
                             <div class="form-group">
-                                <label><b>EMAIL</b></label>
-                                <input type="text" name="email" placeholder="enter email" class="form-control">
+                                <label class="@error('email') text-danger @enderror"><b>EMAIL</b></label>
+                                <input type="text" name="email" placeholder="enter email"
+                                       class="form-control @error('email') border-danger @enderror"
+                                       value="{{ old('email') }}">
                             </div>
+                            @error('email')
+                            <p class="text-danger ml-3 font-size-14">*{{ $message }}</p>
+                            @enderror
                             <div class="text-right">
                                 <label class="checkbox rPos">
                                     <input type="checkbox" value="1" name="do_email"><span><i class="fal fa-check"></i></span>
@@ -103,22 +116,27 @@
                         </div>
                     </div>
 
-                    <div class="manual-address" style="display: none">
+                    <div class="manual-address" style="@if ($errors->any()) display: block @else display: none @endif">
                         <div class="pt-3"></div>
                         <div class="row">
                             <div class="col-1"></div>
                             <div class="col-5">
                                 <div class="form-group">
-                                    <label><b>ADDRESS</b> (LINE 1)</label>
+                                    <label class="@error('address_1') text-danger @enderror"><b>ADDRESS</b> (LINE
+                                        1)</label>
                                     <input type="text" id="route" name="address_1" placeholder="Enter the address..."
-                                           class="form-control auto-address">
+                                           class="form-control auto-address @error('address_1') border-danger @enderror"
+                                           value="{{ old('address_1') }}">
                                 </div>
+                                @error('address_1')
+                                <p class="text-danger ml-3 font-size-14">*{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="col-5">
                                 <div class="form-group">
                                     <label><b>ADDRESS</b> (LINE 2)</label>
                                     <input type="text" name="address_2" placeholder="Enter the address..."
-                                           class="form-control auto-address">
+                                           class="form-control auto-address" value="{{ old('address_2') }}">
                                 </div>
                             </div>
                         </div>
@@ -126,15 +144,20 @@
                             <div class="col-1"></div>
                             <div class="col-5">
                                 <div class="form-group">
-                                    <label><b>CITY</b></label>
+                                    <label class="@error('city') text-danger @enderror"><b>CITY</b></label>
                                     <input type="text" id="postal_town" name="city" placeholder="Enter the city..."
-                                           class="form-control auto-address">
+                                           class="form-control auto-address @error('city') border-danger @enderror"
+                                           value="{{ old('city') }}">
                                 </div>
+                                @error('city')
+                                <p class="text-danger ml-3 font-size-14">*{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="col-5">
                                 <div class="form-group">
                                     <label><b>COUNTY</b></label>
-                                    <input type="text" id="administrative_area_level_2" class="form-control auto-address" name="county">
+                                    <input type="text" id="administrative_area_level_2"
+                                           class="form-control auto-address" name="county" value="{{ old('county') }}">
                                 </div>
                             </div>
                         </div>
@@ -143,18 +166,32 @@
                             <div class="col-1"></div>
                             <div class="col-5">
                                 <div class="form-group">
-                                    <label><b>POST CODE</b></label>
-                                    <input type="text" id="postal_code" class="form-control auto-address" name="post_code"
-                                           placeholder="Enter postcode...">
+                                    <label class="@error('post_code') text-danger @enderror"><b>POST CODE</b></label>
+                                    <input type="text" id="postal_code"
+                                           class="form-control auto-address @error('post_code') border-danger @enderror"
+                                           name="post_code"
+                                           placeholder="Enter postcode..." value="{{ old('post_code') }}">
                                 </div>
-                               {{-- <p class="text-secondary">*Please enter your postcode</p>--}}
+                                @error('post_code')
+                                <p class="text-danger ml-3">*{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="col-5">
                                 <div class="form-group">
                                     <label><b>COUNTRY</b></label>
                                     <select class="form-control" id="country" name="country">
                                         @foreach (\App\Models\Country::getAllEnabled() as $country)
-                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                            <option value="{{ $country->id }}"
+                                                    @if(old('country'))
+                                                        @if($country->id == old('country'))
+                                                            selected="selected"
+                                                        @endif
+                                                    @else
+                                                        @if($country->id == 187)
+                                                        selected="selected"
+                                                        @endif
+                                                    @endif >
+                                                {{ $country->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -173,8 +210,8 @@
                             <div class="form-group">
                                 <div class="pt-5"></div>
                                 <label><b>NOTE</b> (ON BEHALF OF)</label>
-                    {{--            <textarea rows="1" name="notes" class="form-control"></textarea>--}}
-                                <input type="text" class="form-control" name="notes">
+                                {{--            <textarea rows="1" name="notes" class="form-control"></textarea>--}}
+                                <input type="text" class="form-control" name="notes" value="{{ old('notes') }}">
                             </div>
                         </div>
                     </div>

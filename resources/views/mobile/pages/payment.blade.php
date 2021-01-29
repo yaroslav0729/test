@@ -27,17 +27,30 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label><b>FIRST NAME</b></label>
-                    <input type="text" name="first_name" class="form-control">
+                    <label class="@error('first_name') text-danger @enderror"><b>FIRST NAME</b></label>
+                    <input type="text" name="first_name"
+                           class="form-control @error('first_name') border-danger @enderror"
+                           value="{{ old('first_name') }}">
                 </div>
+                @error('first_name')
+                <p class="text-danger ml-3 font-size-14">*{{ $message }}</p>
+                @enderror
                 <div class="form-group">
-                    <label><b>LAST NAME</b></label>
-                    <input type="text" name="last_name" class="form-control">
+                    <label class="@error('last_name') text-danger @enderror"><b>LAST NAME</b></label>
+                    <input type="text" name="last_name" class="form-control @error('last_name') border-danger @enderror"
+                           value="{{ old('last_name') }}">
                 </div>
+                @error('last_name')
+                <p class="text-danger ml-3 font-size-14">*{{ $message }}</p>
+                @enderror
                 <div class="form-group">
-                    <label><b>EMAIL</b></label>
-                    <input type="text" name="email" class="form-control">
+                    <label class="@error('email') text-danger @enderror"><b>EMAIL</b></label>
+                    <input type="text" name="email" class="form-control @error('email') border-danger @enderror"
+                           value="{{ old('email') }}">
                 </div>
+                @error('email')
+                <p class="text-danger ml-3 font-size-14">*{{ $message }}</p>
+                @enderror
                 <div>
                     <label class="checkbox">
                         <input type="checkbox" value="1" name="do_email"><span><i class="fal fa-check"></i></span>
@@ -70,44 +83,62 @@
                         <b>Send me occasional SMS updates</b>
                     </label>
                 </div>
-                <script>
-                    $(function () {
-                        $('.toggle-manual-address').on('click', function (e) {
-                            e.preventDefault();
-                            $('.manual-address').toggle()
-                        })
-                    });
-                </script>
-                <div class="manual-address" style="display: none">
+                <div class="manual-address" style="@if ($errors->any()) display: block @else display: none @endif">
                     <div class="pt-3"></div>
                     <div class="form-group">
-                        <label><b>ADDRESS</b> (LINE 1)</label>
-                        <input type="text" id="route" name="address_1" class="form-control auto-address">
+                        <label class="@error('address_1') text-danger @enderror"><b>ADDRESS</b> (LINE 1)</label>
+                        <input type="text" id="route" name="address_1"
+                               class="form-control auto-address @error('address_1') border-danger @enderror"
+                               value="{{ old('address_1') }}">
                     </div>
+                    @error('address_1')
+                    <p class="text-danger ml-3 font-size-14">*{{ $message }}</p>
+                    @enderror
                     <div class="form-group">
                         <label><b>ADDRESS</b> (LINE 2)</label>
-                        <input type="text" name="address_2" class="form-control auto-address">
+                        <input type="text" name="address_2" class="form-control auto-address"
+                               value="{{ old('address_2') }}">
                     </div>
                     <div class="form-group">
-                        <label><b>CITY</b></label>
-                        <input type="text" id="postal_town" name="city" class="form-control auto-address">
+                        <label class="@error('city') text-danger @enderror"><b>CITY</b></label>
+                        <input type="text" id="postal_town" name="city"
+                               class="form-control auto-address @error('city') border-danger @enderror"
+                               value="{{ old('city') }}">
                     </div>
+                    @error('city')
+                    <p class="text-danger ml-3 font-size-14">*{{ $message }}</p>
+                    @enderror
                     <div class="form-group">
                         <label><b>COUNTY</b></label>
-                        <input type="text" id="administrative_area_level_2" name="county" class="form-control auto-address">
+                        <input type="text" id="administrative_area_level_2" name="county"
+                               class="form-control auto-address" value="{{ old('county') }}">
                     </div>
                     <div class="form-group">
                         <label><b>COUNTRY</b></label>
                         <select class="form-control" id="country" name="country">
                             @foreach (\App\Models\Country::getAllEnabled() as $country)
-                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                <option value="{{ $country->id }}"
+                                        @if(old('country'))
+                                            @if($country->id == old('country'))
+                                            selected="selected"
+                                            @endif
+                                        @else
+                                            @if($country->id == 187)
+                                            selected="selected"
+                                            @endif
+                                        @endif >{{ $country->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label><b>POST CODE</b></label>
-                        <input type="text" id="postal_code" name="post_code" class="form-control auto-address">
+                        <label class="@error('post_code') text-danger @enderror"><b>POST CODE</b></label>
+                        <input type="text" id="postal_code" name="post_code"
+                               class="form-control auto-address @error('post_code') border-danger @enderror"
+                               value="{{ old('post_code') }}">
                     </div>
+                    @error('post_code')
+                    <p class="text-danger ml-3">*{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="pt-5"></div>
             </div>
@@ -116,7 +147,7 @@
             <div>
                 <div class="form-group">
                     <label><b>NOTE</b> (ON BEHALF OF)</label>
-                    <textarea name="notes" rows="1" class="form-control"></textarea>
+                    <textarea name="notes" rows="1" class="form-control" value="{{ old('notes') }}"></textarea>
                 </div>
                 <div class="pt-5"></div>
             </div>
