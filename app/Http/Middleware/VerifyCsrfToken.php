@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/admin/media/*',
+        '/globalpay/payment_result',
         '/globalpay/payment_status_update'
     ];
 }

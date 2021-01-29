@@ -20,8 +20,6 @@
 @empty($link)
 @else 
     <a href="{{ url($link->slug) }}">Success page</a>
-
-    
 @endempty
 </body>
 </html>
