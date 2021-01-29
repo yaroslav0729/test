@@ -16,9 +16,13 @@ $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
             <span>Trending</span>
             <i>Trending articles</i>
         </div>
-        <div>
-            <button class="btn btn-white">SORT BY DATE</button>
-            <button class="btn btn-primary-dark">FILTER BY TOPIC</button>
+    </div>
+    <div class="row mb-4 gutter-5">
+        <div class="col-6">
+            <button class="btn btn-white w-100">SORT BY DATE</button>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-primary-dark w-100">FILTER BY TOPIC</button>
         </div>
     </div>
 

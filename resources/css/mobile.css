@@ -138,8 +138,11 @@
 .mobile-template .wrap {
   min-width: 200px;
 }
+.mobile-template .general-content-tabs {
+  margin-bottom: 25px;
+}
 .mobile-template .general-content-tabs .nav-tabs .nav-link {
-  padding: 18px 10px 14px;
+  padding: 10px 6px 10px;
 }
 .mobile-template header {
   background: #E3EFFE;
@@ -1244,7 +1247,7 @@
   transform: rotate(0);
 }
 .mobile-template .blog-article-head {
-  padding: 0 30px;
+  padding: 0 20px;
 }
 .mobile-template .blog-article-head .article-text h1 {
   font-size: 25px;
@@ -1252,7 +1255,7 @@
 }
 .mobile-template .blog-article-head .article-text .img-video {
   border-radius: 0;
-  margin: 0 -30px 30px;
+  margin: 0 -20px 30px;
   padding-bottom: 67.25%;
 }
 .mobile-template .mission-impossible {
@@ -2052,6 +2055,77 @@
   top: 135px;
   left: auto;
   right: 0;
+}
+.newsroom-tabs {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+.newsroom-list {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  padding-top: 30px;
+  overflow: hidden;
+}
+.newsroom-list:before {
+  right: 0;
+}
+.newsroom-list .title {
+  margin: 0 0 50px;
+}
+.newsroom-list .title > div {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.newsroom-list .title span {
+  font-size: 60px;
+}
+.newsroom-list .title i {
+  font-size: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.newsroom-list .item {
+  padding: 17px 0 20px 20px;
+  align-items: center;
+  margin-right: 20px;
+}
+.newsroom-list .item .tl {
+  font-size: 14px;
+  line-height: 1.4;
+}
+.newsroom-list .item .date {
+  font-size: 10px;
+  line-height: 1.4;
+}
+.newsroom-list .item .img {
+  width: 102px;
+  height: 102px;
+  right: -23px;
+}
+.popular-topic-list {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  padding-bottom: 30px;
+  margin-bottom: 10px;
+  background: rgba(238, 237, 242, 0.58);
+}
+.popular-topic-list .current-projects-list {
+  margin-bottom: 0;
+}
+.popular-topic-list .title {
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+.popular-topic-list .item .descr span:first-child {
+  margin-bottom: 10px;
+}
+.pagination .page-item .page-link {
+  font-size: 10px;
 }
 /*------------------------------------vb--------*/
 .page-404 {

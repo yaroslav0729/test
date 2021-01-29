@@ -28,7 +28,7 @@
 
 @endphp
 
-<section class="newsroom-tabs">
+<section class="newsroom-tabs pt-4">
     <nav class="general-content-tabs">
         <div class="nav nav-tabs nav-fill"  role="tablist">
             <a class="nav-link active"  href="#" >TRENDING</a>
