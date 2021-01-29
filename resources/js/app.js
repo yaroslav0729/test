@@ -989,13 +989,18 @@ $(function () {
         });
     }
 
-    $('.main-page-header .swiper-button-next').on('click', function (e) {
-        
-        // let activeSlideStyle = $('.swiper-slide-active').data('style')
-        // console.log('next click', activeSlideStyle)
+    let headerSliderTimeout = 0;
 
-        const swiperInstance = document.querySelector('.main-page-header .swiper-container').swiper
-        console.log('next click', swiperInstance.realIndex)
+    $(document).on('click', '[header-slider-next]', function (e) {
+
+        clearTimeout(headerSliderTimeout);
+
+        headerSliderTimeout = setTimeout(function() {
+            let activeSlide = $('[header-slider-slide].swiper-slide-active');
+
+            $('.main-page-header').removeClass('style-1').removeClass('style-2')
+            $('.main-page-header').addClass(activeSlide.data('style'))
+        }, 800)
     })
 });
 

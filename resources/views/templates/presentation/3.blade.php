@@ -71,7 +71,7 @@
                                     $style = 'style-2';
                                 }
                             @endphp
-                            <div class="swiper-slide" data-style="{{ $style }}">
+                            <div class="swiper-slide" data-style="{{ $style }}" header-slider-slide>
                                 <div class="body">
                                     <div class="left">
                                         <div class="mb-4">
@@ -92,7 +92,7 @@
                                     </div>
                                     <a href="{{ $hdrLearnMoreLink[$i] }}" class="right"
                                        style="background-image: url('{{ $hdrBgImage[$i] }}')"></a>
-                                    <a href="#" class="view-more swiper-button-next"><i
+                                    <a href="#" header-slider-next class="view-more swiper-button-next"><i
                                             class="moon-icons-arrow-right"></i></a>
                                 </div>
                             </div>
