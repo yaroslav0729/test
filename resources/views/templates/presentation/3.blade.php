@@ -10,6 +10,7 @@
     $hdrBgImage = [];
 
     for ($i=1; $i<=4; $i++) {
+        $hdrColorType[$i] = "";
         $hdrTypeActive[$i] = "";
         $hdrLinkText[$i] = "";
         $hdrLearnMoreLink[$i] = "";

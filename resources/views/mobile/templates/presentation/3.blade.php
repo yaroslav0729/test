@@ -2,7 +2,7 @@
 
 $relatedPages = [];
 $hdrTypeActive = [];
-$hdrColorType = "";
+$hdrColorType = [];
 $hdrLinkText = [];
 $hdrLearnMoreLink = [];
 $hdrTitle = [];
@@ -14,6 +14,7 @@ $tagClass = '';
  $featuredCompaignLink = "";
 
 for ($i=1; $i<=4; $i++) {
+    $hdrColorType[$i] = "";
     $hdrTypeActive[$i] = "";
     $hdrLinkText[$i] = "";
     $hdrLearnMoreLink[$i] = "";
@@ -23,14 +24,10 @@ for ($i=1; $i<=4; $i++) {
     $donateLink[$i] = "";
 }
 
-if (isset($parameters['hdr_color_type'])) {
-    $hdrColorType = $parameters['hdr_color_type'];
-}
-
-$hdrTypeValue = $hdrColorType === 'blue' ? 1 : 2;
-
-
-for ($i=1; $i<=4; $i++){
+for ($i = 1; $i <= 4; $i++) {
+    if (isset($parameters['hdr_color_type_' . $i])) {
+            $hdrColorType[$i] = $parameters['hdr_color_type_' . $i];
+    }
     if (isset($parameters['hdr_type_active_' . $i])) {
         $hdrTypeActive[$i] = $parameters['hdr_type_active_' . $i];
     }
@@ -68,16 +65,29 @@ for ($i=1; $i<=4; $i++){
 
     $blogs = \App\Models\Page::lastBlogs(4);
 
+    $style = 'style-1';
+
+    if ((isset($hdrColorType[0])) && ($hdrColorType[0] === 'red')) {
+        $style = 'style-2';
+    }
+
 @endphp
 
 @empty(!$hdrTypeActive)
-<section class="main-page-header style-1" style="display: none1" swiper-wrapper="header-mabile-2">
+<section class="main-page-header {{ $style }}" swiper-wrapper="header-mabile-2">
     <div class="wrap">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 @for ($i = 1; $i <= 4; $i++)
                     @if(in_array($i, $hdrTypeActive ))
-                        <div class="swiper-slide">
+                        @php
+                            if ($hdrColorType[$i] === 'blue')  {
+                                $style = 'style-1';
+                            }  else {
+                                $style = 'style-2';
+                            }
+                        @endphp
+                        <div class="swiper-slide" data-style="{{ $style }}" header-slider-slide>
                              <div class="body">
                                 <div class="left">
                                     @empty($tagText)
@@ -99,7 +109,7 @@ for ($i=1; $i<=4; $i++){
                                         </a>
                                     <a href="{{ $donateLink[$i] }}" style="position: relative; z-index: 2" class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate now</a>
                                     <div class="text-right mt-n4 d-block">
-                                        <a href="#" class="view-more swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
+                                        <a href="#" header-slider-next class="view-more swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
                                         <div class="black-line"></div>
                                     </div>
                                 </div>
