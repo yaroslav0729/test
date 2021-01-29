@@ -38,7 +38,7 @@ class PageCreateEditRequest extends FormRequest
             'name' => 'required|max:255',
             'template' => 'required|integer|gt:0', // greater than 0
             'slug' => $slug,
-            'preview_text' => 'required|max:60',
+            'preview_text' => 'required|max:100',
         ];
 
         $rules = array_merge($rules, Template::getValidationRules((int)$this->input('template')));

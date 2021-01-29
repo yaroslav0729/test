@@ -56,7 +56,7 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('amount_text', function ($value, $parameters) {
             foreach ($parameters as $parameter) {
                 if (isset($parameter['text'])) {
-                    if (strlen($parameter['text']) > 60) return false;    
+                    if (strlen($parameter['text']) > 100) return false;    
                 }
             }
 
