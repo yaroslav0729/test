@@ -22,9 +22,8 @@ class Module
             ->whereHas('page', function(Builder $queryPage) {
                 $queryPage->published();
             })
-            ->whereHas('categories', function ($q) {
-                $q->where('category_id', 1);
-            })->limit(3)->get();
+            ->where('slug', 'like', 'media-centre' . '%')
+            ->limit(3)->get();
         }
 
         return $pages;

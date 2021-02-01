@@ -6,6 +6,7 @@
     }
 
     $relatedPages = \App\Models\Module::getRelatedPages($relPageCatId);
+
 @endphp
 
 <div class="current-projects-list">
@@ -15,7 +16,7 @@
                 <div class="col-4">
                     <a href="{{ url($page->slug) }}" class="item">
                         @isset($page->preview_img)
-                            <span class="img" style="background-repeat:no-repeat; background-image: url(/{{ $page->preview_img }})"></span>
+                            <span class="img" style="background-repeat:no-repeat; background-image: url({{ url($page->preview_img) }})"></span>
                         @else
                             <span class="img" style="background: #eee"></span>
                         @endisset

@@ -62,7 +62,7 @@ class SetupPreviewImage extends Command
 
     protected function setupFirstImage()
     {
-        $items = PageInstance::where('slug', 'like', '%' . 'media-centre/news/' . '%')->
+        $items = PageInstance::where('slug', 'like', '%' . 'media-centre/' . '%')->
             where(function ($query) {
                 $query->whereNull('preview_img')
                     ->orWhere('preview_img', '');
