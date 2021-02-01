@@ -9,7 +9,7 @@
                             <ul class="sub-menu">
                                 @foreach($menuItem->subMenus as $footerSubMenuItem)
                                     <li>
-                                        <a href="{{ $footerSubMenuItem->formatted_link }}">{{ $footerSubMenuItem->text }}</a></li>
+                                        <a href="{{ $footerSubMenuItem->formatted_link }}">{{ $footerSubMenuItem->text }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -30,9 +30,11 @@
         </div>
         <div class="copy text-right">
             @foreach ($additionalFooterMenuItem as $key => $menuItem)
-                <a href="{{ $menuItem->link }}">{!! $menuItem->text !!}</a> @if(count($additionalFooterMenuItem)-1 > $key)<span>|</span> @endif
+                <a href="{{ $menuItem->link }}">{!! $menuItem->text !!}</a> @if(count($additionalFooterMenuItem)-1 > $key)
+                    <span>|</span> @endif
             @endforeach
-                <span>|</span> Register Charity Number: 1160490<span>|</span>Company Number: 0938212
+            <span>|</span> Register Charity Number: {{ Setting::get(Setting::REGISTERED_CHARITY_NUMBER) ?? '' }}
+            <span>|</span>Company Number: {{ Setting::get(Setting::COMPANY_NUMBER) ?? '' }}
         </div>
     </div>
 </footer>

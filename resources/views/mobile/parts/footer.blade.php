@@ -23,8 +23,8 @@
         </div>
 
         <div class="copy">
-            Copyright 2020 <b>Islamic Help</b><br>
-            Registered Charity Number: 1160490<br>
+            Copyright {{ \Carbon\Carbon::now()->year }} <b>Islamic Help</b><br>
+            Registered Charity Number: {{ Setting::get(Setting::REGISTERED_CHARITY_NUMBER) ?? '' }}<br>
             Tel: 020 800 8000
         </div>
 

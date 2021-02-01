@@ -11,6 +11,8 @@ class SettingHelper
 {
     const VIDEO_LINK_ON_MAIN_MENU = 100;
     const ZAKAT_FIT_CAMPAIGN_CATEGORY = 101;
+    const REGISTERED_CHARITY_NUMBER = 102;
+    const COMPANY_NUMBER = 103;
 
     /**
      * @return string[]
@@ -20,6 +22,8 @@ class SettingHelper
         return [
             self::VIDEO_LINK_ON_MAIN_MENU => 'Link to a video for the Main menu',
             self::ZAKAT_FIT_CAMPAIGN_CATEGORY => 'Which Campaign category fit Zakat',
+            self::REGISTERED_CHARITY_NUMBER => 'Register Charity Number',
+            self::COMPANY_NUMBER => 'Company Number',
         ];
     }
 
@@ -30,7 +34,9 @@ class SettingHelper
     {
         return [
             self::VIDEO_LINK_ON_MAIN_MENU => 'videoLinks',
-            self::ZAKAT_FIT_CAMPAIGN_CATEGORY => 'whichCategoryFitZakat'
+            self::ZAKAT_FIT_CAMPAIGN_CATEGORY => 'whichCategoryFitZakat',
+            self::REGISTERED_CHARITY_NUMBER => 'registerNumber',
+            self::COMPANY_NUMBER => 'companyNumber',
         ];
     }
 

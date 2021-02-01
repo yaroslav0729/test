@@ -33,6 +33,24 @@
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <label>{{ Setting::name(Setting::REGISTERED_CHARITY_NUMBER) }}:</label>
+                        <div class="input-group">
+                            <input type="text" name="{{ Setting::nameShort(Setting::REGISTERED_CHARITY_NUMBER) }}"
+                                   class="form-control" placeholder="" value="{{ old(Setting::nameShort(Setting::REGISTERED_CHARITY_NUMBER),
+                            Setting::get(Setting::REGISTERED_CHARITY_NUMBER)) }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ Setting::name(Setting::COMPANY_NUMBER) }}:</label>
+                        <div class="input-group">
+                            <input type="text" name="{{ Setting::nameShort(Setting::COMPANY_NUMBER) }}"
+                                   class="form-control" placeholder="" value="{{ old(Setting::nameShort(Setting::COMPANY_NUMBER),
+                            Setting::get(Setting::COMPANY_NUMBER)) }}">
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-info">Submit</button>
                 </form>
             </div>
