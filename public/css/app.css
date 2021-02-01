@@ -13003,6 +13003,9 @@ input[type='number'].color-danger + .input-group .btn {
   border-left: 4px solid #101525;
   padding-left: 47px;
 }
+.blog-article-body img {
+  max-width: 100% !important;
+}
 @media screen and (min-width: 767px) and (max-width: 992px) {
   .blog-article-body {
     padding-right: 90px !important;

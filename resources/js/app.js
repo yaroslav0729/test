@@ -670,6 +670,7 @@ $(function () {
         toggleOpenedHeaderMenuItems(id);
 
         $('.header-menu').addClass('open')
+        $('body').addClass('header-menu-open');
     }
 
     function toggleOpenedHeaderMenuItems(id)
@@ -836,7 +837,8 @@ $(function () {
 
     function closeMenu()
     {
-        $('.header-menu').removeClass('open')
+        $('.header-menu').removeClass('open');
+        $('body').removeClass('header-menu-open');
         if ($('body').hasClass('mobile-template')) {
             $('.header-menu').removeClass('dark-theme')
             $('.header-menu [class^=level-]').not('.level-0').hide();

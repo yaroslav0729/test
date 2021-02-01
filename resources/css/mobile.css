@@ -125,6 +125,9 @@
   line-height: 1.4;
   color: #fff;
 }
+.mobile-template body.header-menu-open {
+  overflow: hidden;
+}
 .mobile-template .form-group label {
   color: #9496B0;
 }
@@ -202,6 +205,10 @@
   margin-right: 4px;
   border-radius: 50%;
   vertical-align: middle;
+}
+.mobile-template .wrapper.header-fixed header {
+  background: #fff;
+  box-shadow: 0 18px 35px 0 rgba(104, 110, 117, 0.1);
 }
 .mobile-template .header-menu {
   padding: 0px 49px 20px;
@@ -848,13 +855,18 @@
   flex: 0 0 85px;
   border: 0;
 }
+.mobile-template .donate-today .body .donate-today-sheet .item > span > span:first-child:after {
+  display: none;
+}
 .mobile-template .donate-today .body .donate-today-sheet .item > span > span:first-child object {
   letter-spacing: -3px !important;
 }
 .mobile-template .donate-today .body .donate-today-sheet .item > span > span:first-child span:first-child {
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1;
+  text-align: left;
+  padding-left: 10px;
 }
 .mobile-template .donate-today .body .donate-today-sheet .item > span > span:last-child {
   font-size: 14px;

@@ -7,6 +7,7 @@
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/mobile.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/mobile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/css/mobile.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/mobile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/css/mobile.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/mobile.css.map" afterDir="false" />
@@ -14,10 +15,7 @@
       <change beforePath="$PROJECT_DIR$/resources/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/styles.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/styles.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mobile/modules/presentation/quick_donation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mobile/modules/presentation/quick_donation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mobile/templates/presentation/1.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mobile/templates/presentation/1.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mobile/templates/presentation/5.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mobile/templates/presentation/5.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/templates/presentation/4.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/presentation/4.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar/" />
@@ -40,30 +38,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="1274" column="32" selection-start-line="1274" selection-start-column="32" selection-end-line="1274" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/css/mobile.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="84" column="24" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
+            <state relative-caret-position="320">
+              <caret line="256" column="20" selection-start-line="256" selection-start-column="20" selection-end-line="256" selection-end-column="68" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/mobile/modules/presentation/quick_donation.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/css/mobile.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="58" column="51" selection-start-line="58" selection-start-column="51" selection-end-line="58" selection-end-column="51" />
-              <folding>
-                <element signature="n#svg#0;n#div#0;n#form#0;n#div#0;n#div#0;n#!!top" />
-                <element signature="n#style#0;n#div#3;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="242">
+              <caret line="133" column="41" selection-start-line="133" selection-start-column="41" selection-end-line="133" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="840" column="47" lean-forward="true" selection-start-line="840" selection-start-column="31" selection-end-line="840" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -80,13 +74,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>padd</find>
-      <find>.pagination</find>
-      <find>.newsroom-list</find>
-      <find>popular-topic-list</find>
-      <find>.popular-topic-list</find>
-      <find>blog-article-head</find>
-      <find>genera</find>
       <find>class=&quot;current-projects&quot;</find>
       <find>swiper-wrapper=&quot;</find>
       <find>newsroom-tabs</find>
@@ -110,6 +97,13 @@
       <find>id=&quot;headingOne&quot;</find>
       <find>Lato</find>
       <find>modal-quick-donation</find>
+      <find>artil</find>
+      <find>.blog-article-bod</find>
+      <find>donate-today-sheet</find>
+      <find>.donate-today-sheet</find>
+      <find>header</find>
+      <find>.header-menu</find>
+      <find>$('.header-menu')</find>
     </findStrings>
     <replaceStrings>
       <replace>fal fa-arrow-right</replace>
@@ -132,11 +126,11 @@
       <dir>$PROJECT_DIR$</dir>
       <dir>$PROJECT_DIR$/public/markup/libs/moon-icons</dir>
       <dir>$PROJECT_DIR$/resources/views/modules</dir>
-      <dir>$PROJECT_DIR$/resources/js</dir>
       <dir>$PROJECT_DIR$/resources</dir>
       <dir>$PROJECT_DIR$/resources/css</dir>
       <dir>$PROJECT_DIR$/resources/views/mobile</dir>
       <dir>$PROJECT_DIR$/resources/views</dir>
+      <dir>$PROJECT_DIR$/resources/js</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -148,7 +142,6 @@
         <option value="$PROJECT_DIR$/resources/views/modules/presentation/parts/donate_options.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/modules/presentation/donate_module.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/modules/presentation/what_happens_so_far.blade.php" />
-        <option value="$PROJECT_DIR$/resources/js/app.js" />
         <option value="$PROJECT_DIR$/resources/views/page.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/parts/header_short_white.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/modules/presentation/join_the_cause_subscribe.blade.php" />
@@ -192,10 +185,11 @@
         <option value="$PROJECT_DIR$/resources/views/mobile/modules/presentation/current_projects.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/mobile/templates/presentation/1.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/templates/presentation/4.blade.php" />
-        <option value="$PROJECT_DIR$/resources/css/styles.less" />
         <option value="$PROJECT_DIR$/resources/views/mobile/templates/presentation/5.blade.php" />
-        <option value="$PROJECT_DIR$/resources/css/mobile.less" />
         <option value="$PROJECT_DIR$/resources/views/mobile/modules/presentation/quick_donation.blade.php" />
+        <option value="$PROJECT_DIR$/resources/css/styles.less" />
+        <option value="$PROJECT_DIR$/resources/js/app.js" />
+        <option value="$PROJECT_DIR$/resources/css/mobile.less" />
       </list>
     </option>
   </component>
@@ -372,19 +366,6 @@
               <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -468,7 +449,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="245488000" />
+    <option name="totallyTimeSpent" value="246484000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -484,10 +465,10 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.23247497" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.23247497" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="npm" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49785408" visible="true" weight="0.19283746" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" sideWeight="0.49785408" visible="true" weight="0.19283746" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50214595" side_tool="true" weight="0.32684284" />
       <window_info anchor="bottom" id="Version Control" order="3" />
@@ -509,13 +490,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/libs/moon-icons/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="50" column="17" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/markup/thank-you.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -864,24 +838,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="1274" column="32" selection-start-line="1274" selection-start-column="32" selection-end-line="1274" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/mobile/templates/presentation/5.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="110" column="18" selection-start-line="110" selection-start-column="18" selection-end-line="110" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/css/mobile.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="84" column="24" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -893,6 +853,27 @@
             <element signature="n#svg#0;n#div#0;n#form#0;n#div#0;n#div#0;n#!!top" />
             <element signature="n#style#0;n#div#3;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="256" column="20" selection-start-line="256" selection-start-column="20" selection-end-line="256" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="840" column="47" lean-forward="true" selection-start-line="840" selection-start-column="31" selection-end-line="840" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/css/mobile.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="133" column="41" selection-start-line="133" selection-start-column="41" selection-end-line="133" selection-end-column="41" />
         </state>
       </provider>
     </entry>
