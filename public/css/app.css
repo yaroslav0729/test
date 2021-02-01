@@ -15149,6 +15149,34 @@ input[type='number'].color-danger + .input-group .btn {
   line-height: 46px;
   vertical-align: middle;
 }
+.event-info-descr .center {
+  background: #2CAABB;
+  border-radius: 0 0 5px 5px;
+  margin-top: -5px;
+  margin-bottom: 15px;
+  padding: 24px 30px 24px 34px;
+}
+.event-info-descr .center a.webinar {
+  color: #FFF;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 30px;
+  vertical-align: middle;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+.event-info-descr .center a.webinar i {
+  display: inline-block;
+  background: url(/images/ico-webinar.svg?286a6814c9c5a035fe47f77cd4c637e5) no-repeat;
+  background-size: contain;
+  width: 27px;
+  height: 27px;
+  margin-right: 11px;
+  vertical-align: middle;
+  position: relative;
+  top: -3px;
+  line-height: 1;
+}
 .event-info-descr .down > .row > div > div {
   background: #F8F7FA;
   border-radius: 5px;

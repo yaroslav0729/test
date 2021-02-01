@@ -109,6 +109,7 @@
 
 <section class="event-info-descr">
     <div class="wrap">
+
         <div class="top pb-5">
             <div>
                 <b><i></i>{{ $event->start_date->format('l jS, F Y') }}</b>
@@ -126,6 +127,18 @@
                 </a>
             </div>
         </div>
+
+        <p><small>example</small></p>
+        <div class="top pb-5 m-0">
+            <div>
+                <b><i></i>{{ $event->start_date->format('l jS, F Y') }}</b>
+            </div>
+        </div>
+        <div class="center">
+            <a href="#" class="webinar"><i></i>ONLINE WEBINAR</a>
+        </div>
+
+
         <div class="down">
             <div>
                 <div class="title"><b>event details</b></div>
