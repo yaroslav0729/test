@@ -23,6 +23,7 @@ class Module
                 $queryPage->published();
             })
             ->where('slug', 'like', 'media-centre' . '%')
+            ->where('preview_img', '<>', null)
             ->limit(3)->get();
         }
 
