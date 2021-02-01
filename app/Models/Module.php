@@ -24,6 +24,7 @@ class Module
             })
             ->where('slug', 'like', 'media-centre' . '%')
             ->where('preview_img', '<>', null)
+            ->where('preview_img', '<>', '')
             ->limit(3)->get();
         }
 
