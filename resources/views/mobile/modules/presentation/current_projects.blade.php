@@ -44,7 +44,7 @@
 
 @endphp
 
-<section class="current-projects" swiper-wrapper="slider-mobile-1">
+<section class="current-projects" swiper-wrapper="slider-mobile-1" swiper-autoHeight="true">
     <div class="wrap">
         <div class="title">
             <span>Current Projects</span>

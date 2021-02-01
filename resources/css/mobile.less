@@ -143,8 +143,9 @@
 .wrap {min-width: 200px}
 
   .general-content-tabs {
+	margin-bottom: 25px;
 	.nav-tabs {
-	  .nav-link {padding: 18px 10px 14px}
+	  .nav-link {padding: 10px 6px 10px}
 	}
   }
 
@@ -538,6 +539,7 @@ footer {
 		padding-top: 73%;
 	  }
 	}
+	.swiper-container {padding-top: 0}
 	.swiper-container .swiper-slide {
 	  padding: 0;
 	}
@@ -558,7 +560,7 @@ footer {
 	  }
 	}
 	.swiper-button-prev, .swiper-button-next {
-	  top: auto; bottom: 66px;
+	  top: auto; bottom: 62px;
 	  margin: 0 !important;
 	  font-size: 35px;
 	  background: #F5C15D;
@@ -1202,7 +1204,7 @@ footer {
   }
 
   .blog-article-head {
-	padding: 0 30px;
+	padding: 0 20px;
 	.article-text {
 	  h1 {
 		font-size: 25px;
@@ -1210,7 +1212,7 @@ footer {
 	  }
 	  .img-video {
 		border-radius: 0;
-		margin: 0 -30px 30px;
+		margin: 0 -20px 30px;
 		padding-bottom: 67.25%;
 	  }
 	}
@@ -1933,6 +1935,78 @@ footer {
   }
 
 }
+
+
+.newsroom-tabs {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.newsroom-list {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  padding-top: 30px;
+  overflow: hidden;
+  &:before {right: 0}
+  .title {
+	margin: 0 0 50px;
+	& > div {
+	  position: relative;
+	  bottom: 0;
+	  left: 0;
+	  right: 0;
+	  text-align: center;
+	}
+	span {
+	  font-size: 60px;
+	}
+	i {
+	  font-size: 25px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  white-space: nowrap;
+	}
+  }
+  .item {
+	padding: 17px 0 20px 20px;
+	align-items: center;
+	margin-right: 20px;
+	.tl {
+	  font-size: 14px;
+	  line-height: 1.4;
+	}
+	.date {
+	  font-size: 10px;
+	  line-height: 1.4;
+	}
+	.img {
+	  width: 102px;
+	  height: 102px;
+	  right: -23px;
+	}
+  }
+}
+
+.popular-topic-list {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  padding-bottom: 30px;
+  margin-bottom: 10px;
+  background: rgba(238,237,242,0.58);
+  .current-projects-list {margin-bottom: 0}
+  .title {
+	text-align: center;
+	font-size: 20px;
+	letter-spacing: 1px;
+  }
+  .item {
+	.descr {
+	  span:first-child {margin-bottom: 10px;}
+	}
+  }
+}
+
+.pagination .page-item .page-link {font-size: 10px;}
 
 /*------------------------------------vb--------*/
 
