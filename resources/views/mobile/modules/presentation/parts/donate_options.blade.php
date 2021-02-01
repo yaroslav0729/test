@@ -14,10 +14,15 @@
                 @php $class = 'active-color-red' @endphp
             @endif
 
+            @php $smallSize = '' @endphp
+            @if($item['value'] > 100)
+                @php $smallSize = "font-size: 16px" @endphp
+            @endif
+
             <label class="item @isset($class) {{ $class }} @endisset" select-amount data-amount_id={{ $amountKey }}>
                 <input type="radio" name="price" value="{{ $item['value'] }}">
                 <span class="d-flex align-items-center">
-                    <span><span>
+                    <span><span style="{{$smallSize}}">
                         <i  class="moon-icons-plus decor-plus"></i>
 
                         <object class="currency_sign">£</object>
