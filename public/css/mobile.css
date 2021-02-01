@@ -510,6 +510,9 @@
   border: 0;
   padding-top: 73%;
 }
+.mobile-template .current-projects .swiper-container {
+  padding-top: 0;
+}
 .mobile-template .current-projects .swiper-container .swiper-slide {
   padding: 0;
 }
@@ -534,7 +537,7 @@
 .mobile-template .current-projects .swiper-button-prev,
 .mobile-template .current-projects .swiper-button-next {
   top: auto;
-  bottom: 66px;
+  bottom: 62px;
   margin: 0 !important;
   font-size: 35px;
   background: #F5C15D;
