@@ -24,7 +24,7 @@
                 <div class="swiper-wrapper">
                     @foreach ($relatedPages as $page)
                         <div class="swiper-slide">
-                            <a href="{{ $page->slug }}" class="item">
+                            <a href="{{ url($page->slug) }}" class="item">
                                 @isset($page->preview_img)
                                 <span class="img" style="background-image: url({{ $page->preview_img }})"></span>
                                 @else
