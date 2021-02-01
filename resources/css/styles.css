@@ -1572,7 +1572,6 @@ input[type='number'].color-danger + .input-group .btn {
   display: inline-block;
   border-radius: 0 5px 5px 0;
   padding: 5px 10px 5px 30px;
-  font-family: Lato;
   font-size: 14px;
   font-weight: 900;
   letter-spacing: 1px;

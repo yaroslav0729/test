@@ -12,43 +12,43 @@
     $previewPageImage = "";
 
     if (isset($parameters['min_read'])) {
-        $minRead = $parameters['min_read'];    
+        $minRead = $parameters['min_read'];
     }
 
     if (isset($parameters['hdr_text'])) {
-        $headerText = $parameters['hdr_text'];    
+        $headerText = $parameters['hdr_text'];
     }
 
     if (isset($parameters['written_by'])) {
-        $writtenBy = $parameters['written_by'];    
+        $writtenBy = $parameters['written_by'];
     }
 
     if (isset($parameters['hdr_video'])) {
-        $headerVideo = $parameters['hdr_video'];    
+        $headerVideo = $parameters['hdr_video'];
     }
 
     if (isset($parameters['article_html'])) {
-        $articleHtml = $parameters['article_html'];    
+        $articleHtml = $parameters['article_html'];
     }
 
     if (isset($parameters['preview_page_title'])) {
-        $previewPageTitle = $parameters['preview_page_title'];    
+        $previewPageTitle = $parameters['preview_page_title'];
     }
 
     if (isset($parameters['preview_page_text1'])) {
-        $previewPageText1 = $parameters['preview_page_text1'];    
+        $previewPageText1 = $parameters['preview_page_text1'];
     }
 
     if (isset($parameters['preview_page_text2'])) {
-        $previewPageText2 = $parameters['preview_page_text2'];    
+        $previewPageText2 = $parameters['preview_page_text2'];
     }
 
     if (isset($parameters['preview_page_link'])) {
-        $previewPageLink = $parameters['preview_page_link'];    
+        $previewPageLink = $parameters['preview_page_link'];
     }
 
     if (isset($parameters['preview_page_image'])) {
-        $previewPageImage = $parameters['preview_page_image'];    
+        $previewPageImage = $parameters['preview_page_image'];
     }
 
 @endphp
@@ -63,7 +63,7 @@
             <h1>{{ $pageInstance->name }}</h1>
 
             <div class="img-video videoWrapper" style="background: #555">
-                @empty($headerVideo) 
+                @empty($headerVideo)
                     <i class="fas fa-play-circle"></i>
                 @endempty
                 <iframe width="1280" height="720" src="{{ $headerVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

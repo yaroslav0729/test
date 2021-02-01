@@ -56,7 +56,7 @@ $categories = \App\Models\CampaignCategory::all();
         <div class="close"><i class="fal fa-times"></i></div>
         <div class="title">Quick Donation</div>
 
-        <div class="form-group">
+        <div class="form-group" style="font-size: 0">
             <button class="btn-period active" type="button" data-period="single">Single</button>
             <button class="btn-period" type="button" data-period="monthly">Monthly</button>
         </div>

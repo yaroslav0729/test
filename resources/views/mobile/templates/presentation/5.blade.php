@@ -86,7 +86,7 @@
     <div class="accordion" id="accordionExample">
         <div class="card">
             <div class="card-header" id="headingOne">
-                <span class="collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                <span class="collapsed"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                     BANK TRANSFER
                     <i class="far fa-chevron-down"></i>
                 </span>
@@ -99,7 +99,7 @@
         </div>
         <div class="card">
             <div class="card-header" id="headingTwo">
-                <span class="collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <span class="collapsed"  data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                     BY MOBILE
                     <i class="far fa-chevron-down"></i>
                 </span>
@@ -112,7 +112,7 @@
         </div>
         <div class="card">
             <div class="card-header" id="headingThree">
-                <span class="collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <span class="collapsed"  data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                     PAYPAL
                     <i class="far fa-chevron-down"></i>
                 </span>
