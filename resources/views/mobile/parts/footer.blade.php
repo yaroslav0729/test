@@ -25,7 +25,7 @@
         <div class="copy">
             Copyright {{ \Carbon\Carbon::now()->year }} <b>Islamic Help</b><br>
             Registered Charity Number: {{ Setting::get(Setting::REGISTERED_CHARITY_NUMBER) ?? '' }}<br>
-            Tel: 020 800 8000
+            <a href="tel: {{ Setting::get(Setting::COMPANY_NUMBER) ?? '' }}">Tel: {{ Setting::get(Setting::COMPANY_NUMBER) ?? '' }}</a>
         </div>
 
         <div class="social d-flex">

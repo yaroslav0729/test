@@ -34,7 +34,7 @@
                     <span>|</span> @endif
             @endforeach
             <span>|</span> Register Charity Number: {{ Setting::get(Setting::REGISTERED_CHARITY_NUMBER) ?? '' }}
-            <span>|</span>Company Number: {{ Setting::get(Setting::COMPANY_NUMBER) ?? '' }}
+            <span>|</span><a href="tel: {{ Setting::get(Setting::COMPANY_NUMBER) ?? '' }}">Company Number: {{ Setting::get(Setting::COMPANY_NUMBER) ?? '' }}</a>
         </div>
     </div>
 </footer>
