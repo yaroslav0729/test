@@ -207,10 +207,10 @@ class Template
                     'parameters.event_details_entry' => 'required',
                     'parameters.event_entry_price' => 'nullable|numeric|min:1',
                     'parameters.event_details_organiser' => 'required',
-                    'parameters.event_details_speaker' => 'required',
+                    'parameters.event_details_speaker' => 'nullable',
                     'parameters.event_details_contact' => 'required',
 
-                    'parameters.information_title' => 'required',
+                    'parameters.information_title' => 'nullable',
                     'parameters.information_text' => 'required',
                     'parameters.information_text_mobile' => 'required|max:460',
                 ];

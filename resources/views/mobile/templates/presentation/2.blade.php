@@ -2,6 +2,7 @@
 
     $eventDescription = "";
     $previewPosition = "";
+    $eventTypeParticipate = "";
 
     $eventStartDate = "";
     $eventEndDate = "";
@@ -25,6 +26,10 @@
 
     if (isset($parameters['preview_position'])) {
         $previewPosition = $parameters['preview_position'];
+    }
+
+    if (isset($parameters['event_type_participate'])) {
+        $eventTypeParticipate = $parameters['event_type_participate'];
     }
 
     if (isset($parameters['event_start_date'])) {
@@ -110,33 +115,36 @@
 <section class="event-info-descr">
     <div class="wrap">
 
-        <div class="top pb-5">
-            <div>
-                <b><i></i>{{ $event->start_date->format('l jS, F Y') }}</b>
-                <b><i class="clock mt-2"></i>
-                    {{ \Carbon\Carbon::parse($event->start_time)->format('h:ia') }}
-                    @isset($event->end_time)
-                        - {{ \Carbon\Carbon::parse($event->end_time)->format('h:ia') }}
-                    @endisset
-                </b>
+        @if((int)$eventTypeParticipate === \App\Models\Event::EVENT_ONLINE)
+            <div class="top pb-5 m-0">
+                <div>
+                    <b><i></i>{{ $event->start_date->format('l jS, F Y') }}</b>
+                </div>
             </div>
-            <div>
-                <a href="{{ $eventLink }}">
-                    <span><i class="fal fa-map-marker-alt"></i></span>
-                    {{ $eventLinkText }}
-                </a>
+            <div class="center">
+                <a href="#" class="webinar"><i></i>ONLINE WEBINAR</a>
             </div>
-        </div>
+        @else
+            <div class="top pb-5">
+                <div>
+                    <b><i></i>{{ $event->start_date->format('l jS, F Y') }}</b>
+                    <b><i class="clock mt-2"></i>
+                        {{ \Carbon\Carbon::parse($event->start_time)->format('h:ia') }}
+                        @isset($event->end_time)
+                            - {{ \Carbon\Carbon::parse($event->end_time)->format('h:ia') }}
+                        @endisset
+                    </b>
+                </div>
+                <div>
+                    <a href="{{ $eventLink }}">
+                        <span><i class="fal fa-map-marker-alt"></i></span>
+                        {{ $eventLinkText }}
+                    </a>
+                </div>
+            </div>
+        @endif
 
-        <p><small>example</small></p>
-        <div class="top pb-5 m-0">
-            <div>
-                <b><i></i>{{ $event->start_date->format('l jS, F Y') }}</b>
-            </div>
-        </div>
-        <div class="center">
-            <a href="#" class="webinar"><i></i>ONLINE WEBINAR</a>
-        </div>
+
 
 
         <div class="down">
