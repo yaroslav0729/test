@@ -18,7 +18,9 @@
     $informationTitle = "";
     $informationText = "";
 
-    $informationTextMobile ="";
+    $informationTextMobile = "";
+
+    $eventbriteCode = "";
 
     if (isset($parameters['event_description'])) {
         $eventDescription = $parameters['event_description'];
@@ -90,6 +92,10 @@
 
     if (isset($parameters['information_text_mobile'])) {
         $informationTextMobile = $parameters['information_text_mobile'];
+    }
+
+    if (isset($parameters['eventbrite_code'])) {
+        $eventbriteCode = $parameters['eventbrite_code'];
     }
 
     $event = $pageInstance->page()->first()->event()->first();
@@ -180,6 +186,7 @@
             </div>
             <div>
                 <div class="title"><b>register here</b> (Seats available)</div>
+                @empty($eventbriteCode)
                 <div>
                     <div class="font-size-12"><b class="text-uppercase">
                             {{ $event->start_date->shortEnglishDayOfWeek }},
@@ -218,6 +225,9 @@
                         <div class="col-6 text-right"><a href="#" class="btn btn-secondary">Register</a></div>
                     </div>
                 </div>
+                @else
+                {!! $eventbriteCode !!}
+                @endempty
             </div>
         </div>
     </div>

@@ -24,6 +24,8 @@
     $informationText ="";
     $informationTextMobile ="";
 
+    $eventbriteCode = "";
+
     if (isset($parameters['event_title'])) {
         $eventTitle = $parameters['event_title'];
     }
@@ -106,6 +108,10 @@
 
     if (isset($parameters['information_text_mobile'])) {
         $informationTextMobile = $parameters['information_text_mobile'];
+    }
+
+    if (isset($parameters['eventbrite_code'])) {
+        $eventbriteCode = $parameters['eventbrite_code'];
     }
 
 @endphp
@@ -245,6 +251,13 @@
             <label>Event details contact:</label>
             <input class="form-control" name="parameters[event_details_contact]"
                    placeholder="Insert event details contact" value="{{ $eventDetailsContact }}"/>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="form-group">
+            <label>Eventbrite iFrame code:</label>
+            <input class="form-control" name="parameters[eventbrite_code]"
+                   placeholder="Insert eventbrite code" value="{{ $eventbriteCode }}"/>
         </div>
     </div>
 </div>
