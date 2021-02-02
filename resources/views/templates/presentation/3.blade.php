@@ -1,5 +1,5 @@
 @php
-    
+
     $relatedPages = [];
     $hdrTypeActive = [];
     $hdrColorType = [];
@@ -88,7 +88,7 @@
                                         </div>
                                         <p class="mb-5">{!! $hdrText[$i] !!}</p>
                                         <a href="{{ $donateLink[$i] }}"
-                                           class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate
+                                           class="btn @if($hdrColorType[$i] === 'blue') btn-info @else btn-danger @endif">Donate
                                             now</a>
                                     </div>
                                     <a href="{{ $hdrLearnMoreLink[$i] }}" class="right"

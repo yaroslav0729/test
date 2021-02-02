@@ -91,13 +91,17 @@ for ($i = 1; $i <= 4; $i++) {
                              <div class="body">
                                 <div class="left">
                                     @empty($tagText)
+                                        @if($hdrColorType[$i] === 'blue')
                                         <div class="tag bg-info-light text-info">Ramathan</div>
+                                        @else
+                                        <div class="tag bg-danger-light text-danger">Ramathan</div>
+                                        @endif
                                     @else
                                         <div class="tag {{ $tagClass }}">{{ $tagText }}</div>
                                     @endempty
                                     <div class="title mb-3">
                                         <a href="{{ $hdrLearnMoreLink[$i] }}" class="text-dark text-decoration-none">
-                                            @if($hdrColorType === 'blue')
+                                            @if($hdrColorType[$i] === 'blue')
                                                 {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-info') !!}
                                             @else
                                                 {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-danger') !!}
@@ -107,7 +111,7 @@ for ($i = 1; $i <= 4; $i++) {
                                         <a href="{{ $hdrLearnMoreLink[$i] }}" class="mb-3 text-dark text-decoration-none d-block">
                                             {!! $hdrText[$i] !!}
                                         </a>
-                                    <a href="{{ $donateLink[$i] }}" style="position: relative; z-index: 2" class="btn @if($hdrColorType === 'blue') btn-info @else btn-danger @endif">Donate now</a>
+                                    <a href="{{ $donateLink[$i] }}" style="position: relative; z-index: 2" class="btn @if($hdrColorType[$i] === 'blue') btn-info @else btn-danger @endif">Donate now</a>
                                     <div class="text-right mt-n4 d-block">
                                         <a href="#" header-slider-next class="view-more swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
                                         <div class="black-line"></div>
