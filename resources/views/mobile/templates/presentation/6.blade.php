@@ -1,10 +1,50 @@
 @php
 
-    $mainHtml = "";
+    $projHeading = "";
 
-    if (isset($parameters['main_html'])) {
-        $mainHtml = $parameters['main_html'];    
+    $projPar1 = "";
+    $projPar2 = "";
+    $projPar3 = "";
+
+    $projVideo = "";
+
+    $projHeader1 = "";
+    $projHeader2 = "";
+    $projHeader3 = "";
+
+    if (isset($parameters['proj_heading'])) {
+        $projHeading = $parameters['proj_heading'];    
     }
+
+    if (isset($parameters['proj_par1'])) {
+        $projPar1 = $parameters['proj_par1'];    
+    }
+
+    if (isset($parameters['proj_par2'])) {
+        $projPar2 = $parameters['proj_par2'];    
+    }
+
+    if (isset($parameters['proj_par3'])) {
+        $projPar3 = $parameters['proj_par3'];    
+    }
+
+    if (isset($parameters['proj_hdr1'])) {
+        $projHeader1 = $parameters['proj_hdr1'];    
+    }
+
+    if (isset($parameters['proj_hdr2'])) {
+        $projHeader2 = $parameters['proj_hdr2'];    
+    }
+
+    if (isset($parameters['proj_hdr3'])) {
+        $projHeader3 = $parameters['proj_hdr3'];    
+    }
+
+    if (isset($parameters['proj_video'])) {
+        $projVideo = $parameters['proj_video'];    
+    }
+
+    $videoRenderedBlock = \App\Models\Widget::replaceMonikers('{video-carousel|' . $projVideo . '}');
 
     $isEmergency = \App\Models\Project::isEmergency($pageInstance);
 
@@ -29,7 +69,18 @@
 <section class="blog-article-body">
     <div class="wrap">
         <div class="body">
-            {!! $mainHtml !!}
+            <h2>{{ $projHeader1 }}</h2>
+            <p>{{ $projPar1 }}</p>
+
+            <h2>{{ $projHeader2 }}</h2>
+            <p>{{ $projPar2 }}</p>
+
+            @if(!empty($projVideo))
+                {!! $videoRenderedBlock !!}
+            @endif
+
+            <h2>{{ $projHeader3 }}</h2>
+            <p>{{ $projPar3 }}</p>
         </div>
     </div>
 </section>
