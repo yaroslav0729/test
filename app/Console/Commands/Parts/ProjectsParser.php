@@ -116,16 +116,15 @@ class ProjectsParser extends AbstractParser
         $p3 = $this->getOption($projectOptions, 'pro_paragraph_3');
         $videoLink = $this->getOption($projectOptions, 'pro_video_id');
 
-        $hdr1 = "<h2>$hdr1</h2>";
-        $hdr2 = "<h2>$hdr2</h2>";
-        $hdr3 = "<h2>$hdr3</h2>";
-        $p1 = "<p>$p1</p>";
-        $p2 = "<p>$p2</p>";
-        $p3 = "<p>$p3</p>";
-        $videoLink = "{video-carousel|$videoLink}";
-        $mainHtml = $hdr1 . $p1 . $hdr2 . $p2 . $videoLink . $hdr3 . $p3;
+        $parameters['proj_hdr1'] = $hdr1;
+        $parameters['proj_hdr2'] = $hdr2;
+        $parameters['proj_hdr3'] = $hdr3;
 
-        $parameters['main_html'] = $mainHtml;
+        $parameters['proj_par1'] = $p1;
+        $parameters['proj_par2'] = $p2;
+        $parameters['proj_par3'] = $p3;
+
+        $parameters['proj_video'] = $videoLink;
 
         $parameters['important_title'] = $this->getOption($projectOptions, 'cta_heading'); // mobile - cta_mobile_heading
         $parameters['important_text'] = $this->getOption($projectOptions, 'cta_detail_text'); // mobile - cta_mobile_detail_text
