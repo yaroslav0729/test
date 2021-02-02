@@ -41,7 +41,7 @@
     }
 
     if (isset($parameters['proj_video'])) {
-        $proVideo = $parameters['proj_video'];    
+        $projVideo = $parameters['proj_video'];    
     }
 
 @endphp
