@@ -492,6 +492,9 @@ class Template
                 $rules = [
                     'parameters' => 'amount_limit_items',
                     'parameters.proj_heading' => 'max:30',
+                    'parameters.proj_par1' => 'max:460',
+                    'parameters.proj_par2' => 'max:460',
+                    'parameters.proj_par3' => 'max:460',
                     'parameters.amount' => 'amount_text',
                     'parameters.donate_text' => 'max:100',
                     'parameters.what_happens_text' => 'max:180',
