@@ -27,7 +27,7 @@
 <section class="important-information @empty($bgClassImportant) bg-light @else {{ $bgClassImportant }} @endempty">
     <div class="wrap">
         <div class="title mb-2">
-            <p class="font-size-16"><b>{{ $importantInfoTitle }}</b></p>
+            <p class="font-size-16 text-uppercase"><b>{{ $importantInfoTitle }}</b></p>
         </div>
         <div class="text">
             <p>{{ $importantInfo }}</p>

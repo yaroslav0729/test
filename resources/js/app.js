@@ -262,7 +262,7 @@ $(function () {
 
     //~~~~~~~~~~~~ Join the cause - subscribe form ~~~~~~~~~~~~~~~~~~~
 
-    $(document).on('click', '#join_the_cause_show_form', function(e) {
+    $(document).on('click', '#join_the_cause_show_form, #join_the_cause_show_form_link', function(e) {
 
         e.preventDefault();
 

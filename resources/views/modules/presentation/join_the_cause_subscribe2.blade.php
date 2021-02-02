@@ -79,8 +79,8 @@
             @if ($text === "")
             <p  class="font-size-20 letter-spacing-0">
                 There are so many ways to help, make sure you stay in the loop and sign up to our <br>
-                <a href="#" class="text-underline text-dark">Newsletter</a> or find out more about our latest
-                <a href="#"  class="text-underline text-dark">Mission Impossible Tour</a>.
+                <a id="join_the_cause_show_form_link" href="#" class="text-underline text-dark subscribe_news">Newsletter</a> or find out more about our latest
+                <a href="/mission-possible"  class="text-underline text-dark">Mission Possible Tour</a>.
             </p>
             @else
                 {!! $text !!}
@@ -151,7 +151,7 @@
                         <p  class="font-size-20 letter-spacing-0">
                             There are so many ways to help, make sure you stay in the loop and sign up to our Newsletter or find out more about our latest
                             <br>
-                            <a href="#"  class="text-underline text-dark">Mission Impossible Tour</a>.
+                            <a href="/mission-possible" class="text-underline text-dark">Mission Possible Tour</a>.
                         </p>
                         @else
                             {!! $text !!}
