@@ -16,8 +16,6 @@
 
     $informationTitle = "";
     $informationText = "";
-    $informationTextMobile = "";
-
     $eventbriteCode = "";
 
     if (isset($parameters['event_description'])) {
@@ -74,10 +72,6 @@
 
     if (isset($parameters['information_text'])) {
         $informationText = $parameters['information_text'];
-    }
-
-    if (isset($parameters['information_text_mobile'])) {
-        $informationTextMobile = $parameters['information_text_mobile'];
     }
 
     if (isset($parameters['eventbrite_code'])) {
@@ -173,7 +167,7 @@
                 <div class="col-8">
                     <div>
                         <div class="title"><b>register here</b> (Seats available)</div>
-                        
+
                         @empty($eventbriteCode)
                         <div>
                         <div class="row align-items-center">

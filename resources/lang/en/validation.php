@@ -359,7 +359,6 @@ return [
 
         'parameters.information_title' => 'Information title',
         'parameters.information_text' => 'Information text',
-        'parameters.information_text_mobile' => 'Information text for mobile',
 
         /*--------------------- End Event ------------------------*/
 

@@ -22,8 +22,6 @@
 
     $informationTitle ="";
     $informationText ="";
-    $informationTextMobile ="";
-
     $eventbriteCode = "";
 
     if (isset($parameters['event_title'])) {
@@ -104,10 +102,6 @@
 
     if (isset($parameters['information_text'])) {
         $informationText = $parameters['information_text'];
-    }
-
-    if (isset($parameters['information_text_mobile'])) {
-        $informationTextMobile = $parameters['information_text_mobile'];
     }
 
     if (isset($parameters['eventbrite_code'])) {
@@ -275,14 +269,6 @@
             <label>Information text</label>
             <textarea wysiwyg-editor class="form-control" id="main_html"
                       name="parameters[information_text]">{{ $informationText }}</textarea>
-        </div>
-    </div>
-
-    <div class="col-12">
-        <div class="form-group">
-            <label>Information text for mobile (max 460 characters):</label>
-            <textarea class="form-control" name="parameters[information_text_mobile]"
-                      placeholder="Information text for mobile" rows="3">{{ $informationTextMobile }} </textarea>
         </div>
     </div>
 </div>

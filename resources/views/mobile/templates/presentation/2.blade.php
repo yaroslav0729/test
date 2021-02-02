@@ -17,9 +17,6 @@
 
     $informationTitle = "";
     $informationText = "";
-
-    $informationTextMobile = "";
-
     $eventbriteCode = "";
 
     if (isset($parameters['event_description'])) {
@@ -88,10 +85,6 @@
 
     if (isset($parameters['information_text'])) {
         $informationText = $parameters['information_text'];
-    }
-
-    if (isset($parameters['information_text_mobile'])) {
-        $informationTextMobile = $parameters['information_text_mobile'];
     }
 
     if (isset($parameters['eventbrite_code'])) {
@@ -237,7 +230,7 @@
     <div class="wrap">
         <div class="body">
             <h2>{{ $informationTitle }}</h2>
-            {!! $informationTextMobile !!}
+            {!! $informationText !!}
             <div class="pb-4"></div>
         </div>
     </div>

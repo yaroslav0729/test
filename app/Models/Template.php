@@ -212,7 +212,6 @@ class Template
 
                     'parameters.information_title' => 'nullable',
                     'parameters.information_text' => 'required',
-                    'parameters.information_text_mobile' => 'required|max:460',
                 ];
 
                 break;
