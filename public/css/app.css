@@ -16494,23 +16494,23 @@ button.toast-close-button{padding:0;cursor:pointer;background:0 0;border:0;-webk
 @keyframes slideOutUp{0%{transform:translateZ(0)}to{visibility:hidden;transform:translate3d(0,-100%,0)}}
 .slideOutUp{-webkit-animation-name:slideOutUp;animation-name:slideOutUp}
 /* animate.css - ver 3*/
-.blockquote {
- background: #E9F6F8
-}
-.blockquote em {
-        color: #2CAABB;
-        font-family: 'IBM Plex Serif', serif;
-        font-size: 25px;
-        font-style: italic;
-        font-weight: 700;
-        line-height: 45px;
-        display: block;
-        margin-bottom: 13px;
-}
-.blockquote div {
-    color: #2CAABB;
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    line-height: 15px;
-}
+/*.blockquote {*/
+/* background: #E9F6F8*/
+/*}*/
+/*.blockquote em {*/
+/*        color: #2CAABB;*/
+/*        font-family: 'IBM Plex Serif', serif;*/
+/*        font-size: 25px;*/
+/*        font-style: italic;*/
+/*        font-weight: 700;*/
+/*        line-height: 45px;*/
+/*        display: block;*/
+/*        margin-bottom: 13px;*/
+/*}*/
+/*.blockquote div {*/
+/*    color: #2CAABB;*/
+/*    font-size: 10px;*/
+/*    font-weight: 900;*/
+/*    letter-spacing: 1px;*/
+/*    line-height: 15px;*/
+/*}*/
