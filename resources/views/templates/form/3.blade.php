@@ -173,10 +173,18 @@
 
 @include('modules.admin.current_projects')
 
-@include('modules.admin.lets_join')
 
-@include('modules.admin.view_all_projects')
+<div class="mt-5">
+    @include('modules.admin.lets_join')
+</div>
 
+<div class="mt-5">
+    @include('modules.admin.view_all_projects')
+</div>
+
+<div class="mt-5">
+    @include('modules.admin.what_new')
+</div>
 
 <div class="col-12 mt-5">
     @include('modules.admin.join_the_cause_subscribe2')

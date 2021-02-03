@@ -1,9 +1,19 @@
 @php
 
+    $ourWorkTitle = "";
+    $ourWorkLink = "";
     $longtermLink = "";
     $emergencyLink = "";
     $volunteeringLink = "";
     $sadiqahLink = "";
+
+    if (isset($parameters['our_work_block_title'])) {
+        $ourWorkTitle = $parameters['our_work_block_title'];
+    }
+
+    if (isset($parameters['our_work_block_link'])) {
+        $ourWorkLink = $parameters['our_work_block_link'];
+    }
 
     if (isset($parameters['our_work_longterm_link'])) {
         $longtermLink = $parameters['our_work_longterm_link'];
@@ -20,13 +30,13 @@
     if (isset($parameters['our_work_sadiqah_link'])) {
         $sadiqahLink = $parameters['our_work_sadiqah_link'];
     }
-    
+
 @endphp
 
 <section class="our-work">
     <div class="wrap">
         <div class="mb-4">
-            <a href="#" class="text-underline text-dark view-more"><b>OUR WORK</b></a>
+            <a href="{{ $ourWorkLink }}" class="text-underline text-dark view-more text-uppercase"><b>{{ $ourWorkTitle }}</b></a>
         </div>
         <div class="row">
             <div class="col-6 col-lg-3">

@@ -13,6 +13,7 @@
     $linkText2 = "";
     $text3 = "";
     $link3 = "";
+    $btnTitle3 = "";
 
     if (isset($parameters['lets_title1'])) {
         $title1 = $parameters['lets_title1'];
@@ -71,7 +72,11 @@
     if (isset($parameters['lets_link3'])) {
         $link3 = $parameters['lets_link3'];
     }
-    
+
+    if (isset($parameters['lets_btn_title3'])) {
+        $btnTitle3 = $parameters['lets_btn_title3'];
+    }
+
 @endphp
 
 <section class="lets-join">
@@ -199,7 +204,7 @@
                         </svg>
                         <p class="font-size-20 mb-3 "><b>#FUNDRAISEMYSELF</b></p>
                         <p class="font-size-16 mb-4">{{ $text3 }}</p>
-                        <a href="{{ $link3 }}" class="btn btn-outline-warning">More info</a>
+                        <a href="{{ $link3 }}" class="btn btn-outline-warning">{{ $btnTitle3 }}</a>
                     </div>
                 </div>
             </div>

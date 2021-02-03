@@ -13,6 +13,7 @@
     $linkText2 = "";
     $text3 = "";
     $link3 = "";
+    $btnTitle3 = "";
 
     if (isset($parameters['lets_title1'])) {
         $title1 = $parameters['lets_title1'];
@@ -71,7 +72,11 @@
     if (isset($parameters['lets_link3'])) {
         $link3 = $parameters['lets_link3'];
     }
-    
+
+    if (isset($parameters['lets_btn_title3'])) {
+        $btnTitle3 = $parameters['lets_btn_title3'];
+    }
+
 @endphp
 
 <section class="lets-join">
@@ -82,12 +87,12 @@
         </div>
         <div class="item">
             <a href="{{ $link1 }}" class="more-view bg-info">{{ $linkText1 }} <i class="moon-icons-plus"></i></a>
-            
+
                 @empty($video1)
                 <a href="{{ $link1 }}">
                     <div class="img-video" style="background-image: url({{ $img1 }})"></div>
                 </a>
-                @else 
+                @else
                 <div class="img-video videoWrapper">
                     <iframe width="400" height="300" src="https://www.youtube.com/embed/{{ $video1 }}"
                                 frameborder="0"
@@ -109,12 +114,12 @@
 
         <div class="item">
             <a href="{{ $link2 }}" class="more-view bg-danger">{{ $linkText2 }} <i class="moon-icons-plus"></i></a>
-            
+
                 @empty($video2)
                 <a href="{{ $link2 }}">
                     <div class="img-video" style="background-image: url({{ $img2 }})"></div>
                 </a>
-                @else 
+                @else
                 <div class="img-video videoWrapper">
                     <iframe width="400" height="300" src="https://www.youtube.com/embed/{{ $video2 }}"
                                 frameborder="0"
@@ -122,7 +127,7 @@
                                 allowfullscreen></iframe>
                 </div>
                 @endempty
-            
+
             <div class="pl-4 pr-5">
                 <a href="{{ $link2 }}">
                     <p class="font-size-16 text-uppercase mb-0"><b>{{ $title2 }}</b></p>
@@ -180,7 +185,7 @@
             </svg>
             <p class="font-size-20 mb-3"><b>#FUNDRAISEMYSELF</b></p>
             <p class="font-size-16 mb-4">{{ $text3 }}</p>
-            <a href="{{ $link3 }}" class="btn btn-outline-warning">More info</a>
+            <a href="{{ $link3 }}" class="btn btn-outline-warning">{{ $btnTitle3 }}</a>
         </div>
     </div>
 </section>
