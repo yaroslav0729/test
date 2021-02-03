@@ -1,10 +1,15 @@
 @php
 
     $donateImg = "";
+    $donateVideo = "";
     $donateText = "";
 
     if (isset($parameters['donate_img'])) {
         $donateImg = $parameters['donate_img'];    
+    }
+
+    if (isset($parameters['donate_video'])) {
+        $donateVideo = $parameters['donate_video'];    
     }
 
     if (isset($parameters['donate_text'])) {
@@ -16,12 +21,17 @@
 <h3 class="text-center">Projects donate module:</h3>
 
 <div class="form-group">
-    <label>Donate module image</label>
+    <label>Donate module image:</label>
     <input class="form-control" name="parameters[donate_img]" placeholder="Insert donate img path" value="{{ $donateImg }}" />
 </div>
 
 <div class="form-group">
-    <label>Donate module text</label>
+    <label>Donate module video:</label>
+    <input class="form-control" name="parameters[donate_video]" placeholder="Insert donate video id" value="{{ $donateVideo }}" />
+</div>
+
+<div class="form-group">
+    <label>Donate module text:</label>
     <textarea class="form-control" placeholder="Insert donate module text" name="parameters[donate_text]">{{ $donateText }}</textarea>
 </div>
 
@@ -32,13 +42,6 @@
     <li class="nav-item">
         <a class="nav-link" id="tab-slide-2" data-toggle="tab" href="#slide_2" role="tab" aria-controls="tab-slide-2" aria-selected="false">Monthly donation</a>
     </li>
-    {{-- 
-    @isset($useAppeal)
-    <li class="nav-item">
-        <a class="nav-link" id="tab-slide-3" data-toggle="tab" href="#slide_3" role="tab" aria-controls="tab-slide-3" aria-selected="false">Appeal donation</a>
-    </li>
-    @endisset 
-    --}}
 </ul>
 
 <div class="tab-content" id="myTabContent">
