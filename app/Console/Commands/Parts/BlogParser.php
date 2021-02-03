@@ -87,7 +87,7 @@ class BlogParser extends AbstractParser
         $parameters['article_html'] = $content;
         $parameters['min_read'] = $this->getOption($options, 'min_read');
         $parameters['written_by'] = 'KAMRAN AHMED';
-        $parameters['hdr_video'] = 'https://www.youtube.com/embed/' . $this->getOption($options, 'youtube_video_id');
+        $parameters['hdr_video'] = $this->getOption($options, 'youtube_video_id');
         $parameters['hdr_text'] = $this->getOption($options, 'short_header_details');
 
         $instance->parameters = $parameters;

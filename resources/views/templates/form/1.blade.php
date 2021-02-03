@@ -42,7 +42,7 @@
     <input class="form-control" name="parameters[written_by]" placeholder="Written by" value="{{ $writtenBy }}" />
 </div>
 <div class="form-group">
-    <label>Header video:</label>
+    <label>Header video id:</label>
     <input class="form-control" name="parameters[hdr_video]" placeholder="Insert youtube video link" value="{{ $headerVideo }}" />
 </div>
 <div class="form-group">
