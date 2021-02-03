@@ -7,6 +7,8 @@ if (isset($selectedPage)) {
 }
 
 $articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
+$newsroomPath = \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '';
+$articles->withPath(url($newsroomPath));
 
 @endphp
 
