@@ -3252,6 +3252,20 @@ input[type='number'].color-danger + .input-group .btn {
     padding-left: 30px;
   }
 }
+.newsroom_tab_trending .mission-impossible .body > .row > .col-7 {
+  order: 2;
+}
+.newsroom_tab_trending .mission-impossible .text {
+  padding-left: 66px;
+  padding-right: 200px;
+}
+.newsroom_tab_trending .mission-impossible .text .tl:after {
+  left: -247px;
+  right: 0;
+}
+.newsroom_tab_trending .mission-impossible .text-right {
+  text-align: left !important;
+}
 .donate-today {
   padding: 0 78px 127px;
   position: relative;
