@@ -223,7 +223,7 @@ for ($i = 1; $i <= 4; $i++) {
                                         </b>
                                     </a>
                                     <a class="font-size-16 mb-0 text-dark text-decoration-none" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
-                                        {!! \App\Helpers\StrHelper::lengthLimit($blogs[1]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
+                                        {!! \App\Helpers\StrHelper::lengthLimit($blogs[1]->getActualPageInstanceAttribute()->parameters['hdr_text'], 35) !!}
                                     </a>
                                 </div>
                             </div>
@@ -239,7 +239,7 @@ for ($i = 1; $i <= 4; $i++) {
                                         </b>
                                     </a>
                                     <a class="font-size-16 mb-0 text-dark text-decoration-none" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
-                                        {!! \App\Helpers\StrHelper::lengthLimit($blogs[2]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
+                                        {!! \App\Helpers\StrHelper::lengthLimit($blogs[2]->getActualPageInstanceAttribute()->parameters['hdr_text'], 35) !!}
                                     </a>
                                 </div>
                             </div>

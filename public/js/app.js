@@ -40095,21 +40095,17 @@ $(function () {
 
   function resizeRelatedTopicsItems() {
     var max = 0;
+    var els = $('.current-projects-list .item, .popular-topic-list .item');
+    els.find('span.descr').height('auto');
+    els.each(function (index) {
+      var el = $(this).find('span.descr');
+      var h1 = el.height();
 
-    for (var i = 1; i < 4; i++) {
-      var els = $('.current-projects-list span.descr');
-      els.height('auto');
-      els.each(function (index) {
-        var el = $(this);
-        var h1 = el.height();
-
-        if (h1 > max) {
-          max = h1;
-        }
-      });
-    }
-
-    $('.current-projects-list span.descr').height(max);
+      if (h1 > max) {
+        max = h1;
+      }
+    });
+    $('.current-projects-list .item span.descr, .popular-topic-list .item span.descr').height(max + 'px');
   } //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 

@@ -329,22 +329,21 @@ $(function () {
     function resizeRelatedTopicsItems() {
 
         let max = 0
+        let els = $('.current-projects-list .item, .popular-topic-list .item')
 
-        for (let i = 1; i<4; i++) {
-            let els = $('.current-projects-list span.descr')
-            els.height('auto');
+        els.find('span.descr').height('auto');
 
-            els.each(function( index ) {
-                let el = $(this)
+        els.each(function( index ) {
+            let el = $(this).find('span.descr')
 
-                let h1 = el.height()
-                if (h1 > max) {
-                    max = h1
-                }
-            });
-        }
+            let h1 = el.height()
+            if (h1 > max) {
+                max = h1
+            }
 
-        $('.current-projects-list span.descr').height(max)
+        });
+
+        $('.current-projects-list .item span.descr, .popular-topic-list .item span.descr').height(max + 'px')
     }
 
     //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -12292,7 +12292,7 @@ input[type='number'].color-danger + .input-group .btn {
 .popular-topic-list .item .descr .moon-icons-plus {
   font-size: 25px;
   position: absolute;
-  top: 20px;
+  top: 10px;
   right: 20px;
 }
 .lets-join {

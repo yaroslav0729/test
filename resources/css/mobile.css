@@ -662,7 +662,7 @@
   left: 0;
   margin-left: 70px;
   padding: 16px 25px;
-  min-width: 280px;
+  min-width: 235px;
 }
 .mobile-template .whats-new .item .descr a {
   line-height: 1.4;
@@ -676,6 +676,8 @@
   padding-top: 68%;
 }
 .mobile-template .whats-new .item.vertical .descr {
+  margin-left: 30px;
+  min-width: 280px;
   border-radius: 5px;
 }
 .mobile-template .whats-new .item.vertical .descr:after {
@@ -691,9 +693,6 @@
 .mobile-template .whats-new .swiper-container .swiper-slide.swiper-slide-active {
   opacity: 1;
   padding-right: 40px;
-}
-.mobile-template .whats-new .swiper-container .swiper-slide.swiper-slide-active .item .descr {
-  margin-left: 30px;
 }
 .mobile-template .whats-new .swiper-container .swiper-slide.swiper-slide-active + .swiper-slide {
   margin-left: -20px;
