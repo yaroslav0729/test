@@ -1,7 +1,7 @@
 @php
-    if ((isset($isColorInfo)) && ($isColorInfo == true))    {
-        $class = 'active-color-info';
-    }
+    // if ((isset($isColorInfo)) && ($isColorInfo == true))    {
+    //     $class = 'active-color-info';
+    // }
 @endphp
 
 @foreach ($amount as $amountKey => $item)
