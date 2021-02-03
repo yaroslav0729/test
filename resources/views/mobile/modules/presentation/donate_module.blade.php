@@ -3,10 +3,15 @@
     $campaignCategories = \App\Models\Project::getProjectCampaignsCateg($pageInstance);
 
     $donateImg = "";
+    $donateVideo = "";
     $donateText = "";
 
     if (isset($parameters['donate_img'])) {
         $donateImg = $parameters['donate_img'];    
+    }
+
+    if (isset($parameters['donate_video'])) {
+        $donateVideo = $parameters['donate_video'];    
     }
 
     if (isset($parameters['donate_text'])) {
@@ -59,13 +64,20 @@ foreach ($amount as $key => $item) {
     <div id="donate_module_options" class="alert alert-warning d-none">
         {{ json_encode($campaignCategories) }}
     </div>
-    <div class="media">
-        @empty($donateImg)
-        <img src="img/content/donate-today-1.jpg" alt="" class="w-100">
-        @else
-        <img src="{{ $donateImg }}" alt="" class="w-100"> 
-        @endempty
-    </div>
+    
+    @empty($donateVideo)
+        <div class="media">
+            @empty($donateImg)
+            <img src="img/content/donate-today-1.jpg" alt="" class="w-100">
+            @else
+            <img src="{{ $donateImg }}" alt="" class="w-100"> 
+            @endempty
+        </div>
+    @else 
+        <div class="media img-video videoWrapper" style="background: #555">
+            <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $donateVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    @endempty
 
     @empty($donateText)
     <div class="mb-5 pt-3 font-size-18"><b>Your subtitle/copy can go here, max of 100ch ut perspi unde omnis iste natus demiour sit voluptatem, abilloum inventore.</b></div>

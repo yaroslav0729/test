@@ -3,10 +3,15 @@
     $campaignCategories = \App\Models\Project::getProjectCampaignsCateg($pageInstance);
 
     $donateImg = "";
+    $donateVideo = "";
     $donateText = "";
 
     if (isset($parameters['donate_img'])) {
         $donateImg = $parameters['donate_img'];    
+    }
+
+    if (isset($parameters['donate_video'])) {
+        $donateVideo = $parameters['donate_video'];    
     }
 
     if (isset($parameters['donate_text'])) {
@@ -65,14 +70,21 @@ if (!isset($useAppeal)) {
     </div>
     <div class="row gutter-0">
         <div class="{{ $col1Class }}">
-{{--            if 1-2 tabs - col-7--}}
-            <div class="media">
-                @empty($donateImg)
-                    <img src="img/content/donate-today-1.jpg" alt="" class="w-100">
-                @else
-                    <img src="{{ $donateImg }}" alt="" class="w-100">
-                @endempty
-            </div>
+
+            @empty($donateVideo)
+                <div class="media">
+                    @empty($donateImg)
+                        <img src="img/content/donate-today-1.jpg" alt="" class="w-100">
+                    @else
+                        <img src="{{ $donateImg }}" alt="" class="w-100">
+                    @endempty
+                </div>
+            @else 
+                <div class="media img-video videoWrapper" style="background: #555">
+                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $donateVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            @endempty
+
             <div class="descr">
                 <div>
                     @empty($donateText)
