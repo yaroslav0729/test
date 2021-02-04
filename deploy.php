@@ -6,7 +6,7 @@ require 'recipe/laravel.php';
 // Configuration
 set('repository', 'git@bitbucket.org:greenice/islamichelp.git');
 
-set('keep_releases', 3);
+set('keep_releases', 2);
 
 add('writable_dirs', [
     'bootstrap/cache',

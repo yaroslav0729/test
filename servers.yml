@@ -8,3 +8,8 @@ prod:
   stage: prod
   deploy_path: /home/ubuntu/projects/islamic_help
   branch: master
+prod_sandice:
+  hostname: sandice
+  stage: prod
+  deploy_path: /var/www/islamichelp
+  branch: master
