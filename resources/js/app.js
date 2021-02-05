@@ -978,6 +978,19 @@ $(function () {
         }, 800)
     })
 
+
+    function setWidthHeader() {
+       let header =  $('header');
+        header.width($(window).outerWidth())
+        console.log(1)
+    }
+
+    setWidthHeader();
+    $(window).on('resize', function () {
+        setWidthHeader();
+    })
+
+
 });
 
 function getShareThisCou() {
