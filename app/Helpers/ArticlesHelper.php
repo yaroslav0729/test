@@ -8,9 +8,31 @@ use \App\Models\Template;
 
 class ArticlesHelper
 {
-    const TRENDING_ARTICLES_PER_PAGE = 8;
+    const ARTICLES_PER_PAGE = 8;
 
-    public static function getNewsroomArticles(int $page = 1)
+    const TRENDING_PAGINATOR = 'trending_articles';
+    const NEWS_PAGINATOR = 'news_articles';
+    const PRESS_PAGINATOR = 'press_articles';
+
+    public static function getNewsroomTrendingArticles(int $page = 1)
+    {
+        if ($page < 1) {
+            $page = 1;
+        }
+
+        $pages = Page::whereHas('pageInstances', function (Builder $query) {
+            $query->where('template', Template::COMMON_CONTENT_PAGE)
+                    ->where('slug', 'like', '%' . 'media-centre/news/' . '%');
+
+        })
+        ->published()
+        ->orderBy('created_at', 'asc')
+        ->paginate(self::ARTICLES_PER_PAGE, ['*'], self::TRENDING_PAGINATOR, $page);
+
+        return $pages;
+    }
+
+    public static function getNewsroomNewsArticles(int $page = 1)
     {
         if ($page < 1) {
             $page = 1;
@@ -23,9 +45,27 @@ class ArticlesHelper
         })
         ->published()
         ->orderBy('created_at', 'desc')
-        ->paginate(self::TRENDING_ARTICLES_PER_PAGE, ['*'], 'trending_articles', $page);
+        ->paginate(self::ARTICLES_PER_PAGE, ['*'], self::NEWS_PAGINATOR, $page);
 
-        return $pages;
+        return $pages;    
+    }
+
+    public static function getNewsroomPressArticles(int $page = 1)
+    {
+        if ($page < 1) {
+            $page = 1;
+        }
+
+        $pages = Page::whereHas('pageInstances', function (Builder $query) {
+            $query->where('template', Template::COMMON_CONTENT_PAGE)
+                    ->where('slug', 'like', '%' . 'media-centre/press-releases/' . '%');
+
+        })
+        ->published()
+        ->orderBy('created_at', 'desc')
+        ->paginate(self::ARTICLES_PER_PAGE, ['*'], self::PRESS_PAGINATOR, $page);
+
+        return $pages; 
     }
 
     public static function getMinRead($pageInstance)

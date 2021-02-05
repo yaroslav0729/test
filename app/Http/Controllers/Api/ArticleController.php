@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    public function getTrendingArticles($page)
+    public function getArticles($page)
     {
-        $html = view('modules.presentation.trending_articles', [
+        $html = view('modules.presentation.newsroom_articles', [
             'selectedPage' => $page
         ])->render();
 
