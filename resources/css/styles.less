@@ -1014,8 +1014,8 @@ header {
 .line-height-15 {line-height: 1.5}
 .line-height-17 {line-height: 1.7}
 
-b, strong, .font-weight-bold {font-weight: 900}
-.font-weight-medium {font-weight: 500}
+b, strong, .font-weight-bold {font-weight: 900 !important}
+.font-weight-medium {font-weight: 500 !important}
 
 .form-group {
     margin-bottom: 14px;
@@ -1678,7 +1678,7 @@ input[type='number'].color-danger  + .input-group {
 
 
 .our-work {
-    padding: 0 170px 118px 165px;
+    padding: 0 186px 118px 165px;
     .view-more {
         display: inline-block;
         margin-bottom: 20px;
@@ -3569,8 +3569,9 @@ input[type='number'].color-danger  + .input-group {
 }
 
 #cartModal {
-    top: 100px;
-    height: calc(~"100% - 100px");
+    //top: 100px;
+    //height: calc(~"100% - 100px");
+    padding-top: 100px;
     .modal-dialog {
         max-width: 1000px;
         width: 550px;
