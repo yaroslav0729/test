@@ -26,15 +26,30 @@
         $video = $parameters['main_video'];    
     }
 
+    use \App\Helpers\ArticlesHelper;
+    $newsroomPath = \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '';
+
+    $currentTab = 1;
+
+    if (request()->get(ArticlesHelper::TRENDING_PAGINATOR) !== null) {
+        $currentTab = 1;    
+    }
+    if (request()->get(ArticlesHelper::NEWS_PAGINATOR)!== null) {
+        $currentTab = 2;    
+    }
+    if (request()->get(ArticlesHelper::PRESS_PAGINATOR)!== null) {
+        $currentTab = 3;    
+    }
+
 @endphp
 
 <section class="newsroom-tabs">
     <nav class="general-content-tabs">
         <div class="nav nav-tabs nav-fill"  role="tablist">
-            <a class="nav-link active" data-active="newsroom_tab_trending"  href="#" >TRENDING</a>
-            <a class="nav-link" data-active="newsroom_tab_news" href="#" >NEWS</a>
-            <a class="nav-link" data-active="newsroom_tab_press" href="#" >PRESS</a>
-            <a class="nav-link" data-active="newsroom_tab_cinema" href="#" >IH CINEMA</a>
+            <a class="nav-link @if($currentTab === 1) active @endif" data-active="newsroom_tab_trending"  href="#" >TRENDING</a>
+            <a class="nav-link @if($currentTab === 2) active @endif" data-active="newsroom_tab_news" href="#" >NEWS</a>
+            <a class="nav-link @if($currentTab === 3) active @endif" data-active="newsroom_tab_press" href="#" >PRESS</a>
+            <a class="nav-link @if($currentTab === 4) active @endif" data-active="newsroom_tab_cinema" href="#" >IH CINEMA</a>
         </div>
     </nav>
 </section>
@@ -74,11 +89,54 @@ newsroom_tab_cinema
     </div>
 </section>
 
-<div class="newsroom_tab_trending 
-newsroom_tab_news 
-newsroom_tab_press 
-newsroom_tab_cinema">
-    @include('modules.presentation.trending_articles')
+<div class="newsroom_tab_trending">
+    @php
+        $page = (int) request()->get('trending_articles');
+
+        $articles = ArticlesHelper::getNewsroomTrendingArticles($page);
+        $articles->withPath(url($newsroomPath));
+
+    @endphp
+
+    @include('modules.presentation.newsroom_articles', [
+        'articles' => $articles,
+        'titleSpan' => 'Trending',
+        'titleI' => 'Trending articles'
+    ])
+</div>
+
+<div class="newsroom_tab_news ">
+
+    @php
+        $page = (int) request()->get('news_articles');
+
+        $articles = ArticlesHelper::getNewsroomNewsArticles($page);
+        $articles->withPath(url($newsroomPath));
+
+    @endphp
+
+    @include('modules.presentation.newsroom_articles', [
+        'articles' => $articles,
+        'titleSpan' => 'News',
+        'titleI' => 'News articles'
+    ])
+</div>
+
+<div class="newsroom_tab_press ">
+
+    @php
+        $page = (int) request()->get('press_articles');
+
+        $articles = ArticlesHelper::getNewsroomPressArticles($page);
+        $articles->withPath(url($newsroomPath));
+
+    @endphp
+
+    @include('modules.presentation.newsroom_articles', [
+        'articles' => $articles,
+        'titleSpan' => 'Press',
+        'titleI' => 'Press'
+    ])
 </div>
 
 <div class="pt-5 pb-5"></div>

@@ -134,6 +134,7 @@ class Template
             'headerClassName' => '',
             'footerClassName' => 'bg-info',
             'headerType' => 'parts.header_newsroom',
+            'headerAlwaysPurple' => true
         ],
 
         self::THANK_YOU_DONATE_PAGE => [
@@ -244,10 +245,16 @@ class Template
                     'parameters.hdr_bg_image_3' => 'required_if:parameters.hdr_type_active_3,3',
                     'parameters.hdr_bg_image_4' => 'required_if:parameters.hdr_type_active_4,4',
 
-                    'parameters.who_we_are_link_text' => 'required|max:125',
+                    'parameters.who_we_are_link_text' => 'required|max:255',
                     'parameters.who_we_are_title' => 'required',
                     'parameters.who_we_are_video' => 'required',
                     'parameters.who_we_are_link' => 'required',
+                    'parameters.who_we_are_text' => 'required|max:200',
+
+                    'parameters.slide_text_0' => 'max:125',
+                    'parameters.slide_text_1' => 'max:125',
+                    'parameters.slide_text_2' => 'max:125',
+                    'parameters.slide_text_3' => 'max:125',
                 ];
 
                 break;

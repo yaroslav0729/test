@@ -869,32 +869,6 @@ $(function () {
        });
     });
 
-    //~~~~~~~~~~~~~~~~~~~~~~~ Trending articles module ~~~~~~~~~~~~~~~~~~~~~~~
-
-    $(document).on('click', '[trending-articles] .pagination a', function (e) {
-        e.preventDefault()
-
-        let path = $(this).attr('href');
-
-        const url = new URL(path);
-        let page = url.searchParams.get('trending_articles')
-        let data = {}
-        let apiUrl = '/api/get_trending_articles/' + page
-
-        $.get(apiUrl, data, refreshTrendingArticles, 'json');
-
-    });
-
-    function refreshTrendingArticles(response) {
-
-        let newBody = $('[trending-articles-body]', response.html)
-        $('[trending-articles-body]').html(newBody.html())
-
-        let newPagination = $('[trending-articles-pagination]', response.html)
-        $('[trending-articles-pagination]').html(newPagination.html())
-    }
-
-
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $("[input_number_spinner]").inputSpinner()
 
@@ -1003,6 +977,20 @@ $(function () {
             $('.main-page-header').addClass(activeSlide.data('style'))
         }, 800)
     })
+
+
+    function setWidthHeader() {
+       let header =  $('header');
+        header.width($(window).outerWidth())
+        console.log(1)
+    }
+
+    setWidthHeader();
+    $(window).on('resize', function () {
+        setWidthHeader();
+    })
+
+
 });
 
 function getShareThisCou() {

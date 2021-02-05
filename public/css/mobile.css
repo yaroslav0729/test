@@ -947,6 +947,7 @@
 }
 .mobile-template .about-donation {
   padding: 0 20px;
+  margin-bottom: 70px;
 }
 .mobile-template .about-donation .body {
   margin: 0 !important;
@@ -973,6 +974,10 @@
 .mobile-template .about-donation .body.donated .down-bar {
   padding: 36px 20px 85px;
   margin: 0 -20px;
+}
+.mobile-template .about-donation .body .price {
+  min-width: 120px;
+  padding: 5px 5px;
 }
 .mobile-template .added-to-cart-snackbar {
   top: 10px;

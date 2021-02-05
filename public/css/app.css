@@ -9819,6 +9819,12 @@ body {
   min-width: 320px;
   color: #101525;
 }
+body.modal-open {
+  padding-right: 0 !important;
+}
+body.modal-open .modal {
+  padding-right: 0 !important;
+}
 body * {
   box-sizing: border-box;
   outline: none !important;
@@ -10519,12 +10525,17 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   height: 36px;
   background: #101525;
   border-radius: 50%;
+  opacity: 1 !important;
   color: #fff;
   font-size: 20px;
 }
 .header-menu .categories .categories-swiper .swiper-button-prev:after,
 .header-menu .categories .categories-swiper .swiper-button-next:after {
   display: none;
+}
+.header-menu .categories .categories-swiper .swiper-button-prev.swiper-button-disabled,
+.header-menu .categories .categories-swiper .swiper-button-next.swiper-button-disabled {
+  opacity: 0 !important;
 }
 .header-menu .categories .categories-swiper .swiper-button-prev {
   right: 40px;
@@ -10648,6 +10659,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 .header-menu .projects-group-swiper .swiper-button-next.swiper-button-disabled:after {
   color: #101525 !important;
   text-shadow: 0 0 1px #000;
+}
+.header-menu .projects-group-swiper .swiper-button-prev:hover,
+.header-menu .projects-group-swiper .swiper-button-next:hover {
+  background: #2caabb;
 }
 .header-menu .projects-group-swiper .swiper-button-next {
   margin-left: 40px;
@@ -11061,10 +11076,13 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 b,
 strong,
 .font-weight-bold {
-  font-weight: 900;
+  font-weight: 900 !important;
 }
 .font-weight-medium {
-  font-weight: 500;
+  font-weight: 500 !important;
+}
+.font-weight-light {
+  font-weight: 300 !important;
 }
 .form-group {
   margin-bottom: 14px;
@@ -11881,11 +11899,12 @@ input[type='number'].color-danger + .input-group .btn {
   background-color: #3A7BF5;
 }
 .help-info-swiper .swiper-button-prev {
-  background: #FED4C2;
-  width: 3px;
-  height: 49px;
-  border-radius: 100px;
-  left: 30px;
+  font-size: 35px;
+  width: 60px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 60px;
+  color: #FED4C2;
 }
 .help-info-swiper .swiper-button-prev:after {
   display: none;
@@ -11908,7 +11927,7 @@ input[type='number'].color-danger + .input-group .btn {
   color: #fff;
 }
 .our-work {
-  padding: 0 170px 118px 165px;
+  padding: 0 186px 118px 165px;
 }
 .our-work .view-more {
   display: inline-block;
@@ -12075,7 +12094,7 @@ input[type='number'].color-danger + .input-group .btn {
   left: 0;
   right: 0;
   top: 0;
-  bottom: 62px;
+  bottom: 106px;
 }
 .current-projects .wrap {
   padding: 0 150px;
@@ -12129,11 +12148,11 @@ input[type='number'].color-danger + .input-group .btn {
   position: relative;
 }
 .current-projects .body .left {
-  min-height: 469px;
+  min-height: 512px;
   border-radius: 5px 0 5px 5px;
   background-color: #FFF;
   box-shadow: 0 5px 30px 0 rgba(104, 110, 117, 0.2);
-  padding: 95px 105px 0 63px;
+  padding: 106px 105px 0 63px;
   position: relative;
   margin-bottom: 15px;
 }
@@ -12141,7 +12160,7 @@ input[type='number'].color-danger + .input-group .btn {
   position: absolute;
   left: 63px;
   right: 20px;
-  bottom: 63px;
+  bottom: 85px;
 }
 .current-projects .body .img {
   background-size: cover;
@@ -12151,7 +12170,7 @@ input[type='number'].color-danger + .input-group .btn {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 63px;
+  bottom: 106px;
   border-bottom: 4px solid #F5C15D;
 }
 .current-projects .swiper-container {
@@ -12171,7 +12190,7 @@ input[type='number'].color-danger + .input-group .btn {
   width: 60px;
   height: 60px;
   position: absolute;
-  bottom: 63px;
+  bottom: 106px;
   right: -30px;
   text-align: center;
   font-size: 30px;
@@ -12328,6 +12347,9 @@ input[type='number'].color-danger + .input-group .btn {
   right: 20px;
   transform: translateY(-50%);
   font-size: 20px;
+}
+.lets-join .item .img-video {
+  padding-bottom: 75%;
 }
 .widget-about-project {
   margin-bottom: 128px;
@@ -14027,8 +14049,7 @@ input[type='number'].color-danger + .input-group .btn {
   top: 1px;
 }
 #cartModal {
-  top: 100px;
-  height: calc(100% - 100px);
+  padding-top: 100px;
 }
 #cartModal .modal-dialog {
   max-width: 1000px;

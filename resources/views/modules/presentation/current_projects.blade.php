@@ -66,7 +66,7 @@
                                     <div class="col-12 col-lg-6">
                                         <div class="left">
                                             <div class="text">
-                                                <p class="font-size-30 mb-3 font-weight-bold text-uppercase slide-title">{{ $slideTitle[$i] }}</p>
+                                                <p class="font-size-30 mb-4 font-weight-bold text-uppercase slide-title">{{ $slideTitle[$i] }}</p>
                                                 <p class="font-size-16 mb-5 slide-text">{{ $slideText[$i] }}</p>
                                                 <div class="actions">
                                                     <a href="{{ $readMoreLink[$i] }}" class="btn btn-outline-primary mr-4 slide-readmore">Read more</a>

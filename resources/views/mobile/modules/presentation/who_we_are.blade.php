@@ -107,7 +107,7 @@
     -16z"/>
         </g>
     </svg>
-    <p class="font-size-25 mb-4">{!! $whoTitle !!}</p>
+    <p class="font-size-25 mb-4 font-weight-light">{!! $whoTitle !!}</p>
     <div class="img-video play-tr videoWrapper" style="">
         <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $whoVideo }}"
                 frameborder="0"
@@ -140,7 +140,7 @@
                 <span>{{ $infoBlockText3 }}</span>
             </div>
         </div>
-        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
         <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
     </div>
 </div>
