@@ -2487,6 +2487,9 @@ input[type='number'].color-danger + .input-group .btn {
   transform: translateY(-50%);
   font-size: 20px;
 }
+.lets-join .item .img-video {
+  padding-bottom: 75%;
+}
 .widget-about-project {
   margin-bottom: 128px;
   padding: 0 !important;
