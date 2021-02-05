@@ -249,6 +249,11 @@ class Template
                     'parameters.who_we_are_video' => 'required',
                     'parameters.who_we_are_link' => 'required',
                     'parameters.who_we_are_text' => 'required|max:200',
+
+                    'parameters.slide_text_0' => 'max:125',
+                    'parameters.slide_text_1' => 'max:125',
+                    'parameters.slide_text_2' => 'max:125',
+                    'parameters.slide_text_3' => 'max:125',
                 ];
 
                 break;
