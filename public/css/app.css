@@ -11066,6 +11066,9 @@ strong,
 .font-weight-medium {
   font-weight: 500 !important;
 }
+.font-weight-light {
+  font-weight: 300 !important;
+}
 .form-group {
   margin-bottom: 14px;
   position: relative;

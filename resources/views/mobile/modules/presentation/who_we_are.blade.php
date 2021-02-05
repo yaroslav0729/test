@@ -107,7 +107,7 @@
     -16z"/>
         </g>
     </svg>
-    <p class="font-size-25 mb-4">{!! $whoTitle !!}</p>
+    <p class="font-size-25 mb-4 font-weight-light">{!! $whoTitle !!}</p>
     <div class="img-video play-tr videoWrapper" style="">
         <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $whoVideo }}"
                 frameborder="0"
