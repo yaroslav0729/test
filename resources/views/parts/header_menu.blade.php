@@ -1,4 +1,4 @@
-<div class="header-menu">
+<div class="header-menu @isset($configTemplate['headerAlwaysPurple']) dark-theme @endisset">
     <div class="wrap">
         <div class="row align-items-center">
             <div class="col-9">
