@@ -73566,7 +73566,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/js/admin_parts/media-manager.js */"./resources/js/admin_parts/media-manager.js");
+module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/resources/js/admin_parts/media-manager.js */"./resources/js/admin_parts/media-manager.js");
 
 
 /***/ })
