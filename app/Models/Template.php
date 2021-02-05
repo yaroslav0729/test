@@ -134,6 +134,7 @@ class Template
             'headerClassName' => '',
             'footerClassName' => 'bg-info',
             'headerType' => 'parts.header_newsroom',
+            'headerAlwaysPurple' => true
         ],
 
         self::THANK_YOU_DONATE_PAGE => [
