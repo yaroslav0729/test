@@ -40521,25 +40521,7 @@ $(function () {
     $(theModal).on('hidden.bs.modal', function (e) {
       $(theModal + ' iframe').attr('src', '');
     });
-  }); //~~~~~~~~~~~~~~~~~~~~~~~ Trending articles module ~~~~~~~~~~~~~~~~~~~~~~~
-
-  $(document).on('click', '[trending-articles] .pagination a', function (e) {
-    e.preventDefault();
-    var path = $(this).attr('href');
-    var url = new URL(path);
-    var page = url.searchParams.get('trending_articles');
-    var data = {};
-    var apiUrl = '/api/get_trending_articles/' + page;
-    $.get(apiUrl, data, refreshTrendingArticles, 'json');
-  });
-
-  function refreshTrendingArticles(response) {
-    var newBody = $('[trending-articles-body]', response.html);
-    $('[trending-articles-body]').html(newBody.html());
-    var newPagination = $('[trending-articles-pagination]', response.html);
-    $('[trending-articles-pagination]').html(newPagination.html());
-  } //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+  }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   $("[input_number_spinner]").inputSpinner();
   $('.important-information .read-more').click(function (e) {
@@ -41166,6 +41148,17 @@ $(function () {
 /***/ (function(module, exports) {
 
 $(function () {
+  setupCurrentTab();
+
+  function setupCurrentTab() {
+    $('.newsroom_tab_trending').addClass('d-none');
+    $('.newsroom_tab_news').addClass('d-none');
+    $('.newsroom_tab_press').addClass('d-none');
+    $('.newsroom_tab_cinema').addClass('d-none');
+    var activeClass = $('.newsroom-tabs .nav-link.active').data('active');
+    $('.' + activeClass).removeClass('d-none');
+  }
+
   $(document).on('click', '.newsroom-tabs .nav-link', function () {
     $('.newsroom-tabs .nav-link').removeClass('active');
     $(this).addClass('active');
@@ -41175,42 +41168,61 @@ $(function () {
     $('.newsroom_tab_cinema').addClass('d-none');
     var activeClass = $(this).data('active');
     $('.' + activeClass).removeClass('d-none');
-    var textSpan = '';
-    var textI = '';
+  }); //~~~~~~~~~~~~~~~~~~~~~~~ Trending articles module ~~~~~~~~~~~~~~~~~~~~~~~
 
-    switch (activeClass) {
-      case 'newsroom_tab_trending':
+  $(document).on('click', '[newsroom-articles] .pagination a', function (e) {
+    e.preventDefault();
+    var path = $(this).attr('href');
+    var url = new URL(path);
+    var page1 = url.searchParams.get('trending_articles');
+    var page2 = url.searchParams.get('news_articles');
+    var page3 = url.searchParams.get('press_articles');
+    var category = '';
+
+    if (page1 !== null) {
+      page = page1;
+      category = 'trending_articles';
+    } else if (page2 !== null) {
+      page = page2;
+      category = 'news_articles';
+    } else if (page3 !== null) {
+      page = page3;
+      category = 'press_articles';
+    }
+
+    var data = {};
+    var apiUrl = '/api/get_articles/' + category + '/' + page;
+    $.get(apiUrl, data, refreshTrendingArticles, 'json');
+  });
+
+  function refreshTrendingArticles(response) {
+    var tab;
+
+    switch (response.category) {
+      case 'trending_articles':
         {
-          textSpan = 'Trending';
-          textI = 'Trending articles';
+          tab = $('.newsroom_tab_trending');
           break;
         }
 
-      case 'newsroom_tab_news':
+      case 'news_articles':
         {
-          textSpan = 'News';
-          textI = 'News articles';
+          tab = $('.newsroom_tab_news');
           break;
         }
 
-      case 'newsroom_tab_press':
+      case 'press_articles':
         {
-          textSpan = 'Press';
-          textI = 'Press';
-          break;
-        }
-
-      case 'newsroom_tab_cinema':
-        {
-          textSpan = 'Cinema';
-          textI = 'IH Cinema';
+          tab = $('.newsroom_tab_press');
           break;
         }
     }
 
-    $('#newsroom_title_span').text(textSpan);
-    $('#newsroom_title_i').text(textI);
-  });
+    var newBody = $('[newsroom-articles-body]', response.html);
+    $(tab).find('[newsroom-articles-body]').html(newBody.html());
+    var newPagination = $('[newsroom-articles-pagination]', response.html);
+    $(tab).find('[newsroom-articles-pagination]').html(newPagination.html());
+  }
 });
 
 /***/ }),
