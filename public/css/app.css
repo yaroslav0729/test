@@ -11061,10 +11061,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 b,
 strong,
 .font-weight-bold {
-  font-weight: 900;
+  font-weight: 900 !important;
 }
 .font-weight-medium {
-  font-weight: 500;
+  font-weight: 500 !important;
 }
 .form-group {
   margin-bottom: 14px;
@@ -11908,7 +11908,7 @@ input[type='number'].color-danger + .input-group .btn {
   color: #fff;
 }
 .our-work {
-  padding: 0 170px 118px 165px;
+  padding: 0 186px 118px 165px;
 }
 .our-work .view-more {
   display: inline-block;
@@ -14027,8 +14027,7 @@ input[type='number'].color-danger + .input-group .btn {
   top: 1px;
 }
 #cartModal {
-  top: 100px;
-  height: calc(100% - 100px);
+  padding-top: 100px;
 }
 #cartModal .modal-dialog {
   max-width: 1000px;

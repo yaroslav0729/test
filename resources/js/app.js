@@ -1003,6 +1003,7 @@ $(function () {
             $('.main-page-header').addClass(activeSlide.data('style'))
         }, 800)
     })
+
 });
 
 function getShareThisCou() {
