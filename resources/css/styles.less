@@ -618,10 +618,11 @@ header {
                 width: 36px; height: 36px;
                 background: #101525;
                 border-radius: 50%;
-                //opacity: 1 !important;
+                opacity: 1 !important;
                 color: #fff;
                 font-size: 20px;
                 &:after {display: none;}
+                &.swiper-button-disabled {opacity: 0 !important;}
             }
             .swiper-button-prev {
                 right: 40px;
@@ -735,6 +736,7 @@ header {
                     text-shadow: 0 0 1px #000;
                 }
             }
+            &:hover {background: #2caabb;}
         }
         .swiper-button-next {
             margin-left: 40px;

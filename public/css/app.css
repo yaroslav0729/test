@@ -10519,12 +10519,17 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   height: 36px;
   background: #101525;
   border-radius: 50%;
+  opacity: 1 !important;
   color: #fff;
   font-size: 20px;
 }
 .header-menu .categories .categories-swiper .swiper-button-prev:after,
 .header-menu .categories .categories-swiper .swiper-button-next:after {
   display: none;
+}
+.header-menu .categories .categories-swiper .swiper-button-prev.swiper-button-disabled,
+.header-menu .categories .categories-swiper .swiper-button-next.swiper-button-disabled {
+  opacity: 0 !important;
 }
 .header-menu .categories .categories-swiper .swiper-button-prev {
   right: 40px;
@@ -10648,6 +10653,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 .header-menu .projects-group-swiper .swiper-button-next.swiper-button-disabled:after {
   color: #101525 !important;
   text-shadow: 0 0 1px #000;
+}
+.header-menu .projects-group-swiper .swiper-button-prev:hover,
+.header-menu .projects-group-swiper .swiper-button-next:hover {
+  background: #2caabb;
 }
 .header-menu .projects-group-swiper .swiper-button-next {
   margin-left: 40px;

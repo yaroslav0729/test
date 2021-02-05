@@ -10,7 +10,6 @@
       <change beforePath="$PROJECT_DIR$/resources/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/styles.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/styles.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mobile/modules/presentation/who_we_are.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mobile/modules/presentation/who_we_are.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar/" />
@@ -33,20 +32,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="1017" column="49" lean-forward="true" selection-start-line="1017" selection-start-column="49" selection-end-line="1017" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/mobile/modules/presentation/who_we_are.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="60" column="56" lean-forward="true" selection-start-line="60" selection-start-column="56" selection-end-line="60" selection-end-column="56" />
-              <folding>
-                <element signature="n#svg#0;n#section#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="300">
+              <caret line="624" column="64" selection-start-line="624" selection-start-column="64" selection-end-line="624" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -72,11 +59,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>class=&quot;moon-icons-plus decor-plus&quot;</find>
-      <find>item</find>
-      <find>header</find>
-      <find>.donate-today-sheet</find>
-      <find>class=&quot;event-info-descr&quot;</find>
       <find>event-info-descr</find>
       <find>fill</find>
       <find>mission-impossible</find>
@@ -97,11 +79,16 @@
       <find>share_count</find>
       <find>#cartModal</find>
       <find>col-12 col-lg-6 img-video videoWrapper</find>
-      <find>about-donation</find>
       <find>.lets-join</find>
       <find>font-wei</find>
       <find>font-weight-</find>
       <find>class=&quot;who-we-are&quot;</find>
+      <find>head-menu-video</find>
+      <find>name</find>
+      <find>projects-group-swiper</find>
+      <find>about-donation</find>
+      <find>projects-group-swiper</find>
+      <find>categories-swiper</find>
     </findStrings>
     <replaceStrings>
       <replace>fal fa-arrow-right</replace>
@@ -127,8 +114,8 @@
       <dir>$PROJECT_DIR$/resources/css</dir>
       <dir>$PROJECT_DIR$/resources</dir>
       <dir>$PROJECT_DIR$</dir>
-      <dir>$PROJECT_DIR$/resources/views</dir>
       <dir>$PROJECT_DIR$/resources/views/mobile</dir>
+      <dir>$PROJECT_DIR$/resources/views</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -445,12 +432,12 @@
       <workItem from="1610095031929" duration="275000" />
       <workItem from="1610095752830" duration="16408000" />
       <workItem from="1612419615263" duration="1181000" />
-      <workItem from="1612448289992" duration="2697000" />
+      <workItem from="1612448289992" duration="4004000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="258348000" />
+    <option name="totallyTimeSpent" value="259655000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -523,13 +510,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
           <caret line="42" column="29" lean-forward="true" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/parts/header_menu.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="73" selection-start-line="5" selection-start-column="73" selection-end-line="5" selection-end-column="73" />
         </state>
       </provider>
     </entry>
@@ -843,6 +823,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/mobile/modules/presentation/who_we_are.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="60" column="56" selection-start-line="60" selection-start-column="56" selection-end-line="60" selection-end-column="56" />
+          <folding>
+            <element signature="n#svg#0;n#section#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/parts/header_menu.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="142" column="28" selection-start-line="142" selection-start-column="28" selection-end-line="142" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/css/mobile.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
@@ -850,20 +847,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/mobile/modules/presentation/who_we_are.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="60" column="56" lean-forward="true" selection-start-line="60" selection-start-column="56" selection-end-line="60" selection-end-column="56" />
-          <folding>
-            <element signature="n#svg#0;n#section#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="1017" column="49" lean-forward="true" selection-start-line="1017" selection-start-column="49" selection-end-line="1017" selection-end-column="49" />
+        <state relative-caret-position="300">
+          <caret line="624" column="64" selection-start-line="624" selection-start-column="64" selection-end-line="624" selection-end-column="64" />
         </state>
       </provider>
     </entry>
