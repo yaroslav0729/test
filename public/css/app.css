@@ -9819,6 +9819,12 @@ body {
   min-width: 320px;
   color: #101525;
 }
+body.modal-open {
+  padding-right: 0 !important;
+}
+body.modal-open .modal {
+  padding-right: 0 !important;
+}
 body * {
   box-sizing: border-box;
   outline: none !important;
@@ -12087,7 +12093,7 @@ input[type='number'].color-danger + .input-group .btn {
   left: 0;
   right: 0;
   top: 0;
-  bottom: 62px;
+  bottom: 106px;
 }
 .current-projects .wrap {
   padding: 0 150px;
@@ -12141,11 +12147,11 @@ input[type='number'].color-danger + .input-group .btn {
   position: relative;
 }
 .current-projects .body .left {
-  min-height: 469px;
+  min-height: 512px;
   border-radius: 5px 0 5px 5px;
   background-color: #FFF;
   box-shadow: 0 5px 30px 0 rgba(104, 110, 117, 0.2);
-  padding: 95px 105px 0 63px;
+  padding: 106px 105px 0 63px;
   position: relative;
   margin-bottom: 15px;
 }
@@ -12153,7 +12159,7 @@ input[type='number'].color-danger + .input-group .btn {
   position: absolute;
   left: 63px;
   right: 20px;
-  bottom: 63px;
+  bottom: 85px;
 }
 .current-projects .body .img {
   background-size: cover;
@@ -12163,7 +12169,7 @@ input[type='number'].color-danger + .input-group .btn {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 63px;
+  bottom: 106px;
   border-bottom: 4px solid #F5C15D;
 }
 .current-projects .swiper-container {
@@ -12183,7 +12189,7 @@ input[type='number'].color-danger + .input-group .btn {
   width: 60px;
   height: 60px;
   position: absolute;
-  bottom: 63px;
+  bottom: 106px;
   right: -30px;
   text-align: center;
   font-size: 30px;

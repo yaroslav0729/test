@@ -40653,6 +40653,17 @@ $(function () {
       $('.main-page-header').addClass(activeSlide.data('style'));
     }, 800);
   });
+
+  function setWidthHeader() {
+    var header = $('header');
+    header.width($(window).outerWidth());
+    console.log(1);
+  }
+
+  setWidthHeader();
+  $(window).on('resize', function () {
+    setWidthHeader();
+  });
 });
 
 function getShareThisCou() {
