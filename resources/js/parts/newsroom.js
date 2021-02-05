@@ -8,7 +8,7 @@ $(function () {
         $('.newsroom_tab_news').addClass('d-none')
         $('.newsroom_tab_press').addClass('d-none')
         $('.newsroom_tab_cinema').addClass('d-none')
-        
+
         let activeClass = $('.newsroom-tabs .nav-link.active').data('active')
         $('.' + activeClass).removeClass('d-none')
     }
@@ -30,16 +30,30 @@ $(function () {
 
     $(document).on('click', '[newsroom-articles] .pagination a', function (e) {
 
-        return
-
         e.preventDefault()
 
         let path = $(this).attr('href');
-
         const url = new URL(path);
-        let page = url.searchParams.get('trending_articles')
+
+        let page1 = url.searchParams.get('trending_articles')
+        let page2 = url.searchParams.get('news_articles')
+        let page3 = url.searchParams.get('press_articles')
+
+        let category = ''
+
+        if (page1 !== null) {
+            page = page1;
+            category = 'trending_articles'
+        } else if (page2 !== null) {
+            page = page2;
+            category = 'news_articles'
+        } else if (page3 !== null) {
+            page = page3;
+            category = 'press_articles'
+        }
+
         let data = {}
-        let apiUrl = '/api/get_articles/' + page
+        let apiUrl = '/api/get_articles/' + category + '/' + page
 
         $.get(apiUrl, data, refreshTrendingArticles, 'json');
 
@@ -47,11 +61,28 @@ $(function () {
 
     function refreshTrendingArticles(response) {
 
+        let tab;
+
+        switch (response.category) {
+            case 'trending_articles': {
+                tab = $('.newsroom_tab_trending')
+                break;
+            }
+            case 'news_articles': {
+                tab = $('.newsroom_tab_news')
+                break;
+            }
+            case 'press_articles': {
+                tab = $('.newsroom_tab_press')
+                break;
+            }
+        }
+
         let newBody = $('[newsroom-articles-body]', response.html)
-        $('[newsroom-articles-body]').html(newBody.html())
+        $(tab).find('[newsroom-articles-body]').html(newBody.html())
 
         let newPagination = $('[newsroom-articles-pagination]', response.html)
-        $('[newsroom-articles-pagination]').html(newPagination.html())
+        $(tab).find('[newsroom-articles-pagination]').html(newPagination.html())
     }
 
 })

@@ -41160,21 +41160,57 @@ $(function () {
   }); //~~~~~~~~~~~~~~~~~~~~~~~ Trending articles module ~~~~~~~~~~~~~~~~~~~~~~~
 
   $(document).on('click', '[newsroom-articles] .pagination a', function (e) {
-    return;
     e.preventDefault();
     var path = $(this).attr('href');
     var url = new URL(path);
-    var page = url.searchParams.get('trending_articles');
+    var page1 = url.searchParams.get('trending_articles');
+    var page2 = url.searchParams.get('news_articles');
+    var page3 = url.searchParams.get('press_articles');
+    var category = '';
+
+    if (page1 !== null) {
+      page = page1;
+      category = 'trending_articles';
+    } else if (page2 !== null) {
+      page = page2;
+      category = 'news_articles';
+    } else if (page3 !== null) {
+      page = page3;
+      category = 'press_articles';
+    }
+
     var data = {};
-    var apiUrl = '/api/get_articles/' + page;
+    var apiUrl = '/api/get_articles/' + category + '/' + page;
     $.get(apiUrl, data, refreshTrendingArticles, 'json');
   });
 
   function refreshTrendingArticles(response) {
+    var tab;
+
+    switch (response.category) {
+      case 'trending_articles':
+        {
+          tab = $('.newsroom_tab_trending');
+          break;
+        }
+
+      case 'news_articles':
+        {
+          tab = $('.newsroom_tab_news');
+          break;
+        }
+
+      case 'press_articles':
+        {
+          tab = $('.newsroom_tab_press');
+          break;
+        }
+    }
+
     var newBody = $('[newsroom-articles-body]', response.html);
-    $('[newsroom-articles-body]').html(newBody.html());
+    $(tab).find('[newsroom-articles-body]').html(newBody.html());
     var newPagination = $('[newsroom-articles-pagination]', response.html);
-    $('[newsroom-articles-pagination]').html(newPagination.html());
+    $(tab).find('[newsroom-articles-pagination]').html(newPagination.html());
   }
 });
 

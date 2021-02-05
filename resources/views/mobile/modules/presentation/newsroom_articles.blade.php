@@ -1,22 +1,8 @@
-@php
-
-if (isset($selectedPage)) {
-    $page = $selectedPage;
-} else {
-    $page = (int) request()->get('trending_articles');
-}
-
-$articles = \App\Helpers\ArticlesHelper::getNewsroomArticles($page);
-$newsroomPath = \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '';
-$articles->withPath(url($newsroomPath));
-
-@endphp
-
-<section class="newsroom-list" trending-articles>
+<section class="newsroom-list" newsroom-articles>
     <div class="title">
         <div>
-            <span>Trending</span>
-            <i>Trending articles</i>
+            <span>{{ $titleSpan }}</span>
+            <i>{{ $titleI }}</i>
         </div>
     </div>
     <div class="row mb-4 gutter-5">
@@ -28,7 +14,7 @@ $articles->withPath(url($newsroomPath));
         </div>
     </div>
 
-    <div class="row" trending-articles-body>
+    <div class="row" newsroom-articles-body>
         @foreach ($articles as $article)
             @php
                 $item = $article->actual_page_instance;    
@@ -52,7 +38,7 @@ $articles->withPath(url($newsroomPath));
 
     <div class="pt-3 pb-3"></div>
 
-    <ul class="pagination justify-content-center" trending-articles-pagination>
+    <ul class="pagination justify-content-center" newsroom-articles-pagination>
         {{ $articles->onEachSide(0)->links('parts.custom_paginator') }}
     </ul>
 </section>
