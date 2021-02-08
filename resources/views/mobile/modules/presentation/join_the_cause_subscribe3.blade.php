@@ -16,7 +16,7 @@
     }
 @endphp
 
-<section class="join-cause pb-0 with-glyph">
+<section class="join-cause pb-3 with-glyph">
     <div class="wrap">
         <div class="title text-center">
             <p class="font-size-25"><b>Join the cause!</b></p>

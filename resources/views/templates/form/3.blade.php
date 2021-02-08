@@ -151,20 +151,20 @@
 </div>
 
 <div class="row">
-<div class="col-12 col-lg-6 mt-lg-5">
-    <div class="form-group ">
-        <label>Tag text:</label>
-        <input class="form-control" name="parameters[tag_text]" placeholder="Example: Ramathan"
-               value="{{ $tagText }}"/>
+    <div class="col-12 col-lg-6 mt-lg-5">
+        <div class="form-group ">
+            <label>Tag text:</label>
+            <input class="form-control" name="parameters[tag_text]" placeholder="Example: Ramathan"
+                   value="{{ $tagText }}"/>
+        </div>
     </div>
-</div>
-<div class="col-12 col-lg-6 mt-lg-5">
-    <div class="form-group ">
-        <label>Tag classes:</label>
-        <input class="form-control" name="parameters[tag_class]" placeholder="Example: bg-info-light text-info"
-               value="{{ $tagClass }}"/>
+    <div class="col-12 col-lg-6 mt-lg-5">
+        <div class="form-group ">
+            <label>Tag classes:</label>
+            <input class="form-control" name="parameters[tag_class]" placeholder="Example: bg-info-light text-info"
+                   value="{{ $tagClass }}"/>
+        </div>
     </div>
-</div>
 </div>
 
 @include('modules.admin.who_we_are')

@@ -1,8 +1,10 @@
 @php
+    use App\Models\Category;
     $relPageTitle = "";
     $relPageLinkTitle = "";
     $relPageLink = "";
     $bgClass = "";
+    $bgClassMobile = "";
 
     if (isset($parameters['rel_page_title'])) {
         $relPageTitle = $parameters['rel_page_title'];
@@ -20,11 +22,24 @@
         $bgClass = $parameters['bg_class'];
     }
 
+    if (isset($parameters['bg_class_mobile'])) {
+        $bgClassMobile = $parameters['bg_class_mobile'];
+    }
+
+
+    $relPageCatId = "";
+
+    if (isset($parameters['rel_page_category'])) {
+        $relPageCatId = (int)$parameters['rel_page_category'];
+    }
+
+    $relatedPages = \App\Models\Module::getRelatedPages($relPageCatId);
+
 @endphp
 
 <section class="discover-more @empty($bgClass) bg-light @else {{ $bgClass }} @endempty">
     <div class="wrap">
-        <div class="title">
+        <div class="title ml-0 mr-0">
             <div class="row">
                 <div class="col-7">
                     <b class="font-size-30 mr-4 text-uppercase">
@@ -81,14 +96,14 @@
                     @endisset
 
                 </div>
-                <div class="col-5 text-right">
+                <div class="col-5 text-right pr-0">
                     <a href="
                     @if ($relPageLink === "")
                         /newsroom
                     @else
                         {{ $relPageLink }}
                     @endif
-                        " class="text-uppercase text-underline">
+                        " class="text-uppercase text-underline ">
                         <b>
                             @if ($relPageLinkTitle === "")
                                 VISIT NEWSROOM
@@ -100,8 +115,28 @@
                 </div>
             </div>
         </div>
-        @include('modules.presentation.related_pages', [
-            'parameters' => $parameters,
-        ])
+
+        <div class="current-projects-list mt-lg-5">
+            <div class="wrap">
+                <div class="row gutter-5">
+                    @foreach ($relatedPages as $page)
+                        <div class="col-4">
+                            <a href="{{ url($page->slug) }}" class="item">
+                                @isset($page->preview_img)
+                                    <span class="img" style="background-repeat:no-repeat; background-image: url({{ url($page->preview_img) }})"></span>
+                                @else
+                                    <span class="img" style="background: #eee"></span>
+                                @endisset
+
+                                <span class="descr">
+                        <span class="name font-size-16"><b>{{ \App\Helpers\StrHelper::lengthLimit($page->name, 20) }}</b></span>
+                        <span class="text font-size-16">{{ \App\Helpers\StrHelper::lengthLimit($page->preview_text, 60) }}</span>
+                        </span>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </div>
 </section>

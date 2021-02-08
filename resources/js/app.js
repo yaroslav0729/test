@@ -979,15 +979,15 @@ $(function () {
     })
 
 
-    function setWidthHeader() {
-       let header =  $('header');
-        header.width($(window).outerWidth())
-    }
-
-    setWidthHeader();
-    $(window).on('resize', function () {
-        setWidthHeader();
-    })
+    // function setWidthHeader() {
+    //    let header =  $('header');
+    //     header.width($(window).outerWidth())
+    // }
+    //
+    // setWidthHeader();
+    // $(window).on('resize', function () {
+    //     setWidthHeader();
+    // })
 
 
 });
@@ -1053,10 +1053,10 @@ function initSwiper(){
             let key = '[swiper-wrapper="'+ $(this).attr('swiper-wrapper') +'"]';
             let autoHeight = $(this).attr('swiper-autoHeight');
 
+            let loopOption = !$(this).hasClass('no-loop'); // all sliders are infinite by default
+
             let options = {
-                loop: function (){
-                    return !!$(this).hasClass('loop');
-                },
+                loop: loopOption,
                 autoHeight: (autoHeight ? true : false),
                 spaceBetween:  parseInt($(this).attr('space-between') ?? 0),
                 centeredSlides: ($(this).attr('centered-slides') ?? false),

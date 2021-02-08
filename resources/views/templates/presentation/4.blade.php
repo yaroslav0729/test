@@ -3,10 +3,17 @@
     $mainHtml = "";
 
     if (isset($parameters['main_html'])) {
-        $mainHtml = $parameters['main_html'];    
+        $mainHtml = $parameters['main_html'];
     }
 
 @endphp
+<section class="back">
+    <div class="wrap">
+        <div class="mb-5 mt-5">
+            @include('templates.presentation.parts.back_btn')
+        </div>
+    </div>
+</section>
 
 @if(!empty($pageInstance->preview_img))
     @include('modules.presentation.header_img')
@@ -15,13 +22,11 @@
 <section class="blog-article-body">
     <div class="wrap">
         <div class="body">
-            <h2>{!! $pageInstance->name !!}</h2>
-            <div class="date pt-4 pb-4">
-                <i class="fas fa-calendar-alt"></i>
-                <span>{{ date('d F Y', strtotime($pageInstance->published_at)) }}</span>
+            <div class="cite">
+                {!! $pageInstance->preview_text !!}
             </div>
+            <h2 class="mt-md-5">{!! $pageInstance->name !!}</h2>
             {!! $mainHtml !!}
-
         </div>
     </div>
     @include('modules.presentation.share_this')
@@ -35,7 +40,7 @@
             <div class="row align-items-center">
                 <div class="col-6 col-lg-4">
                     <div class="author">
-                        <div class="img" style="background-image: url(img/content/Avatar1.jpg)"></div>
+                        <div class="img" style="background-image: url(/storage/icons/Avatar1.jpg)"></div>
                         <span>written by <span>|</span> jamaila hamid</span>
                     </div>
                 </div>
@@ -49,12 +54,9 @@
 
 </section>
 
-
-@include('modules.presentation.related_pages', [
+@include('modules.presentation.related_page_expanded', [
     'parameters' => $parameters
 ])
-
-
 
 @include('modules.presentation.join_the_cause_subscribe')
 

@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: .2;
+  opacity: 0.2;
 }
 .other-way-give-mobile .phone {
   display: block;
@@ -130,12 +130,12 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: 57px;
   background: #aaa;
   z-index: 10;
 }
 .mobile-template #quick_donation_widget .btn-modal-quick-donation {
-  padding: 21px 10px;
+  padding: 18px 0 21px 0px;
   font-size: 16px;
 }
 .mobile-template #quick_donation_widget .btn-modal-quick-donation .moon-icons-plus {
@@ -484,7 +484,21 @@
   bottom: 0;
 }
 .mobile-template .who-we-are + .help-info-swiper {
-  margin: -52px 0 40px;
+  margin: -56px 0 40px;
+}
+.mobile-template .help-info-swiper .swiper-button-disabled {
+  opacity: 1;
+}
+.mobile-template .help-info-swiper .swiper-button-disabled .moon-icons-arrow-left::before,
+.mobile-template .help-info-swiper .swiper-button-disabled .moon-icons-arrow-right::before {
+  content: "";
+  float: left;
+  width: 3px;
+  height: 48px;
+  background: #FED4C2;
+  position: absolute;
+  top: 0px;
+  left: 29px;
 }
 .mobile-template .current-projects {
   padding: 56px 13px;
@@ -2187,11 +2201,10 @@
   font-size: 35px;
 }
 .bg-btn-red {
-  background: #f7796a!important;
+  background: #f7796a !important;
   color: #ffffff;
 }
 .bg-btn-red a {
-  color: #ffffff!important;
+  color: #ffffff !important;
 }
 /*------------------------------------vb--------*/
-/*# sourceMappingURL=mobile.css.map */

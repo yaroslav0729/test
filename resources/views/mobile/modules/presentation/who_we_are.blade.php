@@ -124,7 +124,7 @@
     </div>
 </section>
 
-<div class="help-info-swiper" swiper-wrapper="help_info">
+<div class="help-info-swiper no-loop" swiper-wrapper="help_info">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">

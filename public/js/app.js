@@ -40634,17 +40634,15 @@ $(function () {
       $('.main-page-header').removeClass('style-1').removeClass('style-2');
       $('.main-page-header').addClass(activeSlide.data('style'));
     }, 800);
-  });
-
-  function setWidthHeader() {
-    var header = $('header');
-    header.width($(window).outerWidth());
-  }
-
-  setWidthHeader();
-  $(window).on('resize', function () {
-    setWidthHeader();
-  });
+  }); // function setWidthHeader() {
+  //    let header =  $('header');
+  //     header.width($(window).outerWidth())
+  // }
+  //
+  // setWidthHeader();
+  // $(window).on('resize', function () {
+  //     setWidthHeader();
+  // })
 });
 
 function getShareThisCou() {
@@ -40706,10 +40704,10 @@ function initSwiper() {
 
       var key = '[swiper-wrapper="' + $(this).attr('swiper-wrapper') + '"]';
       var autoHeight = $(this).attr('swiper-autoHeight');
+      var loopOption = !$(this).hasClass('no-loop'); // all sliders are infinite by default
+
       var options = {
-        loop: function loop() {
-          return !!$(this).hasClass('loop');
-        },
+        loop: loopOption,
         autoHeight: autoHeight ? true : false,
         spaceBetween: parseInt((_$$attr = $(this).attr('space-between')) !== null && _$$attr !== void 0 ? _$$attr : 0),
         centeredSlides: (_$$attr2 = $(this).attr('centered-slides')) !== null && _$$attr2 !== void 0 ? _$$attr2 : false,
