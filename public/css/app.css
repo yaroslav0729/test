@@ -12321,6 +12321,9 @@ input[type='number'].color-danger + .input-group .btn {
 .lets-join .decor-wave {
   margin-top: 23px;
 }
+.lets-join .pt-text {
+  padding-top: 72px;
+}
 .lets-join .item {
   background: #fff;
   box-shadow: 0 10px 25px 0 rgba(104, 110, 117, 0.2);

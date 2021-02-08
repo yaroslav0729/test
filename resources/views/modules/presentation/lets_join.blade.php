@@ -81,8 +81,8 @@
 
 <section class="lets-join">
     <div class="wrap">
-        <div class="row gutter-0 align-items-center mb-4 mb-lg-0">
-            <div class="col-12 col-lg-6">
+        <div class="row gutter-0 mb-4 mb-lg-0">
+            <div class="col-12 col-lg-6 pt-text">
                 <p class="font-size-45 mb-3" style="font-weight: 100">
                     <b>Let's join</b><br>in progress <b>together</b>
                 </p>
