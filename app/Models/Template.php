@@ -48,7 +48,7 @@ class Template
             case self::BLOG_PAGE:return "Blog page";
             case self::EVENT_PAGE:return "Event page";
             case self::INDEX_PAGE:return "Index page";
-            case self::COMMON_CONTENT_PAGE:return "Common content page";
+            case self::COMMON_CONTENT_PAGE:return "General content page";
             case self::PROJECTS_PAGE: return "Projects page";
             case self::PROJECT_PAGE: return "Project page";
             case self::TEST_PAGE:return "Test page";
