@@ -94,4 +94,4 @@
 
 @include('modules.admin.important_information')
 
-@include('modules.admin.related_page_expanded')
+@include('modules.admin.related_topics_project')

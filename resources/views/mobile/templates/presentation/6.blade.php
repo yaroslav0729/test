@@ -93,6 +93,6 @@
 
 @include('modules.presentation.important_information')
 
-@include('modules.presentation.related_pages')
+@include('modules.presentation.related_topics_project')
 
 @include('modules.presentation.join_the_cause_subscribe')

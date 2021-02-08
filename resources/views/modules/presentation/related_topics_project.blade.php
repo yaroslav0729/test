@@ -1,0 +1,60 @@
+@php
+    $bgClass = "";
+
+    if (isset($parameters['bg_class'])) {
+        $bgClass = $parameters['bg_class'];
+    }
+
+    $pageIds = [];
+
+    if (isset($parameters['proj_rel_page_1'])) {
+        $pageIds[] = $parameters['proj_rel_page_1'];
+    }
+    if (isset($parameters['proj_rel_page_2'])) {
+        $pageIds[] = $parameters['proj_rel_page_2'];
+    }
+    if (isset($parameters['proj_rel_page_3'])) {
+        $pageIds[] = $parameters['proj_rel_page_3'];
+    }
+
+    $pages = \App\Models\Project::getRelPages($pageIds);
+@endphp
+
+<section class="discover-more @empty($bgClass) bg-light @else {{ $bgClass }} @endempty">
+    <div class="wrap">
+        <div class="title">
+            <div class="row">
+                <div class="col-7">
+                    <b class="font-size-30 mr-4 text-uppercase">
+                        RELATED TOPICS
+                    </b>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="current-projects-list">
+            <div class="wrap">
+                <div class="row gutter-5">
+                    @foreach ($pages as $page)
+                        <div class="col-4">
+                            <a href="{{ url($page->slug) }}" class="item">
+                                @isset($page->preview_img)
+                                    <span class="img" style="background-repeat:no-repeat; background-image: url({{ url($page->preview_img) }})"></span>
+                                @else
+                                    <span class="img" style="background: #eee"></span>
+                                @endisset
+        
+                                <span class="descr">
+                                <span class="name font-size-16"><b>{{ \App\Helpers\StrHelper::lengthLimit($page->name, 20) }}</b></span>
+                                <span class="text font-size-16">{{ \App\Helpers\StrHelper::lengthLimit($page->preview_text, 60) }}</span>
+                                </span>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
