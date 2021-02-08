@@ -80,9 +80,9 @@ foreach ($amount as $key => $item) {
     @endempty
 
     @empty($donateText)
-    <div class="mb-5 pt-3 font-size-18"><b>Your subtitle/copy can go here, max of 100ch ut perspi unde omnis iste natus demiour sit voluptatem, abilloum inventore.</b></div>
+    <div class="mb-5 font-size-18 letter-spacing-0"><b class="font-weight-sb">Your subtitle/copy can go here, max of 100ch ut perspi unde omnis iste natus demiour sit voluptatem, abilloum inventore.</b></div>
     @else
-    <div class="mb-5 pt-3 font-size-18"><b>{{ $donateText }}</b></div>
+    <div class="mb-5 font-size-18 letter-spacing-0"><b class="font-weight-sb">{{ $donateText }}</b></div>
     @endempty
 
     <div class="black-line"></div>

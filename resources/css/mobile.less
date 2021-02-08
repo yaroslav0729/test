@@ -820,7 +820,7 @@ footer {
 	.media {
 	  border: 0;
 	  border-radius: 0;
-	  margin: 0 -20px 30px;
+	  margin: 0 -20px 53px;
 	}
 	.title {
 	  padding: 0;
@@ -836,6 +836,7 @@ footer {
 	}
 	.body {
 	  box-shadow: none;
+	  margin-top: -4px;
 	  .btn-submit {margin: 0}
 	  .nav-tabs {
 		border-bottom-width: 4px;
@@ -873,6 +874,7 @@ footer {
 					text-align: left;
 					padding-left: 10px;
 				  }
+				  .moon-icons-check {display: none}
 				}
 			  }
 			  &:last-child {
@@ -883,7 +885,13 @@ footer {
 			  }
 			}
 		  }
-		  input:checked + span {box-shadow: none;}
+		  input:checked + span {
+			box-shadow: none;
+			& > span:first-child span:first-child {
+			  .moon-icons-plus {display: none}
+			  .moon-icons-check {display: inline-block}
+			}
+		  }
 		}
 	  }
 	}
