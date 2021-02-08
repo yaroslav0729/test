@@ -1,16 +1,10 @@
 @php
+    use App\Models\Category;
     $relPageTitle = "";
     $relPageLinkTitle = "";
     $relPageLink = "";
-
-    $relPageCatId = "";
-    $bgClass = '';
-
-    if (isset($parameters['rel_page_category'])) {
-        $relPageCatId = (int)$parameters['rel_page_category'];
-    }
-
-    $relatedPages = \App\Models\Module::getRelatedPages($relPageCatId);
+    $bgClass = "";
+    $bgClassMobile = "";
 
     if (isset($parameters['rel_page_title'])) {
         $relPageTitle = $parameters['rel_page_title'];
@@ -28,9 +22,21 @@
         $bgClass = $parameters['bg_class'];
     }
 
+    if (isset($parameters['bg_class_mobile'])) {
+        $bgClassMobile = $parameters['bg_class_mobile'];
+    }
+
+    $relPageCatId = "";
+
+    if (isset($parameters['rel_page_category'])) {
+        $relPageCatId = (int)$parameters['rel_page_category'];
+    }
+
+    $relatedPages = \App\Models\Module::getRelatedPages($relPageCatId);
+
 @endphp
 
-<section class="discover-more @empty($bgClass) bg-light @else {{ $bgClass }} @endempty" swiper-wrapper="related">
+<section class="discover-more @empty($bgClassMobile) bg-light @else {{ $bgClassMobile }} @endempty" swiper-wrapper="related">
     <div class="wrap">
         <div class="title text-center">
             <b class="font-size-25 text-uppercase d-inline-block mb-3">
