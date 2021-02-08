@@ -3,8 +3,9 @@
 namespace App\Console\Commands\Parts;
 
 use App\Console\Commands\Parts\AbstractParser;
-use App\Models\Category;
-use App\Models\Page; // https://github.com/voku/simple_html_dom
+use App\Helpers\StrHelper;
+use App\Models\Category; // https://github.com/voku/simple_html_dom
+use App\Models\Page;
 use App\Models\PageInstance;
 use App\Models\Template;
 use Illuminate\Support\Carbon;
@@ -39,6 +40,7 @@ class MediaParser extends AbstractParser
             $this->info('parsing link ' . $key . ' from ' . $allCou);
 
             $html = Http::get($link)->body();
+            $html = StrHelper::replaceSpecChars($html);
             $document = new HtmlDomParser($html);
 
             $category = $this->getCategoryFromLink($link);
@@ -88,6 +90,12 @@ class MediaParser extends AbstractParser
                 $newsHtml = $this->uploadImages($newsHtml);
             }
 
+            $previewText = '';
+
+            if ($el) {
+                $previewText = StrHelper::lengthLimit($newsBlock->text(), 100);
+            }
+
             $category = Category::firstOrCreate([
                 'slug' => $category,
                 'name' => $category,
@@ -107,8 +115,8 @@ class MediaParser extends AbstractParser
                     'page_id' => $page->id,
                     'slug' => $slug,
                     'title' => $title,
-                    'name' => $h1,
-                    'preview_text' => $h2,
+                    'name' => $h2,
+                    'preview_text' => $previewText,
                     'description' => $description,
                     'keywords' => $keywords,
                     'template' => Template::COMMON_CONTENT_PAGE,
@@ -124,8 +132,8 @@ class MediaParser extends AbstractParser
             } else {
                 $pageInstance->update([
                     'title' => $title,
-                    'name' => $h1,
-                    'preview_text' => $h2,
+                    'name' => $h2,
+                    'preview_text' => $previewText,
                     'description' => $description,
                     'keywords' => $keywords,
                     'template' => Template::COMMON_CONTENT_PAGE,
@@ -147,6 +155,7 @@ class MediaParser extends AbstractParser
     protected function toNeedfulFormat($date)
     {
         $date = str_replace('th', '', $date);
+        $date = str_replace('nd', '', $date);
         $date = str_replace(',', '', $date);
         $date = Carbon::createFromTimestamp(strtotime($date));
 
