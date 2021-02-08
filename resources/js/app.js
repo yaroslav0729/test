@@ -979,15 +979,15 @@ $(function () {
     })
 
 
-    function setWidthHeader() {
-       let header =  $('header');
-        header.width($(window).outerWidth())
-    }
-
-    setWidthHeader();
-    $(window).on('resize', function () {
-        setWidthHeader();
-    })
+    // function setWidthHeader() {
+    //    let header =  $('header');
+    //     header.width($(window).outerWidth())
+    // }
+    //
+    // setWidthHeader();
+    // $(window).on('resize', function () {
+    //     setWidthHeader();
+    // })
 
 
 });

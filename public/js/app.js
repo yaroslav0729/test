@@ -40634,17 +40634,15 @@ $(function () {
       $('.main-page-header').removeClass('style-1').removeClass('style-2');
       $('.main-page-header').addClass(activeSlide.data('style'));
     }, 800);
-  });
-
-  function setWidthHeader() {
-    var header = $('header');
-    header.width($(window).outerWidth());
-  }
-
-  setWidthHeader();
-  $(window).on('resize', function () {
-    setWidthHeader();
-  });
+  }); // function setWidthHeader() {
+  //    let header =  $('header');
+  //     header.width($(window).outerWidth())
+  // }
+  //
+  // setWidthHeader();
+  // $(window).on('resize', function () {
+  //     setWidthHeader();
+  // })
 });
 
 function getShareThisCou() {
@@ -41398,12 +41396,12 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app_admin.css */"./resources/css/app_admin.css");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
-module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/mobile.css */"./resources/css/mobile.css");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app_admin.css */"./resources/css/app_admin.css");
+__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/mobile.css */"./resources/css/mobile.css");
 
 
 /***/ })

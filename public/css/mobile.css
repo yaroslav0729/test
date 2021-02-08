@@ -135,7 +135,7 @@
   z-index: 10;
 }
 .mobile-template #quick_donation_widget .btn-modal-quick-donation {
-  padding: 21px 10px;
+  padding: 21px 0px;
   font-size: 16px;
 }
 .mobile-template #quick_donation_widget .btn-modal-quick-donation .moon-icons-plus {
@@ -484,7 +484,7 @@
   bottom: 0;
 }
 .mobile-template .who-we-are + .help-info-swiper {
-  margin: -52px 0 40px;
+  margin: -56px 0 40px;
 }
 .mobile-template .current-projects {
   padding: 56px 13px;
