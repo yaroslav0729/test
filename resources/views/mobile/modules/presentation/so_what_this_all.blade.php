@@ -61,7 +61,7 @@
                     <span>Wells built</span>
                 </div>
             </div>
-            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
             <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
         </div>
     </div>

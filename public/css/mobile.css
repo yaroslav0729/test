@@ -477,6 +477,7 @@
 }
 .mobile-template .current-projects .title {
   margin-bottom: 55px;
+  padding-left: 16px;
 }
 .mobile-template .current-projects .title:after {
   display: none;
@@ -500,15 +501,18 @@
   top: 0;
 }
 .mobile-template .current-projects .body .left {
-  padding: 45px 35px 0;
+  padding: 45px 35px 30px;
   border-radius: 5px 5px 0 0;
   z-index: 2;
   position: relative;
   margin: 0;
-  min-height: 10px;
+  min-height: 245px;
 }
 .mobile-template .current-projects .body .left .btn {
-  margin-bottom: -24px;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  transform: translateY(50%);
 }
 .mobile-template .current-projects .body .img {
   position: static;
