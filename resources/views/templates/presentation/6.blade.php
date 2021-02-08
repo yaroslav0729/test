@@ -106,4 +106,4 @@
 
 @include('modules.presentation.important_information')
 
-@include('modules.presentation.related_page_expanded')
+@include('modules.presentation.related_topics_project')
