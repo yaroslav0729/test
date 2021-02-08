@@ -47,6 +47,8 @@ class StrHelper
     public static function replaceSpecChars($str)
     {
         $str = str_replace('&#8217;', '’', $str);
+        $str = str_replace('&#8211;', '-', $str);
+        $str = str_replace('&nbsp;', ' ', $str);
         return $str;
     }
 

@@ -1247,6 +1247,9 @@ strong,
 .font-weight-bold {
   font-weight: 900 !important;
 }
+.font-weight-sb {
+  font-weight: 600 !important;
+}
 .font-weight-medium {
   font-weight: 500 !important;
 }

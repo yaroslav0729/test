@@ -826,7 +826,7 @@
 .mobile-template .donate-today .media {
   border: 0;
   border-radius: 0;
-  margin: 0 -20px 30px;
+  margin: 0 -20px 53px;
 }
 .mobile-template .donate-today .title {
   padding: 0;
@@ -843,6 +843,7 @@
 }
 .mobile-template .donate-today .body {
   box-shadow: none;
+  margin-top: -4px;
 }
 .mobile-template .donate-today .body .btn-submit {
   margin: 0;
@@ -890,6 +891,9 @@
   text-align: left;
   padding-left: 10px;
 }
+.mobile-template .donate-today .body .donate-today-sheet .item > span > span:first-child span .moon-icons-check {
+  display: none;
+}
 .mobile-template .donate-today .body .donate-today-sheet .item > span > span:last-child {
   font-size: 14px;
   padding: 0 10px;
@@ -898,6 +902,12 @@
 }
 .mobile-template .donate-today .body .donate-today-sheet .item input:checked + span {
   box-shadow: none;
+}
+.mobile-template .donate-today .body .donate-today-sheet .item input:checked + span > span:first-child span:first-child .moon-icons-plus {
+  display: none;
+}
+.mobile-template .donate-today .body .donate-today-sheet .item input:checked + span > span:first-child span:first-child .moon-icons-check {
+  display: inline-block;
 }
 .mobile-template .donate-projects-list {
   padding: 48px 20px 0;

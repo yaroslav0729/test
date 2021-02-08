@@ -24,6 +24,7 @@
                 <span class="d-flex align-items-center">
                     <span><span style="{{$smallSize}}">
                         <i  class="moon-icons-plus decor-plus"></i>
+                        <i  class="moon-icons-check"></i>
 
                         <object class="currency_sign">£</object>
                         <b>@isset($item['value']) {{ $item['value'] }} @endisset</b></span></span>
