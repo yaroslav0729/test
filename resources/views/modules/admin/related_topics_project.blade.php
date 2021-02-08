@@ -3,6 +3,11 @@
     $page1 = '';
     $page2 = '';
     $page3 = '';
+    $relPageTitle = "";
+
+    if (isset($parameters['rel_page_title'])) {
+        $relPageTitle = $parameters['rel_page_title'];
+    }
 
     if (isset($parameters['proj_rel_page_1'])) {
         $page1 = $parameters['proj_rel_page_1'];
@@ -23,6 +28,11 @@
 @endphp
 
 <h3 class="text-center">Related topics projects module:</h3>
+
+<div class="form-group">
+    <label>Relation topics title:</label>
+    <input class="form-control" name="parameters[rel_page_title]" placeholder="Relation page title" value="{{ $relPageTitle }}" />
+</div>
 
 <div class="form-group">
     <label>Background class:</label>

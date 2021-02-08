@@ -80,6 +80,7 @@ class ProjectsParser extends AbstractParser
     protected function getProjects()
     {
         $posts = $this->wpConnection->table('wp_posts')
+            ->where('id', 2060)
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
             ->where('wp_posts.post_type', 'page')
             ->where('wp_posts.post_status', 'publish')
@@ -139,6 +140,8 @@ class ProjectsParser extends AbstractParser
         $parameters['what_happens_block2_text'] = $this->getOption($projectOptions, 'counter_box_2_text');
         $parameters['what_happens_block3_text'] = $this->getOption($projectOptions, 'counter_box_3_text');
 
+        $parameters = $this->saveRelatedPosts($parameters, $projectOptions);
+
         $featuredImageId = $this->getOption($projectOptions, 'featured_image');
         $parameters['donate_img'] = $this->getWpImage($featuredImageId);
 
@@ -150,6 +153,43 @@ class ProjectsParser extends AbstractParser
         $projectInstance->description = $this->getOption($projectOptions, '_yoast_wpseo_metadesc');
         $projectInstance->preview_img = $parameters['donate_img'];
         $projectInstance->save();
+    }
+
+    protected function saveRelatedPosts($parameters, $projectOptions)
+    {
+        $parameters['rel_page_title'] = $this->getOption($projectOptions, 'rlt_section_title');
+
+        $wpPostId = $this->getOption($projectOptions, 'select_post_0_add_post');
+        $post = Page::where('wp_id', $wpPostId)->first();
+        if (empty($post)) {
+            $infoString = 'WARNING: Related post parser - related page wp_id: ' . $wpPostId . ' not found!'; 
+            $this->info($infoString);
+            Log::channel('parser')->info($infoString);
+        } else {
+            $parameters['proj_rel_page_1'] = $post->id;
+        }
+
+        $wpPostId = $this->getOption($projectOptions, 'select_post_1_add_post');
+        $post = Page::where('wp_id', $wpPostId)->first();
+        if (empty($post)) {
+            $infoString = 'WARNING: Related post parser - related page wp_id: ' . $wpPostId . ' not found!'; 
+            $this->info($infoString);
+            Log::channel('parser')->info($infoString);
+        } else {
+            $parameters['proj_rel_page_2'] = $post->id;
+        }
+
+        $wpPostId = $this->getOption($projectOptions, 'select_post_2_add_post');
+        $post = Page::where('wp_id', $wpPostId)->first();
+        if (empty($post)) {
+            $infoString = 'WARNING: Related post parser - related page wp_id: ' . $wpPostId . ' not found!'; 
+            $this->info($infoString);
+            Log::channel('parser')->info($infoString);
+        } else {
+            $parameters['proj_rel_page_3'] = $post->id;
+        }
+
+        return $parameters;
     }
 
     protected function updateProjectPrices($projectInstance, $projectOptions)

@@ -1,8 +1,12 @@
 @php
     $bgClass = "";
+    $relPageTitle = "";
 
     if (isset($parameters['bg_class'])) {
         $bgClass = $parameters['bg_class'];
+    }
+    if (isset($parameters['rel_page_title'])) {
+        $relPageTitle = $parameters['rel_page_title'];
     }
 
     $pageIds = [];
@@ -26,7 +30,11 @@
             <div class="row">
                 <div class="col-7">
                     <b class="font-size-30 mr-4 text-uppercase">
-                        RELATED TOPICS
+                        @if ($relPageTitle === "")
+                            RELATED TOPICS
+                        @else
+                            {{ $relPageTitle }}
+                        @endif
                     </b>
 
                 </div>
