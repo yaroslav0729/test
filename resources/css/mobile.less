@@ -131,6 +131,26 @@
 
 .mobile-template {
 
+  #quick_donation_widget {
+	position: fixed;
+	bottom:  0;
+	left: 0;
+	width: 100%; height: 60px;
+	background: #aaa;
+	z-index: 10;
+	.btn-modal-quick-donation {
+	  padding: 21px 10px;
+	  font-size: 16px;
+	  .moon-icons-plus {
+		position: absolute;
+		top: 21px;
+		right: 35px;
+		transform: scale(1.5);
+	  }
+	}
+  }
+
+
   body.header-menu-open {overflow: hidden}
 
   .form-group {
@@ -514,6 +534,7 @@ footer {
 	.wrap {padding: 0}
 	.title {
 	  margin-bottom: 55px;
+	  padding-left: 16px;
 	  &:after {display: none; bottom: -20px;}
 	  span {
 		font-size: 25px;
@@ -530,13 +551,17 @@ footer {
 	.body {
 	  top: 0;
 	  .left {
-		padding: 45px 35px 0;
+		padding: 45px 35px 30px;
 		border-radius: 5px 5px 0 0;
 		z-index: 2;
 		position: relative;
 		margin: 0;
-		min-height: 10px;
-		.btn {margin-bottom: -24px;}
+		min-height: 245px;
+		.btn {
+		  margin: 0;
+		  position: absolute; bottom: 0;
+		  transform: translateY(50%);
+		}
 	  }
 	  .img {
 		position: static;

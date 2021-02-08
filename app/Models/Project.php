@@ -227,4 +227,12 @@ class Project
             return false;
         }
     }
+
+    public static function getRelPages($pageIds)
+    {
+        return PageInstance::whereHas('Page', function (Builder $query) use ($pageIds) {
+                $query->whereIn('id', $pageIds)
+                    ->published();
+        })->get();
+    }
 }

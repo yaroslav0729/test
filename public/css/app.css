@@ -12321,6 +12321,9 @@ input[type='number'].color-danger + .input-group .btn {
 .lets-join .decor-wave {
   margin-top: 23px;
 }
+.lets-join .pt-text {
+  padding-top: 72px;
+}
 .lets-join .item {
   background: #fff;
   box-shadow: 0 10px 25px 0 rgba(104, 110, 117, 0.2);
@@ -12423,6 +12426,8 @@ input[type='number'].color-danger + .input-group .btn {
 .whats-new .title .moon-icons-arrow-right {
   display: inline-block;
   transform: scale(1.3);
+  position: relative;
+  top: -3px;
 }
 .whats-new .title a {
   color: #101525;
@@ -12472,7 +12477,7 @@ input[type='number'].color-danger + .input-group .btn {
   border-radius: 0 0 0 5px;
   font-size: 20px;
   color: #fff;
-  line-height: 50px;
+  line-height: 45px;
   text-align: center;
 }
 .whats-new .item .descr {
@@ -16190,14 +16195,6 @@ text-transform: uppercase;
 a#clear_all_btn:hover {
     cursor: pointer;
     text-decoration: underline;
-}
-#quick_donation_widget {
-    position: fixed;
-    bottom:  0;
-    left: 0;
-    width: 100%; height: 51px;
-    background: #aaa;
-    z-index: 10;
 }
 .btn-black {
     border-color: #000;
