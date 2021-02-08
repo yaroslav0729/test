@@ -44,4 +44,10 @@ class StrHelper
         return $str;
     }
 
+    public static function replaceSpecChars($str)
+    {
+        $str = str_replace('&#8217;', '’', $str);
+        return $str;
+    }
+
 }
