@@ -527,13 +527,20 @@ footer {
 	margin: -56px 0 40px;
   }
 
-  .who-we-are + .help-info-swiper .swiper-button-disabled {
+  .help-info-swiper .swiper-button-disabled {
 	  opacity: 1.0;
   }
-  .who-we-are + .help-info-swiper .swiper-button-disabled .moon-icons-arrow-left::before, 
-  .who-we-are + .help-info-swiper .swiper-button-disabled .moon-icons-arrow-right::before 
+  .help-info-swiper .swiper-button-disabled .moon-icons-arrow-left::before, 
+  .help-info-swiper .swiper-button-disabled .moon-icons-arrow-right::before 
   {
-	content: '|';
+	content: "";
+    float: left;
+    width: 3px;
+    height: 48px;
+    background: #FED4C2;
+    position: absolute;
+    top: 0px;
+    left: 29px;
   }
 
   .current-projects {

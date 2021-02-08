@@ -486,12 +486,19 @@
 .mobile-template .who-we-are + .help-info-swiper {
   margin: -56px 0 40px;
 }
-.mobile-template .who-we-are + .help-info-swiper .swiper-button-disabled {
+.mobile-template .help-info-swiper .swiper-button-disabled {
   opacity: 1;
 }
-.mobile-template .who-we-are + .help-info-swiper .swiper-button-disabled .moon-icons-arrow-left::before,
-.mobile-template .who-we-are + .help-info-swiper .swiper-button-disabled .moon-icons-arrow-right::before {
-  content: '|';
+.mobile-template .help-info-swiper .swiper-button-disabled .moon-icons-arrow-left::before,
+.mobile-template .help-info-swiper .swiper-button-disabled .moon-icons-arrow-right::before {
+  content: "";
+  float: left;
+  width: 3px;
+  height: 48px;
+  background: #FED4C2;
+  position: absolute;
+  top: 0px;
+  left: 29px;
 }
 .mobile-template .current-projects {
   padding: 56px 13px;
