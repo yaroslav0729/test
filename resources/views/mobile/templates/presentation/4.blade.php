@@ -1,0 +1,49 @@
+@php
+
+$mainHtml = "";
+
+    if (isset($parameters['main_html'])) {
+        $mainHtml = $parameters['main_html'];
+    }
+
+@endphp
+
+<section>
+    <div class="pt-5"></div>
+    <div class="mb-4">
+        @include('templates.presentation.parts.back_btn')
+    </div>
+</section>
+
+<section class="general-content-head bg-light">
+    <div class="wrap">
+        <div class="img">
+            <img src="{{ $pageInstance->preview_img }}" alt="">
+        </div>
+        <div class="pl-4 pr-4">
+            <h1>{!! $pageInstance->name !!}</h1>
+            <div class="date">
+                <i></i>{{ Illuminate\Support\Carbon::parse($pageInstance->published_at)->format('jS F Y') }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blog-article-body">
+    <div class="body">
+        <div class="cite">
+            {!! $pageInstance->preview_text !!}
+        </div>
+        <div class="pt-4"></div>
+
+        {!! $mainHtml !!}
+    </div>
+    <div class="author">
+        <div class="img" style="background-image: url(/storage/icons/Avatar1.jpg)"></div>
+        <span>written by <span>|</span> jamaila hamid</span>
+    </div>
+</section>
+
+<div class="pt-5"></div>
+
+@include('modules.presentation.related_page_expanded')

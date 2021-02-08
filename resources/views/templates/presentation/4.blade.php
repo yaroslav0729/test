@@ -3,7 +3,7 @@
     $mainHtml = "";
 
     if (isset($parameters['main_html'])) {
-        $mainHtml = $parameters['main_html'];    
+        $mainHtml = $parameters['main_html'];
     }
 
 @endphp
@@ -35,7 +35,7 @@
             <div class="row align-items-center">
                 <div class="col-6 col-lg-4">
                     <div class="author">
-                        <div class="img" style="background-image: url(img/content/Avatar1.jpg)"></div>
+                        <div class="img" style="background-image: url(/storage/icons/Avatar1.jpg)"></div>
                         <span>written by <span>|</span> jamaila hamid</span>
                     </div>
                 </div>
@@ -49,12 +49,9 @@
 
 </section>
 
-
 @include('modules.presentation.related_pages', [
     'parameters' => $parameters
 ])
-
-
 
 @include('modules.presentation.join_the_cause_subscribe')
 
