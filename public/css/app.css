@@ -13064,6 +13064,19 @@ input[type='number'].color-danger + .input-group .btn {
 .discover-more .current-projects-list {
   margin: 0 -15px;
 }
+.filter_projects_single .current-projects-list {
+  margin-bottom: 0;
+}
+.filter_projects_single .current-projects-list .swiper-container {
+  border-bottom: 0;
+}
+.filter_projects_single .current-projects-list .swiper-wrapper {
+  padding-bottom: 87px;
+}
+.filter_projects_single .current-projects-list .swiper-pagination {
+  padding: 0;
+  bottom: 0;
+}
 .mission-impossible {
   overflow: hidden;
   padding: 0;
@@ -13496,7 +13509,7 @@ input[type='number'].color-danger + .input-group .btn {
   width: 55px;
   height: 55px;
   line-height: 51px;
-  font-size: 28px;
+  font-size: 21px;
   color: #fff;
   background: #F7796A;
   text-align: center;
@@ -13530,6 +13543,17 @@ input[type='number'].color-danger + .input-group .btn {
   right: 0;
   left: 25px;
   z-index: 2;
+  max-height: 400px;
+  transition: all 250ms linear;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+}
+.donate-projects-list .item .img .top-bar .form.d-none {
+  display: block !important;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 4px;
 }
 .donate-projects-list .item .img .top-bar .form .name {
   color: #FFF;

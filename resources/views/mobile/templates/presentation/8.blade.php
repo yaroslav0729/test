@@ -163,7 +163,7 @@
     <div class="black-line"></div>
     <p class="mt-4">{!! $ourValuesInActionDescription !!}</p>
 </section>
-<section class="values-action" swiper-wrapper="our-values">
+<section class="values-action" swiper-wrapper="our-values" swiper-autoHeight="true">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             @for ($i = 1; $i <= 4; $i++)
@@ -189,7 +189,7 @@
 @endempty
 
 @empty(!$storyActive)
-<section class="our-story-swiper" swiper-wrapper="our-story">
+<section class="our-story-swiper" swiper-wrapper="our-story" >
     <div class="wrap">
         <div class="swiper-container">
             <div class="swiper-wrapper">

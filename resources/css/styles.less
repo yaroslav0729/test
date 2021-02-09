@@ -2642,6 +2642,18 @@ input[type='number'].color-danger  + .input-group {
     .current-projects-list {margin: 0 -15px;}
 }
 
+.filter_projects_single .current-projects-list {
+    margin-bottom: 0;
+    .swiper-container {border-bottom: 0}
+    .swiper-wrapper {
+        padding-bottom: 87px;
+    }
+    .swiper-pagination {
+        padding: 0;
+        bottom: 0;
+    }
+}
+
 .mission-impossible {
     overflow: hidden;
     padding: 0;
@@ -3049,7 +3061,7 @@ input[type='number'].color-danger  + .input-group {
                     display: block;
                     width: 55px; height: 55px;
                     line-height: 51px;
-                    font-size: 28px;
+                    font-size: 21px;
                     color: #fff;
                     background: #F7796A;
                     text-align: center;
@@ -3081,6 +3093,14 @@ input[type='number'].color-danger  + .input-group {
                     position: absolute; top:0; right: 0;
                     left: 25px;
                     z-index: 2;
+                    max-height: 400px;
+                    .easy();
+                    &.d-none {
+                        display: block !important;
+                        max-height: 0;
+                        overflow: hidden;
+                        padding: 0 4px;
+                    }
                     .name {
                         color: #FFF;
                         text-transform: uppercase;
