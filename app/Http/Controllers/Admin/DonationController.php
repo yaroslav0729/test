@@ -31,8 +31,6 @@ class DonationController extends Controller
 
     public function exportCsv()
     {
-        $donations = Donation::with('order')->orderBy('created_at', 'desc')->get();
-
         $fileName = 'donations.csv';
 
         $headers = array(
@@ -45,23 +43,25 @@ class DonationController extends Controller
 
         $columns = ['Id', 'Value', 'Type', 'Status', 'First name', 'Last name', 'Email', 'Date (D/M/Y)'];
 
-        $callback = function () use ($donations, $columns) {
+        $callback = function () use ($columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
-            foreach ($donations as $donation) {
+            Donation::with('order')->orderBy('created_at', 'desc')->chunk(100, function ($donations) use ($file) {
+                foreach ($donations as $donation) {
 
-                $row['Id'] = $donation->id;
-                $row['Value'] = $donation->value;
-                $row['Type'] = $donation->type_name;
-                $row['Status'] = $donation->status_name;
-                $row['First name'] = $donation->order->first_name;
-                $row['Last name'] = $donation->order->last_name;
-                $row['Email'] = $donation->email;
-                $row['Date'] = $donation->created_at->format('d/m/Y');
+                    $row['Id'] = $donation->id;
+                    $row['Value'] = $donation->value;
+                    $row['Type'] = $donation->type_name;
+                    $row['Status'] = $donation->status_name;
+                    $row['First name'] = $donation->order->first_name;
+                    $row['Last name'] = $donation->order->last_name;
+                    $row['Email'] = $donation->email;
+                    $row['Date'] = $donation->created_at->format('d/m/Y');
 
-                fputcsv($file, $row);
-            }
+                    fputcsv($file, $row);
+                }
+            });
 
             fclose($file);
         };
