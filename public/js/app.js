@@ -40874,11 +40874,7 @@ $(function () {
 
 
   $(document).on('click', '.add-related', function () {
-    var blockProject = $(this).closest('.descr');
-    var icon = $(blockProject).find('i');
-    $(icon).removeClass('moon-icons-plus');
-    $(icon).addClass('moon-icons-check');
-    $(blockProject).addClass('bg-btn-red');
+    selectItemToRed($(this));
   });
   $(document).on('click', '[zakat-donate-btn]', function (e) {
     e.preventDefault();
@@ -40966,12 +40962,20 @@ $(function () {
 
     form.find('input[name="amount"]').val(price); //form.submit()
 
-    sendFormAndRefreshCard(form);
+    sendFormAndRefreshCard(form, this);
     $('#proj_tiles_modal_popup').modal('hide'); // for mobile version
 
     $('[tiles-popup]').addClass('d-none');
     $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
-  });
+  }); //~~~~~~~~~~~~~~~~~~ Fill block to red colour after click ~~~~~~~~~~~~~~~~~~~~
+
+  function selectItemToRed(element) {
+    var blockProject = element.closest('.descr');
+    var icon = $(blockProject).find('i');
+    $(icon).removeClass('moon-icons-plus');
+    $(icon).addClass('moon-icons-check');
+    $(blockProject).addClass('bg-btn-red');
+  }
 
   function refreshCardAddHtml(response) {
     var newCart = $('.modal-body', response.cart_html);
@@ -40993,7 +40997,7 @@ $(function () {
     }
   }
 
-  function sendFormAndRefreshCard(form) {
+  function sendFormAndRefreshCard(form, elementAdd) {
     var formData = new FormData(form[0]);
     var lastAmount = form.find('input[name="amount"]').val();
     var lastPeriod = form.find('select[name="period"]').val();
@@ -41013,6 +41017,10 @@ $(function () {
       success: function success(response, textStatus, jqXHR) {
         if (response.success) {
           refreshCardAddHtml(response);
+
+          if ($(elementAdd).length) {
+            selectItemToRed($(elementAdd));
+          }
         }
       },
       error: function error(response) {
@@ -41133,6 +41141,27 @@ $(function () {
     var tabClass = $(this).data('tab');
     $('div.' + tabClass).removeClass('d-none');
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  /*    function changeFontSize()
+      {
+          const countPounds = $('.count-pounds');
+  
+          console.log(countPounds.length);
+  
+          if (countPounds.length > 0) {
+             $.each(countPounds, function (key, countPound ) {
+                 console.log(key);
+                 console.log(countPound);
+                 let str = $(countPound).html()
+                 console.log($.trim(str).length);
+  
+  
+             });
+  
+          }
+      }
+  
+      changeFontSize();*/
 });
 
 /***/ }),
@@ -41396,12 +41425,12 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app_admin.css */"./resources/css/app_admin.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
-module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/mobile.css */"./resources/css/mobile.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app_admin.css */"./resources/css/app_admin.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+module.exports = __webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/mobile.css */"./resources/css/mobile.css");
 
 
 /***/ })

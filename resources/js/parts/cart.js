@@ -111,12 +111,7 @@ $(function () {
 
     /*----------- change button donate after click (mobile) ------------*/
     $(document).on('click', '.add-related', function () {
-        const blockProject = $(this).closest('.descr');
-        const icon = $(blockProject).find('i');
-
-        $(icon).removeClass('moon-icons-plus');
-        $(icon).addClass('moon-icons-check');
-        $(blockProject).addClass('bg-btn-red');
+        selectItemToRed($(this));
     });
 
     $(document).on('click', '[zakat-donate-btn]', function (e) {
@@ -219,12 +214,24 @@ $(function () {
         form.find('input[name="amount"]').val(price)
 
         //form.submit()
-        sendFormAndRefreshCard(form)
+        sendFormAndRefreshCard(form, this);
 
         $('#proj_tiles_modal_popup').modal('hide') // for mobile version
         $('[tiles-popup]').addClass('d-none')
         $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
     });
+
+    //~~~~~~~~~~~~~~~~~~ Fill block to red colour after click ~~~~~~~~~~~~~~~~~~~~
+    function selectItemToRed(element)
+    {
+        const blockProject = element.closest('.descr');
+        const icon = $(blockProject).find('i');
+
+        $(icon).removeClass('moon-icons-plus');
+        $(icon).addClass('moon-icons-check');
+        $(blockProject).addClass('bg-btn-red');
+
+    }
 
     function refreshCardAddHtml(response)
     {
@@ -252,7 +259,7 @@ $(function () {
         }
     }
 
-    function sendFormAndRefreshCard(form)
+    function sendFormAndRefreshCard(form, elementAdd)
     {
         var formData = new FormData(form[0]);
 
@@ -276,6 +283,10 @@ $(function () {
             {
                 if (response.success) {
                     refreshCardAddHtml(response)
+                    if ($(elementAdd).length) {
+                        selectItemToRed($(elementAdd));
+                    }
+
                 }
             },
             error: function(response) {

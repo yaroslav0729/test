@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: .2;
+  opacity: 0.2;
 }
 .other-way-give-mobile .phone {
   display: block;
@@ -493,7 +493,7 @@
   margin: -56px 0 40px;
 }
 .mobile-template .help-info-swiper .swiper-button-disabled {
-  opacity: 1.0;
+  opacity: 1;
 }
 .mobile-template .help-info-swiper .swiper-button-disabled .moon-icons-arrow-left::before,
 .mobile-template .help-info-swiper .swiper-button-disabled .moon-icons-arrow-right::before {
@@ -977,6 +977,55 @@
   height: 40px;
   text-align: center;
   line-height: 35px;
+}
+.mobile-template .donate-projects-list .item .descr .form {
+  background: #F7796A;
+  border-radius: 5px;
+  padding: 19px 4px 4px;
+  position: absolute;
+  top: -293px;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  max-height: 400px;
+  transition: all 250ms linear;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+}
+.mobile-template .donate-projects-list .item .descr .form.d-none {
+  display: block !important;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 4px;
+}
+.mobile-template .donate-projects-list .item .descr .form .name {
+  color: #FFF;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 30px;
+  padding-right: 42px;
+  padding-left: 15px;
+  height: 60px;
+  overflow: hidden;
+  margin-bottom: 9px;
+}
+.mobile-template .donate-projects-list .item .descr .form .form-group {
+  margin-bottom: 10px;
+}
+.mobile-template .donate-projects-list .item .descr .fa-check {
+  font-size: 30px;
+  color: #fff;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  z-index: 3;
+}
+.mobile-template .donate-projects-list .item .descr form {
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px 12px 20px;
 }
 .mobile-template .donate-projects-list .swiper-container {
   padding-bottom: 40px;
@@ -2208,10 +2257,10 @@
   font-size: 35px;
 }
 .bg-btn-red {
-  background: #f7796a!important;
+  background: #f7796a !important;
   color: #ffffff;
 }
 .bg-btn-red a {
-  color: #ffffff!important;
+  color: #ffffff !important;
 }
 /*------------------------------------vb--------*/

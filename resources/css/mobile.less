@@ -9,6 +9,13 @@
   }
 }
 
+.easy(@speed: 250ms) {
+    transition: all @speed linear;
+    -webkit-transition: all @speed linear;
+    -moz-transition: all @speed linear;
+    -o-transition: all @speed linear;
+}
+
 
 .modal-quick-donation {
   display: none;
@@ -534,8 +541,8 @@ footer {
   .help-info-swiper .swiper-button-disabled {
 	  opacity: 1.0;
   }
-  .help-info-swiper .swiper-button-disabled .moon-icons-arrow-left::before, 
-  .help-info-swiper .swiper-button-disabled .moon-icons-arrow-right::before 
+  .help-info-swiper .swiper-button-disabled .moon-icons-arrow-left::before,
+  .help-info-swiper .swiper-button-disabled .moon-icons-arrow-right::before
   {
 	content: "";
     float: left;
@@ -953,6 +960,47 @@ footer {
 		  text-align: center;
 		  line-height: 35px;
 		}
+          .form {
+              background: #F7796A;
+              border-radius: 5px;
+              padding: 19px 4px 4px;
+              position: absolute; top:-293px; right: 0;
+              left: 0;
+              z-index: 2;
+              max-height: 400px;
+              .easy();
+              &.d-none {
+                  display: block !important;
+                  max-height: 0;
+                  overflow: hidden;
+                  padding: 0 4px;
+              }
+              .name {
+                  color: #FFF;
+                  text-transform: uppercase;
+                  font-size: 14px;
+                  letter-spacing: 1px;
+                  line-height: 30px;
+                  padding-right: 42px;
+                  padding-left: 15px;
+                  height: 60px;
+                  overflow: hidden;
+                  margin-bottom: 9px;
+              }
+              .form-group {margin-bottom: 10px;}
+
+          }
+          .fa-check {
+              font-size: 30px;
+              color: #fff;
+              position: absolute; right: 15px; top: 10px;
+              z-index: 3;
+          }
+          form {
+              background: #fff;
+              border-radius: 5px;
+              padding: 20px 12px 20px;
+          }
 	  }
 	}
 	.swiper-container {

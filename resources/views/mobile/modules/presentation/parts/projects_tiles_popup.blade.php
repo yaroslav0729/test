@@ -5,7 +5,8 @@ $projPageInstance = $project->actual_page_instance;
 @endphp
 
 <div class="form d-none tiles-popup_{{ $popupKey }} tiles-popup-mobile" tiles-popup>
-
+    <i class="fal fa-check close"></i>
+    <div class="name">Environmental sustainabilty</div>
     <form action="{{ route('cart.add') }}" method="post">
         @csrf
         <div class="form-group tiles_options_single_{{ $popupKey }}" tiles-option-price>
@@ -34,7 +35,7 @@ $projPageInstance = $project->actual_page_instance;
                 {{-- will be filled in js --}}
             </select>
         </div>
-        
+
         <div class="form-group">
             <select name="categories" class="form-control" tiles-categories>
                 {{-- will be filled in js --}}
