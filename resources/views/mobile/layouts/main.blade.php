@@ -21,7 +21,7 @@
             <div class="wrap">
                 <div class="row align-items-center">
                     <div class="col-6">
-                        <a href="{{ route('index') }}" class="logo"><span><img src="/img/logo-mobile.png" width="26" height="26" /></span> Islamic Help</a>
+                        <a href="{{ route('index') }}" class="logo"><span><img src="/img/IH_Logo_red.png" /></span> Islamic Help</a>
                     </div>
                     <div class="col-6 text-right">
                         <a href="{{ url('/donate#about-donation') }}" class="basket"><i class=""></i>
@@ -40,7 +40,7 @@
             <div class="col-4 text-center"><a href="#" class="icon_search_1 d-none search-btn"><i class="fas fa-search"></i></a></div>
             <div class="col-4 text-right"><a href="#" class="close-menu"><i class="far fa-times"></i></a></div>
         </div>
-        <a href="{{ route('index') }}" class="logo"><img src="/img/logo-mobile.png" width="26" height="26" /></a>
+        <a href="{{ route('index') }}" class="logo"><img src="/img/IH_Logo_red.png" /></a>
         <div class="level-0">
             <ul class="menu-1">
                 @isset($headerMenuItem[0])
