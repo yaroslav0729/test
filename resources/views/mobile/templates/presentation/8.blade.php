@@ -152,7 +152,7 @@
     </div>
 </section>
 <section class="gw-map-btn">
-    <div style="background-image: url({{ $mapImage }})" alt-src="{{ $mapAlternativeImage }}">
+    <div style="background-image: url(img/who-we-are-map-mobile.jpg)" alt-src="{{ $mapAlternativeImage }}">
         <a href="#" id="btn-view-global-work" class="btn btn-info">View Global Work</a>
     </div>
 </section>

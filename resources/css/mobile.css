@@ -1397,6 +1397,7 @@
 }
 .mobile-template .gw-map-btn > div {
   background-size: cover;
+  padding-bottom: 85%;
 }
 .mobile-template .promo-project-swiper {
   padding: 0;
