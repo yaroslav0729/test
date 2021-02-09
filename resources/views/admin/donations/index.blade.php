@@ -6,6 +6,10 @@
     <div class="p-5 pb-8">
         <h1>Donations:</h1>
 
+        <a href="{{ route('donations.export') }}">
+          <button class="btn btn-success mt-3 mb-3">Export to CSV</button>
+        </a>
+
         <table class="table-auto mb-3">
             <thead>
               <tr>

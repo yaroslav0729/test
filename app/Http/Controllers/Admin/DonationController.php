@@ -28,4 +28,44 @@ class DonationController extends Controller
     {
         return view('admin.donations.show', compact('donation'));
     }
+
+    public function exportCsv()
+    {
+        $donations = Donation::with('order')->orderBy('created_at', 'desc')->get();
+
+        $fileName = 'donations.csv';
+
+        $headers = array(
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0",
+        );
+
+        $columns = ['Id', 'Value', 'Type', 'Status', 'First name', 'Last name', 'Email', 'Date (D/M/Y)'];
+
+        $callback = function () use ($donations, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($donations as $donation) {
+
+                $row['Id'] = $donation->id;
+                $row['Value'] = $donation->value;
+                $row['Type'] = $donation->type_name;
+                $row['Status'] = $donation->status_name;
+                $row['First name'] = $donation->order->first_name;
+                $row['Last name'] = $donation->order->last_name;
+                $row['Email'] = $donation->email;
+                $row['Date'] = $donation->created_at->format('d/m/Y');
+
+                fputcsv($file, $row);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
 }

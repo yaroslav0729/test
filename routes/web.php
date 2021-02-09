@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         Route::resource('campaigns', CampaignsController::class, ['as' => 'admin']);
         Route::resource('campaign_categories', CampaignCategoryController::class, ['as' => 'admin']);
 
+        Route::get('donations/export', [DonationController::class, 'exportCsv'])->name('donations.export');
         Route::resource('donations', DonationController::class, ['as' => 'admin'])->only([
             'index', 'show',
         ]);
