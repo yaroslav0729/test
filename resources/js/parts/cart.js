@@ -272,7 +272,6 @@ $(function () {
         const elChecked = $(form).closest('.item').find('.add-width');
         const elAdd = $(form).closest('.item').find('.add');
         const elDescr = $(form).closest('.item').find('.descr');
-        console.log(elChecked);
 
 
         let lastAmount = form.find('input[name="amount"]').val()
