@@ -228,7 +228,7 @@ $(function () {
         $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
     });
 
-    //~~~~~~~~~~~~~~~~~~ Fill block to red colour after click ~~~~~~~~~~~~~~~~~~~~
+    //~~~~~~~~~~~~~~~~~~ Fill block to red colour after click (mobile) ~~~~~~~~~~~~~~~~~~~~
     function selectItemToRed(element)
     {
         const blockProject = element.closest('.descr');
@@ -266,13 +266,9 @@ $(function () {
         }
     }
 
-    function sendFormAndRefreshCard(form, elementAdd)
+    function sendFormAndRefreshCard(form)
     {
         var formData = new FormData(form[0]);
-        const elChecked = $(form).closest('.item').find('.add-width');
-        const elAdd = $(form).closest('.item').find('.add');
-        const elDescr = $(form).closest('.item').find('.descr');
-
 
         let lastAmount = form.find('input[name="amount"]').val()
         let lastPeriod = form.find('select[name="period"]').val()
@@ -294,22 +290,86 @@ $(function () {
             {
                 if (response.success) {
                     refreshCardAddHtml(response)
-                    if ($(elementAdd).length) {
-                        selectItemToRed($(elementAdd));
-                    }
-                    if ($(elChecked).length) {
-                        $(elChecked).removeClass('d-none');
-                        $(elAdd).addClass('d-none');
-                        $(elDescr).addClass('bg-btn-red');
-                    }
-
+                    refreshRelatedProjects();
                 }
             },
             error: function(response) {
-
                 toastr.error('Unknown error ','Error')
             }
         });
+    }
+
+    refreshRelatedProjects();
+
+    function refreshRelatedProjects() {
+        let projects = $('.project');
+        let projectsChecked = $('.add-width');
+        let projectsCheckedMobile = $('.add');
+        let arrProjectsId = [];
+
+        projects.each(function () {
+            arrProjectsId.push(parseInt($(this).val()));
+        });
+
+        projectsChecked.each(function () {
+            let id = $(this).data('id');
+            if ($.inArray(parseInt(id), arrProjectsId) == -1) {
+                removeCheckedToProject($(this));
+            } else {
+                addCheckedToProject($(this));
+            }
+        });
+
+        projectsCheckedMobile.each(function () {
+            let id = $(this).data('id');
+            let elDescr = $(this).closest('.descr');
+            if ($(elDescr).length) {
+                if ($.inArray(parseInt(id), arrProjectsId) == -1) {
+                    removeCheckedToProjectMobile($(this));
+                } else {
+                    addCheckedToProjectMobile($(this));
+                }
+            }
+        });
+    }
+
+
+    //~~~~~~~~~~~~~~~~~~ Add and Clear project from 'checked' (mobile) ~~~~~~~~~~~~~~~~~~~~
+    function addCheckedToProjectMobile(element) {
+        let descrEl = element.closest('.descr');
+        if (descrEl.length) {
+            $(descrEl).addClass('bg-btn-red');
+            $(descrEl).find('i').addClass('moon-icons-check')
+            $(descrEl).find('i').removeClass('moon-icons-plus')
+        }
+    }
+
+    function removeCheckedToProjectMobile(element) {
+        let descrEl = element.closest('.descr');
+        if (descrEl.length) {
+            $(descrEl).removeClass('bg-btn-red');
+            $(descrEl).find('i').removeClass('moon-icons-check')
+            $(descrEl).find('i').addClass('moon-icons-plus')
+        }
+    }
+
+    //~~~~~~~~~~~~~~~~~~ Add and Clear project from 'checked' ~~~~~~~~~~~~~~~~~~~~
+    function removeCheckedToProject(element) {
+        if (!element.hasClass('d-none')) {
+            const elItem = element.closest('.item');
+            element.addClass('d-none');
+            $(elItem).find('.descr').removeClass('bg-btn-red');
+            $(elItem).find('.add').removeClass('d-none');
+        }
+    }
+
+    function addCheckedToProject(element) {
+        if (element.hasClass('d-none')) {
+            const elItem = element.closest('.item');
+            element.removeClass('d-none');
+            $(elItem).find('.descr').addClass('bg-btn-red');
+            $(elItem).find('.add').addClass('d-none');
+        }
     }
 
     $(document).on('click', '#cartModal a.btn_checkout', function (e) {
@@ -360,5 +420,4 @@ $(function () {
         sendFormAndRefreshCard(form)
         $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
     });
-
 });

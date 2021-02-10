@@ -10,6 +10,7 @@ $projPageInstance = $project->actual_page_instance;
 
     <form action="{{ route('cart.add') }}" method="post">
         @csrf
+        <input type="hidden" name="project_id" value="{{ $popupKey }}">
 
         <div class="form-group tiles_options_single_{{ $popupKey }}" tiles-option-price>
             <select name="price_single" class="form-control font-weight-bold" tiles-form-options>

@@ -40973,7 +40973,7 @@ $(function () {
 
     $('[tiles-popup]').addClass('d-none');
     $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
-  }); //~~~~~~~~~~~~~~~~~~ Fill block to red colour after click ~~~~~~~~~~~~~~~~~~~~
+  }); //~~~~~~~~~~~~~~~~~~ Fill block to red colour after click (mobile) ~~~~~~~~~~~~~~~~~~~~
 
   function selectItemToRed(element) {
     var blockProject = element.closest('.descr');
@@ -41003,11 +41003,8 @@ $(function () {
     }
   }
 
-  function sendFormAndRefreshCard(form, elementAdd) {
+  function sendFormAndRefreshCard(form) {
     var formData = new FormData(form[0]);
-    var elChecked = $(form).closest('.item').find('.add-width');
-    var elAdd = $(form).closest('.item').find('.add');
-    var elDescr = $(form).closest('.item').find('.descr');
     var lastAmount = form.find('input[name="amount"]').val();
     var lastPeriod = form.find('select[name="period"]').val();
 
@@ -41026,22 +41023,86 @@ $(function () {
       success: function success(response, textStatus, jqXHR) {
         if (response.success) {
           refreshCardAddHtml(response);
-
-          if ($(elementAdd).length) {
-            selectItemToRed($(elementAdd));
-          }
-
-          if ($(elChecked).length) {
-            $(elChecked).removeClass('d-none');
-            $(elAdd).addClass('d-none');
-            $(elDescr).addClass('bg-btn-red');
-          }
+          refreshRelatedProjects();
         }
       },
       error: function error(response) {
         toastr.error('Unknown error ', 'Error');
       }
     });
+  }
+
+  refreshRelatedProjects();
+
+  function refreshRelatedProjects() {
+    var projects = $('.project');
+    var projectsChecked = $('.add-width');
+    var projectsCheckedMobile = $('.add');
+    var arrProjectsId = [];
+    projects.each(function () {
+      arrProjectsId.push(parseInt($(this).val()));
+    });
+    projectsChecked.each(function () {
+      var id = $(this).data('id');
+
+      if ($.inArray(parseInt(id), arrProjectsId) == -1) {
+        removeCheckedToProject($(this));
+      } else {
+        addCheckedToProject($(this));
+      }
+    });
+    projectsCheckedMobile.each(function () {
+      var id = $(this).data('id');
+      var elDescr = $(this).closest('.descr');
+
+      if ($(elDescr).length) {
+        if ($.inArray(parseInt(id), arrProjectsId) == -1) {
+          removeCheckedToProjectMobile($(this));
+        } else {
+          addCheckedToProjectMobile($(this));
+        }
+      }
+    });
+  } //~~~~~~~~~~~~~~~~~~ Add and Clear project from 'checked' (mobile) ~~~~~~~~~~~~~~~~~~~~
+
+
+  function addCheckedToProjectMobile(element) {
+    var descrEl = element.closest('.descr');
+
+    if (descrEl.length) {
+      $(descrEl).addClass('bg-btn-red');
+      $(descrEl).find('i').addClass('moon-icons-check');
+      $(descrEl).find('i').removeClass('moon-icons-plus');
+    }
+  }
+
+  function removeCheckedToProjectMobile(element) {
+    var descrEl = element.closest('.descr');
+
+    if (descrEl.length) {
+      $(descrEl).removeClass('bg-btn-red');
+      $(descrEl).find('i').removeClass('moon-icons-check');
+      $(descrEl).find('i').addClass('moon-icons-plus');
+    }
+  } //~~~~~~~~~~~~~~~~~~ Add and Clear project from 'checked' ~~~~~~~~~~~~~~~~~~~~
+
+
+  function removeCheckedToProject(element) {
+    if (!element.hasClass('d-none')) {
+      var elItem = element.closest('.item');
+      element.addClass('d-none');
+      $(elItem).find('.descr').removeClass('bg-btn-red');
+      $(elItem).find('.add').removeClass('d-none');
+    }
+  }
+
+  function addCheckedToProject(element) {
+    if (element.hasClass('d-none')) {
+      var elItem = element.closest('.item');
+      element.removeClass('d-none');
+      $(elItem).find('.descr').addClass('bg-btn-red');
+      $(elItem).find('.add').addClass('d-none');
+    }
   }
 
   $(document).on('click', '#cartModal a.btn_checkout', function (e) {
@@ -41339,7 +41400,8 @@ $(function () {
     var filter = $(this).data('filter');
     $('[filter-projects]').addClass('d-none');
     $('.filter_projects_' + filter).removeClass('d-none');
-  });
+  }); //~~~~~~~~~~~~~~~~ Project tiles after change type donate ~~~~~~~~~~~~~~~~~~~~~~
+
   $(document).on('change', '[tiles-options-type]', function () {
     var key = $(this).data('key');
     var val = $(this).val();

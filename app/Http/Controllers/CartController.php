@@ -21,6 +21,7 @@ class CartController extends Controller
 
         $amount = $request->amount;
         $campaignId = $request->campaigns;
+        $projectId = $request->project_id;
 
         if (isset($request->categories)) {
             $category = CampaignCategory::where('name', $request->categories)->first();
@@ -43,7 +44,8 @@ class CartController extends Controller
             'campaign_id' => $campaignId,
             'campaign_category_id' => $categoryId,
             'period' => $period,
-            'note' => $note
+            'note' => $note,
+            'project_id' => $projectId
         ]);
 
         $this->sessionCartPut($cartItem->cart_item_id);

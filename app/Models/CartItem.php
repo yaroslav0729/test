@@ -23,7 +23,7 @@ class CartItem extends Model
         self::created(function($model) use ($randomStr) {
             $model->cart_item_id = $model->id . '_'. $randomStr;
             $model->save();
-        });    
+        });
     }
 
     public function campaign()
@@ -47,6 +47,7 @@ class CartItem extends Model
                 'campaign_category_id' => $this->campaign_category_id,
                 'period' => $this->period,
                 'note' => $this->note,
+                'project_id' => $this->projectId
             ]);
 
             $newItems[] = $newItem->cart_item_id;
@@ -67,9 +68,9 @@ class CartItem extends Model
 
                 $deletedItems[] = $item->cart_item_id;
                 $item->delete();
-            
+
                 if ((!empty($quantity)) && (count($deletedItems) >= $quantity)) break;
-            }  
+            }
         }
 
         return $deletedItems;
@@ -88,7 +89,7 @@ class CartItem extends Model
                 ($item->campaign_category_id === $this->campaign_category_id) &&
                 ($item->period === $this->period))
 
-                $itemsCollected[] = $item; 
+                $itemsCollected[] = $item;
         }
 
         return $itemsCollected;
@@ -99,9 +100,9 @@ class CartItem extends Model
         $cartItems = session()->get('cart');
 
         if (is_array($cartItems)) {
-            
+
             $items = \App\Models\CartItem::whereIn('cart_item_id', $cartItems)->get();
-        
+
             $itemsCollected = [];
 
             foreach ($items as $item) {
@@ -111,7 +112,7 @@ class CartItem extends Model
 
             return $itemsCollected;
         }
-        
+
         return [];
     }
 
@@ -120,17 +121,17 @@ class CartItem extends Model
         $cartItems = session()->get('cart');
 
         if (is_array($cartItems)) {
-            
+
             $items = \App\Models\CartItem::whereIn('cart_item_id', $cartItems)->get();
-        
+
             $sum = 0;
             foreach ($items as $item) {
-                $sum = $sum + $item->amount;    
+                $sum = $sum + $item->amount;
             }
 
             return $sum;
         }
-        
+
         return 0;
     }
 }
