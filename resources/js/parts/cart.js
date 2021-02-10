@@ -200,7 +200,10 @@ $(function () {
     $(document).on('click', '[tiles-popup] .btn_sbmt', function (e) {
         e.preventDefault()
 
-        let form = $(this).closest('form')
+        let form = $(this).closest('form');
+        let categories = form.find('select[name="categories"]').val();
+
+        const elChecked = $(this).closest('.top-bar').find('.text-value');
 
         let type = form.find('select[name="period"]').val()
         let price
@@ -211,9 +214,13 @@ $(function () {
             price = form.find('select[name="price_monthly"]').val()
         }
 
-        form.find('input[name="amount"]').val(price)
 
-        //form.submit()
+        form.find('input[name="amount"]').val(price);
+
+        if ($(elChecked).length) {
+            $(elChecked).html('£' + price + ' +' + categories);
+        }
+
         sendFormAndRefreshCard(form, this);
 
         $('#proj_tiles_modal_popup').modal('hide') // for mobile version
@@ -262,6 +269,11 @@ $(function () {
     function sendFormAndRefreshCard(form, elementAdd)
     {
         var formData = new FormData(form[0]);
+        const elChecked = $(form).closest('.item').find('.add-width');
+        const elAdd = $(form).closest('.item').find('.add');
+        const elDescr = $(form).closest('.item').find('.descr');
+        console.log(elChecked);
+
 
         let lastAmount = form.find('input[name="amount"]').val()
         let lastPeriod = form.find('select[name="period"]').val()
@@ -285,6 +297,11 @@ $(function () {
                     refreshCardAddHtml(response)
                     if ($(elementAdd).length) {
                         selectItemToRed($(elementAdd));
+                    }
+                    if ($(elChecked).length) {
+                        $(elChecked).removeClass('d-none');
+                        $(elAdd).addClass('d-none');
+                        $(elDescr).addClass('bg-btn-red');
                     }
 
                 }

@@ -40951,6 +40951,8 @@ $(function () {
   $(document).on('click', '[tiles-popup] .btn_sbmt', function (e) {
     e.preventDefault();
     var form = $(this).closest('form');
+    var categories = form.find('select[name="categories"]').val();
+    var elChecked = $(this).closest('.top-bar').find('.text-value');
     var type = form.find('select[name="period"]').val();
     var price;
 
@@ -40960,7 +40962,11 @@ $(function () {
       price = form.find('select[name="price_monthly"]').val();
     }
 
-    form.find('input[name="amount"]').val(price); //form.submit()
+    form.find('input[name="amount"]').val(price);
+
+    if ($(elChecked).length) {
+      $(elChecked).html('£' + price + ' +' + categories);
+    }
 
     sendFormAndRefreshCard(form, this);
     $('#proj_tiles_modal_popup').modal('hide'); // for mobile version
@@ -40999,6 +41005,10 @@ $(function () {
 
   function sendFormAndRefreshCard(form, elementAdd) {
     var formData = new FormData(form[0]);
+    var elChecked = $(form).closest('.item').find('.add-width');
+    var elAdd = $(form).closest('.item').find('.add');
+    var elDescr = $(form).closest('.item').find('.descr');
+    console.log(elChecked);
     var lastAmount = form.find('input[name="amount"]').val();
     var lastPeriod = form.find('select[name="period"]').val();
 
@@ -41020,6 +41030,12 @@ $(function () {
 
           if ($(elementAdd).length) {
             selectItemToRed($(elementAdd));
+          }
+
+          if ($(elChecked).length) {
+            $(elChecked).removeClass('d-none');
+            $(elAdd).addClass('d-none');
+            $(elDescr).addClass('bg-btn-red');
           }
         }
       },
