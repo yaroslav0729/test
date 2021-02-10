@@ -41008,7 +41008,6 @@ $(function () {
     var elChecked = $(form).closest('.item').find('.add-width');
     var elAdd = $(form).closest('.item').find('.add');
     var elDescr = $(form).closest('.item').find('.descr');
-    console.log(elChecked);
     var lastAmount = form.find('input[name="amount"]').val();
     var lastPeriod = form.find('select[name="period"]').val();
 
