@@ -394,9 +394,7 @@
 
 <div class="row mt-5">
     <div class="col-12">
-        @include('modules.admin.related_page_expanded', [
-            'parameters' => $parameters
-        ])
+        @include('modules.admin.related_topics_project')
     </div>
 </div>
 
