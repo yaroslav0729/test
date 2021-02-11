@@ -252,6 +252,8 @@
 
 <div class="pt-2 pb-2"></div>
 
-@include('modules.presentation.related_topics_project')
+@include('modules.presentation.related_page_expanded', [
+    'parameters' => $parameters
+])
 
 @include('modules.presentation.join_the_cause_subscribe')
