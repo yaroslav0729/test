@@ -68,7 +68,7 @@ class Template
 
     const CONFIGURE_TEMPLATES = [
         self::INDEX_PAGE => [
-            'headerClassName' => 'blue',
+            'headerClassName' => 'white',
             'footerClassName' => 'bg-primary',
             'headerType' => 'parts.header',
         ],
