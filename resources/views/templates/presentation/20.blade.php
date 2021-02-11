@@ -51,6 +51,9 @@
     $whatIsWhyWeDonateTitle = "";
     $whatIsWhyWeDonateText = "";
 
+    $whatIsWhenWeDonateTitle = "";
+    $whatIsWhenWeDonateText = "";
+
     $whatIsReceiveTitle = "";
     $whatIsReceiveText = "";
 
@@ -213,6 +216,14 @@
 
     if (isset($parameters['w_i_donate_text'])) {
         $whatIsWhyWeDonateText = $parameters['w_i_donate_text'];
+    }
+
+    if (isset($parameters['w_i_when_donate_title'])) {
+        $whatIsWhenWeDonateTitle = $parameters['w_i_when_donate_title'];
+    }
+
+    if (isset($parameters['w_i_when_donate_text'])) {
+        $whatIsWhenWeDonateText = $parameters['w_i_when_donate_text'];
     }
 
 
@@ -537,6 +548,10 @@ $categoryNameFitZakat = \App\Models\CampaignCategory::find(Setting::get(Setting:
 
                     <h2>{{ $whatIsWhyWeDonateTitle }}</h2>
                     <p>{!! $whatIsWhyWeDonateText !!}</p>
+                    <div class="pt-5"></div>
+
+                    <h2>{{ $whatIsWhenWeDonateTitle }}</h2>
+                    <p>{!! $whatIsWhenWeDonateText !!}</p>
                     <div class="pt-5"></div>
 
                     <h2>{{ $whatIsReceiveTitle }}</h2>

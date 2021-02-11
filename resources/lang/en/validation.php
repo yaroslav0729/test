@@ -197,6 +197,8 @@ return [
 
         'parameters.w_i_donate_title' => 'Why do we donate Zakat title',
         'parameters.w_i_donate_text' => 'Why do we donate Zakat text',
+        'parameters.w_i_when_donate_title' => 'When should we donate Zakat title',
+        'parameters.w_i_when_donate_text' => 'When should we donate Zakat text',
         'parameters.w_i_receive_title' => 'Who can receive Zakat title',
         'parameters.w_i_receive_text' => 'Who can receive Zakat text',
 

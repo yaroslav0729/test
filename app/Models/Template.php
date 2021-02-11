@@ -431,6 +431,8 @@ class Template
 
                     'parameters.w_i_donate_title' => 'required',
                     'parameters.w_i_donate_text' => 'required',
+                    'parameters.w_i_when_donate_title' => 'required',
+                    'parameters.w_i_when_donate_text' => 'required',
                     'parameters.w_i_receive_title' => 'required',
                     'parameters.w_i_receive_text' => 'required',
 

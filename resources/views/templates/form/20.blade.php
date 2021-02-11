@@ -51,6 +51,9 @@
     $whatIsWhyWeDonateTitle = "";
     $whatIsWhyWeDonateText = "";
 
+    $whatIsWhenWeDonateTitle = "";
+    $whatIsWhenWeDonateText = "";
+
     $whatIsReceiveTitle = "";
     $whatIsReceiveText = "";
 
@@ -213,6 +216,14 @@
 
     if (isset($parameters['w_i_donate_text'])) {
         $whatIsWhyWeDonateText = $parameters['w_i_donate_text'];
+    }
+
+    if (isset($parameters['w_i_when_donate_title'])) {
+        $whatIsWhenWeDonateTitle = $parameters['w_i_when_donate_title'];
+    }
+
+    if (isset($parameters['w_i_when_donate_text'])) {
+        $whatIsWhenWeDonateText = $parameters['w_i_when_donate_text'];
     }
 
 
@@ -578,6 +589,23 @@
 
             <div class="col-12 col-lg-6">
                 <div class="form-group">
+                    <label>When should we donate Zakat title:</label>
+                    <input class="form-control" name="parameters[w_i_when_donate_title]"
+                           placeholder="When should we donate Zakat title" value="{{ $whatIsWhenWeDonateTitle }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label>When should we donate Zakat text:</label>
+                    <textarea class="form-control" name="parameters[w_i_when_donate_text]"
+                              rows="5"
+                              placeholder="When should we donate Zakat text">{!! $whatIsWhenWeDonateText !!}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 col-lg-6">
+                <div class="form-group">
                     <label>Who can receive Zakat title:</label>
                     <input class="form-control" name="parameters[w_i_receive_title]"
                            placeholder="Who can receive Zakat title" value="{{ $whatIsReceiveTitle }}"/>
@@ -589,9 +617,7 @@
                               rows="5" placeholder="Who can receive Zakat text">{!! $whatIsReceiveText !!}</textarea>
                 </div>
             </div>
-        </div>
 
-        <div class="row mt-4">
             <div class="col-12 col-lg-6">
                 <div class="form-group">
                     <label>How is Zakat calculated title:</label>
@@ -606,7 +632,9 @@
                               placeholder="How is Zakat calculated text">{!! $whatIsHowCalculatedText !!}</textarea>
                 </div>
             </div>
+        </div>
 
+        <div class="row mt-4">
             <div class="col-12 col-lg-6">
                 <div class="form-group">
                     <label>How is Nisaab measured title:</label>
@@ -620,9 +648,7 @@
                               rows="5" placeholder="How is Nisaab measured text">{!! $whatIsHowNisaabText !!}</textarea>
                 </div>
             </div>
-        </div>
 
-        <div class="row mt-4">
             <div class="col-12 col-lg-6">
                 <div class="form-group">
                     <label>Should I use gold/silver to calculate Nisaab title:</label>
