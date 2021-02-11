@@ -1147,8 +1147,8 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   max-width: 250px;
   padding: 8px;
   text-align: center;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   cursor: pointer;
 }
 .btn-fb:hover {
@@ -1198,10 +1198,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   background-color: #3A7BF5 !important;
 }
 .text-info {
-  color: #2caabb  !important;
+  color: #2caabb !important;
 }
 .text-dark {
-  color: #101525  !important;
+  color: #101525 !important;
 }
 .text-red {
   color: #FF5D4A !important;
@@ -3214,6 +3214,19 @@ input[type='number'].color-danger + .input-group .btn {
 .discover-more .current-projects-list {
   margin: 0 -15px;
 }
+.filter_projects_single .current-projects-list {
+  margin-bottom: 0;
+}
+.filter_projects_single .current-projects-list .swiper-container {
+  border-bottom: 0;
+}
+.filter_projects_single .current-projects-list .swiper-wrapper {
+  padding-bottom: 87px;
+}
+.filter_projects_single .current-projects-list .swiper-pagination {
+  padding: 0;
+  bottom: 0;
+}
 .mission-impossible {
   overflow: hidden;
   padding: 0;
@@ -3646,7 +3659,7 @@ input[type='number'].color-danger + .input-group .btn {
   width: 55px;
   height: 55px;
   line-height: 51px;
-  font-size: 28px;
+  font-size: 21px;
   color: #fff;
   background: #F7796A;
   text-align: center;
@@ -3671,6 +3684,10 @@ input[type='number'].color-danger + .input-group .btn {
 .donate-projects-list .item .img .top-bar .add-wide i {
   font-size: 18px;
 }
+.donate-projects-list .item .img .top-bar .add-width {
+  border-radius: 5px 5px 0 0;
+  padding: 12px 0;
+}
 .donate-projects-list .item .img .top-bar .form {
   background: #F7796A;
   border-radius: 5px;
@@ -3680,6 +3697,17 @@ input[type='number'].color-danger + .input-group .btn {
   right: 0;
   left: 25px;
   z-index: 2;
+  max-height: 400px;
+  transition: all 250ms linear;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+}
+.donate-projects-list .item .img .top-bar .form.d-none {
+  display: block !important;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 4px;
 }
 .donate-projects-list .item .img .top-bar .form .name {
   color: #FFF;
@@ -3837,7 +3865,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: .5;
+  opacity: 0.5;
 }
 .about-donation .body .item span {
   display: inline-block;
@@ -4063,7 +4091,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: .5;
+  opacity: 0.5;
 }
 .order-cart-list .total {
   background: #FFF6F3;
@@ -5481,8 +5509,8 @@ input[type='number'].color-danger + .input-group .btn {
   position: absolute;
   left: 0;
   right: 0;
-  top: 107px;
-  z-index: 2;
+  top: 106px;
+  z-index: 3;
 }
 .calculator .title .bottom.open {
   display: block;
@@ -5511,9 +5539,14 @@ input[type='number'].color-danger + .input-group .btn {
   background: #101525;
   margin: 18px 0;
 }
+.calculator .form-group label {
+  letter-spacing: 1.2px;
+}
 .calculator .form-group[currency]:after {
   transform: translate(0);
   top: 45px;
+  color: gray;
+  font-weight: 900;
 }
 .calculator .calc .item {
   border-radius: 5px;
@@ -6275,6 +6308,13 @@ input[type='number'].color-danger + .input-group .btn {
 .js-cookie-consent-agree {
   border: 1px black solid;
   color: #1f1e1e;
+}
+.bg-btn-red {
+  background: #f7796a !important;
+  color: #ffffff;
+}
+.bg-btn-red a {
+  color: #ffffff !important;
 }
 /*------------------------------------vb--------*/
 /*# sourceMappingURL=styles.css.map */

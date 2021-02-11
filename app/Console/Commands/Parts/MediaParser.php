@@ -12,6 +12,10 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use voku\helper\HtmlDomParser;
 
+/*
+php artisan parse:all_pages --parser=media
+*/
+
 class MediaParser extends AbstractParser
 {
     const PARSING_LINK = 'https://www.islamichelp.org.uk/media-centre-sitemap.xml';
@@ -85,7 +89,7 @@ class MediaParser extends AbstractParser
             $newsHtml = "";
 
             if ($newsBlock) {
-                $newsHtml = $newsBlock->html();
+                $newsHtml = '<div class="container">' . $newsBlock->html() . '</div>';
 
                 $newsHtml = $this->uploadImages($newsHtml);
             }

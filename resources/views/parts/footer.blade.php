@@ -1,7 +1,7 @@
 <footer class="{{ $configTemplate['footerClassName'] ?? 'bg-primary' }}">
     <div class="wrap">
         <div class="row">
-            <div class="col-12 col-lg-8">
+            <div class="col-12 col-lg-9">
                 <ul class="menu d-flex align-items-start">
                     @foreach($footerMenuItem as $menuItem)
                         <li class="">
@@ -17,7 +17,7 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="col-12 col-lg-1"></div>
+{{--            <div class="col-12 col-lg-1"></div>--}}
             <div class="col-12 col-lg-3">
                 <div class="social d-flex justify-content-between pl-5 pr-3">
                     @foreach ($socialMenu as $menuItem)

@@ -2642,6 +2642,18 @@ input[type='number'].color-danger  + .input-group {
     .current-projects-list {margin: 0 -15px;}
 }
 
+.filter_projects_single .current-projects-list {
+    margin-bottom: 0;
+    .swiper-container {border-bottom: 0}
+    .swiper-wrapper {
+        padding-bottom: 87px;
+    }
+    .swiper-pagination {
+        padding: 0;
+        bottom: 0;
+    }
+}
+
 .mission-impossible {
     overflow: hidden;
     padding: 0;
@@ -3049,7 +3061,7 @@ input[type='number'].color-danger  + .input-group {
                     display: block;
                     width: 55px; height: 55px;
                     line-height: 51px;
-                    font-size: 28px;
+                    font-size: 21px;
                     color: #fff;
                     background: #F7796A;
                     text-align: center;
@@ -3074,6 +3086,11 @@ input[type='number'].color-danger  + .input-group {
                         font-size: 18px;
                     }
                 }
+                .add-width {
+                    border-radius: 5px 5px 0 0;
+                    padding: 12px 0;
+
+                }
                 .form {
                     background: #F7796A;
                     border-radius: 5px;
@@ -3081,6 +3098,14 @@ input[type='number'].color-danger  + .input-group {
                     position: absolute; top:0; right: 0;
                     left: 25px;
                     z-index: 2;
+                    max-height: 400px;
+                    .easy();
+                    &.d-none {
+                        display: block !important;
+                        max-height: 0;
+                        overflow: hidden;
+                        padding: 0 4px;
+                    }
                     .name {
                         color: #FFF;
                         text-transform: uppercase;
@@ -4746,8 +4771,8 @@ input[type='number'].color-danger  + .input-group {
             display: none;
             background: #231F51;
             padding: 0 0 47px;
-            position: absolute; left: 0; right: 0; top: 107px;
-            z-index: 2;
+            position: absolute; left: 0; right: 0; top: 106px;
+            z-index: 3;
             &.open {display: block}
             .line {
                 background: #fff;
@@ -4775,9 +4800,16 @@ input[type='number'].color-danger  + .input-group {
         background: #101525;
         margin: 18px 0;
     }
+    .form-group {
+        label {
+            letter-spacing: 1.2px;
+        }
+    }
     .form-group[currency]:after {
         transform: translate(0);
         top: 45px;
+        color: gray;
+        font-weight: 900;
     }
     .calc {
         .item {
@@ -5455,5 +5487,13 @@ input[type='number'].color-danger  + .input-group {
 .js-cookie-consent-agree {
     border: 1px black solid;
     color: #1f1e1e;
+}
+
+.bg-btn-red {
+    background: #f7796a!important;
+    color: #ffffff;
+    a {
+        color: #ffffff!important;;
+    }
 }
 /*------------------------------------vb--------*/

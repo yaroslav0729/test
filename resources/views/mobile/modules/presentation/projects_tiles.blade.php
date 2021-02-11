@@ -4,13 +4,11 @@
         {{-- Options will be here --}}
     </div>
 
-    @include('modules.presentation.parts.project_tiles_modal_wrapper')
-
     <div class="swiper-container">
         <div class="swiper-wrapper">
 
             @php
-                $tileCou = 0;    
+                $tileCou = 0;
             @endphp
 
             @foreach ($projects as $projKey => $project)
@@ -36,12 +34,13 @@
                             <div class="add" data-id="{{ $projInstance->id}}">
                                 <i class="moon-icons-plus"></i>
                             </div>
+                            @include('modules.presentation.parts.projects_tiles_popup', ['popupKey' => $projInstance->id])
                         </div>
                     </div>
                 </div>
 
                 @php
-                            
+
                     if ($tileCou < 5) {
                         $tileCou++;
                     } else {

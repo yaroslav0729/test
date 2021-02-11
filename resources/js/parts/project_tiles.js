@@ -85,6 +85,7 @@ $(function () {
         $('.filter_projects_' + filter).removeClass('d-none')
     });
 
+    //~~~~~~~~~~~~~~~~ Project tiles after change type donate ~~~~~~~~~~~~~~~~~~~~~~
     $(document).on('change', '[tiles-options-type]', function () {
 
         let key = $(this).data('key')

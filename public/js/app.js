@@ -40874,11 +40874,7 @@ $(function () {
 
 
   $(document).on('click', '.add-related', function () {
-    var blockProject = $(this).closest('.descr');
-    var icon = $(blockProject).find('i');
-    $(icon).removeClass('moon-icons-plus');
-    $(icon).addClass('moon-icons-check');
-    $(blockProject).addClass('bg-btn-red');
+    selectItemToRed($(this));
   });
   $(document).on('click', '[zakat-donate-btn]', function (e) {
     e.preventDefault();
@@ -40955,6 +40951,8 @@ $(function () {
   $(document).on('click', '[tiles-popup] .btn_sbmt', function (e) {
     e.preventDefault();
     var form = $(this).closest('form');
+    var categories = form.find('select[name="categories"]').val();
+    var elChecked = $(this).closest('.top-bar').find('.text-value');
     var type = form.find('select[name="period"]').val();
     var price;
 
@@ -40964,14 +40962,26 @@ $(function () {
       price = form.find('select[name="price_monthly"]').val();
     }
 
-    form.find('input[name="amount"]').val(price); //form.submit()
+    form.find('input[name="amount"]').val(price);
 
-    sendFormAndRefreshCard(form);
+    if ($(elChecked).length) {
+      $(elChecked).html('£' + price + ' +' + categories);
+    }
+
+    sendFormAndRefreshCard(form, this);
     $('#proj_tiles_modal_popup').modal('hide'); // for mobile version
 
     $('[tiles-popup]').addClass('d-none');
     $('#add_to_cart_popup').fadeIn().delay(5000).fadeOut();
-  });
+  }); //~~~~~~~~~~~~~~~~~~ Fill block to red colour after click (mobile) ~~~~~~~~~~~~~~~~~~~~
+
+  function selectItemToRed(element) {
+    var blockProject = element.closest('.descr');
+    var icon = $(blockProject).find('i');
+    $(icon).removeClass('moon-icons-plus');
+    $(icon).addClass('moon-icons-check');
+    $(blockProject).addClass('bg-btn-red');
+  }
 
   function refreshCardAddHtml(response) {
     var newCart = $('.modal-body', response.cart_html);
@@ -41013,12 +41023,86 @@ $(function () {
       success: function success(response, textStatus, jqXHR) {
         if (response.success) {
           refreshCardAddHtml(response);
+          refreshRelatedProjects();
         }
       },
       error: function error(response) {
         toastr.error('Unknown error ', 'Error');
       }
     });
+  }
+
+  refreshRelatedProjects();
+
+  function refreshRelatedProjects() {
+    var projects = $('.project');
+    var projectsChecked = $('.add-width');
+    var projectsCheckedMobile = $('.add');
+    var arrProjectsId = [];
+    projects.each(function () {
+      arrProjectsId.push(parseInt($(this).val()));
+    });
+    projectsChecked.each(function () {
+      var id = $(this).data('id');
+
+      if ($.inArray(parseInt(id), arrProjectsId) == -1) {
+        removeCheckedToProject($(this));
+      } else {
+        addCheckedToProject($(this));
+      }
+    });
+    projectsCheckedMobile.each(function () {
+      var id = $(this).data('id');
+      var elDescr = $(this).closest('.descr');
+
+      if ($(elDescr).length) {
+        if ($.inArray(parseInt(id), arrProjectsId) == -1) {
+          removeCheckedToProjectMobile($(this));
+        } else {
+          addCheckedToProjectMobile($(this));
+        }
+      }
+    });
+  } //~~~~~~~~~~~~~~~~~~ Add and Clear project from 'checked' (mobile) ~~~~~~~~~~~~~~~~~~~~
+
+
+  function addCheckedToProjectMobile(element) {
+    var descrEl = element.closest('.descr');
+
+    if (descrEl.length) {
+      $(descrEl).addClass('bg-btn-red');
+      $(descrEl).find('i').addClass('moon-icons-check');
+      $(descrEl).find('i').removeClass('moon-icons-plus');
+    }
+  }
+
+  function removeCheckedToProjectMobile(element) {
+    var descrEl = element.closest('.descr');
+
+    if (descrEl.length) {
+      $(descrEl).removeClass('bg-btn-red');
+      $(descrEl).find('i').removeClass('moon-icons-check');
+      $(descrEl).find('i').addClass('moon-icons-plus');
+    }
+  } //~~~~~~~~~~~~~~~~~~ Add and Clear project from 'checked' ~~~~~~~~~~~~~~~~~~~~
+
+
+  function removeCheckedToProject(element) {
+    if (!element.hasClass('d-none')) {
+      var elItem = element.closest('.item');
+      element.addClass('d-none');
+      $(elItem).find('.descr').removeClass('bg-btn-red');
+      $(elItem).find('.add').removeClass('d-none');
+    }
+  }
+
+  function addCheckedToProject(element) {
+    if (element.hasClass('d-none')) {
+      var elItem = element.closest('.item');
+      element.removeClass('d-none');
+      $(elItem).find('.descr').addClass('bg-btn-red');
+      $(elItem).find('.add').addClass('d-none');
+    }
   }
 
   $(document).on('click', '#cartModal a.btn_checkout', function (e) {
@@ -41133,6 +41217,27 @@ $(function () {
     var tabClass = $(this).data('tab');
     $('div.' + tabClass).removeClass('d-none');
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  /*    function changeFontSize()
+      {
+          const countPounds = $('.count-pounds');
+  
+          console.log(countPounds.length);
+  
+          if (countPounds.length > 0) {
+             $.each(countPounds, function (key, countPound ) {
+                 console.log(key);
+                 console.log(countPound);
+                 let str = $(countPound).html()
+                 console.log($.trim(str).length);
+  
+  
+             });
+  
+          }
+      }
+  
+      changeFontSize();*/
 });
 
 /***/ }),
@@ -41295,7 +41400,8 @@ $(function () {
     var filter = $(this).data('filter');
     $('[filter-projects]').addClass('d-none');
     $('.filter_projects_' + filter).removeClass('d-none');
-  });
+  }); //~~~~~~~~~~~~~~~~ Project tiles after change type donate ~~~~~~~~~~~~~~~~~~~~~~
+
   $(document).on('change', '[tiles-options-type]', function () {
     var key = $(this).data('key');
     var val = $(this).val();
@@ -41396,12 +41502,12 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/app_admin.css */"./resources/css/app_admin.css");
-__webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
-module.exports = __webpack_require__(/*! /var/www/html/islamichelp.local/resources/css/mobile.css */"./resources/css/mobile.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app_admin.css */"./resources/css/app_admin.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+module.exports = __webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/mobile.css */"./resources/css/mobile.css");
 
 
 /***/ })

@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: 0.2;
+  opacity: .2;
 }
 .other-way-give-mobile .phone {
   display: block;
@@ -155,7 +155,7 @@
   padding-right: 30px;
 }
 .mobile-template .wrapper {
-  padding-top: 54px;
+  padding-top: 50px;
 }
 .mobile-template .wrap {
   min-width: 200px;
@@ -172,19 +172,22 @@
 }
 .mobile-template header .top-bar {
   display: block !important;
-  padding: 14px 12px;
+  padding: 11px 12px;
 }
 .mobile-template header .top-bar .logo {
   font-size: 16px;
+  top: 2px;
+  position: relative;
 }
 .mobile-template header .top-bar .logo span {
   height: 26px;
   width: 27px;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 .mobile-template header .top-bar .logo span img {
+  top: -2px;
   width: 26px;
-  height: 25px;
+  height: 24px;
 }
 .mobile-template header .top-bar .open-head-menu {
   background: url(../img/ico-menu.svg) no-repeat;
@@ -203,7 +206,10 @@
   vertical-align: middle;
 }
 .mobile-template header .top-bar .basket i {
-  font-size: 22px;
+  width: 27px;
+  height: 24px;
+  top: -1px;
+  left: 3px;
   vertical-align: middle;
   position: relative;
   z-index: 2;
@@ -237,11 +243,11 @@
 }
 .mobile-template .header-menu .logo {
   width: 54px;
-  height: 50px;
+  height: 49px;
 }
 .mobile-template .header-menu .logo img {
   width: 54px !important;
-  height: 50px !important;
+  height: 49px !important;
 }
 .mobile-template .header-menu .line {
   width: 260px;
@@ -487,7 +493,7 @@
   margin: -56px 0 40px;
 }
 .mobile-template .help-info-swiper .swiper-button-disabled {
-  opacity: 1;
+  opacity: 1.0;
 }
 .mobile-template .help-info-swiper .swiper-button-disabled .moon-icons-arrow-left::before,
 .mobile-template .help-info-swiper .swiper-button-disabled .moon-icons-arrow-right::before {
@@ -963,7 +969,7 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  font-size: 25px;
+  font-size: 20px;
   color: #fff;
   background: #F7796A;
   border-radius: 5px 0 5px 0;
@@ -971,6 +977,55 @@
   height: 40px;
   text-align: center;
   line-height: 35px;
+}
+.mobile-template .donate-projects-list .item .descr .form {
+  background: #F7796A;
+  border-radius: 5px;
+  padding: 19px 4px 4px;
+  position: absolute;
+  top: -293px;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  max-height: 400px;
+  transition: all 250ms linear;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+}
+.mobile-template .donate-projects-list .item .descr .form.d-none {
+  display: block !important;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 4px;
+}
+.mobile-template .donate-projects-list .item .descr .form .name {
+  color: #FFF;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 30px;
+  padding-right: 42px;
+  padding-left: 15px;
+  height: 60px;
+  overflow: hidden;
+  margin-bottom: 9px;
+}
+.mobile-template .donate-projects-list .item .descr .form .form-group {
+  margin-bottom: 10px;
+}
+.mobile-template .donate-projects-list .item .descr .fa-check {
+  font-size: 30px;
+  color: #fff;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  z-index: 3;
+}
+.mobile-template .donate-projects-list .item .descr form {
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px 12px 20px;
 }
 .mobile-template .donate-projects-list .swiper-container {
   padding-bottom: 40px;
@@ -1391,6 +1446,7 @@
 }
 .mobile-template .gw-map-btn > div {
   background-size: cover;
+  padding-bottom: 85%;
 }
 .mobile-template .promo-project-swiper {
   padding: 0;
@@ -1526,6 +1582,7 @@
   margin-bottom: 50px;
 }
 .mobile-template .values-action .swiper-slide {
+  display: block;
   padding: 60px 0;
 }
 .mobile-template .values-action .swiper-slide > i {
@@ -1539,6 +1596,7 @@
   display: none;
 }
 .mobile-template .values-action .swiper-slide .text {
+  min-height: 360px;
   padding: 0 30px;
 }
 .mobile-template .values-action .swiper-slide .text .text-1 {
@@ -2201,10 +2259,11 @@
   font-size: 35px;
 }
 .bg-btn-red {
-  background: #f7796a !important;
+  background: #f7796a!important;
   color: #ffffff;
 }
 .bg-btn-red a {
-  color: #ffffff !important;
+  color: #ffffff!important;
 }
 /*------------------------------------vb--------*/
+/*# sourceMappingURL=mobile.css.map */

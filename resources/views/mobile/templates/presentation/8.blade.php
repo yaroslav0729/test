@@ -152,7 +152,7 @@
     </div>
 </section>
 <section class="gw-map-btn">
-    <div style="background-image: url({{ $mapImage }})" alt-src="{{ $mapAlternativeImage }}">
+    <div style="background-image: url(img/who-we-are-map-mobile.jpg)" alt-src="{{ $mapAlternativeImage }}">
         <a href="#" id="btn-view-global-work" class="btn btn-info">View Global Work</a>
     </div>
 </section>
@@ -163,7 +163,7 @@
     <div class="black-line"></div>
     <p class="mt-4">{!! $ourValuesInActionDescription !!}</p>
 </section>
-<section class="values-action" swiper-wrapper="our-values">
+<section class="values-action" swiper-wrapper="our-values" swiper-autoHeight="true">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             @for ($i = 1; $i <= 4; $i++)
@@ -189,7 +189,7 @@
 @endempty
 
 @empty(!$storyActive)
-<section class="our-story-swiper" swiper-wrapper="our-story">
+<section class="our-story-swiper" swiper-wrapper="our-story" >
     <div class="wrap">
         <div class="swiper-container">
             <div class="swiper-wrapper">

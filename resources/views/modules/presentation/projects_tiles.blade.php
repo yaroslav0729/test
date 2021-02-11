@@ -6,9 +6,8 @@
 
     <div class="swiper-container">
         <div class="swiper-wrapper">
-
                     @php
-                        $tileCou = 0;    
+                        $tileCou = 0;
                     @endphp
 
                     @foreach ($projects as $projKey => $project)
@@ -30,7 +29,15 @@
                                 <div class="img" style="background-image: url({{ $projInstance->preview_img }})">
                                     <div class="top-bar">
                                         <div class="add" data-id="{{ $projInstance->id}} "><i class="moon-icons-plus"></i></div>
-                                        
+                                        <div class="add-width bg-danger d-none" data-id="{{ $projInstance->id}}">
+                                            <div class="col-12 d-flex justify-content-between">
+                                                <div class="text-white align-self-center text-value font-weight-bold font-size-20"></div>
+                                                <div class="align-right">
+                                                    <i class="d-block text-white moon-icons-check font-size-25 align-right"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         @include('modules.presentation.parts.projects_tiles_popup', ['popupKey' => $projInstance->id])
                                     </div>
                                 </div>
@@ -42,7 +49,7 @@
                         </div>
 
                         @php
-                            
+
                             if ($tileCou < 5) {
                                 $tileCou++;
                             } else {
@@ -57,14 +64,8 @@
                         </div>
                         @endif
 
-                    @endforeach
-
-            
-        </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+                    @endforeach        </div>
         <div class="swiper-pagination"></div>
     </div>
 </div>
 
-    

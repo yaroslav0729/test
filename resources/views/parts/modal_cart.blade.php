@@ -33,15 +33,16 @@ $cartSum = \App\Models\CartItem::getCartSum();
                                         <p class="font-size-20 mb-0"><b>{{ $cartItem[0]->note }}</b></p>
                                         @endif
                                         <p class="font-size-20 mb-0">{{ (int)$cartItem[0]->period === \App\Models\CampaignPrice::TYPE_SINGLE ? 'Single' : 'Monthly' }} payment</p>
-                                    
+
                                     @isset($cartItem[0]->campaign_category)
                                         <span>+{{ $cartItem[0]->campaign_category->name }}</span>
                                     @endisset
-                                    
+
                                 </div>
                                     <div class="col-4 text-right">
                                         <form action="{{ route('cart.remove', ['itemId' => $cartItem[0]->cart_item_id]) }}" method="POST">
                                             @csrf
+                                            <input type="hidden" value="{{ $cartItem[0]->project_id ?? '' }}" class="project">
                                             <a href="#" class="btn-remove"><i class="fal fa-times"></i> REMOVE</a>
                                         </form>
                                     </div>
@@ -53,12 +54,12 @@ $cartSum = \App\Models\CartItem::getCartSum();
                                     </div>
                                 </div>
                             </div>
-                        @endisset   
+                        @endisset
                     @endforeach
                 @else
                     <span class="text-danger">Cart is not defined</span>
                 @endisset
-                
+
                 </div>
                 <div class="down-bar">
                     @if($cartSum !== 0)
@@ -66,7 +67,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                     @else
                     <p><b>Any donations</b> you make today will help empower people in need!</p>
                     @endif
-                    
+
                     <div class="pt-3"></div>
                     <div class="row align-items-center">
                         <div class="col-7">

@@ -50,6 +50,9 @@
        $whatIsWhyWeDonateTitle = "";
        $whatIsWhyWeDonateText = "";
 
+       $whatIsWhenWeDonateTitle = "";
+       $whatIsWhenWeDonateText = "";
+
        $whatIsReceiveTitle = "";
        $whatIsReceiveText = "";
 
@@ -214,6 +217,14 @@
            $whatIsWhyWeDonateText = $parameters['w_i_donate_text'];
        }
 
+       if (isset($parameters['w_i_when_donate_title'])) {
+            $whatIsWhenWeDonateTitle = $parameters['w_i_when_donate_title'];
+       }
+
+        if (isset($parameters['w_i_when_donate_text'])) {
+            $whatIsWhenWeDonateText = $parameters['w_i_when_donate_text'];
+        }
+
 
        if (isset($parameters['w_i_receive_title'])) {
            $whatIsReceiveTitle = $parameters['w_i_receive_title'];
@@ -325,22 +336,25 @@
                 </div>
                 <div class="pt-4"></div>
                 <div>
-                    <span class="toggle-title font-size-14 text-white"><i class="far fa-chevron-up mr-2 font-size-20"></i> CLOSE</span>
+                    <span class="toggle-title font-size-14 text-white"><i
+                            class="far fa-chevron-up mr-2 font-size-20"></i> CLOSE</span>
                 </div>
             </div>
         </div>
         <nav class="general-content-tabs">
             <ul class="nav nav-tabs nav-fill" id="myTab">
                 <li class="nav-item col-6 pl-0 pr-0">
-                    <a class="nav-link active text-uppercase" id="tab-1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-selected="true">Calculator</a>
+                    <a class="nav-link active text-uppercase" id="tab-1-tab" data-toggle="tab" href="#tab-1" role="tab"
+                       aria-selected="true">Calculator</a>
                 </li>
                 <li class="nav-item col-6 pl-0 pr-0" role="presentation">
-                    <a class="nav-link" id="tab-2-tab" data-toggle="tab" href="#tab-2" role="tab"  aria-selected="false">{{ $tabWhatZakatTitle }}</a>
+                    <a class="nav-link" id="tab-2-tab" data-toggle="tab" href="#tab-2" role="tab"
+                       aria-selected="false">{{ $tabWhatZakatTitle }}</a>
                 </li>
             </ul>
         </nav>
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="tab-1" role="tabpanel" >
+            <div class="tab-pane fade show active" id="tab-1" role="tabpanel">
                 <div class="row align-items-end gutter-5 base-value">
                     <div class="col-7">
                         <div class="form-group mb-0">
@@ -351,7 +365,9 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-5"><button id="btn-currency" class="btn btn-primary h-form-control">£{{ $priceSilver }}</button></div>
+                    <div class="col-5">
+                        <button id="btn-currency" class="btn btn-primary h-form-control">£{{ $priceSilver }}</button>
+                    </div>
                 </div>
                 <div class="pt-5"></div>
 
@@ -439,12 +455,14 @@
                     </div>
                     <div class="item" id="total-assets">
                         <div><b>Total Assets</b><br>
-                            For your lunar year</div>
+                            For your lunar year
+                        </div>
                         <div class="text-right font-size-20 money-val"><b>£0.00</b></div>
                     </div>
                     <div class="item zakat-payable" id="zakat-pay">
                         <div><b>Zakat Payable</b><br>
-                            For your lunar year</div>
+                            For your lunar year
+                        </div>
                         <div class="text-right font-size-20 money-val"><b>£0.00</b></div>
                     </div>
                 </div>
@@ -460,7 +478,8 @@
                         </div>
                     </div>
                     <div class="pl-4 pr-4">
-                        <a id="btn-donate-mobile" href="#" class="btn btn-danger w-100 disabled" zakat-donate-btn>Donate my Zakat<i class="moon-icons-arrow-right"></i></a>
+                        <a id="btn-donate-mobile" href="#" class="btn btn-danger w-100 disabled" zakat-donate-btn>Donate
+                            my Zakat<i class="moon-icons-arrow-right"></i></a>
                     </div>
                 </div>
                 <br>
@@ -479,6 +498,10 @@
 
                     <h2>{{ $whatIsWhyWeDonateTitle }}</h2>
                     <p>{!! $whatIsWhyWeDonateText !!}</p>
+                    <div class="pt-4"></div>
+
+                    <h2>{{ $whatIsWhenWeDonateTitle }}</h2>
+                    <p>{!! $whatIsWhenWeDonateText !!}</p>
                     <div class="pt-4"></div>
 
                     <h2>{{ $whatIsReceiveTitle }}</h2>

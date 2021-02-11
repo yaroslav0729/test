@@ -1,7 +1,7 @@
 @php
 
 $cart = \App\Models\CartItem::getCart();
-$cartSum = \App\Models\CartItem::getCartSum(); 
+$cartSum = \App\Models\CartItem::getCartSum();
 
 @endphp
 
@@ -140,6 +140,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
 
                                 <form action="{{ route('cart.remove', ['itemId' => $cartItem[0]->cart_item_id]) }}" method="POST">
                                     @csrf
+                                    <input type="hidden" value="{{ $cartItem[0]->project_id ?? '' }}" class="project">
                                     <a href="#" class="btn-remove"><i class="fal fa-times"></i> REMOVE</a>
                                 </form>
 
