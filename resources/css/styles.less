@@ -4771,8 +4771,8 @@ input[type='number'].color-danger  + .input-group {
             display: none;
             background: #231F51;
             padding: 0 0 47px;
-            position: absolute; left: 0; right: 0; top: 107px;
-            z-index: 2;
+            position: absolute; left: 0; right: 0; top: 106px;
+            z-index: 3;
             &.open {display: block}
             .line {
                 background: #fff;
@@ -4800,9 +4800,16 @@ input[type='number'].color-danger  + .input-group {
         background: #101525;
         margin: 18px 0;
     }
+    .form-group {
+        label {
+            letter-spacing: 1.2px;
+        }
+    }
     .form-group[currency]:after {
         transform: translate(0);
         top: 45px;
+        color: gray;
+        font-weight: 900;
     }
     .calc {
         .item {

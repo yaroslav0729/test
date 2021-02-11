@@ -488,13 +488,13 @@
 
             <div class="col-12 col-lg-6 mt-lg-3">
                 <div class="form-group">
-                    <label>Borrowed money/items bought on credit title:</label>
+                    <label>Borrowed money / items bought on credit title:</label>
                     <input class="form-control" name="parameters[calc_borrowed_title]"
                            placeholder="Borrowed money/items bought on credit title" value="{{ $calculateBorrowedTitle }}"/>
                 </div>
 
                 <div class="form-group">
-                    <label>Borrowed money/items bought on credit annotation:</label>
+                    <label>Borrowed money / items bought on credit annotation:</label>
                     <input class="form-control" name="parameters[calc_borrowed_annotation]"
                            placeholder="Borrowed money/items bought on credit annotation" value="{{ $calculateBorrowedAnnotation }}"/>
                 </div>
@@ -516,13 +516,13 @@
 
             <div class="col-12 col-lg-6 mt-lg-3">
                 <div class="form-group">
-                    <label>Taxes/Rent/Utility bills due immediately title:</label>
+                    <label>Taxes / Rent / Utility bills due immediately title:</label>
                     <input class="form-control" name="parameters[calc_taxes_title]"
                            placeholder="Taxes/Rent/Utility bills due immediately title" value="{{ $calculateTaxesTitle }}"/>
                 </div>
 
                 <div class="form-group">
-                    <label>Taxes/Rent/Utility bills due immediately annotation:</label>
+                    <label>Taxes / Rent / Utility bills due immediately annotation:</label>
                     <input class="form-control" name="parameters[calc_taxes_annotation]"
                            placeholder="Taxes/Rent/Utility bills due immediately annotation" value="{{ $calculateTaxesAnnotation }}"/>
                 </div>

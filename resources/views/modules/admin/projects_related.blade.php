@@ -25,15 +25,15 @@
 
 <div class="form-group">
     <label>Donate to project title:</label>
-    <input class="form-control" required name="parameters[donate_to_title]" placeholder="Text value here" value="{{ $donateToProjTitle }}" />
+    <input class="form-control" name="parameters[donate_to_title]" placeholder="Text value here" value="{{ $donateToProjTitle }}" />
 </div>
 
 <div class="form-group">
     <label>Donate to project title(mobile):</label>
-    <input class="form-control" required name="parameters[donate_to_title_mobile]" placeholder="Text value here" value="{{ $donateToProjMobileTitle }}" />
+    <input class="form-control" name="parameters[donate_to_title_mobile]" placeholder="Text value here" value="{{ $donateToProjMobileTitle }}" />
 </div>
 
 <div class="form-group">
     <label>Donate to project text:</label>
-    <input class="form-control" required name="parameters[donate_to_text]" placeholder="Text value here" value="{{ $donateToProjText }}" />
+    <input class="form-control" name="parameters[donate_to_text]" placeholder="Text value here" value="{{ $donateToProjText }}" />
 </div>
