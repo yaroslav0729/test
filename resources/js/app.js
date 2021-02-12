@@ -827,6 +827,13 @@ $(function () {
         {
             closeMenu();
         }
+
+        let ourWorkSection = $('.our-work-term');
+        if (!ourWorkSection.is(e.target) && ourWorkSection.has(e.target).length === 0)
+        {
+            $(ourWorkSection).addClass('d-none');
+            $('.our-work').removeClass('d-none');
+        }
     });
 
     //~~~~~~~~~~~~~~~~~~~~~~~ Close Main when click on the sliders!!! ~~~~~~~~~~~~~~~~~~~~~~~
@@ -1015,6 +1022,64 @@ function getShareThisCou() {
             //console.log(data); // send the error notifications to console
         }
     });
+
+
+    //~~~~~~~~~~~~~~~~~~ Our work Section manipulation Index Page ~~~~~~~~~~~~~~~~~~~~
+
+    $(document).on('click', '.our-work-main', function (e) {
+        e.preventDefault();
+
+        let numberSlide = $(this).attr('id').slice(-1);
+        swichSlide(numberSlide);
+
+        $('.our-work-nav').each(function () {
+            let currentSlide = $(this).find('a').attr('data-target');
+            if (currentSlide == numberSlide ) {
+                $(this).addClass('d-none');
+            }
+        });
+
+        $('.our-work-term').removeClass('d-none');
+        $('.our-work').addClass('d-none');
+    });
+
+    $(document).on('click', '.our-work-nav', function (e) {
+        e.preventDefault();
+
+        let numberSlide = $(this).find('a').data('target');
+        swichSlide(numberSlide);
+
+        $(this).toggleClass("d-none");
+    });
+
+    function swichSlide(numberSlide)
+    {
+        $('.our-work-nav').each(function () {
+            if ($(this).hasClass('d-none')) {
+                $(this).toggleClass('d-none');
+            }
+        });
+
+        rotateSlide($('.our-work-content'), numberSlide);
+        rotateSlide($('.our-work-video'), numberSlide);
+        rotateSlide($('.our-work-bg'), numberSlide);
+    }
+
+    function rotateSlide(collection, numberSlide) {
+        collection.each(function () {
+            if ($(this).not('d-none')) {
+                $(this).addClass('d-none');
+            }
+            if ($(this).attr('id').slice(-1) == numberSlide) {
+                $(this).removeClass('d-none');
+            }
+        });
+    }
+
+
+
+
+
 }
 
 

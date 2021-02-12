@@ -40487,6 +40487,13 @@ $(function () {
     if (!container.is(e.target) && container.has(e.target).length === 0) {
       closeMenu();
     }
+
+    var ourWorkSection = $('.our-work-term');
+
+    if (!ourWorkSection.is(e.target) && ourWorkSection.has(e.target).length === 0) {
+      $(ourWorkSection).addClass('d-none');
+      $('.our-work').removeClass('d-none');
+    }
   }); //~~~~~~~~~~~~~~~~~~~~~~~ Close Main when click on the sliders!!! ~~~~~~~~~~~~~~~~~~~~~~~
 
   $(document).on('click', '[swiper-wrapper]', function (e) {
@@ -40667,7 +40674,51 @@ function getShareThisCou() {
     },
     error: function error(data) {//console.log(data); // send the error notifications to console
     }
+  }); //~~~~~~~~~~~~~~~~~~ Our work Section manipulation Index Page ~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('click', '.our-work-main', function (e) {
+    e.preventDefault();
+    var numberSlide = $(this).attr('id').slice(-1);
+    swichSlide(numberSlide);
+    $('.our-work-nav').each(function () {
+      var currentSlide = $(this).find('a').attr('data-target');
+
+      if (currentSlide == numberSlide) {
+        $(this).addClass('d-none');
+      }
+    });
+    $('.our-work-term').removeClass('d-none');
+    $('.our-work').addClass('d-none');
   });
+  $(document).on('click', '.our-work-nav', function (e) {
+    e.preventDefault();
+    var numberSlide = $(this).find('a').data('target');
+    swichSlide(numberSlide);
+    $(this).toggleClass("d-none");
+  });
+
+  function swichSlide(numberSlide) {
+    $('.our-work-nav').each(function () {
+      if ($(this).hasClass('d-none')) {
+        $(this).toggleClass('d-none');
+      }
+    });
+    rotateSlide($('.our-work-content'), numberSlide);
+    rotateSlide($('.our-work-video'), numberSlide);
+    rotateSlide($('.our-work-bg'), numberSlide);
+  }
+
+  function rotateSlide(collection, numberSlide) {
+    collection.each(function () {
+      if ($(this).not('d-none')) {
+        $(this).addClass('d-none');
+      }
+
+      if ($(this).attr('id').slice(-1) == numberSlide) {
+        $(this).removeClass('d-none');
+      }
+    });
+  }
 } //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
 
 
@@ -41495,12 +41546,12 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app_admin.css */"./resources/css/app_admin.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
-module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/mobile.css */"./resources/css/mobile.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app_admin.css */"./resources/css/app_admin.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+module.exports = __webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/mobile.css */"./resources/css/mobile.css");
 
 
 /***/ })

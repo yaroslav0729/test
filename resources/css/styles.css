@@ -1147,8 +1147,8 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   max-width: 250px;
   padding: 8px;
   text-align: center;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   cursor: pointer;
 }
 .btn-fb:hover {
@@ -1198,10 +1198,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   background-color: #3A7BF5 !important;
 }
 .text-info {
-  color: #2caabb  !important;
+  color: #2caabb !important;
 }
 .text-dark {
-  color: #101525  !important;
+  color: #101525 !important;
 }
 .text-red {
   color: #FF5D4A !important;
@@ -2143,7 +2143,7 @@ input[type='number'].color-danger + .input-group .btn {
   z-index: -1;
 }
 .our-work-term {
-  padding: 0 195px 0 213px;
+  padding: 0 186px 0 165px;
   margin-bottom: 144px;
 }
 .our-work-term .view-more {
@@ -2165,7 +2165,7 @@ input[type='number'].color-danger + .input-group .btn {
   position: relative;
 }
 .our-work-term .bg {
-  background: rgba(44, 170, 187, 0.1);
+  /*   background: rgba(44,170,187,0.1);*/
   position: absolute;
   left: -4px;
   top: 20px;
@@ -2187,6 +2187,18 @@ input[type='number'].color-danger + .input-group .btn {
   bottom: 0;
   width: 4px;
 }
+.our-work-term .bg-1 {
+  background: rgba(44, 170, 187, 0.1);
+}
+.our-work-term .bg-2 {
+  background: rgba(249, 120, 102, 0.1);
+}
+.our-work-term .bg-3 {
+  background: rgba(16, 21, 37, 0.1);
+}
+.our-work-term .bg-4 {
+  background: rgba(245, 193, 93, 0.1);
+}
 .our-work-term .img-video {
   margin: 0 30px 10px 20px;
   padding-bottom: 44.25%;
@@ -2202,6 +2214,9 @@ input[type='number'].color-danger + .input-group .btn {
   position: relative;
   text-decoration: none;
   border-radius: 5px;
+}
+.our-work-term .nav a b {
+  font-weight: 900 !important;
 }
 .our-work-term .nav a span {
   display: block;
@@ -3865,7 +3880,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: .5;
+  opacity: 0.5;
 }
 .about-donation .body .item span {
   display: inline-block;
@@ -4091,7 +4106,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: .5;
+  opacity: 0.5;
 }
 .order-cart-list .total {
   background: #FFF6F3;
@@ -6312,11 +6327,11 @@ input[type='number'].color-danger + .input-group .btn {
   color: #1f1e1e;
 }
 .bg-btn-red {
-  background: #f7796a!important;
+  background: #f7796a !important;
   color: #ffffff;
 }
 .bg-btn-red a {
-  color: #ffffff!important;
+  color: #ffffff !important;
 }
 /*------------------------------------vb--------*/
 /*# sourceMappingURL=styles.css.map */
