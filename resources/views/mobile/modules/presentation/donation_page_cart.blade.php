@@ -170,7 +170,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
             </div>
             <p class="mb-4">Thank you, your donation will help empower people in need!</p>
             <div>
-                <a href="#" class="text-underline text-uppercase text-dark"><b>view more projects</b></a>
+                <a href="/donate" class="text-underline text-uppercase text-dark"><b>view more projects</b></a>
             </div>
         </div>
     </div>
