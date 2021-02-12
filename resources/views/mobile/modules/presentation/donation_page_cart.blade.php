@@ -55,7 +55,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                 </svg>
             </div>
             <p class="font-size-20 mb-4"><b>Your donation so far...</b></p>
-            <div class="price">£{{ $cartSum }}</div>
+            <div class="price">£{{ \App\Models\CartItem::roundCurrency($cartSum) }}</div>
         </div>
     </div>
     @else
@@ -111,7 +111,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                 <p class="mb-0"><b>Total donations</b></p>
             </div>
             <div class="col-6 text-right">
-                <div class="price">£{{ $cartSum }}</div>
+                <div class="price">£{{ \App\Models\CartItem::roundCurrency($cartSum) }}</div>
             </div>
         </div>
         <div class="black-line"></div>
@@ -136,7 +136,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                                 </div>
                             </div>
                             <div class="col-6">
-                                <p class="font-size-18 mb-0"><b>£{{ $cartItem[0]->amount }}</b></p>
+                                <p class="font-size-18 mb-0"><b>£{{ \App\Models\CartItem::roundCurrency($cartItem[0]->amount) }}</b></p>
 
                                 <form action="{{ route('cart.remove', ['itemId' => $cartItem[0]->cart_item_id]) }}" method="POST">
                                     @csrf
