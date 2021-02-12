@@ -40989,7 +40989,7 @@ $(function () {
     var newCartDonate = $(response.cart_donate);
     $('.about-donation').html(newCartDonate.html());
     $("[input_number_spinner]").inputSpinner();
-    $('.basket #sum').text(response.sum);
+    $('.basket #sum').text(response.sum_for_view);
 
     if (response.sum > 0) {
       $('.basket span').removeClass('d-none');
@@ -41012,7 +41012,7 @@ $(function () {
       lastPeriod = form.find('input[name="period"]').val();
     }
 
-    $('#add_to_cart_popup .amount').text(lastAmount);
+    $('#add_to_cart_popup .amount').text(number_format(lastAmount, 2, '.', "'"));
     $('#add_to_cart_popup .period').text(lastPeriod);
     $.ajax({
       url: form.attr('action'),
@@ -41030,6 +41030,20 @@ $(function () {
         toastr.error('Unknown error ', 'Error');
       }
     });
+  }
+
+  function number_format(number) {
+    var decimals = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var dec_point = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '.';
+    var thousands_sep = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : ',';
+    var sign = number < 0 ? '-' : '';
+    var s_number = Math.abs(parseInt(number = (+number || 0).toFixed(decimals))) + "";
+    var len = s_number.length;
+    var tchunk = len > 3 ? len % 3 : 0;
+    var ch_first = tchunk ? s_number.substr(0, tchunk) + thousands_sep : '';
+    var ch_rest = s_number.substr(tchunk).replace(/(\d\d\d)(?=\d)/g, '$1' + thousands_sep);
+    var ch_last = decimals ? dec_point + (Math.abs(number) - s_number).toFixed(decimals).slice(2) : '';
+    return sign + ch_first + ch_rest + ch_last;
   }
 
   refreshRelatedProjects();
@@ -41217,27 +41231,6 @@ $(function () {
     var tabClass = $(this).data('tab');
     $('div.' + tabClass).removeClass('d-none');
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-  /*    function changeFontSize()
-      {
-          const countPounds = $('.count-pounds');
-  
-          console.log(countPounds.length);
-  
-          if (countPounds.length > 0) {
-             $.each(countPounds, function (key, countPound ) {
-                 console.log(key);
-                 console.log(countPound);
-                 let str = $(countPound).html()
-                 console.log($.trim(str).length);
-  
-  
-             });
-  
-          }
-      }
-  
-      changeFontSize();*/
 });
 
 /***/ }),

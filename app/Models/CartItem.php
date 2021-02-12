@@ -134,4 +134,13 @@ class CartItem extends Model
 
         return 0;
     }
+
+    public static function roundCurrency(float $value)
+    {
+        if (!$value) {
+            return '0.00';
+        }
+
+        return number_format(round($value, 2), 2, '.', '\'');
+    }
 }
