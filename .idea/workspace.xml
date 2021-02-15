@@ -34,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="4231" column="8" selection-start-line="4231" selection-start-column="8" selection-end-line="4231" selection-end-column="8" />
+            <state relative-caret-position="244">
+              <caret line="5422" selection-start-line="5422" selection-end-line="5422" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -43,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/mobile/layouts/main.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="55" column="38" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
+            <state relative-caret-position="151">
+              <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -70,11 +70,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>class=&quot;donate-today&quot;</find>
-      <find>lets-join</find>
-      <find>media</find>
-      <find>.letter-spacing</find>
-      <find>moon-icons-plus decor-plus</find>
       <find>.font-we</find>
       <find>donate-today-sheet</find>
       <find>who-we-are</find>
@@ -100,6 +95,11 @@
       <find>/img/IH_Logo_red.png</find>
       <find>.values-action</find>
       <find>.events-home-swiper</find>
+      <find>OUR WORK</find>
+      <find>,events-home-search-form</find>
+      <find>.events-home-search-form</find>
+      <find>.placeholder</find>
+      <find>.picker:after</find>
     </findStrings>
     <replaceStrings>
       <replace>fal fa-arrow-right</replace>
@@ -116,7 +116,6 @@
     <dirStrings>
       <dir>$PROJECT_DIR$/public/markup/mobile</dir>
       <dir>$PROJECT_DIR$/resources/viewsswiper-wrapper=&quot;header2&quot;</dir>
-      <dir>$PROJECT_DIR$/public/markup</dir>
       <dir>$PROJECT_DIR$/public/css</dir>
       <dir>$PROJECT_DIR$/public</dir>
       <dir>$PROJECT_DIR$/public/markup/libs/moon-icons</dir>
@@ -128,6 +127,7 @@
       <dir>$PROJECT_DIR$/resources/views/mobile/modules</dir>
       <dir>$PROJECT_DIR$/resources/views</dir>
       <dir>$PROJECT_DIR$/resources/views/mobile</dir>
+      <dir>$PROJECT_DIR$/public/markup</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -356,6 +356,17 @@
             <path>
               <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
               <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="markup" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Islamic-Help.lo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Islamic-Help.lo" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -462,12 +473,12 @@
       <workItem from="1612448289992" duration="8132000" />
       <workItem from="1612532460785" duration="12214000" />
       <workItem from="1613046405439" duration="1191000" />
-      <workItem from="1613128068286" duration="263000" />
+      <workItem from="1613128068286" duration="2222000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="277451000" />
+    <option name="totallyTimeSpent" value="279410000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -483,10 +494,10 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24606581" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24606581" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="npm" order="3" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" sideWeight="0.49785408" visible="true" weight="0.19283746" />
+      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49785408" weight="0.19283746" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50214595" side_tool="true" weight="0.32684284" />
       <window_info anchor="bottom" id="Version Control" order="3" />
@@ -836,13 +847,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/mobile/layouts/main.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="55" column="38" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/css/mobile.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -850,10 +854,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/mobile/layouts/main.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="4231" column="8" selection-start-line="4231" selection-start-column="8" selection-end-line="4231" selection-end-column="8" />
+        <state relative-caret-position="244">
+          <caret line="5422" selection-start-line="5422" selection-end-line="5422" selection-end-column="13" />
         </state>
       </provider>
     </entry>
