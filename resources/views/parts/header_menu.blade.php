@@ -11,7 +11,7 @@
                                 opened-menu-item
                                 data-id="{{ $itemMenu->id }}">
                                 @if (!$itemMenu->is_group)
-                                    <a href="/{{ $itemMenu->link }}">{{ $itemMenu->text }}</a>
+                                    <a href="{{ $itemMenu->link }}">{{ $itemMenu->text }}</a>
                                 @else
                                     <a href="#">{{ $itemMenu->text }}</a>
                                 @endif
