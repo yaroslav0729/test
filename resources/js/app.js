@@ -633,8 +633,10 @@ $(function () {
     });
 
     $('[opened-menu-item]').on('click', function (e) {
-        openHeadMenu(e, $(this).attr('data-id'));
-        $('[menu-group]').hide();
+       if ($(this).find('a').attr('href') == '#'){
+           openHeadMenu(e, $(this).attr('data-id'));
+           $('[menu-group]').hide();
+       }
     });
 
     function openHeadMenu(e, id = null)
@@ -1075,11 +1077,6 @@ function getShareThisCou() {
             }
         });
     }
-
-
-
-
-
 }
 
 

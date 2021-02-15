@@ -9,9 +9,12 @@
                         @foreach($headerMenuItem[0] as $itemMenu)
                             <li
                                 opened-menu-item
-                                data-id="{{ $itemMenu->id }}"
-                            >
-                                <a href="#">{{ $itemMenu->text }}</a>
+                                data-id="{{ $itemMenu->id }}">
+                                @if (!$itemMenu->is_group)
+                                    <a href="/{{ $itemMenu->link }}">{{ $itemMenu->text }}</a>
+                                @else
+                                    <a href="#">{{ $itemMenu->text }}</a>
+                                @endif
                             </li>
                         @endforeach
                     @endisset
@@ -54,6 +57,7 @@
                                             src=""
                                         @endif
                                         data-target="#videoModal" data-toggle="modal"></div>
+                                   <div class="caption bg-dark text-white">IH sponsorships <b>orphans</b></div>
                                </div>
                             </div>
                         </div>
@@ -115,7 +119,7 @@
 
                     <div>
                         <ul class="menu">
-                            <li><a href="#">VIEW ALL CATEGORIES</a></li>
+                            <li><a href="#" menu-group-back>VIEW ALL CATEGORIES</a></li>
                         </ul>
                     </div>
 
@@ -133,7 +137,9 @@
                                      @else
                                          src=""
                                      @endif
-                                     data-target="#videoModal" data-toggle="modal"></div>
+                                     data-target="#videoModal" data-toggle="modal">
+                                </div>
+                                <div class="caption bg-white text-dark">IH sponsorships <b>orphans</b></div>
                             </div>
                         </div>
                     </div>

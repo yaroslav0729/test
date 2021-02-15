@@ -637,12 +637,15 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   background: transparent;
 }
 .header-menu .black-line.no-line .head-menu-video {
-  bottom: -42px;
+  bottom: -38px;
   right: 65px;
 }
 .header-menu .black-line.no-line .head-menu-video .name {
   background: #fff;
   color: #101525;
+}
+.header-menu .black-line.no-line .head-menu-video .img-video .caption {
+  padding: 8px 17px;
 }
 .header-menu .categories {
   background: #101525;
@@ -1147,8 +1150,8 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   max-width: 250px;
   padding: 8px;
   text-align: center;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   cursor: pointer;
 }
 .btn-fb:hover {
@@ -1198,10 +1201,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   background-color: #3A7BF5 !important;
 }
 .text-info {
-  color: #2caabb  !important;
+  color: #2caabb !important;
 }
 .text-dark {
-  color: #101525  !important;
+  color: #101525 !important;
 }
 .text-red {
   color: #FF5D4A !important;
@@ -3880,7 +3883,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: .5;
+  opacity: 0.5;
 }
 .about-donation .body .item span {
   display: inline-block;
@@ -4106,7 +4109,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: .5;
+  opacity: 0.5;
 }
 .order-cart-list .total {
   background: #FFF6F3;
@@ -6367,11 +6370,11 @@ input[type='number'].color-danger + .input-group .btn {
   color: #1f1e1e;
 }
 .bg-btn-red {
-  background: #f7796a!important;
+  background: #f7796a !important;
   color: #ffffff;
 }
 .bg-btn-red a {
-  color: #ffffff!important;
+  color: #ffffff !important;
 }
 /*------------------------------------vb--------*/
 /*# sourceMappingURL=styles.css.map */
