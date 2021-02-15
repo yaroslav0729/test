@@ -111,7 +111,7 @@
                                         </svg>
                                         <div class="pt-3"></div>
                                         <p>{{ $event->page->getActualPageInstanceAttribute()->preview_text }}</p>
-                                        <div class="place"><i class="fal fa-map-marker-alt"></i> {{ $event->location }}
+                                        <div class="place text-white"><i class="fal fa-map-marker-alt text-secondary"></i> {{ $event->location }}
                                         </div>
                                         <div>
                                             <div class="date">{{ $event->start_date->format('M') }}

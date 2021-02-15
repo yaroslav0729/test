@@ -41408,19 +41408,19 @@ $(function () {
   function restoreOptions(el, options) {
     var htmlOptions = '';
     options.single.forEach(function (item, i, arr) {
-      htmlOptions = htmlOptions + '<option value=' + item.price + '>' + item.price + '</option>';
+      htmlOptions = htmlOptions + '<option value=' + item.price + '>' + '£ ' + item.price + '</option>';
     });
     el.find('select[name="price_single"]').html(htmlOptions);
     htmlOptions = '';
     options.monthly.forEach(function (item, i, arr) {
-      htmlOptions = htmlOptions + '<option value=' + item.price + '>' + item.price + '</option>';
+      htmlOptions = htmlOptions + '<option value=' + item.price + '>' + '£ ' + item.price + '</option>';
     });
     el.find('select[name="price_monthly"]').html(htmlOptions);
     var firstPrice = options.single[0].campaigns;
     htmlOptions = '';
 
     for (key in firstPrice) {
-      htmlOptions = htmlOptions + '<option value=' + key + '>' + firstPrice[key].name + '</option>';
+      htmlOptions = htmlOptions + '<option value=' + key + '>' + '£ ' + firstPrice[key].name + '</option>';
     }
 
     el.find('select[name="campaigns"]').html(htmlOptions);
