@@ -5,12 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e7389cb-a8d7-4968-b52e-081fa3c865fd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/styles.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/css/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/styles.less" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
@@ -34,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="5422" selection-start-line="5422" selection-end-line="5422" selection-end-column="13" />
+            <state relative-caret-position="274">
+              <caret line="4360" column="15" selection-start-line="4360" selection-start-column="15" selection-end-line="4360" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -97,9 +91,9 @@
       <find>.events-home-swiper</find>
       <find>OUR WORK</find>
       <find>,events-home-search-form</find>
-      <find>.events-home-search-form</find>
       <find>.placeholder</find>
       <find>.picker:after</find>
+      <find>.events-home-search-form</find>
     </findStrings>
     <replaceStrings>
       <replace>fal fa-arrow-right</replace>
@@ -473,12 +467,12 @@
       <workItem from="1612448289992" duration="8132000" />
       <workItem from="1612532460785" duration="12214000" />
       <workItem from="1613046405439" duration="1191000" />
-      <workItem from="1613128068286" duration="2222000" />
+      <workItem from="1613128068286" duration="2472000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="279410000" />
+    <option name="totallyTimeSpent" value="279660000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -863,8 +857,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="5422" selection-start-line="5422" selection-end-line="5422" selection-end-column="13" />
+        <state relative-caret-position="274">
+          <caret line="4360" column="15" selection-start-line="4360" selection-start-column="15" selection-end-line="4360" selection-end-column="15" />
         </state>
       </provider>
     </entry>
