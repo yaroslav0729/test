@@ -28,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="4360" column="15" selection-start-line="4360" selection-start-column="15" selection-end-line="4360" selection-end-column="15" />
+            <state relative-caret-position="434">
+              <caret line="527" column="33" selection-start-line="527" selection-start-column="33" selection-end-line="527" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -64,7 +64,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.font-we</find>
       <find>donate-today-sheet</find>
       <find>who-we-are</find>
       <find>quick_donation_widget</find>
@@ -94,6 +93,7 @@
       <find>.placeholder</find>
       <find>.picker:after</find>
       <find>.events-home-search-form</find>
+      <find>.header-menu</find>
     </findStrings>
     <replaceStrings>
       <replace>fal fa-arrow-right</replace>
@@ -467,12 +467,12 @@
       <workItem from="1612448289992" duration="8132000" />
       <workItem from="1612532460785" duration="12214000" />
       <workItem from="1613046405439" duration="1191000" />
-      <workItem from="1613128068286" duration="2472000" />
+      <workItem from="1613128068286" duration="3110000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="279660000" />
+    <option name="totallyTimeSpent" value="280298000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -857,8 +857,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/css/styles.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="4360" column="15" selection-start-line="4360" selection-start-column="15" selection-end-line="4360" selection-end-column="15" />
+        <state relative-caret-position="434">
+          <caret line="527" column="33" selection-start-line="527" selection-start-column="33" selection-end-line="527" selection-end-column="33" />
         </state>
       </provider>
     </entry>
