@@ -253,7 +253,8 @@ $(function () {
         $('.basket #sum').text(response.sum_for_view);
 
         if (response.sum > 0) {
-            $('.basket span').removeClass('d-none')
+            $('.basket span').removeClass('d-none');
+            $('.basket-mobile').removeClass('d-none');
 
             $('.basket').addClass('bell-animate')
             setTimeout(function() {
@@ -261,7 +262,8 @@ $(function () {
             }, 3100 );
 
         } else {
-            $('.basket span').addClass('d-none')
+            $('.basket span').addClass('d-none');
+            $('.basket-mobile').addClass('d-none');
             $('.basket').removeClass('bell-animate')
         }
     }
