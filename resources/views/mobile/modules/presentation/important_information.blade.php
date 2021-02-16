@@ -23,25 +23,26 @@
 
 @endphp
 
+@if(!empty($importantInfoTitle) && !empty($importantInfo))
+    <section class="important-information @empty($bgClassImportant) bg-light @else {{ $bgClassImportant }} @endempty">
+        <div class="wrap">
+            <div class="title mb-2">
+                <p class="font-size-16 text-uppercase"><b>{{ $importantInfoTitle }}</b></p>
+            </div>
+            <div class="text">
+                <p>{{ $importantInfo }}</p>
 
-<section class="important-information @empty($bgClassImportant) bg-light @else {{ $bgClassImportant }} @endempty">
-    <div class="wrap">
-        <div class="title mb-2">
-            <p class="font-size-16 text-uppercase"><b>{{ $importantInfoTitle }}</b></p>
-        </div>
-        <div class="text">
-            <p>{{ $importantInfo }}</p>
-
+                @empty($importantInfoLong)
+                @else
+                <div class="descr">
+                    {{ $importantInfoLong }}
+                </div>
+                @endisset
+            </div>
             @empty($importantInfoLong)
             @else
-            <div class="descr">
-                {{ $importantInfoLong }}
-            </div>
+            <a href="javascript:void(0)" class="read-more">READ MORE</a>
             @endisset
         </div>
-        @empty($importantInfoLong)
-        @else
-        <a href="javascript:void(0)" class="read-more">READ MORE</a>
-        @endisset
-    </div>
-</section>
+    </section>
+@endif
