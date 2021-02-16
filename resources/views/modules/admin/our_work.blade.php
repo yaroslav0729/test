@@ -2,10 +2,23 @@
 
     $ourWorkTitle = "";
     $ourWorkLink = "";
-    $longtermLink = "";
-    $emergencyLink = "";
-    $volunteeringLink = "";
-    $sadiqahLink = "";
+
+    $longtermTitle = "";
+    $longtermText = "";
+    $longtermVideo = "";
+
+    $emergencyTitle = "";
+    $emergencyText = "";
+    $emergencyVideo = "";
+
+    $volunteeringTitle = "";
+    $volunteeringText = "";
+    $volunteeringVideo = "";
+
+    $sadiqahTitle = "";
+    $sadiqahText = "";
+    $sadiqahVideo = "";
+
 
     if (isset($parameters['our_work_block_title'])) {
         $ourWorkTitle = $parameters['our_work_block_title'];
@@ -15,62 +28,148 @@
         $ourWorkLink = $parameters['our_work_block_link'];
     }
 
-    if (isset($parameters['our_work_longterm_link'])) {
-        $longtermLink = $parameters['our_work_longterm_link'];
+    if (isset($parameters['our_work_longterm_title'])) {
+        $longtermTitle = $parameters['our_work_longterm_title'];
     }
 
-    if (isset($parameters['our_work_emergency_link'])) {
-        $emergencyLink = $parameters['our_work_emergency_link'];
+    if (isset($parameters['our_work_longterm_text'])) {
+        $longtermText = $parameters['our_work_longterm_text'];
     }
 
-    if (isset($parameters['our_work_volunteering_link'])) {
-        $volunteeringLink = $parameters['our_work_volunteering_link'];
+    if (isset($parameters['our_work_longterm_video'])) {
+        $longtermVideo = $parameters['our_work_longterm_video'];
     }
 
-    if (isset($parameters['our_work_sadiqah_link'])) {
-        $sadiqahLink = $parameters['our_work_sadiqah_link'];
+    if (isset($parameters['our_work_emergency_title'])) {
+        $emergencyTitle = $parameters['our_work_emergency_title'];
+    }
+
+    if (isset($parameters['our_work_emergency_text'])) {
+        $emergencyText = $parameters['our_work_emergency_text'];
+    }
+
+    if (isset($parameters['our_work_emergency_video'])) {
+        $emergencyVideo = $parameters['our_work_emergency_video'];
+    }
+
+    if (isset($parameters['our_work_volunteering_title'])) {
+        $volunteeringTitle = $parameters['our_work_volunteering_title'];
+    }
+
+    if (isset($parameters['our_work_volunteering_text'])) {
+        $volunteeringText = $parameters['our_work_volunteering_text'];
+    }
+
+    if (isset($parameters['our_work_volunteering_video'])) {
+        $volunteeringVideo = $parameters['our_work_volunteering_video'];
+    }
+
+    if (isset($parameters['our_work_sadiqah_title'])) {
+        $sadiqahTitle = $parameters['our_work_sadiqah_title'];
+    }
+
+    if (isset($parameters['our_work_sadiqah_text'])) {
+        $sadiqahText = $parameters['our_work_sadiqah_text'];
+    }
+
+    if (isset($parameters['our_work_sadiqah_video'])) {
+        $sadiqahVideo = $parameters['our_work_sadiqah_video'];
     }
 
 @endphp
+<div class="col-12 pb-lg-3">
+    <h3 class="text-center">Our work module:</h3>
+</div>
 
-<h3 class="text-center">Our work module:</h3>
+<div class="form-group col-12 col-lg-6">
+    <label>Our work block title:</label>
+    <input class="form-control" name="parameters[our_work_block_title]" placeholder="Our work block title"
+           value="{{ $ourWorkTitle }}"/>
+</div>
 
-<div class="row col-12 mt-5">
+<div class="form-group col-12 col-lg-6">
+    <label>Our work block link:</label>
+    <input class="form-control" name="parameters[our_work_block_link]" placeholder="Our work block link"
+           value="{{ $ourWorkLink }}"/>
+</div>
 
-    <div class="form-group col-12 col-lg-6">
-        <label>Our work block title:</label>
-        <input class="form-control" name="parameters[our_work_block_title]" placeholder="Our work block title"
-               value="{{ $ourWorkTitle }}"/>
+<div class="col-12 col-lg-6 mt-lg-4">
+    <div class="form-group">
+        <label>Longterm projects title:</label>
+        <input class="form-control" name="parameters[our_work_longterm_title]" placeholder="Longterm projects title"
+               value="{{ $longtermTitle }}"/>
     </div>
 
-    <div class="form-group col-12 col-lg-6">
-        <label>Our work block link:</label>
-        <input class="form-control" name="parameters[our_work_block_link]" placeholder="Our work block link"
-               value="{{ $ourWorkLink }}"/>
+    <div class="form-group">
+        <label>Longterm projects text:</label>
+        <textarea class="form-control" name="parameters[our_work_longterm_text]"
+                  placeholder="Longterm projects text">{{ $longtermText }}</textarea>
     </div>
 
+    <div class="form-group">
+        <label>Longterm projects video:</label>
+        <input class="form-control" name="parameters[our_work_longterm_video]" placeholder="Longterm projects video link"
+               value="{{ $longtermVideo }}"/>
+    </div>
+</div>
 
-    <div class="form-group col-12 col-lg-6">
-        <label>Our work Longterm projects link:</label>
-        <input class="form-control" name="parameters[our_work_longterm_link]" placeholder="Longterm projects"
-               value="{{ $longtermLink }}"/>
+<div class="col-12 col-lg-6 mt-lg-4">
+    <div class="form-group ">
+        <label>Emergency relief title:</label>
+        <input class="form-control" name="parameters[our_work_emergency_title]" placeholder="Emergency relief title"
+               value="{{ $emergencyTitle }}"/>
     </div>
 
-    <div class="form-group col-12 col-lg-6">
-        <label>Our work Emergency relief link:</label>
-        <input class="form-control" name="parameters[our_work_emergency_link]" placeholder="Emergency relief"
-               value="{{ $emergencyLink }}"/>
+    <div class="form-group">
+        <label>Emergency relief text:</label>
+        <textarea class="form-control" name="parameters[our_work_emergency_text]"
+                  placeholder="Emergency relief text">{{ $emergencyText }}</textarea>
     </div>
 
-    <div class="form-group col-12 col-lg-6">
-        <label>Our work Volunteering link:</label>
-        <input class="form-control" name="parameters[our_work_volunteering_link]"
-               placeholder="Who we are title" value="{{ $volunteeringLink }}"/>
+    <div class="form-group ">
+        <label>Emergency relief video link:</label>
+        <input class="form-control" name="parameters[our_work_emergency_video]" placeholder="Emergency relief video link"
+               value="{{ $emergencyVideo }}"/>
+    </div>
+</div>
+
+
+<div class="col-12 col-lg-6 mt-lg-4">
+    <div class="form-group ">
+        <label>Volunteering title:</label>
+        <input class="form-control" name="parameters[our_work_volunteering_title]" placeholder="Volunteering title"
+               value="{{ $volunteeringTitle }}"/>
     </div>
 
-    <div class="form-group col-12 col-lg-6">
-        <label>Our work Sadiqah link:</label>
-        <input class="form-control" name="parameters[our_work_sadiqah_link]" placeholder="Who we are title"
-               value="{{ $sadiqahLink }}"/>
+    <div class="form-group">
+        <label>Volunteering text:</label>
+        <textarea class="form-control" name="parameters[our_work_volunteering_text]"
+                  placeholder="Volunteering text">{{ $volunteeringText }}</textarea>
+    </div>
+
+    <div class="form-group ">
+        <label>Volunteering video link:</label>
+        <input class="form-control" name="parameters[our_work_volunteering_video]" placeholder="Volunteering video link"
+               value="{{ $volunteeringVideo }}"/>
+    </div>
+</div>
+
+<div class="col-12 col-lg-6 mt-lg-4">
+    <div class="form-group ">
+        <label>Sadiqah title:</label>
+        <input class="form-control" name="parameters[our_work_sadiqah_title]" placeholder="Sadiqah title"
+               value="{{ $sadiqahTitle }}"/>
+    </div>
+
+    <div class="form-group">
+        <label>Sadiqah text:</label>
+        <textarea class="form-control" name="parameters[our_work_sadiqah_text]"
+                  placeholder="Sadiqah text">{{ $sadiqahText }}</textarea>
+    </div>
+
+    <div class="form-group ">
+        <label>Sadiqah video link:</label>
+        <input class="form-control" name="parameters[our_work_sadiqah_video]" placeholder="Sadiqah video link"
+               value="{{ $sadiqahVideo }}"/>
     </div>
 </div>

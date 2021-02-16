@@ -582,7 +582,7 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 .header-menu .logo + ul li a {
   color: #101525;
   font-weight: 900;
-  letter-spacing: 1px;
+  letter-spacing: 0;
   line-height: 22px;
   text-decoration: none;
 }
@@ -637,12 +637,15 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   background: transparent;
 }
 .header-menu .black-line.no-line .head-menu-video {
-  bottom: -42px;
+  bottom: -38px;
   right: 65px;
 }
 .header-menu .black-line.no-line .head-menu-video .name {
   background: #fff;
   color: #101525;
+}
+.header-menu .black-line.no-line .head-menu-video .img-video .caption {
+  padding: 8px 17px;
 }
 .header-menu .categories {
   background: #101525;
@@ -2143,7 +2146,7 @@ input[type='number'].color-danger + .input-group .btn {
   z-index: -1;
 }
 .our-work-term {
-  padding: 0 195px 0 213px;
+  padding: 0 186px 0 165px;
   margin-bottom: 144px;
 }
 .our-work-term .view-more {
@@ -2165,7 +2168,7 @@ input[type='number'].color-danger + .input-group .btn {
   position: relative;
 }
 .our-work-term .bg {
-  background: rgba(44, 170, 187, 0.1);
+  /*   background: rgba(44,170,187,0.1);*/
   position: absolute;
   left: -4px;
   top: 20px;
@@ -2187,6 +2190,18 @@ input[type='number'].color-danger + .input-group .btn {
   bottom: 0;
   width: 4px;
 }
+.our-work-term .bg-1 {
+  background: rgba(44, 170, 187, 0.1);
+}
+.our-work-term .bg-2 {
+  background: rgba(249, 120, 102, 0.1);
+}
+.our-work-term .bg-3 {
+  background: rgba(16, 21, 37, 0.1);
+}
+.our-work-term .bg-4 {
+  background: rgba(245, 193, 93, 0.1);
+}
 .our-work-term .img-video {
   margin: 0 30px 10px 20px;
   padding-bottom: 44.25%;
@@ -2202,6 +2217,9 @@ input[type='number'].color-danger + .input-group .btn {
   position: relative;
   text-decoration: none;
   border-radius: 5px;
+}
+.our-work-term .nav a b {
+  font-weight: 900 !important;
 }
 .our-work-term .nav a span {
   display: block;
@@ -4909,11 +4927,13 @@ input[type='number'].color-danger + .input-group .btn {
 .events-home-swiper .title {
   border-bottom: 4px solid #101525;
   padding-left: 94px;
+  margin-right: 10px;
 }
 .events-home-swiper .wrap {
   position: relative;
   border-radius: 5px !important;
   overflow: hidden;
+  top: -4px;
 }
 .events-home-swiper .swiper-container {
   padding-top: 30px;
@@ -5036,7 +5056,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .events-home-search-form {
   padding: 0 80px;
-  margin: -55px 0 80px;
+  margin: -92px 0 80px;
   position: relative;
   z-index: 2;
   margin-right: 200px;
@@ -5079,6 +5099,46 @@ input[type='number'].color-danger + .input-group .btn {
   background-color: transparent !important;
   font-size: 16px;
   padding: 0px 15px 10px;
+}
+.events-home-search-form .form-control::-webkit-input-placeholder {
+  color: #ffffff;
+  font-style: normal;
+  opacity: 1 !important;
+  transition: opacity 0.3s;
+}
+.events-home-search-form .form-control:-moz-placeholder {
+  color: #ffffff;
+  font-style: normal;
+  opacity: 1 !important;
+  transition: opacity 0.3s;
+}
+.events-home-search-form .form-control::-moz-placeholder {
+  color: #ffffff;
+  font-style: normal;
+  opacity: 1 !important;
+  transition: opacity 0.3s;
+}
+.events-home-search-form .form-control:-ms-input-placeholder {
+  color: #ffffff;
+  font-style: normal;
+  opacity: 1 !important;
+  transition: opacity 0.3s;
+}
+.events-home-search-form .form-control:focus::-webkit-input-placeholder {
+  opacity: 0 !important;
+  transition: opacity 0.3s;
+}
+.events-home-search-form .form-control:focus::-moz-placeholder {
+  opacity: 0 !important;
+  transition: opacity 0.3s;
+}
+.events-home-search-form .form-control:focus:-moz-placeholder {
+  opacity: 0 !important;
+  transition: opacity 0.3s;
+}
+.events-home-search-form .form-control:focus:-ms-input-placeholder {
+  opacity: 0 !important;
+  transition: opacity 0.3s;
 }
 .events-home-search-form select.form-control {
   background-image: url(../img/arrow-down-green.svg) !important;

@@ -40326,8 +40326,10 @@ $(function () {
     toggleMenuGroup(false, e);
   });
   $('[opened-menu-item]').on('click', function (e) {
-    openHeadMenu(e, $(this).attr('data-id'));
-    $('[menu-group]').hide();
+    if ($(this).find('a').attr('href') == '#') {
+      openHeadMenu(e, $(this).attr('data-id'));
+      $('[menu-group]').hide();
+    }
   });
 
   function openHeadMenu(e) {
@@ -40486,6 +40488,13 @@ $(function () {
 
     if (!container.is(e.target) && container.has(e.target).length === 0) {
       closeMenu();
+    }
+
+    var ourWorkSection = $('.our-work-term');
+
+    if (!ourWorkSection.is(e.target) && ourWorkSection.has(e.target).length === 0) {
+      $(ourWorkSection).addClass('d-none');
+      $('.our-work').removeClass('d-none');
     }
   }); //~~~~~~~~~~~~~~~~~~~~~~~ Close Main when click on the sliders!!! ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -40667,7 +40676,51 @@ function getShareThisCou() {
     },
     error: function error(data) {//console.log(data); // send the error notifications to console
     }
+  }); //~~~~~~~~~~~~~~~~~~ Our work Section manipulation Index Page ~~~~~~~~~~~~~~~~~~~~
+
+  $(document).on('click', '.our-work-main', function (e) {
+    e.preventDefault();
+    var numberSlide = $(this).attr('id').slice(-1);
+    swichSlide(numberSlide);
+    $('.our-work-nav').each(function () {
+      var currentSlide = $(this).find('a').attr('data-target');
+
+      if (currentSlide == numberSlide) {
+        $(this).addClass('d-none');
+      }
+    });
+    $('.our-work-term').removeClass('d-none');
+    $('.our-work').addClass('d-none');
   });
+  $(document).on('click', '.our-work-nav', function (e) {
+    e.preventDefault();
+    var numberSlide = $(this).find('a').data('target');
+    swichSlide(numberSlide);
+    $(this).toggleClass("d-none");
+  });
+
+  function swichSlide(numberSlide) {
+    $('.our-work-nav').each(function () {
+      if ($(this).hasClass('d-none')) {
+        $(this).toggleClass('d-none');
+      }
+    });
+    rotateSlide($('.our-work-content'), numberSlide);
+    rotateSlide($('.our-work-video'), numberSlide);
+    rotateSlide($('.our-work-bg'), numberSlide);
+  }
+
+  function rotateSlide(collection, numberSlide) {
+    collection.each(function () {
+      if ($(this).not('d-none')) {
+        $(this).addClass('d-none');
+      }
+
+      if ($(this).attr('id').slice(-1) == numberSlide) {
+        $(this).removeClass('d-none');
+      }
+    });
+  }
 } //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
 
 
@@ -40989,16 +41042,18 @@ $(function () {
     var newCartDonate = $(response.cart_donate);
     $('.about-donation').html(newCartDonate.html());
     $("[input_number_spinner]").inputSpinner();
-    $('.basket #sum').text(response.sum);
+    $('.basket #sum').text(response.sum_for_view);
 
     if (response.sum > 0) {
       $('.basket span').removeClass('d-none');
+      $('.basket-mobile').removeClass('d-none');
       $('.basket').addClass('bell-animate');
       setTimeout(function () {
         $('.basket').removeClass('bell-animate');
       }, 3100);
     } else {
       $('.basket span').addClass('d-none');
+      $('.basket-mobile').addClass('d-none');
       $('.basket').removeClass('bell-animate');
     }
   }
@@ -41012,7 +41067,7 @@ $(function () {
       lastPeriod = form.find('input[name="period"]').val();
     }
 
-    $('#add_to_cart_popup .amount').text(lastAmount);
+    $('#add_to_cart_popup .amount').text(number_format(lastAmount, 2, '.', "'"));
     $('#add_to_cart_popup .period').text(lastPeriod);
     $.ajax({
       url: form.attr('action'),
@@ -41030,6 +41085,20 @@ $(function () {
         toastr.error('Unknown error ', 'Error');
       }
     });
+  }
+
+  function number_format(number) {
+    var decimals = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var dec_point = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '.';
+    var thousands_sep = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : ',';
+    var sign = number < 0 ? '-' : '';
+    var s_number = Math.abs(parseInt(number = (+number || 0).toFixed(decimals))) + "";
+    var len = s_number.length;
+    var tchunk = len > 3 ? len % 3 : 0;
+    var ch_first = tchunk ? s_number.substr(0, tchunk) + thousands_sep : '';
+    var ch_rest = s_number.substr(tchunk).replace(/(\d\d\d)(?=\d)/g, '$1' + thousands_sep);
+    var ch_last = decimals ? dec_point + (Math.abs(number) - s_number).toFixed(decimals).slice(2) : '';
+    return sign + ch_first + ch_rest + ch_last;
   }
 
   refreshRelatedProjects();
@@ -41217,27 +41286,6 @@ $(function () {
     var tabClass = $(this).data('tab');
     $('div.' + tabClass).removeClass('d-none');
   }); //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-  /*    function changeFontSize()
-      {
-          const countPounds = $('.count-pounds');
-  
-          console.log(countPounds.length);
-  
-          if (countPounds.length > 0) {
-             $.each(countPounds, function (key, countPound ) {
-                 console.log(key);
-                 console.log(countPound);
-                 let str = $(countPound).html()
-                 console.log($.trim(str).length);
-  
-  
-             });
-  
-          }
-      }
-  
-      changeFontSize();*/
 });
 
 /***/ }),
@@ -41362,19 +41410,19 @@ $(function () {
   function restoreOptions(el, options) {
     var htmlOptions = '';
     options.single.forEach(function (item, i, arr) {
-      htmlOptions = htmlOptions + '<option value=' + item.price + '>' + item.price + '</option>';
+      htmlOptions = htmlOptions + '<option value=' + item.price + '>' + '£ ' + item.price + '</option>';
     });
     el.find('select[name="price_single"]').html(htmlOptions);
     htmlOptions = '';
     options.monthly.forEach(function (item, i, arr) {
-      htmlOptions = htmlOptions + '<option value=' + item.price + '>' + item.price + '</option>';
+      htmlOptions = htmlOptions + '<option value=' + item.price + '>' + '£ ' + item.price + '</option>';
     });
     el.find('select[name="price_monthly"]').html(htmlOptions);
     var firstPrice = options.single[0].campaigns;
     htmlOptions = '';
 
     for (key in firstPrice) {
-      htmlOptions = htmlOptions + '<option value=' + key + '>' + firstPrice[key].name + '</option>';
+      htmlOptions = htmlOptions + '<option value=' + key + '>' + '£ ' + firstPrice[key].name + '</option>';
     }
 
     el.find('select[name="campaigns"]').html(htmlOptions);

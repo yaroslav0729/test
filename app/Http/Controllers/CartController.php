@@ -57,6 +57,7 @@ class CartController extends Controller
                 'cart_html' => view('parts.modal_cart')->render(),
                 'cart_donate' => view('modules.presentation.donation_page_cart')->render(),
                 'sum' => CartItem::getCartSum(),
+                'sum_for_view' => CartItem::roundCurrency(CartItem::getCartSum()),
             ]);
         }
 
@@ -82,6 +83,7 @@ class CartController extends Controller
                 'cart_html' => view('parts.modal_cart')->render(),
                 'cart_donate' => view('modules.presentation.donation_page_cart')->render(),
                 'sum' => CartItem::getCartSum(),
+                'sum_for_view' => CartItem::roundCurrency(CartItem::getCartSum()),
             ]);
         }
 
@@ -99,6 +101,7 @@ class CartController extends Controller
                 'cart_html' => view('parts.modal_cart')->render(),
                 'cart_donate' => view('modules.presentation.donation_page_cart')->render(),
                 'sum' => CartItem::getCartSum(),
+                'sum_for_view' => CartItem::roundCurrency(CartItem::getCartSum()),
             ]);
         }
 
@@ -249,6 +252,7 @@ class CartController extends Controller
             'cart_html' => view('parts.modal_cart')->render(),
             'cart_donate' => view('modules.presentation.donation_page_cart')->render(),
             'sum' => CartItem::getCartSum(),
+            'sum_for_view' => CartItem::roundCurrency(CartItem::getCartSum()),
         ]);
     }
 }

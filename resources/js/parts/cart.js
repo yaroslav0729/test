@@ -250,10 +250,11 @@ $(function () {
 
         $("[input_number_spinner]").inputSpinner()
 
-        $('.basket #sum').text(response.sum)
+        $('.basket #sum').text(response.sum_for_view);
 
         if (response.sum > 0) {
-            $('.basket span').removeClass('d-none')
+            $('.basket span').removeClass('d-none');
+            $('.basket-mobile').removeClass('d-none');
 
             $('.basket').addClass('bell-animate')
             setTimeout(function() {
@@ -261,7 +262,8 @@ $(function () {
             }, 3100 );
 
         } else {
-            $('.basket span').addClass('d-none')
+            $('.basket span').addClass('d-none');
+            $('.basket-mobile').addClass('d-none');
             $('.basket').removeClass('bell-animate')
         }
     }
@@ -277,7 +279,7 @@ $(function () {
             lastPeriod = form.find('input[name="period"]').val()
         }
 
-        $('#add_to_cart_popup .amount').text(lastAmount)
+        $('#add_to_cart_popup .amount').text(number_format(lastAmount, 2, '.', "'"));
         $('#add_to_cart_popup .period').text(lastPeriod)
 
         $.ajax({
@@ -297,6 +299,26 @@ $(function () {
                 toastr.error('Unknown error ','Error')
             }
         });
+    }
+
+    function number_format( number, decimals = 0, dec_point = '.', thousands_sep = ',' ) {
+
+        let sign = number < 0 ? '-' : '';
+
+        let s_number = Math.abs(parseInt(number = (+number || 0).toFixed(decimals))) + "";
+        let len = s_number.length;
+        let tchunk = len > 3 ? len % 3 : 0;
+
+        let ch_first = (tchunk ? s_number.substr(0, tchunk) + thousands_sep : '');
+        let ch_rest = s_number.substr(tchunk)
+            .replace(/(\d\d\d)(?=\d)/g, '$1' + thousands_sep);
+        let ch_last = decimals ?
+            dec_point + (Math.abs(number) - s_number)
+                .toFixed(decimals)
+                .slice(2) :
+            '';
+
+        return sign + ch_first + ch_rest + ch_last;
     }
 
     refreshRelatedProjects();

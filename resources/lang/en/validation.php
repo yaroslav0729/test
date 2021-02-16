@@ -373,6 +373,30 @@ return [
         'parameters.need_link' => 'Islamic Help needs module Link',
 
         /*--------------------- End Events ------------------------*/
+
+        /*--------------------- Index Page --------------*/
+
+        'parameters.our_work_block_title' => 'Our work block title',
+        'parameters.our_work_block_link' => 'Our work block link',
+
+        'parameters.our_work_longterm_title' => 'Longterm projects title',
+        'parameters.our_work_longterm_text' => 'Longterm projects text',
+        'parameters.our_work_longterm_video' => 'Longterm projects video',
+
+        'parameters.our_work_emergency_title' => 'Emergency relief title',
+        'parameters.our_work_emergency_text' => 'Emergency relief text',
+        'parameters.our_work_emergency_video' => 'Emergency relief video link',
+
+        'parameters.our_work_volunteering_title' => 'Volunteering title',
+        'parameters.our_work_volunteering_text' => 'Volunteering text',
+        'parameters.our_work_volunteering_video' => 'Volunteering video link',
+
+        'parameters.our_work_sadiqah_title' => 'Sadiqah title',
+        'parameters.our_work_sadiqah_text' => 'Sadiqah text',
+        'parameters.our_work_sadiqah_video' => 'Sadiqah video link',
+
+
+        /*--------------------- End Index Page ------------------------*/
     ],
 
 ];

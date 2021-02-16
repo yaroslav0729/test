@@ -255,6 +255,26 @@ class Template
                     'parameters.slide_text_1' => 'max:125',
                     'parameters.slide_text_2' => 'max:125',
                     'parameters.slide_text_3' => 'max:125',
+
+                    'parameters.our_work_block_title' => 'required',
+                    'parameters.our_work_block_link' => 'required',
+
+                    'parameters.our_work_longterm_title' => 'required',
+                    'parameters.our_work_longterm_text' => 'required|max:340',
+                    'parameters.our_work_longterm_video' => 'required',
+
+                    'parameters.our_work_emergency_title' => 'required',
+                    'parameters.our_work_emergency_text' => 'required|max:340',
+                    'parameters.our_work_emergency_video' => 'required',
+
+                    'parameters.our_work_volunteering_title' => 'required',
+                    'parameters.our_work_volunteering_text' => 'required|max:340',
+                    'parameters.our_work_volunteering_video' => 'required',
+
+                    'parameters.our_work_sadiqah_title' => 'required',
+                    'parameters.our_work_sadiqah_text' => 'required|max:340',
+                    'parameters.our_work_sadiqah_video' => 'required',
+
                 ];
 
                 break;

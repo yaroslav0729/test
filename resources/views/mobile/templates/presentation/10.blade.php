@@ -39,7 +39,7 @@
                             <div>
                                 <div class="date">{{ $event->start_date->format('M') }}
                                     <span>{{ $event->start_date->format('d') }}</span></div>
-                                <div class="place"><i class="fal fa-map-marker-alt"></i> {{ $event->location }}</div>
+                                <div class="place"><i class="fal fa-map-marker-alt"></i>{{ $event->location }}</div>
                                 <div class="tl">{{ $event->name }}</div>
                                 <svg class="decor-wave style-white mb-2" version="1.0"
                                      xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt"

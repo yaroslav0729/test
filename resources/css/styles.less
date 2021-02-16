@@ -525,7 +525,7 @@ header {
             a {
                 color: #101525;
                 font-weight: 900;
-                letter-spacing: 1px;
+                letter-spacing: 0;
                 line-height: 22px;
                 text-decoration: none;
                 &:hover {color: #F7796A}
@@ -577,10 +577,15 @@ header {
         &.no-line {
             background: transparent;
             .head-menu-video {
-                bottom: -42px; right: 65px;
+                bottom: -38px; right: 65px;
                 .name {
                     background: #fff;
                     color: #101525;
+                }
+                .img-video {
+                    .caption {
+                        padding: 8px 17px;
+                    }
                 }
             }
         }
@@ -1746,7 +1751,7 @@ input[type='number'].color-danger  + .input-group {
 }
 
 .our-work-term {
-    padding: 0 195px 0 213px;
+    padding: 0 186px 0 165px;
     margin-bottom: 144px;
     .view-more {
         display: inline-block;
@@ -1763,7 +1768,7 @@ input[type='number'].color-danger  + .input-group {
     }
     .body {position: relative}
     .bg {
-        background: rgba(44,170,187,0.1);
+     /*   background: rgba(44,170,187,0.1);*/
         position: absolute; left: -4px; top: 20px; right: 0;
         height: 190px;
         z-index: -1;
@@ -1774,6 +1779,22 @@ input[type='number'].color-danger  + .input-group {
             &:last-child {bottom:0; width: 4px;}
         }
     }
+    .bg-1 {
+        background: rgba(44,170,187,0.1);
+    }
+
+    .bg-2 {
+        background: rgba(249,120,102,0.1);
+    }
+
+    .bg-3 {
+        background: rgba(16,21,37,0.1);
+    }
+
+    .bg-4 {
+        background: rgba(245,193,93,0.1);
+    }
+
     .img-video {
         margin: 0 30px 10px 20px;
         padding-bottom: 44.25%;
@@ -1790,6 +1811,9 @@ input[type='number'].color-danger  + .input-group {
             position: relative;
             text-decoration: none;
             border-radius: 5px;
+            b {
+                font-weight: 900 !important;
+            }
             span {
                 display: block;
                 width: 40px; height: 40px;
@@ -4223,11 +4247,13 @@ input[type='number'].color-danger  + .input-group {
     .title {
         border-bottom: 4px solid #101525;
         padding-left: 94px;
+        margin-right: 10px;
     }
     .wrap {
         position: relative;
         border-radius: 5px !important;
         overflow: hidden;
+        top:  -4px;
     }
     .swiper-container {
         padding-top: 30px;
@@ -4337,7 +4363,7 @@ input[type='number'].color-danger  + .input-group {
 
 .events-home-search-form {
     padding: 0 80px;
-    margin: -55px 0 80px;
+    margin: -92px 0 80px;
     position: relative;
     z-index: 2;
     margin-right: 200px;
@@ -4376,6 +4402,7 @@ input[type='number'].color-danger  + .input-group {
         background-color: transparent !important;
         font-size: 16px;
         padding: 0px 15px 10px;
+        .placeholder(#ffffff);
     }
     select.form-control {background-image: url(../img/arrow-down-green.svg) !important;}
     .row {

@@ -1,7 +1,7 @@
 @php
 
 $cart = \App\Models\CartItem::getCart();
-$cartSum = \App\Models\CartItem::getCartSum(); 
+$cartSum = \App\Models\CartItem::getCartSum();
 
 @endphp
 
@@ -17,7 +17,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                             <p class="font-size-20 mb-0"><b>Your donation so far...</b></p>
                         </div>
                         <div class="col-5 text-center">
-                            <div class="price">£{{ $cartSum }}</div>
+                            <div class="price">£{{\App\Models\CartItem::roundCurrency($cartSum) }}</div>
                         </div>
                     </div>
                 </div>
@@ -33,13 +33,13 @@ $cartSum = \App\Models\CartItem::getCartSum();
                     <p class="font-size-20 mb-0"><b>Your donation so far...</b></p>
                 </div>
                 <div class="col-5 text-right">
-                    <div class="price">£{{ $cartSum }}</div>
+                    <div class="price">£{{ \App\Models\CartItem::roundCurrency($cartSum) }}</div>
                 </div>
             </div>
             <div class="black-line"></div>
             <div class="pt-4"></div>
 
-            
+
             @isset($cart)
                 @foreach ($cart as $cartItem)
                     @isset($cartItem[0])
@@ -69,7 +69,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                                             <tr>
                                                 <td style="width: 220px"><p class="font-size-20 mb-0">{{ (int)$cartItem[0]->period === \App\Models\CampaignPrice::TYPE_SINGLE ? 'Single' : 'Monthly' }} payment</p></td>
                                                 <td class="text-center"><input type="number" input_number_spinner data-id="{{ $cartItem[0]->id }}" value="{{ count($cartItem) }}" min="0" max="1000" step="1" class="color-danger"/></td>
-                                                <td style="width: 100px" class="text-right"><p class="font-size-20 mb-0"><b>£{{ $cartItem[0]->amount }}</b></p></td>
+                                                <td style="width: 100px" class="text-right"><p class="font-size-20 mb-0"><b>£{{ \App\Models\CartItem::roundCurrency($cartItem[0]->amount) }}</b></p></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -107,6 +107,6 @@ $cartSum = \App\Models\CartItem::getCartSum();
             <img src="img/payments-image.png?1" alt="" class="img-fluid d-inline-block" style="max-width: 570px">
         </div>
 
-        
+
     </div>
 </section>

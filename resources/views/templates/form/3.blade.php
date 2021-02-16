@@ -169,7 +169,9 @@
 
 @include('modules.admin.who_we_are')
 
-@include('modules.admin.our_work')
+<div class="row pt-lg-5">
+    @include('modules.admin.our_work')
+</div>
 
 @include('modules.admin.current_projects')
 

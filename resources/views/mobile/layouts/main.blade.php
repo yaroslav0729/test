@@ -10,22 +10,23 @@
     <!--style-2 - donate-->
     <!--style-3 - thank you-->
     <!--style-4 - project-->
- {{--   @yield('header')--}}
+    {{--   @yield('header')--}}
 
-@php
-    $cartSum = \App\Models\CartItem::getCartSum();
-@endphp
+    @php
+        $cartSum = \App\Models\CartItem::getCartSum();
+    @endphp
 
     <header>
         <div class="top-bar {{ $configTemplate['headerMobileClassName'] ?? $configTemplate['headerClassName'] ?? '' }}">
             <div class="wrap">
                 <div class="row align-items-center">
                     <div class="col-6">
-                        <a href="{{ route('index') }}" class="logo"><span><img src="/img/logo.png" /></span> Islamic Help</a>
+                        <a href="{{ route('index') }}" class="logo"><span><img src="/img/logo.png"/></span> Islamic Help</a>
                     </div>
                     <div class="col-6 text-right">
-                        <a href="{{ url('/donate#about-donation') }}" class="basket"><i class=""></i>
-                            <span class="@if($cartSum === 0) d-none @endif"></span>
+                        <a href="{{ url('/donate#about-donation') }}"
+                           class="basket basket-mobile @if($cartSum === 0) d-none @endif"><i class=""></i>
+                            <span class=""></span>
                         </a>
                         <span class="open-head-menu"></span>
                     </div>
@@ -36,11 +37,13 @@
 
     <div class="header-menu" level="0">
         <div class="row top align-items-center">
-            <div class="col-4"><a href="#" style="display: none" class="icon_left_1 back"><i class="moon-icons-arrow-left"></i></a></div>
-            <div class="col-4 text-center"><a href="#" class="icon_search_1 d-none search-btn"><i class="fas fa-search"></i></a></div>
+            <div class="col-4"><a href="#" style="display: none" class="icon_left_1 back"><i
+                        class="moon-icons-arrow-left"></i></a></div>
+            <div class="col-4 text-center"><a href="#" class="icon_search_1 d-none search-btn"><i
+                        class="fas fa-search"></i></a></div>
             <div class="col-4 text-right"><a href="#" class="close-menu"><i class="far fa-times"></i></a></div>
         </div>
-        <a href="{{ route('index') }}" class="logo"><img src="/img/logo.png" /></a>
+        <a href="{{ route('index') }}" class="logo"><img src="/img/logo.png"/></a>
         <div class="level-0">
             <ul class="menu-1">
                 @isset($headerMenuItem[0])
@@ -48,11 +51,11 @@
                         <li>
                             <a
                                 @if ($menuItem->is_group)
-                                    href="#"
-                                    class="open-submenu"
-                                    data-target="{{ $menuItem->id }}"
+                                href="#"
+                                class="open-submenu"
+                                data-target="{{ $menuItem->id }}"
                                 @else
-                                    href="{{ $menuItem->link }}"
+                                href="{{ $menuItem->link }}"
                                 @endif
                             >
                                 {{ $menuItem->text }}
@@ -87,12 +90,12 @@
                             @foreach ($menuGroupItem['items'] as $menuItem)
                                 <a
                                     @if ($menuItem->is_group)
-                                        href="#"
-                                        class="item open-submenu"
-                                        data-target="{{ $menuItem->id }}"
+                                    href="#"
+                                    class="item open-submenu"
+                                    data-target="{{ $menuItem->id }}"
                                     @else
-                                        href="{{ $menuItem->link }}"
-                                        class="item"
+                                    href="{{ $menuItem->link }}"
+                                    class="item"
                                     @endif
                                 >
                                     {{ $menuItem->text }}
@@ -116,7 +119,7 @@
             @endforeach
         @endisset
 
-        <!-- level 2-->
+    <!-- level 2-->
         @isset ($headerMenuItem[2])
             @foreach ($headerMenuItem[2] as $groupId => $menuGroupItem)
                 <div style="display: none" class="level-2" data-group-id="{{ $groupId }}">
@@ -131,7 +134,7 @@
                                 <li>
                                     <a
                                         @if (!$menuItem->is_group)
-                                            href="{{ $menuItem->formatted_link }}"
+                                        href="{{ $menuItem->formatted_link }}"
                                         @endif
                                     >{{ $menuItem->text }}
                                     </a>
