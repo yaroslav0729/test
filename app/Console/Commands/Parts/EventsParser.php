@@ -10,6 +10,11 @@ use App\Models\Template;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
+/*
+ * php artisan parse:all_pages --parser=events
+ * 
+**/
+
 class EventsParser extends AbstractParser
 {
     const IMG_PATH = 'events';
@@ -17,7 +22,6 @@ class EventsParser extends AbstractParser
     public function parse()
     {
         $events = $this->wpConnection->table('wp_posts')
-        //->where('wp_posts.id', 2890)
             ->where('wp_posts.post_type', 'events')
             ->where('wp_posts.post_status', 'publish')
             ->get();
@@ -25,8 +29,6 @@ class EventsParser extends AbstractParser
         $count = count($events);
 
         foreach ($events as $pageKey => $event) {
-
-            $this->info('Processing item ' . $pageKey . ' from ' . $count . ' -> wp_id: ' . $event->ID);
 
             $copyEvent = Page::where('wp_id', $event->ID)->first();
 
@@ -54,7 +56,7 @@ class EventsParser extends AbstractParser
                     'template' => Template::EVENT_PAGE,
                 ]);
 
-                $infoString = $pageKey . ': Event updated => id: ' . $copyEvent->id . ', wp_id: ' . $copyEvent->wp_id;
+                $infoString = $pageKey . ' from ' . $count . ' : Event updated => id: ' . $copyEvent->id . ', wp_id: ' . $copyEvent->wp_id;
 
             } else {
 
@@ -173,6 +175,7 @@ class EventsParser extends AbstractParser
 
         $content = $event->post_content;
         $content = $this->replaceWPTags($content);
+        $content = $this->removeFormatting($content, $instance);
         $content = $this->uploadImages($content);
 
         $parameters['information_text'] = $content;
@@ -187,10 +190,43 @@ class EventsParser extends AbstractParser
         $instance->save();
     }
 
+    protected function removeFormatting($content, $instance)
+    {
+        $pattern = '/font-family.+?;/';
+        $content = preg_replace($pattern, '', $content);
+
+        $pattern = '/font-size.+?;/';
+        $content = preg_replace($pattern, '', $content);
+
+        $pattern = '/margin:.+?;/';
+        $content = preg_replace($pattern, '', $content);
+
+        $pattern = '/padding:.+?;/';
+        $content = preg_replace($pattern, '', $content);
+
+        return $content;   
+    }
+
     protected function replaceWPTags($content)
     {
         $content = str_replace('<p>&nbsp;</p>', '', $content);
 
+        $content = str_replace('<p><br></p>', '', $content);
+
+        $content = str_replace('<b>', '', $content);
+        $content = str_replace('</b>', '', $content);
+
+        $content = str_replace('<strong>', '', $content);
+        $content = str_replace('</strong>', '', $content);
+
+        $content = str_replace('<em>', '', $content);
+        $content = str_replace('</em>', '', $content);
+
+        $content = str_replace('<!-- wp:paragraph -->', '', $content);
+        $content = str_replace('<!-- /wp:paragraph -->', '', $content);
+        $content = str_replace('<!-- wp:html -->', '', $content);
+        $content = str_replace('<!-- /wp:html -->', '', $content);
+        
         return $content;
     }
 
