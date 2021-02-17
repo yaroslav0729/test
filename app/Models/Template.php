@@ -180,11 +180,11 @@ class Template
                     'parameters.hdr_text' => 'required',
                     'parameters.written_by' => 'required',
                     'parameters.hdr_video' => 'required',
-                    'parameters.preview_page_title' => 'required',
-                    'parameters.preview_page_text1' => 'required',
-                    'parameters.preview_page_text2' => 'required',
-                    'parameters.preview_page_link' => 'required',
-                    'parameters.preview_page_image' => 'required',
+                    // 'parameters.preview_page_title' => 'required',
+                    // 'parameters.preview_page_text1' => 'required',
+                    // 'parameters.preview_page_text2' => 'required',
+                    // 'parameters.preview_page_link' => 'required',
+                    // 'parameters.preview_page_image' => 'required',
                 ];
 
                 break;

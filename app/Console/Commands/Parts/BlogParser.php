@@ -8,6 +8,12 @@ use App\Models\PageInstance;
 use App\Models\Template;
 use Illuminate\Support\Facades\Log;
 
+/*
+ *
+ * php artisan parse:all_pages --parser=blog
+ *
+ */
+
 class BlogParser extends AbstractParser
 {
     const IMG_PATH = 'blog';
@@ -84,7 +90,12 @@ class BlogParser extends AbstractParser
         $content = $this->uploadImages($content);
 
         $parameters = [];
+
+        $content = '<p>' . $content . '</p>';
+        $content = $this->replaceWPTags($content);
+        
         $parameters['article_html'] = $content;
+
         $parameters['min_read'] = $this->getOption($options, 'min_read');
         $parameters['written_by'] = 'KAMRAN AHMED';
         $parameters['hdr_video'] = $this->getOption($options, 'youtube_video_id');
@@ -101,9 +112,17 @@ class BlogParser extends AbstractParser
         $instance->save();
     }
 
+    protected function replaceWPTags($content)
+    {
+        $content = str_replace("&nbsp;\r\n", '</p><p>', $content); // close prev & open new paragraph
+        
+        return $content;
+    }
+
     protected function getBlogPosts()
     {
         $posts = $this->wpConnection->table('wp_posts')
+            ->where('id', 18359)
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
             ->where('wp_posts.post_type', 'page')
             ->where('wp_posts.post_status', 'publish')

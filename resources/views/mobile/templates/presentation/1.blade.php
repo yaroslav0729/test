@@ -92,7 +92,7 @@
     @include('modules.presentation.share_this')
 </section>
 
-<section class="mission-impossible">
+{{-- <section class="mission-impossible">
     <div class="title">{{ $previewPageTitle }}</div>
     <div class="wrap">
     <div class="body">
@@ -105,7 +105,7 @@
         </div>
     </div>
     </div>
-</section>
+</section> --}}
 
 <div class="pt-5"></div>
 
