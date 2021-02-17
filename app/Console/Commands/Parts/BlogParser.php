@@ -116,6 +116,9 @@ class BlogParser extends AbstractParser
     {
         $content = str_replace("&nbsp;\r\n", '</p><p>', $content); // close prev & open new paragraph
         
+        $content = str_replace('<em>', '', $content);
+        $content = str_replace('</em>', '', $content);
+        
         return $content;
     }
 
