@@ -122,7 +122,6 @@ class BlogParser extends AbstractParser
     protected function getBlogPosts()
     {
         $posts = $this->wpConnection->table('wp_posts')
-            ->where('id', 18359)
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
             ->where('wp_posts.post_type', 'page')
             ->where('wp_posts.post_status', 'publish')
