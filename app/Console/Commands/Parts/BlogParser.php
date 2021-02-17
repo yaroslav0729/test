@@ -118,6 +118,12 @@ class BlogParser extends AbstractParser
         
         $content = str_replace('<em>', '', $content);
         $content = str_replace('</em>', '', $content);
+
+        $content = str_replace('<u>', '', $content);
+        $content = str_replace('</u>', '', $content);
+
+        $pattern = '/font-weight.+?;/';
+        $content = preg_replace($pattern, '', $content);
         
         return $content;
     }
