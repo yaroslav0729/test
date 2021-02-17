@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: .2;
+  opacity: 0.2;
 }
 .other-way-give-mobile .phone {
   display: block;
@@ -493,7 +493,7 @@
   margin: -56px 0 40px;
 }
 .mobile-template .help-info-swiper .swiper-button-disabled {
-  opacity: 1.0;
+  opacity: 1;
 }
 .mobile-template .help-info-swiper .swiper-button-disabled .moon-icons-arrow-left::before,
 .mobile-template .help-info-swiper .swiper-button-disabled .moon-icons-arrow-right::before {
@@ -929,6 +929,44 @@
 .mobile-template .donate-today .body .donate-today-sheet .item input:checked + span > span:first-child span:first-child .moon-icons-check {
   display: inline-block;
 }
+.mobile-template .fake-popup-wrapper {
+  position: relative;
+}
+.mobile-template .fake-popup-wrapper .fake-popup {
+  background: #F7796A;
+  padding: 19px 4px 4px;
+  border-radius: 5px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  max-height: 420px;
+}
+.mobile-template .fake-popup-wrapper .fake-popup form {
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px 12px 20px;
+}
+.mobile-template .fake-popup-wrapper .fake-popup .name {
+  color: #FFF;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 30px;
+  padding-right: 42px;
+  padding-left: 15px;
+  height: 60px;
+  overflow: hidden;
+  margin-bottom: 9px;
+}
+.mobile-template .fake-popup-wrapper .fake-popup .fa-check {
+  font-size: 30px;
+  color: #fff;
+  position: absolute;
+  right: 15px;
+  top: 17px;
+  z-index: 3;
+}
 .mobile-template .donate-projects-list {
   padding: 48px 20px 0;
   background: transparent;
@@ -986,7 +1024,7 @@
   top: -293px;
   right: 0;
   left: 0;
-  z-index: 2;
+  z-index: 10;
   max-height: 400px;
   transition: all 250ms linear;
   -webkit-transition: all 250ms linear;
@@ -1696,11 +1734,11 @@
 }
 .mobile-template .events-home-swiper .swiper-slide .date {
   position: absolute;
-  top: -27px;
+  top: -19px;
   right: 30px;
   border-radius: 0  0 5px 5px;
   background: #101525;
-  padding: 8px 18px 5px;
+  padding: 11px 18px 11px;
   line-height: 1.3;
 }
 .mobile-template .events-home-swiper .swiper {
@@ -2259,11 +2297,11 @@
   font-size: 35px;
 }
 .bg-btn-red {
-  background: #f7796a!important;
+  background: #f7796a !important;
   color: #ffffff;
 }
 .bg-btn-red a {
-  color: #ffffff!important;
+  color: #ffffff !important;
 }
 /*------------------------------------vb--------*/
 /*# sourceMappingURL=mobile.css.map */

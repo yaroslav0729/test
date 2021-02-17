@@ -6,13 +6,44 @@ $(function () {
 
     $(document).on('click', '.donate-projects-list .add', function () {
 
-        let projId = $(this).data('id')
-        let popup = $('.tiles-popup_' + projId)
-        $('[tiles-popup]').addClass('d-none')
+        const fakePopup = $('.fake-popup');
+        let projId = $(this).data('id');
+        let popup;
+
+        if ($(fakePopup).length) {
+
+            const tilesPopup = $(this).closest('.descr').find('.tiles-popup-mobile');
+
+            let contentTiles = $(tilesPopup).html();
+            let classAttr = $(tilesPopup).attr('class');
+            let tilesPopupWidth = $(tilesPopup).width();
+
+
+            let dpl = $(this).closest('.donate-projects-list');
+            let dplHeight = $(dpl).height();
+
+            let thisPosition = $(this).closest('.col-12').position();
+            let thisHeight = $(this).closest('.col-12').height();
+
+            let movePositionTop = dplHeight-thisPosition.top-thisHeight + 60;
+            let movePositionLeft = thisPosition.left;
+
+            $(fakePopup).html(contentTiles);
+            $(fakePopup).addClass(classAttr);
+            $(fakePopup).css("bottom", movePositionTop);
+            $(fakePopup).css("right", movePositionLeft);
+            $(fakePopup).width(tilesPopupWidth);
+
+            popup = $('.fake-popup-wrapper .tiles-popup_' + projId);
+        } else {
+            popup = $('.tiles-popup_' + projId);
+        }
+
+        $('[tiles-popup]').addClass('d-none');
 
         let el = $('.tiles-popup_' + projId + ' form')
-
         let options = [];
+
         options = getPopupOptions(projId)
         $('.project_popup_options').text(JSON.stringify(options))
 
@@ -22,7 +53,7 @@ $(function () {
 
         popup.removeClass('d-none')
 
-        $('#proj_tiles_modal_popup').modal('show') // for mobile version
+        /*$('#proj_tiles_modal_popup').modal('show')*/ // for mobile version
     });
 
     $(document).on('click', '[tiles-popup] .close', function () {

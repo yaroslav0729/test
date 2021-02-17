@@ -41390,8 +41390,31 @@ var _require = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jqu
 $(function () {
   //~~~~~~~~~~~~~~~~~~ Project tiles ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   $(document).on('click', '.donate-projects-list .add', function () {
+    var fakePopup = $('.fake-popup');
     var projId = $(this).data('id');
-    var popup = $('.tiles-popup_' + projId);
+    var popup;
+
+    if ($(fakePopup).length) {
+      var tilesPopup = $(this).closest('.descr').find('.tiles-popup-mobile');
+      var contentTiles = $(tilesPopup).html();
+      var classAttr = $(tilesPopup).attr('class');
+      var tilesPopupWidth = $(tilesPopup).width();
+      var dpl = $(this).closest('.donate-projects-list');
+      var dplHeight = $(dpl).height();
+      var thisPosition = $(this).closest('.col-12').position();
+      var thisHeight = $(this).closest('.col-12').height();
+      var movePositionTop = dplHeight - thisPosition.top - thisHeight + 60;
+      var movePositionLeft = thisPosition.left;
+      $(fakePopup).html(contentTiles);
+      $(fakePopup).addClass(classAttr);
+      $(fakePopup).css("bottom", movePositionTop);
+      $(fakePopup).css("right", movePositionLeft);
+      $(fakePopup).width(tilesPopupWidth);
+      popup = $('.fake-popup-wrapper .tiles-popup_' + projId);
+    } else {
+      popup = $('.tiles-popup_' + projId);
+    }
+
     $('[tiles-popup]').addClass('d-none');
     var el = $('.tiles-popup_' + projId + ' form');
     var options = [];
@@ -41401,7 +41424,8 @@ $(function () {
     changeCampaignsDropdown(el);
     changeCategoriesDropdown(el);
     popup.removeClass('d-none');
-    $('#proj_tiles_modal_popup').modal('show'); // for mobile version
+    /*$('#proj_tiles_modal_popup').modal('show')*/
+    // for mobile version
   });
   $(document).on('click', '[tiles-popup] .close', function () {
     $('[tiles-popup]').addClass('d-none');

@@ -3229,6 +3229,9 @@ input[type='number'].color-danger + .input-group .btn {
   position: relative;
   top: -2px;
 }
+.discover-more .text {
+  letter-spacing: 0.1rem;
+}
 .discover-more .current-projects-list {
   margin: 0 -15px;
 }

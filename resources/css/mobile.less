@@ -923,6 +923,43 @@ footer {
 	  }
 	}
   }
+    .fake-popup-wrapper {
+        position: relative;
+        .fake-popup {
+            background: #F7796A;
+            padding: 19px 4px 4px;
+            border-radius: 5px;
+            position: absolute;
+            right: 0; bottom: 0;
+            z-index: 3;
+            max-height: 420px;
+            form {
+                background: #fff;
+                border-radius: 5px;
+                padding: 20px 12px 20px;
+            }
+            .name {
+                color: #FFF;
+                text-transform: uppercase;
+                font-size: 14px;
+                letter-spacing: 1px;
+                line-height: 30px;
+                padding-right: 42px;
+                padding-left: 15px;
+                height: 60px;
+                overflow: hidden;
+                margin-bottom: 9px;
+            }
+            .fa-check {
+                font-size: 30px;
+                color: #fff;
+                position: absolute;
+                right: 15px;
+                top: 17px;
+                z-index: 3;
+            }
+        }
+    }
 
   .donate-projects-list {
 	padding: 48px 20px 0;
@@ -966,7 +1003,7 @@ footer {
               padding: 19px 4px 4px;
               position: absolute; top:-293px; right: 0;
               left: 0;
-              z-index: 2;
+              z-index: 10;
               max-height: 400px;
               .easy();
               &.d-none {
@@ -1616,10 +1653,10 @@ footer {
 		}
 	  }
 	  .date {
-		position: absolute; top: -27px; right: 30px;
+		position: absolute; top: -19px; right: 30px;
 		border-radius: 0  0 5px 5px;
 		background: #101525;
-		padding: 8px 18px 5px;
+		padding: 11px 18px 11px;
 		line-height: 1.3;
 	  }
 	}
