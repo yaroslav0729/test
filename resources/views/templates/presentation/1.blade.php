@@ -76,9 +76,9 @@
 
 <div class="pt-5"></div>
 
-@include('modules.presentation.mission_possible')
+{{-- @include('modules.presentation.mission_possible')
 
-<div class="pt-5"></div>
+<div class="pt-5"></div> --}}
 
 
 <section class="blog-article-body">

@@ -52,7 +52,7 @@
 
 <hr>
 
-@include('modules.admin.mission_possible')
+{{-- @include('modules.admin.mission_possible') --}}
 
 @include('modules.admin.related_page_expanded')
 
