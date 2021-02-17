@@ -54,7 +54,7 @@
 
     <div class="col-12 col-lg-6  mt-lg-3">
         <div class="form-group">
-            <label>Background class:</label>
+            <label>Background class (bg-white - by default):</label>
             <input class="form-control" name="parameters[bg_class]" placeholder="Example - bg-light"
                    value="{{ $bgClass }}"/>
         </div>

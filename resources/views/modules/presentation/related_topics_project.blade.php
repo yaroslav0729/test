@@ -37,7 +37,7 @@
 @endphp
 
 @if(!$pages->isEmpty())
-    <section class="discover-more @empty($bgClass) bg-light @else {{ $bgClass }} @endempty">
+    <section class="discover-more @empty($bgClass) bg-white @else {{ $bgClass }} @endempty">
     <div class="wrap">
         <div class="title">
             <div class="row">
