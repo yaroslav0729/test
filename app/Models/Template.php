@@ -399,6 +399,11 @@ class Template
                     'parameters.need_text' => 'required|max:170',
                     'parameters.need_link_text' => 'required',
                     'parameters.need_link' => 'required',
+
+                    'parameters.need_photo' => 'required',
+                    'parameters.is_help_bg_color' => 'nullable|string',
+                    'parameters.is_help_btn_color' => 'nullable|string',
+
                 ];
 
                 break;

@@ -1,12 +1,22 @@
 @php
     $bgClass = "";
     $relPageTitle = "";
+    $relPageLinkTitle = "";
+    $relPageLink = "";
 
     if (isset($parameters['bg_class'])) {
         $bgClass = $parameters['bg_class'];
     }
     if (isset($parameters['rel_page_title'])) {
         $relPageTitle = $parameters['rel_page_title'];
+    }
+
+    if (isset($parameters['rel_page_link_title'])) {
+        $relPageLinkTitle = $parameters['rel_page_link_title'];
+    }
+
+    if (isset($parameters['rel_page_link'])) {
+        $relPageLink = $parameters['rel_page_link'];
     }
 
     $pageIds = [];
@@ -22,9 +32,12 @@
     }
 
     $pages = \App\Models\Project::getRelPages($pageIds);
+
+
 @endphp
 
-<section class="discover-more @empty($bgClass) bg-light @else {{ $bgClass }} @endempty">
+@if(!$pages->isEmpty())
+    <section class="discover-more @empty($bgClass) bg-light @else {{ $bgClass }} @endempty">
     <div class="wrap">
         <div class="title">
             <div class="row">
@@ -36,11 +49,27 @@
                             {{ $relPageTitle }}
                         @endif
                     </b>
+                </div>
+                <div class="col-5 text-right pr-0">
+                    <a href="
+                    @if ($relPageLink === "")
+                        /newsroom
+@else
+                    {{ $relPageLink }}
+                    @endif
+                        " class="text-uppercase text-underline ">
+                        <b>
+                            @if ($relPageLinkTitle === "")
+                                VISIT NEWSROOM
+                            @else
+                                {{ $relPageLinkTitle }}
+                            @endif
 
+                        </b> <i class="moon-icons-arrow-right"></i></a>
                 </div>
             </div>
         </div>
-        
+
         <div class="current-projects-list">
             <div class="wrap">
                 <div class="row gutter-5">
@@ -52,10 +81,10 @@
                                 @else
                                     <span class="img" style="background: #eee"></span>
                                 @endisset
-        
+
                                 <span class="descr">
-                                <span class="name font-size-16"><b>{{ \App\Helpers\StrHelper::lengthLimit($page->name, 20) }}</b></span>
-                                <span class="text font-size-16">{{ \App\Helpers\StrHelper::lengthLimit($page->preview_text, 60) }}</span>
+                                <span class="text font-size-16 text-uppercase">{{ \App\Helpers\StrHelper::lengthLimit($page->name, 20) }}</span>
+                                <span class="name font-size-16 "><b>{{ \App\Helpers\StrHelper::lengthLimit($page->preview_text, 60) }}</b></span>
                                 </span>
                             </a>
                         </div>
@@ -63,6 +92,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </section>
+@endif

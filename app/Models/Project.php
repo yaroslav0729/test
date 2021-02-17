@@ -68,7 +68,7 @@ class Project
         ->published()
         ->get();
 
-        return $pages; 
+        return $pages;
     }
 
     protected static function isPriceExists($campId, $value, $type)
@@ -91,7 +91,7 @@ class Project
         $amount = [];
 
         if (isset($pageInstance->parameters['amount'])) {
-            $amount = $pageInstance->parameters['amount'];  
+            $amount = $pageInstance->parameters['amount'];
         }
 
         $campaignsCountries = [];
@@ -101,11 +101,11 @@ class Project
                 $campaigns = [];
                 foreach ($item['campaigns'] as $campId) {
                     $campName = \App\Models\Campaign::getCountryNameForPrice($campId, $item['value'], $item['type']);
-                    
+
                     if (isset($campName))
                     $campaigns[$campId] = $campName;
                 }
-                $campaignsCountries[$key] = $campaigns; 
+                $campaignsCountries[$key] = $campaigns;
             }
         }
 
@@ -117,14 +117,14 @@ class Project
         $amount = [];
 
         if (isset($pageInstance->parameters['amount'])) {
-            $amount = $pageInstance->parameters['amount'];  
+            $amount = $pageInstance->parameters['amount'];
         }
 
         $campaignsNames = [];
 
         foreach ($amount as $price) {
             if (isset($price['type'])) {
-                
+
                 if (isset($price['campaigns'])) {
                     foreach ($price['campaigns'] as $campaignId) {
 
@@ -134,13 +134,13 @@ class Project
                             $campCategories = $campaign->campaign_categories->pluck('name')->toArray();
                             $campName = Campaign::getCountryNameForPrice($campaignId, $price['value'], $price['type']);
                         }
-                        
+
                         if (isset($campName)) {
                             $campaignsNames[$campaignId]['name'] = $campName;
                             $campaignsNames[$campaignId]['categories'] = $campCategories;
-                        }  
+                        }
                     }
-                }                
+                }
             }
         }
 
@@ -154,14 +154,14 @@ class Project
         $pageInstance = PageInstance::find($id);
 
         if (isset($pageInstance->parameters['amount'])) {
-            $amount = $pageInstance->parameters['amount'];  
+            $amount = $pageInstance->parameters['amount'];
         }
 
         $options = [];
 
         foreach ($amount as $price) {
             if (isset($price['type'])) {
-                
+
                 $campaignsNames = [];
 
                 if (isset($price['campaigns'])) {
@@ -174,25 +174,25 @@ class Project
                         if (isset($campName)) {
                             $campaignsNames[$campaignId]['name'] = $campName;
                             $campaignsNames[$campaignId]['categories'] = $campCategories;
-                        }  
+                        }
                     }
                 }
 
                 $type = '';
-                
+
                 if ((int)$price['type'] === CampaignPrice::TYPE_SINGLE) {
                     $type = 'single';
                 } else if ((int)$price['type'] === CampaignPrice::TYPE_MONTHLY) {
                     $type = 'monthly';
                 }
-                
+
                 if (count($campaignsNames)) {
                     $options[$type][] = [
                         'price' => $price['value'],
                         'campaigns' => $campaignsNames
                     ];
                 }
-                
+
             }
         }
 
@@ -203,11 +203,11 @@ class Project
     {
         $parameters = $pageInstance->parameters;
         $amount = [];
-        
+
         if (isset($parameters['amount'])) {
             $amount = $parameters['amount'];
         }
-        
+
         $campaignIds = [];
 
         foreach ($amount as $price) {
@@ -220,7 +220,7 @@ class Project
 
         $campaignIds = array_unique($campaignIds);
         $emergencyCount = Campaign::whereIn('id', $campaignIds)->emergency()->count();
-        
+
         if ($emergencyCount) {
             return true;
         } else {
@@ -233,6 +233,6 @@ class Project
         return PageInstance::whereHas('Page', function (Builder $query) use ($pageIds) {
                 $query->whereIn('id', $pageIds)
                     ->published();
-        })->get();
+        })->actual()->get();
     }
 }

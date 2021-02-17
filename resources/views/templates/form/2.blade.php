@@ -273,8 +273,6 @@
     </div>
 </div>
 
-
-
 <div class="row mt-5">
     <div class="col-12">
         @include('modules.admin.important_information', [
@@ -283,10 +281,7 @@
     </div>
 </div>
 
-<div class="row mt-5">
-    <div class="col-12">
-        @include('modules.admin.related_page_expanded', [
-            'parameters' => $parameters
-        ])
-    </div>
-</div>
+@include('modules.admin.related_topics_project', [
+    'parameters' => $parameters
+])
+
