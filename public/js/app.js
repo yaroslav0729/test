@@ -41408,7 +41408,7 @@ $(function () {
       $(fakePopup).html(contentTiles);
       $(fakePopup).addClass(classAttr);
       $(fakePopup).css("bottom", movePositionTop);
-      $(fakePopup).css("right", movePositionLeft);
+      $(fakePopup).css("right", 5);
       $(fakePopup).width(tilesPopupWidth);
       popup = $('.fake-popup-wrapper .tiles-popup_' + projId);
     } else {
