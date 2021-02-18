@@ -1,4 +1,4 @@
-@php 
+@php
 
     $previewPageTitle = "";
     $previewPageText1 = "";
@@ -7,23 +7,23 @@
     $previewPageImage = "";
 
     if (isset($parameters['preview_page_title'])) {
-        $previewPageTitle = $parameters['preview_page_title'];    
+        $previewPageTitle = $parameters['preview_page_title'];
     }
 
     if (isset($parameters['preview_page_text1'])) {
-        $previewPageText1 = $parameters['preview_page_text1'];    
+        $previewPageText1 = $parameters['preview_page_text1'];
     }
 
     if (isset($parameters['preview_page_text2'])) {
-        $previewPageText2 = $parameters['preview_page_text2'];    
+        $previewPageText2 = $parameters['preview_page_text2'];
     }
 
     if (isset($parameters['preview_page_link'])) {
-        $previewPageLink = $parameters['preview_page_link'];    
+        $previewPageLink = $parameters['preview_page_link'];
     }
 
     if (isset($parameters['preview_page_image'])) {
-        $previewPageImage = $parameters['preview_page_image'];    
+        $previewPageImage = $parameters['preview_page_image'];
     }
 
 @endphp
@@ -31,11 +31,11 @@
 <section class="mission-impossible">
     <div class="wrap">
         @empty($previewPageTitle)
-        <div class="title">Mission possible title</div>
-        @else 
+        <div class="title">Mission possible</div>
+        @else
         <div class="title">{{ $previewPageTitle }}</div>
         @endempty
-        
+
     </div>
     <div class="wrap">
     <div class="body">
@@ -44,17 +44,17 @@
                 <div class="text bg-danger">
                     @empty($previewPageText1)
                     <div class="tl">Mission Possible, the mission that changes everyone's lives. </div>
-                    @else 
+                    @else
                     <div class="tl">{{ $previewPageText1 }}</div>
                     @endempty
 
                     @empty($previewPageText2)
                     <p>170 Characters perspiciais und omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quaemus ab illo inventore veritatis.</p>
-                    @else 
+                    @else
                     <p>{{ $previewPageText2 }}</p>
                     @endempty
-                    
-                    
+
+
                 </div>
                 <div class="text-right">
                     <a href="{{ $previewPageLink }}" class="btn btn-danger-light view-more">Learn more</a>
@@ -62,7 +62,7 @@
             </div>
             @empty($previewPageImage)
             <div class="col-5 img" style="background-image: url(img/content/mission-impossible-1.jpg)">&nbsp;</div>
-            @else 
+            @else
             <div class="col-5 img" style="background-image: url({{ $previewPageImage }})">&nbsp;</div>
             @endempty
         </div>

@@ -49,7 +49,7 @@
             </b>
             <svg class="decor-wave size-20 d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
-                   fill="#000000" stroke="none">
+                   fill="#241d54" stroke="none">
                     <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
     -86 3 -99 26 -135 63 -94 129 -129 263 -139 246 -18 368 -100 648 -439 168
     -205 344 -382 451 -455 104 -71 240 -135 362 -168 94 -26 113 -28 300 -28 185

@@ -19,8 +19,7 @@
     </div>
 </div>
 
-
-@include('modules.admin.islamic_help_needs_you', [
+@include('modules.admin.mission_possible', [
     'parameters' => $parameters
 ])
 
