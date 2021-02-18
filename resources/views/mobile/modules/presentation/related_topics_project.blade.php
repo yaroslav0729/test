@@ -4,8 +4,20 @@
     $relPageLinkTitle = "";
     $relPageLink = "";
 
+    $template = '';
+
+    if (isset($parameters['template'])) {
+        $template = $parameters['template'];
+    }
+
     if (isset($parameters['bg_class'])) {
         $bgClass = $parameters['bg_class'];
+    }
+
+    $bgClassMobile = "";
+
+    if (isset($parameters['bg_class_mobile'])) {
+        $bgClassMobile = $parameters['bg_class_mobile'];
     }
 
     if (isset($parameters['rel_page_title'])) {
@@ -37,17 +49,26 @@
 
 @endphp
 
-<section class="discover-more @empty($bgClass) bg-light @else {{ $bgClass }} @endempty">
+<section class="discover-more
+    @if ($bgClassMobile === "" && $template ===  \App\Models\Template::COMMON_CONTENT_PAGE)
+        bg-danger-light
+    @elseif($bgClassMobile === "" )
+        bg-light
+    @else
+    {{ $bgClassMobile }}
+    @endif">
     <div class="wrap">
         <div class="title text-center">
-            <b class="font-size-25 text-uppercase d-inline-block mb-3">
-                @if ($relPageTitle === "")
+            <b class="font-size-25 text-uppercase d-inline-block mb-4">
+                @if ($relPageTitle === "" && $template ===  \App\Models\Template::COMMON_CONTENT_PAGE)
+                    DISCOVER MORE
+                @elseif($relPageTitle === "" )
                     RELATED TOPICS
                 @else
                     {{ $relPageTitle }}
                 @endif
             </b>
-            <svg class="decor-wave size-20 d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+            <svg class="decor-wave size-20 d-inline-block mt-2" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
                    fill="#241d54" stroke="none">
                     <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0

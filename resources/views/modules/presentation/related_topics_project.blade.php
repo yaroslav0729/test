@@ -4,6 +4,18 @@
     $relPageLinkTitle = "";
     $relPageLink = "";
 
+    $template = '';
+
+    if (isset($parameters['template'])) {
+        $template = $parameters['template'];
+    }
+
+    $bgClassMobile = "";
+
+    if (isset($parameters['bg_class_mobile'])) {
+        $bgClassMobile = $parameters['bg_class_mobile'];
+    }
+
     if (isset($parameters['bg_class'])) {
         $bgClass = $parameters['bg_class'];
     }
@@ -43,7 +55,9 @@
         <div class="row">
             <div class="col-7">
                 <b class="font-size-30 mr-4 text-uppercase">
-                    @if ($relPageTitle === "")
+                    @if ($relPageTitle === "" && $template ===  \App\Models\Template::COMMON_CONTENT_PAGE)
+                        DISCOVER MORE
+                    @elseif($relPageTitle === "" )
                         RELATED TOPICS
                     @else
                         {{ $relPageTitle }}

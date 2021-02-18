@@ -37,6 +37,13 @@
         $bgClass = $parameters['bg_class'];
     }
 
+    $bgClassMobile = "";
+
+    if (isset($parameters['bg_class_mobile'])) {
+        $bgClassMobile = $parameters['bg_class_mobile'];
+    }
+
+
 @endphp
 
 <div class="row mt-lg-5">
@@ -62,6 +69,14 @@
 
     <div class="col-12 col-lg-6">
         <div class="form-group">
+            <label>Background class Mobile (bg-white - by default):</label>
+            <input class="form-control" name="parameters[bg_class_mobile]" placeholder="Example - bg-light"
+                   value="{{ $bgClassMobile }}"/>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <div class="form-group">
             <label>Relation page link title (VISIT NEWSROOM - by default):</label>
             <input class="form-control" name="parameters[rel_page_link_title]" placeholder="Relation page link title" value="{{ $relPageLinkTitle }}" />
         </div>
@@ -73,7 +88,9 @@
             <input class="form-control" name="parameters[rel_page_link]" placeholder="Relation page link" value="{{ $relPageLink }}" />
         </div>
     </div>
+</div>
 
+<div class="row">
     <div class="form-group col-12 col-lg-4">
         <label>Topic id 1:</label>
         <input class="form-control" name="parameters[proj_rel_page_1]" placeholder="Insert topic id"
