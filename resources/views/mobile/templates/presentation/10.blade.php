@@ -7,7 +7,7 @@
     $keywordType = Request::get('type');
     $keywordTypeParticipate = Request::get('participate');
 
-    $query = \App\Models\Event::whereDate('start_date', '>=', now());
+    $query = \App\Models\Event::getActualEventsQuery();
 
     if (!empty($keywordType)) {
         $query->where('entry_type', $keywordType);

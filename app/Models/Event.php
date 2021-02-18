@@ -80,6 +80,18 @@ class Event extends Model
         return $dataEvent;
     }
 
+    public static function getActualEventsQuery()
+    {
+
+        $events = Event::with('Page')->whereDate('start_date', '>=', now())
+            ->whereHas('Page', function ($query) {
+                $query->published();
+        });
+
+        return $events;
+
+    }
+
     /**
      * Create or update a record matching the attributes, and fill it with values.
      *
@@ -138,7 +150,7 @@ class Event extends Model
             $query->where('event_type', $params['participate']);
         }
 
-      if ($date && !$validatorDate->fails()) {
+        if ($date && !$validatorDate->fails()) {
             $query->whereDate('start_date', '=', $date)
                 ->orWhereNotNull('end_date')
                 ->where('name', 'LIKE', "%$name%")

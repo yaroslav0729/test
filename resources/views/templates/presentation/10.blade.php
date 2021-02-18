@@ -10,7 +10,8 @@
     $keywordType = Request::get('type');
     $keywordTypeParticipate = Request::get('participate');
 
-    $query = \App\Models\Event::whereDate('start_date', '>=', now());
+    $query = \App\Models\Event::getActualEventsQuery();
+
 
     if (!empty($keywordName) || !empty($keywordLocation)) {
          $query->where('name', 'LIKE', "%$keywordName%")
