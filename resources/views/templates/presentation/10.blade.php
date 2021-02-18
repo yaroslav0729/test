@@ -10,7 +10,8 @@
     $keywordType = Request::get('type');
     $keywordTypeParticipate = Request::get('participate');
 
-    $query = \App\Models\Event::whereDate('start_date', '>=', now());
+    $query = \App\Models\Event::getActualEventsQuery();
+
 
     if (!empty($keywordName) || !empty($keywordLocation)) {
          $query->where('name', 'LIKE', "%$keywordName%")
@@ -51,7 +52,6 @@
         <div class="title">
             <p class="mb-3"><b>OUR FEATURED EVENT</b></p>
         </div>
-{{--        <div class="black-line"></div>--}}
 
         <div class="wrap">
             <div class="swiper-container">
@@ -63,8 +63,8 @@
                                      style="background-image: url({{ $event->page->getActualPageInstanceAttribute()->preview_img }})"></div>
                                 <div class="col-4 text">
                                     <div>
-                                        <div class="tl">{{ $event->name }}</div>
-                                        <svg class="decor-wave style-white mb-2" version="1.0"
+                                        <a class="tl text-white text-decoration-none d-block" href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}">{{ $event->name }}</a>
+                                        <svg class="decor-wave style-white mb-2 mt-3" version="1.0"
                                              xmlns="http://www.w3.org/2000/svg" width="2202.000000pt"
                                              height="166.000000pt" viewBox="0 0 2202.000000 166.000000"
                                              preserveAspectRatio="xMidYMid meet">
@@ -109,9 +109,9 @@
 -16z"/>
                                             </g>
                                         </svg>
-                                        <div class="pt-3"></div>
-                                        <p>{{ $event->page->getActualPageInstanceAttribute()->preview_text }}</p>
-                                        <div class="place text-white"><i class="fal fa-map-marker-alt text-secondary"></i> {{ $event->location }}
+                                        <div class="pt-4"></div>
+                                        <a class="d-block text-white" href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}">{{ $event->page->getActualPageInstanceAttribute()->preview_text }}</a>
+                                        <div class="place text-white mt-5"><i class="fal fa-map-marker-alt text-secondary"></i> {{ $event->location }}
                                         </div>
                                         <div>
                                             <div class="date">{{ $event->start_date->format('M') }}
@@ -212,4 +212,5 @@
 'parameters' => $parameters
 ])
 
+<div class="mb-lg-4"></div>
 @include('modules.presentation.join_the_cause_subscribe')

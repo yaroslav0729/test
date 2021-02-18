@@ -6,6 +6,9 @@
     $needLink = "";
     $needPhoto = "";
 
+    $bgColor = "";
+    $btnColor = "";
+
 
     if (isset($parameters['need_title'])) {
         $needTitle = $parameters['need_title'];
@@ -27,6 +30,15 @@
         $needPhoto = $parameters['need_photo'];
     }
 
+    if (isset($parameters['is_help_bg_color'])) {
+        $bgColor = $parameters['is_help_bg_color'];
+    }
+
+    if (isset($parameters['is_help_btn_color'])) {
+        $btnColor = $parameters['is_help_btn_color'];
+    }
+
+
 @endphp
 
 <section class="mission-impossible">
@@ -37,12 +49,12 @@
         <div class="body">
             <div class="row gutter-0">
                 <div class="col-7" style="z-index: 2">
-                    <div class="text bg-info">
+                    <div class="text @if($bgColor){{ $bgColor }}@else bg-info @endif">
                         <div class="tl">{{ $needTitle }}</div>
                         <p>{!! $needText !!}</p>
                     </div>
                     <div class="text-right">
-                        <a href="{{ $needLink }}" class="btn btn-danger view-more">{{ $needLinkText }}</a>
+                        <a href="{{ $needLink }}" class="btn @if($btnColor){{ $btnColor }}@else btn-danger @endif view-more">{{ $needLinkText }}</a>
                     </div>
                 </div>
                 <div class="col-5 img" style="background-image: url({{ $needPhoto }})">&nbsp;</div>

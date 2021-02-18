@@ -3,25 +3,25 @@
     $mainTitle = "";
 
     if (isset($parameters['main_title'])) {
-        $mainTitle = $parameters['main_title'];    
+        $mainTitle = $parameters['main_title'];
     }
 
     $afterTitleText = "";
 
     if (isset($parameters['after_text'])) {
-        $afterTitleText = $parameters['after_text'];    
+        $afterTitleText = $parameters['after_text'];
     }
 
     $donateToProjTitle = "";
 
     if (isset($parameters['donate_to_title'])) {
-        $donateToProjTitle = $parameters['donate_to_title'];    
+        $donateToProjTitle = $parameters['donate_to_title'];
     }
 
     $donateToProjText = "";
 
     if (isset($parameters['donate_to_text'])) {
-        $donateToProjText = $parameters['donate_to_text'];    
+        $donateToProjText = $parameters['donate_to_text'];
     }
 
 @endphp
@@ -53,6 +53,9 @@
 
     <div class="row filter_projects_single" filter-projects>
         @include('modules.presentation.projects_tiles', ['projects' => $sProjects])
+    </div>
+    <div class="fake-popup-wrapper">
+        <div class="fake-popup" tiles-popup></div>
     </div>
 
     {{-- Monthly donate projects --}}

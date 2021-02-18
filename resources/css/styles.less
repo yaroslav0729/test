@@ -508,11 +508,14 @@ header {
     &.open {transform: translateY(0);}
     .logo {
         display: inline-block;
-        height: 42px;
-        width: 42px;
-        //background-color: #E3EFFE;
+        height: 52px;
+        width: 52px;
         vertical-align: middle;
         border-radius: 50%;
+        img {
+            width: 50px; height: 45px;
+        }
+
     }
     .logo + ul {
         display: inline-block;
@@ -546,7 +549,7 @@ header {
         font-size: 30px;
         font-weight: 900;
         line-height: 44px;
-        padding-top: 41px;
+        padding-top: 32px;
         margin: 0 0 8px 65px;
     }
     .title + div {
@@ -619,7 +622,7 @@ header {
 
         .categories-swiper {
             padding: 0 5px;
-            .swiper-container {padding-bottom: 40px;}
+            .swiper-container {padding-bottom: 19px;}
             .swiper-button-prev,
             .swiper-button-next {
                 margin: 0;
@@ -2662,6 +2665,9 @@ input[type='number'].color-danger  + .input-group {
                 position: relative; top: -2px;
             }
         }
+    }
+    .text {
+        letter-spacing: 0.1rem;
     }
     .current-projects-list {margin: 0 -15px;}
 }
@@ -5453,7 +5459,6 @@ input[type='number'].color-danger  + .input-group {
             overflow: hidden;
             &.open {max-height: 10000px;}
         }
-        word-break: break-all;
     }
     .read-more {
         color: #F7796A;

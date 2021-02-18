@@ -7,7 +7,7 @@
     $keywordType = Request::get('type');
     $keywordTypeParticipate = Request::get('participate');
 
-    $query = \App\Models\Event::whereDate('start_date', '>=', now());
+    $query = \App\Models\Event::getActualEventsQuery();
 
     if (!empty($keywordType)) {
         $query->where('entry_type', $keywordType);
@@ -40,7 +40,8 @@
                                 <div class="date">{{ $event->start_date->format('M') }}
                                     <span>{{ $event->start_date->format('d') }}</span></div>
                                 <div class="place"><i class="fal fa-map-marker-alt"></i>{{ $event->location }}</div>
-                                <div class="tl">{{ $event->name }}</div>
+                                <a class="tl text-white text-decoration-none d-block mb-4"
+                                   href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}">{{ $event->name }}</a>
                                 <svg class="decor-wave style-white mb-2" version="1.0"
                                      xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt"
                                      viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
@@ -86,7 +87,8 @@
                                     </g>
                                 </svg>
                                 <div class="pt-3"></div>
-                                <p>{{ $event->page->getActualPageInstanceAttribute()->preview_text }}</p>
+                                <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}"
+                                   class="d-block text-white text-decoration-none pb-4">{{ $event->page->getActualPageInstanceAttribute()->preview_text }}</a>
                             </div>
                         </div>
                     </div>
@@ -112,7 +114,7 @@
                             <option value="">EVENT TYPE</option>
                             @foreach (\App\Models\Event::ALL_TYPES_ENTRY as $typeId => $typeLabel)
                                 <option class="events-filter" value="{{ $typeId }}"
-                                    @if($typeId === intval($keywordType)) selected @endif
+                                        @if($typeId === intval($keywordType)) selected @endif
                                 >{{ $typeLabel }}</option>
                             @endforeach
                         </select>
@@ -157,7 +159,8 @@
                             <span class="place"><i class="fal fa-map-marker-alt"></i>{{ $event->location }}</span>
                         </span>
                         <span class="col-5 text-right">
-                            <span class="date">{{ $event->start_date->format('M') }}<span>{{ $event->start_date->format('d') }}</span></span>
+                            <span
+                                class="date">{{ $event->start_date->format('M') }}<span>{{ $event->start_date->format('d') }}</span></span>
                         </span>
                     </span>
                 </div>

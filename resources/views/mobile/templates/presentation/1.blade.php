@@ -89,26 +89,16 @@
             {!! $articleHtml !!}
         </div>
     </div>
+    <div class="author">
+        <div class="img" style="background-image: url(img/content/Avatar1.jpg)"></div>
+        <span>written by <span>|</span> {{ $writtenBy }}</span>
+    </div>
     @include('modules.presentation.share_this')
 </section>
 
-{{-- <section class="mission-impossible">
-    <div class="title">{{ $previewPageTitle }}</div>
-    <div class="wrap">
-    <div class="body">
-        <div class="text bg-danger">
-            <div class="tl">{{ $previewPageText1 }}</div>
-        </div>
-        <div class="img" style="background-image: url({{ $previewPageImage }})">&nbsp;</div>
-        <div class="text-center bg-danger-light">
-            <a href="{{ $previewPageLink }}" class="btn btn-danger-light view-more">Learn more</a>
-        </div>
-    </div>
-    </div>
-</section> --}}
-
 <div class="pt-5"></div>
 
-@include('modules.presentation.related_page_expanded')
+{{--@include('modules.presentation.related_page_expanded')--}}
+@include('modules.presentation.related_topics_project')
 
 @include('modules.presentation.join_the_cause_subscribe')

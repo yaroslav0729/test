@@ -54,6 +54,12 @@
 
 {{-- @include('modules.admin.mission_possible') --}}
 
-@include('modules.admin.related_page_expanded')
+{{--@include('modules.admin.related_page_expanded')--}}
+
+@include('modules.admin.related_topics_project', [
+    'parameters' => $parameters
+])
 
 @include('modules.admin.join_the_cause_subscribe')
+
+

@@ -4,7 +4,7 @@ $projPageInstance = $project->actual_page_instance;
 
 @endphp
 
-<div class="form d-none tiles-popup_{{ $popupKey }} tiles-popup-mobile" tiles-popup>
+<div class="form d-none tiles-popup_{{ $popupKey }} tiles-popup-mobile">
     <i class="fal fa-check close"></i>
     <div class="name">Environmental sustainabilty</div>
     <form action="{{ route('cart.add') }}" method="post">

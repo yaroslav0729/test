@@ -16,7 +16,7 @@
                     </a>
                     <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}"
                        class="tl d-block">{{ $event->name }}</a>
-                    <span class="time d-block"><i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($event->start_time)->format('h:i') }}</span>
+                    <span class="time d-block ml-4">{{ \Carbon\Carbon::parse($event->start_time)->format('h:ia') }}</span>
                     <span class="row">
                         <span class="col-7">
                             <span class="place"><i class="fal fa-map-marker-alt"></i>{{ $event->location }}</span>
