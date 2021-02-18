@@ -16174,9 +16174,6 @@ input[type='number'].color-danger + .input-group .btn {
   line-height: 26px;
   font-weight: 500;
 }
-.important-information .text {
-  word-break: break-all;
-}
 .important-information .text .descr {
   max-height: 0;
   overflow: hidden;
