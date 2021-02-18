@@ -3,7 +3,8 @@
         <div class="row align-items-center">
             <div class="col-9">
                 <a href="{{ route('index') }}" class="logo">
-                    <span><img src="/img/logo.png" width="35" height="35" /></span></a>
+                    <img src="/img/logo.png"  />
+                </a>
                 <ul class="d-inline-flex justify-content-between">
                     @isset ($headerMenuItem[0])
                         @foreach($headerMenuItem[0] as $itemMenu)
@@ -118,7 +119,7 @@
                     <div class="title">{{ $itemMenu['parent_text'] }}</div>
 
                     <div>
-                        <ul class="menu">
+                        <ul class="menu mb-3">
                             <li><a href="#" menu-group-back>VIEW ALL CATEGORIES</a></li>
                         </ul>
                     </div>

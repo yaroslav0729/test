@@ -38,7 +38,7 @@ if (!isset($headerClassName)) {
             <div class="row align-items-center">
                 <div class="col-9">
                     <a href="{{ route('index') }}" class="logo">
-                        <img src="/img/logo.png" width="35" height="35" />
+                        <img src="/img/logo.png" />
                     </a>
                     <ul class="d-flex justify-content-between">
                         @isset ($headerMenuItem[0])
