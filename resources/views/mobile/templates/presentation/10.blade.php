@@ -172,8 +172,8 @@
     </div>
 </section>
 
-@include('modules.presentation.islamic_help_needs_you', [
-    'parameters' => $parameters
+@include('modules.presentation.mission_possible_2', [
+'parameters' => $parameters
 ])
 
 @include('modules.presentation.join_the_cause_subscribe3', [

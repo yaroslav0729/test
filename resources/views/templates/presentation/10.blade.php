@@ -42,7 +42,7 @@
     }
 
     $events = $query->orderBy('start_date')->paginate($perPage);
-    $eventsForSlide = $events->count() < 3 ? \App\Models\Event::whereDate('start_date', '>=', now())->orderBy('start_date')->take(3)->get() : $events->take(3);
+    $eventsForSlide = $events->count() < 3 ? \App\Models\Event::getActualEventsQuery()->take(3)->get() : $events->take(3);
 
 @endphp
 
@@ -110,7 +110,7 @@
                                             </g>
                                         </svg>
                                         <div class="pt-4"></div>
-                                        <a class="d-block text-white" href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}">{{ $event->page->getActualPageInstanceAttribute()->preview_text }}</a>
+                                        <a class="d-block text-white" href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}">{{ $event->page->getActualPageInstanceAttribute()->parameters['event_description'] ?? '' }}</a>
                                         <div class="place text-white mt-5"><i class="fal fa-map-marker-alt text-secondary"></i> {{ $event->location }}
                                         </div>
                                         <div>
@@ -208,7 +208,7 @@
 
 @endempty
 
-@include('modules.presentation.islamic_help_needs_you', [
+@include('modules.presentation.mission_possible', [
 'parameters' => $parameters
 ])
 
