@@ -30,7 +30,7 @@ class SearchController extends Controller
 
         $configTemplate = Template::getConfigureTemplate(88);
 
-        return view('search.index', compact('configTemplate', 'pages', 'search'));
+        return view('search.index', compact('configTemplate', 'pages', 'search', 'keyword'));
     }
 
 }
