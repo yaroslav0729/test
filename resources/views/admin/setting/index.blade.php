@@ -10,17 +10,39 @@
         <div class="p-5 pb-8">
 
             <h1>Global Settings:</h1>
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6 mt-lg-4">
                 <form action="{{ route('admin.settings.update') }}" method="POST">
                     @csrf
-                    <div class="form-group">
-                        <label>{{ Setting::name(Setting::VIDEO_LINK_ON_MAIN_MENU) }}:</label>
-                        <div class="input-group">
-                            <input type="text" name="{{ Setting::nameShort(Setting::VIDEO_LINK_ON_MAIN_MENU) }}"
-                                   class="form-control" placeholder="" value="{{ old(Setting::nameShort(Setting::VIDEO_LINK_ON_MAIN_MENU),
+                    <div class="row">
+                        <div class="form-group col-12 col-lg-6">
+                            <label>{{ Setting::name(Setting::VIDEO_LINK_ON_MAIN_MENU) }}:</label>
+                            <div class="input-group">
+                                <input type="text" name="{{ Setting::nameShort(Setting::VIDEO_LINK_ON_MAIN_MENU) }}"
+                                       class="form-control" placeholder="" value="{{ old(Setting::nameShort(Setting::VIDEO_LINK_ON_MAIN_MENU),
                             Setting::get(Setting::VIDEO_LINK_ON_MAIN_MENU)) }}">
+                            </div>
                         </div>
+
+                        <div class="form-group col-12 col-lg-6">
+                            <label>{{ Setting::name(Setting::WRAPPER_FOR_VIDEO_ON_MAIN_MENU) }}:</label>
+                            <div class="input-group">
+                                <input type="text" name="{{ Setting::nameShort(Setting::WRAPPER_FOR_VIDEO_ON_MAIN_MENU) }}"
+                                       class="form-control" placeholder="" value="{{ old(Setting::nameShort(Setting::WRAPPER_FOR_VIDEO_ON_MAIN_MENU),
+                            Setting::get(Setting::WRAPPER_FOR_VIDEO_ON_MAIN_MENU)) }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <label>{{ Setting::name(Setting::VIDEO_ON_MAIN_MENU_TEXT) }}:</label>
+                            <div class="input-group">
+                                <input type="text" name="{{ Setting::nameShort(Setting::VIDEO_ON_MAIN_MENU_TEXT) }}"
+                                       class="form-control" placeholder="" value="{{ old(Setting::nameShort(Setting::VIDEO_ON_MAIN_MENU_TEXT),
+                            Setting::get(Setting::VIDEO_ON_MAIN_MENU_TEXT)) }}">
+                            </div>
+                        </div>
+
                     </div>
+
                     <div class="form-group">
                         <label>{{ Setting::name(Setting::ZAKAT_FIT_CAMPAIGN_CATEGORY) }}:</label>
                         <select name="{{ Setting::nameShort(Setting::ZAKAT_FIT_CAMPAIGN_CATEGORY) }}"

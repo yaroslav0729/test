@@ -1,4 +1,4 @@
-@php 
+@php
 
     $previewPageTitle = "";
     $previewPageText1 = "";
@@ -7,32 +7,32 @@
     $previewPageImage = "";
 
     if (isset($parameters['preview_page_title'])) {
-        $previewPageTitle = $parameters['preview_page_title'];    
+        $previewPageTitle = $parameters['preview_page_title'];
     }
 
     if (isset($parameters['preview_page_text1'])) {
-        $previewPageText1 = $parameters['preview_page_text1'];    
+        $previewPageText1 = $parameters['preview_page_text1'];
     }
 
     if (isset($parameters['preview_page_text2'])) {
-        $previewPageText2 = $parameters['preview_page_text2'];    
+        $previewPageText2 = $parameters['preview_page_text2'];
     }
 
     if (isset($parameters['preview_page_link'])) {
-        $previewPageLink = $parameters['preview_page_link'];    
+        $previewPageLink = $parameters['preview_page_link'];
     }
 
     if (isset($parameters['preview_page_image'])) {
-        $previewPageImage = $parameters['preview_page_image'];    
+        $previewPageImage = $parameters['preview_page_image'];
     }
 
 @endphp
 
 <section class="our-latest-mission">
-    
+
     @empty($previewPageTitle)
     <div class="title">Have you<br>heard of...</div>
-    @else 
+    @else
     <div class="title">{{ $previewPageTitle }}</div>
     @endempty
 
@@ -84,9 +84,9 @@
             </svg>
 
             @empty($previewPageText2)
-            <p class="text-white font-size-16">170 Characters perspiciais und omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quaemus ab illo inventore veritatis.</p>
+            <p class="text-white font-size-16">Mission Possible, the mission that changes everyone's lives.</p>
             @else
-            <p class="text-white font-size-16">{{ $previewPageText2 }}</p> 
+            <p class="text-white font-size-16">{{ $previewPageText2 }}</p>
             @endempty
 
         </div>
@@ -96,7 +96,7 @@
     <div class="img" style="background-image: url(img/content/mission-impossible-1.jpg)">
         <a href="{{ $previewPageLink }}" class="btn btn-danger-light view-more">Learn more</a>
     </div>
-    @else 
+    @else
     <div class="img" style="background-image: url({{ $previewPageImage }})">
         <a href="{{ $previewPageLink }}" class="btn btn-danger-light view-more">Learn more</a>
     </div>
