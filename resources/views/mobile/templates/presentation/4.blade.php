@@ -6,6 +6,8 @@ $mainHtml = "";
         $mainHtml = $parameters['main_html'];
     }
 
+    $parameters['template'] = \App\Models\Template::COMMON_CONTENT_PAGE;
+
 @endphp
 
 <section>
@@ -46,4 +48,6 @@ $mainHtml = "";
 
 <div class="pt-5"></div>
 
-@include('modules.presentation.related_topics_project')
+@include('modules.presentation.related_topics_project', [
+    'parameters' => $parameters,
+])

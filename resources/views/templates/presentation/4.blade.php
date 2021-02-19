@@ -6,6 +6,8 @@
         $mainHtml = $parameters['main_html'];
     }
 
+    $parameters['template'] = \App\Models\Template::COMMON_CONTENT_PAGE;
+
 @endphp
 <section class="back">
     <div class="wrap">
