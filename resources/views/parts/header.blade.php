@@ -61,7 +61,7 @@
                     <div class="collapse mt-3 @isset($search) show @endisset " id="navbarToggleExternalContent">
                         <form class="form-inline my-2 my-lg-0 w-100" action="{{ route('search.index') }}" method="get">
                             <input class="form-control mr-sm-2 bg-white search-input w-100" type="search" placeholder="Search.."
-                                   aria-label="Search" name="keyword" value="{{ old('search') }}" autocomplete="off">
+                                   aria-label="Search" name="keyword" value="{{ $keyword ?? '' }}" autocomplete="off">
                         </form>
                     </div>
                 </div>

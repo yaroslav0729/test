@@ -17,7 +17,6 @@
                     @else
                          src="{{ $page->getActualPageInstanceAttribute()->preview_img }}"
                     @endif
-              {{--      {{ $page->getActualPageInstanceAttribute()->preview_img ?? '/storage/images/Praying-mosque-background.jpg' }} "--}}
                          data-holder-rendered="true">
                     <div class="card-body d-flex flex-column align-items-start">
                         <h3 class="mb-0">
