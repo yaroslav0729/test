@@ -6,9 +6,10 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\SettingHelper;
 use App\Http\Requests\Admin\SettingRequest;
 use App\Models\CampaignCategory;
+use Deployer\Collection\Collection;
 
 
-class SettingController
+class SettingController extends Collection
 {
     public function index()
     {
