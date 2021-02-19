@@ -49,7 +49,7 @@
                     @endempty
 
                     @empty($previewPageText2)
-                    <p>170 Characters perspiciais und omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quaemus ab illo inventore veritatis.</p>
+                    <p>Donate a water pump or well to those in need around the world and request a personalised plaque upon checkout</p>
                     @else
                     <p>{{ $previewPageText2 }}</p>
                     @endempty

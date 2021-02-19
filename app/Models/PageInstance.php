@@ -37,6 +37,17 @@ class PageInstance extends Model
         'html'
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'parameters' => 'array',
+        'actual' => 'boolean'
+    ];
+
+
     public static function boot()
     {
         parent::boot();
@@ -122,7 +133,7 @@ class PageInstance extends Model
                     if (count($campaigns)) {
                         return true;
                     }
-                    
+
                 }
             }
         }
@@ -144,10 +155,6 @@ class PageInstance extends Model
     {
         return $query->where('is_appeal', true);
     }
-
-    protected $casts = [
-        'parameters' => 'array',
-    ];
 
     public function page()
     {
@@ -223,27 +230,27 @@ class PageInstance extends Model
     {
         $redirects = Redirect::where('url_from', $this->slug)->get();
 
-        return count($redirects) ? true : false; 
+        return count($redirects) ? true : false;
     }
 
     public function getFromRedirects()
     {
         $redirects = Redirect::where('url_from', $this->slug)->get();
 
-        return $redirects; 
+        return $redirects;
     }
 
     public function hasToRedirect()
     {
         $redirects = Redirect::where('url_to', $this->slug)->get();
 
-        return count($redirects) ? true : false; 
+        return count($redirects) ? true : false;
     }
 
     public function getToRedirects()
     {
         $redirects = Redirect::where('url_to', $this->slug)->get();
 
-        return $redirects; 
+        return $redirects;
     }
 }

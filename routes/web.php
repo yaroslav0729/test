@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\GlobalPayController;
@@ -37,6 +38,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'index'])->name('index');
 Route::get('/sitemap.xml', [SitemapController::class, 'sitemap']);
+Route::get('search', [SearchController::class, 'index'])->name('search.index');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_ADMIN]], function () {
     Route::prefix('admin')->group(function () {
