@@ -90,7 +90,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row col-12">
     <div class="form-group col-12 col-lg-4">
         <label>Topic id 1:</label>
         <input class="form-control" name="parameters[proj_rel_page_1]" placeholder="Insert topic id"

@@ -112,8 +112,7 @@
     </div>
 </section>
 
-
-@include('modules.presentation.related_page_expanded', [
+@include('modules.presentation.related_topics_project', [
     'parameters' => $parameters
 ])
 

@@ -200,11 +200,11 @@
 
         </div>
     </div>
-    <div class="col-12 mt-5">
-        @include('modules.admin.related_page_expanded', [
-            'parameters' => $parameters
-        ])
-    </div>
+
+
+    @include('modules.admin.related_topics_project', [
+        'parameters' => $parameters
+    ])
 
     <div class="col-12 mt-5">
         @include('modules.admin.join_the_cause_subscribe', [
