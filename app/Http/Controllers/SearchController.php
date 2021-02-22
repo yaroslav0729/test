@@ -16,21 +16,20 @@ class SearchController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('keyword');
-        $search = true;
 
         $pages = Page::whereHas('pageInstances');
-
         if (!empty($keyword)) {
             $pages = $pages->whereHas('pageInstances', function (Builder $query) use ($keyword) {
                 $query->where('name', 'like',  '%' . $keyword . '%');
                 $query->orWhere('preview_text', 'like',  '%' . $keyword . '%');
             });
         }
-        $pages = $pages->get();
 
+        $countPage = $pages->count();
+        $pages = $pages->paginate(10);
         $configTemplate = Template::getConfigureTemplate(88);
 
-        return view('search.index', compact('configTemplate', 'pages', 'search', 'keyword'));
+        return view('search.index', compact('configTemplate', 'pages', 'keyword', 'countPage'));
     }
 
 }
