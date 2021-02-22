@@ -26,7 +26,7 @@ class ArticlesHelper
 
         })
         ->published()
-        ->orderBy('created_at', 'asc')
+        ->orderBy('created_at', 'desc')
         ->paginate(self::ARTICLES_PER_PAGE, ['*'], self::TRENDING_PAGINATOR, $page);
 
         return $pages;
@@ -47,7 +47,7 @@ class ArticlesHelper
         ->orderBy('created_at', 'desc')
         ->paginate(self::ARTICLES_PER_PAGE, ['*'], self::NEWS_PAGINATOR, $page);
 
-        return $pages;    
+        return $pages;
     }
 
     public static function getNewsroomPressArticles(int $page = 1)
@@ -65,7 +65,7 @@ class ArticlesHelper
         ->orderBy('created_at', 'desc')
         ->paginate(self::ARTICLES_PER_PAGE, ['*'], self::PRESS_PAGINATOR, $page);
 
-        return $pages; 
+        return $pages;
     }
 
     public static function getMinRead($pageInstance)
