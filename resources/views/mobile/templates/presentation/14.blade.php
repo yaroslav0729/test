@@ -133,7 +133,7 @@
 @include('modules.presentation.popular_topics')
 
 <section class="mission-impossible">
-    <div class="title no-brd">Mission Impossible</div>
+    <div class="title no-brd">Mission Possible</div>
     <div class="wrap">
         <div class="body">
             <div class="text bg-danger">
@@ -141,27 +141,13 @@
             </div>
             <div class="img" style="background-image: url(img/content/project-2.jpg)">&nbsp;</div>
             <div class="text-center bg-danger-light">
-                <a href="#" class="btn btn-danger-light view-more">Learn more</a>
+                <a href="/mission-possible" class="btn btn-danger-light view-more">Learn more</a>
             </div>
         </div>
     </div>
 </section>
 
-{{-- <section class="join-cause pb-0 with-glyph">
-    <div class="wrap">
-        <div class="title text-center">
-            <p class="font-size-25"><b>Join the cause!</b></p>
-        </div>
-        <p class="font-size-20 mb-4  text-center">
-            There are so many ways to help, stay in the loop with our Newsletter.
-        </p>
-        <form action="/" class="d-flex">
-            <input type="text" placeholder="Your email address" class="flex-grow-1">
-            <button type="submit"><i class="far fa-chevron-right"></i></button>
-        </form>
-        <div class="pt-4"></div>
-    </div>
-</section> --}}
+@include('modules.presentation.mission_possible_2')
 
 @include('modules.presentation.join_the_cause_subscribe', [
     'disableImageBefore' => true

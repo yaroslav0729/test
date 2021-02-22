@@ -22,85 +22,85 @@
     $projText2 = "";
 
     if (isset($parameters['main_title'])) {
-        $mainTitle = $parameters['main_title'];    
+        $mainTitle = $parameters['main_title'];
     }
 
     if (isset($parameters['main_image'])) {
-        $mainImage = $parameters['main_image'];    
+        $mainImage = $parameters['main_image'];
     }
 
     if (isset($parameters['apply_link'])) {
-        $applyLink = $parameters['apply_link'];    
+        $applyLink = $parameters['apply_link'];
     }
 
     if (isset($parameters['latest_mission_text'])) {
-        $latestMissionText = $parameters['latest_mission_text'];    
+        $latestMissionText = $parameters['latest_mission_text'];
     }
 
     if (isset($parameters['latest_mission_date'])) {
-        $latestMissionDate = $parameters['latest_mission_date'];    
+        $latestMissionDate = $parameters['latest_mission_date'];
     }
 
     if (isset($parameters['column1_title'])) {
-        $colTitle1 = $parameters['column1_title'];    
+        $colTitle1 = $parameters['column1_title'];
     }
 
     if (isset($parameters['column1_text'])) {
-        $colText1 = $parameters['column1_text'];    
+        $colText1 = $parameters['column1_text'];
     }
 
     if (isset($parameters['column2_title'])) {
-        $colTitle2 = $parameters['column2_title'];    
+        $colTitle2 = $parameters['column2_title'];
     }
 
     if (isset($parameters['column2_text'])) {
-        $colText2 = $parameters['column2_text'];    
+        $colText2 = $parameters['column2_text'];
     }
 
     if (isset($parameters['column2_title'])) {
-        $colTitle3 = $parameters['column2_title'];    
+        $colTitle3 = $parameters['column2_title'];
     }
 
     if (isset($parameters['column3_text'])) {
-        $colText3 = $parameters['column3_text'];    
+        $colText3 = $parameters['column3_text'];
     }
 
     if (isset($parameters['explore_proj_title'])) {
-        $exploreTitle = $parameters['explore_proj_title'];    
+        $exploreTitle = $parameters['explore_proj_title'];
     }
 
     if (isset($parameters['explore_proj_text'])) {
-        $exploreText = $parameters['explore_proj_text'];    
+        $exploreText = $parameters['explore_proj_text'];
     }
 
     if (isset($parameters['interested_title'])) {
-        $interestedTitle = $parameters['interested_title'];    
+        $interestedTitle = $parameters['interested_title'];
     }
 
     if (isset($parameters['interested_text'])) {
-        $interestedText = $parameters['interested_text'];    
+        $interestedText = $parameters['interested_text'];
     }
 
     if (isset($parameters['volonteer_link'])) {
-        $volonteerNowLink = $parameters['volonteer_link'];    
+        $volonteerNowLink = $parameters['volonteer_link'];
     }
 
     if (isset($parameters['proj_img1'])) {
-        $projImg1 = $parameters['proj_img1'];    
+        $projImg1 = $parameters['proj_img1'];
     }
 
     if (isset($parameters['proj_text1'])) {
-        $projText1 = $parameters['proj_text1'];    
+        $projText1 = $parameters['proj_text1'];
     }
 
     if (isset($parameters['proj_img2'])) {
-        $projImg2 = $parameters['proj_img2'];    
+        $projImg2 = $parameters['proj_img2'];
     }
 
     if (isset($parameters['proj_text2'])) {
-        $projText2 = $parameters['proj_text2'];    
+        $projText2 = $parameters['proj_text2'];
     }
-  
+
 @endphp
 
 <section class="head-Volunteer">
@@ -252,5 +252,4 @@
 
 @include('modules.presentation.mission_possible')
 
-
-@include('modules.presentation.related_pages')
+@include('modules.presentation.related_topics_project')

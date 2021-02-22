@@ -22,85 +22,85 @@
     $projText2 = "";
 
     if (isset($parameters['main_title'])) {
-        $mainTitle = $parameters['main_title'];    
+        $mainTitle = $parameters['main_title'];
     }
 
     if (isset($parameters['main_image'])) {
-        $mainImage = $parameters['main_image'];    
+        $mainImage = $parameters['main_image'];
     }
 
     if (isset($parameters['apply_link'])) {
-        $applyLink = $parameters['apply_link'];    
+        $applyLink = $parameters['apply_link'];
     }
 
     if (isset($parameters['latest_mission_text'])) {
-        $latestMissionText = $parameters['latest_mission_text'];    
+        $latestMissionText = $parameters['latest_mission_text'];
     }
 
     if (isset($parameters['latest_mission_date'])) {
-        $latestMissionDate = $parameters['latest_mission_date'];    
+        $latestMissionDate = $parameters['latest_mission_date'];
     }
 
     if (isset($parameters['column1_title'])) {
-        $colTitle1 = $parameters['column1_title'];    
+        $colTitle1 = $parameters['column1_title'];
     }
 
     if (isset($parameters['column1_text'])) {
-        $colText1 = $parameters['column1_text'];    
+        $colText1 = $parameters['column1_text'];
     }
 
     if (isset($parameters['column2_title'])) {
-        $colTitle2 = $parameters['column2_title'];    
+        $colTitle2 = $parameters['column2_title'];
     }
 
     if (isset($parameters['column2_text'])) {
-        $colText2 = $parameters['column2_text'];    
+        $colText2 = $parameters['column2_text'];
     }
 
     if (isset($parameters['column2_title'])) {
-        $colTitle3 = $parameters['column2_title'];    
+        $colTitle3 = $parameters['column2_title'];
     }
 
     if (isset($parameters['column3_text'])) {
-        $colText3 = $parameters['column3_text'];    
+        $colText3 = $parameters['column3_text'];
     }
 
     if (isset($parameters['explore_proj_title'])) {
-        $exploreTitle = $parameters['explore_proj_title'];    
+        $exploreTitle = $parameters['explore_proj_title'];
     }
 
     if (isset($parameters['explore_proj_text'])) {
-        $exploreText = $parameters['explore_proj_text'];    
+        $exploreText = $parameters['explore_proj_text'];
     }
 
     if (isset($parameters['interested_title'])) {
-        $interestedTitle = $parameters['interested_title'];    
+        $interestedTitle = $parameters['interested_title'];
     }
 
     if (isset($parameters['interested_text'])) {
-        $interestedText = $parameters['interested_text'];    
+        $interestedText = $parameters['interested_text'];
     }
 
     if (isset($parameters['volonteer_link'])) {
-        $volonteerNowLink = $parameters['volonteer_link'];    
+        $volonteerNowLink = $parameters['volonteer_link'];
     }
 
     if (isset($parameters['proj_img1'])) {
-        $projImg1 = $parameters['proj_img1'];    
+        $projImg1 = $parameters['proj_img1'];
     }
 
     if (isset($parameters['proj_text1'])) {
-        $projText1 = $parameters['proj_text1'];    
+        $projText1 = $parameters['proj_text1'];
     }
 
     if (isset($parameters['proj_img2'])) {
-        $projImg2 = $parameters['proj_img2'];    
+        $projImg2 = $parameters['proj_img2'];
     }
 
     if (isset($parameters['proj_text2'])) {
-        $projText2 = $parameters['proj_text2'];    
+        $projText2 = $parameters['proj_text2'];
     }
-  
+
 @endphp
 
 <section class="head-Volunteer">
@@ -237,13 +237,13 @@
                     <div class="item mt-n4">
                         @empty($projImg1)
                         <img src="img/content/explore-past-missions3.jpg" alt="">
-                        @else 
+                        @else
                         <img src="{{ $projImg1 }}" alt="">
                         @endempty
 
                         @empty($projText1)
                         <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> Tanzania, africa</span></span>
-                        @else 
+                        @else
                         <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> {{ $projText1 }}</span></span>
                         @endempty
                     </div>
@@ -252,7 +252,7 @@
                     <div class="item mt-5">
                         @empty($projImg2)
                         <img src="img/content/explore-past-missions4.jpg" alt="">
-                        @else 
+                        @else
                         <img src="{{ $projImg2 }}" alt="">
                         @endempty
 
@@ -294,13 +294,13 @@
         <div class="col-12 col-md-5 pl-4">
             @empty($interestedTitle)
             <p class="font-size-40 mb-3"><b>Interested? Volunteer today</b></p>
-            @else 
+            @else
             <p class="font-size-40 mb-3"><b>{{ $interestedTitle }}</b></p>
             @endempty
 
             @empty($interestedText)
             <p class="font-size-16  mb-5">210 Characters undos omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. </p>
-            @else 
+            @else
             <p class="font-size-16  mb-5">{{ $interestedText }}</p>
             @endempty
             <div class="pt-0">
@@ -317,6 +317,6 @@
 
 <div class="pt-5 pb-4"></div>
 
-@include('modules.presentation.related_page_expanded')
+@include('modules.presentation.related_topics_project')
 
 @include('modules.presentation.join_the_cause_subscribe')
