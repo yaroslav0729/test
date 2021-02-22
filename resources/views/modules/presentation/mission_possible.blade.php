@@ -53,8 +53,6 @@
                     @else
                     <p>{{ $previewPageText2 }}</p>
                     @endempty
-
-
                 </div>
                 <div class="text-right">
                     <a href="{{ $previewPageLink }}" class="btn btn-danger-light view-more">Learn more</a>

@@ -55,15 +55,6 @@
     </nav>
 </section>
 
-{{--
-
-newsroom_tab_trending
-newsroom_tab_news
-newsroom_tab_press
-newsroom_tab_cinema
-
---}}
-
 <section class="blog-article-head newsroom_tab_trending">
     <div class="wrap no-brd">
         <div class="row">
