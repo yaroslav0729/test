@@ -82,7 +82,11 @@ $allCategories = \App\Models\CampaignCategory::all();
     @endempty
 
     @empty($donateText)
-    <div class="mb-5 font-size-18 letter-spacing-0"><b class="font-weight-sb">Your subtitle/copy can go here, max of 100ch ut perspi unde omnis iste natus demiour sit voluptatem, abilloum inventore.</b></div>
+    <div class="mb-5 font-size-18 letter-spacing-0">
+        <b class="font-weight-sb">
+            Every donation, no matter how small, will help empower and uplift someone in need. Make a difference today.
+        </b>
+    </div>
     @else
     <div class="mb-5 font-size-18 letter-spacing-0"><b class="font-weight-sb">{{ $donateText }}</b></div>
     @endempty
