@@ -7,15 +7,15 @@
     $donateText = "";
 
     if (isset($parameters['donate_img'])) {
-        $donateImg = $parameters['donate_img'];    
+        $donateImg = $parameters['donate_img'];
     }
 
     if (isset($parameters['donate_video'])) {
-        $donateVideo = $parameters['donate_video'];    
+        $donateVideo = $parameters['donate_video'];
     }
 
     if (isset($parameters['donate_text'])) {
-        $donateText = $parameters['donate_text'];    
+        $donateText = $parameters['donate_text'];
     }
 
     if (!isset($isEmergency)) $isEmergency = false;
@@ -27,11 +27,11 @@
 @endphp
 
 @php
- 
+
 $amount = [];
 
 if (isset($parameters['amount'])) {
-    $amount = $parameters['amount'];  
+    $amount = $parameters['amount'];
 }
 
 $campaignsCountries = [];
@@ -41,11 +41,11 @@ foreach ($amount as $key => $item) {
         $campaigns = [];
         foreach ($item['campaigns'] as $campId) {
             $campName = \App\Models\Campaign::getCountryNameForPrice($campId, $item['value'], $item['type']);
-            
+
             if (isset($campName))
             $campaigns[$campId] = $campName;
         }
-        $campaignsCountries[$key] = $campaigns; 
+        $campaignsCountries[$key] = $campaigns;
     }
 
     if ((isset($item['type'])) && ((int)$item['type']) === \App\Models\CampaignPrice::TYPE_SINGLE) {
@@ -57,6 +57,8 @@ foreach ($amount as $key => $item) {
     }
 }
 
+$allCategories = \App\Models\CampaignCategory::all();
+
 @endphp
 
 <div class="black-line"></div>
@@ -64,16 +66,16 @@ foreach ($amount as $key => $item) {
     <div id="donate_module_options" class="alert alert-warning d-none">
         {{ json_encode($campaignCategories) }}
     </div>
-    
+
     @empty($donateVideo)
         <div class="media">
             @empty($donateImg)
             <img src="img/content/donate-today-1.jpg" alt="" class="w-100">
             @else
-            <img src="{{ $donateImg }}" alt="" class="w-100"> 
+            <img src="{{ $donateImg }}" alt="" class="w-100">
             @endempty
         </div>
-    @else 
+    @else
         <div class="media img-video videoWrapper" style="background: #555">
             <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $donateVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -111,7 +113,7 @@ foreach ($amount as $key => $item) {
                     @csrf
                     @include('modules.presentation.parts.donate_options',[
                         'donateOptionsType' => \App\Models\CampaignPrice::TYPE_SINGLE
-                    ]) 
+                    ])
 
                     <div class="pt-3"></div>
                     <div class="form-group" currency="£">
@@ -120,6 +122,9 @@ foreach ($amount as $key => $item) {
                     <div class="form-group">
                         <select class="form-control" name="categories">
                             {{-- will be replaced by js --}}
+                            @foreach($allCategories as $category)
+                                <option value="{{ $category->name }}"> {{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group d-none">
