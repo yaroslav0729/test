@@ -7,23 +7,23 @@
     $video = '';
 
     if (isset($parameters['main_title'])) {
-        $mainTitle = $parameters['main_title'];    
+        $mainTitle = $parameters['main_title'];
     }
 
     if (isset($parameters['mins_text'])) {
-        $minsText = $parameters['mins_text'];    
+        $minsText = $parameters['mins_text'];
     }
 
     if (isset($parameters['main_text'])) {
-        $mainText = $parameters['main_text'];    
+        $mainText = $parameters['main_text'];
     }
 
     if (isset($parameters['watch_link'])) {
-        $watchLink = $parameters['watch_link'];    
+        $watchLink = $parameters['watch_link'];
     }
 
     if (isset($parameters['main_video'])) {
-        $video = $parameters['main_video'];    
+        $video = $parameters['main_video'];
     }
 
     use \App\Helpers\ArticlesHelper;
@@ -32,24 +32,25 @@
     $currentTab = 1;
 
     if (request()->get(ArticlesHelper::TRENDING_PAGINATOR) !== null) {
-        $currentTab = 1;    
+        $currentTab = 1;
     }
     if (request()->get(ArticlesHelper::NEWS_PAGINATOR)!== null) {
-        $currentTab = 2;    
+        $currentTab = 2;
     }
     if (request()->get(ArticlesHelper::PRESS_PAGINATOR)!== null) {
-        $currentTab = 3;    
+        $currentTab = 3;
     }
 
 @endphp
 
 <section class="newsroom-tabs pt-4">
     <nav class="general-content-tabs">
-        <div class="nav nav-tabs nav-fill"  role="tablist">
-            <a class="nav-link @if($currentTab === 1) active @endif" data-active="newsroom_tab_trending"  href="#" >TRENDING</a>
-            <a class="nav-link @if($currentTab === 2) active @endif" data-active="newsroom_tab_news"  href="#" >NEWS</a>
-            <a class="nav-link @if($currentTab === 3) active @endif" data-active="newsroom_tab_press"  href="#" >PRESS</a>
-            <a class="nav-link @if($currentTab === 4) active @endif" data-active="newsroom_tab_cinema"  href="#" >IH CINEMA</a>
+        <div class="nav nav-tabs nav-fill" role="tablist">
+            <a class="nav-link @if($currentTab === 1) active @endif" data-active="newsroom_tab_trending" href="#">TRENDING</a>
+            <a class="nav-link @if($currentTab === 2) active @endif" data-active="newsroom_tab_news" href="#">NEWS</a>
+            <a class="nav-link @if($currentTab === 3) active @endif" data-active="newsroom_tab_press" href="#">PRESS</a>
+            <a class="nav-link @if($currentTab === 4) active @endif" data-active="newsroom_tab_cinema" href="#">IH
+                CINEMA</a>
         </div>
     </nav>
 </section>
@@ -58,10 +59,12 @@
     <div class="wrap no-brd pt-0">
         <div class="article-text">
             <div class="img-video videoWrapper" style="background: #aaa">
-                @empty($video) 
+                @empty($video)
                     <i class="fas fa-play-circle"></i>
                 @endempty
-                <iframe width="1280" height="720" src="{{ $video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $video }}" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
             </div>
             <div class="article-text">
                 <p class="font-size-12 mb-0"><b>Featured article</b></p>
