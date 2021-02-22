@@ -134,7 +134,7 @@
                 @if(!$pages->isEmpty())
                     @foreach ($pages as $page)
                     <div class="col-4">
-                        <a href="{{ $page->slug }}" class="item">
+                        <a href="{{ Request::root() }}/{{ $page->slug }}" class="item">
                             @isset($page->preview_img)
                                 <span class="img" style="background-repeat:no-repeat; background-image: url({{ $page->preview_img }})"></span>
                             @else

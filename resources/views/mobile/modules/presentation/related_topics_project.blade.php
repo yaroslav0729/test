@@ -117,7 +117,7 @@
                     @if(!$pages->isEmpty())
                         @foreach ($pages as $page)
                             <div class="swiper-slide">
-                                <a href="{{ $page->slug }}" class="item">
+                                <a href="{{ Request::root() }}/{{ $page->slug }}" class="item">
                                     @isset($page->preview_img)
                                     <span class="img" style="background-image: url({{ $page->preview_img }})"></span>
                                     @else
@@ -133,7 +133,7 @@
                     @else
                         @foreach ($lastBlogPages as $blog)
                             <div class="swiper-slide">
-                                <a href="{{ Request::root()}}/{{ $blog->getActualPageInstanceAttribute()->slug }}" class="item">
+                                <a href="{{ Request::root() }}/{{ $blog->getActualPageInstanceAttribute()->slug }}" class="item">
                                     @isset($blog->getActualPageInstanceAttribute()->preview_img)
                                         <span class="img" style="background-image: url({{ $blog->getActualPageInstanceAttribute()->preview_img }})"></span>
                                     @else
