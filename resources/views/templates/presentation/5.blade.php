@@ -111,28 +111,28 @@
         </div>
         <div class="row">
             <div class="col-6 col-lg-3">
-                <a href="#">
+                <a href="/ways-to-give">
                     <span style="background-image: url(img/ico-telephone.png)"></span>
                     <p><b>Call Us</b></p>
                     <i href="#">MORE DETAILS</i>
                 </a>
             </div>
             <div class="col-6 col-lg-3">
-                <a href="#">
+                <a href="/ways-to-give">
                     <span style="background-image: url(img/ico-bank-transfer.png)"></span>
                     <p><b>Bank Transfer</b></p>
                     <i href="#">MORE DETAILS</i>
                 </a>
             </div>
             <div class="col-6 col-lg-3">
-                <a href="#">
+                <a href="/ways-to-give">
                     <span style="background-image: url(img/ico-Paym.png?1)"></span>
                     <p><b>By Mobile</b></p>
                     <i href="#">MORE DETAILS</i>
                 </a>
             </div>
             <div class="col-6 col-lg-3">
-                <a href="#">
+                <a href="/ways-to-give">
                     <span style="background-image: url(img/ico-Paypal.svg?1)"></span>
                     <p><b>Paypal</b></p>
                     <i href="#">MORE DETAILS</i>
