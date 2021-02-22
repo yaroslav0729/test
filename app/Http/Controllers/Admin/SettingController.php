@@ -4,12 +4,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Helpers\SettingHelper;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SettingRequest;
 use App\Models\CampaignCategory;
-use Deployer\Collection\Collection;
 
 
-class SettingController extends Collection
+class SettingController extends Controller
 {
     public function index()
     {
