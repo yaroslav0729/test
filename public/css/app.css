@@ -13268,6 +13268,9 @@ input[type='number'].color-danger + .input-group .btn {
   right: 0;
   bottom: 0;
 }
+.donate-today .body .col-lg-7 .media + .descr:after {
+  right: calc(-71%);
+}
 .donate-today .body .donate-today-sheet {
   border-radius: 5px;
   background-color: #FFF;
