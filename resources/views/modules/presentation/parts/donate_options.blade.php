@@ -6,8 +6,25 @@
 
 @foreach ($amount as $amountKey => $item)
     @if(isset($item['type']) && ((int)$item['type'] === $donateOptionsType))
-        
+
         @isset($campaignsCountries[$amountKey])
+            @php
+                switch(mb_strlen($item['value'])) {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        $smallSize = ''; break;
+                    case 4:
+                        $smallSize = "font-size: 37px"; break;
+                    case 5:
+                        $smallSize = "font-size: 32px"; break;
+                    case 6:
+                        $smallSize = "font-size: 28px"; break;
+                    default:
+                        $smallSize = '';
+                }
+            @endphp
 
             @if(count($campaignsCountries[$amountKey])>0)
 
@@ -21,7 +38,7 @@
                     <span>
                         <span>
                             <object class="currency_sign">£</object>
-                            <b>@isset($item['value']){{$item['value']}}@endisset</b>
+                            <b style="{{$smallSize}}">@isset($item['value']){{$item['value']}}@endisset</b>
                         </span>
                     @if($donateOptionsType === \App\Models\CampaignPrice::TYPE_SINGLE)
                         <span>JUST ONCE</span>
@@ -37,11 +54,11 @@
             <div class="form-group d-none" amount-countries data-amount_id={{ $amountKey }}>
                 <select class="form-control" name="campaigns">
                     @foreach ($campaignsCountries[$amountKey] as $campId => $campName)
-                        <option value="{{ $campId }}">{{ $campName }}</option>   
+                        <option value="{{ $campId }}">{{ $campName }}</option>
                     @endforeach
                 </select>
             </div>
 
         @endisset
-    @endif 
+    @endif
 @endforeach
