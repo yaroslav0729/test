@@ -1,5 +1,5 @@
 <section class="newsroom-list" newsroom-articles>
-    <div class="title mt-4">
+    <div class="newsroom-list-title mt-4">
         <span id="newsroom_title_span">{{ $titleSpan }}</span>
         <i id="newsroom_title_i">{{ $titleI }}</i>
         <div>
@@ -7,8 +7,6 @@
             <button class="btn btn-primary-dark">FILTER BY TOPIC</button>
         </div>
     </div>
-
-    <div class="pt-5 pb-5"></div>
 
     <div class="row gutter-30 mt-4" newsroom-articles-body>
         @foreach ($articles as $article)

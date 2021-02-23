@@ -470,6 +470,7 @@ header {
             }
         }
     }
+    &.header-newsroom {padding-bottom: 32px;}
     &.dark-theme {
         background: #231F51;
         .top-bar {
@@ -489,6 +490,7 @@ header {
             }
         }
     }
+    & + .newsroom-tabs + .blog-article-head .wrap {padding-top:  20px;}
     @media screen  and (min-width: 767px) and (max-width: 1300px) {
         .top-bar {padding: 30px 20px 33px 20px}
         .down-bar {padding: 18px 84px;}
@@ -2517,10 +2519,12 @@ input[type='number'].color-danger  + .input-group {
         margin-bottom: 30px;
     }
     .img-video {
-        width: 705px; height: 390px;
-        border-radius: 5px;
+        width: 705px; height: 492px;
+        border-radius: 10px 0 0 10px;
+        overflow: hidden;
         @media screen  and (max-width: 1439px) {
             width: auto; height: auto;
+            border-radius: 10px;
         }
     }
     .date {
@@ -2752,7 +2756,17 @@ input[type='number'].color-danger  + .input-group {
 }
 .newsroom_tab_trending .mission-impossible {
     .body {
-        & > .row > .col-7 {order: 2;}
+        & > .row > {
+            .col-7 {
+                order: 2;
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            .col-5 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
     }
     .text {
         padding-left: 66px;
@@ -5333,9 +5347,40 @@ input[type='number'].color-danger  + .input-group {
     }
 }
 
+
+.newsroom-list-title {
+    margin-left: 0px;
+    position: relative;
+    margin-bottom: 53px;
+    i {
+        color: #101525;
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 1;
+        font-style: normal;
+        position: absolute; bottom: -9px; left: 40px;
+    }
+    span {
+        color: #EEF0F3;
+        font-size: 90px;
+        font-weight: 900;
+        line-height: 1;
+    }
+    & > div {
+        position: absolute; right: -40px;
+        bottom: 0;
+        .btn {
+            font-size: 12px;
+            padding: 20px 40px;
+            position: relative;
+            &:first-child {right: -10px;}
+        }
+    }
+}
+
 .newsroom-list {
     position: relative;
-    padding: 70px 140px 80px 110px;
+    padding: 65px 140px 80px 110px;
     &:before {
         content: "";
         display: block;
@@ -5343,39 +5388,22 @@ input[type='number'].color-danger  + .input-group {
         position: absolute; left: 0; top: 0; bottom: 0; right: 180px;
         z-index: -1;
     }
-    .title {
+    .newsroom-list-title {
+        margin-bottom: 123px;
         margin-left: 70px;
-        position: relative;
-        i {
-            color: #101525;
-            font-size: 30px;
-            font-weight: 900;
-            line-height: 1;
-            font-style: normal;
-            position: absolute; bottom: -9px; left: 40px;
-        }
         span {
             color: #FFF;
-            font-size: 90px;
-            font-weight: 900;
-            line-height: 1;
         }
         & > div {
-            position: absolute; right: 0;
+            right: 0;
             bottom: -15px;
-            .btn {
-                font-size: 12px;
-                padding: 20px 40px;
-                position: relative;
-                &:first-child {right: -10px;}
-            }
         }
     }
     .item {
         border-radius: 5px;
         background-color: #FFF;
         box-shadow: 0 10px 25px 0 rgba(104,110,117,0.15);
-        padding: 28px 0 20px 40px;
+        padding: 28px 0 14px 40px;
         display: flex;
         margin-bottom: 10px;
         & > div {flex: 1 1 70%;}
@@ -5388,6 +5416,7 @@ input[type='number'].color-danger  + .input-group {
             border-radius: 5px;
             position: relative;
             right: -45px;
+            margin-top: -13px;
         }
         .tl {
             display: block;
@@ -5396,8 +5425,9 @@ input[type='number'].color-danger  + .input-group {
             font-size: 20px;
             font-weight: 900;
             line-height: 30px;
-            margin-bottom: 10px;
+            margin-bottom: 2px;
         }
+        p {maring-bottom: 12px;}
         .date {
             color: #7E87A4;
             font-size: 12px;

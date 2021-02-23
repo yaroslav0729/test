@@ -71,7 +71,7 @@
   left: 50%;
   top: -65px;
   transform: translateX(-50%);
-  opacity: 0.2;
+  opacity: .2;
 }
 .other-way-give-mobile .phone {
   display: block;
@@ -496,7 +496,7 @@
   margin: -56px 0 40px;
 }
 .mobile-template .help-info-swiper .swiper-button-disabled {
-  opacity: 1;
+  opacity: 1.0;
 }
 .mobile-template .help-info-swiper .swiper-button-disabled .moon-icons-arrow-left::before,
 .mobile-template .help-info-swiper .swiper-button-disabled .moon-icons-arrow-right::before {
@@ -2306,10 +2306,10 @@
   font-size: 35px;
 }
 .bg-btn-red {
-  background: #f7796a !important;
+  background: #f7796a!important;
   color: #ffffff;
 }
 .bg-btn-red a {
-  color: #ffffff !important;
+  color: #ffffff!important;
 }
 /*------------------------------------vb--------*/

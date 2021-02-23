@@ -103,6 +103,17 @@
 
 <div class="newsroom_tab_news ">
 
+    <section>
+        <div class="newsroom-list-title mt-4">
+            <span id="newsroom_title_span">News</span>
+            <i id="newsroom_title_i">News articles</i>
+            <div>
+                <button class="btn btn-primary-light">SORT BY DATE</button>
+                <button class="btn btn-primary-dark">FILTER BY TOPIC</button>
+            </div>
+        </div>
+    </section>
+
     @php
         $page = (int) request()->get('news_articles');
 

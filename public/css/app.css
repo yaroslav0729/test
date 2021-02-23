@@ -10125,7 +10125,7 @@ header .top-bar .basket {
 }
 header .top-bar .phone i {
   display: inline-block;
-  background: url(/images/ico-Phone.svg?c0838b9ddef6625586d506c7468e99e2) no-repeat;
+  background: url(/images/ico-Phone.svg?7d7f841f10b6a7c9b84c82dae0f19806) no-repeat;
   background-size: contain;
   width: 25px;
   height: 25px;
@@ -10342,6 +10342,9 @@ header .down-bar ul li a {
 header .down-bar ul li a:hover {
   color: #F7796A;
 }
+header.header-newsroom {
+  padding-bottom: 32px;
+}
 header.dark-theme {
   background: #231F51;
 }
@@ -10365,6 +10368,9 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link {
 }
 header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   color: #101525;
+}
+header + .newsroom-tabs + .blog-article-head .wrap {
+  padding-top: 20px;
 }
 @media screen and (min-width: 767px) and (max-width: 1300px) {
   header .top-bar {
@@ -10995,7 +11001,7 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   max-width: 250px;
   padding: 8px;
   text-align: center;
-  transition: 0.2s;
+  transition: .2s;
   cursor: pointer;
 }
 .btn-fb:hover {
@@ -11045,10 +11051,10 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   background-color: #3A7BF5 !important;
 }
 .text-info {
-  color: #2caabb !important;
+  color: #2caabb  !important;
 }
 .text-dark {
-  color: #101525 !important;
+  color: #101525  !important;
 }
 .text-red {
   color: #FF5D4A !important;
@@ -12914,13 +12920,15 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .blog-article-head .img-video {
   width: 705px;
-  height: 390px;
-  border-radius: 5px;
+  height: 492px;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
 }
 @media screen and (max-width: 1439px) {
   .blog-article-head .img-video {
     width: auto;
     height: auto;
+    border-radius: 10px;
   }
 }
 .blog-article-head .date {
@@ -13173,8 +13181,14 @@ input[type='number'].color-danger + .input-group .btn {
     padding-left: 30px;
   }
 }
-.newsroom_tab_trending .mission-impossible .body > .row > .col-7 {
+.newsroom_tab_trending .mission-impossible .body > .row .col-7 {
   order: 2;
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+.newsroom_tab_trending .mission-impossible .body > .row .col-5 {
+  flex: 0 0 50%;
+  max-width: 50%;
 }
 .newsroom_tab_trending .mission-impossible .text {
   padding-left: 66px;
@@ -13743,7 +13757,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: 0.5;
+  opacity: .5;
 }
 .about-donation .body .item span {
   display: inline-block;
@@ -13969,7 +13983,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: 0.5;
+  opacity: .5;
 }
 .order-cart-list .total {
   background: #FFF6F3;
@@ -16042,9 +16056,43 @@ input[type='number'].color-danger + .input-group .btn {
 .head-Volunteer form .field {
   padding-left: 55px;
 }
+.newsroom-list-title {
+  margin-left: 0px;
+  position: relative;
+  margin-bottom: 53px;
+}
+.newsroom-list-title i {
+  color: #101525;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1;
+  font-style: normal;
+  position: absolute;
+  bottom: -9px;
+  left: 40px;
+}
+.newsroom-list-title span {
+  color: #EEF0F3;
+  font-size: 90px;
+  font-weight: 900;
+  line-height: 1;
+}
+.newsroom-list-title > div {
+  position: absolute;
+  right: -40px;
+  bottom: 0;
+}
+.newsroom-list-title > div .btn {
+  font-size: 12px;
+  padding: 20px 40px;
+  position: relative;
+}
+.newsroom-list-title > div .btn:first-child {
+  right: -10px;
+}
 .newsroom-list {
   position: relative;
-  padding: 70px 140px 80px 110px;
+  padding: 65px 140px 80px 110px;
 }
 .newsroom-list:before {
   content: "";
@@ -16057,44 +16105,22 @@ input[type='number'].color-danger + .input-group .btn {
   right: 180px;
   z-index: -1;
 }
-.newsroom-list .title {
+.newsroom-list .newsroom-list-title {
+  margin-bottom: 123px;
   margin-left: 70px;
-  position: relative;
 }
-.newsroom-list .title i {
-  color: #101525;
-  font-size: 30px;
-  font-weight: 900;
-  line-height: 1;
-  font-style: normal;
-  position: absolute;
-  bottom: -9px;
-  left: 40px;
-}
-.newsroom-list .title span {
+.newsroom-list .newsroom-list-title span {
   color: #FFF;
-  font-size: 90px;
-  font-weight: 900;
-  line-height: 1;
 }
-.newsroom-list .title > div {
-  position: absolute;
+.newsroom-list .newsroom-list-title > div {
   right: 0;
   bottom: -15px;
-}
-.newsroom-list .title > div .btn {
-  font-size: 12px;
-  padding: 20px 40px;
-  position: relative;
-}
-.newsroom-list .title > div .btn:first-child {
-  right: -10px;
 }
 .newsroom-list .item {
   border-radius: 5px;
   background-color: #FFF;
   box-shadow: 0 10px 25px 0 rgba(104, 110, 117, 0.15);
-  padding: 28px 0 20px 40px;
+  padding: 28px 0 14px 40px;
   display: flex;
   margin-bottom: 10px;
 }
@@ -16111,6 +16137,7 @@ input[type='number'].color-danger + .input-group .btn {
   border-radius: 5px;
   position: relative;
   right: -45px;
+  margin-top: -13px;
 }
 .newsroom-list .item .tl {
   display: block;
@@ -16119,7 +16146,10 @@ input[type='number'].color-danger + .input-group .btn {
   font-size: 20px;
   font-weight: 900;
   line-height: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
+}
+.newsroom-list .item p {
+  maring-bottom: 12px;
 }
 .newsroom-list .item .date {
   color: #7E87A4;
@@ -16243,11 +16273,11 @@ input[type='number'].color-danger + .input-group .btn {
   color: #1f1e1e;
 }
 .bg-btn-red {
-  background: #f7796a !important;
+  background: #f7796a!important;
   color: #ffffff;
 }
 .bg-btn-red a {
-  color: #ffffff !important;
+  color: #ffffff!important;
 }
 /*------------------------------------vb--------*/
 .videoWrapper {
