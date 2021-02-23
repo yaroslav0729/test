@@ -17,39 +17,39 @@
     }
 
     if (isset($parameters['start_link'])) {
-        $startLink = $parameters['start_link'];    
+        $startLink = $parameters['start_link'];
     }
 
     if (isset($parameters['col_title1'])) {
-        $colTitle1 = $parameters['col_title1'];    
+        $colTitle1 = $parameters['col_title1'];
     }
 
     if (isset($parameters['col_text1'])) {
-        $colText1 = $parameters['col_text1'];    
+        $colText1 = $parameters['col_text1'];
     }
 
     if (isset($parameters['col_title1'])) {
-        $colTitle2 = $parameters['col_title1'];    
+        $colTitle2 = $parameters['col_title1'];
     }
 
     if (isset($parameters['col_text2'])) {
-        $colText2 = $parameters['col_text2'];    
+        $colText2 = $parameters['col_text2'];
     }
 
     if (isset($parameters['col_title3'])) {
-        $colTitle3 = $parameters['col_title3'];    
+        $colTitle3 = $parameters['col_title3'];
     }
 
     if (isset($parameters['col_text3'])) {
-        $colText3 = $parameters['col_text3'];    
+        $colText3 = $parameters['col_text3'];
     }
 
     if (isset($parameters['how_do_text'])) {
-        $howDoText = $parameters['how_do_text'];    
+        $howDoText = $parameters['how_do_text'];
     }
 
     if (isset($parameters['find_mission'])) {
-        $findMissionText = $parameters['find_mission'];    
+        $findMissionText = $parameters['find_mission'];
     }
 
 @endphp
@@ -84,7 +84,7 @@
         @else
         <span>{{ $findMissionText }}</span>
         @endempty
-        
+
     </div>
     <div class="row">
         <div class="col pr-0 pr-md-5">
@@ -114,4 +114,4 @@
     </div>
 </section>
 
-@include('modules.presentation.related_page_expanded')
+@include('modules.presentation.related_topics_project')

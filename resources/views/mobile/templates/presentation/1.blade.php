@@ -98,6 +98,8 @@
 
 <div class="pt-5"></div>
 
-@include('modules.presentation.related_topics_project')
+@include('modules.presentation.related_topics_project', [
+    'svgWave' => true,
+])
 
 @include('modules.presentation.join_the_cause_subscribe')

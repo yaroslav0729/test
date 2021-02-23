@@ -68,7 +68,8 @@
                     {{ $relPageTitle }}
                 @endif
             </b>
-            <svg class="decor-wave size-20 d-inline-block mt-2" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+            @isset($svgWave)
+                <svg class="decor-wave size-20 d-inline-block mt-2" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
                    fill="#241d54" stroke="none">
                     <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
@@ -110,6 +111,7 @@
     -16z"/>
                 </g>
             </svg>
+            @endisset
         </div>
         <div class="current-projects-list current-projects-swiper" swiper-wrapper="rel_pages">
             <div class="swiper-container">

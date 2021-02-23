@@ -1,11 +1,11 @@
 @php
 
     $mainImg = "";
-    
+
     if (isset($parameters['main_img'])) {
-        $mainImg = $parameters['main_img'];    
+        $mainImg = $parameters['main_img'];
     }
-    
+
 @endphp
 
 <section class="head-mission-impossible">
@@ -57,5 +57,5 @@
 
 @include('modules.presentation.our_latest_mission')
 
-@include('modules.presentation.related_pages')
+@include('modules.presentation.related_topics_project')
 

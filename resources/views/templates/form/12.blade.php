@@ -1,11 +1,11 @@
 @php
 
     $mainImg = "";
-    
+
     if (isset($parameters['main_img'])) {
-        $mainImg = $parameters['main_img'];    
+        $mainImg = $parameters['main_img'];
     }
-    
+
 @endphp
 
 <div class="form-group">
@@ -26,4 +26,4 @@
 
 @include('modules.admin.our_latest_mission')
 
-@include('modules.admin.related_page_expanded')
+@include('modules.admin.related_topics_project')

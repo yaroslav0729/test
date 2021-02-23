@@ -50,4 +50,5 @@ $mainHtml = "";
 
 @include('modules.presentation.related_topics_project', [
     'parameters' => $parameters,
+    'svgWave' => true,
 ])
