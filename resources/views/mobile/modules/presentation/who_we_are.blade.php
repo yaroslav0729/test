@@ -35,15 +35,15 @@
     }
 
     if (isset($parameters['who_we_are_block_1_title'])) {
-        $infoBlock1 = $parameters['who_we_are_block_1_title'];    
+        $infoBlock1 = $parameters['who_we_are_block_1_title'];
     }
 
     if (isset($parameters['who_we_are_block_2_title'])) {
-        $infoBlock2 = $parameters['who_we_are_block_2_title'];    
+        $infoBlock2 = $parameters['who_we_are_block_2_title'];
     }
 
     if (isset($parameters['who_we_are_block_3_title'])) {
-        $infoBlock3 = $parameters['who_we_are_block_3_title'];    
+        $infoBlock3 = $parameters['who_we_are_block_3_title'];
     }
 
     $infoBlockText1 = "";
@@ -51,15 +51,15 @@
     $infoBlockText3 = "";
 
     if (isset($parameters['who_we_are_block_1_text'])) {
-        $infoBlockText1 = $parameters['who_we_are_block_1_text'];    
+        $infoBlockText1 = $parameters['who_we_are_block_1_text'];
     }
 
     if (isset($parameters['who_we_are_block_2_text'])) {
-        $infoBlockText2 = $parameters['who_we_are_block_2_text'];    
+        $infoBlockText2 = $parameters['who_we_are_block_2_text'];
     }
 
     if (isset($parameters['who_we_are_block_3_text'])) {
-        $infoBlockText3 = $parameters['who_we_are_block_3_text'];    
+        $infoBlockText3 = $parameters['who_we_are_block_3_text'];
     }
 
 @endphp
@@ -116,8 +116,8 @@
 
     </div>
    {{-- <div class="img-video" style="background-image: url(img/content/Video-placement-1.jpg)"><i class="fas fa-play-circle"></i></div>--}}
-    <div class="pt-4">
-        <div class="mb-4">
+    <div class="pt-4 mt-2">
+        <div class="mb-3">
             <a href="{{ $whoLink }}" class="text-underline text-dark"><b>{{ $whoLinkText }}</b></a>
         </div>
         <p class="font-size-16">{!! $whoText !!}</p>

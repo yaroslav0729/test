@@ -4,43 +4,43 @@
     $readMoreLink = [];
     $donateNowLink = [];
     $slideImage = [];
-    
+
     if (isset($parameters['feat_camp_link'])) {
-        $featuredCompaignLink = $parameters['feat_camp_link'];    
+        $featuredCompaignLink = $parameters['feat_camp_link'];
     }
 
     for ($i = 0; $i < 4; $i++) {
         if (isset($parameters['slide_title_' . $i])) {
-            $slideTitle[$i] = $parameters['slide_title_' . $i];    
+            $slideTitle[$i] = $parameters['slide_title_' . $i];
         } else {
             $slideTitle[$i] = "";
         }
 
         if (isset($parameters['slide_text_' . $i])) {
-            $slideText[$i] = $parameters['slide_text_' . $i];    
+            $slideText[$i] = $parameters['slide_text_' . $i];
         } else {
-            $slideText[$i] = ""; 
+            $slideText[$i] = "";
         }
 
         if (isset($parameters['slide_img_' . $i])) {
-            $slideImage[$i] = $parameters['slide_img_' . $i];    
+            $slideImage[$i] = $parameters['slide_img_' . $i];
         } else {
-            $slideImage[$i] = ""; 
+            $slideImage[$i] = "";
         }
 
         if (isset($parameters['read_more_link_' . $i])) {
-            $readMoreLink[$i] = $parameters['read_more_link_' . $i];    
+            $readMoreLink[$i] = $parameters['read_more_link_' . $i];
         } else {
-            $readMoreLink[$i] = ""; 
+            $readMoreLink[$i] = "";
         }
 
         if (isset($parameters['donate_now_link_' . $i])) {
-            $donateNowLink[$i] = $parameters['donate_now_link_' . $i];    
+            $donateNowLink[$i] = $parameters['donate_now_link_' . $i];
         } else {
-            $donateNowLink[$i] = ""; 
+            $donateNowLink[$i] = "";
         }
     }
-    
+
 
 @endphp
 
@@ -58,7 +58,7 @@
                     <div class="body">
                         <div class="left">
                             <p class="font-size-20 mb-3"><b>{!! $slideTitle[$i] !!}</b></p>
-                            <p class="font-size-15 mb-2">{!! $slideText[$i] !!}</p>
+                            <p class="font-size-14 mb-2">{!! $slideText[$i] !!}</p>
                             <div>
                                 <a href="{{ $donateNowLink[$i] }}" class="btn btn-warning">Donate now</a>
                             </div>

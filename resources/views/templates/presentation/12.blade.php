@@ -1,11 +1,11 @@
 @php
 
     $mainImg = "";
-    
+
     if (isset($parameters['main_img'])) {
-        $mainImg = $parameters['main_img'];    
+        $mainImg = $parameters['main_img'];
     }
-    
+
 @endphp
 
 <section class="head-mission-impossible bg-light">
@@ -14,8 +14,8 @@
     <div class="wrap" style="background-image: url(img/content/head-mission-impossible.jpg)">
     @else
     <div class="wrap" style="background-image: url({{ $mainImg }})">
-    @endempty    
-        
+    @endempty
+
         <div class="text">EMPOWER PEOPLE IN NEED</div>
         <div class="decor-text">
             <span class="text-red">Mission</span>
@@ -65,6 +65,6 @@
 
 @include('modules.presentation.our_latest_mission')
 
-@include('modules.presentation.related_page_expanded')
+@include('modules.presentation.related_topics_project')
 
 <div class="pt-5 pb-5"></div>

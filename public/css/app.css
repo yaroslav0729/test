@@ -12263,7 +12263,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .current-projects-list .item .img,
 .popular-topic-list .item .img {
-  height: 160px;
+  height: 193px;
   display: block;
   background-size: cover;
   background-repeat: no-repeat;
@@ -12334,12 +12334,12 @@ input[type='number'].color-danger + .input-group .btn {
   text-transform: uppercase;
 }
 .popular-topic-list .item .descr span:first-child {
-  margin-bottom: 68px;
+  margin-bottom: 0;
 }
 .popular-topic-list .item .descr .moon-icons-plus {
-  font-size: 25px;
+  font-size: 20px;
   position: absolute;
-  top: 10px;
+  top: 16px;
   right: 20px;
 }
 .lets-join {
@@ -12702,10 +12702,10 @@ input[type='number'].color-danger + .input-group .btn {
   display: block;
   background: url(/images/Line-styling.png?b03a87dd394747a88d56e0d8ba1cafa2) no-repeat;
   background-size: contain;
-  height: 197px;
-  width: 196px;
+  height: 208px;
+  width: 216px;
   position: absolute;
-  left: -140px;
+  left: -174px;
   top: 50%;
   transform: translateY(-50%);
   margin-top: -30px;

@@ -12,43 +12,43 @@
     $findMissionText = "";
 
     if (isset($parameters['main_title'])) {
-        $mainTitle = $parameters['main_title'];    
+        $mainTitle = $parameters['main_title'];
     }
 
     if (isset($parameters['start_link'])) {
-        $startLink = $parameters['start_link'];    
+        $startLink = $parameters['start_link'];
     }
 
     if (isset($parameters['col_title1'])) {
-        $colTitle1 = $parameters['col_title1'];    
+        $colTitle1 = $parameters['col_title1'];
     }
 
     if (isset($parameters['col_text1'])) {
-        $colText1 = $parameters['col_text1'];    
+        $colText1 = $parameters['col_text1'];
     }
 
     if (isset($parameters['col_title1'])) {
-        $colTitle2 = $parameters['col_title1'];    
+        $colTitle2 = $parameters['col_title1'];
     }
 
     if (isset($parameters['col_text2'])) {
-        $colText2 = $parameters['col_text2'];    
+        $colText2 = $parameters['col_text2'];
     }
 
     if (isset($parameters['col_title3'])) {
-        $colTitle3 = $parameters['col_title3'];    
+        $colTitle3 = $parameters['col_title3'];
     }
 
     if (isset($parameters['col_text3'])) {
-        $colText3 = $parameters['col_text3'];    
+        $colText3 = $parameters['col_text3'];
     }
 
     if (isset($parameters['how_do_text'])) {
-        $howDoText = $parameters['how_do_text'];    
+        $howDoText = $parameters['how_do_text'];
     }
 
     if (isset($parameters['find_mission'])) {
-        $findMissionText = $parameters['find_mission'];    
+        $findMissionText = $parameters['find_mission'];
     }
 
 @endphp
@@ -105,4 +105,4 @@
     <input class="form-control"  name="parameters[col_text3]" placeholder="Insert title" value="{{ $colText3 }}" />
 </div>
 
-@include('modules.admin.related_page_expanded')
+@include('modules.admin.related_topics_project')

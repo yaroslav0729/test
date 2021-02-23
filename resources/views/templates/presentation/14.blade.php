@@ -144,7 +144,7 @@ newsroom_tab_cinema">
     @include('modules.presentation.popular_topics')
 </div>
 
-<div class="newsroom_tab_trending">
+<div class="newsroom_tab_trending mt-5 pt-5">
     @include('modules.presentation.mission_possible')
 </div>
 

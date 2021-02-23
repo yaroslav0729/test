@@ -132,7 +132,7 @@ class Template
 
         self::NEWSROOM_PAGE => [
             'headerClassName' => '',
-            'footerClassName' => 'bg-info',
+            'footerClassName' => 'bg-primary',
             'headerType' => 'parts.header_newsroom',
             'headerAlwaysPurple' => true
         ],

@@ -132,21 +132,6 @@
 
 @include('modules.presentation.popular_topics')
 
-<section class="mission-impossible">
-    <div class="title no-brd">Mission Possible</div>
-    <div class="wrap">
-        <div class="body">
-            <div class="text bg-danger">
-                <div class="tl">Applications for MP 2020 deployments are open!</div>
-            </div>
-            <div class="img" style="background-image: url(img/content/project-2.jpg)">&nbsp;</div>
-            <div class="text-center bg-danger-light">
-                <a href="/mission-possible" class="btn btn-danger-light view-more">Learn more</a>
-            </div>
-        </div>
-    </div>
-</section>
-
 @include('modules.presentation.mission_possible_2')
 
 @include('modules.presentation.join_the_cause_subscribe', [
