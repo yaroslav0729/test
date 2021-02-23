@@ -158,6 +158,9 @@ $allCategories = \App\Models\CampaignCategory::all();
                     <div class="form-group">
                         <select class="form-control" name="categories">
                             {{-- will be replaced by js --}}
+                            @foreach($allCategories as $category)
+                                <option value="{{ $category->name }}"> {{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group d-none">
@@ -201,6 +204,9 @@ $allCategories = \App\Models\CampaignCategory::all();
                     <div class="form-group">
                         <select class="form-control" name="categories">
                             {{-- will be replaced by js --}}
+                            @foreach($allCategories as $category)
+                                <option value="{{ $category->name }}"> {{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group d-none">

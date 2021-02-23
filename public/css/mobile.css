@@ -479,6 +479,9 @@
   width: 100%;
   z-index: -1;
 }
+.mobile-template .who-we-are p.font-size-16 {
+  line-height: 27px;
+}
 .mobile-template .who-we-are .img-video {
   margin-left: -30px;
   margin-right: -30px;
@@ -535,6 +538,12 @@
   right: 13px;
   top: 4px;
   font-size: 35px;
+}
+.mobile-template .current-projects p.font-size-14 {
+  line-height: 24px;
+}
+.mobile-template .current-projects p.font-size-20 {
+  line-height: 25px;
 }
 .mobile-template .current-projects .body {
   top: 0;

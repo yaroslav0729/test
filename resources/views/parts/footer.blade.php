@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="copy text-right">
+        <div class="copy text-right mt-5">
             @foreach ($additionalFooterMenuItem as $key => $menuItem)
                 <a href="{{ $menuItem->link }}">{!! $menuItem->text !!}</a> @if(count($additionalFooterMenuItem)-1 > $key)
                     <span>|</span> @endif
