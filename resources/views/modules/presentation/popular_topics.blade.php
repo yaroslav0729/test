@@ -18,7 +18,7 @@
                     <span class="descr d-flex flex-column justify-content-between">
                         <span class="name font-size-16 d-block"><b>{{ \App\Helpers\StrHelper::lengthLimit($topic->preview_text, 50) }}</b></span>
                         <span class="text font-size-20 mb-3 mt-5 d-block"><b>{{ \App\Helpers\StrHelper::lengthLimit($topic->title, 60) }}</b></span>
-                        <span class="date d-block mb-2">{{ date('F d, Y', strtotime($topic->published_at)) }}, BY AHMED SALEM</span>
+                        <span class="date d-block mb-2">{{ date('F d, Y', strtotime($topic->published_at)) }} BY AHMED SALEM</span>
                         <i class="moon-icons-plus"></i>
                     </span>
                 </a>
