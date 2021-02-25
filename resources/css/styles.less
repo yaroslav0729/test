@@ -3512,7 +3512,7 @@ input[type='number'].color-danger  + .input-group {
 .order-cart-list {
   .item {
     padding-bottom: 15px;
-    padding-top: 20px;
+    padding-top: 31px;
     & + .item {border-top: 1px solid #101525;}
     span {
       display: inline-block;
@@ -3520,6 +3520,7 @@ input[type='number'].color-danger  + .input-group {
       font-size: 15px;
       font-weight: 900;
       line-height: 22px;
+      margin-top: 10px;
     }
     .btn-remove {
       display: inline-block;
@@ -3698,27 +3699,54 @@ input[type='number'].color-danger  + .input-group {
         top: 86px;
     }
 
+    .letter-spacing-zero {
+        letter-spacing: 0!important;
+    }
+    .btn-minus {
+        padding: 9px 12px!important;
+    }
+
+    .cart-counter .input-group {
+        width: 120px;
+        border-color: black;
+    }
+    .input-group-prepend > button,  .input-group-append > button {
+        border-color: black;
+    }
+
+    .input-group-prepend strong,  .input-group-append strong {
+        font-weight: normal!important;
+        color: black;
+    }
+
     .price {
         display: inline-block;
-        font-size: 30px;
+        font-size: 25px;
         font-weight: 900;
-        line-height: 44px;
+        line-height: 37px;
         border-radius: 5px;
         background: #FFF6F3;
-        padding: 12px 20px;
+        padding: 16px 5px;
         min-width: 190px;
         text-align: center;
+        min-height: 70px;
     }
     .down-bar {
         background: #FFF6F3;
-        padding: 22px 25px;
+        padding: 22px 32px;
         margin: 0 -25px;
         border-radius: 0 0 5px 5px;
+        margin-top: 65px;
         p {
             background: url(../img/ico-smile.svg) no-repeat 0 50%;
             background-size: 60px 60px;
-            padding: 15px 0 15px 80px;
+            padding: 17px 0 15px 80px;
             margin: 0;
+        }
+        a.btn-danger {
+            min-width: 160px;
+            max-height: 56px;
+            padding: 10px 10px;
         }
     }
 }
@@ -5415,6 +5443,10 @@ input[type='number'].color-danger  + .input-group {
         & > div {
             right: 0;
             bottom: -15px;
+        }
+
+        .btn-primary-dark:hover {
+            color: white!important;
         }
     }
     .item {
