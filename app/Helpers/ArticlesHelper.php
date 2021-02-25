@@ -14,7 +14,7 @@ class ArticlesHelper
     const NEWS_PAGINATOR = 'news_articles';
     const PRESS_PAGINATOR = 'press_articles';
 
-    public static function getNewsroomTrendingArticles(int $page = 1)
+    public static function getNewsroomTrendingArticles(int $page = 1, string $sortParam = 'date')
     {
         if ($page < 1) {
             $page = 1;
@@ -22,12 +22,16 @@ class ArticlesHelper
 
         $pages = Page::whereHas('pageInstances', function (Builder $query) {
             $query->where('template', Template::COMMON_CONTENT_PAGE)
-                    ->where('slug', 'like', '%' . 'media-centre/news/' . '%');
+                    ->where('slug', 'like', '%' . 'media-centre/news/' . '%')
+                    ->orderBy('title', 'asc')
+            ;
 
         })
-        ->published()
-        ->orderBy('created_at', 'desc')
-        ->paginate(self::ARTICLES_PER_PAGE, ['*'], self::TRENDING_PAGINATOR, $page);
+        ->published();
+        if ($sortParam === 'date') {
+            $pages->orderBy('published_at', 'desc');
+        }
+        $pages = $pages->paginate(self::ARTICLES_PER_PAGE, ['*'], self::TRENDING_PAGINATOR, $page);
 
         return $pages;
     }

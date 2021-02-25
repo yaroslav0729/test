@@ -85,7 +85,7 @@
     </div>
 </section>
 
-<div class="newsroom_tab_trending">
+<div class="newsroom_tab_trending newsroom-tab-by-sort">
     @php
         $page = (int) request()->get('trending_articles');
 
@@ -99,20 +99,10 @@
         'titleSpan' => 'Trending',
         'titleI' => 'Trending articles'
     ])
+
 </div>
 
-<div class="newsroom_tab_news ">
-
-    <section>
-        <div class="newsroom-list-title mt-4">
-            <span id="newsroom_title_span">News</span>
-            <i id="newsroom_title_i">News articles</i>
-            <div>
-                <button class="btn btn-primary-light">SORT BY DATE</button>
-                <button class="btn btn-primary-dark">FILTER BY TOPIC</button>
-            </div>
-        </div>
-    </section>
+<div class="newsroom_tab_news mt-4 newsroom-tab-by-sort">
 
     @php
         $page = (int) request()->get('news_articles');
@@ -129,7 +119,7 @@
     ])
 </div>
 
-<div class="newsroom_tab_press ">
+<div class="newsroom_tab_press newsroom-tab-by-sort">
 
     @php
         $page = (int) request()->get('press_articles');

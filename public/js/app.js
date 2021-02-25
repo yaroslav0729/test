@@ -41323,6 +41323,10 @@ $(function () {
   $(document).on('click', '[newsroom-articles] .pagination a', function (e) {
     e.preventDefault();
     var path = $(this).attr('href');
+    getNewBody(path);
+  });
+
+  function getNewBody(path) {
     var url = new URL(path);
     var page1 = url.searchParams.get('trending_articles');
     var page2 = url.searchParams.get('news_articles');
@@ -41341,9 +41345,14 @@ $(function () {
     }
 
     var data = {};
+    $('.newsroom-tab-by-sort').each(function () {
+      if (!$(this).hasClass('d-none')) {
+        data['dataSort'] = $(this).find('.btn-white').attr('data-sort');
+      }
+    });
     var apiUrl = '/api/get_articles/' + category + '/' + page;
     $.get(apiUrl, data, refreshTrendingArticles, 'json');
-  });
+  }
 
   function refreshTrendingArticles(response) {
     var tab;
@@ -41372,7 +41381,25 @@ $(function () {
     $(tab).find('[newsroom-articles-body]').html(newBody.html());
     var newPagination = $('[newsroom-articles-pagination]', response.html);
     $(tab).find('[newsroom-articles-pagination]').html(newPagination.html());
-  }
+  } //~~~~~~~~~~~~~~~~~~~~~~ Filters on Newsroom page ~~~~~~~~~~~~~~~~
+
+
+  $(document).on('click', '.btn-newsroom', function () {
+    var link = $('[newsroom-articles] .pagination a').eq(1);
+    var path = $(link).attr('href');
+    changeStatusBtn(this);
+    getNewBody(path);
+
+    function changeStatusBtn(element) {
+      if ($(element).hasClass('btn-white')) {
+        var secondChild = $(element).closest('div').find('.btn-primary-dark');
+        $(element).removeClass('btn-white');
+        $(element).addClass('btn-primary-dark');
+        $(secondChild).addClass('btn-white');
+        $(secondChild).removeClass('btn-primary-dark');
+      }
+    }
+  });
 });
 
 /***/ }),
@@ -41574,12 +41601,12 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app_admin.css */"./resources/css/app_admin.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
-module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/mobile.css */"./resources/css/mobile.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app_admin.css */"./resources/css/app_admin.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+module.exports = __webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/mobile.css */"./resources/css/mobile.css");
 
 
 /***/ })

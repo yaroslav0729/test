@@ -16,7 +16,7 @@ $(function () {
     $(document).on('click', '.newsroom-tabs .nav-link', function () {
         $('.newsroom-tabs .nav-link').removeClass('active')
         $(this).addClass('active')
-        
+
         $('.newsroom_tab_trending').addClass('d-none')
         $('.newsroom_tab_news').addClass('d-none')
         $('.newsroom_tab_press').addClass('d-none')
@@ -29,10 +29,14 @@ $(function () {
     //~~~~~~~~~~~~~~~~~~~~~~~ Trending articles module ~~~~~~~~~~~~~~~~~~~~~~~
 
     $(document).on('click', '[newsroom-articles] .pagination a', function (e) {
-
         e.preventDefault()
 
         let path = $(this).attr('href');
+        getNewBody(path);
+    });
+
+    function getNewBody(path) {
+
         const url = new URL(path);
 
         let page1 = url.searchParams.get('trending_articles')
@@ -53,11 +57,16 @@ $(function () {
         }
 
         let data = {}
+
+        $('.newsroom-tab-by-sort').each(function () {
+           if (!$(this).hasClass('d-none')) {
+               data['dataSort'] = $(this).find('.btn-white').attr('data-sort');
+           }
+        });
+
         let apiUrl = '/api/get_articles/' + category + '/' + page
-
         $.get(apiUrl, data, refreshTrendingArticles, 'json');
-
-    });
+    }
 
     function refreshTrendingArticles(response) {
 
@@ -78,11 +87,31 @@ $(function () {
             }
         }
 
-        let newBody = $('[newsroom-articles-body]', response.html)
+        let newBody = $('[newsroom-articles-body]', response.html);
         $(tab).find('[newsroom-articles-body]').html(newBody.html())
 
         let newPagination = $('[newsroom-articles-pagination]', response.html)
         $(tab).find('[newsroom-articles-pagination]').html(newPagination.html())
     }
 
+    //~~~~~~~~~~~~~~~~~~~~~~ Filters on Newsroom page ~~~~~~~~~~~~~~~~
+    $(document).on('click', '.btn-newsroom', function () {
+        let link = $('[newsroom-articles] .pagination a').eq(1);
+        let path = $(link).attr('href');
+
+        changeStatusBtn(this);
+        getNewBody(path);
+
+        function changeStatusBtn(element) {
+            if ($(element).hasClass('btn-white')) {
+                const secondChild =  $(element).closest('div').find('.btn-primary-dark');
+
+                $(element).removeClass('btn-white');
+                $(element).addClass('btn-primary-dark');
+
+                $(secondChild).addClass('btn-white');
+                $(secondChild).removeClass('btn-primary-dark');
+            }
+        }
+    });
 })

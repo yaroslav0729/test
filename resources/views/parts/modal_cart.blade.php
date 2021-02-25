@@ -83,7 +83,6 @@ $cartSum = \App\Models\CartItem::getCartSum();
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
