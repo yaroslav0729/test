@@ -13,7 +13,8 @@ $(function () {
         $('.' + activeClass).removeClass('d-none')
     }
 
-    $(document).on('click', '.newsroom-tabs .nav-link', function () {
+    $(document).on('click', '.newsroom-tabs .nav-link', function (e) {
+        e.preventDefault();
         $('.newsroom-tabs .nav-link').removeClass('active')
         $(this).addClass('active')
 
@@ -35,7 +36,7 @@ $(function () {
         getNewBody(path);
     });
 
-    function getNewBody(path) {
+    function getNewBody(path, page = 0) {
 
         const url = new URL(path);
 
@@ -46,25 +47,24 @@ $(function () {
         let category = ''
 
         if (page1 !== null) {
-            page = page1;
+            page = (page === 0) ? page1 : 1;
             category = 'trending_articles'
         } else if (page2 !== null) {
-            page = page2;
+            page = (page === 0) ? page2 : 1;
             category = 'news_articles'
         } else if (page3 !== null) {
-            page = page3;
+            page = (page === 0) ? page3 : 1;
             category = 'press_articles'
         }
-
         let data = {}
 
         $('.newsroom-tab-by-sort').each(function () {
-           if (!$(this).hasClass('d-none')) {
-               data['dataSort'] = $(this).find('.btn-white').attr('data-sort');
-           }
+            if (!$(this).hasClass('d-none')) {
+                data['dataSort'] = $(this).find('.btn-active').attr('data-sort');
+            }
         });
 
-        let apiUrl = '/api/get_articles/' + category + '/' + page
+        let apiUrl = '/api/get_articles/' + category + '/' + page;
         $.get(apiUrl, data, refreshTrendingArticles, 'json');
     }
 
@@ -96,22 +96,36 @@ $(function () {
 
     //~~~~~~~~~~~~~~~~~~~~~~ Filters on Newsroom page ~~~~~~~~~~~~~~~~
     $(document).on('click', '.btn-newsroom', function () {
-        let link = $('[newsroom-articles] .pagination a').eq(1);
+        let section = (this).closest('.newsroom-tab-by-sort');
+        let link = $(section).find('[newsroom-articles] .pagination a').eq(1);
         let path = $(link).attr('href');
 
-        changeStatusBtn(this);
-        getNewBody(path);
+        if ($(this).hasClass('btn-primary-dark')) {
+            changeStatusBtn(this);
+            getNewBody(path, 1);
+        }
 
         function changeStatusBtn(element) {
-            if ($(element).hasClass('btn-white')) {
-                const secondChild =  $(element).closest('div').find('.btn-primary-dark');
+            let secondChild;
+            let className;
+            const parent = $(element).closest('.newsroom-tab-by-sort');
 
-                $(element).removeClass('btn-white');
-                $(element).addClass('btn-primary-dark');
-
-                $(secondChild).addClass('btn-white');
-                $(secondChild).removeClass('btn-primary-dark');
+            if ($(parent).hasClass('newsroom-tab-white')) {
+                className = 'btn-white';
+                secondChild = $(element).closest('.newsroom-list').find('.btn-white');
+            } else {
+                className = 'btn-light-gray';
+                secondChild = $(element).closest('div').find('.btn-light-gray');
             }
+
+            $(element).removeClass('btn-primary-dark');
+            $(element).addClass(className);
+            $(element).toggleClass('btn-active');
+
+            $(secondChild).removeClass(className);
+            $(secondChild).addClass('btn-primary-dark');
+            $(secondChild).toggleClass('btn-active');
+
         }
     });
 })

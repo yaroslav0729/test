@@ -510,9 +510,6 @@ header .down-bar ul li a {
 header .down-bar ul li a:hover {
   color: #F7796A;
 }
-header.header-newsroom {
-  padding-bottom: 32px;
-}
 header.dark-theme {
   background: #231F51;
 }
@@ -1096,6 +1093,9 @@ header + .newsroom-tabs + .blog-article-head .wrap {
   background: #2ac2db;
   border-color: #2ac2db;
 }
+.btn-light-gray {
+  background-color: #F5F5F7;
+}
 .btn-primary {
   background: #231F51;
   border-color: #231F51;
@@ -1176,8 +1176,8 @@ header + .newsroom-tabs + .blog-article-head .wrap {
   max-width: 250px;
   padding: 8px;
   text-align: center;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   cursor: pointer;
 }
 .btn-fb:hover {
@@ -1214,6 +1214,9 @@ header + .newsroom-tabs + .blog-article-head .wrap {
 .bg-light {
   background-color: #F8F8F8 !important;
 }
+.bg-light-gray {
+  background-color: #F5F5F7 !important;
+}
 .bg-primary {
   background-color: #231F51 !important;
 }
@@ -1227,10 +1230,10 @@ header + .newsroom-tabs + .blog-article-head .wrap {
   background-color: #3A7BF5 !important;
 }
 .text-info {
-  color: #2caabb  !important;
+  color: #2caabb !important;
 }
 .text-dark {
-  color: #101525  !important;
+  color: #101525 !important;
 }
 .text-red {
   color: #FF5D4A !important;
@@ -3925,7 +3928,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: .5;
+  opacity: 0.5;
 }
 .about-donation .body .item span {
   display: inline-block;
@@ -4152,7 +4155,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 22px;
-  opacity: .5;
+  opacity: 0.5;
 }
 .order-cart-list .total {
   background: #FFF6F3;
@@ -6269,6 +6272,9 @@ input[type='number'].color-danger + .input-group .btn {
 .newsroom-list-title > div .btn:first-child {
   right: -10px;
 }
+.newsroom-tab-by-sort .newsroom-list-title .btn-primary-dark:hover {
+  color: white!important;
+}
 .newsroom-list {
   position: relative;
   padding: 65px 140px 80px 110px;
@@ -6458,11 +6464,11 @@ input[type='number'].color-danger + .input-group .btn {
   color: #1f1e1e;
 }
 .bg-btn-red {
-  background: #f7796a!important;
+  background: #f7796a !important;
   color: #ffffff;
 }
 .bg-btn-red a {
-  color: #ffffff!important;
+  color: #ffffff !important;
 }
 /*------------------------------------vb--------*/
 /*# sourceMappingURL=styles.css.map */

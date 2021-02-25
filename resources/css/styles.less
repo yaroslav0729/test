@@ -470,7 +470,6 @@ header {
             }
         }
     }
-    &.header-newsroom {padding-bottom: 32px;}
     &.dark-theme {
         background: #231F51;
         .top-bar {
@@ -916,6 +915,9 @@ header {
         background: #2ac2db;
         border-color: #2ac2db;
     }
+    &-light-gray {
+        background-color: #F5F5F7;
+    }
     &-primary {
         background: #231F51;
         border-color: #231F51;
@@ -1020,6 +1022,7 @@ header {
     &-warning {background-color: #F5C15D !important;}
     &-dark {background-color: #101525 !important;}
     &-light {background-color: #F8F8F8 !important;}
+    &-light-gray {background-color: #F5F5F7 !important;}
     &-primary {background-color: #231F51 !important;}
     &-primary-light {background-color: #E3EFFE !important;}
     &-secondary {background-color: #9496B0 !important;}
@@ -5422,6 +5425,15 @@ input[type='number'].color-danger  + .input-group {
             &:first-child {right: -10px;}
         }
     }
+}
+
+.newsroom-tab-by-sort {
+    .newsroom-list-title {
+        .btn-primary-dark:hover {
+            color: white!important;
+        }
+    }
+
 }
 
 .newsroom-list {
