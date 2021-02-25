@@ -47,7 +47,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                                         </form>
                                     </div>
                                 </div>
-                                <div class="row align-items-center">
+                                <div class="row align-items-center mt-4">
                                     <div class="col-8">
                                         <p class="font-size-20 mb-0 mt-2 letter-spacing-zero">
                                             <b>£{{\App\Models\CartItem::roundCurrency($cartItem[0]->amount) }}</b>
