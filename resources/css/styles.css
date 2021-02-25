@@ -3393,11 +3393,18 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .donate-today .body .media {
   border-top: 4px solid #101525;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  height: calc(100% - 100px);
+  min-height: 625px;
+  border-radius: 0 0 10px 10px;
+  margin-bottom: 40px;
 }
 .donate-today .body .descr {
   position: relative;
   z-index: 1;
-  margin-top: -130px;
+  margin-top: -138px;
 }
 .donate-today .body .descr div {
   width: 70%;
@@ -3430,6 +3437,7 @@ input[type='number'].color-danger + .input-group .btn {
   margin-top: -60px;
   position: relative;
   z-index: 2;
+  margin-bottom: 40px;
 }
 .donate-today .body .donate-today-sheet .item {
   display: block;

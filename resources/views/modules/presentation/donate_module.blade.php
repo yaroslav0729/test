@@ -72,12 +72,12 @@ if (!isset($useAppeal)) {
         <div class="{{ $col1Class }}">
 
             @empty($donateVideo)
-                <div class="media">
-                    @empty($donateImg)
-                        <img src="img/content/donate-today-1.jpg" alt="" class="w-100">
-                    @else
-                        <img src="{{ $donateImg }}" alt="" class="w-100">
-                    @endempty
+                @empty($donateImg)
+                    <div class="media" style="background-image: url(img/content/donate-today-1.jpg);">
+                    <img src="" alt="" class="w-100">
+                @else
+                    <div class="media" style="background-image: url({{ $donateImg }});">
+                @endempty
                 </div>
             @else
                 <div class="media img-video videoWrapper" style="background: #555">
