@@ -100,10 +100,17 @@
 
 <div class="pt-5"></div>
 
+<style>
+    .blog-article-body h2 {font-size: 28px;}
+</style>
+
 @include('modules.presentation.what_happens_so_far')
 
 @include('modules.presentation.we_still_need_support')
 
 @include('modules.presentation.important_information')
 
+<div class="pt-4"></div>
+
 @include('modules.presentation.related_topics_project')
+

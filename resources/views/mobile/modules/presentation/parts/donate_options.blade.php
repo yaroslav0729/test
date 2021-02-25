@@ -33,7 +33,7 @@
                         <i class="moon-icons-plus decor-plus"></i>
                         <i class="moon-icons-check"></i>
 
-                        <object class="currency_sign">£</object>
+                        <object class="currency_sign" style="{{$smallSize}}">£</object>
                         <b>@isset($item['value']) {{ $item['value'] }} @endisset</b></span></span>
                     <span>@isset($item['text']) {{ $item['text'] }} @endisset</span>
                 </span>

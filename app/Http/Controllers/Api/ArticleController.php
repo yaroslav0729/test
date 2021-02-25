@@ -8,25 +8,25 @@ use App\Helpers\ArticlesHelper;
 
 class ArticleController extends Controller
 {
-    public function getArticles($category, $page)
+    public function getArticles($category, $page, Request $request)
     {
         $newsroomPath = \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '';
-
         $articles = [];
-        
+        $sortParam = $request->dataSort;
+
         switch ($category) {
             case ArticlesHelper::TRENDING_PAGINATOR: {
-                $articles = ArticlesHelper::getNewsroomTrendingArticles($page);
+                $articles = ArticlesHelper::getNewsroomTrendingArticles($page, $sortParam);
                 $articles->withPath(url($newsroomPath));
                 break;
             }
             case ArticlesHelper::NEWS_PAGINATOR: {
-                $articles = ArticlesHelper::getNewsroomNewsArticles($page);
+                $articles = ArticlesHelper::getNewsroomNewsArticles($page, $sortParam);
                 $articles->withPath(url($newsroomPath));
                 break;
             }
             case ArticlesHelper::PRESS_PAGINATOR: {
-                $articles = ArticlesHelper::getNewsroomPressArticles($page);
+                $articles = ArticlesHelper::getNewsroomPressArticles($page, $sortParam);
                 $articles->withPath(url($newsroomPath));
                 break;
             }
@@ -44,6 +44,6 @@ class ArticleController extends Controller
             'page' => $page,
             'category' => $category,
             'html' => $html
-        ]);  
+        ]);
     }
 }

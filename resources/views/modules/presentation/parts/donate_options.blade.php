@@ -37,7 +37,7 @@
                 <span class="d-flex align-items-center">
                     <span>
                         <span>
-                            <object class="currency_sign">£</object>
+                            <object class="currency_sign" style="{{$smallSize}}">£</object>
                             <b style="{{$smallSize}}">@isset($item['value']){{$item['value']}}@endisset</b>
                         </span>
                     @if($donateOptionsType === \App\Models\CampaignPrice::TYPE_SINGLE)

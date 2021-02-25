@@ -10366,6 +10366,9 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link {
 header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   color: #101525;
 }
+header + .newsroom-tabs + .blog-article-head .wrap {
+  padding-top: 20px;
+}
 @media screen and (min-width: 767px) and (max-width: 1300px) {
   header .top-bar {
     padding: 30px 20px 33px 20px;
@@ -10475,6 +10478,12 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   text-shadow: 0 0 1px #101525;
   text-decoration: underline;
 }
+.header-menu .menu li a.view-all-link {
+  text-decoration: underline;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+}
 .header-menu .black-line {
   height: 5px;
 }
@@ -10520,6 +10529,7 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   text-align: center;
   text-decoration: none;
   color: #101525;
+  font-size: 20px;
 }
 .header-menu .categories .name a:hover {
   background: #F7796A;
@@ -10915,6 +10925,9 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
   background: #2ac2db;
   border-color: #2ac2db;
 }
+.btn-light-gray {
+  background-color: #F5F5F7;
+}
 .btn-primary {
   background: #231F51;
   border-color: #231F51;
@@ -11031,6 +11044,9 @@ header.dark-theme + .newsroom-tabs .nav-tabs .nav-link.active {
 }
 .bg-light {
   background-color: #F8F8F8 !important;
+}
+.bg-light-gray {
+  background-color: #F5F5F7 !important;
 }
 .bg-primary {
   background-color: #231F51 !important;
@@ -11242,7 +11258,7 @@ input[type='number'] + .input-group .btn {
   background: #E3EFFE;
   font-size: 24px;
   font-weight: 400;
-  padding: 9px 14px;
+  padding: 9px 12px;
 }
 input[type='number'] + .input-group .btn strong {
   font-weight: 400;
@@ -12914,13 +12930,15 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .blog-article-head .img-video {
   width: 705px;
-  height: 390px;
-  border-radius: 5px;
+  height: 492px;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
 }
 @media screen and (max-width: 1439px) {
   .blog-article-head .img-video {
     width: auto;
     height: auto;
+    border-radius: 10px;
   }
 }
 .blog-article-head .date {
@@ -13173,8 +13191,14 @@ input[type='number'].color-danger + .input-group .btn {
     padding-left: 30px;
   }
 }
-.newsroom_tab_trending .mission-impossible .body > .row > .col-7 {
+.newsroom_tab_trending .mission-impossible .body > .row .col-7 {
   order: 2;
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+.newsroom_tab_trending .mission-impossible .body > .row .col-5 {
+  flex: 0 0 50%;
+  max-width: 50%;
 }
 .newsroom_tab_trending .mission-impossible .text {
   padding-left: 66px;
@@ -13229,11 +13253,18 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .donate-today .body .media {
   border-top: 4px solid #101525;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  height: calc(100% - 100px);
+  min-height: 625px;
+  border-radius: 0 0 10px 10px;
+  margin-bottom: 40px;
 }
 .donate-today .body .descr {
   position: relative;
   z-index: 1;
-  margin-top: -130px;
+  margin-top: -138px;
 }
 .donate-today .body .descr div {
   width: 70%;
@@ -13254,6 +13285,9 @@ input[type='number'].color-danger + .input-group .btn {
   right: 0;
   bottom: 0;
 }
+.donate-today .body .col-lg-7 .media + .descr:after {
+  right: calc(-71%);
+}
 .donate-today .body .donate-today-sheet {
   border-radius: 5px;
   background-color: #FFF;
@@ -13263,6 +13297,7 @@ input[type='number'].color-danger + .input-group .btn {
   margin-top: -60px;
   position: relative;
   z-index: 2;
+  margin-bottom: 40px;
 }
 .donate-today .body .donate-today-sheet .item {
   display: block;
@@ -13950,7 +13985,7 @@ input[type='number'].color-danger + .input-group .btn {
 }
 .order-cart-list .item {
   padding-bottom: 15px;
-  padding-top: 20px;
+  padding-top: 31px;
 }
 .order-cart-list .item + .item {
   border-top: 1px solid #101525;
@@ -13961,6 +13996,7 @@ input[type='number'].color-danger + .input-group .btn {
   font-size: 15px;
   font-weight: 900;
   line-height: 22px;
+  margin-top: 10px;
 }
 .order-cart-list .item .btn-remove {
   display: inline-block;
@@ -14131,28 +14167,54 @@ input[type='number'].color-danger + .input-group .btn {
 #cartModal + .modal-backdrop {
   top: 86px;
 }
+#cartModal .letter-spacing-zero {
+  letter-spacing: 0!important;
+}
+#cartModal .btn-minus {
+  padding: 9px 12px!important;
+}
+#cartModal .cart-counter .input-group {
+  width: 120px;
+  border-color: black;
+}
+#cartModal .input-group-prepend > button,
+#cartModal .input-group-append > button {
+  border-color: black;
+}
+#cartModal .input-group-prepend strong,
+#cartModal .input-group-append strong {
+  font-weight: normal!important;
+  color: black;
+}
 #cartModal .price {
   display: inline-block;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 900;
-  line-height: 44px;
+  line-height: 37px;
   border-radius: 5px;
   background: #FFF6F3;
-  padding: 12px 20px;
+  padding: 16px 5px;
   min-width: 190px;
   text-align: center;
+  min-height: 70px;
 }
 #cartModal .down-bar {
   background: #FFF6F3;
-  padding: 22px 25px;
+  padding: 22px 32px;
   margin: 0 -25px;
   border-radius: 0 0 5px 5px;
+  margin-top: 65px;
 }
 #cartModal .down-bar p {
   background: url(/images/ico-smile.svg?9dcaa9304d7217f5b7097ae6cea32b34) no-repeat 0 50%;
   background-size: 60px 60px;
-  padding: 15px 0 15px 80px;
+  padding: 17px 0 15px 80px;
   margin: 0;
+}
+#cartModal .down-bar a.btn-danger {
+  min-width: 160px;
+  max-height: 56px;
+  padding: 10px 10px;
 }
 .gift-aid-sheet {
   background: #231F51;
@@ -16042,9 +16104,46 @@ input[type='number'].color-danger + .input-group .btn {
 .head-Volunteer form .field {
   padding-left: 55px;
 }
+.newsroom-list-title {
+  margin-left: 0px;
+  position: relative;
+  margin-bottom: 53px;
+}
+.newsroom-list-title i {
+  color: #101525;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1;
+  font-style: normal;
+  position: absolute;
+  bottom: -9px;
+  left: 40px;
+}
+.newsroom-list-title span {
+  color: #EEF0F3;
+  font-size: 90px;
+  font-weight: 900;
+  line-height: 1;
+}
+.newsroom-list-title > div {
+  position: absolute;
+  right: -40px;
+  bottom: 0;
+}
+.newsroom-list-title > div .btn {
+  font-size: 12px;
+  padding: 20px 40px;
+  position: relative;
+}
+.newsroom-list-title > div .btn:first-child {
+  right: -10px;
+}
+.newsroom-tab-by-sort .newsroom-list-title .btn-primary-dark:hover {
+  color: white!important;
+}
 .newsroom-list {
   position: relative;
-  padding: 70px 140px 80px 110px;
+  padding: 65px 140px 80px 110px;
 }
 .newsroom-list:before {
   content: "";
@@ -16057,44 +16156,25 @@ input[type='number'].color-danger + .input-group .btn {
   right: 180px;
   z-index: -1;
 }
-.newsroom-list .title {
+.newsroom-list .newsroom-list-title {
+  margin-bottom: 123px;
   margin-left: 70px;
-  position: relative;
 }
-.newsroom-list .title i {
-  color: #101525;
-  font-size: 30px;
-  font-weight: 900;
-  line-height: 1;
-  font-style: normal;
-  position: absolute;
-  bottom: -9px;
-  left: 40px;
-}
-.newsroom-list .title span {
+.newsroom-list .newsroom-list-title span {
   color: #FFF;
-  font-size: 90px;
-  font-weight: 900;
-  line-height: 1;
 }
-.newsroom-list .title > div {
-  position: absolute;
+.newsroom-list .newsroom-list-title > div {
   right: 0;
   bottom: -15px;
 }
-.newsroom-list .title > div .btn {
-  font-size: 12px;
-  padding: 20px 40px;
-  position: relative;
-}
-.newsroom-list .title > div .btn:first-child {
-  right: -10px;
+.newsroom-list .newsroom-list-title .btn-primary-dark:hover {
+  color: white!important;
 }
 .newsroom-list .item {
   border-radius: 5px;
   background-color: #FFF;
   box-shadow: 0 10px 25px 0 rgba(104, 110, 117, 0.15);
-  padding: 28px 0 20px 40px;
+  padding: 28px 0 14px 40px;
   display: flex;
   margin-bottom: 10px;
 }
@@ -16111,6 +16191,7 @@ input[type='number'].color-danger + .input-group .btn {
   border-radius: 5px;
   position: relative;
   right: -45px;
+  margin-top: -13px;
 }
 .newsroom-list .item .tl {
   display: block;
@@ -16119,7 +16200,10 @@ input[type='number'].color-danger + .input-group .btn {
   font-size: 20px;
   font-weight: 900;
   line-height: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
+}
+.newsroom-list .item p {
+  maring-bottom: 12px;
 }
 .newsroom-list .item .date {
   color: #7E87A4;
@@ -16176,6 +16260,9 @@ input[type='number'].color-danger + .input-group .btn {
   font-size: 16px;
   line-height: 26px;
   font-weight: 500;
+}
+.important-information .text {
+  overflow: hidden;
 }
 .important-information .text .descr {
   max-height: 0;

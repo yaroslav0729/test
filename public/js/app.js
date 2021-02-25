@@ -41309,7 +41309,8 @@ $(function () {
     $('.' + activeClass).removeClass('d-none');
   }
 
-  $(document).on('click', '.newsroom-tabs .nav-link', function () {
+  $(document).on('click', '.newsroom-tabs .nav-link', function (e) {
+    e.preventDefault();
     $('.newsroom-tabs .nav-link').removeClass('active');
     $(this).addClass('active');
     $('.newsroom_tab_trending').addClass('d-none');
@@ -41323,6 +41324,11 @@ $(function () {
   $(document).on('click', '[newsroom-articles] .pagination a', function (e) {
     e.preventDefault();
     var path = $(this).attr('href');
+    getNewBody(path);
+  });
+
+  function getNewBody(path) {
+    var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     var url = new URL(path);
     var page1 = url.searchParams.get('trending_articles');
     var page2 = url.searchParams.get('news_articles');
@@ -41330,20 +41336,25 @@ $(function () {
     var category = '';
 
     if (page1 !== null) {
-      page = page1;
+      page = page === 0 ? page1 : 1;
       category = 'trending_articles';
     } else if (page2 !== null) {
-      page = page2;
+      page = page === 0 ? page2 : 1;
       category = 'news_articles';
     } else if (page3 !== null) {
-      page = page3;
+      page = page === 0 ? page3 : 1;
       category = 'press_articles';
     }
 
     var data = {};
+    $('.newsroom-tab-by-sort').each(function () {
+      if (!$(this).hasClass('d-none')) {
+        data['dataSort'] = $(this).find('.btn-active').attr('data-sort');
+      }
+    });
     var apiUrl = '/api/get_articles/' + category + '/' + page;
     $.get(apiUrl, data, refreshTrendingArticles, 'json');
-  });
+  }
 
   function refreshTrendingArticles(response) {
     var tab;
@@ -41372,7 +41383,40 @@ $(function () {
     $(tab).find('[newsroom-articles-body]').html(newBody.html());
     var newPagination = $('[newsroom-articles-pagination]', response.html);
     $(tab).find('[newsroom-articles-pagination]').html(newPagination.html());
-  }
+  } //~~~~~~~~~~~~~~~~~~~~~~ Filters on Newsroom page ~~~~~~~~~~~~~~~~
+
+
+  $(document).on('click', '.btn-newsroom', function () {
+    var section = this.closest('.newsroom-tab-by-sort');
+    var link = $(section).find('[newsroom-articles] .pagination a').eq(1);
+    var path = $(link).attr('href');
+
+    if ($(this).hasClass('btn-primary-dark')) {
+      changeStatusBtn(this);
+      getNewBody(path, 1);
+    }
+
+    function changeStatusBtn(element) {
+      var secondChild;
+      var className;
+      var parent = $(element).closest('.newsroom-tab-by-sort');
+
+      if ($(parent).hasClass('newsroom-tab-white')) {
+        className = 'btn-white';
+        secondChild = $(element).closest('.newsroom-list').find('.btn-white');
+      } else {
+        className = 'btn-light-gray';
+        secondChild = $(element).closest('div').find('.btn-light-gray');
+      }
+
+      $(element).removeClass('btn-primary-dark');
+      $(element).addClass(className);
+      $(element).toggleClass('btn-active');
+      $(secondChild).removeClass(className);
+      $(secondChild).addClass('btn-primary-dark');
+      $(secondChild).toggleClass('btn-active');
+    }
+  });
 });
 
 /***/ }),
@@ -41574,12 +41618,12 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app.css */"./resources/css/app.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/app_admin.css */"./resources/css/app_admin.css");
-__webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
-module.exports = __webpack_require__(/*! /Users/ivansusanin/Documents/work/www/Islamic-Help.lo/resources/css/mobile.css */"./resources/css/mobile.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/assets/vendor/MediaManager/sass/manager.scss */"./resources/assets/vendor/MediaManager/sass/manager.scss");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/app_admin.css */"./resources/css/app_admin.css");
+__webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/admin_styles.css */"./resources/css/admin_styles.css");
+module.exports = __webpack_require__(/*! /home/vetal33/PhpstormProjects/islamichelp/resources/css/mobile.css */"./resources/css/mobile.css");
 
 
 /***/ })
