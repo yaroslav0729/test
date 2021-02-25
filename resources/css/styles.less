@@ -583,6 +583,12 @@ header {
                     text-shadow: 0 0 1px #101525;
                     text-decoration: underline;
                 }
+                &.view-all-link {
+                    text-decoration: underline;
+                    font-size: 12px;
+                    font-weight: 900;
+                    letter-spacing: 0.6px
+                }
             }
         }
     }
@@ -628,6 +634,7 @@ header {
                 text-decoration: none;
                 color: #101525;
                 &:hover {background: #F7796A}
+                font-size: 20px;
             }
         }
 
@@ -5500,6 +5507,7 @@ input[type='number'].color-danger  + .input-group {
         font-weight: 500;
     }
     .text {
+        overflow: hidden;
         .descr {
             max-height: 0;
             overflow: hidden;

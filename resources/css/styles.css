@@ -649,6 +649,12 @@ header + .newsroom-tabs + .blog-article-head .wrap {
   text-shadow: 0 0 1px #101525;
   text-decoration: underline;
 }
+.header-menu .menu li a.view-all-link {
+  text-decoration: underline;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+}
 .header-menu .black-line {
   height: 5px;
 }
@@ -694,6 +700,7 @@ header + .newsroom-tabs + .blog-article-head .wrap {
   text-align: center;
   text-decoration: none;
   color: #101525;
+  font-size: 20px;
 }
 .header-menu .categories .name a:hover {
   background: #F7796A;
@@ -6351,6 +6358,9 @@ input[type='number'].color-danger + .input-group .btn {
   font-size: 16px;
   line-height: 26px;
   font-weight: 500;
+}
+.important-information .text {
+  overflow: hidden;
 }
 .important-information .text .descr {
   max-height: 0;

@@ -142,7 +142,7 @@
 
                 <div>
                     <ul class="menu mb-3">
-                        <li><a href="#" menu-group-back>VIEW ALL CATEGORIES</a></li>
+                        <li><a href="#" menu-group-back class="view-all-link">VIEW ALL CATEGORIES</a></li>
                     </ul>
                 </div>
 
@@ -190,7 +190,7 @@
                 <div class="categories">
                     <div class="name">
                         {{ $itemMenu['parent_text'] }}
-                        <a href="#" menu-group-back><i class="far fa-long-arrow-left"></i></a>
+                        <a href="#" menu-group-back><i class="moon-icons-arrow-left"></i></a>
                     </div>
                     <div class="categories-swiper">
                         <div class="swiper-container">
