@@ -1941,6 +1941,9 @@
 .mobile-template .calculator {
   padding: 0;
 }
+.mobile-template .calculator .form-group[currency]:after {
+  top: 52px;
+}
 .mobile-template .calculator .wrap {
   border-radius: 0;
 }
@@ -1998,11 +2001,11 @@
   display: block;
   background: url(/images/Line-styling.png?b03a87dd394747a88d56e0d8ba1cafa2) no-repeat;
   background-size: contain;
-  height: 172px;
-  width: 172px;
+  height: 180px;
+  width: 180px;
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 72%;
   opacity: 0.08;
   z-index: 1;
   transform: translateY(-56%);

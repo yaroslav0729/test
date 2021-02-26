@@ -141,6 +141,6 @@ class CartItem extends Model
             return '0.00';
         }
 
-        return number_format(round($value, 2), 2, '.', '\'');
+        return number_format(round($value, 2), 2, '.', ',');
     }
 }

@@ -40721,11 +40721,11 @@ function getShareThisCou() {
       }
     });
   }
-} //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
+} //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1,000.00" ~~~~~~~~~~~~~~~~~~~~
 
 
 function convertMonetary(value) {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 } //~~~~~~~~~~~~~~~~~~ Summarizes input fields ~~~~~~~~~~~~~~~~~~~~
 
 
@@ -40967,7 +40967,7 @@ $(function () {
   }); //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
 
   function convertMonetary(value) {
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   $(function () {
@@ -41037,6 +41037,7 @@ $(function () {
   }
 
   function refreshCardAddHtml(response) {
+    console.log(response.cart_html);
     var newCart = $('.modal-body', response.cart_html);
     $('#cartModal .modal-body').html(newCart.html());
     var newCartDonate = $(response.cart_donate);
@@ -41067,7 +41068,7 @@ $(function () {
       lastPeriod = form.find('input[name="period"]').val();
     }
 
-    $('#add_to_cart_popup .amount').text(number_format(lastAmount, 2, '.', "'"));
+    $('#add_to_cart_popup .amount').text(number_format(lastAmount, 2, '.', ","));
     $('#add_to_cart_popup .period').text(lastPeriod);
     $.ajax({
       url: form.attr('action'),

@@ -336,19 +336,19 @@
                 </div>
                 <div class="pt-4"></div>
                 <div>
-                    <span class="toggle-title font-size-14 text-white"><i
-                            class="far fa-chevron-up mr-2 font-size-20"></i> CLOSE</span>
+                    <span class="toggle-title font-size-14 text-white">
+                        <i class="far fa-chevron-up mr-2 font-size-20"></i> CLOSE</span>
                 </div>
             </div>
         </div>
         <nav class="general-content-tabs">
             <ul class="nav nav-tabs nav-fill" id="myTab">
                 <li class="nav-item col-6 pl-0 pr-0">
-                    <a class="nav-link active text-uppercase" id="tab-1-tab" data-toggle="tab" href="#tab-1" role="tab"
+                    <a class="nav-link active letter-spacing-0" id="tab-1-tab" data-toggle="tab" href="#tab-1" role="tab"
                        aria-selected="true">Calculator</a>
                 </li>
                 <li class="nav-item col-6 pl-0 pr-0" role="presentation">
-                    <a class="nav-link" id="tab-2-tab" data-toggle="tab" href="#tab-2" role="tab"
+                    <a class="nav-link letter-spacing-0" id="tab-2-tab" data-toggle="tab" href="#tab-2" role="tab"
                        aria-selected="false">{{ $tabWhatZakatTitle }}</a>
                 </li>
             </ul>
@@ -358,7 +358,7 @@
                 <div class="row align-items-end gutter-5 base-value">
                     <div class="col-7">
                         <div class="form-group mb-0">
-                            <label><b>{{ $calculateBaseValueNisaabTitle }}</b></label>
+                            <label><b class="letter-spacing-1">{{ $calculateBaseValueNisaabTitle }}</b></label>
                             <select class="form-control" id="currency">
                                 <option value="{{ $priceSilver }}">Silver</option>
                                 <option value="{{ $priceGold }}">Gold</option>
@@ -373,77 +373,97 @@
 
                 <div class="pb-4">{!! $calculateBelowTitle !!}</div>
                 <div class="black-line mb-4"></div>
-                <div class="text-uppercase"><b>{{ $calculateYourAssetsSectionTitle }}</b></div>
-                <div class="pt-5"></div>
+                <div class="text-uppercase pl-4 pr-3 letter-spacing-1 font-size-16"><b>{{ $calculateYourAssetsSectionTitle }}</b></div>
+                <div class="pt-3"></div>
 
-                <div class="form-group" currency="£">
-                    <label><b>{{ $calculateValueOfGoldTitle }}</b></label>
+                <div class="form-group pt-2 pb-2" currency="£">
+                    <label><b class="letter-spacing-1">{{ $calculateValueOfGoldTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="0.00">
-                    <small>{{ $calculateValueOfGoldAnnotation }}</small>
+                    <div class="pl-3 text-secondary mt-2">
+                        <small class="font-size-14">{{ $calculateValueOfGoldAnnotation }}</small>
+                    </div>
                 </div>
                 <div class="line"></div>
-                <div class="form-group" currency="£">
-                    <label><b>{{ $calculateValueOfSilverTitle }}</b></label>
+                <div class="form-group pt-2 pb-2" currency="£">
+                    <label><b class="letter-spacing-1">{{ $calculateValueOfSilverTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="0.00">
-                    <small>{{ $calculateValueOfSilverAnnotation }}</small>
+                    <div class="pl-3 text-secondary mt-2">
+                        <small class="font-size-14">{{ $calculateValueOfSilverAnnotation }}</small>
+                    </div>
                 </div>
                 <div class="line"></div>
-                <div class="form-group" currency="£">
-                    <label><b>{{ $calculateCashInHandTitle }}</b></label>
+                <div class="form-group pt-2 pb-2" currency="£">
+                    <label><b class="letter-spacing-1">{{ $calculateCashInHandTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="0.00">
-                    <small>{{ $calculateCashInHandAnnotation }}</small>
+                    <div class="pl-3 text-secondary mt-2">
+                        <small class="font-size-14">{{ $calculateCashInHandAnnotation }}</small>
+                    </div>
                 </div>
                 <div class="line"></div>
-                <div class="form-group" currency="£">
-                    <label><b>{{ $calculateCashDepositedTitle }}</b></label>
+                <div class="form-group pt-2 pb-2" currency="£">
+                    <label><b class="letter-spacing-1">{{ $calculateCashDepositedTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="0.00">
-                    <small>{{ $calculateCashDepositedAnnotation }}</small>
+                    <div class="pl-3 text-secondary mt-2">
+                        <small class="font-size-14">{{ $calculateCashDepositedAnnotation }}</small>
+                    </div>
                 </div>
                 <div class="line"></div>
-                <div class="form-group" currency="£">
-                    <label><b>{{ $calculateGivenTitle }}</b></label>
+                <div class="form-group pt-2 pb-2" currency="£">
+                    <label><b class="letter-spacing-1">{{ $calculateGivenTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="0.00">
-                    <small>{{ $calculateGivenAnnotation }}</small>
+                    <div class="pl-3 text-secondary mt-2">
+                        <small class="font-size-14">{{ $calculateGivenAnnotation }}</small>
+                    </div>
                 </div>
                 <div class="line"></div>
-                <div class="form-group" currency="£">
-                    <label><b>{{ $calculateOtherTitle }}</b></label>
+                <div class="form-group pt-2 pb-2" currency="£">
+                    <label><b class="letter-spacing-1">{{ $calculateOtherTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="0.00">
-                    <small>{{ $calculateOtherAnnotation }}</small>
+                    <div class="pl-3 text-secondary mt-2">
+                        <small class="font-size-14">{{ $calculateOtherAnnotation }}</small>
+                    </div>
                 </div>
 
                 <div class="pt-4"></div>
                 <div class="black-line mb-4"></div>
-                <div class="text-uppercase"><b>{{ $calculateTradeGoodsSectionTitle }}</b></div>
-                <div class="pt-5"></div>
-                <div class="form-group" currency="£">
-                    <label><b>{{ $calculateValueOfStockTitle }}</b></label>
+                <div class="text-uppercase pl-4 pr-3 letter-spacing-1 font-size-16"><b>{{ $calculateTradeGoodsSectionTitle }}</b></div>
+                <div class="pt-3"></div>
+                <div class="form-group pt-2 pb-2" currency="£">
+                    <label><b class="letter-spacing-1">{{ $calculateValueOfStockTitle }}</b></label>
                     <input type="number" class="form-control debit-money" placeholder="0.00">
-                    <small>{{ $calculateValueOfStockAnnotation }}</small>
+                    <div class="pl-3 text-secondary mt-2">
+                        <small class="font-size-14">{{ $calculateValueOfStockAnnotation }}</small>
+                    </div>
                 </div>
 
                 <div class="pt-4"></div>
                 <div class="black-line mb-4"></div>
-                <div class="text-uppercase"><b>{{ $calculateLiabilitiesSectionTitle }}</b></div>
-                <div class="pt-5"></div>
-                <div class="form-group" currency="£">
+                <div class="text-uppercase pl-4 pr-3 letter-spacing-1 font-size-16"><b>{{ $calculateLiabilitiesSectionTitle }}</b></div>
+                <div class="pt-3"></div>
+                <div class="form-group pt-2 pb-2" currency="£">
                     <label><b>{{ $calculateBorrowedTitle }}</b></label>
                     <input type="number" class="form-control credit-money" placeholder="0.00">
-                    <small>{{ $calculateBorrowedAnnotation }}</small>
+                    <div class="pl-3 text-secondary mt-2">
+                        <small class="font-size-14">{{ $calculateBorrowedAnnotation }}</small>
+                    </div>
                 </div>
                 <div class="line"></div>
-                <div class="form-group" currency="£">
+                <div class="form-group pt-2 pb-2" currency="£">
                     <label><b>{{ $calculateWagesTitle }}</b></label>
                     <input type="number" class="form-control credit-money" placeholder="0.00">
-                    <small>{{ $calculateWagesAnnotation }}</small>
+                    <div class="pl-3 text-secondary mt-2">
+                        <small class="font-size-14">{{ $calculateWagesAnnotation }}</small>
+                    </div>
                 </div>
                 <div class="line"></div>
-                <div class="form-group" currency="£">
+                <div class="form-group pt-2 pb-2" currency="£">
                     <label><b>{{ $calculateTaxesTitle }}</b></label>
                     <input type="number" class="form-control credit-money" placeholder="0.00">
-                    <small>{{ $calculateTaxesAnnotation }}</small>
+                    <div class="pl-3 text-secondary mt-2">
+                        <small class="font-size-14">{{ $calculateTaxesAnnotation }}</small>
+                    </div>
                 </div>
-                <div class="pt-5"></div>
+                <div class="pt-4"></div>
 
                 <div class="calc">
                     <div class="line"></div>
