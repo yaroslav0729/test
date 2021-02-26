@@ -1110,6 +1110,27 @@
   border-radius: 0;
   box-shadow: none;
 }
+.mobile-template .about-donation .body .thank-you-text {
+  line-height: 24px;
+}
+.mobile-template .about-donation .body .btn-danger {
+  height: 56px;
+}
+.mobile-template .about-donation .body .input-group {
+  width: 120px;
+  border-color: black;
+  max-height: 45px;
+  float: right;
+}
+.mobile-template .about-donation .body .input-group .input-group-prepend > button,
+.mobile-template .about-donation .body .input-group .input-group-append > button {
+  border-color: black;
+}
+.mobile-template .about-donation .body .input-group .input-group-prepend strong,
+.mobile-template .about-donation .body .input-group .input-group-append strong {
+  font-weight: normal!important;
+  color: black;
+}
 .mobile-template .about-donation .body.no-donate {
   padding-top: 72px !important;
   background-position: 50% 0;
@@ -1118,6 +1139,8 @@
 .mobile-template .about-donation .body.donated .price {
   font-size: 18px;
   min-width: 0;
+  max-width: 136px;
+  min-height: 60px;
   width: 100%;
 }
 .mobile-template .about-donation .body.donated .item {

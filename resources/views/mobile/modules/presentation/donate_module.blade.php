@@ -119,6 +119,8 @@ $allCategories = \App\Models\CampaignCategory::all();
                         'donateOptionsType' => \App\Models\CampaignPrice::TYPE_SINGLE
                     ])
 
+                    <input type="hidden" value="single" name="period" />
+
                     <div class="pt-3"></div>
                     <div class="form-group" currency="£">
                         <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
@@ -150,7 +152,7 @@ $allCategories = \App\Models\CampaignCategory::all();
                     @include('modules.presentation.parts.donate_options',[
                         'donateOptionsType' => \App\Models\CampaignPrice::TYPE_MONTHLY,
                     ])
-
+                    <input type="hidden" value="monthly" name="period" />
                     <div class="pt-3"></div>
                     <div class="form-group" currency="£">
                         <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">

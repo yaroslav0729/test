@@ -1086,6 +1086,29 @@ footer {
 	  padding: 0 !important;
 	  border-radius: 0;
 	  box-shadow: none;
+
+        .thank-you-text {
+            line-height: 24px;
+        }
+        .btn-danger {
+            height: 56px;
+        }
+
+      .input-group {
+          width: 120px;
+          border-color: black;
+          max-height: 45px;
+          float: right;
+
+          .input-group-prepend > button,  .input-group-append > button {
+              border-color: black;
+          }
+          .input-group-prepend strong,  .input-group-append strong {
+              font-weight: normal!important;
+              color: black;
+          }
+      }
+
 	  &.no-donate {
 		padding-top: 72px !important;
 		background-position: 50% 0;
@@ -1095,6 +1118,8 @@ footer {
 		.price {
 		  font-size: 18px;
 		  min-width: 0;
+          max-width: 136px;
+          min-height: 60px;
 		  width: 100%;
 		}
 		.item {
