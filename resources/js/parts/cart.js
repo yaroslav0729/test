@@ -157,7 +157,7 @@ $(function () {
 
     //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
     function convertMonetary(value) {
-        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
 
@@ -173,7 +173,6 @@ $(function () {
     $(document).on('click', '[quick-donation] .btn_sbmt', function (e) {
         e.preventDefault()
         let form = $(this).closest('form')
-
         let amount = form.find('input[name="amount"]').val()
 
         if (amount < 5) {
@@ -242,6 +241,9 @@ $(function () {
 
     function refreshCardAddHtml(response)
     {
+
+        console.log(response.cart_html);
+
         let newCart = $('.modal-body', response.cart_html)
         $('#cartModal .modal-body').html(newCart.html())
 
@@ -279,7 +281,7 @@ $(function () {
             lastPeriod = form.find('input[name="period"]').val()
         }
 
-        $('#add_to_cart_popup .amount').text(number_format(lastAmount, 2, '.', "'"));
+        $('#add_to_cart_popup .amount').text(number_format(lastAmount, 2, '.', ","));
         $('#add_to_cart_popup .period').text(lastPeriod)
 
         $.ajax({
@@ -400,7 +402,6 @@ $(function () {
 
     $(document).on('click', '#cartModal .btn-remove', function (e) {
         e.preventDefault()
-
         var form = $(this).closest('form')
 
         //form.submit()
@@ -409,7 +410,6 @@ $(function () {
 
     $(document).on('click', '#clear_all_btn', function (e) {
         e.preventDefault()
-
         var form = $(this).closest('form')
 
         //form.submit()
@@ -418,7 +418,6 @@ $(function () {
 
     $(document).on('click', '.about-donation .btn-remove', function (e) {
         e.preventDefault()
-
         var form = $(this).closest('form')
 
         //form.submit()
@@ -429,7 +428,6 @@ $(function () {
         e.preventDefault()
 
         let form = $(this).closest('form')
-
         let amount = form.find('input[name="amount"]').val()
 
         if (amount < 5) {

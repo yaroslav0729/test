@@ -1080,9 +1080,9 @@ function getShareThisCou() {
 }
 
 
-//~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~ Convert float value to string format "1,000.00" ~~~~~~~~~~~~~~~~~~~~
 function convertMonetary(value) {
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 //~~~~~~~~~~~~~~~~~~ Summarizes input fields ~~~~~~~~~~~~~~~~~~~~
