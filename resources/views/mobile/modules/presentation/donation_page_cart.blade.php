@@ -106,9 +106,9 @@ $cartSum = \App\Models\CartItem::getCartSum();
             </svg>
         </div>
 
-        <div class="row align-items-center gutter-0">
+        <div class="row align-items-center gutter-0 pl-2 pr-2">
             <div class="col-6">
-                <p class="mb-0"><b>Total donations</b></p>
+                <p class="mb-0"><b class="font-size-16">Total donations</b></p>
             </div>
             <div class="col-6 text-right">
                 <div class="price">£{{ \App\Models\CartItem::roundCurrency($cartSum) }}</div>
@@ -120,7 +120,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
         @isset($cart)
             @foreach ($cart as $cartItem)
                 @isset($cartItem[0])
-                    <div class="item">
+                    <div class="item pl-2 pr-2">
                         <div class="row gutter-0">
                             <div class="col-12">
                                 <div class="mb-3">
@@ -128,15 +128,15 @@ $cartSum = \App\Models\CartItem::getCartSum();
                                     <p class="font-size-16 mb-0"><b>{{ $cartItem[0]->campaign->name }}</b></p>
                                     @endisset
 
-                                    @isset($cartItem[0]->campaign_category)
-                                    <span>+{{ $cartItem[0]->campaign_category->name }}</b></span>
-                                    @endisset
-
                                     <p class="font-size-16 mb-0">{{ (int)$cartItem[0]->period === \App\Models\CampaignPrice::TYPE_SINGLE ? 'Single' : 'Monthly' }} payment</p>
+
+                                    @isset($cartItem[0]->campaign_category)
+                                        <span>+{{ $cartItem[0]->campaign_category->name }}</b></span>
+                                    @endisset
                                 </div>
                             </div>
                             <div class="col-6">
-                                <p class="font-size-18 mb-0"><b>£{{ \App\Models\CartItem::roundCurrency($cartItem[0]->amount) }}</b></p>
+                                <p class="font-size-18 mb-0"><b class="letter-spacing-0">£{{ \App\Models\CartItem::roundCurrency($cartItem[0]->amount) }}</b></p>
 
                                 <form action="{{ route('cart.remove', ['itemId' => $cartItem[0]->cart_item_id]) }}" method="POST">
                                     @csrf
@@ -145,7 +145,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                                 </form>
 
                             </div>
-                            <div class="col-6 d-flex align-items-center">
+                            <div class="col-6">
                                 <input type="number" input_number_spinner data-id="{{ $cartItem[0]->id }}" value="{{ count($cartItem) }}" min="1" max="1000" step="1" class="color-danger"/>
                             </div>
                         </div>
@@ -166,10 +166,13 @@ $cartSum = \App\Models\CartItem::getCartSum();
         <div class="pt-4"></div>
         <div class="down-bar">
             <div class="mb-4">
-                <a href="{{ route('cart.payment') }}" class="btn  btn-danger w-100">Checkout <i class="moon-icons-arrow-right"></i></a>
+                <a href="{{ route('cart.payment') }}" class="btn  btn-danger w-100 d-block pt-2">
+                    Checkout
+                    <i class="moon-icons-arrow-right font-size-30 text-right"></i>
+                </a>
             </div>
-            <p class="mb-4">Thank you, your donation will help empower people in need!</p>
-            <div>
+            <p class="mb-4 font-size-14 thank-you-text"><b>Thank you,</b> your donation will help empower people in need!</p>
+            <div class="pl-2 pr-2">
                 <a href="/donate" class="text-underline text-uppercase text-dark"><b>view more projects</b></a>
             </div>
         </div>

@@ -46,10 +46,10 @@
 <section class="newsroom-tabs pt-4">
     <nav class="general-content-tabs">
         <div class="nav nav-tabs nav-fill" role="tablist">
-            <a class="nav-link @if($currentTab === 1) active @endif" data-active="newsroom_tab_trending" href="#">TRENDING</a>
-            <a class="nav-link @if($currentTab === 2) active @endif" data-active="newsroom_tab_news" href="#">NEWS</a>
-            <a class="nav-link @if($currentTab === 3) active @endif" data-active="newsroom_tab_press" href="#">PRESS</a>
-            <a class="nav-link @if($currentTab === 4) active @endif" data-active="newsroom_tab_cinema" href="#">IH
+            <a class="font-size-12 letter-spacing-1 nav-link @if($currentTab === 1) active @endif" data-active="newsroom_tab_trending" href="#">TRENDING</a>
+            <a class="font-size-12 letter-spacing-1 nav-link @if($currentTab === 2) active @endif" data-active="newsroom_tab_news" href="#">NEWS</a>
+            <a class="font-size-12 letter-spacing-1 nav-link @if($currentTab === 3) active @endif" data-active="newsroom_tab_press" href="#">PRESS</a>
+            <a class="font-size-12 letter-spacing-1 nav-link @if($currentTab === 4) active @endif" data-active="newsroom_tab_cinema" href="#">IH
                 CINEMA</a>
         </div>
     </nav>
@@ -68,7 +68,7 @@
             </div>
             <div class="article-text">
                 <p class="font-size-12 mb-0"><b>Featured article</b></p>
-                <h1 class="mb-3  pb-0">{{ $mainTitle }}</h1>
+                <h1 class="mb-3 pb-0 font-size-18 mt-1 letter-spacing-0">{{ $mainTitle }}</h1>
                 <div class="date"><span class="text-danger">{{ $minsText }}</span></div>
                 <p>{{ $mainText }}</p>
                 <div>
@@ -80,7 +80,7 @@
     </div>
 </section>
 
-<div class="newsroom_tab_trending">
+<div class="newsroom_tab_trending newsroom-tab-white newsroom-tab-by-sort">
     @php
         $page = (int) request()->get('trending_articles');
 
@@ -96,7 +96,7 @@
     ])
 </div>
 
-<div class="newsroom_tab_news ">
+<div class="newsroom_tab_news newsroom-tab-white newsroom-tab-by-sort">
 
     @php
         $page = (int) request()->get('news_articles');
@@ -109,11 +109,11 @@
     @include('modules.presentation.newsroom_articles', [
         'articles' => $articles,
         'titleSpan' => 'News',
-        'titleI' => 'News articles'
+        'titleI' => 'IH News'
     ])
 </div>
 
-<div class="newsroom_tab_press ">
+<div class="newsroom_tab_press newsroom-tab-white newsroom-tab-by-sort">
 
     @php
         $page = (int) request()->get('press_articles');
@@ -126,7 +126,7 @@
     @include('modules.presentation.newsroom_articles', [
         'articles' => $articles,
         'titleSpan' => 'Press',
-        'titleI' => 'Press'
+        'titleI' => 'IH News'
     ])
 </div>
 

@@ -40721,11 +40721,11 @@ function getShareThisCou() {
       }
     });
   }
-} //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
+} //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1,000.00" ~~~~~~~~~~~~~~~~~~~~
 
 
 function convertMonetary(value) {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 } //~~~~~~~~~~~~~~~~~~ Summarizes input fields ~~~~~~~~~~~~~~~~~~~~
 
 
@@ -40967,7 +40967,7 @@ $(function () {
   }); //~~~~~~~~~~~~~~~~~~ Convert float value to string format "1'000.00" ~~~~~~~~~~~~~~~~~~~~
 
   function convertMonetary(value) {
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   $(function () {
@@ -41037,6 +41037,7 @@ $(function () {
   }
 
   function refreshCardAddHtml(response) {
+    console.log(response.cart_html);
     var newCart = $('.modal-body', response.cart_html);
     $('#cartModal .modal-body').html(newCart.html());
     var newCartDonate = $(response.cart_donate);
@@ -41067,7 +41068,7 @@ $(function () {
       lastPeriod = form.find('input[name="period"]').val();
     }
 
-    $('#add_to_cart_popup .amount').text(number_format(lastAmount, 2, '.', "'"));
+    $('#add_to_cart_popup .amount').text(number_format(lastAmount, 2, '.', ","));
     $('#add_to_cart_popup .period').text(lastPeriod);
     $.ajax({
       url: form.attr('action'),
@@ -41309,7 +41310,8 @@ $(function () {
     $('.' + activeClass).removeClass('d-none');
   }
 
-  $(document).on('click', '.newsroom-tabs .nav-link', function () {
+  $(document).on('click', '.newsroom-tabs .nav-link', function (e) {
+    e.preventDefault();
     $('.newsroom-tabs .nav-link').removeClass('active');
     $(this).addClass('active');
     $('.newsroom_tab_trending').addClass('d-none');
@@ -41327,6 +41329,7 @@ $(function () {
   });
 
   function getNewBody(path) {
+    var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     var url = new URL(path);
     var page1 = url.searchParams.get('trending_articles');
     var page2 = url.searchParams.get('news_articles');
@@ -41334,20 +41337,20 @@ $(function () {
     var category = '';
 
     if (page1 !== null) {
-      page = page1;
+      page = page === 0 ? page1 : 1;
       category = 'trending_articles';
     } else if (page2 !== null) {
-      page = page2;
+      page = page === 0 ? page2 : 1;
       category = 'news_articles';
     } else if (page3 !== null) {
-      page = page3;
+      page = page === 0 ? page3 : 1;
       category = 'press_articles';
     }
 
     var data = {};
     $('.newsroom-tab-by-sort').each(function () {
       if (!$(this).hasClass('d-none')) {
-        data['dataSort'] = $(this).find('.btn-white').attr('data-sort');
+        data['dataSort'] = $(this).find('.btn-active').attr('data-sort');
       }
     });
     var apiUrl = '/api/get_articles/' + category + '/' + page;
@@ -41385,19 +41388,34 @@ $(function () {
 
 
   $(document).on('click', '.btn-newsroom', function () {
-    var link = $('[newsroom-articles] .pagination a').eq(1);
+    var section = this.closest('.newsroom-tab-by-sort');
+    var link = $(section).find('[newsroom-articles] .pagination a').eq(1);
     var path = $(link).attr('href');
-    changeStatusBtn(this);
-    getNewBody(path);
+
+    if ($(this).hasClass('btn-primary-dark')) {
+      changeStatusBtn(this);
+      getNewBody(path, 1);
+    }
 
     function changeStatusBtn(element) {
-      if ($(element).hasClass('btn-white')) {
-        var secondChild = $(element).closest('div').find('.btn-primary-dark');
-        $(element).removeClass('btn-white');
-        $(element).addClass('btn-primary-dark');
-        $(secondChild).addClass('btn-white');
-        $(secondChild).removeClass('btn-primary-dark');
+      var secondChild;
+      var className;
+      var parent = $(element).closest('.newsroom-tab-by-sort');
+
+      if ($(parent).hasClass('newsroom-tab-white')) {
+        className = 'btn-white';
+        secondChild = $(element).closest('.newsroom-list').find('.btn-white');
+      } else {
+        className = 'btn-light-gray';
+        secondChild = $(element).closest('div').find('.btn-light-gray');
       }
+
+      $(element).removeClass('btn-primary-dark');
+      $(element).addClass(className);
+      $(element).toggleClass('btn-active');
+      $(secondChild).removeClass(className);
+      $(secondChild).addClass('btn-primary-dark');
+      $(secondChild).toggleClass('btn-active');
     }
   });
 });

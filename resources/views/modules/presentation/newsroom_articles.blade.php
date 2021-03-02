@@ -1,12 +1,14 @@
 <section class="newsroom-list" newsroom-articles>
+    @isset($titleSpan)
     <div class="newsroom-list-title mt-4">
         <span id="newsroom_title_span">{{ $titleSpan }}</span>
         <i id="newsroom_title_i">{{ $titleI }}</i>
         <div>
-            <button class="btn btn-white btn-newsroom text-decoration-none" data-sort="date">SORT BY DATE</button>
-            <button class="btn btn-primary-dark btn-newsroom text-decoration-none" data-sort="topic">FILTER BY TOPIC</button>
+            <button class="btn btn-white btn-newsroom text-decoration-none letter-spacing-1 btn-active" data-sort="date">SORT BY DATE</button>
+            <button class="btn btn-primary-dark btn-newsroom text-decoration-none letter-spacing-1" data-sort="topic">FILTER BY TOPIC</button>
         </div>
     </div>
+    @endisset
 
     <div class="row gutter-30 mt-4" newsroom-articles-body>
         @foreach ($articles as $article)

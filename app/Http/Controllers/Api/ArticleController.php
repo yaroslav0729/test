@@ -21,12 +21,12 @@ class ArticleController extends Controller
                 break;
             }
             case ArticlesHelper::NEWS_PAGINATOR: {
-                $articles = ArticlesHelper::getNewsroomNewsArticles($page);
+                $articles = ArticlesHelper::getNewsroomNewsArticles($page, $sortParam);
                 $articles->withPath(url($newsroomPath));
                 break;
             }
             case ArticlesHelper::PRESS_PAGINATOR: {
-                $articles = ArticlesHelper::getNewsroomPressArticles($page);
+                $articles = ArticlesHelper::getNewsroomPressArticles($page, $sortParam);
                 $articles->withPath(url($newsroomPath));
                 break;
             }

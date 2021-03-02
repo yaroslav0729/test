@@ -175,7 +175,11 @@
   .general-content-tabs {
 	margin-bottom: 25px;
 	.nav-tabs {
-	  .nav-link {padding: 10px 6px 10px}
+	  .nav-link {
+          padding: 8px 6px 8px;
+          letter-spacing: 1px;
+      }
+        a.active {background-color: #F5F5F7}
 	}
   }
 
@@ -1082,6 +1086,29 @@ footer {
 	  padding: 0 !important;
 	  border-radius: 0;
 	  box-shadow: none;
+
+        .thank-you-text {
+            line-height: 24px;
+        }
+        .btn-danger {
+            height: 56px;
+        }
+
+      .input-group {
+          width: 120px;
+          border-color: black;
+          max-height: 45px;
+          float: right;
+
+          .input-group-prepend > button,  .input-group-append > button {
+              border-color: black;
+          }
+          .input-group-prepend strong,  .input-group-append strong {
+              font-weight: normal!important;
+              color: black;
+          }
+      }
+
 	  &.no-donate {
 		padding-top: 72px !important;
 		background-position: 50% 0;
@@ -1091,6 +1118,8 @@ footer {
 		.price {
 		  font-size: 18px;
 		  min-width: 0;
+          max-width: 136px;
+          min-height: 60px;
 		  width: 100%;
 		}
 		.item {
@@ -1372,6 +1401,7 @@ footer {
 
   .blog-article-head {
 	padding: 0 20px;
+      margin: 0 0;
 	.article-text {
 	  h1 {
 		font-size: 25px;
@@ -1824,6 +1854,9 @@ footer {
 
   .calculator {
 	padding: 0;
+      .form-group[currency]:after {
+          top: 52px;
+      }
 	.wrap {border-radius: 0;}
 	.title {
 	  padding: 20px 40px;
@@ -1863,11 +1896,11 @@ footer {
 		display: block;
 		background: url(../img/Line-styling.png) no-repeat;
 		background-size: contain;
-		height: 172px;
-		width: 172px;
+		height: 180px;
+		width: 180px;
 		position: absolute;
 		right: 0;
-		top: 50%;
+		top: 72%;
 		opacity: 0.08;
 		z-index: 1;
 		transform: translateY(-56%);

@@ -85,7 +85,7 @@
     </div>
 </section>
 
-<div class="newsroom_tab_trending newsroom-tab-by-sort">
+<div class="newsroom_tab_trending newsroom-tab-white newsroom-tab-by-sort">
     @php
         $page = (int) request()->get('trending_articles');
 
@@ -112,10 +112,19 @@
 
     @endphp
 
+    <section class="pt-3">
+        <div class="newsroom-list-title mt-4">
+            <span id="newsroom_title_span">News</span>
+            <i id="newsroom_title_i">IH News</i>
+            <div>
+                <button class="btn btn-light-gray btn-newsroom text-decoration-none letter-spacing-1 btn-active" data-sort="date">SORT BY DATE</button>
+                <button class="btn btn-primary-dark btn-newsroom text-decoration-none letter-spacing-1" data-sort="topic">FILTER BY TOPIC</button>
+            </div>
+        </div>
+    </section>
+
     @include('modules.presentation.newsroom_articles', [
         'articles' => $articles,
-        'titleSpan' => 'News',
-        'titleI' => 'News articles'
     ])
 </div>
 
@@ -129,10 +138,19 @@
 
     @endphp
 
+    <section class="pt-3">
+        <div class="newsroom-list-title mt-4">
+            <span id="newsroom_title_span">Press</span>
+            <i id="newsroom_title_i">IH News</i>
+            <div>
+                <button class="btn btn-light-gray btn-newsroom text-decoration-none letter-spacing-1 btn-active" data-sort="date">SORT BY DATE</button>
+                <button class="btn btn-primary-dark btn-newsroom text-decoration-none letter-spacing-1" data-sort="topic">FILTER BY TOPIC</button>
+            </div>
+        </div>
+    </section>
+
     @include('modules.presentation.newsroom_articles', [
         'articles' => $articles,
-        'titleSpan' => 'Press',
-        'titleI' => 'Press'
     ])
 </div>
 

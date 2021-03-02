@@ -1,10 +1,9 @@
 {
-    "/js/app.js": "/js/app.js?id=71f4938decc2d72ea31b",
+    "/js/app.js": "/js/app.js?id=c4045092d7f7d8ec8a27",
     "/assets/vendor/MediaManager/style.css": "/assets/vendor/MediaManager/style.css?id=4aa17d4667bb79a3da14",
-    "/css/app.css": "/css/app.css?id=0f0478c36b05d24041cf",
     "/css/app_admin.css": "/css/app_admin.css?id=2ddf16164c7b20f76cdb",
     "/css/admin_styles.css": "/css/admin_styles.css?id=0d1558a8b22f040019b7",
-    "/css/mobile.css": "/css/mobile.css?id=b59c444337ff7ecb1863",
+    "/css/mobile.css": "/css/mobile.css?id=a38f5fb8b7603ec97aa3",
     "/js/icons/default/icons.js": "/js/icons/default/icons.js?id=7143a91e01458130cc49",
     "/js/plugins/code/plugin.js": "/js/plugins/code/plugin.js?id=733ef6d117fc59760d80",
     "/js/plugins/hr/plugin.js": "/js/plugins/hr/plugin.js?id=b61d98f7541ed5765ec8",
@@ -18,5 +17,6 @@
     "/js/widgets/media-manager.js": "/js/widgets/media-manager.js?id=4e954dc2ff2d3f084b9a",
     "/js/skins/ui/oxide/skin.min.css": "/js/skins/ui/oxide/skin.min.css?id=9f093ad3c1114144e453",
     "/js/skins/ui/oxide/content.min.css": "/js/skins/ui/oxide/content.min.css?id=ee807042b61ee69a8db0",
-    "/js/skins/content/default/content.css": "/js/skins/content/default/content.css?id=db31e42bcf1c9c26eb3c"
+    "/js/skins/content/default/content.css": "/js/skins/content/default/content.css?id=db31e42bcf1c9c26eb3c",
+    "/css/app.css": "/css/app.css?id=0f0478c36b05d24041cf"
 }
