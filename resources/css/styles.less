@@ -5419,7 +5419,11 @@ input[type='number'].color-danger  + .input-group {
             font-size: 12px;
             padding: 20px 40px;
             position: relative;
+            z-index: 1;
+            box-shadow: 0 0 3px 0px rgba(0,0,0,0.3);
             &:first-child {right: -10px;}
+            &.btn-primary-dark {z-index: 2;}
+            &.btn-primary-dark:hover, &.btn-primary-dark:active {color: white!important;}
         }
     }
 }
@@ -5443,10 +5447,6 @@ input[type='number'].color-danger  + .input-group {
         & > div {
             right: 0;
             bottom: -15px;
-        }
-
-        .btn-primary-dark:hover {
-            color: white!important;
         }
     }
     .item {

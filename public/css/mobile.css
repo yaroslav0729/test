@@ -2232,6 +2232,25 @@
   padding-left: 10px !important;
   padding-right: 10px !important;
 }
+.newsroom-list-title {
+  margin: 0 0 60px !important;
+}
+.newsroom-list-title > div {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.newsroom-list-title span {
+  font-size: 60px;
+}
+.newsroom-list-title i {
+  font-size: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
 .newsroom-list {
   padding-left: 10px !important;
   padding-right: 10px !important;
@@ -2241,24 +2260,16 @@
 .newsroom-list:before {
   right: 0;
 }
-.newsroom-list .title {
-  margin: 0 0 50px;
+.newsroom-list .filter-btns .btn {
+  z-index: 1;
+  box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.3);
 }
-.newsroom-list .title > div {
-  position: relative;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
+.newsroom-list .filter-btns .btn.btn-primary-dark {
+  z-index: 2;
 }
-.newsroom-list .title span {
-  font-size: 60px;
-}
-.newsroom-list .title i {
-  font-size: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
+.newsroom-list .filter-btns .btn.btn-primary-dark:hover,
+.newsroom-list .filter-btns .btn.btn-primary-dark:active {
+  color: white!important;
 }
 .newsroom-list .item {
   padding: 17px 0 20px 20px;
