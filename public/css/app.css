@@ -16134,9 +16134,18 @@ input[type='number'].color-danger + .input-group .btn {
   font-size: 12px;
   padding: 20px 40px;
   position: relative;
+  z-index: 1;
+  box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.3);
 }
 .newsroom-list-title > div .btn:first-child {
   right: -10px;
+}
+.newsroom-list-title > div .btn.btn-primary-dark {
+  z-index: 2;
+}
+.newsroom-list-title > div .btn.btn-primary-dark:hover,
+.newsroom-list-title > div .btn.btn-primary-dark:active {
+  color: white!important;
 }
 .newsroom-tab-by-sort .newsroom-list-title .btn-primary-dark:hover {
   color: white!important;
@@ -16166,9 +16175,6 @@ input[type='number'].color-danger + .input-group .btn {
 .newsroom-list .newsroom-list-title > div {
   right: 0;
   bottom: -15px;
-}
-.newsroom-list .newsroom-list-title .btn-primary-dark:hover {
-  color: white!important;
 }
 .newsroom-list .item {
   border-radius: 5px;

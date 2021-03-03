@@ -2145,38 +2145,39 @@ footer {
   padding-right: 10px !important;
 }
 
+.newsroom-list-title {
+  margin: 0 0 60px !important;
+
+  & > div {
+	position: relative;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+  }
+  span {
+	font-size: 60px;
+  }
+  i {
+	font-size: 25px;
+	left: 50%;
+	transform: translateX(-50%);
+	white-space: nowrap;
+  }
+}
+
 .newsroom-list {
   padding-left: 10px !important;
   padding-right: 10px !important;
   padding-top: 30px;
   overflow: hidden;
   &:before {right: 0}
-  .title {
-	margin: 0 0 50px;
-      position: relative;
-	& > div {
-	  position: relative;
-	  bottom: 0;
-	  left: 0;
-	  right: 0;
-	  text-align: center;
-	}
-	span {
-        color: #FFF;
-        font-size: 60px;
-        font-weight: 900;
-        line-height: 1;
-	}
-	i {
-	  font-size: 25px;
-	  left: 50%;
-	  transform: translateX(-50%);
-	  white-space: nowrap;
-        font-weight: 900;
-        line-height: 1;
-        font-style: normal;
-        position: absolute;
-        bottom: -9px;
+  .filter-btns {
+	.btn {
+	  z-index: 1;
+	  box-shadow: 0 0 3px 0px rgba(0,0,0,0.3);
+	  &.btn-primary-dark {z-index: 2;}
+	  &.btn-primary-dark:hover, &.btn-primary-dark:active {color: white!important;}
 	}
   }
   .item {

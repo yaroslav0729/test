@@ -1,11 +1,11 @@
 <section class="newsroom-list" newsroom-articles>
-    <div class="title">
+    <div class="newsroom-list-title">
         <div>
             <span>{{ $titleSpan }}</span>
             <i>{{ $titleI }}</i>
         </div>
     </div>
-    <div class="row mb-4 gutter-5">
+    <div class="row mb-4 gutter-5 filter-btns">
         <div class="col-6">
             <button class="btn btn-white w-100 btn-newsroom text-decoration-none btn-active" data-sort="date">SORT BY DATE</button>
         </div>
