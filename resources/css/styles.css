@@ -274,7 +274,8 @@ header .search-input {
     padding: 0 15px;
     width: 100%;
 }
-header .ico-search {
+header .ico-search,
+.header-menu .ico-search {
     display: inline-block;
     background: url(../img/ico-search.svg) no-repeat;
     background-size: contain;
@@ -293,6 +294,7 @@ header .top-bar .logo {
     font-size: 25px;
     font-weight: 900;
     line-height: 1;
+    text-decoration: none !important;
 }
 header .top-bar .logo span {
     display: inline-block;
@@ -896,6 +898,9 @@ header + .newsroom-tabs + .blog-article-head .wrap {
 .header-menu .projects-group-swiper .item:hover {
     background: #101525;
     color: #fff;
+}
+.header-menu .search-collapse {
+    width: 100%;
 }
 @media screen and (min-width: 767px) and (max-width: 1300px) {
     .header-menu {

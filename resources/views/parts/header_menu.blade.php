@@ -22,7 +22,18 @@
                 </ul>
             </div>
             <div class="col-3 text-right">
-                <a href="#" class="search-btn"><i class="ico-search"></i></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarMenuToggleExternalContent"
+                        aria-controls="navbarMenuToggleExternalContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <i class="ico-search"></i>
+                </button>
+            </div>
+            <div class="search-collapse collapse mt-3 @if( request()->getPathInfo() == '/search') show @endisset " id="navbarMenuToggleExternalContent">
+                <form class="form-inline my-2 my-lg-0 w-100" action="{{ route('search.index') }}" method="get">
+                    <input class="form-control mr-sm-2 bg-white search-input w-100" type="search" placeholder="Search.."
+                            aria-label="Search" name="keyword" value="{{ $keyword ?? '' }}" autocomplete="off">
+                </form>
             </div>
         </div>
 
@@ -123,8 +134,10 @@
                                     @endif
                                     @endforeach
                                 </div>
+                                @if (count($itemMenu['items']) > 9)
                                 <div class="swiper-button-prev"></div>
                                 <div class="swiper-button-next"></div>
+                                @endif
                             </div>
                         </div>
                 </div>
