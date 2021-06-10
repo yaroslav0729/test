@@ -71,7 +71,7 @@
                                                     <p class="font-size-16 mb-5 slide-text">{{ $slideText[$i] }}</p>
                                                     <div class="actions">
                                                         <a href="{{ $readMoreLink[$i] }}"
-                                                           class="btn btn-outline-primary mr-4 slide-readmore">Read
+                                                           class="btn btn-outline-primary slide-readmore">Read
                                                             more</a>
                                                         <a href="{{ $donateNowLink[$i] }}" class="btn btn-primary">Donate
                                                             now</a>
