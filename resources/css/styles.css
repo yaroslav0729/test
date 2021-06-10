@@ -2351,7 +2351,7 @@ input[type="number"].color-danger + .input-group .btn {
 }
 .current-projects {
     padding: 76px 0 0;
-    margin-bottom: 136px;
+    margin-bottom: 30px;
     position: relative;
 }
 .current-projects:before {
@@ -2428,7 +2428,7 @@ input[type="number"].color-danger + .input-group .btn {
     position: absolute;
     left: 65px;
     right: 20px;
-    bottom: 84px;
+    bottom: 85px;
 }
 .current-projects .body .img {
     background-size: cover;
@@ -2454,7 +2454,7 @@ input[type="number"].color-danger + .input-group .btn {
     line-height: 44px;
 }
 .current-projects .swiper-container .actions .btn {
-    padding: 20px 14px;
+    padding: 19px 14px;
 }
 .current-projects .swiper-container .slide-readmore {
     margin-right: 28px;
@@ -2492,7 +2492,7 @@ input[type="number"].color-danger + .input-group .btn {
 }
 .current-projects-list,
 .popular-topic-list {
-    margin-bottom: 145px;
+    margin-bottom: 142px;
 }
 .current-projects-list .wrap,
 .popular-topic-list .wrap {
@@ -2598,10 +2598,11 @@ input[type="number"].color-danger + .input-group .btn {
     padding: 0 164px;
 }
 .lets-join .decor-wave {
-    margin-top: 23px;
+    margin-top: 18px;
 }
 .lets-join .pt-text {
     padding-top: 72px;
+    padding-left: 15px;
 }
 .lets-join .item {
     background: #fff;
@@ -2632,6 +2633,9 @@ input[type="number"].color-danger + .input-group .btn {
 }
 .lets-join .item .img-video {
     padding-bottom: 75%;
+}
+.lets-join .btn-outline-warning {
+    padding: 19px 14px;
 }
 .widget-about-project {
     margin-bottom: 128px;

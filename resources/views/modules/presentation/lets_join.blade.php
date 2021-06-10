@@ -161,7 +161,7 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="pl-2 pr-2 pl-lg-5 pr-lg-5">
-                    <div class="pl-2 pr-2 pl-lg-5 pr-lg-5">
+                    <div class="pl-2 pr-2 pl-lg-5 pr-lg-4">
                         <svg class="decor-wave style-danger mb-2" version="1.0" xmlns="http://www.w3.org/2000/svg"
                              width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000"
                              preserveAspectRatio="xMidYMid meet">
@@ -206,7 +206,7 @@
     -16z"/>
                             </g>
                         </svg>
-                        <p class="font-size-20 mb-3 "><b>#FUNDRAISEMYSELF</b></p>
+                        <p class="font-size-20 mb-2 "><b>#FUNDRAISEMYSELF</b></p>
                         <p class="font-size-16 mb-4">{{ $text3 }}</p>
                         <a href="{{ $link3 }}" class="btn btn-outline-warning">{{ $btnTitle3 }}</a>
                     </div>
