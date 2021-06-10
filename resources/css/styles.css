@@ -624,14 +624,14 @@ header + .newsroom-tabs + .blog-article-head .wrap {
     font-weight: 900;
     line-height: 44px;
     padding-top: 32px;
-    margin: 0 0 8px 65px;
+    margin: 0 0 9px 59px;
 }
 .header-menu .title + div {
     padding-left: 35px;
 }
 .header-menu .menu {
     display: inline-block;
-    margin: 0 0 60px 30px;
+    margin: 0 0 60px 25px;
     padding: 0;
     vertical-align: top;
 }
