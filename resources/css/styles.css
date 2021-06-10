@@ -498,8 +498,9 @@ header .down-bar ul {
     padding: 0;
 }
 header .down-bar ul li {
-    display: inline-block;
+    display: flex;
     vertical-align: middle;
+    align-items: center;
 }
 header .down-bar ul li a {
     color: #101525;
