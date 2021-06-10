@@ -2682,6 +2682,9 @@ input[type="number"].color-danger + .input-group .btn {
 .widget-about-project .descr a:hover {
     color: #f7796a;
 }
+.widget-about-project .descr-title {
+    letter-spacing: 1px;
+}
 @media screen and (min-width: 767px) and (max-width: 992px) {
     .widget-about-project .img {
         padding-bottom: 40%;
@@ -2835,6 +2838,13 @@ input[type="number"].color-danger + .input-group .btn {
 }
 .whats-new .item .stat span:after {
     display: none;
+}
+@media screen and (min-width: 1200px) {
+    .whats-new .main-news {
+        padding-left: 25px;
+        flex: 0 0 44%;
+        max-width: 44%;
+    }
 }
 .join-cause {
     background: #eef3f0;

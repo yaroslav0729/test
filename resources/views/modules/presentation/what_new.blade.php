@@ -77,7 +77,7 @@
             </div>
             <div>
                 <div class="row gutter-5">
-                    <div class="col-12 col-lg-6 col-xl-6">
+                    <div class="col-12 col-lg-6 main-news">
                         <div class="item vertical">
                             <a class="img" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
                                 <span
@@ -85,7 +85,7 @@
                                 <span class="plus bg-info"><i class="moon-icons-plus"></i></span>
                             </a>
                             <div class="descr">
-                                <a class="font-size-18 letter-spacing-1 mb-0 text-dark d-block" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
+                                <a class="font-size-18 letter-spacing-0 mb-0 text-dark d-block" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
                                     <b>
                                         {{ \App\Helpers\StrHelper::lengthLimit($blogs[0]->getActualPageInstanceAttribute()->name, 30) }}
                                     </b>
@@ -111,7 +111,7 @@
                                 <span class="plus bg-danger"><i class="moon-icons-plus"></i></span>
                             </a>
                             <div class="descr">
-                                <a class="font-size-18 letter-spacing-1 mb-0 text-dark d-block" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
+                                <a class="font-size-18 letter-spacing-0 mb-0 text-dark d-block" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
                                     <b>
                                         {{ \App\Helpers\StrHelper::lengthLimit($blogs[1]->getActualPageInstanceAttribute()->name, 30) }}
                                     </b>
@@ -132,7 +132,7 @@
                                 <span class="plus bg-warning"><i class="moon-icons-plus"></i></span>
                             </a>
                             <div class="descr">
-                                <a class="font-size-18 letter-spacing-1 mb-0 text-dark d-block" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
+                                <a class="font-size-18 letter-spacing-0 mb-0 text-dark d-block" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
                                     <b>
                                         {{ \App\Helpers\StrHelper::lengthLimit($blogs[2]->getActualPageInstanceAttribute()->name, 30) }}
                                     </b>
