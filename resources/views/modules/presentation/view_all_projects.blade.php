@@ -50,7 +50,7 @@ if (isset($parameters['view_all_projects_link_all'])) {
         <div class="col-12 col-lg-6 img" style="background-image: url({{ $img }})"></div>
         <div class="col-12 col-lg-6 descr d-flex align-items-center">
             <div>
-                <p class="font-size-30 text-uppercase" style="font-weight: 100"> {!! $title !!}
+                <p class="font-size-30 text-uppercase descr-title" style="font-weight: 100"> {!! $title !!}
                 </p>
                 <p class="font-size-16" style="font-weight: 700">{{ $description }}</p>
                 <a href="{{ $link }}" class="text-underline text-uppercase">{{ $linkTitle }}</a>

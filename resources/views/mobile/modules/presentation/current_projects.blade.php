@@ -57,7 +57,7 @@
                 <div class="swiper-slide">
                     <div class="body">
                         <div class="left">
-                            <p class="font-size-20 mb-3"><b>{!! $slideTitle[$i] !!}</b></p>
+                            <p class="font-size-20 mb-3 text-uppercase"><b>{!! $slideTitle[$i] !!}</b></p>
                             <p class="font-size-14 mb-2">{!! $slideText[$i] !!}</p>
                             <div>
                                 <a href="{{ $donateNowLink[$i] }}" class="btn btn-warning">Donate now</a>
@@ -68,7 +68,7 @@
                 </div>
                 @endfor
             </div>
-{{--            <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>--}}
+            <div class="swiper-button-prev"><i class="moon-icons-arrow-left"></i></div>
             <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
             <div class="swiper-pagination"></div>
         </div>

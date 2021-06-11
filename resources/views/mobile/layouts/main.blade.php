@@ -39,9 +39,10 @@
         <div class="row top align-items-center">
             <div class="col-4"><a href="#" style="display: none" class="icon_left_1 back"><i
                         class="moon-icons-arrow-left"></i></a></div>
-            <div class="col-4 text-center"><a href="#" class="icon_search_1 d-none search-btn"><i
-                        class="fas fa-search"></i></a></div>
-            <div class="col-4 text-right"><a href="#" class="close-menu"><i class="far fa-times"></i></a></div>
+            <div class="col-4 text-center"><a href="#" class="icon_search_1 d-none search-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448.098 448.098" fill="currentColor" width="20px" height="20px"><path d="M184.08 0C82.46 0 .08 82.38.08 184s82.38 184 184 184 184-82.38 184-184C367.992 82.416 285.664.088 184.08 0zm0 304c-66.274 0-120-53.726-120-120s53.726-120 120-120 120 53.726 120 120c-.088 66.238-53.762 119.912-120 120zM438.64 393.44l-64-64c-12.504-12.504-32.776-12.504-45.28 0s-12.504 32.776 0 45.28l64 64c12.504 12.504 32.776 12.504 45.28 0s12.504-32.776 0-45.28z"/></svg>
+            </a></div>
+            <div class="col-4 text-right"><a href="#" class="close-menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.982 212.982" fill="currentColor" width="20px" height="20px"><path d="M131.804 106.491l75.936-75.936c6.99-6.99 6.99-18.323 0-25.312-6.99-6.99-18.322-6.99-25.312 0L106.491 81.18 30.554 5.242c-6.99-6.99-18.322-6.99-25.312 0-6.989 6.99-6.989 18.323 0 25.312l75.937 75.936-75.937 75.937c-6.989 6.99-6.989 18.323 0 25.312 6.99 6.99 18.322 6.99 25.312 0l75.937-75.937 75.937 75.937c6.989 6.99 18.322 6.99 25.312 0 6.99-6.99 6.99-18.322 0-25.312l-75.936-75.936z" fill-rule="evenodd" clip-rule="evenodd"/></svg></i></a></div>
         </div>
         <a href="{{ route('index') }}" class="logo"><img src="/img/logo.png"/></a>
         <div class="level-0">
@@ -72,7 +73,25 @@
                 <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#createModal">+ Create Account</a></li>
                 <li>HOTLINE: <b class="text-info">0121 446 5682</b></li>
-                <li><a href="#" class="search-btn"><i class="fas fa-search"></i></a></li>
+                <li class="menu-search-item"><a href="#" class="search-btn">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 448.098 448.098" style="enable-background:new 0 0 448.098 448.098;" xml:space="preserve" fill="currentColor">
+                        <g>
+                            <g>
+                                <path d="M184.08,0c-101.62,0-184,82.38-184,184s82.38,184,184,184s184-82.38,184-184C367.992,82.416,285.664,0.088,184.08,0z
+                                    M184.08,304c-66.274,0-120-53.726-120-120s53.726-120,120-120s120,53.726,120,120C303.992,250.238,250.318,303.912,184.08,304z"
+                                    />
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                <path d="M438.64,393.44l-64-64c-12.504-12.504-32.776-12.504-45.28,0s-12.504,32.776,0,45.28l64,64
+                                    c12.504,12.504,32.776,12.504,45.28,0S451.144,405.944,438.64,393.44z"/>
+                            </g>
+                        </g>
+                    </svg>
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -111,7 +130,24 @@
                                 @foreach ($menuGroupItem['items'] as $menuItem)
                                     <li><a href="{{ $menuItem->link }}">{{ $menuItem->text }}</a></li>
                                 @endforeach
-                                <li><a href="#" class="search-btn"><i class="fas fa-search"></i></a></li>
+                                <li class="menu-search-item"><a href="#" class="search-btn">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 448.098 448.098" style="enable-background:new 0 0 448.098 448.098;" xml:space="preserve" fill="currentColor">
+                                    <g>
+                                        <g>
+                                            <path d="M184.08,0c-101.62,0-184,82.38-184,184s82.38,184,184,184s184-82.38,184-184C367.992,82.416,285.664,0.088,184.08,0z
+                                                M184.08,304c-66.274,0-120-53.726-120-120s53.726-120,120-120s120,53.726,120,120C303.992,250.238,250.318,303.912,184.08,304z"
+                                                />
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path d="M438.64,393.44l-64-64c-12.504-12.504-32.776-12.504-45.28,0s-12.504,32.776,0,45.28l64,64
+                                                c12.504,12.504,32.776,12.504,45.28,0S451.144,405.944,438.64,393.44z"/>
+                                        </g>
+                                    </g>
+                                </svg>
+                                </a></li>
                             </ul>
                         </div>
                     @endif
