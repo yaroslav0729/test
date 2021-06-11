@@ -4762,7 +4762,7 @@ input[type="number"].color-danger + .input-group .btn {
 }
 .who-we-are-head {
     padding-top: 140px;
-    padding-bottom: 105px;
+    padding-bottom: 108px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -4787,6 +4787,7 @@ input[type="number"].color-danger + .input-group .btn {
 .our-values {
     position: relative;
     z-index: 2;
+    padding: 9px 120px 0;
 }
 .our-values .title {
     font-size: 20px;
@@ -4794,27 +4795,42 @@ input[type="number"].color-danger + .input-group .btn {
     letter-spacing: 1px;
     line-height: 26px;
     border-bottom: 4px solid #101525;
-    margin-bottom: 23px;
+    margin-bottom: 24px;
+    margin-top: 73px;
+    padding-bottom: 15px;
 }
 .our-values p {
     color: #101525;
     font-size: 16px;
     font-weight: 500;
     line-height: 30px;
+    padding-right: 90px;
+    margin-bottom: 58px;
 }
 .our-values .box {
     padding-top: 0;
     padding-bottom: 0;
+    padding: 0 60px;
 }
 .our-values .img-video {
     box-shadow: 0 18px 35px 0 rgba(104, 110, 117, 0.2);
     position: relative;
     top: 58px;
 }
+@media screen and (min-width: 992px) {
+    .our-values .col-text {
+        flex: 0 0 54%;
+        max-width: 54%;
+    }
+    .our-values .col-media {
+        flex: 0 0 46%;
+        max-width: 46%;
+    }
+}
 .gw-map-btn {
     position: relative;
     z-index: 1;
-    margin-top: -80px;
+    margin-top: -88px;
     margin-bottom: 18px;
 }
 .gw-map-btn > div {
@@ -5015,13 +5031,15 @@ input[type="number"].color-danger + .input-group .btn {
 .our-story-swiper .swiper-pagination {
     position: relative;
     text-align: right;
+    bottom: 3px !important;
+    left: -21px !important;
 }
 .our-story-swiper .swiper-pagination .swiper-pagination-bullet {
     background: #dae7f9;
     border-radius: 0;
     height: 8px;
     width: 120px;
-    margin-right: 16px;
+    margin: 0 8px !important;
     opacity: 1;
 }
 .our-story-swiper

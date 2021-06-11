@@ -142,12 +142,12 @@ $ourValuesActiveLink = false;
 
 <section class="our-values mt-n5">
     <div class="box pt-4 pt-lg-0">
-        <div class="row gutter-0 align-items-center">
-            <div class="col-12 col-lg-6">
+        <div class="row gutter-0">
+            <div class="col-12 col-text">
                 <div class="title">OUR VALUES</div>
-                <p class="pr-5">{!! $ourValuesDescription !!}</p>
+                <p>{!! $ourValuesDescription !!}</p>
             </div>
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-media">
                 <div class="img-video play-tr videoWrapper" style="">
                     <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $ourValuesVideo }}"
                             frameborder="0"
