@@ -289,7 +289,7 @@
     color: #fff;
 }
 .mobile-template .header-menu .top {
-    padding: 14px 12px;
+    padding: 23px 4px 0;
     margin: 0 -49px;
 }
 .mobile-template .header-menu .top a,
@@ -304,6 +304,11 @@
 .mobile-template .header-menu .top .search-btn {
     font-size: 23px;
 }
+.mobile-template .header-menu [class^="menu"] .search-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
 .mobile-template .header-menu .top .close-menu {
     font-size: 27px;
 }
@@ -315,11 +320,14 @@
     padding: 0;
     margin: 0;
 }
+.mobile-template .header-menu .level-0 .menu-search-item {
+    padding-top: 11px;
+}
 .mobile-template .header-menu .level-0 > ul li {
     display: block;
     padding: 0;
     font-size: 20px;
-    line-height: 48px;
+    line-height: 50px;
 }
 .mobile-template .header-menu .level-0 > ul li a {
     font-weight: 900;
@@ -331,6 +339,12 @@
 }
 .mobile-template .header-menu .level-0 > ul.menu-2 li a {
     color: #101525;
+}
+.mobile-template .header-menu .level-1 .line {
+    margin-bottom: 23px;
+}
+.mobile-template .header-menu .level-1 .menu-search-item {
+    padding-top: 31px;
 }
 .mobile-template .header-menu .title {
     font-size: 20px;
