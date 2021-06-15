@@ -31,7 +31,7 @@
         <div class="social d-flex">
             @foreach ($socialMenu as $menuItem)
                 <a href="{{ $menuItem->link }}" class="mr-4">
-                    <i class="{{ $socialMenuIcons[$menuItem->text] ?? '' }}"></i>
+                    {!! $socialMenuIcons[$menuItem->text] !!}
                 </a>
             @endforeach
         </div>
