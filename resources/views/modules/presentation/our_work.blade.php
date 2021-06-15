@@ -82,7 +82,7 @@
     <div class="wrap">
         <div class="mb-4">
             <a href="{{ $ourWorkLink }}"
-               class="text-underline text-dark view-more text-uppercase"><b>{{ $ourWorkTitle }}</b></a>
+               class="text-underline text-dark view-more text-uppercase letter-spacing-1"><b>{{ $ourWorkTitle }}</b></a>
         </div>
         <div class="row">
             <div class="col-6 col-lg-3">
@@ -116,7 +116,7 @@
 <section class="our-work-term d-none">
     <div class="wrap">
         <div class="mb-4">
-            <a href="{{ $ourWorkLink }}" class="text-underline text-dark view-more"><b class="text-uppercase">{{ $ourWorkTitle }}</b></a>
+            <a href="{{ $ourWorkLink }}" class="text-underline text-dark view-more letter-spacing-1"><b class="text-uppercase">{{ $ourWorkTitle }}</b></a>
         </div>
 
         <div class="body">
@@ -131,7 +131,7 @@
                 <div class="col-6">
                     <div class="box our-work-content" style="background-image: url(img/ico-leaf.svg)" id="our-work-term-1">
                         <h2>{{ $longtermTitle }}</h2>
-                        <p>{!! $longtermText !!}</p>
+                        <p>{!! preg_replace('/\s(\S*)$/', '&nbsp;$1', $longtermText) !!}</p>
                     </div>
                     <div class="box d-none our-work-content" style="background-image: url(img/ico-alert.svg)" id="our-work-term-2">
                         <h2>{{ $emergencyTitle }}</h2>
@@ -143,7 +143,7 @@
                     </div>
                     <div class="box d-none our-work-content" style="background-image: url(img/ico-Saadiqah.svg)" id="our-work-term-4">
                         <h2>{{ $sadiqahTitle }}</h2>
-                        <p>{!! $sadiqahText !!}</p>
+                        <p>{!! preg_replace('/\s(\S*)$/', '&nbsp;$1', $sadiqahText) !!}</p>
                     </div>
 
                 </div>

@@ -77,8 +77,8 @@
             </div>
             <div class="col-6">
                 <div class="text">
-                    <div class="mb-4">
-                        <a href="{{ $whoLink }}" class="text-underline text-dark"><b>{{ $whoLinkText }}</b></a>
+                    <div class="title-container">
+                        <a href="{{ $whoLink }}" class="text-underline text-dark letter-spacing-1"><b>{{ $whoLinkText }}</b></a>
                     </div>
                     <p class="font-size-30 mb-2 pr-2"><b>{!! $whoTitle !!}</b></p>
                     <div class="pr-5">
