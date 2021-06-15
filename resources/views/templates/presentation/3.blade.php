@@ -79,7 +79,7 @@
                                             <a href="{{ $hdrLearnMoreLink[$i] }}"
                                                class="learn-more text-underline text-dark"><b>{{ $hdrLinkText[$i] }}</b></a>
                                         </div>
-                                        <div class="title mb-3">
+                                        <div class="title mb-4">
                                             @if($hdrColorType[$i] === 'blue')
                                                 {!! \App\Helpers\StrHelper::addSpanWithClass($hdrTitle[$i], 'text-info') !!}
                                             @else

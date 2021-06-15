@@ -68,7 +68,7 @@
                                             <div class="left">
                                                 <div class="text">
                                                     <p class="font-size-30 mb-4 font-weight-bold text-uppercase slide-title">{{ $slideTitle[$i] }}</p>
-                                                    <p class="font-size-16 mb-5 slide-text">{{ $slideText[$i] }}</p>
+                                                    <p class="font-size-16 mb-5 slide-text">{!! preg_replace('/\s(\S*)$/', '&nbsp;$1', $slideText[$i]) !!}</p>
                                                     <div class="actions">
                                                         <a href="{{ $readMoreLink[$i] }}"
                                                            class="btn btn-outline-primary slide-readmore">Read
