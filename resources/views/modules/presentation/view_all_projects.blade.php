@@ -53,7 +53,7 @@ if (isset($parameters['view_all_projects_link_all'])) {
                 <p class="font-size-30 text-uppercase descr-title" style="font-weight: 100"> {!! $title !!}
                 </p>
                 <p class="font-size-16" style="font-weight: 700">{{ $description }}</p>
-                <a href="{{ $link }}" class="text-underline text-uppercase">{{ $linkTitle }}</a>
+                <a href="{{ $link }}" class="text-underline text-uppercase letter-spacing-1"><b>{{ $linkTitle }}</b></a>
             </div>
         </div>
     </div>
