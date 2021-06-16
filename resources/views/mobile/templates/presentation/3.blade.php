@@ -74,7 +74,7 @@ for ($i = 1; $i <= 4; $i++) {
 @endphp
 
 @empty(!$hdrTypeActive)
-<section class="main-page-header {{ $style }}" swiper-wrapper="header-mabile-2">
+<section class="main-page-header {{ $style }}" swiper-wrapper="header-mabile-2" header-slider="1">
     <div class="wrap">
         <div class="swiper-container">
             <div class="swiper-wrapper">

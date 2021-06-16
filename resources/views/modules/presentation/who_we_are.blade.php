@@ -80,7 +80,7 @@
                     <div class="title-container">
                         <a href="{{ $whoLink }}" class="text-underline text-dark letter-spacing-1"><b>{{ $whoLinkText }}</b></a>
                     </div>
-                    <p class="font-size-30 mb-2 pr-2"><b>{!! $whoTitle !!}</b></p>
+                    <p class="text-title-container font-size-30 pr-2"><b>{!! $whoTitle !!}</b></p>
                     <div class="pr-5">
                         <p class="font-size-16 pr-5">{!! $whoText !!}</p>
                     </div>
