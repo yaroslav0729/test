@@ -2522,9 +2522,15 @@ input[type="number"].color-danger + .input-group .btn {
 .current-projects .box-1 .view-more:hover {
     background: #f7796a;
 }
+@media screen and (min-width: 992px) and (max-width: 1300px) {
+    .current-projects .box-1 .view-more {
+        bottom: 127px;
+        right: -60px;
+    }
+}
 @media screen and (min-width: 767px) and (max-width: 1300px) {
     .current-projects .wrap {
-        padding: 0 20px 0 40px;
+        padding: 0 40px 0 40px;
     }
     .current-projects .swiper-container .swiper-slide {
         padding: 0;
@@ -2532,6 +2538,11 @@ input[type="number"].color-danger + .input-group .btn {
     .current-projects .body .img {
         height: 400px;
         position: static;
+    }
+}
+@media (max-width: 991px) {
+    .current-projects .box-1 .view-more {
+        bottom: 0;
     }
 }
 .current-projects-list,
