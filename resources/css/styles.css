@@ -291,7 +291,7 @@ header .ico-search,
     vertical-align: middle;
 }
 header .top-bar {
-    padding: 30px 115px 33px 113px;
+    padding: 30px 85px 29px 113px;
 }
 header .top-bar .logo {
     display: inline-block;
@@ -1827,7 +1827,7 @@ input[type="number"].color-danger + .input-group .btn {
     }
 }
 .quick-donation {
-    margin: -92px 120px 90px 120px;
+    margin: -95px 120px 90px 120px;
     border-radius: 5px;
     background-color: #fff;
     box-shadow: 0 18px 35px 0 rgba(104, 110, 117, 0.2);
@@ -1900,7 +1900,7 @@ input[type="number"].color-danger + .input-group .btn {
     padding: 51px 0 59px 120px;
     position: relative;
     margin-right: 180px;
-    margin-bottom: 80px;
+    margin-bottom: 76px;
 }
 .who-we-are:before {
     content: "";
@@ -1918,15 +1918,17 @@ input[type="number"].color-danger + .input-group .btn {
 }
 .who-we-are .help-info {
     position: absolute;
-    right: 20px;
-    bottom: -58px;
+    right: 21px;
+    bottom: -55px;
 }
 .who-we-are .text {
     padding: 17px 40px 0 74px;
 }
-
 .who-we-are .title-container {
     margin-bottom: 33px;
+}
+.who-we-are .text-title-container {
+    margin-bottom: 5px;
 }
 @media screen and (max-width: 1300px) {
     .who-we-are {
@@ -1938,7 +1940,7 @@ input[type="number"].color-danger + .input-group .btn {
     background-color: #fff;
     box-shadow: 0 18px 20px 0 rgba(223, 185, 181, 0.3);
     display: inline-block;
-    padding: 28px 25px;
+    padding: 28px 31px;
     white-space: nowrap;
     position: relative;
     z-index: 2;
@@ -2220,7 +2222,7 @@ input[type="number"].color-danger + .input-group .btn {
     color: #fff;
 }
 .our-work {
-    padding: 0 186px 118px 165px;
+    padding: 0 186px 118px 180px;
 }
 .our-work .view-more {
     display: inline-block;
@@ -2390,8 +2392,8 @@ input[type="number"].color-danger + .input-group .btn {
     margin-bottom: 36px;
 }
 .current-projects {
-    padding: 76px 0 0;
-    margin-bottom: 10px;
+    padding: 69px 0 0;
+    margin-bottom: 30px;
     position: relative;
 }
 .current-projects:before {
@@ -2405,10 +2407,11 @@ input[type="number"].color-danger + .input-group .btn {
     bottom: 106px;
 }
 .current-projects .wrap {
-    padding: 0 150px;
+    padding: 0 152px;
 }
 .current-projects .title {
     position: relative;
+    margin-left: 27px;
 }
 .current-projects .title span {
     display: inline-block;
@@ -2417,7 +2420,7 @@ input[type="number"].color-danger + .input-group .btn {
     font-weight: 900;
     line-height: 65px;
     vertical-align: middle;
-    margin-right: 30px;
+    margin-right: 36px;
     position: relative;
 }
 .current-projects .title span:after {
@@ -2428,7 +2431,7 @@ input[type="number"].color-danger + .input-group .btn {
     background: #101525;
     position: absolute;
     left: 0;
-    bottom: -5px;
+    bottom: -10px;
 }
 .current-projects .title a {
     vertical-align: middle;
@@ -2437,10 +2440,10 @@ input[type="number"].color-danger + .input-group .btn {
 }
 .current-projects .title .moon-icons-arrow-down {
     color: #101525;
-    font-size: 58px;
+    font-size: 62px;
     position: absolute;
-    left: -70px;
-    top: 21px;
+    left: -87px;
+    top: 25px;
 }
 .current-projects .title:after {
     content: "";
@@ -2449,7 +2452,7 @@ input[type="number"].color-danger + .input-group .btn {
     height: 4px;
     background: #101525;
     position: absolute;
-    right: 0;
+    right: 27px;
     top: 50%;
 }
 .current-projects .body {
@@ -2482,8 +2485,8 @@ input[type="number"].color-danger + .input-group .btn {
     border-bottom: 4px solid #f5c15d;
 }
 .current-projects .swiper-container {
-    padding-top: 70px;
-    padding-bottom: 20px;
+    padding-top: 84px;
+    padding-bottom: 0px;
 }
 .current-projects .swiper-container .swiper-slide {
     padding: 0 30px;
@@ -2509,7 +2512,7 @@ input[type="number"].color-danger + .input-group .btn {
     height: 60px;
     position: absolute;
     bottom: 106px;
-    right: -30px;
+    right: -34px;
     text-align: center;
     font-size: 30px;
     line-height: 60px;
@@ -2559,6 +2562,9 @@ input[type="number"].color-danger + .input-group .btn {
     background-repeat: no-repeat;
     background-position: 50% 50%;
     border-radius: 5px;
+}
+.current-projects-list .item .img {
+    max-height: 160px;
 }
 .current-projects-list .item .descr,
 .popular-topic-list .item .descr {
@@ -2642,7 +2648,7 @@ input[type="number"].color-danger + .input-group .btn {
     right: 20px;
 }
 .lets-join {
-    margin-bottom: 163px;
+    margin-bottom: 154px;
     padding: 0 164px;
 }
 .lets-join .decor-wave {
@@ -2722,7 +2728,10 @@ input[type="number"].color-danger + .input-group .btn {
     color: #fff;
 }
 .widget-about-project .descr > div {
-    padding: 20px 47px;
+    padding: 54px 47px 20px;
+}
+.widget-about-project .descr .font-size-16 {
+    margin-bottom: 34px;
 }
 .widget-about-project .descr a {
     color: #fff;
@@ -2896,7 +2905,7 @@ input[type="number"].color-danger + .input-group .btn {
 }
 .join-cause {
     background: #eef3f0;
-    padding: 73px 155px 77px 180px;
+    padding: 80px 155px 83px 180px;
 }
 .join-cause .wrap {
     position: relative;
@@ -2908,7 +2917,10 @@ input[type="number"].color-danger + .input-group .btn {
     bottom: 18px;
 }
 .join-cause .title + p {
-    line-height: 2.3;
+    line-height: 2;
+}
+.join-cause .decor-wave {
+    margin-bottom: 40px !important;
 }
 .join-cause form {
     background: #f7f8f8;

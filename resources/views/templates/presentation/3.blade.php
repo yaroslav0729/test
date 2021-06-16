@@ -59,7 +59,7 @@
 
 @empty(!$hdrTypeActive)
 
-    <section class="main-page-header {{ $style }}" swiper-wrapper="header2">
+    <section class="main-page-header {{ $style }}" swiper-wrapper="header2" header-slider="1">
         <div class="wrap">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
