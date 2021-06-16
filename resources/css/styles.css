@@ -93,11 +93,13 @@ footer.bg-primary-light .toggle-menu:after {
     background: #000 !important;
 }
 footer .social {
-    padding-top: 5px;
+    padding-top: 12px;
 }
 footer .social a {
     font-size: 27px;
     color: #fff;
+    display: flex;
+    align-items: center;
 }
 footer .social svg > * {
     fill: currentColor;
@@ -124,7 +126,7 @@ footer .copy span {
 }
 footer .menu {
     display: block;
-    padding: 0;
+    padding: 0 0 0;
     margin: 0 0 40px;
     font-size: 0;
 }
@@ -1805,6 +1807,9 @@ input[type="number"].color-danger + .input-group .btn {
 }
 .main-page-header .swiper-container .view-more:after {
     display: none;
+}
+.main-page-header .swiper-container .swiper-slide.swiper-slide-next {
+    padding-left: 1px;
 }
 @media screen and (min-width: 767px) and (max-width: 992px) {
     .main-page-header {
