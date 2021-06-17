@@ -266,6 +266,7 @@
 </div>
 </div>
 </div>
+<div class='header-menu-overlay'></div>
 
 <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
