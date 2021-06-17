@@ -473,6 +473,12 @@
     padding: 0;
     flex-direction: column;
 }
+.mobile-template .main-page-header .body .tag {
+    font-family: Lato, sans-serif;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 1px;
+}
 .mobile-template .main-page-header .body .left {
     flex: 1 1 100%;
     padding: 0;
@@ -487,6 +493,17 @@
 .mobile-template .main-page-header .body .title {
     font-size: 30px;
     line-height: 35px;
+}
+.mobile-template .main-page-header .body .title + a {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+}
+.mobile-template .main-page-header .body .btn {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 900;
+    padding: 12px 14px;
 }
 .mobile-template .main-page-header .body p {
     font-size: 16px;
