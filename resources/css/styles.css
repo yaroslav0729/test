@@ -592,6 +592,7 @@ header + .newsroom-tabs + .blog-article-head .wrap {
 }
 .header-menu.open {
     transform: translateY(0);
+    padding: 43px 107px 45px 104px;
 }
 .header-menu.open + .header-menu-overlay {
     display: block;
@@ -643,8 +644,8 @@ header + .newsroom-tabs + .blog-article-head .wrap {
     font-size: 30px;
     font-weight: 900;
     line-height: 44px;
-    padding-top: 32px;
-    margin: 0 0 9px 59px;
+    padding-top: 28px;
+    margin: 0 0 9px 79px;
 }
 .header-menu .title + div {
     padding-left: 35px;
@@ -833,8 +834,10 @@ header + .newsroom-tabs + .blog-article-head .wrap {
     font-size: 25px;
 }
 .header-menu .projects-group {
-    padding-top: 75px;
-    padding-left: 0 !important;
+    padding: 63px 13px 0px 16px !important;
+}
+.header-menu .projects-group .black-line {
+    width: 100%;
 }
 .header-menu .projects-group > .row {
     position: relative;
