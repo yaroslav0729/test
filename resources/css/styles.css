@@ -567,6 +567,17 @@ header + .newsroom-tabs + .blog-article-head .wrap {
         display: none;
     }
 }
+.header-menu-overlay {
+    display: none;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f8f8;
+    opacity: 0.71;
+    z-index: 10;
+}
 .header-menu {
     display: block;
     background: #f8f8f8;
@@ -581,6 +592,9 @@ header + .newsroom-tabs + .blog-article-head .wrap {
 }
 .header-menu.open {
     transform: translateY(0);
+}
+.header-menu.open + .header-menu-overlay {
+    display: block;
 }
 .header-menu .logo {
     display: inline-block;
@@ -2512,7 +2526,7 @@ input[type="number"].color-danger + .input-group .btn {
     height: 60px;
     position: absolute;
     bottom: 106px;
-    right: -34px;
+    right: -30px;
     text-align: center;
     font-size: 30px;
     line-height: 60px;
