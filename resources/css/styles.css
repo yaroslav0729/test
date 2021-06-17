@@ -2410,7 +2410,7 @@ input[type="number"].color-danger + .input-group .btn {
 }
 .current-projects {
     padding: 69px 0 0;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     position: relative;
 }
 .current-projects:before {
@@ -2421,7 +2421,7 @@ input[type="number"].color-danger + .input-group .btn {
     left: 0;
     right: 0;
     top: 0;
-    bottom: 106px;
+    bottom: 126px;
 }
 .current-projects .wrap {
     padding: 0 152px;
@@ -2503,7 +2503,7 @@ input[type="number"].color-danger + .input-group .btn {
 }
 .current-projects .swiper-container {
     padding-top: 84px;
-    padding-bottom: 0px;
+    padding-bottom: 20px;
 }
 .current-projects .swiper-container .swiper-slide {
     padding: 0 30px;
@@ -2528,7 +2528,7 @@ input[type="number"].color-danger + .input-group .btn {
     width: 60px;
     height: 60px;
     position: absolute;
-    bottom: 106px;
+    bottom: 126px;
     right: -30px;
     text-align: center;
     font-size: 30px;
@@ -2540,8 +2540,11 @@ input[type="number"].color-danger + .input-group .btn {
     background: #f7796a;
 }
 @media screen and (min-width: 992px) and (max-width: 1300px) {
+    .current-projects:before {
+        bottom: 147px;
+    }
     .current-projects .box-1 .view-more {
-        bottom: 127px;
+        bottom: 147px;
         right: -60px;
     }
 }
