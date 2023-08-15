@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DonationEditRequest;
-use App\Models\CampaignPrice;
 use App\Models\Donation;
 use App\Models\Order;
 use App\Services\StripeService;
 use App\Traits\SendThankYouEmail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DonationController extends Controller
@@ -234,46 +234,26 @@ class DonationController extends Controller
                 return [$donations, $daterange, $keyword, $status, $type];
             }
 
-            $donations = $donations->where(function ($query) use ($keyword) {
-                $query->whereHas('campaign', function ($query) use ($keyword) {
-                    $query->where('name', 'like', '%' . $keyword . '%');
-                })->orWhereHas('user', function ($query) use ($keyword) {
-                    $query->where('name', 'like', '%' . $keyword . '%')
-                        ->orWhere('last_name', 'like', '%' . $keyword . '%');
-                })->orWhereHas('order', function ($query) use ($keyword) {
-                    $query->where('title', 'like', '%' . $keyword . '%')
-                        ->orWhere('first_name', 'like', '%' . $keyword . '%')
-                        ->orWhere('last_name', 'like', '%' . $keyword . '%')
-                        ->orWhere('post_code', 'like', '%' . $keyword . '%')
-                        ->orWhere('address_1', 'like', '%' . $keyword . '%')
-                        ->orWhere('address_2', 'like', '%' . $keyword . '%')
-                        ->orWhere('address_3', 'like', '%' . $keyword . '%')
-                        ->orWhere('city', 'like', '%' . $keyword . '%')
-                        ->orWhere('state', 'like', '%' . $keyword . '%')
-                        ->orWhere('country', 'like', '%' . $keyword . '%')
-                        ->orWhere('phone', 'like', '%' . $keyword . '%')
-                        ->orWhere('email', 'like', '%' . $keyword . '%')
-                        ->orWhere('notes', 'like', '%' . $keyword . '%')
-                        ->orWhere('order_id', 'like', '%' . $keyword . '%');
-                })->orWhere(function ($query) use ($keyword) {
-                    $query->where('email', 'like', '%' . $keyword . '%')
-                        ->orWhere('value', '=', intval($keyword));
-                });
+            $searchTemplate = "%$keyword%";
+
+            $donations = $donations->where(function ($query) use ($searchTemplate) {
+                $query->where('email', 'like', $searchTemplate)
+                    ->orWhereHas('order', function ($query) use ($searchTemplate) {
+                        $query->where('email', 'like', $searchTemplate)
+                            ->orWhere('last_name', 'like', $searchTemplate)
+                            ->orWhere('first_name', 'like', $searchTemplate)
+                            ->orWhere('post_code', 'like', $searchTemplate);
+                    });
             });
         }
-        if (isset($status)) {
-            $donations = $donations->where('status', $status);
-        }
-        if (isset($type)) {
-            $donations = $donations->where('type', $type);
-        }
-        if (isset($from)) {
-            $donations = $donations->whereDate('created_at', '>=', \Carbon\Carbon::createFromFormat('d/m/Y h:i:s A', $from)->format('Y-m-d H:i:s'));
-        }
-        if (isset($to)) {
-            $donations = $donations->whereDate('created_at', '<=', \Carbon\Carbon::createFromFormat('d/m/Y h:i:s A', $to)->format('Y-m-d H:i:s'));
-        }
-
+        $donations = $donations->when(isset($status), function ($query) use ($status) {return $query->where('status', $status);})
+            ->when(isset($type), function ($query) use ($type) {return $query->where('type', $type);})
+            ->when(isset($from), function ($query) use ($from) {
+                return $query->where('created_at', '>=', Carbon::createFromFormat('d/m/Y h:i:s A', $from));
+            })
+            ->when(isset($to), function ($query) use ($to) {
+                return $query->where('created_at', '<=', Carbon::createFromFormat('d/m/Y h:i:s A', $to));
+            });
 
         return [$donations, $daterange, $keyword, $status, $type];
     }
