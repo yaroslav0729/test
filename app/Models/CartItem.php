@@ -126,7 +126,9 @@ class CartItem extends Model
             $itemsCollected = [];
 
             foreach ($items as $item) {
-                $campaign = !empty($item['campaign_id']) ? $item['campaign_id'] : !empty($item['food_pack_id']) ? $item['food_pack_id'] : !empty($item['food_pack_qurbani_id']) && !empty($item['food_pack_qurbani_type_id']) ? $item['food_pack_qurbani_id'].$item['food_pack_qurbani_type_id'] : '';
+                $campaign = !empty($item['campaign_id']) ? $item['campaign_id'] :
+                    (!empty($item['food_pack_id']) ? $item['food_pack_id'] :
+                        ((!empty($item['food_pack_qurbani_id']) && !empty($item['food_pack_qurbani_type_id'])) ? $item['food_pack_qurbani_id'].$item['food_pack_qurbani_type_id'] : ''));
 
                 $uniqKey = $item['amount'] . '_' . $item['period'] . '_' . $campaign . '_' . $item['campaign_category_id'];
                 $itemsCollected[$uniqKey][] = $item;
