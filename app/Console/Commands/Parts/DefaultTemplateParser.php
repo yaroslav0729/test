@@ -80,7 +80,7 @@ class DefaultTemplateParser extends AbstractParser
         }
 
         $postsWhithoutTemplate = array_diff($allPostsIds, $postsWithTemplateIds);
-        
+
         $posts = $this->wpConnection->table('wp_posts')
             ->where('wp_posts.post_type', 'page')
             ->where('wp_posts.post_status', 'publish')
@@ -88,10 +88,10 @@ class DefaultTemplateParser extends AbstractParser
             ->orderBy('wp_posts.ID', 'ASC')
             ->get();
 
-        return $posts;    
+        return $posts;
     }
 
-    protected function getPostsWithTypePost() 
+    protected function getPostsWithTypePost()
     {
         $posts = $this->wpConnection->table('wp_posts')
             ->join('wp_postmeta', 'wp_posts.id', '=', 'wp_postmeta.post_id')
@@ -104,7 +104,7 @@ class DefaultTemplateParser extends AbstractParser
             })
             ->get();
 
-            return $posts;
+        return $posts;
     }
 
     protected function getPostsWithDefaultTemplate()
@@ -142,15 +142,14 @@ class DefaultTemplateParser extends AbstractParser
                 $instance = $page->actual_page_instance;
 
                 $instance->update([
-                    'name' => $post->post_title,
+                    'name' => $this->removeArtifacts($post->post_title),
                     'slug' => $slug,
-                    'title' => $post->post_title,
+                    'title' => $this->removeArtifacts($post->post_title),
                     'description' => '',
                     'template' => Template::COMMON_CONTENT_PAGE,
                 ]);
 
                 $infoString = $pageKey . ': Page updated => id: ' . $page->id . ', wp_id: ' . $page->wp_id;
-
             } else {
 
                 $page = Page::create([
@@ -159,9 +158,9 @@ class DefaultTemplateParser extends AbstractParser
                 ]);
 
                 $instance = PageInstance::create([
-                    'name' => $post->post_title,
+                    'name' => $this->removeArtifacts($post->post_title),
                     'slug' => $slug,
-                    'title' => $post->post_title,
+                    'title' => $this->removeArtifacts($post->post_title),
                     'description' => '',
                     'page_id' => $page->id,
                     'template' => Template::COMMON_CONTENT_PAGE,
@@ -186,8 +185,14 @@ class DefaultTemplateParser extends AbstractParser
         $instance->preview_img = $this->getWpImage($img);
         $instance->preview_text = $this->getOption($options, 'head_content');
 
-        $content = $post->post_content;
+        if (!empty($post->post_content)) {
+            $content = $post->post_content;
+        } else {
+            $content = $this->getOption($options, 'content');
+        }
+
         $content = $this->uploadImages($content);
+        $content = $this->removeArtifacts($content);
 
         $parameters = [];
         $parameters['main_html'] = $content;

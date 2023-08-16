@@ -1,4 +1,4 @@
-<div class="current-projects-list w-100" swiper-wrapper="project-tiles">
+<div class="current-projects-list w-100" swiper-wrapper="{{ isset($wrapperAttr) ? $wrapperAttr : 'project-tiles' }}">
 
     <div class="project_popup_options alert alert-warning d-none">
         {{-- Options will be here --}}
@@ -20,13 +20,15 @@
 
                         <div class="swiper-slide">
                             <div class="">
-                                <div class="row">
+                                <div class="row gutter-22">
 
                         @endif
 
                         <div class="col-12 col-md-6 col-lg-6 col-xl-4">
                             <div class="item">
+                                <!-- <div class="img add" style="background-image: url({{ $projInstance->preview_img }})" data-id="{{ $projInstance->id}}"> -->
                                 <div class="img" style="background-image: url({{ $projInstance->preview_img }})">
+                                    <div class="add add-container" data-id="{{$projInstance->id}}"></div>
                                     <div class="top-bar">
                                         <div class="add" data-id="{{ $projInstance->id}} "><i class="moon-icons-plus"></i></div>
                                         <div class="add-width bg-danger d-none" data-id="{{ $projInstance->id}}">
@@ -43,7 +45,7 @@
                                 </div>
                                 <div class="descr">
                                     <div class="name"><b>{{ $projInstance->name }}</b></div>
-                                    <div class="text-right"><a target="_blank" href="{{ url('/' . $projInstance->slug) }}" class="text-uppercase text-underline text-dark">LEARN MORE</a></div>
+                                    <div class="text-right"><a target="_blank" href="{{ url('/' . $projInstance->slug) }}" class="text-uppercase text-underline text-dark letter-spacing-1">LEARN MORE</a></div>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +67,7 @@
                         @endif
 
                     @endforeach        </div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-pagination" test-attribute></div>
     </div>
 </div>
 

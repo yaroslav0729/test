@@ -1,31 +1,35 @@
 @php
 
-    $minRead = "";
-    $headerText="";
-    $writtenBy="";
-    $headerVideo = "";
-    $articleHtml = "";
+$minRead = '';
+$headerText = '';
+$writtenBy = '';
+$headerVideo = '';
+$headerVideoPreview = '';
+$articleHtml = '';
 
+if (isset($parameters['min_read'])) {
+    $minRead = $parameters['min_read'];
+}
 
-    if (isset($parameters['min_read'])) {
-        $minRead = $parameters['min_read'];
-    }
+if (isset($parameters['hdr_text'])) {
+    $headerText = $parameters['hdr_text'];
+}
 
-    if (isset($parameters['hdr_text'])) {
-        $headerText = $parameters['hdr_text'];
-    }
+if (isset($parameters['written_by'])) {
+    $writtenBy = $parameters['written_by'];
+}
 
-    if (isset($parameters['written_by'])) {
-        $writtenBy = $parameters['written_by'];
-    }
+if (isset($parameters['hdr_video'])) {
+    $headerVideo = $parameters['hdr_video'];
+}
 
-    if (isset($parameters['hdr_video'])) {
-        $headerVideo = $parameters['hdr_video'];
-    }
+if (isset($parameters['hdr_video_preview'])) {
+    $headerVideoPreview = $parameters['hdr_video_preview'];
+}
 
-    if (isset($parameters['article_html'])) {
-        $articleHtml = $parameters['article_html'];
-    }
+if (isset($parameters['article_html'])) {
+    $articleHtml = $parameters['article_html'];
+}
 
 @endphp
 
@@ -35,7 +39,8 @@
 </div>
 <div class="form-group">
     <label>Header text</label>
-    <textarea class="form-control" name="parameters[hdr_text]" placeholder="Insert header text">{{ $headerText }}</textarea>
+    <textarea class="form-control" name="parameters[hdr_text]"
+        placeholder="Insert header text">{{ $headerText }}</textarea>
 </div>
 <div class="form-group">
     <label>Written by:</label>
@@ -43,23 +48,27 @@
 </div>
 <div class="form-group">
     <label>Header video id:</label>
-    <input class="form-control" name="parameters[hdr_video]" placeholder="Insert youtube video link" value="{{ $headerVideo }}" />
+    <input class="form-control" name="parameters[hdr_video]" placeholder="Insert youtube video link"
+        value="{{ $headerVideo }}" />
+</div>
+<div class="form-group">
+    <label>Header video preview:</label>
+    <input class="form-control" name="parameters[hdr_video_preview]" placeholder="Insert path" value="{{ $headerVideoPreview }}">
 </div>
 <div class="form-group">
     <label>Article html</label>
-    <textarea wysiwyg-editor class="form-control" id="article_html" name="parameters[article_html]">{{ $articleHtml }}</textarea>
+    <textarea wysiwyg-editor class="form-control" id="article_html"
+        name="parameters[article_html]">{{ $articleHtml }}</textarea>
 </div>
 
 <hr>
 
 {{-- @include('modules.admin.mission_possible') --}}
 
-{{--@include('modules.admin.related_page_expanded')--}}
+{{-- @include('modules.admin.related_page_expanded') --}}
 
 @include('modules.admin.related_topics_project', [
-    'parameters' => $parameters
+'parameters' => $parameters
 ])
 
 @include('modules.admin.join_the_cause_subscribe')
-
-

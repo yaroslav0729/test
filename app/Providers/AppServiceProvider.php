@@ -56,7 +56,7 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('amount_text', function ($value, $parameters) {
             foreach ($parameters as $parameter) {
                 if (isset($parameter['text'])) {
-                    if (strlen($parameter['text']) > 100) return false;    
+                    if (strlen($parameter['text']) > 100) return false;
                 }
             }
 
@@ -64,28 +64,27 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Validator::extend('amount_limit_items', function ($value, $parameters) { // amount_limit_items
-            
+
             if (isset($parameters['amount'])) {
-                
+
                 $singleCou = 0;
                 $monthlyCou = 0;
-                
+
                 foreach ($parameters['amount'] as $amount) {
                     if (isset($amount['type'])) {
                         if ((int) $amount['type'] === \App\Models\CampaignPrice::TYPE_SINGLE) {
                             $singleCou++;
-    
                         } else if ((int) $amount['type'] === \App\Models\CampaignPrice::TYPE_MONTHLY) {
                             $monthlyCou++;
                         }
                     }
                 }
 
-                if (!in_array($singleCou, [0, 3, 5])) {
+                if (!in_array($singleCou, [0, 3, 5, 6, 7, 8, 9])) {
                     return false;
                 }
 
-                if (!in_array($monthlyCou, [0, 3, 5])) {
+                if (!in_array($monthlyCou, [0, 3, 5, 6, 7, 8, 9])) {
                     return false;
                 }
             }
@@ -96,7 +95,7 @@ class AppServiceProvider extends ServiceProvider
         View::share([
             'headerMenuItem' => MenuHelper::groupByLevels(
                 MenuItem::rootMenuByDestination(MenuItem::HEADER_MENU)
-                    ->with('orderedSubMenus.orderedSubMenus')->get(), 
+                    ->with('orderedSubMenus.orderedSubMenus')->get(),
                 3
             ),
             'additionalHeaderMenuItem' => MenuItem::rootMenuByDestination(MenuItem::ADDITIONAL_HEADER_MENU)->get(),

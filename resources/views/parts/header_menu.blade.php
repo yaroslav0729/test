@@ -110,26 +110,30 @@
                                 <div class="swiper-container">
                                     <div class="swiper-wrapper">
                                         @foreach ($itemMenu['items'] as $subItemMenu)
-                                            @if($loop->index % 3 === 0)
+                                            @if($loop->index % 9 === 0)
                                                 @if($loop->index !== 0) </div> @endif
                                     <div class="swiper-slide">
+                                        <div class="header-projects-container">
                                         @endif
-                                        <a
-                                            @if($subItemMenu->is_group)
-                                            href="#"
-                                            menu-group-show
-                                            data-menu-group-id="{{ $subItemMenu->id }}"
-                                            @else
-                                            href="{{ $subItemMenu->link }}"
-                                            @endif
-                                            class="item"
-                                        >
-                                            {{ $subItemMenu->text }}
-                                            @if($subItemMenu->is_group)
-                                                <i class="far fa-plus float-right mr-4"></i>
-                                            @endif
-                                        </a>
+                                            <div class="header-projects-container__item">
+                                                <a
+                                                    @if($subItemMenu->is_group)
+                                                    href="#"
+                                                    menu-group-show
+                                                    data-menu-group-id="{{ $subItemMenu->id }}"
+                                                    @else
+                                                    href="{{ $subItemMenu->link }}"
+                                                    @endif
+                                                    class="item"
+                                                >
+                                                    {{ $subItemMenu->text }}
+                                                    @if($subItemMenu->is_group)
+                                                        <i class="far fa-plus float-right mr-3"></i>
+                                                    @endif
+                                                </a>
+                                            </div>
                                         @if ($loop->last)
+                                        </div>
                                     </div>
                                     @endif
                                     @endforeach

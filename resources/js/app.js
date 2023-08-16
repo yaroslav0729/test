@@ -3,6 +3,7 @@ window.Popper = require("popper.js").default;
 
 window.$ = window.jQuery = require("jquery");
 require("bootstrap");
+require("intersection-observer");
 
 require("tinymce");
 
@@ -14,21 +15,40 @@ window.Swiper = Swiper*/
 require("bootstrap-input-spinner");
 
 import Swiper from "swiper";
-import SwiperCore, { Navigation, Pagination } from "swiper";
+import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
 
-SwiperCore.use([Navigation, Pagination]);
+SwiperCore.use([Navigation, Pagination, Autoplay]);
 import { initWysiwyg } from "./admin_parts/init_tiny-mce";
-
+require("./admin_parts/colorpicker");
+require("./admin_parts/daterangepicker");
+require("./parts/foodpack-widget");
+require("./parts/foodpack-qurbani-widget");
 require("./parts/project_tiles.js");
 require("./parts/donate_module.js");
 require("./parts/cart.js");
 require("./parts/newsroom.js");
+require("./parts/calculator.js");
+require("./parts/payment.js");
+require("./parts/mobile-banner");
+require("./parts/typeform");
+require("./parts/getAddress");
 require("./functions.js");
 
 var MODAL_FORM_LOCK = false;
 
-$(function() {
-    $(document).on("submit", "[modal-form]", function(event) {
+$(function () {
+    $(".video-poster__play").on("click", function (e) {
+        e.preventDefault();
+
+        const url = $(this).data("url") + "?autoplay=1";
+        const videoWrapper = this.closest(".videoWrapper");
+
+        const videoPlayer = videoWrapper.querySelector("iframe");
+        videoPlayer.src = url;
+        this.closest(".video-poster").style.display = "none";
+    });
+
+    $(document).on("submit", "[modal-form]", function (event) {
         event.preventDefault();
 
         if (MODAL_FORM_LOCK) {
@@ -60,7 +80,7 @@ $(function() {
             data: formData,
             processData: false,
             contentType: false,
-            success: function(response, textStatus, jqXHR) {
+            success: function (response, textStatus, jqXHR) {
                 stub.removeAttr("disabled");
                 MODAL_FORM_LOCK = false;
 
@@ -99,7 +119,7 @@ $(function() {
 
                 window.location.reload();
             },
-            error: function(response) {
+            error: function (response) {
                 stub.removeAttr("disabled");
                 MODAL_FORM_LOCK = false;
 
@@ -115,7 +135,7 @@ $(function() {
                     let showed = [];
                     let control, feedback, controlMessages;
 
-                    $.each(response.responseJSON.errors, function(
+                    $.each(response.responseJSON.errors, function (
                         field,
                         errors
                     ) {
@@ -138,7 +158,7 @@ $(function() {
                         }
                         controlMessages = [];
 
-                        $.each(errors, function(i, error) {
+                        $.each(errors, function (i, error) {
                             if (feedback.length) {
                                 controlMessages[controlMessages.length] = error;
                             } else {
@@ -200,7 +220,7 @@ $(function() {
     }
     //~~~~~~~~~~~~~~~~~~~~~~ Filter Events type on Events page ~~~~~~~~~~~~~~~~
 
-    $(document).on("click", ".filter", function() {
+    $(document).on("change", ".filter", function () {
         let pathName = window.location.pathname;
         let data = {};
 
@@ -220,12 +240,12 @@ $(function() {
             url: pathName,
             methods: "GET",
             data: data,
-            success: function(response) {
+            success: function (response) {
                 if (response.status === "success") {
                     $("#events-content").html(response.html);
                 }
             },
-            error: function() {
+            error: function () {
                 toastr.error("Unknown error ", "Error");
             }
         });
@@ -278,7 +298,7 @@ $(function() {
     $(document).on(
         "click",
         "#join_the_cause_show_form, #join_the_cause_show_form_link",
-        function(e) {
+        function (e) {
             e.preventDefault();
 
             let mainForm = $(".join-cause-main");
@@ -294,7 +314,7 @@ $(function() {
         return re.test(email);
     }
 
-    $(document).on("click", "#subscription_sbmt", function(e) {
+    $(document).on("click", "#subscription_sbmt", function (e) {
         e.preventDefault();
 
         var form = $("#subscription_form");
@@ -314,14 +334,14 @@ $(function() {
             data: formData,
             processData: false,
             contentType: false,
-            success: function(response, textStatus, jqXHR) {
+            success: function (response, textStatus, jqXHR) {
                 if (response.success) {
                     toastr.success(response.message);
                 } else {
                     toastr.error(response.message);
                 }
             },
-            error: function(response) {
+            error: function (response) {
                 if (response.responseJSON.errors) {
                     toastr.error(response.responseJSON.errors["email"][0]);
                 } else {
@@ -333,7 +353,7 @@ $(function() {
 
     //~~~~~~~~~~~~~~~~~ Related topics module ~~~~~~~~~~~~~~~~~~
 
-    $(window).on("resize", function() {
+    $(window).on("resize", function () {
         resizeRelatedTopicsItems();
     });
 
@@ -343,7 +363,7 @@ $(function() {
 
         els.find("span.descr").height("auto");
 
-        els.each(function(index) {
+        els.each(function (index) {
             let el = $(this).find("span.descr");
 
             let h1 = el.height();
@@ -359,7 +379,7 @@ $(function() {
 
     //~~~~~~~~~~~~~~~~ add prices ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    $(document).on("submit", "[prices-form]", function(event) {
+    $(document).on("submit", "[prices-form]", function (event) {
         //event.preventDefault();
 
         // remove stup items
@@ -372,13 +392,13 @@ $(function() {
         return true;
     });
 
-    $(document).on("click", "[price-add]", function() {
+    $(document).on("click", "[price-add]", function () {
         let wrap = $(this).closest("[price-container]");
         let priceList = $("[price-list]", wrap);
         priceList.append($("[price-stub]", wrap).html());
     });
 
-    $(document).on("click", "[price-delete]", function() {
+    $(document).on("click", "[price-delete]", function () {
         let wrap = $(this)
             .closest(".price")
             .remove();
@@ -386,7 +406,7 @@ $(function() {
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    $(document).on("submit", "[options-form]", function(event) {
+    $(document).on("submit", "[options-form]", function (event) {
         //event.preventDefault();
 
         // remove stup items
@@ -399,7 +419,7 @@ $(function() {
         return true;
     });
 
-    $(document).on("click", "[option-add]", function() {
+    $(document).on("click", "[option-add]", function () {
         let wrap = $(this).closest("[options-container]");
         let optionsList = $("[options-list]", wrap);
         let html = $("[option-stub]", wrap).html();
@@ -411,7 +431,7 @@ $(function() {
         optionsList.append(html);
     });
 
-    $(document).on("click", "[option-delete]", function() {
+    $(document).on("click", "[option-delete]", function () {
         let wrap = $(this)
             .closest(".option")
             .remove();
@@ -419,7 +439,7 @@ $(function() {
 
     //~~~~~~~~~~~~~~~~~~ change map in the who we are page ~~~~~~~~~~~~~~~~~~~~
 
-    $(document).on("click", "#btn-view-global-work", function(event) {
+    $(document).on("click", "#btn-view-global-work", function (event) {
         event.preventDefault();
 
         let mapBlock = $(this).parent();
@@ -433,7 +453,7 @@ $(function() {
 
     initDate();
 
-    $(document).on("focus", "#date-picker", function(event) {
+    $(document).on("focus", "#date-picker", function (event) {
         let valStr = $(this).val();
         $(this).attr("type", "date");
 
@@ -443,7 +463,7 @@ $(function() {
         }
     });
 
-    $(document).on("blur", "#date-picker", function(event) {
+    $(document).on("blur", "#date-picker", function (event) {
         let valStr = $(this).val();
         $("#date-picker-real").val(valStr);
         $(this).attr("type", "text");
@@ -472,7 +492,7 @@ $(function() {
 
     //~~~~~~~~~~~~~~~~~~ toggle search button on the Events page ~~~~~~~~~~~~~~~~~~~~
 
-    $(document).on("input", "#events input", function(event) {
+    $(document).on("input", "#events input", function (event) {
         const section = $("#events");
         const inputs = $("#events input");
 
@@ -487,7 +507,7 @@ $(function() {
 
     //~~~~~~~~~~~~~~~~~~ toggle value currency on the Calculator page ~~~~~~~~~~~~~~~~~~~~
 
-    $(document).on("change", "#currency", function() {
+    $(document).on("change", "#currency", function () {
         let btnCurrency = $("#btn-currency");
         let value = $(this).val();
 
@@ -496,7 +516,7 @@ $(function() {
 
     //~~~~~~~~~~~~~~~~~~ toggle value currency on the Calculator page ~~~~~~~~~~~~~~~~~~~~
 
-    $(document).on("click", "#btn-calculate", function() {
+    $(document).on("click", "#btn-calculate", function () {
         const totalAssets = $("#total-assets");
         const zakatPayable = $(".zakat-payable");
         const btnDonateMobile = $("#btn-donate-mobile");
@@ -514,14 +534,17 @@ $(function() {
         let credit = multiplyVal(creditCollection);
 
         let asset = debit - credit;
-
+        let totalValue = convertMonetary(asset.toFixed(2));
         $(totalAssets).addClass("bg-primary-light");
         const divAssets = $(totalAssets)
             .find(".money-val")
             .addClass("text-info");
         $(divAssets)
             .find("b")
-            .html("£" + convertMonetary(asset.toFixed(2)));
+            .html("£" + totalValue);
+        $(divAssets)
+            .find("b")
+            .attr("title", "£" + totalValue);
 
         const divZakat = $(zakatPayable).find(".money-val");
 
@@ -543,6 +566,9 @@ $(function() {
                 .find("b")
                 .html("£" + zakatValue);
             $(divZakat)
+                .find("b")
+                .attr("title", "£" + zakatValue);
+            $(divZakat)
                 .find('input[name="zakat_value"]')
                 .val(zakat.toFixed(2));
             $(btnDonateMobile).removeClass("disabled");
@@ -563,7 +589,7 @@ $(function() {
 
     //~~~~~~~~~~~~~~~~~~ Set empty and clear Class for input fields ~~~~~~~~~~~~~~~~~~~~
 
-    $(document).on("click", "#btn-reset", function() {
+    $(document).on("click", "#btn-reset", function () {
         const totalAssets = $("#total-assets");
         const zakatPayable = $(".zakat-payable");
         const btnDonateMobile = $("#btn-donate-mobile");
@@ -605,7 +631,7 @@ $(function() {
         //~~~~~~~~~~~~~~~~~~ Set input collection empty~~~~~~~~~~~~~~~~~~~~
         function setElementsInputEmpty(selector) {
             $(selector)
-                .filter(function() {
+                .filter(function () {
                     return $(this).val() !== "";
                 })
                 .val("");
@@ -613,7 +639,7 @@ $(function() {
     });
 
     function clearRelatedProjects() {
-        $(".add-related").each(function() {
+        $(".add-related").each(function () {
             let blockProject = $(this).closest(".descr");
             const icon = $(blockProject).find("i");
 
@@ -627,7 +653,7 @@ $(function() {
     }
 
     //~~~~~~~~~~~~~~~~~~ Open dropdown menu 'What do I need'  ~~~~~~~~~~~~~~~~~~~~
-    $(document).on("click", ".calculator .title .toggle-title", function() {
+    $(document).on("click", ".calculator .title .toggle-title", function () {
         $(this).toggleClass("open");
         $(".calculator .title .bottom").toggleClass("open");
     });
@@ -636,45 +662,45 @@ $(function() {
     $(document).on(
         "click",
         ".calculator .title .bottom .toggle-title",
-        function() {
+        function () {
             $(".calculator .title .top .toggle-title").removeClass("open");
             $(".calculator .title .bottom").removeClass("open");
         }
     );
 
     //~~~~~~~~~~~~~~~~~~ Set disabled input link if group ~~~~~~~~~~~~~~~~~~~~
-    $(document).on("change", "#create-menu-item #is_group", function() {
+    $(document).on("change", "#create-menu-item #is_group", function () {
         $("#create-menu-item #link").prop("disabled", this.checked);
     });
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    $(".toggle-manual-address").on("click", function(e) {
+    $(".toggle-manual-address").on("click", function (e) {
         e.preventDefault();
         $(".manual-address").toggle();
     });
 
-    $(function() {
-        $(".toggle-view-donation-info").on("click", function(e) {
+    $(function () {
+        $(".toggle-view-donation-info").on("click", function (e) {
             e.preventDefault();
             $(".toggle-view-donation").toggleClass("open");
             $(".donated-page .info-col").toggleClass("hide");
         });
     });
     //~~~~~~~~~~~~~~~~~~ Menu control ~~~~~~~~~~~~~~~~~~~~
-    $(".open-head-menu").click(function(e) {
+    $(".open-head-menu").click(function (e) {
         openHeadMenu(e, $(this).attr("data-id"));
     });
 
-    $("[menu-group-show]").on("click", function(e) {
+    $("[menu-group-show]").on("click", function (e) {
         toggleMenuGroup(true, e);
     });
 
-    $("[menu-group-back]").on("click", function(e) {
+    $("[menu-group-back]").on("click", function (e) {
         toggleMenuGroup(false, e);
     });
 
-    $("[opened-menu-item]").on("click", function(e) {
+    $("[opened-menu-item]").on("click", function (e) {
         if (
             $(this)
                 .find("a")
@@ -690,7 +716,7 @@ $(function() {
 
         let blocks = $(".block-dropdown-menu");
 
-        $.each($(blocks), function(key, block) {
+        $.each($(blocks), function (key, block) {
             if (id === $(block).attr("data-id")) {
                 $(block).css({ display: "block" });
 
@@ -778,7 +804,7 @@ $(function() {
         new Swiper(element.find(".swiper-container").get(0), options);
     }
 
-    $(".mobile-template .header-menu .open-submenu").on("click", function(e) {
+    $(".mobile-template .header-menu .open-submenu").on("click", function (e) {
         e.preventDefault();
 
         let menuContainer = $(e.target)
@@ -800,8 +826,8 @@ $(function() {
                         "prev-group",
                         level
                             ? $(e.target)
-                                  .closest("[data-group-id]")
-                                  .data("group-id")
+                                .closest("[data-group-id]")
+                                .data("group-id")
                             : null
                     );
 
@@ -831,7 +857,7 @@ $(function() {
         }
     });
 
-    $(".mobile-template .header-menu .back").on("click", function(e) {
+    $(".mobile-template .header-menu .back").on("click", function (e) {
         e.preventDefault();
 
         let headerMenuContainer = $(e.target).closest(".header-menu");
@@ -885,7 +911,7 @@ $(function() {
         }
     });
 
-    $(".mobile-template .toggle-menu").on("click", function(e) {
+    $(".mobile-template .toggle-menu").on("click", function (e) {
         $(".mobile-template .toggle-menu")
             .next()
             .toggle();
@@ -893,12 +919,12 @@ $(function() {
 
     //~~~~~~~~~~~~~~~~~~~~~~~ Close Main menu ~~~~~~~~~~~~~~~~~~~~~~~
 
-    $(".header-menu .close-menu").click(function(e) {
+    $(".header-menu .close-menu").click(function (e) {
         e.preventDefault();
         closeMenu();
     });
 
-    $(document).mouseup(function(e) {
+    $(document).mouseup(function (e) {
         let container = $(".header-menu");
         if (!container.is(e.target) && container.has(e.target).length === 0) {
             closeMenu();
@@ -915,7 +941,7 @@ $(function() {
     });
 
     //~~~~~~~~~~~~~~~~~~~~~~~ Close Main when click on the sliders!!! ~~~~~~~~~~~~~~~~~~~~~~~
-    $(document).on("click", "[swiper-wrapper]", function(e) {
+    $(document).on("click", "[swiper-wrapper]", function (e) {
         closeMenu();
     });
 
@@ -937,13 +963,13 @@ $(function() {
         }
     }
 
-    $("header .top-bar .ico-menu").on("click", function() {
+    $("header .top-bar .ico-menu").on("click", function () {
         $("header .expand-bar").toggleClass("open");
     });
 
     //~~~~~~~~~~~~~~~~~~~~~~~ Play menu video in modal ~~~~~~~~~~~~~~~~~~~~~~~
 
-    $(document).on("click", ".trigger", function(e) {
+    $(document).on("click", ".trigger", function (e) {
         e.preventDefault();
 
         let theModal = $(this).data("target");
@@ -951,7 +977,7 @@ $(function() {
         let videoSRCauto = videoSRC + "?autoplay=1";
 
         $(theModal + " iframe").attr("src", videoSRCauto);
-        $(theModal).on("hidden.bs.modal", function(e) {
+        $(theModal).on("hidden.bs.modal", function (e) {
             $(theModal + " iframe").attr("src", "");
         });
     });
@@ -959,7 +985,7 @@ $(function() {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $("[input_number_spinner]").inputSpinner();
 
-    $(".important-information .read-more").click(function(e) {
+    $(".important-information .read-more").click(function (e) {
         e.stopPropagation();
         $(this)
             .prev()
@@ -967,7 +993,7 @@ $(function() {
             .toggleClass("open");
     });
 
-    $("footer .menu > li > a").on("click", function(e) {
+    $("footer .menu > li > a").on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
         $(this)
@@ -975,13 +1001,13 @@ $(function() {
             .toggleClass("open");
     });
 
-    $(window).scroll(function() {
-        if ($(window).scrollTop() > 115) {
-            $(".wrapper").addClass("header-fixed");
-        } else {
-            $(".wrapper").removeClass("header-fixed");
-        }
-    });
+    // $(window).scroll(function() {
+    //     if ($(window).scrollTop() > 115) {
+    //         $(".wrapper").addClass("header-fixed");
+    //     } else {
+    //         $(".wrapper").removeClass("header-fixed");
+    //     }
+    // });
 
     getShareThisCou();
 
@@ -1055,7 +1081,7 @@ $(function() {
     }
 
     function clearAutocompleteFields() {
-        $(".auto-address").each(function() {
+        $(".auto-address").each(function () {
             $(this).val("");
         });
     }
@@ -1084,7 +1110,57 @@ $(function() {
     // $(window).on('resize', function () {
     //     setWidthHeader();
     // })
+
+    const lazyBlocks = document.querySelectorAll(".lazy-block");
+    let lazyBlocksCallback = function (entries, observer) {
+        for (let i = 0; i < entries.length; i++) {
+            if (entries[i].intersectionRatio > 0) {
+                observer.unobserve(entries[i].target);
+                entries[i].target.classList.add("show");
+            }
+        }
+    };
+    let lazyBlocksObserver = new IntersectionObserver(lazyBlocksCallback);
+    for (let i = 0; i < lazyBlocks.length; i++) {
+        lazyBlocksObserver.observe(lazyBlocks[i]);
+    }
+
+    initBlogImage();
 });
+
+function initBlogImage() {
+    let blogImages = document.querySelectorAll(
+        ".blog-article-body .body > img, .blog-article-body .body figure img, .blog-article-body .body p > img"
+    );
+    if (blogImages.length) {
+        for (let image of blogImages) {
+            const imageContainer = image.parentNode;
+            if (
+                !imageContainer.classList.contains(
+                    "blog-article-image-container"
+                )
+            ) {
+                const container = document.createElement("div");
+                container.classList.add("blog-article-image-container");
+                container.innerHTML = imageContainer.innerHTML;
+                imageContainer.innerHTML = "";
+                imageContainer.append(container);
+            }
+        }
+    }
+
+    const images = document.querySelectorAll(".blog-article-image-container");
+    const lightbox = document.querySelector("#image-lightbox");
+    if (lightbox) {
+        for (let image of images) {
+            image.addEventListener("click", () => {
+                lightbox.querySelector(".modal-body").innerHTML =
+                    image.innerHTML;
+                $(lightbox).modal("show");
+            });
+        }
+    }
+}
 
 function getShareThisCou() {
     var token = $("div.stat").data("token");
@@ -1103,17 +1179,17 @@ function getShareThisCou() {
             access_token: token,
             id: url
         },
-        success: function(data) {
-            $("div.stat span").text(data.engagement.share_count);
+        success: function (data) {
+            $("div.stat span").text(data.engagement?.share_count || '');
         },
-        error: function(data) {
+        error: function (data) {
             //console.log(data); // send the error notifications to console
         }
     });
 
     //~~~~~~~~~~~~~~~~~~ Our work Section manipulation Index Page ~~~~~~~~~~~~~~~~~~~~
 
-    $(document).on("click", ".our-work-main", function(e) {
+    $(document).on("click", ".our-work-main", function (e) {
         e.preventDefault();
 
         let numberSlide = $(this)
@@ -1121,7 +1197,7 @@ function getShareThisCou() {
             .slice(-1);
         swichSlide(numberSlide);
 
-        $(".our-work-nav").each(function() {
+        $(".our-work-nav").each(function () {
             let currentSlide = $(this)
                 .find("a")
                 .attr("data-target");
@@ -1134,7 +1210,7 @@ function getShareThisCou() {
         $(".our-work").addClass("d-none");
     });
 
-    $(document).on("click", ".our-work-nav", function(e) {
+    $(document).on("click", ".our-work-nav", function (e) {
         e.preventDefault();
 
         let numberSlide = $(this)
@@ -1146,7 +1222,7 @@ function getShareThisCou() {
     });
 
     function swichSlide(numberSlide) {
-        $(".our-work-nav").each(function() {
+        $(".our-work-nav").each(function () {
             if ($(this).hasClass("d-none")) {
                 $(this).toggleClass("d-none");
             }
@@ -1158,7 +1234,7 @@ function getShareThisCou() {
     }
 
     function rotateSlide(collection, numberSlide) {
-        collection.each(function() {
+        collection.each(function () {
             if ($(this).not("d-none")) {
                 $(this).addClass("d-none");
             }
@@ -1181,7 +1257,7 @@ function convertMonetary(value) {
 //~~~~~~~~~~~~~~~~~~ Summarizes input fields ~~~~~~~~~~~~~~~~~~~~
 function multiplyVal(collection) {
     let sum = 0;
-    collection.each(function() {
+    collection.each(function () {
         sum += $(this).val() === "" ? 0 : parseFloat($(this).val());
     });
 
@@ -1196,15 +1272,15 @@ function multiplyVal(collection) {
  */
 function areElementsEmpty(selector) {
     return (
-        $(selector).filter(function() {
+        $(selector).filter(function () {
             return $(this).val() !== "";
         }).length === 0
     );
 }
 
 function initSwiper() {
-    setTimeout(function() {
-        $("[swiper-wrapper]").each(function() {
+    setTimeout(function () {
+        $("[swiper-wrapper]").each(function () {
             let key =
                 '[swiper-wrapper="' + $(this).attr("swiper-wrapper") + '"]';
             let autoHeight = $(this).attr("swiper-autoHeight");
@@ -1222,10 +1298,11 @@ function initSwiper() {
                     prevEl: key + " .swiper-button-prev"
                 },
                 pagination: {
-                    el: key + " .swiper-pagination"
-                }
+                    el: key + " .swiper-pagination",
+                    clickable: true
+                },
+                shortSwipes: true
             };
-
             if ($(this).attr("header-slider")) {
                 let headerSliderTimeout = 0;
                 options.on = {
@@ -1243,14 +1320,30 @@ function initSwiper() {
                     }
                 };
             }
+            if ($(this).attr("swiper-wrapper") === "mission_possible") {
+                options.autoplay = true;
+            }
 
             let swiper = new Swiper(key + " .swiper-container", options);
+            if ($(this).attr("swiper-wrapper") === "events-slider") {
+                swiper.on("slideChange", () => {
+                    if (swiper.activeIndex !== 0) {
+                        this.querySelector(".swiper").classList.remove(
+                            "next-only"
+                        );
+                    } else {
+                        this.querySelector(".swiper").classList.add(
+                            "next-only"
+                        );
+                    }
+                });
+            }
         });
     }, 200);
 }
 
 function initTriggers() {
-    $("[run-trigger]").each(function() {
+    $("[run-trigger]").each(function () {
         $(this)
             .trigger($(this).attr("run-trigger"))
             .removeAttr("run-trigger");
@@ -1258,7 +1351,7 @@ function initTriggers() {
 }
 
 function initMenuSwiper() {
-    $("[swiper-wrapper-menu]").each(function() {
+    $("[swiper-wrapper-menu]").each(function () {
         let key =
             '[swiper-wrapper-menu="' +
             $(this).attr("swiper-wrapper-menu") +

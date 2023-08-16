@@ -13,7 +13,7 @@ use App\Http\Requests\PageCreateEditRequest;
 use App\Http\Requests\Admin\WidgetAddRequest;
 use App\Models\PostItem;
 use Illuminate\Support\Facades\Validator;
-Use \Carbon\Carbon;
+use \Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
 class PageController extends Controller
@@ -34,7 +34,7 @@ class PageController extends Controller
             $pages = $pages->whereHas('pageInstances', function (Builder $query) use ($templateFilter) {
                 $query->where('template', $templateFilter);
             });
-        } 
+        }
 
         if (!empty($nameFilter)) {
             $pages = $pages->whereHas('pageInstances', function (Builder $query) use ($nameFilter) {
@@ -88,7 +88,7 @@ class PageController extends Controller
         $pageInstance->save();
 
         if ((int)$pageInstance->template === Template::EVENT_PAGE) {
-            $event = Event::updateOrCreate(['page_id'=> $page->id], $data);
+            $event = Event::updateOrCreate(['page_id' => $page->id], $data);
         }
         session()->flash('status', 'Page created!');
 
@@ -115,7 +115,7 @@ class PageController extends Controller
     public function preview($id)
     {
         $pageInstance = PageInstance::where('id', $id)->firstOrFail();
-        
+
         $html = $pageInstance->renderTemplate()->render();
         $html = \App\Models\Widget::replaceMonikers($html);
 
@@ -137,7 +137,6 @@ class PageController extends Controller
         $pageInstance->save();
 
         return redirect()->route('admin.pages.index')->with('status', 'Page restored successfully!');
-
     }
 
     public function history($id)
@@ -172,7 +171,8 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    protected function replaceKeys($amount) {
+    protected function replaceKeys($amount)
+    {
 
         $amountNew = [];
 
@@ -216,7 +216,7 @@ class PageController extends Controller
         $page->removeOldHistory();
 
         if ((int)$pageInstance->template === Template::EVENT_PAGE) {
-            $event = Event::updateOrCreate(['page_id'=> $page->id], $data);
+            $event = Event::updateOrCreate(['page_id' => $page->id], $data);
         }
 
         session()->flash('status', 'Page updated!');
@@ -270,5 +270,20 @@ class PageController extends Controller
             'html' => $template,
             'status' => 'success',
         ]);
+    }
+
+    public function duplicate(Page $page)
+    {
+        $createdAt = Carbon::now();
+        $newPage = $page->replicate()->fill(['created_at' => $createdAt, 'updated_at' => $createdAt]);
+        $newPage->push();
+        $pageInstance = $page->getActualPageInstanceAttribute();
+        $newPageInstance = $pageInstance->replicate()->fill(['page_id' => $newPage->id, 'slug' => $pageInstance->slug . '-2', 'created_at' => $createdAt, 'updated_at' => $createdAt]);
+        $newPageInstance->push();
+        foreach ($pageInstance->campaigns as $campaign) {
+            $newPageInstance->campaigns()->attach($campaign);
+        }
+
+        return redirect()->route('admin.pages.index')->with('status', 'Page duplicated successfully');
     }
 }

@@ -1,55 +1,64 @@
 @php
 
-    $mainTitle = '';
-    $minsText = '';
-    $mainText = '';
-    $watchLink = '';
-    $video = '';
+$mainTitle = '';
+$minsText = '';
+$mainText = '';
+$watchLink = '';
+$video = '';
+$videoPreview = '';
 
-    if (isset($parameters['main_title'])) {
-        $mainTitle = $parameters['main_title'];
-    }
+if (isset($parameters['main_title'])) {
+    $mainTitle = $parameters['main_title'];
+}
 
-    if (isset($parameters['mins_text'])) {
-        $minsText = $parameters['mins_text'];
-    }
+if (isset($parameters['mins_text'])) {
+    $minsText = $parameters['mins_text'];
+}
 
-    if (isset($parameters['main_text'])) {
-        $mainText = $parameters['main_text'];
-    }
+if (isset($parameters['main_text'])) {
+    $mainText = $parameters['main_text'];
+}
 
-    if (isset($parameters['watch_link'])) {
-        $watchLink = $parameters['watch_link'];
-    }
+if (isset($parameters['watch_link'])) {
+    $watchLink = $parameters['watch_link'];
+}
 
-    if (isset($parameters['main_video'])) {
-        $video = $parameters['main_video'];
-    }
+if (isset($parameters['main_video'])) {
+    $video = $parameters['main_video'];
+}
 
-    use \App\Helpers\ArticlesHelper;
-    $newsroomPath = \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '';
+if (isset($parameters['main_video_preview'])) {
+    $videoPreview = $parameters['main_video_preview'];
+}
 
+use App\Helpers\ArticlesHelper;
+$newsroomPath = \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '';
+
+$currentTab = 1;
+
+if (request()->get(ArticlesHelper::TRENDING_PAGINATOR) !== null) {
     $currentTab = 1;
-
-    if (request()->get(ArticlesHelper::TRENDING_PAGINATOR) !== null) {
-        $currentTab = 1;
-    }
-    if (request()->get(ArticlesHelper::NEWS_PAGINATOR)!== null) {
-        $currentTab = 2;
-    }
-    if (request()->get(ArticlesHelper::PRESS_PAGINATOR)!== null) {
-        $currentTab = 3;
-    }
+}
+if (request()->get(ArticlesHelper::NEWS_PAGINATOR) !== null) {
+    $currentTab = 2;
+}
+if (request()->get(ArticlesHelper::PRESS_PAGINATOR) !== null) {
+    $currentTab = 3;
+}
 
 @endphp
 
 <section class="newsroom-tabs">
     <nav class="general-content-tabs">
         <div class="nav nav-tabs nav-fill" role="tablist">
-            <a class="nav-link @if($currentTab === 1) active @endif" data-active="newsroom_tab_trending" href="#">TRENDING</a>
-            <a class="nav-link @if($currentTab === 2) active @endif" data-active="newsroom_tab_news" href="#">NEWS</a>
-            <a class="nav-link @if($currentTab === 3) active @endif" data-active="newsroom_tab_press" href="#">PRESS</a>
-            <a class="nav-link @if($currentTab === 4) active @endif" data-active="newsroom_tab_cinema" href="#">IH
+            <a class="nav-link @if ($currentTab===1) active @endif"
+                data-active="newsroom_tab_trending" href="#">TRENDING</a>
+            <a class="nav-link @if ($currentTab===2) active @endif"
+                data-active="newsroom_tab_news" href="#">NEWS</a>
+            <a class="nav-link @if ($currentTab===3) active @endif"
+                data-active="newsroom_tab_press" href="#">PRESS</a>
+            <a class="nav-link @if ($currentTab===4) active @endif"
+                data-active="newsroom_tab_cinema" href="#">IH
                 CINEMA</a>
         </div>
     </nav>
@@ -65,20 +74,25 @@
                 <div class="date"><span class="text-danger">{{ $minsText }}</span></div>
                 <p>{{ $mainText }}</p>
                 <div>
-                    <a href="{{ $watchLink }}" class="btn btn-red">Watch now</a>
+                    <a href="{{ $watchLink }}" class="btn btn-red btn-watch-now">Watch now</a>
                 </div>
             </div>
-            <div class="col-1"></div>
-            <div class="col-6">
+            <div class="col-7">
                 <div class="img-video videoWrapper" style="background: #aaa">
                     @empty($video)
                         <i class="fas fa-play-circle"></i>
                     @endempty
-                        <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $video }}"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                        </iframe>
+                    <div class="video-poster">
+                        <button class="video-poster__play video-poster__play--big"
+                            data-url="https://www.youtube.com/embed/{{ $video }}"><i
+                                class="ico-play"></i></button>
+                        <img class="video-poster__img" src="@if(!$videoPreview) https://img.youtube.com/vi/{{ $video }}/0.jpg @else {{ $videoPreview }} @endif">
+                    </div>
+                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $video }}"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -88,16 +102,16 @@
 <div class="newsroom_tab_trending newsroom-tab-white newsroom-tab-by-sort">
     @php
         $page = (int) request()->get('trending_articles');
-
+        
         $articles = ArticlesHelper::getNewsroomTrendingArticles($page);
         $articles->withPath(url($newsroomPath));
-
+        
     @endphp
 
     @include('modules.presentation.newsroom_articles', [
-        'articles' => $articles,
-        'titleSpan' => 'Trending',
-        'titleI' => 'Trending articles'
+    'articles' => $articles,
+    'titleSpan' => 'Trending',
+    'titleI' => 'Trending articles'
     ])
 
 </div>
@@ -106,10 +120,10 @@
 
     @php
         $page = (int) request()->get('news_articles');
-
+        
         $articles = ArticlesHelper::getNewsroomNewsArticles($page);
         $articles->withPath(url($newsroomPath));
-
+        
     @endphp
 
     <section class="pt-3">
@@ -117,14 +131,16 @@
             <span id="newsroom_title_span">News</span>
             <i id="newsroom_title_i">IH News</i>
             <div>
-                <button class="btn btn-light-gray btn-newsroom text-decoration-none letter-spacing-1 btn-active" data-sort="date">SORT BY DATE</button>
-                <button class="btn btn-primary-dark btn-newsroom text-decoration-none letter-spacing-1" data-sort="topic">FILTER BY TOPIC</button>
+                <button class="btn btn-primary-dark btn-newsroom text-decoration-none letter-spacing-1 btn-active"
+                    data-sort="date">SORT BY DATE</button>
+                <button class="btn btn-light-gray btn-newsroom text-decoration-none letter-spacing-1"
+                    data-sort="topic">FILTER BY TOPIC</button>
             </div>
         </div>
     </section>
 
     @include('modules.presentation.newsroom_articles', [
-        'articles' => $articles,
+    'articles' => $articles,
     ])
 </div>
 
@@ -132,25 +148,27 @@
 
     @php
         $page = (int) request()->get('press_articles');
-
+        
         $articles = ArticlesHelper::getNewsroomPressArticles($page);
         $articles->withPath(url($newsroomPath));
-
+        
     @endphp
 
     <section class="pt-3">
         <div class="newsroom-list-title mt-4">
             <span id="newsroom_title_span">Press</span>
-            <i id="newsroom_title_i">IH News</i>
+            <i id="newsroom_title_i">IH Press</i>
             <div>
-                <button class="btn btn-light-gray btn-newsroom text-decoration-none letter-spacing-1 btn-active" data-sort="date">SORT BY DATE</button>
-                <button class="btn btn-primary-dark btn-newsroom text-decoration-none letter-spacing-1" data-sort="topic">FILTER BY TOPIC</button>
+                <button class="btn btn-light-gray btn-newsroom text-decoration-none letter-spacing-1 btn-active"
+                    data-sort="date">SORT BY DATE</button>
+                <button class="btn btn-primary-dark btn-newsroom text-decoration-none letter-spacing-1"
+                    data-sort="topic">FILTER BY TOPIC</button>
             </div>
         </div>
     </section>
 
     @include('modules.presentation.newsroom_articles', [
-        'articles' => $articles,
+    'articles' => $articles,
     ])
 </div>
 
@@ -159,7 +177,7 @@
 <div class="newsroom_tab_trending
 newsroom_tab_news
 newsroom_tab_press
-newsroom_tab_cinema">
+newsroom_tab_cinema newsroom-popular-topics">
     @include('modules.presentation.popular_topics')
 </div>
 
@@ -168,5 +186,3 @@ newsroom_tab_cinema">
 </div>
 
 @include('modules.presentation.join_the_cause_subscribe')
-
-

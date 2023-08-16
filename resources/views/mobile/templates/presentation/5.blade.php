@@ -1,28 +1,28 @@
 @php
 
-    $mainTitle = "";
+$mainTitle = '';
 
-    if (isset($parameters['main_title'])) {
-        $mainTitle = $parameters['main_title'];
-    }
+if (isset($parameters['main_title'])) {
+    $mainTitle = $parameters['main_title'];
+}
 
-    $afterTitleText = "";
+$afterTitleText = '';
 
-    if (isset($parameters['after_text'])) {
-        $afterTitleText = $parameters['after_text'];
-    }
+if (isset($parameters['after_text'])) {
+    $afterTitleText = $parameters['after_text'];
+}
 
-    $donateToProjTitle = "";
+$donateToProjTitle = '';
 
-    if (isset($parameters['donate_to_title'])) {
-        $donateToProjTitle = $parameters['donate_to_title'];
-    }
+if (isset($parameters['donate_to_title'])) {
+    $donateToProjTitle = $parameters['donate_to_title'];
+}
 
-    $donateToProjText = "";
+$donateToProjText = '';
 
-    if (isset($parameters['donate_to_text'])) {
-        $donateToProjText = $parameters['donate_to_text'];
-    }
+if (isset($parameters['donate_to_text'])) {
+    $donateToProjText = $parameters['donate_to_text'];
+}
 
 @endphp
 
@@ -31,8 +31,8 @@
         <div class="body">
 
             @include('modules.presentation.donate_module', [
-                'parameters' => $parameters,
-                'useAppeal' => true
+            'parameters' => $parameters,
+            'useAppeal' => true
             ])
 
         </div>
@@ -51,11 +51,11 @@
         $sProjects = \App\Models\Project::getSingleProjects();
     @endphp
 
-    <div class="row filter_projects_single" filter-projects>
+    <div class="row filter_projects_single filter-projects" filter-projects>
         @include('modules.presentation.projects_tiles', ['projects' => $sProjects])
     </div>
     <div class="fake-popup-wrapper">
-        <div class="fake-popup" tiles-popup></div>
+        <div class="fake-popup"></div>
     </div>
 
     {{-- Monthly donate projects --}}
@@ -63,7 +63,7 @@
         $mProjects = \App\Models\Project::getMonthlyProjects();
     @endphp
 
-    <div class="row  filter_projects_monthly" filter-projects>
+    <div class="row  filter_projects_monthly filter-projects" filter-projects>
         @include('modules.presentation.projects_tiles', ['projects' => $mProjects])
     </div>
 
@@ -72,7 +72,7 @@
         $aProjects = \App\Models\Project::getAppealProjects();
     @endphp
 
-    <div class="row filter_projects_appeal" filter-projects>
+    <div class="row filter_projects_appeal filter-projects" filter-projects>
         @include('modules.presentation.projects_tiles', ['projects' => $aProjects])
     </div>
 
@@ -81,53 +81,79 @@
 @include('modules.presentation.donation_page_cart')
 
 <section class="other-way-give-mobile">
+    <h3 class="title">
+        Other ways to give
+    </h3>
     <div class="wrap">
-        <a href="tel:01214465682" class="phone"><i class="fal fa-phone-alt"></i> HOTLINE &nbsp;&nbsp;&nbsp;0121 446 5682 </a>
+        <a href="tel:01214465682" class="phone"><i class="fal fa-phone-alt"></i> HOTLINE &nbsp;&nbsp;&nbsp;<b>0121 446
+                5682</b> </a>
     </div>
 
 
     <div class="accordion" id="accordionExample">
         <div class="card">
             <div class="card-header" id="headingOne">
-                <span class="collapsed"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                <span class="collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+                    aria-controls="collapseOne">
                     BANK TRANSFER
                     <i class="far fa-chevron-down"></i>
                 </span>
             </div>
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                    <p>You can put money directly into our bank account</p>
+                    <br>
+                    <p>Name: Islamic Help</p>
+                    <p>Bank: HSBC</p>
+                    <p>Account No:41687425</p>
+                    <p>Sort Code: 40-42-12</p>
+                    <br>
+
+
+                    <p>If you are in a country other than the UK, you can go into any bank in the world and quote the
+                    </p>
+                    <p>following International Bank Account</p>
+                    <br>
+                    <p>Number (IBAN) and Branch Identifier Code (BIC)</p>
+                    <br>
+                    <p>IBAN: GB12HBUK40421241687425</p>
+                    <p>BIC: HBUKGB4155G</p>
                 </div>
             </div>
         </div>
-        <div class="card">
-            <div class="card-header" id="headingTwo">
-                <span class="collapsed"  data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    BY MOBILE
-                    <i class="far fa-chevron-down"></i>
-                </span>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                </div>
-            </div>
-        </div>
+{{--        <div class="card">--}}
+{{--            <div class="card-header" id="headingTwo">--}}
+{{--                <span class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"--}}
+{{--                    aria-controls="collapseTwo">--}}
+{{--                    BY MOBILE--}}
+{{--                    <i class="far fa-chevron-down"></i>--}}
+{{--                </span>--}}
+{{--            </div>--}}
+{{--            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">--}}
+{{--                <div class="card-body">--}}
+{{--                    <p>Donate simply using our mobile number 07960715263 and your mobile banking app.</p>--}}
+{{--                    <p>This is a safe and secure way to pay, where you don’t need to share your banking details with--}}
+{{--                        anyone. To find out more about how to use Paym .please&nbsp;<strong><a--}}
+{{--                                href="http://www.paym.co.uk/how-does-it-work/">click here</a></strong></p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <div class="card">
             <div class="card-header" id="headingThree">
-                <span class="collapsed"  data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <span class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                    aria-controls="collapseThree">
                     PAYPAL
                     <i class="far fa-chevron-down"></i>
                 </span>
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <p>Pay online with PayPal and skip putting in any financial information.</p>
                 </div>
             </div>
         </div>
     </div>
-
+    @include('parts.footer')
 </section>
 
 
@@ -136,4 +162,3 @@
     <div class="price">£250</div>
     <span>This Monthly Donation has been added to your cart!</span>
 </div>
-

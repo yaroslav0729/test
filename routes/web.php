@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CampaignCategoryController;
 use App\Http\Controllers\Admin\CampaignsController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -36,7 +37,9 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
+
 Route::get('/', [PageController::class, 'index'])->name('index');
+Route::get('/check-donation-cron', [PageController::class, 'CheckDonationPingCron']);
 Route::get('/sitemap.xml', [SitemapController::class, 'sitemap']);
 Route::get('search', [SearchController::class, 'index'])->name('search.index');
 
@@ -45,15 +48,25 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         Route::get('/', [AdminUserController::class, 'index'])->name('admin.index');
 
         Route::resource('pages', AdminPageController::class, ['as' => 'admin']);
+        Route::post('pages/duplicate/{page}', [AdminPageController::class, 'duplicate'])->name('admin.pages.duplicate');
         Route::resource('category', CategoryController::class, ['as' => 'admin']);
         Route::resource('subscription', SubscriptionController::class, ['as' => 'admin']);
         Route::resource('campaigns', CampaignsController::class, ['as' => 'admin']);
+        Route::post('campaigns/duplicate/{campaign}', [CampaignsController::class, 'duplicate'])->name('admin.campaigns.duplicate');
         Route::resource('campaign_categories', CampaignCategoryController::class, ['as' => 'admin']);
 
         Route::get('donations/export', [DonationController::class, 'exportCsv'])->name('donations.export');
+        Route::get('donations/export-pdf/{donation}', [DonationController::class, 'exportDonationPdf'])->name('admin.donations.export_pdf');
         Route::resource('donations', DonationController::class, ['as' => 'admin'])->only([
-            'index', 'show',
+            'index', 'show', 'update'
         ]);
+
+        Route::post('donations/resend/{donation}', [DonationController::class, 'resend'])->name('admin.donations.resend-mail');
+
+
+        Route::post('donations/status/{donation}', [DonationController::class, 'saveStatus'])->name('admin.donations.save_status');
+        Route::post('donations/cancel-subscription/{subscriptionId}', [DonationController::class, 'cancelSubscription'])->name('admin.donation.cancel-subscription');
+        Route::get('scheduled-qurbani', [DonationController::class, 'scheduledSacrifice'])->name('admin.donations.scheduled-sacrifice');
 
         Route::resource('redirects', RedirectController::class, ['as' => 'admin']);
 
@@ -110,6 +123,32 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
 
         Route::post('media/upload_mce', [MediaController::class, 'upload']);
 
+        Route::get('/banners', [BannerController::class, 'createOrEdit'])->name('admin.banner.create_or_edit');
+        Route::post('/banners/create', [BannerController::class, 'store'])->name('admin.banner.store');
+        Route::put('/banners/edit/{id}', [BannerController::class, 'update'])->name('admin.banner.update');
+
+        Route::resource('foodpack', \App\Http\Controllers\Admin\FoodPackController::class, ['as' => 'admin'])->except([
+            'show'
+        ]);
+
+        Route::resource('foodpack-qurbanies', \App\Http\Controllers\Admin\FoodPackQurbaniController::class, ['as' => 'admin'])->except([
+            'show'
+        ]);
+
+        Route::resource('black-list', \App\Http\Controllers\Admin\BlackListController::class, ['as' => 'admin'])->except([
+            'show', 'edit', 'update'
+        ]);
+
+        Route::post('foodpack/settings', [\App\Http\Controllers\Admin\FoodPackController::class, 'updateSettings'])->name('admin.foodpack.settings');
+
+        Route::resource('foodpack-pages', \App\Http\Controllers\Admin\FoodPackPagesController::class, ['as' => 'admin'])->except([
+            'show', 'edit', 'update'
+        ]);
+
+        Route::resource('foodpack-qurbanies-pages', \App\Http\Controllers\Admin\FoodPacksQurbaniesPagesController::class, ['as' => 'admin'])->except([
+            'show', 'edit', 'update'
+        ]);
+
         // MediaManager
         ctf0\MediaManager\MediaRoutes::routes();
     });
@@ -122,6 +161,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::prefix('user')->group(function () {
         Route::get('/donations', [UserController::class, 'donations'])->name('user.donations');
+        Route::get('/ramadan/unsubscribe', [\App\Http\Controllers\RamadanController::class, 'unsubscribe'])->name('user.ramadan.unsubscribe');
+        Route::post('/cancel-subscription/{subscriptionId}', [UserController::class, 'cancelSubscription'])->name('user.cancel-subscription');
     });
 });
 
@@ -132,12 +173,21 @@ Route::prefix('cart')->group(function () {
     Route::get('/payment', [CartController::class, 'paymentForm'])->name('cart.payment');
     Route::post('/payment', [CartController::class, 'order'])->name('cart.order');
     Route::post('/refresh_quantity', [CartController::class, 'refreshQuantity'])->name('cart.quantity');
-
+    Route::post('/check-account', [CartController::class, 'checkAccount'])->name('cart.check_account');
+    Route::post('/get-cities', [CartController::class, 'getallcities'])->name('get-cities');
+    Route::post('/upsell', [CartController::class, 'upsell'])->name('cart.upsell');
 });
 
 Route::prefix('paypal')->group(function () {
     Route::get('/payment_success', [PaymentController::class, 'paypalPaymentSuccess'])->name('paypal.payment.success');
     Route::get('/payment_cancel', [PaymentController::class, 'paypalPaymentCancel'])->name('paypal.payment.cancel');
+});
+
+Route::prefix('stripe')->group(function () {
+    Route::post('/payment_success', [PaymentController::class, 'stripePaymentSuccess'])->name('stripe.payment.success');
+    Route::get('/payment_cancel', [PaymentController::class, 'stripePaymentCancel'])->name('stripe.payment.cancel');
+    Route::get('/ramadan', [App\Http\Controllers\RamadanController::class, 'process'])->name('stripe.ramadan.process');
+    Route::get('/portal', [App\Http\Controllers\RamadanController::class, 'portal'])->name('stripe.portal')->middleware('auth:sanctum');
 });
 
 Route::prefix('globalpay')->group(function () {
@@ -150,5 +200,21 @@ Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('s
 Route::get('auth/facebook', [SocialController::class, 'facebookRedirect'])->name('auth_facebook');
 Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
 
-//Route::get('/test', [Controller::class, 'test']);
+Route::prefix('foodpack')->group(function () {
+    Route::get('price', [\App\Http\Controllers\FoodPackController::class, 'index']);
+    Route::any('show', [\App\Http\Controllers\FoodPackPagesController::class, 'show']);
+    Route::prefix('qurbani')->group(function () {
+        Route::get('price', [\App\Http\Controllers\FoodPackQurbaniController::class, 'index']);
+        Route::any('show', [\App\Http\Controllers\FoodPackQurbaniPagesController::class, 'show']);
+    });
+});
+
+Route::resource('nights-of-mercy', \App\Http\Controllers\RamadanController::class)
+    ->except('show', 'edit', 'update', 'destroy', 'create');
+Route::name('schedule-qurbani.')->group(function () {
+    Route::get('/schedule-Qurbani', [\App\Http\Controllers\ScheduledSacrificeController::class, 'index'])->name('index');
+    Route::post('/schedule-Qurbani', [\App\Http\Controllers\ScheduledSacrificeController::class, 'schedule'])->name('schedule');
+});
+
+Route::get('/test', [Controller::class, 'test']);
 Route::get('/{slug}', [PageController::class, 'showFromSlug'])->where('slug', '.*');

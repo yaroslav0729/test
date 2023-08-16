@@ -1,7 +1,7 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 /* @import '@fortawesome/fontawesome-free/css/all.css'; */
-@import 'bootstrap/dist/css/bootstrap.min.css';
-@import '../libs/fontawesome-pro-5.14.0/css/all.css';
-
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "../libs/fontawesome-pro-5.14.0/css/all.css";
+@import "bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css";

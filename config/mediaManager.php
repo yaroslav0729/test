@@ -119,4 +119,10 @@ return [
      * loaded chunk amount "pagination"
      */
     'pagination_amount' => 50,
+
+    /*
+     * disallow uploading files with the following extensions
+     * https://en.wikipedia.org/wiki/List_of_filename_extensions
+     */
+    'unallowed_ext' => ['php', 'jav', 'py'],
 ];

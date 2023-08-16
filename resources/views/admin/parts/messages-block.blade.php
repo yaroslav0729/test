@@ -21,3 +21,14 @@
         </div>
     </div>
 @endif
+
+@if (session('stripe-subscription-error'))
+    <div class="alert alert-danger" role="alert">
+        <div class="flex">
+            <div>
+                <p class="font-weight-bold">Failed</p>
+                <p class="text-sm">{{ session('stripe-subscription-error') }}</p>
+            </div>
+        </div>
+    </div>
+@endif

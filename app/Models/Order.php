@@ -11,6 +11,11 @@ class Order extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'gift_aid' => 'boolean',
+        'is_subscription_active' => 'boolean',
+    ];
+
     public function donations()
     {
         return $this->hasMany('App\Models\Donation');
@@ -25,9 +30,9 @@ class Order extends Model
                 $sum = $sum + $donation->value;
             }
         }
-        
+
         return $sum;
     }
 
-    
+
 }

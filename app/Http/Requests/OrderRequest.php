@@ -23,7 +23,7 @@ class OrderRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'post_code' => 'required',
             'first_name' => 'required|max:100',
             'last_name' => 'required|max:100',
@@ -32,7 +32,33 @@ class OrderRequest extends FormRequest
             'address_2' => 'nullable|max:200',
             'city' => 'required|max:100',
             'phone' => 'nullable|max:100',
-            'notes' => 'nullable|max:90',
+            'notes' => 'nullable|max:25',
         ];
+
+        foreach ($this->all() as $key => $value) {
+            if (strpos($key, 'notes_') === 0) { // changed this line
+                $rules[$key] = 'required|max:25'; // add other rules as necessary
+            }
+        }
+
+        if (!config('app.debug'))
+        {
+            $rules['g-recaptcha-response'] = 'required|captcha';
+        }
+
+        return $rules;
+    }
+
+    public function messages()
+    {
+        $messages = [];
+
+        foreach ($this->all() as $key => $value) {
+            if (strpos($key, 'notes_') === 0) {
+                $messages[$key . '.required'] = 'This field is required.';
+            }
+        }
+
+        return $messages;
     }
 }

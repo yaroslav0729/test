@@ -12,10 +12,7 @@
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
                 <!-- Profile Photo File Input -->
-                <input type="file" class="hidden"
-                            wire:model="photo"
-                            x-ref="photo"
-                            x-on:change="
+                <input type="file" class="hidden" wire:model="photo" x-ref="photo" x-on:change="
                                     photoName = $refs.photo.files[0].name;
                                     const reader = new FileReader();
                                     reader.onload = (e) => {
@@ -28,13 +25,14 @@
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}"
+                        class="rounded-full h-20 w-20 object-cover">
                 </div>
 
                 <!-- New Profile Photo Preview -->
                 <div class="mt-2" x-show="photoPreview">
                     <span class="block rounded-full w-20 h-20"
-                          x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
+                        x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
                     </span>
                 </div>
 
@@ -55,14 +53,16 @@
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="name" value="{{ __('Name') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
+            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name"
+                autocomplete="name" />
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
         <!-- Last Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="last_name" value="{{ __('Last name') }}" />
-            <x-jet-input id="last_name" type="text" class="mt-1 block w-full" wire:model.defer="state.last_name" autocomplete="last_name" />
+            <x-jet-input id="last_name" type="text" class="mt-1 block w-full" wire:model.defer="state.last_name"
+                autocomplete="last_name" />
             <x-jet-input-error for="last_name" class="mt-2" />
         </div>
 
@@ -81,15 +81,17 @@
         </div>
 
         @php
-            $title = $this->user->title;    
+            $title = $this->user->title;
         @endphp
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="title" value="{{ __('Title') }}" />
             <select name="title" class="form-control" wire:model.defer="state.title">
-                <option value="Mr" @if($title === 'Mr') selected @endif>Mr</option>
-                <option value="Mrs" @if($title === 'Mrs') selected @endif>Mrs</option>
-                <option value="Miss" @if($title === 'Miss') selected @endif>Miss</option>
-                <option value="Dr" @if($title === 'Dr') selected @endif>Dr</option>
+                <option value="Mr" @if ($title === 'Mr') selected @endif>
+                    Mr</option>
+                <option value="Mrs" @if ($title === 'Mrs') selected @endif>Mrs</option>
+                <option value="Miss" @if ($title === 'Miss') selected @endif>Miss</option>
+                <option value="Dr" @if ($title === 'Dr') selected @endif>
+                    Dr</option>
             </select>
             <x-jet-input-error for="title" class="mt-2" />
         </div>

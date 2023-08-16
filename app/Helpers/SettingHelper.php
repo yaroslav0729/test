@@ -15,6 +15,7 @@ class SettingHelper
     const COMPANY_NUMBER = 103;
     const WRAPPER_FOR_VIDEO_ON_MAIN_MENU = 104;
     const VIDEO_ON_MAIN_MENU_TEXT = 105;
+    const ENABLE_STRIPE = 106;
 
 
     /**
@@ -29,6 +30,7 @@ class SettingHelper
             self::ZAKAT_FIT_CAMPAIGN_CATEGORY => 'Which Campaign category fit Zakat',
             self::REGISTERED_CHARITY_NUMBER => 'Register Charity Number',
             self::COMPANY_NUMBER => 'Company Number',
+            self::ENABLE_STRIPE => 'Enable Stripe',
         ];
     }
 
@@ -44,6 +46,7 @@ class SettingHelper
             self::ZAKAT_FIT_CAMPAIGN_CATEGORY => 'whichCategoryFitZakat',
             self::REGISTERED_CHARITY_NUMBER => 'registerNumber',
             self::COMPANY_NUMBER => 'companyNumber',
+            self::ENABLE_STRIPE => 'enableStripe',
         ];
     }
 
@@ -122,6 +125,18 @@ class SettingHelper
                 $setting->type = $type;
                 $setting->save();
             }
+        }
+
+        if (isset($data[self::namesArray()[self::ENABLE_STRIPE]])){
+            $setting = SettingRecord::firstOrCreate(['type' => self::ENABLE_STRIPE]);
+            $setting->value = 1;
+            $setting->type = self::ENABLE_STRIPE;
+            $setting->save();
+        } else {
+            $setting = SettingRecord::firstOrCreate(['type' => self::ENABLE_STRIPE]);
+            $setting->value = 0;
+            $setting->type = self::ENABLE_STRIPE;
+            $setting->save();
         }
     }
 }

@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
-        <link rel="stylesheet" href="{{ asset('css/app_admin.css') }}">
-        <script src="{{ mix('js/app.js') }}"></script>
-        {{-- <script src="{{ asset('js/admin.js') }}""></script> --}}
-        <link rel="stylesheet" href="{{ mix('css/admin_styles.css') }}">
-        @yield('head')
-    </head>
-    <body class="font-sans antialiased">
-        <div class="wrapper h-100" style="padding-top:0">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-            <div class="flex flex-row" id="app">
-                @include('admin.parts.left-menu')
-                <div class="flex-grow-1 pl-4">
-                    @include('admin.parts.messages-block')
-                          @yield('content')
-                </div>
+    {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/app_admin.css') }}">
+    <script src="{{ mix('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/admin.js') }}""></script> --}}
+    <link rel="stylesheet" href="{{ mix('css/admin.css') }}">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    @yield('head')
+</head>
+
+<body class="font-sans antialiased">
+    <div class="wrapper" style="padding-top:0">
+
+        <div class="content" id="app">
+            @include('admin.parts.left-menu')
+            <div class="admin-page">
+                @include('admin.parts.messages-block')
+                @yield('content')
             </div>
         </div>
+    </div>
 
-              <!-- Modal -->
-        <div class="modal fade" id="modal-wrap" tabindex="-1" aria-labelledby="myExtraLargeModalLabel" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                      {{-- @include('admin.modals.add_widget') --}}
-            </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal-wrap" tabindex="-1" aria-labelledby="myExtraLargeModalLabel" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            {{-- @include('admin.modals.add_widget') --}}
         </div>
+    </div>
 
-        @yield('scripts')
-    </body>
+    @yield('scripts')
+</body>
+
 </html>

@@ -54,11 +54,11 @@
 @endphp
 
 <section class="whats-happened-far">
-    <p style="padding-left: 90px;" class="font-size-12 mb-4"><b>ISLAMIC HELP'S RESULTS</b></p>
+    <p style="padding-left: 90px;" class="font-size-12 colontitle"><b>ISLAMIC HELP'S RESULTS</b></p>
     <div class="black-line"></div>
     <div class="body">
         <div class="row gutter-0">
-            <div class="col-12 col-lg-6" style="z-index: 2">
+            <div class="col-12 col-lg-5" style="z-index: 2">
                 @empty($moduleTitle)
                 <div class="tl">What's happened so far.</div>
                 @else 
@@ -93,9 +93,9 @@
             </div>
 
             @empty($bgImage)
-            <div class="col-12 col-lg-6 img" style="background-image: url(img/content/project-2.jpg)"></div>
+            <div class="col-12 col-lg-7 img" style="background-image: url(img/content/project-2.jpg)"></div>
             @else
-            <div class="col-12 col-lg-6 img" style="background-image: url({{ $bgImage }})"></div>
+            <div class="col-12 col-lg-7 img" style="background-image: url({{ $bgImage }})"></div>
             @endempty
         </div>
     </div>

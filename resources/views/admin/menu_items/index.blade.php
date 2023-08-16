@@ -6,7 +6,7 @@
         @include('templates.presentation.parts.back_btn')
     </div>
 
-    <div class="bg-gray-100 flex-auto">
+    <div class="flex-auto">
         <div class="p-5 pb-8">
             <ul class="nav">
                 @foreach ($menuTypes as $slug => $name)

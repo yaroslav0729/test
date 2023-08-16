@@ -43,7 +43,7 @@
         <form action="{{ route('subscribe') }}" id="subscription_form" class="d-flex mb-4" method="POST">
             @csrf
             <input type="text" name="email" placeholder="Your email address" class="flex-grow-1">
-            <button type="submit" id="subscription_sbmt" ><i class="far fa-chevron-right"></i></button>
+            <button type="submit" id="subscription_sbmt" ><i class="moon-icons-arrow-right"></i></button>
         </form>
         @empty($disableImageBefore)
             @if ($imageBefore === "")

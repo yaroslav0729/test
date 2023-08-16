@@ -6,7 +6,7 @@ $projPageInstance = $project->actual_page_instance;
 
 <div class="form d-none tiles-popup_{{ $popupKey }} tiles-popup-mobile">
     <i class="fal fa-check close"></i>
-    <div class="name">Environmental sustainabilty</div>
+    <div class="name">{{ $projPageInstance->name }}</div>
     <form action="{{ route('cart.add') }}" method="post">
         @csrf
         <input type="hidden" name="project_id" value="{{ $popupKey }}">
@@ -18,19 +18,20 @@ $projPageInstance = $project->actual_page_instance;
         </div>
 
         <div class="form-group">
-            <select name="period" class="form-control" tiles-options-type tiles-form-options data-key={{ $popupKey }}>
+            <select name="period" class="form-control" tiles-options-type tiles-form-options
+                data-key={{ $popupKey }}>
                 <option value="single">Single donation</option>
                 <option value="monthly">Monthly donation</option>
             </select>
         </div>
 
-        <div class="form-group tiles_options_monthly_{{ $popupKey }} d-none" tiles-option-price >
+        <div class="form-group tiles_options_monthly_{{ $popupKey }} d-none" tiles-option-price>
             <select name="price_monthly" class="form-control" tiles-form-options>
                 {{-- will be filled in js --}}
             </select>
         </div>
 
-        <input type="hidden" name="amount" >
+        <input type="hidden" name="amount">
 
         <div class="form-group">
             <select name="campaigns" class="form-control" tiles-campaigns>

@@ -23,14 +23,15 @@ class MediaParser extends AbstractParser
 
     public function __construct()
     {
-
     }
 
     public function parse()
     {
         $this->info('Parsing process started');
 
-        $response = Http::get(self::PARSING_LINK);
+        $response = Http::withOptions(['allow_redirects' => [
+            'max' => 100
+        ]])->get(self::PARSING_LINK);
         $links = $this->getLinksFromXml($response->body());
 
         $allCou = count($links);
@@ -42,8 +43,13 @@ class MediaParser extends AbstractParser
             }
 
             $this->info('parsing link ' . $key . ' from ' . $allCou);
-
-            $html = Http::get($link)->body();
+            $this->info('link: ' . $link);
+            $html = null;
+            try {
+                $html = Http::get($link)->body();
+            } catch (\GuzzleHttp\Exception\TooManyRedirectsException $e) {
+                continue;
+            }
             $html = StrHelper::replaceSpecChars($html);
             $document = new HtmlDomParser($html);
 
@@ -132,7 +138,6 @@ class MediaParser extends AbstractParser
                 $pageInstance->save();
 
                 $this->info('New page created: slug ' . $pageInstance->slug);
-
             } else {
                 $pageInstance->update([
                     'title' => $title,

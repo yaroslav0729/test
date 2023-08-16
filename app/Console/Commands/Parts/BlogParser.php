@@ -7,6 +7,7 @@ use App\Models\Page;
 use App\Models\PageInstance;
 use App\Models\Template;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 /*
  *
@@ -46,15 +47,14 @@ class BlogParser extends AbstractParser
                 $instance = $page->actual_page_instance;
 
                 $instance->update([
-                    'name' => $post->post_title,
+                    'name' => $this->removeArtifacts($post->post_title),
                     'slug' => $slug,
-                    'title' => $post->post_title,
+                    'title' => $this->removeArtifacts($post->post_title),
                     'description' => '',
                     'template' => Template::BLOG_PAGE,
                 ]);
 
                 $infoString = $pageKey . ': Page updated => id: ' . $page->id . ', wp_id: ' . $page->wp_id;
-
             } else {
 
                 $page = Page::create([
@@ -63,9 +63,9 @@ class BlogParser extends AbstractParser
                 ]);
 
                 $instance = PageInstance::create([
-                    'name' => $post->post_title,
+                    'name' => $this->removeArtifacts($post->post_title),
                     'slug' => $slug,
-                    'title' => $post->post_title,
+                    'title' => $this->removeArtifacts($post->post_title),
                     'description' => '',
                     'page_id' => $page->id,
                     'template' => Template::BLOG_PAGE,
@@ -93,12 +93,20 @@ class BlogParser extends AbstractParser
 
         $content = '<p>' . $content . '</p>';
         $content = $this->replaceWPTags($content);
-        
-        $parameters['article_html'] = $content;
+
+        $parameters['article_html'] = $this->removeArtifacts($content);
 
         $parameters['min_read'] = $this->getOption($options, 'min_read');
-        $parameters['written_by'] = 'KAMRAN AHMED';
-        $parameters['hdr_video'] = $this->getOption($options, 'youtube_video_id');
+        $parameters['written_by'] = 'ISLAMIC HELP';
+        if ($this->getOption($options, '_wp_page_template') != 'template/blog2020Image.php') {
+            $parameters['hdr_video'] = $this->getOption($options, 'youtube_video_id') != 'g' ? $this->getOption($options, 'youtube_video_id') : '';
+        } else {
+            $imageId = intval($this->getOption($options, 'blog_2020_image'));
+            $image = $this->wpConnection->table('wp_posts')->where('id', $imageId)->first();
+            if ($image) {
+                $instance->preview_img = Storage::url($this->getImageByUrl($image->guid));
+            }
+        }
         $parameters['hdr_text'] = $this->getOption($options, 'short_header_details');
 
         $instance->parameters = $parameters;
@@ -115,7 +123,7 @@ class BlogParser extends AbstractParser
     protected function replaceWPTags($content)
     {
         $content = str_replace("&nbsp;\r\n", '</p><p>', $content); // close prev & open new paragraph
-        
+
         $content = str_replace('<em>', '', $content);
         $content = str_replace('</em>', '', $content);
 
@@ -124,7 +132,7 @@ class BlogParser extends AbstractParser
 
         $pattern = '/font-weight.+?;/';
         $content = preg_replace($pattern, '', $content);
-        
+
         return $content;
     }
 
@@ -137,7 +145,7 @@ class BlogParser extends AbstractParser
             ->orderBy('wp_posts.ID', 'ASC')
             ->where(function ($query) {
                 $query->where('wp_postmeta.meta_key', '_wp_page_template');
-                $query->where('wp_postmeta.meta_value', 'template/blog.php');
+                $query->where('wp_postmeta.meta_value', 'template/blog.php')->orWhere('wp_postmeta.meta_value', 'template/blog2020Image.php');
             })
             ->get();
 

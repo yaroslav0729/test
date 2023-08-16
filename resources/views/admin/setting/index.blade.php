@@ -6,7 +6,7 @@
         @include('templates.presentation.parts.back_btn')
     </div>
 
-    <div id="admin_content" class="flex-auto h-screen">
+    <div id="admin_content" class="flex-auto">
         <div class="p-5 pb-8">
 
             <h1>Global Settings:</h1>
@@ -70,6 +70,16 @@
                             <input type="text" name="{{ Setting::nameShort(Setting::COMPANY_NUMBER) }}"
                                    class="form-control" placeholder="" value="{{ old(Setting::nameShort(Setting::COMPANY_NUMBER),
                             Setting::get(Setting::COMPANY_NUMBER)) }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="checkbox"  style="width: 25px; max-width: 25px;"
+                                   name="{{ Setting::nameShort(Setting::ENABLE_STRIPE) }}"
+                                   class="form-control" placeholder=""
+                                   @if(Setting::get(Setting::ENABLE_STRIPE)) checked @endif
+                            > {{ Setting::name(Setting::ENABLE_STRIPE) }}
                         </div>
                     </div>
 

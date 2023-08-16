@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\ResendEmail;
 use App\Models\EmailLog;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 
 class EmailLogController extends Controller
 {
@@ -14,10 +15,35 @@ class EmailLogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $emailLogs = EmailLog::paginate(20);
-        return view('admin.email_logs.index', ['emailLogs' => $emailLogs]);
+        $from = null;
+        $to = null;
+        $daterange = $request->daterange;
+        $keyword = $request->keyword;
+
+        if (isset($daterange)) {
+            $dates = explode(' - ', $daterange);
+            $from = $dates[0];
+            $to = $dates[1];
+        }
+
+        $emailLogs = new EmailLog;
+
+        if (isset($from)) {
+            $emailLogs = $emailLogs->whereDate('created_at', '>=', \Carbon\Carbon::createFromFormat('d/m/Y h:i:s A', $from)->format('Y-m-d H:i:s'));
+        }
+        if (isset($to)) {
+            $emailLogs = $emailLogs->whereDate('created_at', '<=', \Carbon\Carbon::createFromFormat('d/m/Y h:i:s A', $to)->format('Y-m-d H:i:s'));
+        }
+        if (isset($keyword)) {
+            $emailLogs = $emailLogs->where('email_to', 'like', '%' . $keyword . '%')
+                ->orWhere('email_from', 'like', '%' . $keyword . '%')
+                ->orWhere('subject', 'like', '%' . $keyword . '%');
+        }
+
+        $emailLogs = $emailLogs->paginate(20)->appends($request->query());
+        return view('admin.email_logs.index', compact('emailLogs', 'keyword', 'daterange'));
     }
 
     /**

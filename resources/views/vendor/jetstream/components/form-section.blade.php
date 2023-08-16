@@ -31,7 +31,7 @@
         <x-slot name="description">{{ $description }}</x-slot>
     </x-jet-section-title>
 
-    <div class="border rounded mb-3">
+    <div class="admin-card mb-3">
         <form wire:submit.prevent="{{ $submit }}">
             <div class="p-3">
                 <div class="pb-3">

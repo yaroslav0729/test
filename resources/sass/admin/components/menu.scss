@@ -1,0 +1,52 @@
+@import '../../mixins/scrollbar.scss';
+
+#left_menu {
+    @include scrollbar();
+    padding: 20px;
+    background: #ffffff;
+    position: fixed;
+    width: $menu-width;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%),
+        0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+    overflow-y: auto;
+
+    ul {
+        margin: 0;
+        padding: 20px 0 20px 0;
+    }
+    li {
+        min-width: 200px;
+        padding: 0;
+        margin-bottom: 10px;
+        list-style: none;
+    }
+
+    li a {
+        color: #101525;
+        font-size: 16px;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        transition: all 0.15s ease-in;
+        padding: 10px 16px;
+        border-radius: 4px;
+
+        &:hover {
+          text-decoration: none;
+          background-color: #f0f0f0;
+        }
+
+        &.active {
+            background-color: $red;
+            color: #ffffff;
+        }
+    }
+
+    li i {
+        width: 35px;
+        text-align: left;
+    }
+}

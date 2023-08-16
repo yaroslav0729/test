@@ -7,14 +7,17 @@ use Illuminate\Support\Str;
 
 class GlobalPay
 {
-    const MERCHANT_ID = 'dev696435962884950335'; //
-    const SHARED_SECRET = '6hZgc73ddd'; //
+    // const MERCHANT_ID = config('globalpay.merchant_id'); //
+    // const SHARED_SECRET = 'IyquPverj6'; //
 
     public $amount;
     public $currency;
     public $dateString;
     public $orderId;
     public $data;
+
+    protected $merchantId;
+    protected $sharedSecret;
 
     public function __construct($amount, $currencyCode, $data)
     {
@@ -23,16 +26,19 @@ class GlobalPay
         $this->data = $data;
         $this->dateString = $this->getTimestamp();
         $this->orderId = $this->dateString . '-' . Str::random(10);
+        $this->merchantId = config('globalpay.merchant_id');
+        $this->sharedSecret = config('globalpay.shared_secret');
     }
 
     public function getPayLink()
     {
+        $paymentUrl = config('app.env') === 'production' ? 'https://pay.realexpayments.com/pay' : 'https://pay.sandbox.realexpayments.com/pay';
         $response = Http::withHeaders([
             'Content-type' => 'application/json',
-        ])->post('https://pay.sandbox.realexpayments.com/pay', [
+        ])->post($paymentUrl, [
             "SHA1HASH" => $this->getSha1(),
             "TIMESTAMP" => $this->dateString,
-            "MERCHANT_ID" => self::MERCHANT_ID,
+            "MERCHANT_ID" => $this->merchantId,
             "ORDER_ID" => $this->orderId,
             "AMOUNT" => $this->amount,
             "CURRENCY" => $this->currency,
@@ -64,7 +70,7 @@ class GlobalPay
             // "VAR_REF" => "Acme Corporation",
             // "PROD_ID" => "SKU1000054",
             //"STATUS_UPDATE_URL" => route('globalpay.status_update'),
-            "MERCHANT_RESPONSE_URL" => route('globalpay.result'), // 'https://webhook.site/02c2231f-139e-4cb4-862f-06c8e85f38f7'
+            "MERCHANT_RESPONSE_URL" => route('globalpay.result'), //'https://webhook.site/e198adb9-d5fd-4d9d-a9da-bc3b302724f6',
             "SUPPLEMENTARY_DATA" => "Custom Value"
         ]);
 
@@ -73,9 +79,9 @@ class GlobalPay
 
     protected function getSha1()
     {
-        $string = $this->dateString . "." .  self::MERCHANT_ID . "." . $this->orderId . "." . $this->amount . "." . $this->currency;
+        $string = $this->dateString . "." .  $this->merchantId . "." . $this->orderId . "." . intval($this->amount) . "." . $this->currency;
         $string = hash('sha1', $string);
-        $string = $string .  "." . self::SHARED_SECRET;
+        $string = $string .  "." . $this->sharedSecret;
         $string = hash('sha1', $string);
 
         return $string;
@@ -83,6 +89,6 @@ class GlobalPay
 
     protected function getTimestamp()
     {
-        return date('Ymdhs') . '00';
+        return date('YmdHis');
     }
 }

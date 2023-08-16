@@ -11,7 +11,7 @@
 @endphp
 <section class="back">
     <div class="wrap">
-        <div class="mb-5 mt-5">
+        <div class="">
             @include('templates.presentation.parts.back_btn')
         </div>
     </div>
@@ -27,7 +27,7 @@
             <div class="cite">
                 {!! $pageInstance->preview_text !!}
             </div>
-            <h2 class="mt-md-5">{!! $pageInstance->name !!}</h2>
+            <h2 class="blog-title">{!! $pageInstance->name !!}</h2>
             {!! $mainHtml !!}
         </div>
     </div>
@@ -37,17 +37,15 @@
 <div class="pt-5"></div>
 
 <section class="blog-article-body">
-    <div class="wrap">
-            <div class="pt-5"></div>
+    <div class="wrap wrap-author">
             <div class="row align-items-center">
                 <div class="col-6 col-lg-4">
                     <div class="author">
-                        <div class="img" style="background-image: url(/storage/icons/Avatar1.jpg)"></div>
-                        <span>written by <span>|</span> jamaila hamid</span>
+                        <div class="img" style="background-image: url(/img/logo.png)"></div>
+                        <span>written by <span>|</span> islamic help</span>
                     </div>
                 </div>
-                <div class="col-1"></div>
-                <div class="col-5 col-lg-7">
+                <div class="col-6 col-lg-8">
                     <div class="black-line"></div>
                 </div>
             </div>

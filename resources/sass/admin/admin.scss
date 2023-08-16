@@ -1,0 +1,46 @@
+@import "variables";
+
+@import "./components/page.scss";
+@import "./components/content.scss";
+@import "./components/menu.scss";
+@import "./components/table.scss";
+@import "./components/card.scss";
+
+h1 {
+    font-weight: bold;
+}
+#admin_content {
+    min-height: 100vh;
+}
+#admin_content .btn {
+    min-width: 0;
+}
+.action-btn {
+    width: 50px;
+    height: 50px;
+}
+.widget_buttons .btn {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+}
+.option_buttons .btn {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+}
+.action_td {
+    min-width: 220px;
+}
+.action_td a:hover {
+    text-decoration: none;
+}
+.svg_icon {
+    width: 2rem;
+    height: 2rem;
+}
+.option_buttons {
+    padding: 4px 0 0 5px;
+}

@@ -92,7 +92,7 @@ class SeoChecker extends Command
         $this->seoCheck();
         $this->report();
 
-        $this->info('Seo checker complete');  
+        $this->info('Seo checker complete');
     }
 
     protected function seoCheck()
@@ -105,6 +105,7 @@ class SeoChecker extends Command
 
             foreach ($links as $link) {
 
+                $this->info($link['local_url']);
                 $response = Http::get($link['local_url']);
 
                 $info = '';
@@ -114,7 +115,6 @@ class SeoChecker extends Command
                 } else if ($response->clientError()) {
                     $info = $linkKey . ' from ' . $this->allCou . ' -> CLIENT ERROR: slug: ' . $link['local_url'];
                     $this->getLinkErrorData($link);
-                
                 } else {
                     $info = $linkKey . ' from ' . $this->allCou . ' -> UNKNOWN ERROR: slug: ' . $link['local_url'];
                 }
@@ -162,7 +162,7 @@ class SeoChecker extends Command
         $postName = $this->getPostName($link['slug']);
         $wpId = null;
         $id = null;
-        
+
         if (!empty($postName)) {
             $post = $this->wpConnection->table('wp_posts')
                 ->where('wp_posts.post_name', $postName)
@@ -173,9 +173,9 @@ class SeoChecker extends Command
                 $wpId = $post->ID;
 
                 $localPost = Page::where('wp_id', $wpId)->first();
-                
+
                 if (!empty($localPost)) {
-                    $id = $localPost->id;    
+                    $id = $localPost->id;
                 }
             }
         }

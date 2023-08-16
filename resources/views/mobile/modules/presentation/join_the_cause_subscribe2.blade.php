@@ -87,7 +87,7 @@
         <form id="subscription_form" action="{{ route('subscribe') }}" method="POST" class="d-flex">
             @csrf
             <input type="text" name="email" placeholder="Your email address" class="flex-grow-1">
-            <button type="submit" id="subscription_sbmt"><i class="far fa-chevron-right"></i></button>
+            <button type="submit" id="subscription_sbmt"><i class="moon-icons-arrow-right"></i></button>
         </form>
     </div>
 </section>

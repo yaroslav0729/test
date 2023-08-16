@@ -31,7 +31,7 @@
 <section class="mission-impossible">
     <div class="wrap">
         @empty($previewPageTitle)
-        <div class="title">Mission possible</div>
+        <div class="title">Mission Possible</div>
         @else
         <div class="title">{{ $previewPageTitle }}</div>
         @endempty
@@ -41,7 +41,7 @@
     <div class="body">
         <div class="row gutter-0">
             <div class="col-7" style="z-index: 2">
-                <div class="text bg-danger">
+                <div class="text bg-red">
                     @empty($previewPageText1)
                     <div class="tl">Mission Possible, the mission that changes everyone's lives. </div>
                     @else

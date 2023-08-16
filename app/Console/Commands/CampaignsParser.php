@@ -73,19 +73,20 @@ class CampaignsParser extends Command
         }
 
         $campaigns = $this->wpConnection->table('wp_posts')
-                        ->where('post_type', $table)->get();
+            ->where('post_type', $table)->get();
 
         foreach ($campaigns as $campKey => $campaign) {
             $campaignOptions =  $this->wpConnection->table('wp_postmeta')
-                                ->where('post_id', $campaign->ID)
-                                ->get();
-                                
+                ->where('post_id', $campaign->ID)
+                ->get();
+
             $campaigns[$campKey]->meta_start_date = $this->getOptionByName($campaignOptions, 'cpg_start_day');
             $campaigns[$campKey]->meta_end_date = $this->getOptionByName($campaignOptions, 'cpg_end_day');
             $campaigns[$campKey]->meta_country = $this->getOptionByName($campaignOptions, 'campaign_country');
 
-            if ((!empty($campaigns[$campKey]->meta_start_date)) && 
-                (!empty($campaigns[$campKey]->meta_end_date))) {
+            if ((!empty($campaigns[$campKey]->meta_start_date)) &&
+                (!empty($campaigns[$campKey]->meta_end_date))
+            ) {
 
                 $copyCampaign = Campaign::where('wp_id', $campaign->ID)->first();
 
@@ -100,6 +101,10 @@ class CampaignsParser extends Command
                     ]);
 
                     $infoString = $campKey . ': Campaign updated => id: ' . $copyCampaign->id . ', wp_id: ' . $copyCampaign->wp_id;
+                    $this->updateCampaignPrices($copyCampaign, $campaignOptions);
+                    $this->updateCampaignCategories($copyCampaign);
+                    $this->info($infoString);
+                    Log::channel('parser')->info($infoString);
                 } else {
                     $copyCampaign = Campaign::create([
                         'name' => $campaign->post_title,
@@ -112,35 +117,33 @@ class CampaignsParser extends Command
                     ]);
 
                     $infoString = $campKey . ': New campaign created => id: ' . $copyCampaign->id . ', wp_id: ' . $copyCampaign->wp_id;
+                    $this->updateCampaignPrices($copyCampaign, $campaignOptions);
+                    $this->updateCampaignCategories($copyCampaign);
+                    $this->info($infoString);
+                    Log::channel('parser')->info($infoString);
                 }
-
-                $this->updateCampaignPrices($copyCampaign, $campaignOptions);
-                $this->updateCampaignCategories($copyCampaign);
-                
-                $this->info($infoString);
-                Log::channel('parser')->info($infoString);
             }
         }
 
         $this->info('count posts:' . count($campaigns));
     }
 
-    
+
 
     protected function updateCampaignCategories($campaign)
     {
         $wpCategories = $this->wpConnection->table('wp_term_relationships')
-                        ->where('object_id', $campaign->wp_id)
-                        ->join('wp_term_taxonomy', 'wp_term_relationships.term_taxonomy_id', '=', 'wp_term_taxonomy.term_taxonomy_id')
-                        ->join('wp_terms', 'wp_terms.term_id', '=', 'wp_term_taxonomy.term_id')
-                        ->select('wp_terms.name')
-                        ->get();
+            ->where('object_id', $campaign->wp_id)
+            ->join('wp_term_taxonomy', 'wp_term_relationships.term_taxonomy_id', '=', 'wp_term_taxonomy.term_taxonomy_id')
+            ->join('wp_terms', 'wp_terms.term_id', '=', 'wp_term_taxonomy.term_id')
+            ->select('wp_terms.name')
+            ->get();
 
         $wpNames = [];
         foreach ($wpCategories as $wpCategory) {
             $wpNames[] = $wpCategory->name;
         }
-        
+
         $categories = CampaignCategory::whereIn('name', $wpNames)->get();
 
         $campaign->campaign_categories()->detach();
@@ -148,7 +151,7 @@ class CampaignsParser extends Command
         $campaign->save();
 
         $infoString = 'Update campaign categories: [' . implode(', ', $wpNames) . ']';
-        //$this->info($infoString);
+        $this->info($infoString);
         Log::channel('parser')->info($infoString);
     }
 
@@ -159,30 +162,28 @@ class CampaignsParser extends Command
         foreach ($campaignOptions as $option) {
 
             $priceType = null;
-            if (strpos($option->meta_key, 'prices_single_')!== false) {
-                $priceType = CampaignPrice::TYPE_SINGLE;  
+            if (strpos($option->meta_key, 'prices_single_') !== false) {
+                $priceType = CampaignPrice::TYPE_SINGLE;
             }
-            if (strpos($option->meta_key, 'prices_monthly_')!== false) {
-                $priceType = CampaignPrice::TYPE_MONTHLY;  
+            if (strpos($option->meta_key, 'prices_monthly_') !== false) {
+                $priceType = CampaignPrice::TYPE_MONTHLY;
             }
 
             if ((isset($priceType)) && (intval($option->meta_value) !== 0)) {
-                
+
                 CampaignPrice::create([
                     'value' => $option->meta_value,
-                    'type' => $priceType, 
+                    'type' => $priceType,
                     'campaign_id' => $campaign->id
                 ]);
 
                 $typeStr = $priceType === CampaignPrice::TYPE_SINGLE ? 'single' : 'monthly';
                 $infoString = 'price created => value: ' . $option->meta_value . ', type: ' . $typeStr;
-                
+
                 //$this->info($infoString);
                 Log::channel('parser')->info($infoString);
             }
         }
-
-
     }
 
     protected function formatDate($date)
@@ -207,7 +208,7 @@ class CampaignsParser extends Command
         else return null;
     }
 
-    protected function getOptionByName($options, $optName) 
+    protected function getOptionByName($options, $optName)
     {
         foreach ($options as $option) {
             if ($option->meta_key === $optName) {

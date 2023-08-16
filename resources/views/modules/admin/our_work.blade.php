@@ -6,18 +6,22 @@
     $longtermTitle = "";
     $longtermText = "";
     $longtermVideo = "";
+    $longtermVideoPreview = "";
 
     $emergencyTitle = "";
     $emergencyText = "";
     $emergencyVideo = "";
+    $emergencyVideoPreview = "";
 
     $volunteeringTitle = "";
     $volunteeringText = "";
     $volunteeringVideo = "";
+    $volunteeringVideoPreview = "";
 
     $sadiqahTitle = "";
     $sadiqahText = "";
     $sadiqahVideo = "";
+    $sadiqahVideoPreview = "";
 
 
     if (isset($parameters['our_work_block_title'])) {
@@ -40,6 +44,10 @@
         $longtermVideo = $parameters['our_work_longterm_video'];
     }
 
+    if (isset($parameters['our_work_longterm_video_preview'])) {
+        $longtermVideoPreview = $parameters['our_work_longterm_video_preview'];
+    }
+
     if (isset($parameters['our_work_emergency_title'])) {
         $emergencyTitle = $parameters['our_work_emergency_title'];
     }
@@ -50,6 +58,10 @@
 
     if (isset($parameters['our_work_emergency_video'])) {
         $emergencyVideo = $parameters['our_work_emergency_video'];
+    }
+
+    if (isset($parameters['our_work_emergency_video_preview'])) {
+        $emergencyVideoPreview = $parameters['our_work_emergency_video_preview'];
     }
 
     if (isset($parameters['our_work_volunteering_title'])) {
@@ -64,6 +76,10 @@
         $volunteeringVideo = $parameters['our_work_volunteering_video'];
     }
 
+    if (isset($parameters['our_work_volunteering_video_preview'])) {
+        $volunteeringVideoPreview = $parameters['our_work_volunteering_video_preview'];
+    }
+
     if (isset($parameters['our_work_sadiqah_title'])) {
         $sadiqahTitle = $parameters['our_work_sadiqah_title'];
     }
@@ -74,6 +90,10 @@
 
     if (isset($parameters['our_work_sadiqah_video'])) {
         $sadiqahVideo = $parameters['our_work_sadiqah_video'];
+    }
+
+    if (isset($parameters['our_work_sadiqah_video_preview'])) {
+        $sadiqahVideoPreview = $parameters['our_work_sadiqah_video_preview'];
     }
 
 @endphp
@@ -111,6 +131,11 @@
         <input class="form-control" name="parameters[our_work_longterm_video]" placeholder="Longterm projects video link"
                value="{{ $longtermVideo }}"/>
     </div>
+
+    <div class="form-group">
+        <label>Longterm projects video preview:</label>
+        <input class="form-control" name="parameters[our_work_longterm_video_preview]" placeholder="" value="{{ $longtermVideoPreview }}">
+    </div>
 </div>
 
 <div class="col-12 col-lg-6 mt-lg-4">
@@ -130,6 +155,11 @@
         <label>Emergency relief video link:</label>
         <input class="form-control" name="parameters[our_work_emergency_video]" placeholder="Emergency relief video link"
                value="{{ $emergencyVideo }}"/>
+    </div>
+
+    <div class="form-group">
+        <label>Emergency relief video preview:</label>
+        <input class="form-control" name="parameters[our_work_emergency_video_preview]" placeholder="" value="{{ $emergencyVideoPreview }}">
     </div>
 </div>
 
@@ -152,6 +182,11 @@
         <input class="form-control" name="parameters[our_work_volunteering_video]" placeholder="Volunteering video link"
                value="{{ $volunteeringVideo }}"/>
     </div>
+
+    <div class="form-group">
+        <label>Volunteering video preview:</label>
+        <input class="form-control" name="parameters[our_work_volunteering_video_preview]" placeholder="" value="{{ $volunteeringVideoPreview }}">
+    </div>
 </div>
 
 <div class="col-12 col-lg-6 mt-lg-4">
@@ -171,5 +206,10 @@
         <label>Sadiqah video link:</label>
         <input class="form-control" name="parameters[our_work_sadiqah_video]" placeholder="Sadiqah video link"
                value="{{ $sadiqahVideo }}"/>
+    </div>
+
+    <div class="form-group">
+        <label>Sadiqah video preview:</label>
+        <input class="form-control" name="parameters[our_work_sadiqah_video_preview]" placeholder="" value="{{ $sadiqahVideoPreview }}">
     </div>
 </div>

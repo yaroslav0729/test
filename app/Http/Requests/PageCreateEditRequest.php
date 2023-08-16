@@ -29,7 +29,6 @@ class PageCreateEditRequest extends FormRequest
 
         if ($page instanceof Page) {
             $slug = 'required|string|max:255|page_slug:' . $page->id;
-
         } else {
             $slug = 'required|string|max:255|page_slug';
         }
@@ -38,7 +37,7 @@ class PageCreateEditRequest extends FormRequest
             'name' => 'required|max:255',
             'template' => 'required|integer|gt:0', // greater than 0
             'slug' => $slug,
-            'preview_text' => 'required|max:100',
+            'preview_text' => 'max:200',
         ];
 
         $rules = array_merge($rules, Template::getValidationRules((int)$this->input('template')));

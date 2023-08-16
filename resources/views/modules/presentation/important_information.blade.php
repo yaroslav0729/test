@@ -26,8 +26,8 @@
 @if(!empty($importantInfoTitle) && !empty($importantInfo))
     <section class="important-information @empty($bgClassImportant) bg-light @else {{ $bgClassImportant }} @endempty">
         <div class="wrap">
-            <div class="title mb-5">
-                <p class="font-size-30"><b>{{ $importantInfoTitle }}</b></p>
+            <div class="title">
+                <p class=""><b>{{ $importantInfoTitle }}</b></p>
             </div>
             <div class="text">
                 <p>{{ $importantInfo }}</p>
@@ -43,6 +43,7 @@
             @else
             <a href="javascript:void(0)" class="read-more">READ MORE</a>
             @endisset
+            <div class="red-line"></div>
         </div>
     </section>
 @endif

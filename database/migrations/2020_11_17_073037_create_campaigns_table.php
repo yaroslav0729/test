@@ -21,6 +21,8 @@ class CreateCampaignsTable extends Migration
             $table->date('end_date')->nullable();
             $table->boolean('is_emergency')->default(false);
             $table->unsignedBigInteger('country_id')->nullable();
+             $table->unsignedBigInteger('icharm_program_id')->nullable();
+            $table->unsignedBigInteger('icharm_country_id')->nullable();
             $table->timestamps();
         });
     }

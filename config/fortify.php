@@ -2,6 +2,7 @@
 
 use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
+use Laravel\Fortify\LoginRateLimiter;
 
 return [
 
@@ -88,7 +89,7 @@ return [
     */
 
     'limiters' => [
-        'login' => null,
+        'login' => 'login',
     ],
 
     /*

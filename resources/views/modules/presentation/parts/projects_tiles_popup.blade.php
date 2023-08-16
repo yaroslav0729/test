@@ -6,7 +6,7 @@ $projPageInstance = $project->actual_page_instance;
 
 <div class="form d-none tiles-popup_{{ $popupKey }}" tiles-popup>
     <i class="fal fa-check close"></i>
-    <div class="name">Environmental sustainabilty</div>
+    <div class="name">{{$projPageInstance->name}}</div>
 
     <form action="{{ route('cart.add') }}" method="post">
         @csrf
