@@ -1,0 +1,22 @@
+@mixin scrollbar() {
+    &::-webkit-scrollbar {
+        width: 4px;
+        height: 2px;
+        border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f0f0f0;
+        border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background: $red;
+        transition: background 0.25s ease-in;
+
+        &:hover {
+            background: darken($red, 5%);
+        }
+    }
+}

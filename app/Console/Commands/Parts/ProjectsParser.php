@@ -46,7 +46,6 @@ class ProjectsParser extends AbstractParser
                 ]);
 
                 $infoString = $pageKey . ': Project updated => id: ' . $copyProject->id . ', wp_id: ' . $copyProject->wp_id;
-
             } else {
 
                 $copyProject = Page::create([
@@ -84,10 +83,19 @@ class ProjectsParser extends AbstractParser
             ->where('wp_posts.post_type', 'page')
             ->where('wp_posts.post_status', 'publish')
             ->where(function ($query) {
+                // $query->where('wp_postmeta.meta_key', '_wp_page_template');
                 $query->where('wp_postmeta.meta_value', 'template/projectpage5prices.php')
-                    ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php');
+                    ->orWhere('wp_postmeta.meta_value', 'template/projectpage2020.php')
+                    ->orWhere('wp_postmeta.meta_value', 'template/qurbaniprojectpage.php');
             })
             ->get();
+
+        $postsArray = $posts->toArray();
+        $qurbani = null;
+
+        foreach ($postsArray as $post) {
+            $this->info($post->post_name);
+        }
 
         return $posts;
     }
@@ -161,7 +169,7 @@ class ProjectsParser extends AbstractParser
         $wpPostId = $this->getOption($projectOptions, 'select_post_0_add_post');
         $post = Page::where('wp_id', $wpPostId)->first();
         if (empty($post)) {
-            $infoString = 'WARNING: Related post parser - related page wp_id: ' . $wpPostId . ' not found!'; 
+            $infoString = 'WARNING: Related post parser - related page wp_id: ' . $wpPostId . ' not found!';
             $this->info($infoString);
             Log::channel('parser')->info($infoString);
         } else {
@@ -171,7 +179,7 @@ class ProjectsParser extends AbstractParser
         $wpPostId = $this->getOption($projectOptions, 'select_post_1_add_post');
         $post = Page::where('wp_id', $wpPostId)->first();
         if (empty($post)) {
-            $infoString = 'WARNING: Related post parser - related page wp_id: ' . $wpPostId . ' not found!'; 
+            $infoString = 'WARNING: Related post parser - related page wp_id: ' . $wpPostId . ' not found!';
             $this->info($infoString);
             Log::channel('parser')->info($infoString);
         } else {
@@ -181,7 +189,7 @@ class ProjectsParser extends AbstractParser
         $wpPostId = $this->getOption($projectOptions, 'select_post_2_add_post');
         $post = Page::where('wp_id', $wpPostId)->first();
         if (empty($post)) {
-            $infoString = 'WARNING: Related post parser - related page wp_id: ' . $wpPostId . ' not found!'; 
+            $infoString = 'WARNING: Related post parser - related page wp_id: ' . $wpPostId . ' not found!';
             $this->info($infoString);
             Log::channel('parser')->info($infoString);
         } else {
@@ -276,14 +284,16 @@ class ProjectsParser extends AbstractParser
 
             if ((strpos($metaKey, $keyPattern1) === 0) &&
                 (strpos($metaKey, $keyPattern2)) &&
-                (strpos($metaValue, $keyPattern3)) !== false) {
+                (strpos($metaValue, $keyPattern3)) !== false
+            ) {
 
                 $pos = strpos($metaValue, $keyPattern3);
                 $campaignsMeta[] = substr($metaValue, $pos + 8);
             }
 
             if ((strpos($metaKey, $keyPattern4) === 0) &&
-                (strpos($metaValue, $keyPattern3)) !== false) {
+                (strpos($metaValue, $keyPattern3)) !== false
+            ) {
 
                 $pos = strpos($metaValue, $keyPattern3);
                 $campaignsMeta[] = substr($metaValue, $pos + 8);

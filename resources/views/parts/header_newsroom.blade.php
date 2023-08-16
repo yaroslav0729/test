@@ -1,6 +1,6 @@
 @include('parts.header_menu')
 
-<header class="header-newsroom dark-theme">
+<header class="header-newsroom">
     <div class="top-bar">
         <div class="wrap">
             <div class="row align-items-center">

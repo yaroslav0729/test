@@ -1,33 +1,37 @@
 @php
 
-$mainHtml = "";
+$mainHtml = '';
 
-    if (isset($parameters['main_html'])) {
-        $mainHtml = $parameters['main_html'];
-    }
+if (isset($parameters['main_html'])) {
+    $mainHtml = $parameters['main_html'];
+}
 
-    $parameters['template'] = \App\Models\Template::COMMON_CONTENT_PAGE;
+$parameters['template'] = \App\Models\Template::COMMON_CONTENT_PAGE;
 
 @endphp
 
-<section>
-    <div class="pt-5"></div>
-    <div class="mb-4">
+<section class="back">
+    <div class="wrap">
         @include('templates.presentation.parts.back_btn')
     </div>
 </section>
 
 <section class="general-content-head bg-light">
     <div class="wrap">
-        <div class="img">
-            <img src="{{ $pageInstance->preview_img }}" alt="">
+        <div class="black-line"></div>
+        <div class="image-box">
+            <img src="{{ $pageInstance->preview_img }}" alt="" class="image-box-inside">
         </div>
-        <div class="pl-4 pr-4">
+        <div class="black-line"></div>
+        <div class="page-title">
             <h1>{!! $pageInstance->name !!}</h1>
-            <div class="date">
-                <i></i>{{ Illuminate\Support\Carbon::parse($pageInstance->published_at)->format('jS F Y') }}
-            </div>
+            @if (!strpos(url()->full(), 'khalifahs-of-earth'))
+                <div class="date">
+                    <i></i>{{ Illuminate\Support\Carbon::parse($pageInstance->published_at)->format('jS F Y') }}
+                </div>
+            @endif
         </div>
+        <div class="black-line black-line--thin"></div>
     </div>
 </section>
 
@@ -41,14 +45,14 @@ $mainHtml = "";
         {!! $mainHtml !!}
     </div>
     <div class="author">
-        <div class="img" style="background-image: url(/storage/icons/Avatar1.jpg)"></div>
-        <span>written by <span>|</span> jamaila hamid</span>
+        <div class="img" style="background-image: url(/img/logo.png)"></div>
+        <span>written by <span class="divider">|</span> islamic help</span>
     </div>
 </section>
 
 <div class="pt-5"></div>
 
 @include('modules.presentation.related_topics_project', [
-    'parameters' => $parameters,
-    'svgWave' => true,
+'parameters' => $parameters,
+'svgWave' => true,
 ])

@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\CarbonTimeZone;
 use Illuminate\Support\Str;
 
 return [
@@ -60,13 +61,14 @@ return [
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                PDO::MYSQL_ATTR_INIT_COMMAND => sprintf("SET time_zone = '%s';", CarbonTimeZone::instance(config('app.timezone'))->toOffsetName())
             ]) : [],
         ],
 
         'wp' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
+            'host' => env('WP_HOST', '127.0.0.1'),
+            'port' => env('WP_PORT', '3306'),
             'database' => env('WP_DATABASE', 'forge'),
             'username' => env('WP_USERNAME', 'forge'),
             'password' => env('WP_PASSWORD', ''),
@@ -139,7 +141,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [

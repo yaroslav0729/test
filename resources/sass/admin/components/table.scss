@@ -1,0 +1,60 @@
+@import "../../mixins/scrollbar.scss";
+
+.table-card {
+    display: block;
+    background-color: $white;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+    padding: 30px;
+
+    table {
+        width: 100%;
+    }
+
+    th {
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+
+    td {
+        border-top: 1px solid $light-grey;
+        padding-top: 10px;
+        padding-bottom: 16px;
+    }
+
+    .action_td {
+        min-width: 182px;
+        width: 182px;
+        a {
+            display: inline-block;
+        }
+    }
+
+    .action-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+        padding: 0;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    .page-item {
+        padding: 0 4px;
+    }
+
+    .page-link {
+        border: none;
+        border-radius: 4px;
+    }
+}
+
+.table-wrapper {
+    @include scrollbar();
+    width: 100%;
+    overflow-y: auto;
+}

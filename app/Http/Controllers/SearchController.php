@@ -17,7 +17,7 @@ class SearchController extends Controller
     {
         $keyword = $request->get('keyword');
 
-        $pages = Page::whereHas('pageInstances');
+        $pages = Page::whereHas('pageInstances')->published();
         if (!empty($keyword)) {
             $pages = $pages->whereHas('pageInstances', function (Builder $query) use ($keyword) {
                 $query->where('name', 'like',  '%' . $keyword . '%');

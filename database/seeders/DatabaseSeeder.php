@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      *
      * php artisan db:seed
-     * 
+     *
      * @return void
      */
     public function run()
@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             UserRolesSeeder::class,
             IndexPageSeeder::class,
             CountriesSeeder::class,
-            ProjectsPageSeeder::class
+            ProjectsPageSeeder::class,
+            FoodPackQurbaniTypesSeeder::class,
         ]);
     }
 }

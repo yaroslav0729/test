@@ -4,8 +4,8 @@
         <span id="newsroom_title_span">{{ $titleSpan }}</span>
         <i id="newsroom_title_i">{{ $titleI }}</i>
         <div>
-            <button class="btn btn-white btn-newsroom text-decoration-none letter-spacing-1 btn-active" data-sort="date">SORT BY DATE</button>
-            <button class="btn btn-primary-dark btn-newsroom text-decoration-none letter-spacing-1" data-sort="topic">FILTER BY TOPIC</button>
+            <button class="btn btn-primary-dark btn-newsroom text-decoration-none letter-spacing-1 btn-active" data-sort="date">SORT BY DATE</button>
+            <button class="btn btn-white btn-newsroom text-decoration-none letter-spacing-1" data-sort="topic">FILTER BY TOPIC</button>
         </div>
     </div>
     @endisset
@@ -32,7 +32,6 @@
             </div>
         @endforeach
     </div>
-    <div class="pt-5 pb-5"></div>
 
     <ul class="pagination justify-content-center" newsroom-articles-pagination>
         {{ $articles->links('parts.custom_paginator') }}

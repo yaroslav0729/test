@@ -1,4 +1,4 @@
-<div class="border rounded p-3 mb-3" {{ $attributes }}>
+<div class="admin-card mb-3" {{ $attributes }}>
     <x-jet-section-title>
         <x-slot name="title">{{ $title }}</x-slot>
         <x-slot name="description">{{ $description }}</x-slot>

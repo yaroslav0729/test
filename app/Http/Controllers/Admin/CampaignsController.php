@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Campaign;
 use App\Http\Requests\Admin\CampaignCreateEditRequest;
+use App\Models\CampaignPrice;
+use Carbon\Carbon;
 
 class CampaignsController extends Controller
 {
@@ -23,7 +25,7 @@ class CampaignsController extends Controller
 
         if (isset($emergencyFilter) && ($emergencyFilter !== '0')) {
             $campaigns->where('is_emergency', $emergencyFilter);
-        } 
+        }
 
         if (!empty($nameFilter)) {
             $campaigns->where('name', 'like',  '%' . $nameFilter . '%');
@@ -102,7 +104,7 @@ class CampaignsController extends Controller
         $campaign = Campaign::findOrFail($id);
         $campaign->update($request->all());
         $campaign->updatePrices($request);
-        
+
         $categories = $request->input('categories');
         $campaign->campaign_categories()->detach();
         $campaign->campaign_categories()->attach($categories);
@@ -123,5 +125,27 @@ class CampaignsController extends Controller
         $campaign->delete();
 
         return redirect()->route('admin.campaigns.index')->with('status', 'Campaign deleted successfully!');
+    }
+
+    /**
+     * @param Campaign $campaign
+     * 
+     * @return [type]
+     */
+    public function duplicate(Campaign $campaign)
+    {
+        $newCampaign = $campaign->replicate()->fill(['created_at' => Carbon::now()]);
+        $newCampaign->push();
+
+        foreach ($campaign->campaign_prices as $price) {
+            $newPrice = CampaignPrice::create($price->toArray());
+            $newPrice->update(['campaign_id' => $newCampaign->id, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+        }
+
+        foreach ($campaign->campaign_categories as $category) {
+            $newCampaign->campaign_categories()->attach($category);
+        }
+
+        return redirect()->route('admin.campaigns.index')->with('status', 'Campaign duplicated successfully!');
     }
 }

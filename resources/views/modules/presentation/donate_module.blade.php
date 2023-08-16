@@ -38,6 +38,8 @@ if (isset($parameters['amount'])) {
 
 $campaignsCountries = \App\Models\Project::getProjectCampaignsCountries($pageInstance);
 
+//dd($campaignsCountries, $pageInstance->parameters['amount']);
+
 foreach ($amount as $key => $item) {
     if ((isset($item['type'])) && ((int)$item['type']) === \App\Models\CampaignPrice::TYPE_SINGLE) {
         $useSingleTab = true;
@@ -73,19 +75,24 @@ if (!isset($useAppeal)) {
 
             @empty($donateVideo)
                 @empty($donateImg)
-                    <div class="media" style="background-image: url(img/content/donate-today-1.jpg);">
+                    <div class="media donation" style="background-image: url(img/content/donate-today-1.jpg);">
                     <img src="" alt="" class="w-100">
                 @else
                     <div class="media" style="background-image: url({{ $donateImg }});">
                 @endempty
                 </div>
+                <div class="media appeal d-none" style="background-image: url(img/content/values-action-4.jpg);"></div>
             @else
                 <div class="media img-video videoWrapper" style="background: #555">
+                    <div class="video-poster">
+                        <button class="video-poster__play video-poster__play" data-url="https://www.youtube.com/embed/{{ $donateVideo }}"><i class="ico-play"></i></button>
+                        <img class="video-poster__img" src="https://img.youtube.com/vi/{{ $donateVideo }}/maxresdefault.jpg">
+                    </div>
                     <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $donateVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             @endempty
 
-            <div class="descr">
+            <!-- <div class="descr">
                 <div>
                     @empty($donateText)
                         Every donation, no matter how small, will help empower and uplift someone in need. Make a difference today.
@@ -93,7 +100,7 @@ if (!isset($useAppeal)) {
                         {{ $donateText }}
                     @endempty
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="{{ $col2Class }}">
             {{--            if 1-2 tabs - col-5--}}
@@ -124,8 +131,8 @@ if (!isset($useAppeal)) {
                             <input type="hidden" value="single" name="period" />
 
                             <div class="pt-3"></div>
-                            <div class="row gutter-5">
-                                <div class="col-5">
+                            <div class="row gutter-5 select-container">
+                                <div class="col-5 category-col">
                                     <div class="form-group">
                                         <select class="form-control" name="categories">
                                             {{-- will be replaced by js --}}
@@ -135,22 +142,27 @@ if (!isset($useAppeal)) {
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-4 amount-col">
                                     <div class="form-group" currency="£">
                                         <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-3 currency-col">
                                     <div class="form-group">
                                         @include('modules.presentation.parts.currency_selector')
                                     </div>
                                 </div>
                             </div>
                             <div class="pt-3"></div>
+                            @if(!empty($parameters['countries_image']))
+                            <div class="text-center pb-3">
+                                <a class="text-dark open-modal-countries-price">tap here to see all countries and their prices</a>
+                            </div>
+                            @endif
                             <div class="text-center">
                                 <button type="button" class="btn @isset($isColorInfo) btn-info @else btn-danger @endisset border-white btn-submit"
                                 donate-btn
-                                >Donate</button>
+                                >Donate now</button>
                             </div>
                         </form>
                     </div>
@@ -167,8 +179,8 @@ if (!isset($useAppeal)) {
                             <input type="hidden" value="monthly" name="period" />
 
                             <div class="pt-3"></div>
-                            <div class="row gutter-5">
-                                <div class="col-5">
+                            <div class="row gutter-5 select-container">
+                                <div class="col-5 category-col">
                                     <div class="form-group">
                                         <select class="form-control" name="categories">
                                             {{-- will be replaced by js --}}
@@ -178,22 +190,28 @@ if (!isset($useAppeal)) {
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-4 amount-col">
                                     <div class="form-group" currency="£">
                                         <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-3 currency-col">
                                     <div class="form-group">
                                         @include('modules.presentation.parts.currency_selector')
                                     </div>
                                 </div>
                             </div>
                             <div class="pt-3"></div>
+                            @if(!empty($parameters['countries_image']))
+                                <div class="text-center pb-3">
+                                    <a class="text-dark open-modal-countries-price">tap here to see all countries and their prices</a>
+                                </div>
+                            @endif
+                            <div class=
                             <div class="text-center">
                                 <button type="button" class="btn @isset($isColorInfo) btn-info @else btn-danger @endisset @if($isEmergency) btn-danger @endif border-white btn-submit"
                                 donate-btn
-                                >Donate</button>
+                                >Donate now</button>
                             </div>
                         </form>
                     </div>
@@ -205,9 +223,11 @@ if (!isset($useAppeal)) {
 
                             <input type="hidden" value="single" name="period" />
 
-                            <div class="pb-2">
-                            <button type="button" select-appeal-tab data-period="single" data-tab="tab_single" class="btn btn-danger btn_appeal_tab">Single</button>
-                            <button type="button" select-appeal-tab data-period="monthly" data-tab="tab_monthly" class="btn btn-danger btn_appeal_tab">Regular</button>
+                            <div class="period-switcher-wrapper">
+                                <div class="period-switcher">
+                                    <button type="button" select-appeal-tab data-period="single" data-tab="tab_single" class="btn btn_appeal_tab single active">Single</button>
+                                    <button type="button" select-appeal-tab data-period="monthly" data-tab="tab_monthly" class="btn btn_appeal_tab monthly">Monthly</button>
+                                </div>
                             </div>
 
                             <div class="tab_single" appeal-tab>
@@ -225,8 +245,13 @@ if (!isset($useAppeal)) {
                             </div>
 
                             <div class="pt-3"></div>
-                            <div class="row gutter-5">
-                                <div class="col-5">
+                            @if(!empty($parameters['countries_image']))
+                                <div class="text-center pb-3">
+                                    <a class="text-dark open-modal-countries-price">tap here to see all countries and their prices</a>
+                                </div>
+                            @endif
+                            <div class="row gutter-5 select-container">
+                                <div class="col-5 category-col">
                                     <div class="form-group">
                                         <select class="form-control" name="categories">
                                             {{-- will be replaced by js --}}
@@ -236,12 +261,12 @@ if (!isset($useAppeal)) {
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-4 amount-col">
                                     <div class="form-group" currency="£">
                                         <input name="amount" type="number" class="form-control" placeholder="Enter amount" oninput="this.value = Math.abs(this.value)" min="5">
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-3 currency-col">
                                     <div class="form-group">
                                         @include('modules.presentation.parts.currency_selector')
                                     </div>
@@ -251,7 +276,7 @@ if (!isset($useAppeal)) {
                             <div class="text-center">
                                 <button type="button" class="btn btn-danger border-white btn-submit"
                                 donate-btn
-                                >Donate</button>
+                                >Donate now</button>
                             </div>
                         </form>
                     </div>
@@ -262,3 +287,23 @@ if (!isset($useAppeal)) {
 
     </div>
 </div>
+    @if(!empty($parameters['countries_image']))
+        <script>
+            $(document).on("click", ".open-modal-countries-price", function () {
+                $(".modal-countries-price").modal("show");
+            });
+        </script>
+
+        <div class="modal modal-countries-price" id="countriesPriceModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" style="background: #aaa" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <img style="max-width: 100%;margin-top: 10px;" class="img-responsive" src="{{ $parameters['countries_image'] }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+@endif

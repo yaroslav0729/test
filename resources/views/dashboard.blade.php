@@ -2,12 +2,12 @@
 
 @section('content')
 
-<div class="p-3">
-<h2>User dashboard</h2>
+    <div class="admin-page__content">
+        <h2>User dashboard</h2>
 
-<div>Name: {{ Auth::user()->name }}</div>
-<div>Email: {{ Auth::user()->email }}</div>
+        <div>Name: {{ Auth::user()->name }}</div>
+        <div>Email: {{ Auth::user()->email }}</div>
 
-</div>
+    </div>
 
 @endsection

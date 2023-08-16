@@ -20,7 +20,7 @@ class ConvertDonationHistory extends Command
      * The name and signature of the console command.
      *
      * php artisan convert:donations
-     * 
+     *
      * @var string
      */
     protected $signature = 'convert:donations';
@@ -61,10 +61,11 @@ class ConvertDonationHistory extends Command
 
     protected function parseDonations()
     {
-        $donations = $this->wpConnection->table('donate_items')->
-                        join('donate_orders', 'donate_items.order_id', '=', 'donate_orders.id')
-                        ->select('donate_items.*', 'donate_orders.*', 'donate_items.order_id as order_id', 'donate_orders.order_id as d_order_id' )
-                        ->get();
+        $donations = $this->wpConnection->table('donate_items')->join('donate_orders', 'donate_items.order_id', '=', 'donate_orders.id')
+            ->select('donate_items.*', 'donate_orders.*', 'donate_items.order_id as order_id', 'donate_orders.order_id as d_order_id')
+            ->where('donate_items.period', 1)
+            ->whereNotNull('donate_items.schedule')
+            ->get();
 
         $cou = count($donations);
 
@@ -74,7 +75,7 @@ class ConvertDonationHistory extends Command
             $userId = null;
             $donationUser = User::where('wp_id', $donation->user)->first();
             if ($donationUser) {
-                $userId = $donationUser->id;    
+                $userId = $donationUser->id;
             }
 
             $amount = $donation->amount;
@@ -83,17 +84,24 @@ class ConvertDonationHistory extends Command
                 $amount = 0; // fix an error in WP database amount 1e38
             }
 
+            $campaign = null;
+
+            if ($donation->post_id != 0) {
+                $campaign = Campaign::where(['wp_id' => $donation->post_id])->first();
+            }
+
             if ($copyDonation) {
                 $copyDonation->update([
                     'value' => $amount,
                     'status' => $donation->status,
                     'type' => $donation->period === 0 ? CampaignPrice::TYPE_SINGLE : CampaignPrice::TYPE_MONTHLY,
                     'email' => $donation->email,
-                    'campaign_id' => null,
+                    'campaign_id' => $campaign ? $campaign->id : null,
                     'user_id' => $userId,
                     'currency' => 'GBP',
                     'campaign_category_id' => $this->getCampaignCategoryId($donation->type),
                     'note' => $donation->message,
+                    'created_at' => $donation->created,
                 ]);
 
                 $infoString = $donationKey + 1 . ': Donation updated => id: ' . $copyDonation->id;
@@ -108,6 +116,8 @@ class ConvertDonationHistory extends Command
                     'campaign_category_id' => $this->getCampaignCategoryId($donation->type),
                     'note' => $donation->message,
                     'wp_id' => $donation->id,
+                    'created_at' => $donation->created,
+                    'campaign_id' => $campaign ? $campaign->id : null,
                 ]);
 
                 $infoString = $donationKey + 1 . ': Donation created => id: ' . $copyDonation->id;
@@ -118,6 +128,19 @@ class ConvertDonationHistory extends Command
 
             $copyOrder = Order::where('wp_id', $donation->order_id)->first();
 
+            $accountNumber = null;
+            $sortCode = null;
+            $payDay = null;
+
+            if (!empty($donation->schedule)) {
+                $scheduleParts = explode('. ', $donation->schedule);
+                $accountNumber = explode('Number: ', $scheduleParts[0])[1];
+                $sortCode = explode('Sort: ', $scheduleParts[1])[1];
+                $payDay = explode('Day: ', $scheduleParts[2])[1];
+                $copyDonation->update(['schedule' => 'Number: ' . $accountNumber . '. Sort: ' . $sortCode . '. Day: ' . $payDay]);
+            }
+
+            $createdAt = Carbon::createFromFormat('Y-m-d H:i:s', $donation->created);
             if ($copyOrder) {
                 $copyOrder->update([
                     'title' => $donation->title,
@@ -137,8 +160,13 @@ class ConvertDonationHistory extends Command
                     'do_sms' => $donation->do_sms,
                     'do_email' => $donation->do_email,
                     'pay_with' => $donation->pay_with,
+                    'account_number' => $accountNumber,
+                    'sort_code' => $sortCode,
+                    'pay_day' => $payDay,
                     'order_id' => $donation->d_order_id,
-                    'wp_id' => $donation->order_id, 
+                    'wp_id' => $donation->order_id,
+                    'gift_aid' => $donation->gift_aid,
+                    'created_at' => $createdAt,
                 ]);
 
                 $infoString = $donationKey + 1 . ' from ' . $cou . ': Order updated => id: ' . $copyOrder->id;
@@ -161,8 +189,14 @@ class ConvertDonationHistory extends Command
                     'do_sms' => $donation->do_sms,
                     'do_email' => $donation->do_email,
                     'pay_with' => $donation->pay_with,
+                    'account_number' => $accountNumber,
+                    'sort_code' => $sortCode,
+                    'pay_day' => $payDay,
                     'order_id' => $donation->d_order_id,
                     'wp_id' => $donation->order_id,
+                    'gift_aid' => $donation->gift_aid,
+
+                    'created_at' => $createdAt,
                 ]);
 
                 $infoString = $donationKey + 1 . ' from ' . $cou . ': Order created => id: ' . $copyOrder->id;
@@ -177,22 +211,44 @@ class ConvertDonationHistory extends Command
         }
     }
 
-    protected function getCampaignCategoryId($wpType) 
+    protected function getCampaignCategoryId($wpType)
     {
         $categName = '';
 
         switch ($wpType) {
-            case 10: $categName = 'General Charity';
-            case 11: $categName = 'Sadaqah/Lillah';
-            case 12: $categName = 'Fitrana';
-            case 13: $categName = 'Zakah';
-            case 14: $categName = 'Fidyah';
-            case 15: $categName = 'Kaffarah';
-            case 16: $categName = 'Interest';
+            case 10:
+                $categName = 'Donation';
+                break;
+            case 11:
+                $categName = 'Sadaqa';
+                break;
+            case 12:
+                $categName = 'Fitrana';
+                break;
+            case 13:
+                $categName = 'Zakat';
+                break;
+            case 14:
+                $categName = 'Fidya';
+                break;
+            case 15:
+                $categName = 'Kaffara';
+                break;
+            case 16:
+                $categName = 'Interest';
+                break;
+            case 98:
+                $categName =  'Qurbani';
+                break;
+            case 99:
+                $categName = 'Sadaqa Qurbani';
+                break;
+            case 100:
+                $categName = 'Aqeeqa';
+                break;
         }
 
         $categ = CampaignCategory::where('name', $categName)->first();
-
         if (isset($categ)) return $categ->id;
 
         return null;

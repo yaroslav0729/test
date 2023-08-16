@@ -187,7 +187,7 @@
                                 <div>{{ $event->entry }}</div>
                             </div>
                             <div class="col-5 text-right">
-                                <input type="number" value="1" min="0" max="1000" step="1"/>
+                                <input type="number" input_number_spinner value="1" min="0" max="1000" step="1"/>
                             </div>
                         </div>
                         <div class="line"></div>
@@ -197,7 +197,7 @@
                                 <div>{{ $event->entry }}</div>
                             </div>
                             <div class="col-5 text-right">
-                                <input type="number" value="1" min="0" max="1000" step="1"/>
+                                <input type="number" input_number_spinner value="1" min="0" max="1000" step="1"/>
                             </div>
                         </div>
                         <div class="line"></div>
@@ -238,3 +238,5 @@
 @include('modules.presentation.related_topics_project', [
     'parameters' => $parameters
 ])
+
+@include('modules.presentation.image_lightbox');

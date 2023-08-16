@@ -86,10 +86,18 @@ class Event extends Model
         $events = Event::with('Page')->whereDate('start_date', '>=', now())
             ->whereHas('Page', function ($query) {
                 $query->published();
-        });
+            });
 
         return $events;
+    }
 
+    public static function getLastEvent()
+    {
+        $event = Event::with('Page')->whereHas('Page', function ($query) {
+            $query->published();
+        })->latest();
+
+        return $event;
     }
 
     /**

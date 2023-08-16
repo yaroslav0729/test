@@ -175,9 +175,9 @@
         <div class="col-12 col-md-5 pr-5">
             <div class="pr-5">
                 @empty($exploreTitle)
-                    <p class="font-size-40 mb-3"><b>Explore past projects</b></p>
+                    <p class="explore-title font-size-40 mb-3"><b>Explore past projects</b></p>
                 @else
-                    <p class="font-size-40 mb-3"><b>{{ $exploreTitle }}</b></p>
+                    <p class="explore-title font-size-40 mb-3"><b>{{ $exploreTitle }}</b></p>
                 @endempty
 
                 @empty($exploreTitle)
@@ -231,7 +231,7 @@
             </svg>
 
         </div>
-        <div class="col-12 col-md-7">
+        <div class="col-12 col-md-7 lazy-block">
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="item mt-n4">
@@ -272,7 +272,7 @@
 <section class="be-part-possible bg-danger-light">
     <div class="row align-items-center">
         <div class="col-12 col-md-6">
-            <div class="help-info-grid">
+            <div class="help-info-grid lazy-block">
                 <div class="margin-top">
                     <span>8.2k</span>
                     <span>Meals provided</span>

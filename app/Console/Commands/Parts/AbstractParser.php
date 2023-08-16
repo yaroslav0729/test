@@ -20,7 +20,6 @@ abstract class AbstractParser
 
     public function parse()
     {
-
     }
 
     public function info($str)
@@ -86,7 +85,6 @@ abstract class AbstractParser
                 try {
                     $contents = file_get_contents($imageUrl);
                     Storage::disk('public')->put($path, $contents);
-
                 } catch (Exception $e) {
                     $this->info('WARNING: file not found: ' . $imageUrl);
                 }
@@ -104,7 +102,6 @@ abstract class AbstractParser
             if ($option->meta_key === $optName) {
                 return $option->meta_value;
             }
-
         }
 
         return "";
@@ -119,13 +116,13 @@ abstract class AbstractParser
         }
 
         $slug = $post->post_name;
- 
+
         $lastParentPost = $post->post_parent;
 
         while ($lastParentPost !== 0) {
             $parPost = $this->wpConnection->table('wp_posts')
-                                ->where('wp_posts.ID', $lastParentPost)
-                                ->first();
+                ->where('wp_posts.ID', $lastParentPost)
+                ->first();
 
             if (!empty($parPost)) {
                 $lastParentPost = $parPost->post_parent;
@@ -161,7 +158,7 @@ abstract class AbstractParser
 
         if ($imagesOrFalse !== false) {
             foreach ($imagesOrFalse as $image) {
-                $srcsets[] = $image->getAttribute('srcset');
+                $srcsets[] = $image->getAttribute('src');
             }
         }
 
@@ -185,6 +182,11 @@ abstract class AbstractParser
         $document = new HtmlDomParser($content);
 
         $images = $this->findAllImages($document);
+        $this->info('====== Page Images ======');
+        foreach ($images as $image) {
+            $this->info($image);
+        }
+        $this->info('====== END ======');
         $images = $this->uploadAll($images);
         $content = $this->replaceImagesLinks($content, $images);
 
@@ -218,7 +220,6 @@ abstract class AbstractParser
                     try {
                         $contents = file_get_contents($imageUrl);
                         Storage::disk('public')->put($path, $contents);
-
                     } catch (Exception $e) {
                         $this->info('WARNING: file not found: ' . $imageUrl);
                     }
@@ -243,5 +244,35 @@ abstract class AbstractParser
         }
 
         return $html;
+    }
+
+    protected function removeArtifacts($content)
+    {
+        $str = str_replace('вЂ', '', $content);
+
+        return $str;
+    }
+
+    protected function getImageByUrl($url)
+    {
+        list($linkMonth, $linkYear) = $this->searchMonthYear(($url));
+        if (($linkMonth !== '') && ($linkYear !== '')) {
+            $year = $linkYear;
+            $month = $linkMonth;
+        }
+        $name = substr($url, strrpos($url, '/') + 1);
+        $path = $this::IMG_PATH . '/' . $year . '/' . $month . '/' . $name;
+
+        $exists = Storage::disk('public')->exists($path);
+        if ((!$exists) && ($url !== "")) {
+            try {
+                $contents = file_get_contents($url);
+                Storage::disk('public')->put($path, $contents);
+            } catch (Exception $e) {
+                $this->info('WARNING: file not found: ' . $url);
+            }
+        }
+
+        return $path;
     }
 }

@@ -23,6 +23,7 @@ class SettingController extends Controller
     public function update(SettingRequest $request)
     {
         $data = $request->except('_token');
+
         SettingHelper::saveSetting($data);
 
         return redirect()->route('admin.settings.index')->with('status', 'Setting updated!');

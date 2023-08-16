@@ -16,10 +16,10 @@ class Project
         $pages = Page::whereHas('pageInstances', function (Builder $query) {
             $query->where('template', Template::PROJECT_PAGE);
         })
-        ->published()
-        ->limit(3)
-        ->orderBy('created_at', 'asc')
-        ->get();
+            ->published()
+            ->limit(3)
+            ->orderBy('created_at', 'asc')
+            ->get();
 
         return $pages;
     }
@@ -29,8 +29,8 @@ class Project
         $pages = Page::whereHas('pageInstances', function (Builder $query) {
             $query->where('template', Template::PROJECT_PAGE);
         })
-        ->published()
-        ->get();
+            ->published()
+            ->get();
 
         return $pages;
     }
@@ -39,10 +39,11 @@ class Project
     {
         $pages = Page::whereHas('pageInstances', function (Builder $query) {
             $query->where('template', Template::PROJECT_PAGE)
-            ->single();
+                ->single();
         })
-        ->published()
-        ->get();
+            ->latest()
+            ->published()
+            ->get();
 
         return $pages;
     }
@@ -51,10 +52,11 @@ class Project
     {
         $pages = Page::whereHas('pageInstances', function (Builder $query) {
             $query->where('template', Template::PROJECT_PAGE)
-            ->monthly();
+                ->monthly();
         })
-        ->published()
-        ->get();
+            ->latest()
+            ->published()
+            ->get();
 
         return $pages;
     }
@@ -63,21 +65,21 @@ class Project
     {
         $pages = Page::whereHas('pageInstances', function (Builder $query) {
             $query->where('template', Template::PROJECT_PAGE)
-            ->appeal();
+                ->appeal();
         })
-        ->published()
-        ->get();
+            ->latest()
+            ->published()
+            ->get();
 
         return $pages;
     }
 
     protected static function isPriceExists($campId, $value, $type)
     {
-        $count = Campaign::where('id', $campId)->active()->
-                whereHas('campaign_prices', function ($q) use ($value, $type) {
-                    $q->where('value', $value)
+        $count = Campaign::where('id', $campId)->active()->whereHas('campaign_prices', function ($q) use ($value, $type) {
+                $q->where('value', $value)
                     ->where('type', $type);
-                })->count();
+            })->count();
 
         if ($count) {
             return true;
@@ -103,11 +105,12 @@ class Project
                     $campName = \App\Models\Campaign::getCountryNameForPrice($campId, $item['value'], $item['type']);
 
                     if (isset($campName))
-                    $campaigns[$campId] = $campName;
+                        $campaigns[$campId] = $campName;
                 }
                 $campaignsCountries[$key] = $campaigns;
             }
         }
+        // dd($campaigns);
 
         return $campaignsCountries;
     }
@@ -192,7 +195,6 @@ class Project
                         'campaigns' => $campaignsNames
                     ];
                 }
-
             }
         }
 
@@ -231,8 +233,8 @@ class Project
     public static function getRelPages($pageIds)
     {
         return PageInstance::whereHas('Page', function (Builder $query) use ($pageIds) {
-                $query->whereIn('id', $pageIds)
-                    ->published();
+            $query->whereIn('id', $pageIds)
+                ->published();
         })->actual()->get();
     }
 }

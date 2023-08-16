@@ -2,61 +2,81 @@
 
 @section('content')
 
-<div id="admin_content" class="flex-auto h-screen">
-    <div class="p-5 pb-8">
-        <h1>Users:</h1>
+    <div id="admin_content" class="flex-auto">
+        <div class="p-5 pb-8">
+            <h1 class="admin-page__title">Users</h1>
 
-        <table class="table-auto mb-3">
-            <thead>
-              <tr>
-                <th class="px-4 py-2">Id</th>
-                <th class="px-4 py-2">Name</th>
-                <th class="px-4 py-2">Email</th>
-                <th class="px-4 py-2">Role</th>
-                <th class="px-4 py-2">Registration date</th>
-                <th class="px-4 py-2">Action</th>
-              </tr>
-            </thead>
-            <tbody>
+            <form id="filters" action="{{ route('admin.index') }}" method="get" class="mb-3">
+                <div class="row">
+                    <div class="form-group col-md-4 col-12">
+                        <label>Keyword:</label>
+                        <input class="form-control" @if (!empty($keyword)) value="{{ $keyword }}" @endif name="keyword" type="text" />
+                    </div>
+                </div>
+                <button class="btn btn-primary">Filter</button>
+                <a href="{{ route('admin.index') }}"><button class="btn btn-info" type="button">Clear all
+                        filters</button></a>
+            </form>
 
-                @foreach ($users as $user)
-                    <tr>
-                        <td class="border px-4 py-2">{{ $user->id }}</td>
-                        <td class="border px-4 py-2">{{ $user->name }}</td>
-                        <td class="border px-4 py-2">{{ $user->email }}</td>
-                        <td class="border px-4 py-2">{{ $user->role_name }}</td>
-                        <td class="border px-4 py-2">{{ $user->created_at->format('d/m/Y') }}</td>
-                        <td class="border px-4 py-2 action_td">
-                          
-                          <a href="{{ route('admin.user.show', ['id' => $user->id]) }}">
-                            <button class="btn btn-outline-success action-btn" type="button" title="Show user">
-                              <i class="fas fa-eye"></i>
-                            </button>
-                          </a>
+            <div class="table-card">
+                <div class="table-wrapper">
+                    <table class="table-auto mb-3">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2">Id</th>
+                                <th class="px-4 py-2">Name</th>
+                                <th class="px-4 py-2">Email</th>
+                                <th class="px-4 py-2">Role</th>
+                                <th class="px-4 py-2">Registration date</th>
+                                <th class="px-4 py-2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                          <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}">
-                            <button class="btn btn-info action-btn" type="submit" title="Edit user">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                          </a>
-                          <form method="post" action="{{ route('admin.user.delete', ['id' => $user->id]) }}" style="display:inline-block">
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td class="px-4">{{ $user->id }}</td>
+                                    <td class="px-4">{{ $user->name }}</td>
+                                    <td class="px-4">{{ $user->email }}</td>
+                                    <td class="px-4">{{ $user->role_name }}</td>
+                                    <td class="px-4">{{ $user->created_at->format('d/m/Y') }}</td>
+                                    <td class="px-4 action_td">
 
-                            @csrf
-                            @method('DELETE')
+                                        <a href="{{ route('admin.user.show', ['id' => $user->id]) }}">
+                                            <button class="btn btn-outline-success action-btn" type="button"
+                                                title="Show user">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </a>
 
-                            <button class="btn btn-danger action-btn" type="submit" title="Delete user" onclick="return confirm('Are you sure want to delete?')">
-                              <i class="fas fa-trash-alt"></i>
-                            </button>
+                                        <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}">
+                                            <button class="btn btn-info action-btn" type="submit" title="Edit user">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <form method="post"
+                                            action="{{ route('admin.user.delete', ['id' => $user->id]) }}"
+                                            style="display:inline-block">
 
-                        </form>
-                        </td>
-                    </tr>
-                @endforeach
+                                            @csrf
+                                            @method('DELETE')
 
-            </tbody>
-          </table>
-          {{ $users->links() }}
+                                            <button class="btn btn-danger action-btn" type="submit" title="Delete user"
+                                                onclick="return confirm('Are you sure want to delete?')">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+                {{ $users->links() }}
+            </div>
+        </div>
     </div>
-</div>
 
 @endsection

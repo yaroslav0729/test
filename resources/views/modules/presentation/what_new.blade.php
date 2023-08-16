@@ -1,32 +1,32 @@
 @php
 
-    $whatNewTitle = "";
-    $visitNewsroomTitle = "";
-    $visitNewsroomLink = "";
+$whatNewTitle = '';
+$visitNewsroomTitle = '';
+$visitNewsroomLink = '';
 
-    if (isset($parameters['what_new_title'])) {
-        $whatNewTitle = $parameters['what_new_title'];
-    }
+if (isset($parameters['what_new_title'])) {
+    $whatNewTitle = $parameters['what_new_title'];
+}
 
-    if (isset($parameters['visit_newsroom_title'])) {
-        $visitNewsroomTitle = $parameters['visit_newsroom_title'];
-    }
+if (isset($parameters['visit_newsroom_title'])) {
+    $visitNewsroomTitle = $parameters['visit_newsroom_title'];
+}
 
-    if (isset($parameters['visit_newsroom_link'])) {
-        $visitNewsroomLink = $parameters['visit_newsroom_link'];
-    }
+if (isset($parameters['visit_newsroom_link'])) {
+    $visitNewsroomLink = $parameters['visit_newsroom_link'];
+}
 
 @endphp
 
-@if(count($blogs) >= 3)
+@if (count($blogs) >= 3)
     <section class="whats-new">
         <div class="wrap">
             <div class="title">
                 <svg class="decor-wave d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                     width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000"
-                     preserveAspectRatio="xMidYMid meet">
-                    <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
-                       fill="#000000" stroke="none">
+                    width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000"
+                    preserveAspectRatio="xMidYMid meet">
+                    <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)" fill="#000000"
+                        stroke="none">
                         <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
     -86 3 -99 26 -135 63 -94 129 -129 263 -139 246 -18 368 -100 648 -439 168
     -205 344 -382 451 -455 104 -71 240 -135 362 -168 94 -26 113 -28 300 -28 185
@@ -63,16 +63,14 @@
     0 -207 -2 -298 -27 -119 -32 -260 -97 -364 -169 -115 -79 -255 -219 -444 -444
     -287 -343 -383 -414 -601 -444 -94 -13 -211 -1 -302 30 -124 42 -250 154 -466
     415 -253 306 -401 438 -596 532 -152 73 -274 103 -439 109 -117 5 -134 3 -175
-    -16z"/>
+    -16z" />
                     </g>
                 </svg>
                 <b class="text-uppercase">{{ $whatNewTitle }}<i class="moon-icons-arrow-right"></i></b>
                 <a href="
-                @if($visitNewsroomLink)
-                {{ $visitNewsroomLink }}
-                @else
-                {{ \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '#' }}
-                @endif " class="text-underline text-uppercase letter-spacing-1">
+                @if ($visitNewsroomLink) {{ $visitNewsroomLink }}
+            @else
+                {{ \App\Models\Page::getNewsroomPage() ? \App\Models\Page::getNewsroomPage()->slug : '#' }} @endif " class=" text-underline text-uppercase letter-spacing-1">
                     <b>{{ $visitNewsroomTitle }}</b></a>
             </div>
             <div>
@@ -85,20 +83,26 @@
                                 <span class="plus bg-info"><i class="moon-icons-plus"></i></span>
                             </a>
                             <div class="descr">
-                                <a class="font-size-20 letter-spacing-0 mb-0 text-dark d-block" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
+                                <a class="font-size-20 letter-spacing-0 mb-0 text-dark d-block"
+                                    href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
                                     <b>
                                         {{ \App\Helpers\StrHelper::lengthLimit($blogs[0]->getActualPageInstanceAttribute()->name, 30) }}
                                     </b>
                                 </a>
-                                <a class="font-size-16 mb-4 letter-spacing-0 text-dark text-decoration-none" href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
+                                <a class="font-size-16 mb-4 letter-spacing-0 text-dark text-decoration-none"
+                                    href="{{ $blogs[0]->getActualPageInstanceAttribute()->slug }}">
                                     {!! \App\Helpers\StrHelper::lengthLimit($blogs[0]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
                                 </a>
                                 <div class="date mt-4 pb-2">
                                     {{ $blogs[0]->created_at->format('F d, Y') }}
-                                    BY {{ $blogs[0]->getActualPageInstanceAttribute()->parameters['written_by'] ?? '' }}</div>
-                                <div class="stat" data-token="{{ env('FACEBOOK_KEY') }}|{{ env('FACEBOOK_SECRET')}}"
-                                     data-url="{{ request()->getSchemeAndHttpHost() . '/' .  $blogs[0]->getActualPageInstanceAttribute()->slug }}">
-                                    <span>0</span></div>
+                                    BY
+                                    {{ $blogs[0]->getActualPageInstanceAttribute()->parameters['written_by'] ?? '' }}
+                                </div>
+                                <div class="stat"
+                                    data-token="{{ env('FACEBOOK_KEY') }}|{{ env('FACEBOOK_SECRET') }}"
+                                    data-url="{{ request()->getSchemeAndHttpHost() . '/' . $blogs[0]->getActualPageInstanceAttribute()->slug }}">
+                                    <span>0</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -111,17 +115,21 @@
                                 <span class="plus bg-danger"><i class="moon-icons-plus"></i></span>
                             </a>
                             <div class="descr">
-                                <a class="font-size-20 letter-spacing-0 mb-0 text-dark d-block" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
+                                <a class="font-size-20 letter-spacing-0 mb-0 text-dark d-block"
+                                    href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
                                     <b>
                                         {{ \App\Helpers\StrHelper::lengthLimit($blogs[1]->getActualPageInstanceAttribute()->name, 30) }}
                                     </b>
                                 </a>
-                                <a class="font-size-16 mb-4 letter-spacing-0 text-dark text-decoration-none" href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
+                                <a class="font-size-16 mb-4 letter-spacing-0 text-dark text-decoration-none"
+                                    href="{{ $blogs[1]->getActualPageInstanceAttribute()->slug }}">
                                     {!! \App\Helpers\StrHelper::lengthLimit($blogs[1]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
                                 </a>
                                 <div class="date mt-4 pb-2">
                                     {{ $blogs[1]->created_at->format('F d, Y') }}
-                                    BY {{ $blogs[1]->getActualPageInstanceAttribute()->parameters['written_by'] ?? '' }}</div>
+                                    BY
+                                    {{ $blogs[1]->getActualPageInstanceAttribute()->parameters['written_by'] ?? '' }}
+                                </div>
 
                             </div>
                         </div>
@@ -132,27 +140,31 @@
                                 <span class="plus bg-warning"><i class="moon-icons-plus"></i></span>
                             </a>
                             <div class="descr">
-                                <a class="font-size-20 letter-spacing-0 mb-0 text-dark d-block" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
+                                <a class="font-size-20 letter-spacing-0 mb-0 text-dark d-block"
+                                    href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
                                     <b>
                                         {{ \App\Helpers\StrHelper::lengthLimit($blogs[2]->getActualPageInstanceAttribute()->name, 30) }}
                                     </b>
                                 </a>
-                                <a class="font-size-16 mb-4 letter-spacing-0 text-dark text-decoration-none" href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
+                                <a class="font-size-16 mb-4 letter-spacing-0 text-dark text-decoration-none"
+                                    href="{{ $blogs[2]->getActualPageInstanceAttribute()->slug }}">
                                     {!! \App\Helpers\StrHelper::lengthLimit($blogs[2]->getActualPageInstanceAttribute()->parameters['hdr_text'], 40) !!}
                                 </a>
                                 <div class="date mt-4 pb-2">
                                     {{ $blogs[2]->created_at->format('F d, Y') }}
-                                    BY {{ $blogs[2]->getActualPageInstanceAttribute()->parameters['written_by'] ?? '' }}</div>
+                                    BY
+                                    {{ $blogs[2]->getActualPageInstanceAttribute()->parameters['written_by'] ?? '' }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="text-right pt-4">
                     <svg class="decor-wave style-white d-inline-block size-20" version="1.0"
-                         xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt"
-                         viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
-                        <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
-                           fill="#000000" stroke="none">
+                        xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt"
+                        viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)" fill="#000000"
+                            stroke="none">
                             <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
     -86 3 -99 26 -135 63 -94 129 -129 263 -139 246 -18 368 -100 648 -439 168
     -205 344 -382 451 -455 104 -71 240 -135 362 -168 94 -26 113 -28 300 -28 185
@@ -189,7 +201,7 @@
     0 -207 -2 -298 -27 -119 -32 -260 -97 -364 -169 -115 -79 -255 -219 -444 -444
     -287 -343 -383 -414 -601 -444 -94 -13 -211 -1 -302 30 -124 42 -250 154 -466
     415 -253 306 -401 438 -596 532 -152 73 -274 103 -439 109 -117 5 -134 3 -175
-    -16z"/>
+    -16z" />
                         </g>
                     </svg>
                 </div>

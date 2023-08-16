@@ -17,6 +17,11 @@ class CampaignPrice extends Model
         self::TYPE_MONTHLY => 'monthly'
     ];
 
+    const ID_TYPES = [
+        'single' => self::TYPE_SINGLE,
+        'monthly' => self::TYPE_MONTHLY
+    ];
+
     public function getTypeLabelAttribute()
     {
         return self::ALL_TYPES[$this->type];
@@ -31,5 +36,15 @@ class CampaignPrice extends Model
     public function campaign()
     {
         return $this->belongsTo('App\Models\Campaign');
+    }
+
+    public static function getTypeByLabel($label)
+    {
+        switch ($label) {
+            case 'single':
+                return self::TYPE_SINGLE;
+            case 'monthly':
+                return self::TYPE_MONTHLY;
+        }
     }
 }

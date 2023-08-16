@@ -101,7 +101,7 @@
     </div>
 </section>
 
-<section class="upcoming-events bg-light">
+<section class="upcoming-events">
     <div class="title">
         <p class="font-size-30"><b>Upcoming Events</b></p>
         <br>

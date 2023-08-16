@@ -2,42 +2,41 @@
 
 @section('content')
 
-<div class="p-3">
+    <div class="p-3">
 
-    <h2 class="">
-        {{ __('Profile') }}
-    </h2>
+        <h2 class="">
+            {{ __('Profile') }}
+        </h2>
 
-    @livewire('profile.update-profile-information-form')
+        @livewire('profile.update-profile-information-form')
 
-    @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
-        <x-jet-section-border />
-    
+        @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
+
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('profile.update-password-form')
+            </div>
+        @endif
+
+        @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
+
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('profile.two-factor-authentication-form')
+            </div>
+        @endif
+
+
+
         <div class="mt-10 sm:mt-0">
-            @livewire('profile.update-password-form')
+            @livewire('profile.logout-other-browser-sessions-form')
         </div>
-    @endif
 
-    @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
-        <x-jet-section-border />
 
         <div class="mt-10 sm:mt-0">
-            @livewire('profile.two-factor-authentication-form')
+            @livewire('profile.delete-user-form')
         </div>
-    @endif
-
-    <x-jet-section-border />
-
-    <div class="mt-10 sm:mt-0">
-        @livewire('profile.logout-other-browser-sessions-form')
     </div>
-
-    <x-jet-section-border />
-
-    <div class="mt-10 sm:mt-0">
-        @livewire('profile.delete-user-form')
-    </div>
-</div>
 
 
 @endsection

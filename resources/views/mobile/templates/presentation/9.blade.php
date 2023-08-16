@@ -1,47 +1,69 @@
 @php
 
-    $donationText = "";
-    $donationArticleTitle = "";
-    $donationVideo = "";
-    $donationVideoLinkTitle = "";
-    $donationVideoLinkTitleMobile = "";
-    $donationVideoLink = "";
+$donationText = '';
+$donationArticleTitle = '';
+$donationVideo = '';
+$donationVideoLinkTitle = '';
+$donationVideoLinkTitleMobile = '';
+$donationVideoLink = '';
 
+if (isset($parameters['donation_text'])) {
+    $donationText = $parameters['donation_text'];
+}
 
-    if (isset($parameters['donation_text'])) {
-        $donationText = $parameters['donation_text'];
-    }
+if (isset($parameters['donation_article_title'])) {
+    $donationArticleTitle = $parameters['donation_article_title'];
+}
 
-    if (isset($parameters['donation_article_title'])) {
-        $donationArticleTitle = $parameters['donation_article_title'];
-    }
+if (isset($parameters['donation_video'])) {
+    $donationVideo = $parameters['donation_video'];
+}
 
-    if (isset($parameters['donation_video'])) {
-        $donationVideo = $parameters['donation_video'];
-    }
+if (isset($parameters['donation_link_title'])) {
+    $donationVideoLinkTitle = $parameters['donation_link_title'];
+}
 
-    if (isset($parameters['donation_link_title'])) {
-        $donationVideoLinkTitle = $parameters['donation_link_title'];
-    }
+if (isset($parameters['donation_link_title_mobile'])) {
+    $donationVideoLinkTitleMobile = $parameters['donation_link_title_mobile'];
+}
 
-    if (isset($parameters['donation_link_title_mobile'])) {
-        $donationVideoLinkTitleMobile = $parameters['donation_link_title_mobile'];
-    }
+if (isset($parameters['donation_link'])) {
+    $donationVideoLink = $parameters['donation_link'];
+}
 
-    if (isset($parameters['donation_link'])) {
-        $donationVideoLink = $parameters['donation_link'];
-    }
+$orderId = session()->get('order');
+$order = null;
 
+if (request()->filled('order_id')) {
+    $orderId = request()->get('order_id');
+}
+
+if (request()->filled('order')) {
+    $orderId = request()->get('order');
+    $order = App\Models\Order::where('order_id', $orderId)->first();
+    $donation = $order->donations()->first();
+}
+
+if (!empty($orderId) && is_null($order)) {
+    $order = App\Models\Order::find($orderId);
+    $donation = $order->donations()->first();
+}
 @endphp
 
 <div class="thank-you-page">
+    @if ($orderId)
+        <div class="give-match-widget">
+            <gm-share charity="islamic-help-uk" currency="{{ Str::lower($donation->currency) }}" amount="{{ number_format($order->sum, 2, '', '') }}" firstName="{{ $order->first_name }}" email="{{ $order->email }}"> </gm-share>
+        </div>
+    @endif
     <div class="text pl-2">
         <div class="pl-4 pr-4 pt-2 pb-2">{!! \App\Helpers\StrHelper::addSpanWithClass($donationText, 'text-dark-blue') !!}</div>
         <p class="text-left pl-4 pt-2">You're awesome.</p>
         <div class="text-center">
-            <svg class="decor-wave size-20 style-red d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
-                   fill="#000000" stroke="none">
+            <svg class="decor-wave size-20 style-red d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000"
+                preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
                     <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
 -86 3 -99 26 -135 63 -94 129 -129 263 -139 246 -18 368 -100 648 -439 168
 -205 344 -382 451 -455 104 -71 240 -135 362 -168 94 -26 113 -28 300 -28 185
@@ -78,7 +100,7 @@
 0 -207 -2 -298 -27 -119 -32 -260 -97 -364 -169 -115 -79 -255 -219 -444 -444
 -287 -343 -383 -414 -601 -444 -94 -13 -211 -1 -302 30 -124 42 -250 154 -466
 415 -253 306 -401 438 -596 532 -152 73 -274 103 -439 109 -117 5 -134 3 -175
--16z"/>
+-16z" />
                 </g>
             </svg>
         </div>
@@ -90,18 +112,25 @@
         <p>{{ $donationArticleTitle }}</p>
         <div class="pt-3"></div>
         <div class="img-video play-tr videoWrapper" style="">
-            <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $donationVideo }}"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+            <div class="video-poster">
+                <button class="video-poster__play video-poster__play"
+                    data-url="https://www.youtube.com/embed/{{ $donationVideo }}"><i
+                        class="ico-play"></i></button>
+                <img class="video-poster__img"
+                    src="https://img.youtube.com/vi/{{ $donationVideo }}/maxresdefault.jpg">
+            </div>
+            <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $donationVideo }}" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
             <a href="{{ $donationVideoLink }}" class="btn btn-info">{{ $donationVideoLinkTitleMobile }}</a>
         </div>
 
     </div>
     <div class="text-center">
-        <svg class="decor-wave size-20 style-white d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
-            <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
-               fill="#000000" stroke="none">
+        <svg class="decor-wave size-20 style-white d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg"
+            width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000"
+            preserveAspectRatio="xMidYMid meet">
+            <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
                 <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
     -86 3 -99 26 -135 63 -94 129 -129 263 -139 246 -18 368 -100 648 -439 168
     -205 344 -382 451 -455 104 -71 240 -135 362 -168 94 -26 113 -28 300 -28 185
@@ -138,7 +167,7 @@
     0 -207 -2 -298 -27 -119 -32 -260 -97 -364 -169 -115 -79 -255 -219 -444 -444
     -287 -343 -383 -414 -601 -444 -94 -13 -211 -1 -302 30 -124 42 -250 154 -466
     415 -253 306 -401 438 -596 532 -152 73 -274 103 -439 109 -117 5 -134 3 -175
-    -16z"/>
+    -16z" />
             </g>
         </svg>
     </div>

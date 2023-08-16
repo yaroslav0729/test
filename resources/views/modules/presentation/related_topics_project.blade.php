@@ -54,7 +54,7 @@
     <div class="title">
         <div class="row">
             <div class="col-7">
-                <b class="font-size-30 mr-4 text-uppercase">
+                <b class="font-size-30 mr-4 text-uppercase letter-spacing-1">
                     @if ($relPageTitle === "" && $template ===  \App\Models\Template::COMMON_CONTENT_PAGE)
                         DISCOVER MORE
                     @elseif($relPageTitle === "" )
@@ -142,8 +142,8 @@
                             @endisset
 
                             <span class="descr">
-                            <span class="text font-size-16 text-uppercase">{{ \App\Helpers\StrHelper::lengthLimit($page->name, 20) }}</span>
-                            <span class="name font-size-16 "><b>{{ \App\Helpers\StrHelper::lengthLimit($page->preview_text, 60) }}</b></span>
+                            <span class="name font-size-16 text-uppercase">{{ \App\Helpers\StrHelper::lengthLimit($page->name, 20) }}</span>
+                            <span class="text font-size-16 "><b>{{ \App\Helpers\StrHelper::lengthLimit($page->preview_text, 60) }}</b></span>
                             </span>
                         </a>
                     </div>
@@ -159,8 +159,8 @@
                                 @endisset
 
                                 <span class="descr">
-                            <span class="text font-size-16 text-uppercase font-weight-normal">{{ \App\Helpers\StrHelper::lengthLimit($blog->getActualPageInstanceAttribute()->name, 20) }}</span>
-                            <span class="name font-size-16 "><b>{{ \App\Helpers\StrHelper::lengthLimit($blog->getActualPageInstanceAttribute()->parameters['hdr_text'], 60) }}</b></span>
+                            <span class="name font-size-16 text-uppercase font-weight-normal">{{ \App\Helpers\StrHelper::lengthLimit($blog->getActualPageInstanceAttribute()->name, 20) }}</span>
+                            <span class="text font-size-16 "><b>{{ \App\Helpers\StrHelper::lengthLimit($blog->getActualPageInstanceAttribute()->parameters['hdr_text'], 60) }}</b></span>
                             </span>
                             </a>
                         </div>

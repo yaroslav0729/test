@@ -68,31 +68,39 @@ $allCategories = \App\Models\CampaignCategory::all();
     </div>
 
     @empty($donateVideo)
-        <div class="media">
+        <div class="media donation">
             @empty($donateImg)
             <img src="img/content/donate-today-1.jpg" alt="" class="w-100">
             @else
             <img src="{{ $donateImg }}" alt="" class="w-100">
             @endempty
         </div>
+        <div class="media appeal d-none">
+            <img src="img/content/values-action-4.jpg" alt="" class="w-100">
+        </div>
     @else
         <div class="media img-video videoWrapper" style="background: #555">
+            <div class="video-poster">
+                <button class="video-poster__play video-poster__play--top-right" data-url="https://www.youtube.com/embed/{{ $donateVideo }}"><i class="ico-play"></i></button>
+                <img class="video-poster__img" src="https://img.youtube.com/vi/{{ $donateVideo }}/maxresdefault.jpg">
+            </div>
             <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $donateVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     @endempty
 
-    @empty($donateText)
-    <div class="mb-5 font-size-18 letter-spacing-0">
+    <!-- @empty($donateText)
+    <div class="mb-5 font-size-18 letter-spacing-0 donate-text">
         <b class="font-weight-sb">
             Every donation, no matter how small, will help empower and uplift someone in need. Make a difference today.
         </b>
     </div>
     @else
-    <div class="mb-5 font-size-18 letter-spacing-0"><b class="font-weight-sb">{{ $donateText }}</b></div>
-    @endempty
+    <div class="mb-5 font-size-18 letter-spacing-0 donate-text"><b class="font-weight-sb">{{ $donateText }}</b></div>
+    @endempty -->
+
+    <h1 class="donate-today__title">Donate today</h1>
 
     <div class="black-line"></div>
-    <div class="pt-5"></div>
 
     <div class="donate-today-sheet">
         <nav>
@@ -138,6 +146,11 @@ $allCategories = \App\Models\CampaignCategory::all();
                     </div>
 
                     <div class="pt-3"></div>
+                    @if(!empty($parameters['countries_image']))
+                        <div class="text-center pb-3">
+                            <a class="text-dark open-modal-countries-price">tap here to see all countries and their prices</a>
+                        </div>
+                    @endif
                     <div class="text-center">
                         <button class="btn @isset($isColorInfo) btn-info @else btn-danger @endisset border-white btn-submit w-100" donate-btn>Donate now</button>
                     </div>
@@ -169,6 +182,11 @@ $allCategories = \App\Models\CampaignCategory::all();
                         @include('modules.presentation.parts.currency_selector')
                     </div>
                     <div class="pt-3"></div>
+                    @if(!empty($parameters['countries_image']))
+                        <div class="text-center pb-3">
+                            <a class="text-dark open-modal-countries-price">tap here to see all countries and their prices</a>
+                        </div>
+                    @endif
                     <div class="text-center">
                         <button class="btn @isset($isColorInfo) btn-info @else btn-danger @endisset border-white btn-submit w-100" donate-btn>Donate now</button>
                     </div>
@@ -215,6 +233,11 @@ $allCategories = \App\Models\CampaignCategory::all();
                         @include('modules.presentation.parts.currency_selector')
                     </div>
                     <div class="pt-3"></div>
+                    @if(!empty($parameters['countries_image']))
+                        <div class="text-center pb-3">
+                            <a class="text-dark open-modal-countries-price">tap here to see all countries and their prices</a>
+                        </div>
+                    @endif
                     <div class="text-center">
                         <button class="btn btn-danger border-white btn-submit w-100" donate-btn>Donate now</button>
                     </div>
@@ -224,3 +247,25 @@ $allCategories = \App\Models\CampaignCategory::all();
         </div>
     </div>
 </div>
+
+@if(!empty($parameters['countries_image']))
+    <script>
+        $(document).on("click", ".open-modal-countries-price", function () {
+            $(".modal-countries-price").modal("show");
+        });
+    </script>
+
+    <div class="modal modal-countries-price" id="countriesPriceModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" style="background: #aaa" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <img style="max-width: 100%;margin-top: 10px;" class="img-responsive" src="{{ $parameters['countries_image'] }}">
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+

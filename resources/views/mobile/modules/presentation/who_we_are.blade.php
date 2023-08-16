@@ -1,73 +1,75 @@
 @php
 
-    $whoVideo = "";
-    $whoLink = "";
-    $whoLinkText = "";
-    $whoTitle = "";
-    $whoText = "";
+$whoVideo = '';
+$whoVideoPreview = '';
+$whoLink = '';
+$whoLinkText = '';
+$whoTitle = '';
+$whoText = '';
 
-    $infoBlock1 = "";
-    $infoBlock2 = "";
-    $infoBlock3 = "";
+$infoBlock1 = '';
+$infoBlock2 = '';
+$infoBlock3 = '';
 
-    if (isset($parameters['who_we_are_video'])) {
-        $whoVideo = $parameters['who_we_are_video'];
-    }
+if (isset($parameters['who_we_are_video'])) {
+    $whoVideo = $parameters['who_we_are_video'];
+}
 
-    if (isset($parameters['who_we_are_video'])) {
-        $whoVideo = $parameters['who_we_are_video'];
-    }
+if (isset($parameters['who_we_are_video_preview'])) {
+    $whoVideoPreview = $parameters['who_we_are_video_preview'];
+}
 
-    if (isset($parameters['who_we_are_link'])) {
-        $whoLink = $parameters['who_we_are_link'];
-    }
+if (isset($parameters['who_we_are_link'])) {
+    $whoLink = $parameters['who_we_are_link'];
+}
 
-    if (isset($parameters['who_we_are_link_text'])) {
-        $whoLinkText = $parameters['who_we_are_link_text'];
-    }
+if (isset($parameters['who_we_are_link_text'])) {
+    $whoLinkText = $parameters['who_we_are_link_text'];
+}
 
-    if (isset($parameters['who_we_are_title'])) {
-        $whoTitle = $parameters['who_we_are_title'];
-    }
+if (isset($parameters['who_we_are_title'])) {
+    $whoTitle = $parameters['who_we_are_title'];
+}
 
-    if (isset($parameters['who_we_are_text'])) {
-        $whoText = $parameters['who_we_are_text'];
-    }
+if (isset($parameters['who_we_are_text'])) {
+    $whoText = $parameters['who_we_are_text'];
+}
 
-    if (isset($parameters['who_we_are_block_1_title'])) {
-        $infoBlock1 = $parameters['who_we_are_block_1_title'];
-    }
+if (isset($parameters['who_we_are_block_1_title'])) {
+    $infoBlock1 = $parameters['who_we_are_block_1_title'];
+}
 
-    if (isset($parameters['who_we_are_block_2_title'])) {
-        $infoBlock2 = $parameters['who_we_are_block_2_title'];
-    }
+if (isset($parameters['who_we_are_block_2_title'])) {
+    $infoBlock2 = $parameters['who_we_are_block_2_title'];
+}
 
-    if (isset($parameters['who_we_are_block_3_title'])) {
-        $infoBlock3 = $parameters['who_we_are_block_3_title'];
-    }
+if (isset($parameters['who_we_are_block_3_title'])) {
+    $infoBlock3 = $parameters['who_we_are_block_3_title'];
+}
 
-    $infoBlockText1 = "";
-    $infoBlockText2 = "";
-    $infoBlockText3 = "";
+$infoBlockText1 = '';
+$infoBlockText2 = '';
+$infoBlockText3 = '';
 
-    if (isset($parameters['who_we_are_block_1_text'])) {
-        $infoBlockText1 = $parameters['who_we_are_block_1_text'];
-    }
+if (isset($parameters['who_we_are_block_1_text'])) {
+    $infoBlockText1 = $parameters['who_we_are_block_1_text'];
+}
 
-    if (isset($parameters['who_we_are_block_2_text'])) {
-        $infoBlockText2 = $parameters['who_we_are_block_2_text'];
-    }
+if (isset($parameters['who_we_are_block_2_text'])) {
+    $infoBlockText2 = $parameters['who_we_are_block_2_text'];
+}
 
-    if (isset($parameters['who_we_are_block_3_text'])) {
-        $infoBlockText3 = $parameters['who_we_are_block_3_text'];
-    }
+if (isset($parameters['who_we_are_block_3_text'])) {
+    $infoBlockText3 = $parameters['who_we_are_block_3_text'];
+}
 
 @endphp
 
 <section class="who-we-are">
-    <svg class="decor-wave size-15 style-danger mb-4 mt-4" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
-        <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
-           fill="#000000" stroke="none">
+    <svg class="decor-wave size-15 style-danger mb-4 mt-4" version="1.0" xmlns="http://www.w3.org/2000/svg"
+        width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000"
+        preserveAspectRatio="xMidYMid meet">
+        <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
             <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
     -86 3 -99 26 -135 63 -94 129 -129 263 -139 246 -18 368 -100 648 -439 168
     -205 344 -382 451 -455 104 -71 240 -135 362 -168 94 -26 113 -28 300 -28 185
@@ -104,18 +106,22 @@
     0 -207 -2 -298 -27 -119 -32 -260 -97 -364 -169 -115 -79 -255 -219 -444 -444
     -287 -343 -383 -414 -601 -444 -94 -13 -211 -1 -302 30 -124 42 -250 154 -466
     415 -253 306 -401 438 -596 532 -152 73 -274 103 -439 109 -117 5 -134 3 -175
-    -16z"/>
+    -16z" />
         </g>
     </svg>
     <p class="font-size-25 mb-4 font-weight-light">{!! $whoTitle !!}</p>
     <div class="img-video play-tr videoWrapper" style="">
-        <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $whoVideo }}"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+        <div class="video-poster">
+            <button class="video-poster__play video-poster__play"
+                data-url="https://www.youtube.com/embed/{{ $whoVideo }}"><i class="ico-play"></i></button>
+            <img class="video-poster__img" src="@if (!$whoVideoPreview) https://img.youtube.com/vi/{{ $whoVideo }}/maxresdefault.jpg @else {{ $whoVideoPreview }} @endif">
+        </div>
+        <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $whoVideo }}" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
 
     </div>
-   {{-- <div class="img-video" style="background-image: url(img/content/Video-placement-1.jpg)"><i class="fas fa-play-circle"></i></div>--}}
+    {{-- <div class="img-video" style="background-image: url(img/content/Video-placement-1.jpg)"><i class="fas fa-play-circle"></i></div> --}}
     <div class="pt-4 mt-2">
         <div class="mb-3">
             <a href="{{ $whoLink }}" class="text-underline text-dark"><b>{{ $whoLinkText }}</b></a>

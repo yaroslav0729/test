@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -49,6 +50,8 @@ class User extends Authenticatable
         'country',
         'password',
         'facebook_id',
+        'stripe_customer_id',
+        'stripe_portal_url'
     ];
 
     /**
@@ -85,7 +88,7 @@ class User extends Authenticatable
     {
         parent::boot();
 
-        self::created(function($model){
+        self::created(function ($model) {
             $model->syncRoles([self::ROLE_USER]);
         });
     }
@@ -114,5 +117,10 @@ class User extends Authenticatable
     public static function getRoles()
     {
         return self::ROLES_LABEL;
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }

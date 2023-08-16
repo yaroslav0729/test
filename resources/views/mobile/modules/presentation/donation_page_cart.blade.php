@@ -9,9 +9,9 @@ $cartSum = \App\Models\CartItem::getCartSum();
     @if($cartSum === 0)
     <div class="body no-donate">
         <div class="text-center">
-            <p class="mb-4">No matter the amount, your support could mean everything to someone...</p>
+            <p class="support">No matter the amount, your support could mean everything to someone...</p>
             <div class="text-center">
-                <svg class="decor-wave size-20 style-red mb-4" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+                <svg class="decor-wave size-20 style-red" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
                        fill="#000000" stroke="none">
                         <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
@@ -54,7 +54,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                     </g>
                 </svg>
             </div>
-            <p class="font-size-20 mb-4"><b>Your donation so far...</b></p>
+            <p class="font-size-20 letter-spacing-0 mb-0"><b>Your donation so far...</b></p>
             <div class="price">£{{ \App\Models\CartItem::roundCurrency($cartSum) }}</div>
         </div>
     </div>
@@ -127,11 +127,18 @@ $cartSum = \App\Models\CartItem::getCartSum();
                                     @isset($cartItem[0]->campaign)
                                     <p class="font-size-16 mb-0"><b>{{ $cartItem[0]->campaign->name }}</b></p>
                                     @endisset
-
+                                    @isset($cartItem[0]->foodpack)
+                                        <p class="font-size-16 mb-0"><b>{{ $cartItem[0]->foodpack->country->name }} FoodPack</b></p>
+                                    @endisset
+                                        @isset($cartItem[0]->foodpackqurbani)
+                                            <p class="font-size-16 mb-0">
+                                                <b>{{ $cartItem[0]->foodpackqurbani->country->name }} Qurbani ({{ $cartItem[0]->foodpackqurbanitype->name }})</b>
+                                            </p>
+                                        @endisset
                                     <p class="font-size-16 mb-0">{{ (int)$cartItem[0]->period === \App\Models\CampaignPrice::TYPE_SINGLE ? 'Single' : 'Monthly' }} payment</p>
 
                                     @isset($cartItem[0]->campaign_category)
-                                        <span>+{{ $cartItem[0]->campaign_category->name }}</b></span>
+                                        <span><b>+{{ $cartItem[0]->campaign_category->name }}</b></span>
                                     @endisset
                                 </div>
                             </div>

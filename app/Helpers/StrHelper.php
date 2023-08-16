@@ -20,7 +20,7 @@ class StrHelper
         if (!Str::containsAll($string, ['[', ']'])) {
             return $string;
         }
-        $strBetween = "<span class={$className}>" . Str::between($string, '[', ']') . "</span>";
+        $strBetween = "<br/><span class={$className}>" . Str::between($string, '[', ']') . "</span><br/>";
 
         return Str::before($string, '[') . $strBetween . Str::after($string, ']');
     }
@@ -51,5 +51,4 @@ class StrHelper
         $str = str_replace('&nbsp;', ' ', $str);
         return $str;
     }
-
 }

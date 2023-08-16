@@ -1,81 +1,91 @@
 @php
-    $title1 = "";
-    $title2 = "";
-    $text1 = "";
-    $text2 = "";
-    $img1 = "";
-    $img2 = "";
-    $video1 = "";
-    $video2 = "";
-    $link1 = "";
-    $link2 = "";
-    $linkText1 = "";
-    $linkText2 = "";
-    $text3 = "";
-    $link3 = "";
-    $btnTitle3 = "";
+$title1 = '';
+$title2 = '';
+$text1 = '';
+$text2 = '';
+$img1 = '';
+$img2 = '';
+$video1 = '';
+$video1Preview = '';
+$video2 = '';
+$video2Preview = '';
+$link1 = '';
+$link2 = '';
+$linkText1 = '';
+$linkText2 = '';
+$text3 = '';
+$link3 = '';
+$btnTitle3 = '';
 
-    if (isset($parameters['lets_title1'])) {
-        $title1 = $parameters['lets_title1'];
-    }
+if (isset($parameters['lets_title1'])) {
+    $title1 = $parameters['lets_title1'];
+}
 
-    if (isset($parameters['lets_title2'])) {
-        $title2 = $parameters['lets_title2'];
-    }
+if (isset($parameters['lets_title2'])) {
+    $title2 = $parameters['lets_title2'];
+}
 
-    if (isset($parameters['lets_text1'])) {
-        $text1 = $parameters['lets_text1'];
-        $text1 = str_replace('|', '<br>', $text1);
-    }
+if (isset($parameters['lets_text1'])) {
+    $text1 = $parameters['lets_text1'];
+    $text1 = str_replace('|', '<br>', $text1);
+}
 
-    if (isset($parameters['lets_text2'])) {
-        $text2 = $parameters['lets_text2'];
-        $text2 = str_replace('|', '<br>', $text2);
-    }
+if (isset($parameters['lets_text2'])) {
+    $text2 = $parameters['lets_text2'];
+    $text2 = str_replace('|', '<br>', $text2);
+}
 
-    if (isset($parameters['lets_img1'])) {
-        $img1 = $parameters['lets_img1'];
-    }
+if (isset($parameters['lets_img1'])) {
+    $img1 = $parameters['lets_img1'];
+}
 
-    if (isset($parameters['lets_img2'])) {
-        $img2 = $parameters['lets_img2'];
-    }
+if (isset($parameters['lets_img2'])) {
+    $img2 = $parameters['lets_img2'];
+}
 
-    if (isset($parameters['lets_video1'])) {
-        $video1 = $parameters['lets_video1'];
-    }
+if (isset($parameters['lets_video1'])) {
+    $video1 = $parameters['lets_video1'];
+}
 
-    if (isset($parameters['lets_video2'])) {
-        $video2 = $parameters['lets_video2'];
-    }
+if (isset($parameters['lets_video1_preview'])) {
+    $video1Preview = $parameters['lets_video1_preview'];
+}
 
-    if (isset($parameters['lets_link1'])) {
-        $link1 = $parameters['lets_link1'];
-    }
+if (isset($parameters['lets_video2'])) {
+    $video2 = $parameters['lets_video2'];
+}
 
-    if (isset($parameters['lets_link2'])) {
-        $link2 = $parameters['lets_link2'];
-    }
+if (isset($parameters['lets_video2_preview'])) {
+    $video2Preview = $parameters['lets_video2_preview'];
+}
 
-    if (isset($parameters['lets_link_text1'])) {
-        $linkText1 = $parameters['lets_link_text1'];
-    }
+if (isset($parameters['lets_link1'])) {
+    $link1 = $parameters['lets_link1'];
+}
 
-    if (isset($parameters['lets_link_text2'])) {
-        $linkText2 = $parameters['lets_link_text2'];
-    }
+if (isset($parameters['lets_link2'])) {
+    $link2 = $parameters['lets_link2'];
+}
 
-    if (isset($parameters['lets_link_text3'])) {
-        $text3 = $parameters['lets_link_text3'];
-    }
+if (isset($parameters['lets_link_text1'])) {
+    $linkText1 = $parameters['lets_link_text1'];
+}
 
-    if (isset($parameters['lets_link3'])) {
-        $link3 = $parameters['lets_link3'];
-    }
+if (isset($parameters['lets_link_text2'])) {
+    $linkText2 = $parameters['lets_link_text2'];
+}
 
-    if (isset($parameters['lets_btn_title3'])) {
-        $btnTitle3 = $parameters['lets_btn_title3'];
-    }
+if (isset($parameters['lets_link_text3'])) {
+    $text3 = $parameters['lets_link_text3'];
+}
+
+if (isset($parameters['lets_link3'])) {
+    $link3 = $parameters['lets_link3'];
+}
+
+if (isset($parameters['lets_btn_title3'])) {
+    $btnTitle3 = $parameters['lets_btn_title3'];
+}
 
 @endphp
 
@@ -95,23 +105,35 @@
                     <div class="row gutter-0 align-items-center">
 
                         @empty($video1)
-                        <div class="col-12 col-lg-6">
-                            <a href="{{ $link1 }}"><div class="img" style="background-image: url({{ $img1 }})"></div></a>
-                        </div>
+                            <div class="col-12 col-lg-6">
+                                <a href="{{ $link1 }}">
+                                    <div class="img" style="background-image: url({{ $img1 }})"></div>
+                                </a>
+                            </div>
                         @else
-                        <div class="col-12 col-lg-6">
-                            <div class="img-video videoWrapper">
-                                <iframe width="400" height="300" src="https://www.youtube.com/embed/{{ $video1 }}"
+                            <div class="col-12 col-lg-6">
+                                <div class="img-video videoWrapper">
+                                    <div class="video-poster">
+                                        <button class="video-poster__play video-poster__play"
+                                            data-url="https://www.youtube.com/embed/{{ $video1 }}"><i
+                                                class="ico-play"></i></button>
+                                        <img class="video-poster__img" src="@if (!$video1Preview) https://img.youtube.com/vi/{{ $video1 }}/maxresdefault.jpg @else {{ $video1Preview }} @endif">
+                                    </div>
+                                    <iframe width="400" height="300" src="https://www.youtube.com/embed/{{ $video1 }}"
                                         frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
+                                </div>
                             </div>
-                        </div>
                         @endempty
 
                         <div class="col-12 col-lg-6">
                             <div class="pl-4 pr-4 pt-4 pb-4 pt-lg-0 pb-lg-0">
-                                <a href="{{ $link1 }}"><p class="font-size-16 text-uppercase mb-0 letter-spacing-1"><b>{{ $title1 }}</b></p></a>
+                                <a href="{{ $link1 }}">
+                                    <p class="font-size-16 text-uppercase mb-0 letter-spacing-1">
+                                        <b>{{ $title1 }}</b>
+                                    </p>
+                                </a>
                                 <a href="{{ $link1 }}">
                                     <p class="font-size-16 mb-0">
                                         {!! $text1 !!}
@@ -120,7 +142,8 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{ $link1 }}" class="more-view bg-info">{{ $linkText1 }} <i class="moon-icons-plus"></i></a>
+                    <a href="{{ $link1 }}" class="more-view bg-info">{{ $linkText1 }} <i
+                            class="moon-icons-plus"></i></a>
                 </div>
             </div>
         </div>
@@ -130,43 +153,54 @@
                 <div class="item">
                     <div class="row gutter-0 align-items-center">
                         @empty($video2)
-                        <div class="col-12 col-lg-6">
-                            <a href="{{ $link2 }}"><div class="img" style="background-image: url({{ $img2 }})"></div></a>
-                        </div>
-                        @else
-                        <div class="col-12 col-lg-6">
-                            <div class="img-video videoWrapper">
-                                <iframe width="400" height="300" src="https://www.youtube.com/embed/{{ $video2 }}"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen></iframe>
+                            <div class="col-12 col-lg-6">
+                                <a href="{{ $link2 }}">
+                                    <div class="img" style="background-image: url({{ $img2 }})"></div>
+                                </a>
                             </div>
-                        </div>
+                        @else
+                            <div class="col-12 col-lg-6">
+                                <div class="img-video videoWrapper">
+                                    <div class="video-poster">
+                                        <button class="video-poster__play video-poster__play"
+                                            data-url="https://www.youtube.com/embed/{{ $video2 }}"><i
+                                                class="ico-play"></i></button>
+                                        <img class="video-poster__img" src="@if (!$video2Preview) https://img.youtube.com/vi/{{ $video2 }}/maxresdefault.jpg @else {{ $video2Preview }} @endif">
+                                    </div>
+                                    <iframe width="400" height="300"
+                                        src="https://www.youtube.com/embed/{{ $video2 }}" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                                </div>
+                            </div>
                         @endempty
                         <div class="col-12 col-lg-6">
                             <div class="pl-4 pr-4 pt-4 pb-4 pt-lg-0 pb-lg-0">
                                 <a href="{{ $link2 }}">
-                                <p class="font-size-16 text-uppercase mb-0 letter-spacing-1"><b>{{ $title2 }}</b></p>
+                                    <p class="font-size-16 text-uppercase mb-0 letter-spacing-1">
+                                        <b>{{ $title2 }}</b>
+                                    </p>
                                 </a>
                                 <a href="{{ $link2 }}">
-                                <p class="font-size-16 mb-0">
-                                    {!! $text2 !!}
-                                </p>
+                                    <p class="font-size-16 mb-0">
+                                        {!! $text2 !!}
+                                    </p>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <a href="{{ $link2 }}" class="more-view bg-danger">{{ $linkText2 }}<i class="moon-icons-plus"></i></a>
+                    <a href="{{ $link2 }}" class="more-view bg-danger">{{ $linkText2 }}<i
+                            class="moon-icons-plus"></i></a>
                 </div>
             </div>
             <div class="col-12 col-lg-6">
                 <div class="pl-2 pr-2 pl-lg-5 pr-lg-5">
                     <div class="pl-2 pr-2 pl-lg-5 pr-lg-4">
                         <svg class="decor-wave style-danger mb-2" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000"
-                             preserveAspectRatio="xMidYMid meet">
-                            <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
-                               fill="#000000" stroke="none">
+                            width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000"
+                            preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)" fill="#000000"
+                                stroke="none">
                                 <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
     -86 3 -99 26 -135 63 -94 129 -129 263 -139 246 -18 368 -100 648 -439 168
     -205 344 -382 451 -455 104 -71 240 -135 362 -168 94 -26 113 -28 300 -28 185
@@ -203,7 +237,7 @@
     0 -207 -2 -298 -27 -119 -32 -260 -97 -364 -169 -115 -79 -255 -219 -444 -444
     -287 -343 -383 -414 -601 -444 -94 -13 -211 -1 -302 30 -124 42 -250 154 -466
     415 -253 306 -401 438 -596 532 -152 73 -274 103 -439 109 -117 5 -134 3 -175
-    -16z"/>
+    -16z" />
                             </g>
                         </svg>
                         <p class="font-size-20 mb-2 "><b>#FUNDRAISEMYSELF</b></p>

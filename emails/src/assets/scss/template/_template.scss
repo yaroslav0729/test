@@ -1,0 +1,146 @@
+// These are the styles to make some of the templates look extra nice.
+// Feel free to remove these styles for production!
+
+// Body Styles
+body,
+html,
+.body {
+    background: #ffffff !important;
+}
+
+p {
+    margin-top: 10px;
+}
+
+.container.header {
+    background: #ececec;
+}
+
+.container.main {
+    border: 1px solid #e6e6e6;
+}
+
+.container.footer {
+    background: #f0f0f0;
+}
+
+.body-drip {
+    border-top: 8px solid #663399;
+}
+
+// Full Width Headers
+.header {
+    background: #8a8a8a;
+}
+
+.header .columns {
+    padding-bottom: 0;
+}
+
+.header p {
+    color: #fff;
+    padding-top: 15px;
+}
+
+.header .wrapper-inner {
+    padding: 20px;
+}
+
+.header .container {
+    background: transparent;
+}
+
+// Social Media
+table.button.facebook table td {
+    background: #3b5998 !important;
+    border-color: #3b5998;
+}
+
+table.button.twitter table td {
+    background: #1daced !important;
+    border-color: #1daced;
+}
+
+table.button.google table td {
+    background: #db4a39 !important;
+    border-color: #db4a39;
+}
+
+.wrapper.secondary {
+    background: #f3f3f3;
+}
+
+p.color-gray {
+    color: #666666;
+}
+
+.footer a {
+    color: #d13a3a;
+    text-decoration: underline;
+}
+
+p.text-small {
+    font-size: 11px;
+}
+
+.footer th.last {
+    padding-bottom: 0;
+}
+
+h2 {
+    text-align: left;
+    font-size: 21px;
+    margin-top: 17px;
+    margin-bottom: 17px;
+    font-weight: bold;
+    color: #666666;
+}
+
+.main p {
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.footer p {
+    padding: 0 30px;
+}
+
+th.columns.body {
+    padding: 20px 40px;
+}
+
+span.value {
+    color: #be2a2a;
+    font-weight: bold;
+}
+
+table.donation-info {
+    border: 1px solid #e6e6e6;
+}
+
+table.donation-info td,
+table.donation-info th {
+    border: 1px solid #e6e6e6;
+    padding: 10px 15px;
+}
+
+table.donation-info tr.donation-info__total td {
+    padding: 15px;
+    color: #666666;
+}
+
+.donation-info__titles th {
+    font-size: 12px;
+    font-weight: bold;
+    vertical-align: middle;
+    color: #666666;
+}
+
+.donation-info__item td {
+    font-size: 12px;
+    background-color: #f4fbef;
+    color: #5fac2a;
+    vertical-align: middle;
+}

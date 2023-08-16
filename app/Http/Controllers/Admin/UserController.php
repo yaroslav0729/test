@@ -9,10 +9,19 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(10);
-        return view('admin.user.index', ['users' => $users]);
+        $keyword = $request->keyword;
+        $users = new User;
+
+        if (!empty($keyword)) {
+            $users = $users->where('email', 'like', '%' . $keyword . '%')
+                ->orWhere('name', 'like', '%' . $keyword . '%')
+                ->orWhere('last_name', 'like', '%' . $keyword . '%');
+        }
+
+        $users = $users->paginate(10);
+        return view('admin.user.index', ['users' => $users, 'keyword' => $keyword]);
     }
 
     public function edit($id)
@@ -48,6 +57,6 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('admin.user.show', compact('user'));    
+        return view('admin.user.show', compact('user'));
     }
 }

@@ -6,7 +6,9 @@
     $img1 = "";
     $img2 = "";
     $video1 = "";
+    $video1Preview = "";
     $video2 = "";
+    $video2Preview = "";
     $link1 = "";
     $link2 = "";
     $linkText1 = "";
@@ -43,8 +45,16 @@
         $video1 = $parameters['lets_video1'];
     }
 
+    if (isset($parameters['lets_video1_preview'])) {
+        $video1Preview = $parameters['lets_video1_preview'];
+    }
+
     if (isset($parameters['lets_video2'])) {
         $video2 = $parameters['lets_video2'];
+    }
+
+    if (isset($parameters['lets_video2_preview'])) {
+        $video2Preview = $parameters['lets_video2_preview'];
     }
 
     if (isset($parameters['lets_link1'])) {
@@ -107,6 +117,11 @@
             </div>
 
             <div class="form-group col-12 col-lg-6">
+                <label>Video 1 preview:</label>
+                <input class="form-control" name="parameters[lets_video1_preview]" placeholder="Insert path" value="{{ $video1Preview }}" />
+            </div>
+
+            <div class="form-group col-12 col-lg-6">
                 <label>Text 1:</label>
                 <input class="form-control" name="parameters[lets_text1]" placeholder="Insert text" value="{{ $text1 }}" />
             </div>
@@ -143,6 +158,11 @@
             <div class="form-group col-12 col-lg-6">
                 <label>Video 2:</label>
                 <input class="form-control" name="parameters[lets_video2]" placeholder="Insert path" value="{{ $video2 }}" />
+            </div>
+
+            <div class="form-group col-12 col-lg-6">
+                <label>Video 2 preview:</label>
+                <input class="form-control" name="parameters[lets_video2_preview]" placeholder="Insert path" value="{{ $video2Preview }}" />
             </div>
 
             <div class="form-group col-12 col-lg-6">

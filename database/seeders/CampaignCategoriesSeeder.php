@@ -17,13 +17,17 @@ class CampaignCategoriesSeeder extends Seeder
      */
 
     const All_CATEGORIES = [
-        'General Charity',
-        'Fidyah',
+        'Donation',
+        'Sadaqa',
         'Fitrana',
+        'Zakat',
+        'Fidya',
+        'Kaffara',
         'Interest',
-        'Kaffarah',
-        'Sadaqah/Lillah',
-        'Zakah',
+        'Qurbani',
+        'Sadaqa Qurbani',
+        'Aqeeqa',
+        'Lillah',
     ];
 
     public function run()

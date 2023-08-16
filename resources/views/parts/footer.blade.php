@@ -33,8 +33,9 @@
                 <a href="{{ $menuItem->link }}">{!! $menuItem->text !!}</a> @if(count($additionalFooterMenuItem)-1 > $key)
                     <span>|</span> @endif
             @endforeach
-            <span>|</span> Register Charity Number: {{ Setting::get(Setting::REGISTERED_CHARITY_NUMBER) ?? '' }}
-            <span>|</span><a href="tel: {{ Setting::get(Setting::COMPANY_NUMBER) ?? '' }}">Company Number: {{ Setting::get(Setting::COMPANY_NUMBER) ?? '' }}</a>
+            <span>|</span> Registered Charity Number: {{ Setting::get(Setting::REGISTERED_CHARITY_NUMBER) ?? '' }}
+            <span>|</span><a>Company Number: {{ Setting::get(Setting::COMPANY_NUMBER) ?? '' }}</a>
+            <span>|</span><a href="https://www.regentbranding.co.uk/">Site by Regent</a>
         </div>
     </div>
 </footer>

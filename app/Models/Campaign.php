@@ -22,7 +22,10 @@ class Campaign extends Model
         'start_date',
         'end_date',
         'is_emergency',
-        'wp_id'
+        'most_needed_area',
+        'wp_id',
+        'icharm_program_id',
+        'icharm_country_id'
     ];
 
     public static function boot()

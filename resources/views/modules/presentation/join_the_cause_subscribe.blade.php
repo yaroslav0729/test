@@ -30,7 +30,7 @@
     <div class="wrap">
         <div>
             <div class="row align-items-center">
-                <div class="col-7 pr-5">
+                <div class="col-6 col-text">
                     <div class="title mb-3">
                         <p class="font-size-30">
                             <b>
@@ -50,10 +50,9 @@
                         @endif
                     </p>
                 </div>
-                <div class="col-1"></div>
-                <div class="col-4 pr-4">
+                <div class="col-5 col-img">
                         @if ($imageBefore === "")
-                            <img src="img/content/join-cause-2.jpg" alt="" class="w-100">
+                            <img src="/img/content/join-cause-2.jpg" alt="" class="w-100">
                         @else
                             <img src="{{ $image }}" alt="" class="w-100">
                         @endif
@@ -124,9 +123,7 @@
                     </div>
                     <p  class="font-size-20">
                         @if ($textAfter === "")
-                            There are so many ways to help, make sure you stay in the loop and sign up to our Newsletter or find out more about our latest
-                            <br>
-                            <a href="#"  class="text-underline text-dark">Mission Impossible Tour</a>.
+                            There are so many ways to help, make sure you stay in the loop and sign up to our Newsletter or find out more about our latest <a href="https://www.islamichelp.org.uk/mission-possible"  class="text-dark">Mission Possible</a> Tour
                         @else
                             {!! $textAfter !!}
                         @endif

@@ -1,55 +1,60 @@
 @php
 
-    $minRead = "";
-    $headerText="";
-    $writtenBy="";
-    $headerVideo = "";
-    $articleHtml = "";
-    $previewPageTitle = "";
-    $previewPageText1 = "";
-    $previewPageText2 = "";
-    $previewPageLink = "";
-    $previewPageImage = "";
+$minRead = '';
+$headerText = '';
+$writtenBy = '';
+$headerVideo = '';
+$headerVideoPreview = '';
+$articleHtml = '';
+$previewPageTitle = '';
+$previewPageText1 = '';
+$previewPageText2 = '';
+$previewPageLink = '';
+$previewPageImage = '';
 
-    if (isset($parameters['min_read'])) {
-        $minRead = $parameters['min_read'];
-    }
+if (isset($parameters['min_read'])) {
+    $minRead = $parameters['min_read'];
+}
 
-    if (isset($parameters['hdr_text'])) {
-        $headerText = $parameters['hdr_text'];
-    }
+if (isset($parameters['hdr_text'])) {
+    $headerText = $parameters['hdr_text'];
+}
 
-    if (isset($parameters['written_by'])) {
-        $writtenBy = $parameters['written_by'];
-    }
+if (isset($parameters['written_by'])) {
+    $writtenBy = $parameters['written_by'];
+}
 
-    if (isset($parameters['hdr_video'])) {
-        $headerVideo = $parameters['hdr_video'];
-    }
+if (isset($parameters['hdr_video'])) {
+    $headerVideo = $parameters['hdr_video'];
+}
 
-    if (isset($parameters['article_html'])) {
-        $articleHtml = $parameters['article_html'];
-    }
+if (isset($parameters['hdr_video_preview'])) {
+    $headerVideoPreview = $parameters['hdr_video_preview'];
+}
 
-    if (isset($parameters['preview_page_title'])) {
-        $previewPageTitle = $parameters['preview_page_title'];
-    }
+if (isset($parameters['article_html'])) {
+    $articleHtml = $parameters['article_html'];
+}
 
-    if (isset($parameters['preview_page_text1'])) {
-        $previewPageText1 = $parameters['preview_page_text1'];
-    }
+if (isset($parameters['preview_page_title'])) {
+    $previewPageTitle = $parameters['preview_page_title'];
+}
 
-    if (isset($parameters['preview_page_text2'])) {
-        $previewPageText2 = $parameters['preview_page_text2'];
-    }
+if (isset($parameters['preview_page_text1'])) {
+    $previewPageText1 = $parameters['preview_page_text1'];
+}
 
-    if (isset($parameters['preview_page_link'])) {
-        $previewPageLink = $parameters['preview_page_link'];
-    }
+if (isset($parameters['preview_page_text2'])) {
+    $previewPageText2 = $parameters['preview_page_text2'];
+}
 
-    if (isset($parameters['preview_page_image'])) {
-        $previewPageImage = $parameters['preview_page_image'];
-    }
+if (isset($parameters['preview_page_link'])) {
+    $previewPageLink = $parameters['preview_page_link'];
+}
+
+if (isset($parameters['preview_page_image'])) {
+    $previewPageImage = $parameters['preview_page_image'];
+}
 
 @endphp
 
@@ -62,11 +67,22 @@
         <div class="article-text">
             <h1>{{ $pageInstance->name }}</h1>
 
-            <div class="img-video videoWrapper" style="background: #555">
-                @empty($headerVideo)
-                    <i class="fas fa-play-circle"></i>
-                @endempty
-                <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $headerVideo }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="img-video videoWrapper" style="@if (!empty($headerVideo)) background: #555 @else background-image: url('{{ $pageInstance->preview_img }}'); background-size: 100% 100%; background-repeat: no-repeat; @endif">
+                @if (!empty($headerVideo))
+                    @empty($headerVideo)
+                        <i class="fas fa-play-circle"></i>
+                    @endempty
+                    <div class="video-poster">
+                        <button class="video-poster__play video-poster__play"
+                            data-url="https://www.youtube.com/embed/{{ $headerVideo }}"><i
+                                class="ico-play"></i></button>
+                        <img class="video-poster__img" src="@if (!$headerVideoPreview) https://img.youtube.com/vi/{{ $headerVideo }}/0.jpg @else {{ $headerVideoPreview }} @endif">
+                    </div>
+                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $headerVideo }}"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                @endif
             </div>
 
             <div class="date">
@@ -99,7 +115,9 @@
 <div class="pt-5"></div>
 
 @include('modules.presentation.related_topics_project', [
-    'svgWave' => true,
+'svgWave' => true,
 ])
 
 @include('modules.presentation.join_the_cause_subscribe')
+
+@include('modules.presentation.image_lightbox')

@@ -244,3 +244,5 @@
 @include('modules.presentation.related_pages', [
     'parameters' => $parameters
 ])
+
+@include('modules.presentation.image_lightbox');

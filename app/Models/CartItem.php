@@ -11,6 +11,8 @@ class CartItem extends Model
 {
     use HasFactory;
 
+    protected $with = ['campaign', 'foodpack'];
+
     protected $guarded = ['cart_item_id'];
 
     public static function boot()
@@ -20,8 +22,8 @@ class CartItem extends Model
         $randomStr = Carbon::now()->timestamp;
         $randomStr = $randomStr . '_' . Str::random(20);
 
-        self::created(function($model) use ($randomStr) {
-            $model->cart_item_id = $model->id . '_'. $randomStr;
+        self::created(function ($model) use ($randomStr) {
+            $model->cart_item_id = $model->id . '_' . $randomStr;
             $model->save();
         });
     }
@@ -29,6 +31,21 @@ class CartItem extends Model
     public function campaign()
     {
         return $this->belongsTo('App\Models\Campaign');
+    }
+
+    public function foodpack()
+    {
+        return $this->belongsTo(FoodPacksPrice::class, 'food_pack_id', 'id');
+    }
+
+    public function foodpackqurbani()
+    {
+        return $this->belongsTo(FoodPacksQurbaniesPrice::class, 'food_pack_qurbani_id', 'id');
+    }
+
+    public function foodpackqurbanitype()
+    {
+        return $this->belongsTo(FoodPacksQurbaniesType::class, 'food_pack_qurbani_type_id', 'id');
     }
 
     public function campaign_category()
@@ -44,6 +61,7 @@ class CartItem extends Model
             $newItem = CartItem::create([
                 'amount' => $this->amount,
                 'campaign_id' => $this->campaign_id,
+                'food_pack_id' => $this->food_pack_id,
                 'campaign_category_id' => $this->campaign_category_id,
                 'period' => $this->period,
                 'note' => $this->note,
@@ -87,7 +105,9 @@ class CartItem extends Model
             if (($item->amount === $this->amount) &&
                 ($item->campaign_id === $this->campaign_id) &&
                 ($item->campaign_category_id === $this->campaign_category_id) &&
-                ($item->period === $this->period))
+                ($item->food_pack_id === $this->food_pack_id) &&
+                ($item->period === $this->period)
+            )
 
                 $itemsCollected[] = $item;
         }
@@ -106,7 +126,9 @@ class CartItem extends Model
             $itemsCollected = [];
 
             foreach ($items as $item) {
-                $uniqKey = $item['amount'] . '_' . $item['period'] . '_' . $item['campaign_id'] . '_' . $item['campaign_category_id'];
+                $campaign = !empty($item['campaign_id']) ? $item['campaign_id'] : !empty($item['food_pack_id']) ? $item['food_pack_id'] : !empty($item['food_pack_qurbani_id']) && !empty($item['food_pack_qurbani_type_id']) ? $item['food_pack_qurbani_id'].$item['food_pack_qurbani_type_id'] : '';
+
+                $uniqKey = $item['amount'] . '_' . $item['period'] . '_' . $campaign . '_' . $item['campaign_category_id'];
                 $itemsCollected[$uniqKey][] = $item;
             }
 
@@ -142,5 +164,35 @@ class CartItem extends Model
         }
 
         return number_format(round($value, 2), 2, '.', ',');
+    }
+
+    public static function hasMonthlyDonations()
+    {
+        $cartItems = session()->get('cart');
+
+        if (is_array($cartItems)) {
+            $items = \App\Models\CartItem::whereIn('cart_item_id', $cartItems)->get();
+
+            return $items->some(function ($value, $key) {
+                return $value->period === 20;
+            });
+        }
+
+        return false;
+    }
+
+    public static function hasSingleDonations()
+    {
+        $cartItems = session()->get('cart');
+
+        if (is_array($cartItems)) {
+            $items = \App\Models\CartItem::whereIn('cart_item_id', $cartItems)->get();
+
+            return $items->some(function ($value, $key) {
+                return $value->period === 10;
+            });
+        }
+
+        return false;
     }
 }

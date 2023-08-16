@@ -3,17 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Order;
 use App\Models\Page;
 use App\Models\PageInstance;
 use App\Models\Redirect;
 use App\Models\Template;
+use App\Models\TempStoreDonationData;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use App\Models\Campaign;
+use App\Traits\IcharmData;
+use DB;
 
 class PageController extends Controller
 {
+    use IcharmData;
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +27,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $indexPage = Page::index()->first();
+        $indexPage = Page::published()->index()->first();
         $pageInstance = $indexPage->actual_page_instance;
 
         SEOMeta::setTitle($pageInstance->title);
@@ -36,8 +42,9 @@ class PageController extends Controller
         $html = $pageInstance->renderTemplate()->render();
         $html = \App\Models\Widget::replaceMonikers($html);
         $configTemplate = Template::getConfigureTemplate($pageInstance->template);
+        $template = strtolower(preg_replace('/\s+/', '-', Template::getLabel($pageInstance->template)));
 
-        return view('page', compact('html', 'configTemplate'));
+        return view('page', compact('html', 'configTemplate', 'template'));
     }
 
     public function showFromSlug($slug, Request $request)
@@ -47,6 +54,16 @@ class PageController extends Controller
         if ($slug === 'index') {
             return redirect('/');
         }
+        // if ($slug === 'thank-you-page') {
+        //     $orderId = $request->order;
+        //     $donationData = TempStoreDonationData::where(['order_id' => $orderId])->get(['donation_data', 'id'])->toArray();
+        //     if (!empty($donationData)) {
+        //         foreach ($donationData as $key => $donation) {
+        //             $this->addDonationToIcharm(unserialize($donation['donation_data']));
+        //             TempStoreDonationData::where('id', $donation->id)->update(['sent_at' => now()]);
+        //         }
+        //     }
+        // }
 
         if (Redirect::slugHasRedirect($slug)) {
             return Redirect::redirectFromSlug($slug);
@@ -83,7 +100,8 @@ class PageController extends Controller
         $html = $pageInstance->renderTemplate()->render();
         $html = \App\Models\Widget::replaceMonikers($html);
         $configTemplate = Template::getConfigureTemplate($pageInstance->template);
+        $template = strtolower(preg_replace('/\s+/', '-', Template::getLabel($pageInstance->template)));
 
-        return view('page', compact('html', 'configTemplate'));
+        return view('page', compact('html', 'configTemplate', 'template'));
     }
 }
