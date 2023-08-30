@@ -64,8 +64,7 @@ class CartController extends Controller
             $period = CampaignPrice::TYPE_SINGLE;
         }
 
-        if ($period == CampaignPrice::TYPE_MONTHLY && $amount > 2000)
-        {
+        if ($period == CampaignPrice::TYPE_MONTHLY && $amount > 2000) {
             return response()->json([
                 'message' => 'Error',
                 'success' => false,
@@ -90,7 +89,8 @@ class CartController extends Controller
             'campaign_category_id' => $categoryId,
             'period' => $period,
             'note' => $note,
-            'project_id' => $projectId
+            'project_id' => $projectId,
+            'goal' => $request->get('goal') ?? null,
         ]);
 
         $this->sessionCartPut($cartItem->cart_item_id);
@@ -226,8 +226,7 @@ class CartController extends Controller
         $items = [];
 
         $totalDonations = $cartItems->count();
-        if ($cartItems->where('period', 20)->sum('amount') > config('config.max_monthly_donate'))
-        {
+        if ($cartItems->where('period', 20)->sum('amount') > config('config.max_monthly_donate')) {
             return back()->with('error', "For donations of this value please contact our team on 0121 446 568.");
         }
 
@@ -290,7 +289,7 @@ class CartController extends Controller
                 'campaign_category_id' => $cartItem->campaign_category_id,
                 'user_id' => auth()->user() ? auth()->user()->id : null,
                 'email' => $order->email,
-                'commission' => $request->stripe_fee ? StripeService::countCommission(CartItem::getCartSum())/$totalDonations : null,
+                'commission' => $request->stripe_fee ? StripeService::countCommission(CartItem::getCartSum()) / $totalDonations : null,
                 'note' => $request->get('notes_' . $cartItem->cart_item_id) ?? $cartItem->note,
                 'schedule' => $cartItem->period === 20 ? 'Number: ' . $order->account_number . ', Sort: ' . $order->sort_code . ', Day: ' . $order->pay_day : '',
                 'account_number' => $cartItem->period === 20 ? $request->account_number : null,
@@ -298,14 +297,15 @@ class CartController extends Controller
                 'pay_day' => $cartItem->period === 20 ? $request->schedule : null,
                 'ip' => $request->ip(),
                 'upsell' => $cartItem->upsell,
+                'goal' => $cartItem->goal,
             ]);
             $donationName = 'Quick Donation';
-            if(isset($cartItem->campaign)){
+            if (isset($cartItem->campaign)) {
                 $donationName =  $cartItem->campaign->name;
-            } else  if(isset($cartItem->foodpack)){
-                $donationName =  $cartItem->foodpack->country->name. " FoodPack";
-            } else  if(isset($cartItem->foodpackqurbani)){
-                $donationName =  $cartItem->foodpackqurbani->country->name. " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
+            } else  if (isset($cartItem->foodpack)) {
+                $donationName =  $cartItem->foodpack->country->name . " FoodPack";
+            } else  if (isset($cartItem->foodpackqurbani)) {
+                $donationName =  $cartItem->foodpackqurbani->country->name . " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
             } else if ($cartItem->upsell) {
                 $donationName = 'Provide Rice This Eid';
             }
@@ -346,7 +346,7 @@ class CartController extends Controller
                 $sum = $sum * 100;
                 \Stripe\Stripe::setApiKey(config('stripe.secret_key'));
 
-                if($request->stripe_fee) {
+                if ($request->stripe_fee) {
                     $items[] = [
                         'price_data' => [
                             'currency' => 'gbp',
@@ -518,8 +518,7 @@ class CartController extends Controller
                 $totalAmount = $collection->sum('amount');
                 $price = $totalAmount / $totalItems;
 
-                if ($price * $quantity > 2000)
-                {
+                if ($price * $quantity > 2000) {
                     return false;
                 }
             }

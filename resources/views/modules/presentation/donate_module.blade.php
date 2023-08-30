@@ -177,6 +177,7 @@ if (!isset($useAppeal)) {
                             ])
 
                             <input type="hidden" value="monthly" name="period" />
+                            <input type="hidden" value="" name="goal" />
 
                             <div class="pt-3"></div>
                             <div class="row gutter-5 select-container">

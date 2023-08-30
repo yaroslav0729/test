@@ -114,7 +114,7 @@ $collection = collect($amount)->transform(function ($item, $key) use ($campaigns
                 @php $class = 'active-color-red' @endphp
             @endif
 
-            <label class="item @isset($class) {{ $class }} @endisset" select-amount data-amount_id={{ $amountKey }}>
+            <label class="item @isset($class) {{ $class }} @endisset" select-amount data-amount_id="{{ $amountKey }}" data-campaign_goal="@isset($item['campaign_goal']){{$item['campaign_goal']}}@endisset">
                 <input type="radio" name="price" value="{{ $item['value'] }}">
                 <span class="d-flex align-items-center">
                     <span>

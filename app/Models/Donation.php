@@ -23,7 +23,7 @@ class Donation extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['value', 'order_id', 'type', 'currency', 'campaign_id', 'food_pack_id', 'food_pack_qurbani_id', 'food_pack_qurbani_type_id', 'campaign_category_id', 'user_id', 'email', 'note', 'schedule', 'created_at', 'wp_id', 'status', 'commission', 'ip', 'qurbani_name', 'created_at', 'is_recurring', 'upsell'];
+    protected $fillable = ['value', 'order_id', 'type', 'currency', 'campaign_id', 'food_pack_id', 'food_pack_qurbani_id', 'food_pack_qurbani_type_id', 'campaign_category_id', 'user_id', 'email', 'note', 'schedule', 'created_at', 'wp_id', 'status', 'commission', 'ip', 'qurbani_name', 'created_at', 'is_recurring', 'upsell', 'goal'];
 
     protected static function getTypeLabel($type)
     {
@@ -167,7 +167,7 @@ class Donation extends Model
 
     public function getCampaignName()
     {
-        if(isset($this->campaign_id)) {
+        if (isset($this->campaign_id)) {
             return $this->campaign->name;
         } else if (isset($this->food_pack_id)) {
             return $this->foodpack->country->name;

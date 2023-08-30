@@ -148,7 +148,7 @@ class StripeService
     public function prepareLineItemsForSession(Collection $plans): array
     {
         return $plans
-            ->map(static function(Plan $plan) {
+            ->map(static function (Plan $plan) {
                 return [
                     'price' => $plan->id,
                     'quantity' => 1,
@@ -159,12 +159,12 @@ class StripeService
 
     public static function countCommissionPence($sum): int
     {
-        return (int)((int)(((($sum+23)/(1-0.029))-$sum)*100)/100);
+        return (int)((int)(((($sum + 23) / (1 - 0.029)) - $sum) * 100) / 100);
     }
 
     public static function countCommission($sum): float
     {
-        return ((int)(((($sum+0.23)/(1-0.029))-$sum)*100))/100;
+        return ((int)(((($sum + 0.23) / (1 - 0.029)) - $sum) * 100)) / 100;
     }
 
     /**
@@ -175,29 +175,40 @@ class StripeService
         $sum = 0;
         $metadata = [];
 
+        $withGoal = false;
+        $donationCampaigns = [];
+
         foreach ($cartItems as $key => $cartItem) {
             $sum = $sum + $cartItem->amount;
+            if ($cartItem->goal) {
+                $withGoal = true;
+            }
             $donationName = 'Monthly donation';
-            if(isset($cartItem->campaign)){
+            if (isset($cartItem->campaign)) {
                 $donationName =  $cartItem->campaign->name;
-            } else  if(isset($cartItem->foodpack)){
-                $donationName =  $cartItem->foodpack->country->name. " FoodPack";
-            } else  if(isset($cartItem->foodpackqurbani)){
-                $donationName =  $cartItem->foodpackqurbani->country->name. " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
+            } else  if (isset($cartItem->foodpack)) {
+                $donationName =  $cartItem->foodpack->country->name . " FoodPack";
+            } else  if (isset($cartItem->foodpackqurbani)) {
+                $donationName =  $cartItem->foodpackqurbani->country->name . " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
             } else if ($cartItem->upsell) {
                 $donationName = 'Provide Rice This Eid';
             }
             $metadata[substr($donationName, 0, 40)] = $cartItem->amount . '£';
+            $donationCampaigns[] = $donationName;
+            $metadata['Goal for campaign #' . $cartItem->campaign_id] = $cartItem->goal;
+            $metadata['Paid for campaign #' . $cartItem->campaign_id] = 0;
         }
-        $campaigns = array_keys($metadata);
         $metadata['donated_campaigns'] = count($cartItems);
+        if ($withGoal) {
+            $metadata['with_goal'] = true;
+        }
 
         return $this->stripe->plans->create([
             'amount' => $sum * 100,
             'currency' => 'gbp',
             'interval' => 'month',
             'product' => [
-                'name' => implode(', ', $campaigns) . " monthly direct debit by Islamic Help",
+                'name' => implode(', ', $donationCampaigns) . " monthly direct debit by Islamic Help",
                 'metadata' => $metadata
             ],
             'metadata' => $metadata
@@ -288,7 +299,7 @@ class StripeService
     public function getSubscriptionByProductId(string $productId)
     {
         return $this->stripe->subscriptions->search([
-            'query' => 'product:\''. $productId .'\''
+            'query' => 'product:\'' . $productId . '\''
         ]);
     }
 

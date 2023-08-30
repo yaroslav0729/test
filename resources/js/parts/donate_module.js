@@ -37,6 +37,12 @@ $(function() {
             }
 
             countriesEl.find("select").removeAttr("disabled");
+            if ($(this).data('campaign_goal')) {
+                $(this)
+                    .closest('form')
+                    .find('input[name="goal"]')
+                    .val($(this).data('campaign_goal'));
+            }
 
             let price = $(this)
                 .find('input[name="price"]')

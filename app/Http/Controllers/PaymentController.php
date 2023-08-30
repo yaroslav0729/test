@@ -202,11 +202,33 @@ class PaymentController extends Controller
                     $subscriptionInvoices = $this->stripeService->fetchInvoicesBySubscription($subscriptionId);
                     Log::error('Subscription has ' . count($subscriptionInvoices->data) . ' invoice(s).');
 
-                    if (count($subscriptionInvoices->data) > 1) {
-                        $order = Order::where('subscription_id', $subscriptionId)->firstOrFail();
-                        $donationsCount = isset($subscription->metadata['donated_campaigns']) ? $subscription->metadata['donated_campaigns'] : count($order->donations)/(count($subscriptionInvoices->data) - 1);
+                    $order = Order::where('subscription_id', $subscriptionId)->firstOrFail();
+                    $donationsCount = isset($subscription->metadata['donated_campaigns']) ? $subscription->metadata['donated_campaigns'] : count($order->donations) / (count($subscriptionInvoices->data) - 1);
+                    $donations = $order->donations()->take($donationsCount)->get();
 
-                        $donations = $order->donations()->take($donationsCount)->get();
+                    $subscriptionMetadata = $subscription->metadata->toArray();
+
+                    if (isset($subscriptionMetadata['with_goal'])) {
+                        $fullyPaid = false;
+                        foreach ($donations as $donation) {
+                            $goal = intval($subscriptionMetadata['Goal for campaign #' . $donation->campaign_id]);
+                            $paid = intval($subscriptionMetadata['Paid for campaign #' . $donation->campaign_id]);
+
+                            $paid = $donation->value + $paid;
+                            $subscriptionMetadata['Paid for campaign #' . $donation->campaign_id] = $paid;
+                            if ($paid >= $goal) {
+                                $fullyPaid = true;
+                            }
+                        }
+
+                        $stripe->subscriptions->update($subscriptionId, ['metadata' => $subscriptionMetadata]);
+
+                        if ($fullyPaid) {
+                            $subscription->cancel();
+                        }
+                    }
+
+                    if (count($subscriptionInvoices->data) > 1) {
                         $createdTime = now();
                         foreach ($donations as $key => $donation) {
                             $newDonation = $donation->replicate();
