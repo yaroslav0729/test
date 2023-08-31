@@ -96,12 +96,15 @@ class ParseStripeSuscriptionAggregatedTotal extends Command
     {
 
         $ihSubsCount = 0;
+        $last_sub_id = null;
         do {
             $subscriptions = $client->subscriptions->all([
                 'limit' => 100,
+                'starting_after' => $last_sub_id,
             ]);
 
             foreach ($subscriptions->data as $subscription) {
+                $last_sub_id = $subscription->id;
                 $subMetadata = $subscription->metadata->toArray();
                 $donationsTotal = [];
 
