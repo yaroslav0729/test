@@ -98,10 +98,11 @@ class ParseStripeSuscriptionAggregatedTotal extends Command
         $ihSubsCount = 0;
         $last_sub_id = null;
         do {
-            $subscriptions = $client->subscriptions->all([
-                'limit' => 100,
-                'starting_after' => $last_sub_id,
-            ]);
+            $params = ['limit' => 100];
+            if ($last_sub_id) {
+                $params['starting_after'] = $last_sub_id;
+            }
+            $subscriptions = $client->subscriptions->all($params);
 
             foreach ($subscriptions->data as $subscription) {
                 $last_sub_id = $subscription->id;
