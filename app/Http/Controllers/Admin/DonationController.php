@@ -243,6 +243,9 @@ class DonationController extends Controller
                             ->orWhere('last_name', 'like', $searchTemplate)
                             ->orWhere('first_name', 'like', $searchTemplate)
                             ->orWhere('post_code', 'like', $searchTemplate);
+                    })
+                    ->orWhereHas('campaign', function ($query) use ($searchTemplate) {
+                        $query->where('name', 'like', $searchTemplate);
                     });
             });
         }
