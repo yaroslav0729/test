@@ -157,7 +157,8 @@
         <p class="font-size-12 text-uppercase mb-4"><b>Latest mission</b></p>
         <p class="font-size-30 font-weight-light mb-0">{{ $latestMissionText }}</p>
         <p class="font-size-16 text-uppercase mb-4"><b>{{ $latestMissionDate }}</b></p>
-        <a href="{{ $applyLink }}" class="btn btn-primary">Apply now</a>
+        <a href="{{ $applyLink ? $applyLink : '#widget' }}" id="scroller"
+            class="btn btn-primary">{{ $applyText }}</a>
     </div>
 </section>
 
