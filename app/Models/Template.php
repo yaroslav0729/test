@@ -19,6 +19,7 @@ class Template
     const VOLUNTEER_START_PAGE = 13;
     const NEWSROOM_PAGE = 14;
     const CALCULATOR_PAGE = 20;
+    const WIDGET_PAGE_TEMPLATE = 22;
     public const THANK_YOU_SUBSCRIPTION_PAGE = 21;
 
     const TEST_PAGE = 100;
@@ -41,6 +42,7 @@ class Template
         self::MISSION_POSSIBLE,
         self::NEWSROOM_PAGE,
         self::THANK_YOU_SUBSCRIPTION_PAGE,
+        self::WIDGET_PAGE_TEMPLATE,
         //self::TEST_PAGE,
     ];
 
@@ -81,6 +83,8 @@ class Template
                 return "Newsroom page";
             case self::THANK_YOU_SUBSCRIPTION_PAGE:
                 return 'Thank you subscription page';
+            case self::WIDGET_PAGE_TEMPLATE:
+                return 'Widget page';
 
             default:
                 return "Unknown template type";
@@ -128,6 +132,13 @@ class Template
         ],
 
         self::PROJECT_PAGE => [
+            'bodyClassName' => 'project-page',
+            'headerClassName' => 'blue',
+            'footerClassName' => 'bg-info',
+            'headerType' => 'parts.header',
+        ],
+
+        self::WIDGET_PAGE_TEMPLATE => [
             'bodyClassName' => 'project-page',
             'headerClassName' => 'blue',
             'footerClassName' => 'bg-info',
@@ -538,10 +549,11 @@ class Template
                     break;
                 }
 
+            case self::WIDGET_PAGE_TEMPLATE:
             case self::PROJECT_PAGE: {
 
                     $rules = [
-//                        'parameters' => 'amount_limit_items',
+                        //                        'parameters' => 'amount_limit_items',
                         'parameters.proj_heading' => 'max:100', //'max:30',
                         'parameters.proj_par1' => 'max:460',
                         'parameters.proj_par2' => 'max:460',
