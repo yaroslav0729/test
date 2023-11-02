@@ -1,10 +1,10 @@
 @php
 
-    $previewPageTitle = "";
-    $previewPageText1 = "";
-    $previewPageText2 = "";
-    $previewPageLink = "";
-    $previewPageImage = "";
+    $previewPageTitle = '';
+    $previewPageText1 = '';
+    $previewPageText2 = '';
+    $previewPageLink = '';
+    $previewPageImage = '';
 
     if (isset($parameters['preview_page_title'])) {
         $previewPageTitle = $parameters['preview_page_title'];
@@ -31,18 +31,23 @@
 <section class="our-latest-mission">
 
     @empty($previewPageTitle)
-    <div class="title">Have you<br>heard of...</div>
+        <div class="title">Have you<br>heard of...</div>
     @else
-    <div class="title">{{ $previewPageTitle }}</div>
+        <div class="title">{{ $previewPageTitle }}</div>
     @endempty
 
 
     <div class="bg-red">
         <div class="text">
-            <div class="tl text-white mb-4 font-size-50">Mission Possible</div>
-            <svg class="decor-wave size-32 style-white opacity-20 mb-4" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
-                   fill="#000000" stroke="none">
+            @empty($previewPageText1)
+                <div class="tl text-white mb-4 font-size-50">Mission Possible</div>
+            @else
+                <div class="tl text-white mb-4 font-size-50">{{ $previewPageText1 }}</div>
+            @endempty
+            <svg class="decor-wave size-32 style-white opacity-20 mb-4" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000"
+                preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
                     <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
     -86 3 -99 26 -135 63 -94 129 -129 263 -139 246 -18 368 -100 648 -439 168
     -205 344 -382 451 -455 104 -71 240 -135 362 -168 94 -26 113 -28 300 -28 185
@@ -79,27 +84,27 @@
     0 -207 -2 -298 -27 -119 -32 -260 -97 -364 -169 -115 -79 -255 -219 -444 -444
     -287 -343 -383 -414 -601 -444 -94 -13 -211 -1 -302 30 -124 42 -250 154 -466
     415 -253 306 -401 438 -596 532 -152 73 -274 103 -439 109 -117 5 -134 3 -175
-    -16z"/>
+    -16z" />
                 </g>
             </svg>
 
             @empty($previewPageText2)
-            <p class="text-white font-size-16">Mission Possible, the mission that changes everyone's lives.</p>
+                <p class="text-white font-size-16">Mission Possible, the mission that changes everyone's lives.</p>
             @else
-            <p class="text-white font-size-16">{{ $previewPageText2 }}</p>
+                <p class="text-white font-size-16">{{ $previewPageText2 }}</p>
             @endempty
 
         </div>
     </div>
 
     @empty($previewPageImage)
-    <div class="img" style="background-image: url(img/content/mission-impossible-1.jpg)">
-        <a href="{{ $previewPageLink }}" class="btn btn-danger-light view-more">Learn more</a>
-    </div>
+        <div class="img" style="background-image: url(img/content/mission-impossible-1.jpg)">
+            <a href="{{ $previewPageLink }}" class="btn btn-danger-light view-more">Learn more</a>
+        </div>
     @else
-    <div class="img" style="background-image: url({{ $previewPageImage }})">
-        <a href="{{ $previewPageLink }}" class="btn btn-danger-light view-more">Learn more</a>
-    </div>
+        <div class="img" style="background-image: url({{ $previewPageImage }})">
+            <a href="{{ $previewPageLink }}" class="btn btn-danger-light view-more">Learn more</a>
+        </div>
     @endempty
 
 </section>

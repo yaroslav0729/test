@@ -119,7 +119,7 @@
     }
 
     if (isset($parameters['explore_info_title_1'])) {
-        $sideBlockText1 = $parameters['explore_info_title_1'];
+        $sideBlockTitle1 = $parameters['explore_info_title_1'];
     }
 
     if (isset($parameters['explore_info_text_1'])) {
