@@ -131,14 +131,14 @@
         $sideBlockText1 = $parameters['explore_info_text_1'];
     }
     if (isset($parameters['explore_info_title_2'])) {
-        $sideBlockText2 = $parameters['explore_info_title_2'];
+        $sideBlockTitle2 = $parameters['explore_info_title_2'];
     }
 
     if (isset($parameters['explore_info_text_2'])) {
         $sideBlockText2 = $parameters['explore_info_text_2'];
     }
     if (isset($parameters['explore_info_title_3'])) {
-        $sideBlockText3 = $parameters['explore_info_title_3'];
+        $sideBlockTitle3 = $parameters['explore_info_title_3'];
     }
 
     if (isset($parameters['explore_info_text_3'])) {

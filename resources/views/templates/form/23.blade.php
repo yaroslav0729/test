@@ -58,8 +58,8 @@
         $colText2 = $parameters['column2_text'];
     }
 
-    if (isset($parameters['column2_title'])) {
-        $colTitle3 = $parameters['column2_title'];
+    if (isset($parameters['column3_title'])) {
+        $colTitle3 = $parameters['column3_title'];
     }
 
     if (isset($parameters['column3_text'])) {
@@ -126,14 +126,14 @@
         $sideBlockText1 = $parameters['explore_info_text_1'];
     }
     if (isset($parameters['explore_info_title_2'])) {
-        $sideBlockText2 = $parameters['explore_info_title_2'];
+        $sideBlockTitle2 = $parameters['explore_info_title_2'];
     }
 
     if (isset($parameters['explore_info_text_2'])) {
         $sideBlockText2 = $parameters['explore_info_text_2'];
     }
     if (isset($parameters['explore_info_title_3'])) {
-        $sideBlockText3 = $parameters['explore_info_title_3'];
+        $sideBlockTitle3 = $parameters['explore_info_title_3'];
     }
 
     if (isset($parameters['explore_info_text_3'])) {
@@ -167,8 +167,13 @@
 </div>
 
 <div class="form-group">
-    <label>Apply now link:</label>
+    <label>Header banner button link:</label>
     <input class="form-control" name="parameters[apply_link]" placeholder="Link here ..." value="{{ $applyLink }}" />
+</div>
+
+<div class="form-group">
+    <label>Header banner button text:</label>
+    <input class="form-control" name="parameters[apply_link]" placeholder="Text here ..." value="{{ $applyText }}" />
 </div>
 
 <div class="form-group">
