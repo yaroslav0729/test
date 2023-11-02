@@ -1,25 +1,26 @@
 @php
 
-    $mainTitle = "";
-    $mainImage = "";
-    $applyLink = "";
-    $latestMissionText = "";
-    $latestMissionDate = "";
-    $colTitle1 = "";
-    $colText1 = "";
-    $colTitle2 = "";
-    $colText2 = "";
-    $colTitle3 = "";
-    $colText3 = "";
-    $exploreTitle = "";
-    $exploreText = "";
-    $interestedTitle = "";
-    $interestedText = "";
-    $volonteerNowLink = "";
-    $projImg1 = "";
-    $projText1 = "";
-    $projImg2 = "";
-    $projText2 = "";
+    $mainTitle = '';
+    $mainImage = '';
+    $applyLink = '';
+    $latestMissionText = '';
+    $latestMissionDate = '';
+    $colTitle1 = '';
+    $colText1 = '';
+    $colTitle2 = '';
+    $colText2 = '';
+    $colTitle3 = '';
+    $colText3 = '';
+    $exploreTitle = '';
+    $exploreText = '';
+    $interestedTitle = '';
+    $interestedText = '';
+    $volonteerNowLink = '';
+    $projImg1 = '';
+    $projText1 = '';
+    $projImg2 = '';
+    $projText2 = '';
+    $widgetHtml = '';
 
     if (isset($parameters['main_title'])) {
         $mainTitle = $parameters['main_title'];
@@ -101,23 +102,27 @@
         $projText2 = $parameters['proj_text2'];
     }
 
+    if (isset($parameters['widget_html'])) {
+        $widgetHtml = $parameters['widget_html'];
+    }
+
 @endphp
 
 <section class="head-Volunteer">
     <div class="row">
         <div class="col-6">
             @empty($mainTitle)
-            <h1>Volunteer<br>& help empower communities.</h1>
+                <h1>Volunteer<br>& help empower communities.</h1>
             @else
-            <h1>{{ $mainTitle }}</h1>
+                <h1>{{ $mainTitle }}</h1>
             @endempty
 
         </div>
         <div class="col-6">
             @empty($mainImage)
-            <img src="img/content/Volunteer1.jpg" alt="" class="w-100">
+                <img src="img/content/Volunteer1.jpg" alt="" class="w-100">
             @else
-            <img src="{{ $mainImage }}" alt="" class="w-100">
+                <img src="{{ $mainImage }}" alt="" class="w-100">
             @endempty
         </div>
     </div>
@@ -125,9 +130,9 @@
         <div class="row align-items-center">
             <div class="col-8">
                 @empty($latestMissionText)
-                <p>Latest mission | Tanzania 2oth August 2020</p>
+                    <p>Latest mission | Tanzania 2oth August 2020</p>
                 @else
-                <p>Latest mission | {{ $latestMissionText }} {{ $latestMissionDate }}</p>
+                    <p>Latest mission | {{ $latestMissionText }} {{ $latestMissionDate }}</p>
                 @endempty
             </div>
             <div class="col-4 text-right">
@@ -172,25 +177,62 @@
 
 <section class="explore-past-missions style-2 bg-danger-light">
     <div class="row">
-        <div class="col-12 col-md-5 pr-5">
-            <div class="pr-5">
-                @empty($exploreTitle)
-                    <p class="explore-title font-size-40 mb-3"><b>Explore past projects</b></p>
-                @else
-                    <p class="explore-title font-size-40 mb-3"><b>{{ $exploreTitle }}</b></p>
-                @endempty
+        <div class="col-12 col-md-8 pr-5">
+            <div class="explore-info-col">
+                <div class="explore-header">
+                    <p class="explore-title mb-3"><b>{{ $exploreTitle }}</b></p>
+                    <div class="explore-info">
+                        <div class="explore-info__item">
+                            <p class="explore-info__item-title">Demand action:</p>
+                            <p class="explore-info__item-text">
+                                Each signature strengthens our collective demand for an end to eh violence.
+                            </p>
+                        </div>
+                        <div class="explore-info__item">
+                            <p class="explore-info__item-title">Support the Afflicted:</p>
+                            <p class="explore-info__item-text">
+                                Show the people of Gaza that they're not alone in their time of need.
+                            </p>
+                        </div>
+                        <div class="explore-info__item">
+                            <p class="explore-info__item-title">Be an Advocate for Change:</p>
+                            <p class="explore-info__item-text">
+                                Collective voices of the many can bring about meaningful change.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-                @empty($exploreTitle)
-                    <p class="font-size-16 mb-5">210 Characters undos omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. </p>
-                @else
-                    <p class="font-size-16 mb-5">{{ $exploreText }}</p>
-                @endempty
-            </div>
+                <div class="row">
+                    <div class="col-12">
+                        <p class="explore-past-projects-title">Past Campaigns</p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="item mt-n4">
+                            @empty($projImg1)
+                                <img src="img/content/explore-past-missions3.jpg" alt="">
+                            @else
+                                <img src="{{ $projImg1 }}" alt="">
+                            @endempty
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="item mt-5">
+                            @empty($projImg2)
+                                <img src="img/content/explore-past-missions4.jpg" alt="">
+                            @else
+                                <img src="{{ $projImg2 }}" alt="">
+                            @endempty
+                        </div>
+                    </div>
+                </div>
 
-            <svg class="decor-wave size-80 style-danger mt-n4" style="position: relative; top: 50px; left: -160%" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
-                   fill="#000000" stroke="none">
-                    <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
+                <svg class="decor-wave size-80 style-danger mt-n4" style="position: absolute; top: 50px; left: -160%"
+                    version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt"
+                    viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+                    <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)" fill="#000000"
+                        stroke="none">
+                        <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
     -86 3 -99 26 -135 63 -94 129 -129 263 -139 246 -18 368 -100 648 -439 168
     -205 344 -382 451 -455 104 -71 240 -135 362 -168 94 -26 113 -28 300 -28 185
     0 207 2 298 27 125 33 278 107 389 187 94 67 262 234 368 365 185 230 310 359
@@ -226,50 +268,21 @@
     0 -207 -2 -298 -27 -119 -32 -260 -97 -364 -169 -115 -79 -255 -219 -444 -444
     -287 -343 -383 -414 -601 -444 -94 -13 -211 -1 -302 30 -124 42 -250 154 -466
     415 -253 306 -401 438 -596 532 -152 73 -274 103 -439 109 -117 5 -134 3 -175
-    -16z"/>
-                </g>
-            </svg>
+    -16z" />
+                    </g>
+                </svg>
 
-        </div>
-        <div class="col-12 col-md-7 lazy-block">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="item mt-n4">
-                        @empty($projImg1)
-                        <img src="img/content/explore-past-missions3.jpg" alt="">
-                        @else
-                        <img src="{{ $projImg1 }}" alt="">
-                        @endempty
-
-                        @empty($projText1)
-                        <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> Tanzania, africa</span></span>
-                        @else
-                        <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> {{ $projText1 }}</span></span>
-                        @endempty
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="item mt-5">
-                        @empty($projImg2)
-                        <img src="img/content/explore-past-missions4.jpg" alt="">
-                        @else
-                        <img src="{{ $projImg2 }}" alt="">
-                        @endempty
-
-                        @empty($projText2)
-                        <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> LONDON, UK</span></span>
-                        @else
-                        <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> {{ $projText2 }}</span></span>
-                        @endempty
-                    </div>
-                </div>
             </div>
         </div>
-    </div>
+        <div class="col-12 col-md-4 lazy-block explore-widget-block">
+            <div class="explore-widget-wrapper">
+                {!! $widgetHtml !!}
+            </div>
+        </div>
 </section>
 
 
-<section class="be-part-possible bg-danger-light">
+{{-- <section class="be-part-possible bg-danger-light">
     <div class="row align-items-center">
         <div class="col-12 col-md-6">
             <div class="help-info-grid lazy-block">
@@ -293,15 +306,17 @@
         </div>
         <div class="col-12 col-md-5 pl-4">
             @empty($interestedTitle)
-            <p class="font-size-40 mb-3"><b>Interested? Volunteer today</b></p>
+                <p class="font-size-40 mb-3"><b>Interested? Volunteer today</b></p>
             @else
-            <p class="font-size-40 mb-3"><b>{{ $interestedTitle }}</b></p>
+                <p class="font-size-40 mb-3"><b>{{ $interestedTitle }}</b></p>
             @endempty
 
             @empty($interestedText)
-            <p class="font-size-16  mb-5">210 Characters undos omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicab. </p>
+                <p class="font-size-16  mb-5">210 Characters undos omnis iste natus error sit voluptatem accusantium
+                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+                    architecto beatae vitae dicta sunt explicab. </p>
             @else
-            <p class="font-size-16  mb-5">{{ $interestedText }}</p>
+                <p class="font-size-16  mb-5">{{ $interestedText }}</p>
             @endempty
             <div class="pt-0">
                 <a href="{{ $volonteerNowLink }}" class="btn btn-red">Volunteer now!</a>
@@ -309,7 +324,7 @@
         </div>
         <div class="col-12 col-md-1"></div>
     </div>
-</section>
+</section> --}}
 
 <div class="pt-5 pb-5"></div>
 

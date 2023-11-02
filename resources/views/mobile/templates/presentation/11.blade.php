@@ -1,25 +1,26 @@
 @php
 
-    $mainTitle = "";
-    $mainImage = "";
-    $applyLink = "";
-    $latestMissionText = "";
-    $latestMissionDate = "";
-    $colTitle1 = "";
-    $colText1 = "";
-    $colTitle2 = "";
-    $colText2 = "";
-    $colTitle3 = "";
-    $colText3 = "";
-    $exploreTitle = "";
-    $exploreText = "";
-    $interestedTitle = "";
-    $interestedText = "";
-    $volonteerNowLink = "";
-    $projImg1 = "";
-    $projText1 = "";
-    $projImg2 = "";
-    $projText2 = "";
+    $mainTitle = '';
+    $mainImage = '';
+    $applyLink = '';
+    $latestMissionText = '';
+    $latestMissionDate = '';
+    $colTitle1 = '';
+    $colText1 = '';
+    $colTitle2 = '';
+    $colText2 = '';
+    $colTitle3 = '';
+    $colText3 = '';
+    $exploreTitle = '';
+    $exploreText = '';
+    $interestedTitle = '';
+    $interestedText = '';
+    $volonteerNowLink = '';
+    $projImg1 = '';
+    $projText1 = '';
+    $projImg2 = '';
+    $projText2 = '';
+    $widgetHtml = '';
 
     if (isset($parameters['main_title'])) {
         $mainTitle = $parameters['main_title'];
@@ -101,14 +102,18 @@
         $projText2 = $parameters['proj_text2'];
     }
 
+    if (isset($parameters['widget_html'])) {
+        $widgetHtml = $parameters['widget_html'];
+    }
+
 @endphp
 
 <section class="head-Volunteer">
 
     @empty($mainTitle)
-    <h1>Volunteer<br>& help empower communities.</h1>
+        <h1>Volunteer<br>& help empower communities.</h1>
     @else
-    <h1>{{ $mainTitle }}</h1>
+        <h1>{{ $mainTitle }}</h1>
     @endempty
 
     <div class="img">
@@ -149,8 +154,29 @@
     <div class="row">
         <div class="col-12">
             <p class="font-size-30 mb-3"><b>{{ $exploreTitle }}</b></p>
-            <p class="font-size-16 mb-5">{{ $exploreText }}</p>
-            <svg class="decor-wave size-40 style-danger" style="position: relative; left: -100%" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+            <div class="explore-info">
+                <div class="explore-info__item">
+                    <p class="explore-info__item-title">Demand action:</p>
+                    <p class="explore-info__item-text">
+                        Each signature strengthens our collective demand for an end to eh violence.
+                    </p>
+                </div>
+                <div class="explore-info__item">
+                    <p class="explore-info__item-title">Support the Afflicted:</p>
+                    <p class="explore-info__item-text">
+                        Show the people of Gaza that they're not alone in their time of need.
+                    </p>
+                </div>
+                <div class="explore-info__item">
+                    <p class="explore-info__item-title">Be an Advocate for Change:</p>
+                    <p class="explore-info__item-text">
+                        Collective voices of the many can bring about meaningful change.
+                    </p>
+                </div>
+            </div>
+            <svg class="decor-wave size-40 style-danger" style="position: relative; left: -100%" version="1.0"
+                xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt"
+                viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
                     <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
     -86 3 -99 26 -135 63 -94 129 -129 263 -139 246 -18 368 -100 648 -439 168
@@ -194,29 +220,32 @@
         </div>
         <div class="col-12" swiper-wrapper="explore_projects">
             <div class="pt-5"></div>
-            <div class="swiper-container lazy-block" >
+            <div class="swiper-container lazy-block">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="item">
                             <img src="{{ $projImg1 }}" alt="">
-                            <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i>{{ $projText1 }}</span></span>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="item">
                             <img src="{{ $projImg2 }}" alt="">
-                            <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i>{{ $projText2 }}</span></span>
                         </div>
                     </div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
         </div>
+        <div class="col-12 mt-3">
+            <div class="explore-widget-wrapper">
+                {!! $widgetHtml !!}
+            </div>
+        </div>
     </div>
 </section>
 
 
-<section class="be-part-possible bg-danger-light pt-0">
+{{-- <section class="be-part-possible bg-danger-light pt-0">
     <div class="help-info-swiper red pl-0 pr-0" swiper-wrapper="people_empowered">
         <div class="swiper-container lazy-block">
             <div class="swiper-wrapper">
@@ -248,7 +277,7 @@
     <div class="pt-0">
         <a href="{{ $volonteerNowLink }}" class="btn btn-red">Volunteer now!</a>
     </div>
-</section>
+</section> --}}
 
 @include('modules.presentation.mission_possible')
 
