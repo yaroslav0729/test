@@ -173,7 +173,7 @@
 
 <div class="form-group">
     <label>Header banner button text:</label>
-    <input class="form-control" name="parameters[apply_link]" placeholder="Text here ..." value="{{ $applyText }}" />
+    <input class="form-control" name="parameters[apply_text]" placeholder="Text here ..." value="{{ $applyText }}" />
 </div>
 
 <div class="form-group">
