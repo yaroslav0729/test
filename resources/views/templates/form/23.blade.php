@@ -106,6 +106,40 @@
         $widgetHtml = $parameters['widget_html'];
     }
 
+    $applyText = '';
+    $sideBlockTitle1 = '';
+    $sideBlockText1 = '';
+    $sideBlockTitle2 = '';
+    $sideBlockText2 = '';
+    $sideBlockTitle3 = '';
+    $sideBlockText3 = '';
+
+    if (isset($parameters['apply_text'])) {
+        $applyText = $parameters['apply_text'];
+    }
+
+    if (isset($parameters['explore_info_title_1'])) {
+        $sideBlockText1 = $parameters['explore_info_title_1'];
+    }
+
+    if (isset($parameters['explore_info_text_1'])) {
+        $sideBlockText1 = $parameters['explore_info_text_1'];
+    }
+    if (isset($parameters['explore_info_title_2'])) {
+        $sideBlockText2 = $parameters['explore_info_title_2'];
+    }
+
+    if (isset($parameters['explore_info_text_2'])) {
+        $sideBlockText2 = $parameters['explore_info_text_2'];
+    }
+    if (isset($parameters['explore_info_title_3'])) {
+        $sideBlockText3 = $parameters['explore_info_title_3'];
+    }
+
+    if (isset($parameters['explore_info_text_3'])) {
+        $sideBlockText3 = $parameters['explore_info_text_3'];
+    }
+
 @endphp
 
 <div class="form-group">
@@ -180,6 +214,37 @@
 </div>
 
 <div class="form-group">
+    <label>Side block title 1:</label>
+    <input class="form-control" name="parameters[explore_info_title_1]" placeholder="Side title 1"
+        value="{{ $sideBlockTitle1 }}">
+</div>
+<div class="form-group">
+    <label>Side block text 1:</label>
+    <input class="form-control" name="parameters[explore_info_text_1]" placeholder="Side text 1"
+        value="{{ $sideBlockText1 }}">
+</div>
+<div class="form-group">
+    <label>Side block title 2:</label>
+    <input class="form-control" name="parameters[explore_info_title_2]" placeholder="Side title 2"
+        value="{{ $sideBlockTitle2 }}">
+</div>
+<div class="form-group">
+    <label>Side block text 2:</label>
+    <input class="form-control" name="parameters[explore_info_text_2]" placeholder="Side text 2"
+        value="{{ $sideBlockText2 }}">
+</div>
+<div class="form-group">
+    <label>Side block title 3:</label>
+    <input class="form-control" name="parameters[explore_info_title_3]" placeholder="Side title 2"
+        value="{{ $sideBlockTitle3 }}">
+</div>
+<div class="form-group">
+    <label>Side block text 3:</label>
+    <input class="form-control" name="parameters[explore_info_text_3]" placeholder="Side text 3"
+        value="{{ $sideBlockText3 }}">
+</div>
+
+<div class="form-group">
     <label>Past project image 1:</label>
     <input class="form-control" name="parameters[proj_img1]"
         placeholder="img/content/explore-past-missions3.jpg - example" value="{{ $projImg1 }}" />
@@ -201,5 +266,3 @@
 @include('modules.admin.mission_possible')
 
 @include('modules.admin.related_topics_project')
-
-@include('modules.admin.join_the_cause_subscribe')

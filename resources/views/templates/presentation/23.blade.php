@@ -3,6 +3,7 @@
     $mainTitle = '';
     $mainImage = '';
     $applyLink = '';
+    $applyText = '';
     $latestMissionText = '';
     $latestMissionDate = '';
     $colTitle1 = '';
@@ -30,8 +31,12 @@
         $mainImage = $parameters['main_image'];
     }
 
-    if (isset($parameters['apply_link'])) {
-        $applyLink = $parameters['apply_link'];
+    // if (isset($parameters['apply_link'])) {
+    //     $applyLink = $parameters['apply_link'];
+    // }
+
+    if (isset($parameters['apply_text'])) {
+        $applyText = $parameters['apply_text'];
     }
 
     if (isset($parameters['latest_mission_text'])) {
@@ -106,6 +111,40 @@
         $widgetHtml = $parameters['widget_html'];
     }
 
+    $applyText = '';
+    $sideBlockTitle1 = '';
+    $sideBlockText1 = '';
+    $sideBlockTitle2 = '';
+    $sideBlockText2 = '';
+    $sideBlockTitle3 = '';
+    $sideBlockText3 = '';
+
+    if (isset($parameters['apply_text'])) {
+        $applyText = $parameters['apply_text'];
+    }
+
+    if (isset($parameters['explore_info_title_1'])) {
+        $sideBlockText1 = $parameters['explore_info_title_1'];
+    }
+
+    if (isset($parameters['explore_info_text_1'])) {
+        $sideBlockText1 = $parameters['explore_info_text_1'];
+    }
+    if (isset($parameters['explore_info_title_2'])) {
+        $sideBlockText2 = $parameters['explore_info_title_2'];
+    }
+
+    if (isset($parameters['explore_info_text_2'])) {
+        $sideBlockText2 = $parameters['explore_info_text_2'];
+    }
+    if (isset($parameters['explore_info_title_3'])) {
+        $sideBlockText3 = $parameters['explore_info_title_3'];
+    }
+
+    if (isset($parameters['explore_info_text_3'])) {
+        $sideBlockText3 = $parameters['explore_info_text_3'];
+    }
+
 @endphp
 
 <section class="head-Volunteer">
@@ -132,11 +171,12 @@
                 @empty($latestMissionText)
                     <p>Latest mission | Tanzania 2oth August 2020</p>
                 @else
-                    <p>Latest mission | {{ $latestMissionText }} {{ $latestMissionDate }}</p>
+                    <p>{{ $latestMissionText }} {{ $latestMissionDate }}</p>
                 @endempty
             </div>
             <div class="col-4 text-right">
-                <a href="{{ $applyLink }}" class="btn btn-primary">Apply now</a>
+                <a href="{{ $applyLink ? $applyLink : '#widget' }}" id="scroller"
+                    class="btn btn-primary">{{ $applyText }}</a>
             </div>
         </div>
     </div>
@@ -183,21 +223,21 @@
                     <p class="explore-title mb-3"><b>{{ $exploreTitle }}</b></p>
                     <div class="explore-info">
                         <div class="explore-info__item">
-                            <p class="explore-info__item-title">Demand action:</p>
+                            <p class="explore-info__item-title">{{ $sideBlockTitle1 }}</p>
                             <p class="explore-info__item-text">
-                                Each signature strengthens our collective demand for an end to eh violence.
+                                {{ $sideBlockText1 }}
                             </p>
                         </div>
                         <div class="explore-info__item">
-                            <p class="explore-info__item-title">Support the Afflicted:</p>
+                            <p class="explore-info__item-title">{{ $sideBlockTitle2 }}</p>
                             <p class="explore-info__item-text">
-                                Show the people of Gaza that they're not alone in their time of need.
+                                {{ $sideBlockText2 }}
                             </p>
                         </div>
                         <div class="explore-info__item">
-                            <p class="explore-info__item-title">Be an Advocate for Change:</p>
+                            <p class="explore-info__item-title">{{ $sideBlockTitle3 }}</p>
                             <p class="explore-info__item-text">
-                                Collective voices of the many can bring about meaningful change.
+                                {{ $sideBlockText3 }}
                             </p>
                         </div>
                     </div>
@@ -205,7 +245,8 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <p class="explore-past-projects-title">Past Campaigns</p>
+                        <p class="explore-past-projects-title">Our Campaigns</p>
+                        <p class="explore-past-projects-subtitle">Join us our Khalifahs</p>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="item mt-n4">
@@ -274,7 +315,7 @@
 
             </div>
         </div>
-        <div class="col-12 col-md-4 lazy-block explore-widget-block">
+        <div id="widget" class="col-12 col-md-4 lazy-block explore-widget-block">
             <div class="explore-widget-wrapper">
                 {!! $widgetHtml !!}
             </div>
@@ -333,5 +374,3 @@
 <div class="pt-5 pb-4"></div>
 
 @include('modules.presentation.related_topics_project')
-
-@include('modules.presentation.join_the_cause_subscribe')
