@@ -1126,6 +1126,16 @@ $(function () {
     }
 
     initBlogImage();
+
+    $('#scroller').on('click', function() {
+        const target = this.dataset.target;
+        const elTarget = document.querySelector(target);
+        if (!elTarget) return;
+
+        $('html, body').animate({
+            scrollTop: $(target).offset().top - 100,
+        }, 1000);
+    });
 });
 
 function initBlogImage() {

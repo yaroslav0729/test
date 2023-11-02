@@ -175,7 +175,7 @@
                 @endempty
             </div>
             <div class="col-4 text-right">
-                <a href="{{ $applyLink ? $applyLink : '#widget' }}" id="scroller"
+                <a href="{{ $applyLink ? $applyLink : '#widget' }}" data-target="{{ $applyLink }}" id="scroller"
                     class="btn btn-primary">{{ $applyText }}</a>
             </div>
         </div>

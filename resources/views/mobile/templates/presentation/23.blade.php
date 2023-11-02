@@ -154,10 +154,9 @@
         <img src="{{ $mainImage }}" alt="" class="w-100">
     </div>
     <div class="box text-center">
-        <p class="font-size-12 text-uppercase mb-4"><b>Latest mission</b></p>
         <p class="font-size-30 font-weight-light mb-0">{{ $latestMissionText }}</p>
         <p class="font-size-16 text-uppercase mb-4"><b>{{ $latestMissionDate }}</b></p>
-        <a href="{{ $applyLink ? $applyLink : '#widget' }}" id="scroller"
+        <a href="{{ $applyLink ? $applyLink : '#widget' }}" data-target="{{ $applyLink }}" id="scroller"
             class="btn btn-primary">{{ $applyText }}</a>
     </div>
 </section>
@@ -271,7 +270,7 @@
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-        <div class="col-12 mt-3">
+        <div id="widget" class="col-12 mt-3">
             <div class="explore-widget-wrapper">
                 {!! $widgetHtml !!}
             </div>
