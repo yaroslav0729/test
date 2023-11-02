@@ -58,8 +58,8 @@
         $colText2 = $parameters['column2_text'];
     }
 
-    if (isset($parameters['column2_title'])) {
-        $colTitle3 = $parameters['column2_title'];
+    if (isset($parameters['column3_title'])) {
+        $colTitle3 = $parameters['column3_title'];
     }
 
     if (isset($parameters['column3_text'])) {
@@ -106,6 +106,40 @@
         $widgetHtml = $parameters['widget_html'];
     }
 
+    $applyText = '';
+    $sideBlockTitle1 = '';
+    $sideBlockText1 = '';
+    $sideBlockTitle2 = '';
+    $sideBlockText2 = '';
+    $sideBlockTitle3 = '';
+    $sideBlockText3 = '';
+
+    if (isset($parameters['apply_text'])) {
+        $applyText = $parameters['apply_text'];
+    }
+
+    if (isset($parameters['explore_info_title_1'])) {
+        $sideBlockText1 = $parameters['explore_info_title_1'];
+    }
+
+    if (isset($parameters['explore_info_text_1'])) {
+        $sideBlockText1 = $parameters['explore_info_text_1'];
+    }
+    if (isset($parameters['explore_info_title_2'])) {
+        $sideBlockTitle2 = $parameters['explore_info_title_2'];
+    }
+
+    if (isset($parameters['explore_info_text_2'])) {
+        $sideBlockText2 = $parameters['explore_info_text_2'];
+    }
+    if (isset($parameters['explore_info_title_3'])) {
+        $sideBlockTitle3 = $parameters['explore_info_title_3'];
+    }
+
+    if (isset($parameters['explore_info_text_3'])) {
+        $sideBlockText3 = $parameters['explore_info_text_3'];
+    }
+
 @endphp
 
 <section class="head-Volunteer">
@@ -117,7 +151,7 @@
     @endempty
 
     <div class="img">
-        <img src="img/content/Volunteer1.jpg" alt="" class="w-100">
+        <img src="{{ $mainImage }}" alt="" class="w-100">
     </div>
     <div class="box text-center">
         <p class="font-size-12 text-uppercase mb-4"><b>Latest mission</b></p>

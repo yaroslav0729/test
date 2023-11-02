@@ -240,7 +240,7 @@
 </div>
 <div class="form-group">
     <label>Side block title 3:</label>
-    <input class="form-control" name="parameters[explore_info_title_3]" placeholder="Side title 2"
+    <input class="form-control" name="parameters[explore_info_title_3]" placeholder="Side title 3"
         value="{{ $sideBlockTitle3 }}">
 </div>
 <div class="form-group">

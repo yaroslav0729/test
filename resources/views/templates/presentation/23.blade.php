@@ -243,10 +243,9 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row pt-5">
                     <div class="col-12">
                         <p class="explore-past-projects-title">Our Campaigns</p>
-                        <p class="explore-past-projects-subtitle">Join us our Khalifahs</p>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="item mt-n4">
@@ -268,7 +267,7 @@
                     </div>
                 </div>
 
-                <svg class="decor-wave size-80 style-danger mt-n4" style="position: absolute; top: 50px; left: -160%"
+                <svg class="decor-wave size-80 style-danger mt-n4" style="position: absolute; top: 133px; left: -125%"
                     version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt"
                     viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)" fill="#000000"
