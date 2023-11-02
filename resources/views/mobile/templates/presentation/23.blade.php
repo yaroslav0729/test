@@ -252,6 +252,11 @@
                 </g>
             </svg>
         </div>
+        <div id="widget" class="col-12 mt-3">
+            <div class="explore-widget-wrapper">
+                {!! $widgetHtml !!}
+            </div>
+        </div>
         <div class="col-12" swiper-wrapper="explore_projects">
             <div class="pt-5"></div>
             <div class="swiper-container lazy-block">
@@ -268,11 +273,6 @@
                     </div>
                 </div>
                 <div class="swiper-pagination"></div>
-            </div>
-        </div>
-        <div id="widget" class="col-12 mt-3">
-            <div class="explore-widget-wrapper">
-                {!! $widgetHtml !!}
             </div>
         </div>
     </div>

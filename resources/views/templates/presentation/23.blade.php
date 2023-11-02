@@ -63,8 +63,8 @@
         $colText2 = $parameters['column2_text'];
     }
 
-    if (isset($parameters['column2_title'])) {
-        $colTitle3 = $parameters['column2_title'];
+    if (isset($parameters['column3_title'])) {
+        $colTitle3 = $parameters['column3_title'];
     }
 
     if (isset($parameters['column3_text'])) {
