@@ -8303,3 +8303,59 @@ section.back {
         margin-bottom: 16px;
     }
 }
+
+.explore-header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+    z-index: 10;
+}
+
+.explore-title {
+    font-size: 50px;
+    line-height: 1.2;
+}
+
+.explore-info {
+    padding-right: 15px;
+}
+
+.explore-info p {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+.explore-info__item {
+    margin-bottom: 18px;
+}
+
+.explore-info__item-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.explore-info__item-text {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+@media (min-width: 991px) {
+    .explore-widget-block {
+        padding-inline: 0;
+    }
+}
+
+.explore-info-col {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.explore-past-projects-title {
+    font-weight: 900;
+    font-size: 36px;
+    padding-bottom: 20px;
+}
