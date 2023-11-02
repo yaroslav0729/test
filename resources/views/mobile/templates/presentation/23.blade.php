@@ -164,8 +164,8 @@
 
 <section class="how-does-work with-lines pt-4">
     <div class="title">
-        <p>Why should I volunteer?</p>
-        <span>Find the mission you love</span>
+        <p>Why should I email my MP?</p>
+        <span>Advocate for change</span>
     </div>
     <div class="item">
         <div class="num">01</div>
@@ -190,21 +190,21 @@
             <p class="font-size-30 mb-3"><b>{{ $exploreTitle }}</b></p>
             <div class="explore-info">
                 <div class="explore-info__item">
-                    <p class="explore-info__item-title">Demand action:</p>
+                    <p class="explore-info__item-title">{{ $sideBlockTitle1 }}</p>
                     <p class="explore-info__item-text">
-                        Each signature strengthens our collective demand for an end to eh violence.
+                        {{ $sideBlockText1 }}
                     </p>
                 </div>
                 <div class="explore-info__item">
-                    <p class="explore-info__item-title">Support the Afflicted:</p>
+                    <p class="explore-info__item-title">{{ $sideBlockTitle2 }}</p>
                     <p class="explore-info__item-text">
-                        Show the people of Gaza that they're not alone in their time of need.
+                        {{ $sideBlockText2 }}
                     </p>
                 </div>
                 <div class="explore-info__item">
-                    <p class="explore-info__item-title">Be an Advocate for Change:</p>
+                    <p class="explore-info__item-title">{{ $sideBlockTitle3 }}</p>
                     <p class="explore-info__item-text">
-                        Collective voices of the many can bring about meaningful change.
+                        {{ $sideBlockText3 }}
                     </p>
                 </div>
             </div>

@@ -185,8 +185,8 @@
 
 <section class="how-does-work with-lines">
     <div class="title">
-        <p>Why should I volunteer?</p>
-        <span>Find the mission you love</span>
+        <p>Why should I email my MP?</p>
+        <span>Advocate for change</span>
     </div>
     <div class="pt-5"></div>
     <div class="row">
@@ -207,7 +207,7 @@
         <div class="col">
             <div class="item pl-0 pl-md-5">
                 <div class="num">03</div>
-                <div>{{ $colTitle2 }}</div>
+                <div>{{ $colTitle3 }}</div>
                 <p>{{ $colText3 }}</p>
             </div>
         </div>
