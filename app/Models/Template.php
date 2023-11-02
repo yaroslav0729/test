@@ -20,6 +20,7 @@ class Template
     const NEWSROOM_PAGE = 14;
     const CALCULATOR_PAGE = 20;
     const WIDGET_PAGE_TEMPLATE = 22;
+    const GET_INVOLVED_PAGE_TEMPLATE = 23;
     public const THANK_YOU_SUBSCRIPTION_PAGE = 21;
 
     const TEST_PAGE = 100;
@@ -43,6 +44,7 @@ class Template
         self::NEWSROOM_PAGE,
         self::THANK_YOU_SUBSCRIPTION_PAGE,
         self::WIDGET_PAGE_TEMPLATE,
+        self::GET_INVOLVED_PAGE_TEMPLATE,
         //self::TEST_PAGE,
     ];
 
@@ -85,6 +87,8 @@ class Template
                 return 'Thank you subscription page';
             case self::WIDGET_PAGE_TEMPLATE:
                 return 'Widget page';
+            case self::GET_INVOLVED_PAGE_TEMPLATE:
+                return 'Get involved widget page';
 
             default:
                 return "Unknown template type";
@@ -152,6 +156,12 @@ class Template
         ],
 
         self::VOLUNTEER_PAGE => [
+            'headerClassName' => 'bg-white',
+            'footerClassName' => 'bg-info-red',
+            'headerType' => 'parts.header',
+        ],
+
+        self::GET_INVOLVED_PAGE_TEMPLATE => [
             'headerClassName' => 'bg-white',
             'footerClassName' => 'bg-info-red',
             'headerType' => 'parts.header',
@@ -520,6 +530,7 @@ class Template
                     break;
                 }
 
+            case self::GET_INVOLVED_PAGE_TEMPLATE:
             case self::VOLUNTEER_PAGE: {
 
                     $rules = [
