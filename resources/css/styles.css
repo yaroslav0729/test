@@ -8333,6 +8333,7 @@ section.back {
 .explore-info__item-title {
     font-weight: bold;
     font-size: 18px;
+    color: #FF4B39;
 }
 
 .explore-info__item-text {
@@ -8350,7 +8351,6 @@ section.back {
     display: flex;
     height: 100%;
     flex-direction: column;
-    justify-content: space-between;
     position: relative;
 }
 
