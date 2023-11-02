@@ -12,6 +12,10 @@
         $donateVideo = $parameters['donate_video'];
     }
 
+    if (isset($parameters['widget_html'])) {
+        $widgetHtml = $parameters['widget_html'];
+    }
+
 @endphp
 
 <h3 class="text-center">Project widget module:</h3>
