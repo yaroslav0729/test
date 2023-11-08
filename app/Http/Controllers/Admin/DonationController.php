@@ -105,7 +105,7 @@ class DonationController extends Controller
             "Expires" => "0",
         );
 
-        $columns = ['Id', 'Value', 'Type', 'Is Recurring', 'Status', 'First name', 'Last name', 'Email', 'Phone', 'Date (D/M/Y)', 'Time', 'Campaign', 'Name', 'Category', 'Gift aid', 'Paid commission', 'Do SMS', 'Do Email', 'Do Post Marketing', 'Help This Donation 100%', 'Account number', 'Sort code', 'Pay day', 'Payment type', 'Post code', 'Address 1', 'Address 2', 'Address 3', 'City', 'State', 'Country', 'Notes', 'Order notes', 'Order ID'];
+        $columns = ['Id', 'Value', 'Type', 'Is Recurring', 'Status', 'First name', 'Last name', 'Email', 'Phone', 'Date (D/M/Y)', 'Time', 'Campaign', 'Name', 'Category', 'Gift aid', 'Paid commission', 'Do SMS', 'Do Email', 'Do Post Marketing', 'Help This Donation 100%', 'Account number', 'Sort code', 'Pay day', 'Payment type', 'Post code', 'Address 1', 'Address 2', 'Address 3', 'City', 'State', 'Country', 'Notes', 'Order notes', 'Order ID', 'Subscription ID'];
 
         $callback = function () use ($columns, $request) {
             $file = fopen('php://output', 'w');
@@ -159,6 +159,7 @@ class DonationController extends Controller
                     $row['Notes'] = $donation->note ? $donation->note : '';
                     $row['Order notes'] = $donation->order ? $donation->order->notes : '';
                     $row['Order ID'] = $donation->order ? $donation->order->order_id : '';
+                    $row['Subscription ID'] = $donation->order ? $donation->order->subscription_id : '';
 
 
                     fputcsv($file, $row);
