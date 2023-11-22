@@ -9,14 +9,12 @@ use App\Models\Page;
 use App\Models\SubscriptionTmp;
 use App\Models\Template;
 use App\Services\Paypal;
-use App\Services\RamadanService;
 use App\Services\StripeService;
 use App\Traits\SendThankYouEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Stripe\Checkout\Session;
 use Stripe\Subscription;
-use Stripe\SubscriptionSchedule;
 
 class PaymentController extends Controller
 {
@@ -70,7 +68,6 @@ class PaymentController extends Controller
         die('order id:' . $orderId . ' has been canceled');
     }
 
-
     public function stripePaymentSuccess(Request $request, StripeService $stripeService)
     {
         Log::error('stripePaymentSuccess');
@@ -82,14 +79,14 @@ class PaymentController extends Controller
             $event = \Stripe\Webhook::constructEvent(
                 $payload, $sig_header, config('stripe.endpoint_secret')
             );
-        } catch(\UnexpectedValueException $e) {
+        } catch (\UnexpectedValueException $e) {
             // Invalid payload
             Log::error('UnexpectedValueException');
             http_response_code(400);
             exit();
-        } catch(\Stripe\Exception\SignatureVerificationException $e) {
+        } catch (\Stripe\Exception\SignatureVerificationException $e) {
             // Invalid signature
-            Log::error('SignatureVerificationException ' . config('stripe.secret_endpoint_secret'). ' '. $sig_header);
+            Log::error('SignatureVerificationException ' . config('stripe.secret_endpoint_secret') . ' ' . $sig_header);
             http_response_code(400);
             exit();
         }
@@ -108,7 +105,6 @@ class PaymentController extends Controller
                     $payment_method = $stripe->paymentMethods->retrieve($payment_method_id)->attach(['customer' => $customer_id]);
                     $customer = $stripe->customers->update($customer_id, ['invoice_settings' => ['default_payment_method' => $payment_method_id]]);
 
-
                     $order = Order::findOrFail($checkoutSession->metadata->order_id);
                     $plan = $this->stripeService->createScheduledQurbaniPlan($order->donations);
                     $stripe->subscriptionSchedules->create([
@@ -123,15 +119,15 @@ class PaymentController extends Controller
                                 'items' => [
                                     [
                                         'price' => $plan->id,
-                                        'quantity' => 1
+                                        'quantity' => 1,
                                     ],
                                 ],
-                                'iterations' => 1
+                                'iterations' => 1,
                             ],
                         ],
                         'metadata' => [
                             'scheduled_qurbani' => true,
-                        ]
+                        ],
                     ]);
                     $this->sendThankYouScheduledQurbaniEmail($order);
 
@@ -148,7 +144,7 @@ class PaymentController extends Controller
 
                     SubscriptionTmp::query()
                         ->where('customer_email', $customer->email)
-                        ->each(function(SubscriptionTmp $item) {
+                        ->each(function (SubscriptionTmp $item) {
                             $this->stripeService->createScheduleSubscribe($item->payload);
 
                             $item->delete();
@@ -164,7 +160,7 @@ class PaymentController extends Controller
                     );
                 }
 
-                $order = Order::where('order_id',  $event->data->object->id)->firstOrFail();
+                $order = Order::where('order_id', $event->data->object->id)->firstOrFail();
                 foreach ($order->donations as $donation) {
                     $donation->status = Donation::STATUS_COMPLETE;
                     $donation->save();
@@ -229,13 +225,16 @@ class PaymentController extends Controller
                     }
 
                     if (count($subscriptionInvoices->data) > 1) {
-                        $createdTime = now();
-                        foreach ($donations as $key => $donation) {
-                            $newDonation = $donation->replicate();
-                            $newDonation->created_at = $createdTime;
-                            $newDonation->is_recurring = true;
-                            $newDonation->save();
-                            Log::error('Created new donation ' . $newDonation->id . ' for order ' . $order->id);
+                        $lastInvoice = $subscriptionInvoices->data[0];
+                        if (floatval($lastInvoice->amount_due) === $order->sum) {
+                            $createdTime = now();
+                            foreach ($donations as $key => $donation) {
+                                $newDonation = $donation->replicate();
+                                $newDonation->created_at = $createdTime;
+                                $newDonation->is_recurring = true;
+                                $newDonation->save();
+                                Log::error('Created new donation ' . $newDonation->id . ' for order ' . $order->id);
+                            }
                         }
                     }
                 } else {
@@ -299,7 +298,7 @@ class PaymentController extends Controller
                         $donations->push($donation);
                     }
 
-                    $sum = $donations->sum(function($donation) {
+                    $sum = $donations->sum(function ($donation) {
                         return $donation->value;
                     });
 
