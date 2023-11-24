@@ -1,11 +1,11 @@
 @php
-if (isset($campaign)) {
-    $pageTitle = 'Edit campaign id: ' . $campaign->id;
-    $actionRoute = route('admin.campaigns.update', ['campaign' => $campaign->id]);
-} else {
-    $pageTitle = 'Create campaign:';
-    $actionRoute = route('admin.campaigns.store');
-}
+    if (isset($campaign)) {
+        $pageTitle = 'Edit campaign id: ' . $campaign->id;
+        $actionRoute = route('admin.campaigns.update', ['campaign' => $campaign->id]);
+    } else {
+        $pageTitle = 'Create campaign:';
+        $actionRoute = route('admin.campaigns.store');
+    }
 @endphp
 
 @extends('layouts.admin')
@@ -31,8 +31,7 @@ if (isset($campaign)) {
 
                 <div class="form-group">
                     <label for="description">description</label><br>
-                    <textarea id="description" required class="form-control"
-                        name="description">{{ old('description', $campaign->description ?? null) }}</textarea>
+                    <textarea id="description" required class="form-control" name="description">{{ old('description', $campaign->description ?? null) }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -40,7 +39,8 @@ if (isset($campaign)) {
                     <select name="country_id" class="form-control">
                         <option value="">Not selected</option>
                         @foreach (\App\Models\Country::getAllEnabled() as $country)
-                            <option value="{{ $country->id }}" @if (old('countryId', $campaign->country_id ?? null) === $country->id) selected @endif>{{ $country->name }}</option>
+                            <option value="{{ $country->id }}" @if (old('countryId', $campaign->country_id ?? null) === $country->id) selected @endif>
+                                {{ $country->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -50,9 +50,22 @@ if (isset($campaign)) {
                     <select name="most_needed_area" class="form-control">
                         <option value="">Not selected</option>
                         @foreach (\App\Models\Country::getAllEnabled() as $country)
-                            <option value="{{ $country->id }}" @if (old('mostNeededArea', $campaign->most_needeed_area ?? null) === $country->id) selected @endif>{{ $country->name }}</option>
+                            <option value="{{ $country->id }}" @if (old('mostNeededArea', $campaign->most_needeed_area ?? null) === $country->id) selected @endif>
+                                {{ $country->name }}</option>
                         @endforeach
                     </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="program_name">Program name</label><br>
+                    <input id="program_name" name="program_name" class="form-control" type="text"
+                        value="{{ old('program_name', $campaign->program_name ?? null) }}" /><br>
+                </div>
+
+                <div class="form-group">
+                    <label for="program_category">Program category</label><br>
+                    <input id="program_category" name="program_category" class="form-control" type="text"
+                        value="{{ old('program_category', $campaign->program_category ?? null) }}" /><br>
                 </div>
 
                 <div class="form-group">
@@ -76,7 +89,7 @@ if (isset($campaign)) {
                     <select name="icharm_program_id" class="form-control">
                         <option value="">Not selected</option>
                         @foreach ($getProgramList as $programList)
-                            <option value="{{ $programList['program_id'] }}" @if (old('icharm_program_id', $campaign->icharm_program_id ?? null) === $programList['program_id']  ) selected @endif>{{ $programList['program_name'] }}</option>
+                            <option value="{{ $programList['program_id'] }}" @if (old('icharm_program_id', $campaign->icharm_program_id ?? null) === $programList['program_id']) selected @endif>{{ $programList['program_name'] }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -85,7 +98,7 @@ if (isset($campaign)) {
                     <select name="icharm_country_id" class="form-control">
                         <option value="">Not selected</option>
                         @foreach ($getallCountries as $countryList)
-                            <option  value="{{ $countryList['country_id'] }}" @if (old('icharm_country_id',  $campaign->icharm_country_id ?? null) === $countryList['country_id'] ) selected @endif >{{ $countryList['country_name'] }}</option>
+                            <option  value="{{ $countryList['country_id'] }}" @if (old('icharm_country_id', $campaign->icharm_country_id ?? null) === $countryList['country_id']) selected @endif >{{ $countryList['country_name'] }}</option>
                         @endforeach
                     </select>
                 </div> --}}
@@ -93,7 +106,8 @@ if (isset($campaign)) {
                 <div class="form-group">
                     <label for="is_emergency">Is emergency</label>
                     <input type="hidden" name="is_emergency" value="0">
-                    <input id="is_emergency" name="is_emergency" value="1" type="checkbox" @if (old('is_emergency', $campaign->is_emergency ?? null)) checked @endif /><br>
+                    <input id="is_emergency" name="is_emergency" value="1" type="checkbox"
+                        @if (old('is_emergency', $campaign->is_emergency ?? null)) checked @endif /><br>
                 </div>
 
                 <div price-container>
@@ -122,7 +136,8 @@ if (isset($campaign)) {
                                         value="{{ $price->value }}">
                                     <select name="price_types[{{ $price->id }}]" class="form-control mr-2">
                                         @foreach (\App\Models\CampaignPrice::ALL_TYPES as $priceId => $priceLabel)
-                                            <option value="{{ $priceId }}" @if ($price->type === $priceId) selected @endif />
+                                            <option value="{{ $priceId }}"
+                                                @if ($price->type === $priceId) selected @endif />
                                             {{ $priceLabel }}</option>
                                         @endforeach
                                     </select>
@@ -144,7 +159,8 @@ if (isset($campaign)) {
                                     $selected = true;
                                 }
                             @endphp
-                            <option value="{{ $category->id }}" @if ($selected) selected @endif>{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" @if ($selected) selected @endif>
+                                {{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>

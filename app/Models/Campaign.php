@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\CampaignPrice;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Campaign extends Model
 {
@@ -25,7 +25,9 @@ class Campaign extends Model
         'most_needed_area',
         'wp_id',
         'icharm_program_id',
-        'icharm_country_id'
+        'icharm_country_id',
+        'program_name',
+        'program_category',
     ];
 
     public static function boot()
@@ -42,7 +44,7 @@ class Campaign extends Model
         $instances = $this->page_instances;
 
         foreach ($instances as $instance) {
-            $instance->refreshParams();    
+            $instance->refreshParams();
         }
     }
 
@@ -60,8 +62,7 @@ class Campaign extends Model
     {
         if (isset($this->country)) {
             return $this->country->name;
-        }
-        else {
+        } else {
             return $this->name . " - no country selected";
         }
     }
@@ -120,7 +121,7 @@ class Campaign extends Model
                 CampaignPrice::create([
                     'value' => $value,
                     'type' => $priceTypes[$key],
-                    'campaign_id' => $this->id
+                    'campaign_id' => $this->id,
                 ]);
             }
         }
@@ -131,9 +132,18 @@ class Campaign extends Model
         $company = $this;
         $nowDate = Carbon::now()->toDateTimeString();
 
-        if ($nowDate < $this->start_date) return self::STATUS_NOT_STARTED;
-        if ($nowDate < $this->end_date) return self::STATUS_ACTIVE;
-        if ($nowDate > $this->end_date) return self::STATUS_FINISHED; 
+        if ($nowDate < $this->start_date) {
+            return self::STATUS_NOT_STARTED;
+        }
+
+        if ($nowDate < $this->end_date) {
+            return self::STATUS_ACTIVE;
+        }
+
+        if ($nowDate > $this->end_date) {
+            return self::STATUS_FINISHED;
+        }
+
     }
 
     public function scopeActive($query)
@@ -141,22 +151,22 @@ class Campaign extends Model
         $nowDate = Carbon::now()->toDateTimeString();
 
         return $query->where('start_date', '<', $nowDate)
-                    ->where('end_date', '>', $nowDate);
+            ->where('end_date', '>', $nowDate);
     }
 
     public function scopeEmergency($query)
     {
         return $query->where('is_emergency', true);
-                    
+
     }
 
     public static function getCountryNameForPrice($campId, $value, $type)
     {
         $campaign = self::where('id', $campId)->active()->
-                whereHas('campaign_prices', function ($q) use ($value, $type) {
-                    $q->where('value', $value)
-                    ->where('type', $type);
-                })->first();
+            whereHas('campaign_prices', function ($q) use ($value, $type) {
+            $q->where('value', $value)
+                ->where('type', $type);
+        })->first();
 
         if (isset($campaign)) {
             return $campaign->country_name;
