@@ -27,7 +27,7 @@ class Campaign extends Model
         'icharm_program_id',
         'icharm_country_id',
         'program_name',
-        'program_category',
+        'project_name',
     ];
 
     public static function boot()

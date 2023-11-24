@@ -57,15 +57,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="program_name">Program name</label><br>
-                    <input id="program_name" name="program_name" class="form-control" type="text"
-                        value="{{ old('program_name', $campaign->program_name ?? null) }}" /><br>
+                    <label for="project_name">Project name</label><br>
+                    <input id="project_name" name="project_name" class="form-control" type="text"
+                        value="{{ old('project_name', $campaign->project_name ?? null) }}" /><br>
                 </div>
 
                 <div class="form-group">
-                    <label for="program_category">Program category</label><br>
-                    <input id="program_category" name="program_category" class="form-control" type="text"
-                        value="{{ old('program_category', $campaign->program_category ?? null) }}" /><br>
+                    <label for="program_name">Program name</label><br>
+                    <input id="program_name" name="program_name" class="form-control" type="text"
+                        value="{{ old('program_name', $campaign->program_name ?? null) }}" /><br>
                 </div>
 
                 <div class="form-group">

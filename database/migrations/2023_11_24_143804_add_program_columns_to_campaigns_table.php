@@ -15,7 +15,7 @@ class AddProgramColumnsToCampaignsTable extends Migration
     {
         Schema::table('campaigns', function (Blueprint $table) {
             $table->string('program_name')->after('description')->nullable()->default(null);
-            $table->string('program_category')->after('description')->nullable()->default(null);
+            $table->string('project_name')->after('description')->nullable()->default(null);
         });
     }
 
@@ -28,7 +28,7 @@ class AddProgramColumnsToCampaignsTable extends Migration
     {
         Schema::table('campaigns', function (Blueprint $table) {
             $table->dropColumn('program_name');
-            $table->dropColumn('program_category');
+            $table->dropColumn('project_name');
         });
     }
 }
