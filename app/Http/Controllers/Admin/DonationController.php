@@ -35,7 +35,7 @@ class DonationController extends Controller
 
         $total = $sumQuery->sum('value');
 
-        $totalGiftAid = round($giftAidSum->whereHas('order', function ($query) {$query->where('gift_aid', 1);})->sum('value')*0.25, 0, 2);
+        $totalGiftAid = round($giftAidSum->whereHas('order', function ($query) {$query->where('gift_aid', 1);})->sum('value') * 0.25, 0, 2);
 
         $donations = $donations->with(['order', 'campaign', 'foodpack', 'foodpackqurbani', 'foodpackqurbanitype', 'user'])->orderBy('created_at', 'desc')->paginate(25)->appends($request->query());
         return view('admin.donations.index', compact('donations', 'keyword', 'daterange', 'status', 'type', 'total', 'totalGiftAid'));
@@ -49,17 +49,16 @@ class DonationController extends Controller
 
         $total = $sumQuery->sum('value');
 
-        $totalGiftAid = round($giftAidSum->whereHas('order', function ($query) {$query->where('gift_aid', 1);})->sum('value')*0.25, 0, 2);
+        $totalGiftAid = round($giftAidSum->whereHas('order', function ($query) {$query->where('gift_aid', 1);})->sum('value') * 0.25, 0, 2);
 
         $donations = $donations->with(['order', 'campaign', 'foodpack', 'foodpackqurbani', 'foodpackqurbanitype', 'user'])->orderBy('created_at', 'desc')->paginate(25)->appends($request->query());
         return view('admin.donations.scheduled-qurbani', compact('donations', 'keyword', 'daterange', 'status', 'type', 'total', 'totalGiftAid'));
     }
 
-
     public function saveStatus(Donation $donation, Request $request)
     {
         $donation->update([
-            'status' => $request->get('status')
+            'status' => $request->get('status'),
         ]);
 
         return redirect()->back();
@@ -105,7 +104,7 @@ class DonationController extends Controller
             "Expires" => "0",
         );
 
-        $columns = ['Id', 'Value', 'Type', 'Is Recurring', 'Status', 'First name', 'Last name', 'Email', 'Phone', 'Date (D/M/Y)', 'Time', 'Campaign', 'Name', 'Category', 'Gift aid', 'Paid commission', 'Do SMS', 'Do Email', 'Do Post Marketing', 'Help This Donation 100%', 'Account number', 'Sort code', 'Pay day', 'Payment type', 'Post code', 'Address 1', 'Address 2', 'Address 3', 'City', 'State', 'Country', 'Notes', 'Order notes', 'Order ID', 'Subscription ID'];
+        $columns = ['Id', 'Value', 'Type', 'Is Recurring', 'Status', 'First name', 'Last name', 'Email', 'Phone', 'Date (D/M/Y)', 'Time', 'Campaign', 'Project name', 'Program name', 'Name', 'Category', 'Gift aid', 'Paid commission', 'Do SMS', 'Do Email', 'Do Post Marketing', 'Help This Donation 100%', 'Account number', 'Sort code', 'Pay day', 'Payment type', 'Post code', 'Address 1', 'Address 2', 'Address 3', 'City', 'State', 'Country', 'Notes', 'Order notes', 'Order ID', 'Subscription ID'];
 
         $callback = function () use ($columns, $request) {
             $file = fopen('php://output', 'w');
@@ -125,22 +124,23 @@ class DonationController extends Controller
                     $row['Phone'] = $donation->order ? $donation->order->phone : '';
                     $row['Date'] = $donation->created_at->format('d/m/Y');
                     $row['Time'] = $donation->created_at->format('H:i:s');
-                    if ($donation->campaign)
-                    {
+                    if ($donation->campaign) {
                         $row['Campaign'] = $donation->campaign->name;
-                    }elseif(isset($donation->foodpackqurbani)) {
-                        $row['Campaign'] = $donation->foodpackqurbani->country->name. " Qurbani (" . $donation->foodpackqurbanitype->name . ")";
-                    }elseif(isset($donation->foodpack)) {
+                    } elseif (isset($donation->foodpackqurbani)) {
+                        $row['Campaign'] = $donation->foodpackqurbani->country->name . " Qurbani (" . $donation->foodpackqurbanitype->name . ")";
+                    } elseif (isset($donation->foodpack)) {
                         $row['Campaign'] = "FoodPack " . $donation->foodpack->country->name;
                     } else if ($donation->upsell) {
                         $row['Campaign'] = 'Provide Rice This Eid';
-                    }else {
+                    } else {
                         $row['Campaign'] = 'no campaign';
                     }
+                    $row['Project name'] = $donation->campaign && $donation->campaign->project_name ? $donation->campaign->project_name : '';
+                    $row['Program name'] = $donation->campaign && $donation->campaign->program_name ? $donation->campaign->program_name : '';
                     $row['Name'] = $donation->qurbani_name;
                     $row['Category'] = $donation->campaign_category ? $donation->campaign_category->name : 'no category';
                     $row['Gift aid'] = $donation->order && $donation->order->gift_aid ? $donation->order->gift_aid : '';
-                    $row['Paid commission'] = $donation->commission ? round($donation->commission,2) : 'No';
+                    $row['Paid commission'] = $donation->commission ? round($donation->commission, 2) : 'No';
                     $row['Do SMS'] = $donation->order && $donation->order->do_sms ? $donation->order->do_sms : '';
                     $row['Do Email'] = $donation->order && $donation->order->do_email ? $donation->order->do_email : '';
                     $row['Do Post Marketing'] = $donation->order && $donation->order->do_post ? $donation->order->do_post : '';
@@ -160,7 +160,6 @@ class DonationController extends Controller
                     $row['Order notes'] = $donation->order ? $donation->order->notes : '';
                     $row['Order ID'] = $donation->order ? $donation->order->order_id : '';
                     $row['Subscription ID'] = $donation->order ? $donation->order->subscription_id : '';
-
 
                     fputcsv($file, $row);
                 }
@@ -188,11 +187,11 @@ class DonationController extends Controller
         ]);
 
         $mpdf->WriteHTML(view('pdf.donation', [
-            'order' => $order
+            'order' => $order,
         ]));
 
         $headers = [
-            'Content-type'        => 'text/pdf',
+            'Content-type' => 'text/pdf',
             'Content-Disposition' => 'attachment; filename="donation.pdf"',
         ];
 
@@ -230,7 +229,7 @@ class DonationController extends Controller
             $matches = preg_match('/IH\d{1,7}/', $keyword);
 
             if ($matches) {
-                $ihId = (int)filter_var($keyword, FILTER_SANITIZE_NUMBER_INT);;
+                $ihId = (int) filter_var($keyword, FILTER_SANITIZE_NUMBER_INT);
                 $donations = $donations->where('order_id', $ihId);
                 return [$donations, $daterange, $keyword, $status, $type];
             }
@@ -266,7 +265,7 @@ class DonationController extends Controller
     {
         $order = Order::where('subscription_id', $subscriptionId)->first();
 
-        if(is_null($order)) {
+        if (is_null($order)) {
             return redirect()->back()->with('stripe-subscription-error', "Subscription doesn't exist");
         }
 
