@@ -1,7 +1,7 @@
 @php
 
     if (isset($parameters['per_page'])) {
-        $perPage = (int)$parameters['per_page'] > 0 ? (int)$parameters['per_page'] : 6;
+        $perPage = (int) $parameters['per_page'] > 0 ? (int) $parameters['per_page'] : 6;
     }
 
     $keywordType = Request::get('type');
@@ -18,7 +18,13 @@
     }
 
     $events = $query->orderBy('start_date')->paginate($perPage);
-    $eventsForSlide = $events->count() < 3 ? \App\Models\Event::whereDate('start_date', '>=', now())->orderBy('start_date')->take(3)->get() : $events->take(3);
+    $eventsForSlide =
+        $events->count() < 3
+            ? \App\Models\Event::whereDate('start_date', '>=', now())
+                ->orderBy('start_date')
+                ->take(3)
+                ->get()
+            : $events->take(3);
 
 @endphp
 
@@ -31,22 +37,24 @@
     <div class="wrap">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                @foreach($eventsForSlide as $event)
+                @foreach ($eventsForSlide as $event)
                     <div class="swiper-slide">
                         <div class="img"
-                             style="background-image: url({{ $event->page->getActualPageInstanceAttribute()->preview_img }})"></div>
+                            style="background-image: url({{ $event->page->getActualPageInstanceAttribute()->preview_img }})">
+                        </div>
                         <div class="text">
                             <div>
                                 <div class="date">{{ $event->start_date->format('M') }}
-                                    <span>{{ $event->start_date->format('d') }}</span></div>
+                                    <span>{{ $event->start_date->format('d') }}</span>
+                                </div>
                                 <div class="place"><i class="fal fa-map-marker-alt"></i>{{ $event->location }}</div>
                                 <a class="tl text-white text-decoration-none d-block mb-4"
-                                   href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}">{{ $event->name }}</a>
+                                    href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}">{{ $event->name }}</a>
                                 <svg class="decor-wave style-white mb-2" version="1.0"
-                                     xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt"
-                                     viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
+                                    xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt"
+                                    viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">
                                     <g transform="translate(0.000000,166.000000) scale(0.100000,-0.100000)"
-                                       fill="#000000" stroke="none">
+                                        fill="#000000" stroke="none">
                                         <path d="M170 1630 c-53 -25 -92 -60 -129 -115 -23 -36 -26 -49 -26 -135 0
 -86 3 -99 26 -135 63 -94 129 -129 263 -139 246 -18 368 -100 648 -439 168
 -205 344 -382 451 -455 104 -71 240 -135 362 -168 94 -26 113 -28 300 -28 185
@@ -83,12 +91,12 @@
 0 -207 -2 -298 -27 -119 -32 -260 -97 -364 -169 -115 -79 -255 -219 -444 -444
 -287 -343 -383 -414 -601 -444 -94 -13 -211 -1 -302 30 -124 42 -250 154 -466
 415 -253 306 -401 438 -596 532 -152 73 -274 103 -439 109 -117 5 -134 3 -175
--16z"/>
+-16z" />
                                     </g>
                                 </svg>
                                 <div class="pt-3"></div>
                                 <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}"
-                                   class="d-block text-white text-decoration-none pb-4">{{ $event->page->getActualPageInstanceAttribute()->preview_text }}</a>
+                                    class="d-block text-white text-decoration-none pb-4">{{ $event->page->getActualPageInstanceAttribute()->preview_text }}</a>
                             </div>
                         </div>
                     </div>
@@ -101,7 +109,7 @@
     </div>
 </section>
 
-<section class="upcoming-events">
+<section class="upcoming-events" id="upcoming-events">
     <div class="title">
         <p class="font-size-30"><b>Upcoming Events</b></p>
         <br>
@@ -114,8 +122,7 @@
                             <option value="">EVENT TYPE</option>
                             @foreach (\App\Models\Event::ALL_TYPES_ENTRY as $typeId => $typeLabel)
                                 <option class="events-filter" value="{{ $typeId }}"
-                                        @if($typeId === intval($keywordType)) selected @endif
-                                >{{ $typeLabel }}</option>
+                                    @if ($typeId === intval($keywordType)) selected @endif>{{ $typeLabel }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -128,8 +135,7 @@
                             <option value="">LIVE EVENTS</option>
                             @foreach (\App\Models\Event::ALL_TYPE_EVENT as $typeId => $typeEvent)
                                 <option class="events-filter" value="{{ $typeId }}"
-                                        @if($typeId === intval($keywordTypeParticipate)) selected @endif
-                                >{{ $typeEvent }}</option>
+                                    @if ($typeId === intval($keywordTypeParticipate)) selected @endif>{{ $typeEvent }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -139,12 +145,12 @@
     </div>
     <div id="events-content">
         <div class="list">
-            @foreach($events as $event)
+            @foreach ($events as $event)
                 <div class="item">
                     <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}" class="img d-block"
-                       style="background-image: url({{ $event->page->getActualPageInstanceAttribute()->preview_img }})">
+                        style="background-image: url({{ $event->page->getActualPageInstanceAttribute()->preview_img }})">
                         <span class="price text-uppercase">
-                         @if($event->entry_type === \App\Models\Event::ENTRY_PAID)
+                            @if ($event->entry_type === \App\Models\Event::ENTRY_PAID)
                                 £{{ $event->page->getActualPageInstanceAttribute()->parameters['event_entry_price'] }}
                             @else
                                 {{ \App\Models\Event::ALL_TYPES_ENTRY[$event->entry_type] }}
@@ -153,7 +159,8 @@
                     </a>
                     <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}" class="tl d-block">
                         {{ $event->name }}</a>
-                    <span class="time d-block ml-3"><i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($event->start_time)->format('h:ia') }}</span>
+                    <span class="time d-block ml-3"><i class="far fa-clock"></i>
+                        {{ \Carbon\Carbon::parse($event->start_time)->format('h:ia') }}</span>
                     <span class="row ml-0">
                         <span class="col-7">
                             <span class="place"><i class="fal fa-map-marker-alt"></i>{{ $event->location }}</span>
@@ -173,9 +180,9 @@
 </section>
 
 @include('modules.presentation.mission_possible_2', [
-'parameters' => $parameters
+    'parameters' => $parameters,
 ])
 
 @include('modules.presentation.join_the_cause_subscribe3', [
-    'parameters' => $parameters
+    'parameters' => $parameters,
 ])
