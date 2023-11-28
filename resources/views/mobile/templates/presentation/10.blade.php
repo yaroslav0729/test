@@ -107,9 +107,10 @@
             <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
         </div>
     </div>
+    <div id="upcoming-events"></div>
 </section>
 
-<section class="upcoming-events" id="upcoming-events">
+<section class="upcoming-events">
     <div class="title">
         <p class="font-size-30"><b>Upcoming Events</b></p>
         <br>
