@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Page;
 use App\Models\SubscriptionTmp;
 use App\Models\Template;
+use App\Services\HubspotService;
 use App\Services\Paypal;
 use App\Services\StripeService;
 use App\Traits\SendThankYouEmail;
@@ -21,10 +22,12 @@ class PaymentController extends Controller
     use SendThankYouEmail;
 
     private StripeService $stripeService;
+    private HubspotService $hubspotService;
 
-    public function __construct(StripeService $stripeService)
+    public function __construct(StripeService $stripeService, HubspotService $hubspotService)
     {
         $this->stripeService = $stripeService;
+        $this->hubspotService = $hubspotService;
     }
 
     public function paypalPaymentSuccess(Request $request)
@@ -174,6 +177,7 @@ class PaymentController extends Controller
 
                 $thanksUrl = Page::getSinglePageUrl(Template::THANK_YOU_DONATE_PAGE);
                 $this->sendThankYouEmail($order);
+                $this->hubspotService->importDonations($order->donations);
 
                 if ($thanksUrl === url('/')) {
                     die('Page with template "' . Template::getLabel(Template::THANK_YOU_DONATE_PAGE) . '" is not found.');
@@ -235,6 +239,7 @@ class PaymentController extends Controller
                                 $newDonation->save();
                                 Log::error('Created new donation ' . $newDonation->id . ' for order ' . $order->id);
                             }
+                            $this->hubspotService->importDonations($donations);
                         }
                     }
                 } else {

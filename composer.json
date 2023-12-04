@@ -16,6 +16,7 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
+        "hubspot/api-client": "^10.2",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^8.0",
         "laravel/jetstream": "^1.4",

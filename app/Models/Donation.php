@@ -91,7 +91,7 @@ class Donation extends Model
             [
                 'id' => self::TYPE_RAMADAN,
                 'name' => self::getTypeLabel(self::TYPE_RAMADAN),
-            ]
+            ],
         ];
 
         return $types;
@@ -104,7 +104,7 @@ class Donation extends Model
             $statuses[] = [
                 'id' => $i,
                 'name' => ucfirst(self::getStatusLabel($i)),
-                'class' => self::getStatusClass($i)
+                'class' => self::getStatusClass($i),
             ];
         }
 
@@ -173,5 +173,21 @@ class Donation extends Model
             return $this->foodpack->country->name;
         }
         return 'Quick Donation';
+    }
+
+    public function getDonationName()
+    {
+        $name = 'no campaign';
+        if ($this->campaign) {
+            $name = $this->campaign->name;
+        } elseif (isset($this->foodpackqurbani)) {
+            $name = $this->foodpackqurbani->country->name . " Qurbani (" . $this->foodpackqurbanitype->name . ")";
+        } elseif (isset($this->foodpack)) {
+            $name = "FoodPack " . $this->foodpack->country->name;
+        } else if ($this->upsell) {
+            $name = 'Provide Rice This Eid';
+        }
+
+        return $name;
     }
 }
