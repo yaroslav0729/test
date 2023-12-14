@@ -14,13 +14,13 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\GlobalPayController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\SocialController;
-use App\Http\Controllers\GlobalPayController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserController;
 use App\Models\MenuItem;
 use App\Models\User;
@@ -36,7 +36,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
-
 
 Route::get('/', [PageController::class, 'index'])->name('index');
 Route::get('/check-donation-cron', [PageController::class, 'CheckDonationPingCron']);
@@ -58,11 +57,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         Route::get('donations/export', [DonationController::class, 'exportCsv'])->name('donations.export');
         Route::get('donations/export-pdf/{donation}', [DonationController::class, 'exportDonationPdf'])->name('admin.donations.export_pdf');
         Route::resource('donations', DonationController::class, ['as' => 'admin'])->only([
-            'index', 'show', 'update'
+            'index', 'show', 'update',
         ]);
 
         Route::post('donations/resend/{donation}', [DonationController::class, 'resend'])->name('admin.donations.resend-mail');
-
 
         Route::post('donations/status/{donation}', [DonationController::class, 'saveStatus'])->name('admin.donations.save_status');
         Route::post('donations/cancel-subscription/{subscriptionId}', [DonationController::class, 'cancelSubscription'])->name('admin.donation.cancel-subscription');
@@ -128,29 +126,30 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         Route::put('/banners/edit/{id}', [BannerController::class, 'update'])->name('admin.banner.update');
 
         Route::resource('foodpack', \App\Http\Controllers\Admin\FoodPackController::class, ['as' => 'admin'])->except([
-            'show'
+            'show',
         ]);
 
         Route::resource('foodpack-qurbanies', \App\Http\Controllers\Admin\FoodPackQurbaniController::class, ['as' => 'admin'])->except([
-            'show'
+            'show',
         ]);
 
         Route::resource('black-list', \App\Http\Controllers\Admin\BlackListController::class, ['as' => 'admin'])->except([
-            'show', 'edit', 'update'
+            'show', 'edit', 'update',
         ]);
 
         Route::post('foodpack/settings', [\App\Http\Controllers\Admin\FoodPackController::class, 'updateSettings'])->name('admin.foodpack.settings');
 
         Route::resource('foodpack-pages', \App\Http\Controllers\Admin\FoodPackPagesController::class, ['as' => 'admin'])->except([
-            'show', 'edit', 'update'
+            'show', 'edit', 'update',
         ]);
 
         Route::resource('foodpack-qurbanies-pages', \App\Http\Controllers\Admin\FoodPacksQurbaniesPagesController::class, ['as' => 'admin'])->except([
-            'show', 'edit', 'update'
+            'show', 'edit', 'update',
         ]);
 
         // MediaManager
         ctf0\MediaManager\MediaRoutes::routes();
+        Route::post('media/upload', [\App\Http\Controllers\Admin\MediaController::class, 'upload'], ['as' => 'admin'])->name('media.upload');
     });
 });
 
@@ -158,7 +157,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/donations', [UserController::class, 'donations'])->name('user.donations');
         Route::get('/ramadan/unsubscribe', [\App\Http\Controllers\RamadanController::class, 'unsubscribe'])->name('user.ramadan.unsubscribe');
