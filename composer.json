@@ -34,6 +34,7 @@
         "spatie/laravel-settings": "^2.3",
         "stripe/stripe-php": "^7.116",
         "timwassenburg/laravel-pivot-table-generator": "^1.0",
+        "unisharp/laravel-filemanager": "^2.6",
         "voku/simple_html_dom": "^4.7"
     },
     "require-dev": {

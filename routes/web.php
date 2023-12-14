@@ -150,6 +150,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         // MediaManager
         ctf0\MediaManager\MediaRoutes::routes();
         Route::post('media/upload', [\App\Http\Controllers\Admin\MediaController::class, 'upload'], ['as' => 'admin'])->name('media.upload');
+
+        Route::prefix('laravel-filemanager')->group(function () {
+            \UniSharp\LaravelFilemanager\Lfm::routes();
+
+        });
     });
 });
 
