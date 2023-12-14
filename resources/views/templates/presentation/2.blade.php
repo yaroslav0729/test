@@ -133,7 +133,7 @@
         </div>
         <div class="down">
             <div class="row gutter-10">
-                <div class="col-4">
+                <div class="@if($eventbriteCode) col-4 @else col-12 @endif">
                     <div>
                         <div class="title"><b>event details</b></div>
                         <div>
@@ -164,56 +164,58 @@
 
                     </div>
                 </div>
+                @if($eventbriteCode)
                 <div class="col-8">
                     <div>
                         <div class="title"><b>register here</b> (Seats available)</div>
 
                         @empty($eventbriteCode)
-                        <div>
-                        <div class="row align-items-center">
-                            <div class="col-7"><b class="text-uppercase">
-                                    {{ $event->start_date->shortEnglishDayOfWeek }},
-                                    {{ $event->start_date->format('j F Y') }},
-                                    {{ \Carbon\Carbon::parse($event->start_time)->format('h:i') }}
-                                    @isset($event->end_time)
-                                        - {{ \Carbon\Carbon::parse($event->end_time)->format('h:i') }}
-                                    @endisset GMT</b></div>
-                            <div class="col-5 text-right text-secondary">Sales end {{ $event->start_date->format('j F') }}</div>
-                        </div>
-                        <div class="line"></div>
-                        <div class="row align-items-center">
-                            <div class="col-7">
-                                <div><b>Female Seating</b></div>
-                                <div>{{ $event->entry }}</div>
-                            </div>
-                            <div class="col-5 text-right">
-                                <input type="number" input_number_spinner value="1" min="0" max="1000" step="1"/>
-                            </div>
-                        </div>
-                        <div class="line"></div>
-                        <div class="row align-items-center">
-                            <div class="col-7">
-                                <div><b>Male Seating</b></div>
-                                <div>{{ $event->entry }}</div>
-                            </div>
-                            <div class="col-5 text-right">
-                                <input type="number" input_number_spinner value="1" min="0" max="1000" step="1"/>
-                            </div>
-                        </div>
-                        <div class="line"></div>
-                        <div class="row align-items-center">
-                            <div class="col-7">
-                                <div><b>QTY: 0</b></div>
-                            </div>
-                            <div class="col-5 text-right"><a href="#" class="btn btn-secondary">Register</a></div>
-                        </div>
-                        </div>
+{{--                        <div>--}}
+{{--                        <div class="row align-items-center">--}}
+{{--                            <div class="col-7"><b class="text-uppercase">--}}
+{{--                                    {{ $event->start_date->shortEnglishDayOfWeek }},--}}
+{{--                                    {{ $event->start_date->format('j F Y') }},--}}
+{{--                                    {{ \Carbon\Carbon::parse($event->start_time)->format('h:i') }}--}}
+{{--                                    @isset($event->end_time)--}}
+{{--                                        - {{ \Carbon\Carbon::parse($event->end_time)->format('h:i') }}--}}
+{{--                                    @endisset GMT</b></div>--}}
+{{--                            <div class="col-5 text-right text-secondary">Sales end {{ $event->start_date->format('j F') }}</div>--}}
+{{--                        </div>--}}
+{{--                        <div class="line"></div>--}}
+{{--                        <div class="row align-items-center">--}}
+{{--                            <div class="col-7">--}}
+{{--                                <div><b>Female Seating</b></div>--}}
+{{--                                <div>{{ $event->entry }}</div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-5 text-right">--}}
+{{--                                <input type="number" input_number_spinner value="1" min="0" max="1000" step="1"/>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="line"></div>--}}
+{{--                        <div class="row align-items-center">--}}
+{{--                            <div class="col-7">--}}
+{{--                                <div><b>Male Seating</b></div>--}}
+{{--                                <div>{{ $event->entry }}</div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-5 text-right">--}}
+{{--                                <input type="number" input_number_spinner value="1" min="0" max="1000" step="1"/>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="line"></div>--}}
+{{--                        <div class="row align-items-center">--}}
+{{--                            <div class="col-7">--}}
+{{--                                <div><b>QTY: 0</b></div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-5 text-right"><a href="#" class="btn btn-secondary">Register</a></div>--}}
+{{--                        </div>--}}
+{{--                        </div>--}}
                         @else
                         {!! $eventbriteCode !!}
                         @endempty
 
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>
