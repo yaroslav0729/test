@@ -287,8 +287,8 @@
             </div>
         </div>
         @if($widgetHtml)
-        <div id="widget" class="col-12 col-md-4 lazy-block explore-widget-block">
-            <div class="explore-widget-wrapper">
+        <div id="widget" class="col-12 col-md-4 lazy-block feedback-widget-block">
+            <div class="feedback-widget-wrapper">
                 {!! $widgetHtml !!}
             </div>
         </div>

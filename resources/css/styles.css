@@ -6924,6 +6924,14 @@ section.back {
     position: relative;
     z-index: 2;
 }
+
+.feedback-mobile-widget-container {
+    padding-inline: 0;
+}
+
+.feedback-mobile-widget-wrapper iframe {
+    width: 100%;
+}
 .how-does-work .title span {
     color: #f7796a;
     font-size: 16px;

@@ -201,7 +201,7 @@
     <div class="row">
         <div class="col-12">
             <p class="font-size-30 mb-3"><b>{{ $feedbackTitle }}</b></p>
-            <div class="explore-info">
+            <div class="feedback-info">
 
             <svg class="decor-wave size-40 style-danger" style="position: absolute; left: -100%" version="1.0"
                  xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt"
@@ -258,8 +258,8 @@
                     {!! $feedbackVideoWidget !!}
                 </div>
         </div>
-        <div id="widget" class="col-12 mt-3">
-            <div class="explore-widget-wrapper">
+        <div id="widget" class="col-12 mt-3 feedback-mobile-widget-container">
+            <div class="feedback-mobile-widget-wrapper">
                 {!! $widgetHtml !!}
             </div>
         </div>
