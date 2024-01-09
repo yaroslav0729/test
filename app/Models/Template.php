@@ -21,6 +21,7 @@ class Template
     const CALCULATOR_PAGE = 20;
     const WIDGET_PAGE_TEMPLATE = 22;
     const GET_INVOLVED_PAGE_TEMPLATE = 23;
+    const GAZA_DOCTORS_PAGE = 24;
     public const THANK_YOU_SUBSCRIPTION_PAGE = 21;
 
     const TEST_PAGE = 100;
@@ -45,6 +46,7 @@ class Template
         self::THANK_YOU_SUBSCRIPTION_PAGE,
         self::WIDGET_PAGE_TEMPLATE,
         self::GET_INVOLVED_PAGE_TEMPLATE,
+        self::GAZA_DOCTORS_PAGE,
         //self::TEST_PAGE,
     ];
 
@@ -89,6 +91,9 @@ class Template
                 return 'Widget page';
             case self::GET_INVOLVED_PAGE_TEMPLATE:
                 return 'Get involved widget page';
+            case self::GAZA_DOCTORS_PAGE:
+                return 'Gaza doctors page';
+
 
             default:
                 return "Unknown template type";
@@ -162,6 +167,12 @@ class Template
         ],
 
         self::GET_INVOLVED_PAGE_TEMPLATE => [
+            'headerClassName' => 'bg-white',
+            'footerClassName' => 'bg-info-red',
+            'headerType' => 'parts.header',
+        ],
+
+        self::GAZA_DOCTORS_PAGE => [
             'headerClassName' => 'bg-white',
             'footerClassName' => 'bg-info-red',
             'headerType' => 'parts.header',
@@ -530,6 +541,7 @@ class Template
                     break;
                 }
 
+            case self::GAZA_DOCTORS_PAGE:
             case self::GET_INVOLVED_PAGE_TEMPLATE:
             case self::VOLUNTEER_PAGE: {
 
