@@ -189,7 +189,7 @@
 
 <section class="how-does-work with-lines pt-4">
     <div class="title">
-        <p>What is the need for Medics?</p>
+        <p>Surgeons in Gaza</p>
         <span>Understand the need and criteria.</span>
     </div>
     <div class="text">
