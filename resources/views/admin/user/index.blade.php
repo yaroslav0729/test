@@ -39,7 +39,7 @@
                                     <td class="px-4">{{ $user->name }}</td>
                                     <td class="px-4">{{ $user->email }}</td>
                                     <td class="px-4">{{ $user->role_name }}</td>
-                                    <td class="px-4">{{ $user->created_at->format('d/m/Y') }}</td>
+                                    <td class="px-4">{{ $user->created_at ? $user->created_at->format('d/m/Y') : '' }}</td>
                                     <td class="px-4 action_td">
 
                                         <a href="{{ route('admin.user.show', ['id' => $user->id]) }}">

@@ -6915,7 +6915,7 @@ section.back {
     position: relative;
     margin-bottom: 60px;
 }
-.how-does-work .title p {
+.feedback-title, .how-does-work .title p {
     color: #101525;
     font-size: 40px;
     font-weight: 900;
@@ -6965,6 +6965,31 @@ section.back {
     font-weight: 500;
     line-height: 30px;
 }
+
+.feedback-title {
+    margin-bottom: 16px;
+}
+
+.feedback-content {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.feedback-video-widget iframe {
+    width: 100%;
+}
+
+.feedback-flex .feedback-info-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 991px) {
+    .feedback-flex .feedback-info-col {
+        grid-template-columns: 1fr;
+    }
+}
+
 .how-does-work.with-lines:after {
     content: "";
     display: block;

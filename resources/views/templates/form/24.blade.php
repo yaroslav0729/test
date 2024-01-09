@@ -21,6 +21,12 @@
     $projImg2 = '';
     $projText2 = '';
     $widgetHtml = '';
+    $medicNeeds = '';
+    $donateNow = '';
+
+    if (isset($parameters['donate_now'])) {
+        $donateNow = $parameters['donate_now'];
+    }
 
     if (isset($parameters['main_title'])) {
         $mainTitle = $parameters['main_title'];
@@ -106,6 +112,25 @@
         $widgetHtml = $parameters['widget_html'];
     }
 
+    if (isset($parameters['medic_needs'])) {
+        $medicNeeds = $parameters['medic_needs'];
+    }
+
+    $feedbackText = '';
+    if (isset($parameters['feedback_text'])) {
+        $feedbackText = $parameters['feedback_text'];
+    }
+
+    $feedbackTitle = '';
+    if (isset($parameters['feedback_title'])) {
+        $feedbackTitle = $parameters['feedback_title'];
+    }
+
+    $feedbackVideoWidget = '';
+    if (isset($parameters['feedback_video_widget'])) {
+        $feedbackVideoWidget = $parameters['feedback_video_widget'];
+    }
+
     $applyText = '';
     $sideBlockTitle1 = '';
     $sideBlockText1 = '';
@@ -177,88 +202,31 @@
 </div>
 
 <div class="form-group">
-    <label>Column 1 title:</label>
-    <input class="form-control" name="parameters[column1_title]" placeholder="BE PART OF CHANGE - example"
-           value="{{ $colTitle1 }}" />
+    <label for="widget_html">Medic needs content:</label>
+    <textarea wysiwyg-editor id="medic_needs" class="form-control" name="parameters[medic_needs]"
+              placeholder="Insert Medic needs content here">{{ $medicNeeds }}</textarea>
 </div>
 
 <div class="form-group">
-    <label>Column 1 text:</label>
-    <input class="form-control" name="parameters[column1_text]" placeholder="Text here ..."
-           value="{{ $colText1 }}" />
+    <label>Feedback block title:</label>
+    <input class="form-control" name="parameters[feedback_title]" placeholder="Title here ..." value="{{ $feedbackTitle }}" />
 </div>
 
 <div class="form-group">
-    <label>Column 2 title:</label>
-    <input class="form-control" name="parameters[column2_title]" placeholder="USE YOUR SKILLS - example"
-           value="{{ $colTitle2 }}" />
+    <label for="widget_html">Feedback content:</label>
+    <textarea wysiwyg-editor id="feedback_text" class="form-control" name="parameters[feedback_text]"
+              placeholder="Insert widget content here">{{ $feedbackText }}</textarea>
 </div>
 
 <div class="form-group">
-    <label>Column 2 text:</label>
-    <input class="form-control" name="parameters[column2_text]" placeholder="Text here ..."
-           value="{{ $colText2 }}" />
+    <label>Donate now link:</label>
+    <input class="form-control" name="parameters[donate_now]" placeholder="Link here ..." value="{{ $donateNow }}" />
 </div>
 
 <div class="form-group">
-    <label>Column 3 title:</label>
-    <input class="form-control" name="parameters[column3_title]" placeholder="MAKE A DIFFERENCE - example"
-           value="{{ $colTitle3 }}" />
-</div>
-
-<div class="form-group">
-    <label>Column 3 text:</label>
-    <input class="form-control" name="parameters[column3_text]" placeholder="Text here ..."
-           value="{{ $colText3 }}" />
-</div>
-
-<div class="form-group">
-    <label>Widget block title:</label>
-    <input class="form-control" name="parameters[explore_proj_title]" placeholder="Explore past projects - example"
-           value="{{ $exploreTitle }}" />
-</div>
-
-<div class="form-group">
-    <label>Side block title 1:</label>
-    <input class="form-control" name="parameters[explore_info_title_1]" placeholder="Side title 1"
-           value="{{ $sideBlockTitle1 }}">
-</div>
-<div class="form-group">
-    <label>Side block text 1:</label>
-    <input class="form-control" name="parameters[explore_info_text_1]" placeholder="Side text 1"
-           value="{{ $sideBlockText1 }}">
-</div>
-<div class="form-group">
-    <label>Side block title 2:</label>
-    <input class="form-control" name="parameters[explore_info_title_2]" placeholder="Side title 2"
-           value="{{ $sideBlockTitle2 }}">
-</div>
-<div class="form-group">
-    <label>Side block text 2:</label>
-    <input class="form-control" name="parameters[explore_info_text_2]" placeholder="Side text 2"
-           value="{{ $sideBlockText2 }}">
-</div>
-<div class="form-group">
-    <label>Side block title 3:</label>
-    <input class="form-control" name="parameters[explore_info_title_3]" placeholder="Side title 3"
-           value="{{ $sideBlockTitle3 }}">
-</div>
-<div class="form-group">
-    <label>Side block text 3:</label>
-    <input class="form-control" name="parameters[explore_info_text_3]" placeholder="Side text 3"
-           value="{{ $sideBlockText3 }}">
-</div>
-
-<div class="form-group">
-    <label>Past project image 1:</label>
-    <input class="form-control" name="parameters[proj_img1]"
-           placeholder="img/content/explore-past-missions3.jpg - example" value="{{ $projImg1 }}" />
-</div>
-
-<div class="form-group">
-    <label>Past project image 2:</label>
-    <input class="form-control" name="parameters[proj_img2]"
-           placeholder="img/content/explore-past-missions4.jpg - example" value="{{ $projImg2 }}" />
+    <label for="widget_html">Feedback video widget:</label>
+    <textarea wysiwyg-editor id="feedback_video_widget" class="form-control" name="parameters[feedback_video_widget]"
+              placeholder="Insert widget content here">{{ $feedbackVideoWidget }}</textarea>
 </div>
 
 <div class="form-group">
