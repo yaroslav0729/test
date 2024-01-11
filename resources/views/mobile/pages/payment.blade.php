@@ -159,7 +159,7 @@
 
             @isset($cart)
                 <div id="qurbani-names" class="">
-                    <div class="text-right pb-3"><b>DONATION NOTES</b></div>
+                    <div class="text-right pb-3"><b>DONATION NOTES (ON BEHALF OF)</b></div>
                     <div class="black-line"></div>
                     <div class="pt-5"></div>
                     <div class="row">
@@ -181,7 +181,7 @@
                                         @endphp
                                         <div class="form-group" data-cart_item_id="{{ $cartItem->cart_item_id }}">
                                             <label class="@error('notes_' . $cartItem->cart_item_id) text-danger @enderror">Notes for {{ $donationName }} £{{ $cartItem->amount }}</label>
-                                            <input class="form-control @error('notes_' . $cartItem->cart_item_id) border-danger @enderror" name="notes_{{ $cartItem->cart_item_id }}" required="" maxlength="25" placeholder="Please insert any names here. 25 characters max.">
+                                            <input class="form-control @error('notes_' . $cartItem->cart_item_id) border-danger @enderror" name="notes_{{ $cartItem->cart_item_id }}" required="" maxlength="70" placeholder="Please insert any names here. 70 characters max.">
                                         </div>
                                         @error('notes_' . $cartItem->cart_item_id)
                                         <p class="text-danger ml-3">*{{ $message }}</p>
@@ -198,10 +198,10 @@
             <div class="form-title"><b>OTHER NOTES (OPTIONAL)</b></div>
             <div>
                 <div class="form-group">
-                    <label><b>NOTE</b> (ON BEHALF OF)</label>
+                    <label><b>NOTE</b></label>
                     <span class="string-counter">0/34</span>
                     <textarea name="notes" rows="1" class="form-control" value="{{ old('notes') }}"
-                        maxlength="25" placeholder="Please insert any names here. 25 characters max."></textarea>
+                        maxlength="70" placeholder="Please add any other notes here (optional)"></textarea>
                 </div>
                 <div class="pt-5"></div>
             </div>

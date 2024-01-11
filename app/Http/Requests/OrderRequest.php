@@ -32,7 +32,7 @@ class OrderRequest extends FormRequest
             'address_2' => 'nullable|max:200',
             'city' => 'required|max:100',
             'phone' => 'nullable|max:100',
-            'notes' => 'nullable|max:25',
+            'notes' => 'nullable|max:70',
         ];
 
 //        foreach ($this->all() as $key => $value) {
