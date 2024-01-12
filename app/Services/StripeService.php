@@ -255,6 +255,13 @@ class StripeService
         ]);
     }
 
+    public function fetchUpcomingInvoicesForSubscription(string $subscriptionId): \Stripe\Invoice
+    {
+        return $this->stripe->invoices->upcoming([
+            'subscription' => $subscriptionId
+        ]);
+    }
+
     public function fetchSubscription(string $subscriptionId): Subscription
     {
         return $this->stripe->subscriptions->retrieve($subscriptionId);
@@ -274,6 +281,26 @@ class StripeService
     public function getSubscription(Session $session)
     {
         return $this->stripe->subscriptions->retrieve($session->subscription);
+    }
+
+    public function getActiveSubscriptions($startingAfter = '', $limit = 100): \Stripe\Collection
+    {
+        $params = [
+            'limit' => $limit,
+        ];
+
+        if ($startingAfter) {
+            $params['starting_after'] = $startingAfter;
+        }
+
+        return $this->stripe->subscriptions->all($params);
+    }
+
+    public function fetchUpcomingInvoice(string $subscriptionId): \Stripe\Invoice
+    {
+        return $this->stripe->invoices->upcoming([
+            'subscription' => $subscriptionId
+        ]);
     }
 
     public function setCancelAt($subscription, string $endDate)
