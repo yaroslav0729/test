@@ -5006,6 +5006,8 @@ section.back {
     right: 0;
     width: auto;
     height: auto;
+    max-height: 100vh;
+    overflow-y: auto;
 }
 
 #cartBackdrop {
