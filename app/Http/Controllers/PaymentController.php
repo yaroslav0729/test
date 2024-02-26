@@ -101,6 +101,13 @@ class PaymentController extends Controller
                 /** @var Session $checkoutSession */
                 $checkoutSession = $stripe->checkout->sessions->retrieve($event->data->object->id, []);
 
+                if (isset($checkoutSession->metadata['portal_donation'])) {
+                    return response()->json([
+                        'message' => 'Portal Donation',
+                        'success' => true,
+                    ]);
+                }
+
                 if ($checkoutSession->metadata['scheduled_qurbani']) {
                     $customer_id = $checkoutSession->customer;
                     $setupIntent = $stripe->setupIntents->retrieve($checkoutSession->setup_intent);
@@ -193,6 +200,13 @@ class PaymentController extends Controller
                 $stripe = new \Stripe\StripeClient(config('stripe.secret_key'));
                 $invoice = $stripe->invoices->retrieve($invoice->id);
                 $subscription = $stripe->subscriptions->retrieve($invoice->subscription);
+
+                if (isset($subscrition->metadata['portal_donation'])) {
+                    return response()->json([
+                        'message' => 'Portal donation',
+                        'success' => true,
+                    ]);
+                }
 
                 if (isset($subscription->metadata['donated_campaigns'])) {
                     $subscriptionId = $invoice->subscription;
