@@ -36,12 +36,12 @@ if (request()->filled('order_id')) {
 if (request()->filled('order')) {
     $orderId = request()->get('order');
     $order = App\Models\Order::where('order_id', $orderId)->first();
-    $donation = $order->donations()->first();
+    $donation = $order ? $order->donations()->first() : null;
 }
 
 if (!empty($orderId) && is_null($order)) {
     $order = App\Models\Order::find($orderId);
-    $donation = $order->donations()->first();
+    $donation = $order ? $order->donations()->first() : null;
 }
 
 @endphp
@@ -49,7 +49,7 @@ if (!empty($orderId) && is_null($order)) {
 <div class="thank-you-page">
     <div class="thank-you-page-wrap">
         <div class="container">
-            @if ($orderId)
+            @if ($orderId && $donation)
             <div class="row justify-content-center align-items-center">
                 <div class="col-10">
                     <gm-share charity="islamic-help-uk" currency="{{ Str::lower($donation->currency) }}" amount="{{ number_format($order->sum, 2, '', '') }}" firstName="{{ $order->first_name }}" email="{{ $order->email }}"> </gm-share>
