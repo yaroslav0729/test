@@ -101,7 +101,7 @@ class PaymentController extends Controller
                 /** @var Session $checkoutSession */
                 $checkoutSession = $stripe->checkout->sessions->retrieve($event->data->object->id, []);
 
-                if ($checkoutSession->metadata->scheduled_qurbani) {
+                if ($checkoutSession->metadata->toArray()['scheduled_qurbani']) {
                     $customer_id = $checkoutSession->customer;
                     $setupIntent = $stripe->setupIntents->retrieve($checkoutSession->setup_intent);
                     $payment_method_id = $setupIntent->payment_method;
