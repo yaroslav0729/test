@@ -49,7 +49,7 @@ if (!empty($orderId) && is_null($order)) {
 <div class="thank-you-page">
     <div class="thank-you-page-wrap">
         <div class="container">
-            @if ($orderId && $donation)
+            @if ($order && $donation)
             <div class="row justify-content-center align-items-center">
                 <div class="col-10">
                     <gm-share charity="islamic-help-uk" currency="{{ Str::lower($donation->currency) }}" amount="{{ number_format($order->sum, 2, '', '') }}" firstName="{{ $order->first_name }}" email="{{ $order->email }}"> </gm-share>

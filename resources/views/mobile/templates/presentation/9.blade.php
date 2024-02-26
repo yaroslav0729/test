@@ -51,7 +51,7 @@ if (!empty($orderId) && is_null($order)) {
 @endphp
 
 <div class="thank-you-page">
-    @if ($orderId & $donation)
+    @if ($order && $donation)
         <div class="give-match-widget">
             <gm-share charity="islamic-help-uk" currency="{{ Str::lower($donation->currency) }}" amount="{{ number_format($order->sum, 2, '', '') }}" firstName="{{ $order->first_name }}" email="{{ $order->email }}"> </gm-share>
         </div>
