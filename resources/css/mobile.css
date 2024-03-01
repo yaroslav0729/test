@@ -1042,6 +1042,10 @@
     top: 0;
     transform: translate(-50%, -50%);
 }
+.mobile-template .who-we-are-donate .donate-today {
+    padding: 0;
+    margin-bottom: 0;
+}
 .mobile-template .donate-today {
     padding: 0 20px;
     margin-bottom: 63px;

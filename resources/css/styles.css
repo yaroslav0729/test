@@ -3852,7 +3852,7 @@ section.back {
 .donate-today .body .col-lg-7 .media + .descr:after {
     right: calc(-71%);
 }
-.donate-today .body .donate-today-sheet {
+.donate-today .body .donate-today-sheet, .donate-today-sheet {
     border-radius: 5px;
     background-color: #fff;
     box-shadow: 0 18px 35px 0 rgba(104, 110, 117, 0.2);
@@ -3863,7 +3863,13 @@ section.back {
     z-index: 2;
     margin-bottom: 40px;
 }
-.donate-today .body .donate-today-sheet .currency-col select {
+.who-we-are-head .donate-today .body .donate-today-sheet {
+    margin: 0;
+}
+.who-we-are-head .donate-today {
+    border-bottom: none;
+}
+.donate-today .body .donate-today-sheet .currency-col select, .donate-today-sheet .currency-col select {
     font-size: 12px;
     font-weight: 900;
     padding: 18px 19px;
@@ -3873,7 +3879,7 @@ section.back {
     background: #e3effe url(../img/arrow-down.svg) no-repeat top 50% right 14px !important;
     background-size: 14px 13px !important;
 }
-.donate-today .body .donate-today-sheet .item, .qurbani-options .item {
+.donate-today .body .donate-today-sheet .item, .qurbani-options .item, .donate-today-sheet .item, .qurbani-options .item {
     display: block;
     position: relative;
     overflow: hidden;

@@ -8,7 +8,6 @@ $collection = collect($amount)->transform(function ($item, $key) use ($campaigns
     $item['id'] = $key;
     return $item;
 });
-
 @endphp
 
 @if($collection->count() >= 15)

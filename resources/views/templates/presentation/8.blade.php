@@ -137,12 +137,24 @@ if (isset($parameters['changing_block_text_mobile'])) {
 
 $ourValuesActive = false;
 $ourValuesActiveLink = false;
+$showPriceHandlers = false;
+
+if (isset($parameters['donation_module_enabled'])) {
+    $showPriceHandlers = $parameters['donation_module_enabled'] === '1';
+}
 
 @endphp
 
 <section class="who-we-are-head" style="background-image: url('{{ $bgImage }}');">
     <div>OUR MISSION</div>
     <h1>{!! $ourMissionTitle !!}</h1>
+
+    @if ($showPriceHandlers)
+        @include('modules.presentation.donate_module', [
+            'colorInfo' => true,
+            'priceHandlersOnly' => true
+        ])
+    @endif
 </section>
 
 <section class="our-values mt-n5">

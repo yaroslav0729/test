@@ -134,6 +134,11 @@ if (isset($parameters['changing_block_text_mobile'])) {
     $lifeChangingBlockTextMobile = $parameters['changing_block_text_mobile'];
 }
 
+$donationModuleEnabled = false;
+if (isset($parameters['donation_module_enabled'])) {
+    $donationModuleEnabled = $parameters['donation_module_enabled'] === '1';
+}
+
 @endphp
 
 <div class="row">
@@ -386,6 +391,22 @@ if (isset($parameters['changing_block_text_mobile'])) {
     </div>
 </div>
 
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="donate-module-checkbox" name="parameters[donation_module_enabled]"
+                value="1" @if ($donationModuleEnabled) checked @endif>
+            <label class="form-check-label" for="donate-module-checkbox">
+                Enable donation module
+            </label>
+        </div>
+
+        <div id="donate-module">
+            @include('modules.admin.donate_module', ['priceHandlersOnly' => true])
+        </div>
+    </div>
+</div>
+
 @include('modules.admin.related_topics_project')
 
 <div class="row mt-5">
@@ -395,3 +416,22 @@ if (isset($parameters['changing_block_text_mobile'])) {
         ])
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        const isChecked = $('#donate-module-checkbox').is(':checked');
+        if (isChecked) {
+            $('#donate-module').show();
+        } else {
+            $('#donate-module').hide();
+        }
+        $('#donate-module-checkbox').change(function () {
+            if (this.checked) {
+                $('#donate-module').show();
+            } else {
+                $('#donate-module').hide();
+            }
+        });
+    });
+</script>
+
