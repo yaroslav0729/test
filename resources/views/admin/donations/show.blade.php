@@ -29,6 +29,7 @@ if ($donation->campaign)
             <b>Category:</b> {{ $donation->campaign_category ? $donation->campaign_category->name : 'no category' }}<br>
             <b>Campaign:</b> {{ $campaign }}<br>
             <b>Qurbani Name:</b> {{ $donation->qurbani_name }}<br>
+            <b>Plaque Name:</b> {{ $donation->note }}<br>
             <b>User:</b> {{ $donation->user ? $donation->user->name : 'no user' }}<br>
             <b>Email:</b> {{ $donation->email }}<br>
             <b>Date:</b> {{ $donation->created_at->format('d/m/Y') }} <br>
