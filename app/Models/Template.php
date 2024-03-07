@@ -397,7 +397,7 @@ class Template
 
                         'parameters.changing_block_title' => 'required',
                         'parameters.changing_block_text' => 'required',
-                        'parameters.changing_block_text_mobile' => 'required|max:460',
+                        'parameters.changing_block_text_mobile' => 'required',
 
                         'parameters.changing_block_photo_1' => 'required_if:parameters.changing_active.0,1',
                         'parameters.changing_block_photo_2' => 'required_if:parameters.changing_active.1,2',

@@ -471,8 +471,8 @@ for ($i = 0; $i < 7; $i++) {
         </div>
 
         <div class="form-group">
-            <label>Life changing support text (for mobile - max 460ch ):</label>
-            <textarea class="form-control" rows="3" name="parameters[changing_block_text_mobile]"
+            <label>Life changing support text:</label>
+            <textarea wysiwyg-editor id="mobile_html" class="form-control" name="parameters[changing_block_text_mobile]"
                 placeholder="Life changing support text (mobile)">{{ $lifeChangingBlockTextMobile }}</textarea>
         </div>
     </div>
