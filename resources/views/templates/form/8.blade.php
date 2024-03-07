@@ -3,12 +3,19 @@
 $bgImage = '';
 $ourMissionTitle = '';
 $ourValuesDescription = '';
+$ourValuesInActionTitle = '';
 $ourValuesInActionDescription = '';
 $ourValuesVideo = '';
 $ourValuesVideoPreview = '';
 $mapImage = '';
 $mapAlternativeImage = '';
 $hdrColorType = '';
+
+$hideMap = '';
+
+if (isset($parameters['hide_map'])) {
+    $hideMap = $parameters['hide_map'];
+}
 
 $storyActive = $parameters['story_active'] ?? [];
 
@@ -67,6 +74,10 @@ if (isset($parameters['map_image'])) {
 
 if (isset($parameters['map_alt_image'])) {
     $mapAlternativeImage = $parameters['map_alt_image'];
+}
+
+if (isset($parameters['our_values_action_title'])) {
+    $ourValuesInActionTitle = $parameters['our_values_action_title'];
 }
 
 if (isset($parameters['our_values_action_description'])) {
@@ -139,6 +150,29 @@ if (isset($parameters['donation_module_enabled'])) {
     $donationModuleEnabled = $parameters['donation_module_enabled'] === '1';
 }
 
+$hideOurStory = '';
+if (isset($parameters['hide_our_story'])) {
+    $hideOurStory = $parameters['hide_our_story'];
+}
+
+$showFAQs = '';
+if (isset($parameters['show_faq'])) {
+    $showFAQs = $parameters['show_faq'];
+}
+$faqs = [];
+for ($i = 0; $i < 7; $i++) {
+    $faqs[] = [
+        'question' => '',
+        'answer' => '',
+    ];
+
+    if (isset($parameters['faq_question_' . $i])) {
+        $faqs[$i]['question'] = $parameters['faq_question_' . $i];
+    }
+    if (isset($parameters['faq_answer_' . $i])) {
+        $faqs[$i]['answer'] = $parameters['faq_answer_' . $i];
+    }
+}
 @endphp
 
 <div class="row">
@@ -197,10 +231,27 @@ if (isset($parameters['donation_module_enabled'])) {
                 value="{{ $mapAlternativeImage }}" />
         </div>
     </div>
+
+    <div class="col-12 col-lg-6">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="hide-map-checkbox" name="parameters[hide_map]"
+                   value="1" @if ($hideMap === '1') checked @endif>
+            <label class="form-check-label" for="hide-map-checkbox">
+                Hide map
+            </label>
+        </div>
+    </div>
 </div>
 
 <div class="form-group mt-5">
     <label class="font-weight-bold">Our values in Action:</label>
+    <div class="mt-2">
+        <div class="form-group">
+            <label>Our values in Action Title:</label>
+            <input class="form-control" name="parameters[our_values_action_title]" placeholder="Enter block title"
+                   value="{{ $ourValuesInActionTitle }}" />
+        </div>
+    </div>
     <div class="mt-2">
         <div class="form-group">
             <label>Our values in action description (for mobile):</label>
@@ -288,6 +339,13 @@ if (isset($parameters['donation_module_enabled'])) {
 
 <div class="form-group mt-5">
     <label class="font-weight-bold">Our story:</label>
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="hide-our-story-checkbox" name="parameters[hide_our_story]"
+               value="1" @if ($hideOurStory === '1') checked @endif>
+        <label class="form-check-label" for="hide-map-checkbox">
+            Hide Our story
+        </label>
+    </div>
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             @for ($i = 1; $i <= 3; $i++)
@@ -336,6 +394,35 @@ if (isset($parameters['donation_module_enabled'])) {
             </div>
         @endfor
     </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12 font-weight-bold">FAQs:</div>
+    <div class="col-12">
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="show-faq-checkbox" name="parameters[show_faq]"
+                   value="1" @if ($showFAQs === '1') checked @endif>
+            <label class="form-check-label" for="show-faq">
+                Show FAQ block
+            </label>
+        </div>
+    </div>
+    @for($item = 0; $item < 7; $item++)
+        <div class="col-12 col-lg-6">
+            <div class="form-group">
+                <label>Question #{{ $item + 1 }}:</label>
+                <input class="form-control" name="parameters[faq_question_{{ $item }}]"
+                       placeholder="Question #{{ $item + 1 }} text" value="{{ $faqs[$item]['question'] }}" />
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="form-group">
+                <label>Answer #{{ $item + 1 }}:</label>
+                <input class="form-control" name="parameters[faq_answer_{{ $item }}]"
+                       placeholder="Answer #{{ $item + 1 }} text" value="{{ $faqs[$item]['answer'] }}" />
+            </div>
+        </div>
+    @endfor
 </div>
 
 <div class="row mt-5">

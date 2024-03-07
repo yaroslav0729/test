@@ -2,6 +2,7 @@ $(function() {
     $('[input_number_spinner_food]').inputSpinner();
     const form = document.querySelector('#qurbani-form');
 
+    if (!form) return;
     const campaignCategories = JSON.parse($('#donate_module_options').text());
     const formData = {
         prices: [],

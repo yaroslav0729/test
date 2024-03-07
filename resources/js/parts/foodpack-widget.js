@@ -3,6 +3,9 @@ import { refreshCardAddHtml, number_format } from './cart';
 $(function () {
     const widgetBtn = document.querySelector('.foodpack-widget');
     const foodpackModal = document.querySelector('.modal--foodpack');
+
+    if (!foodpackModal) return;
+
     const modalBody = document.querySelector('.modal--foodpack__content');
     const itemsContainer = document.querySelector('.modal--foodpack__items');
     const btnCloseModal = document.querySelector('.modal--foodpack__close');

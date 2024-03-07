@@ -1,6 +1,7 @@
 @php
 $bgImage = '';
 $ourMissionTitle = '';
+$ourValuesInActionTitle = '';
 $ourValuesDescription = '';
 $ourValuesVideo = '';
 $ourValuesVideoPreview = '';
@@ -74,6 +75,10 @@ if (isset($parameters['map_alt_image'])) {
     $mapAlternativeImage = $parameters['map_alt_image'];
 }
 
+if (isset($parameters['our_values_action_title'])) {
+    $ourValuesInActionTitle = $parameters['our_values_action_title'];
+}
+
 /*    $actionActive = $parameters['action_active'] ?? [];*/
 
 for ($i = 1; $i <= 4; $i++) {
@@ -112,6 +117,8 @@ for ($i = 1; $i <= 3; $i++) {
     }
 }
 
+
+
 for ($i = 1; $i <= 2; $i++) {
     if (isset($parameters["changing_block_photo_{$i}"])) {
         ${'lifeChangingPhoto' . $i} = $parameters["changing_block_photo_{$i}"];
@@ -143,6 +150,33 @@ if (isset($parameters['donation_module_enabled'])) {
     $showPriceHandlers = $parameters['donation_module_enabled'] === '1';
 }
 
+$hideMap = '';
+if (isset($parameters['hide_map'])) {
+    $hideMap = $parameters['hide_map'];
+}
+$shouldHideMap = $hideMap === '1';
+
+$hideOurStory = '';
+if (isset($parameters['hide_our_story'])) {
+    $hideOurStory = $parameters['hide_our_story'];
+}
+$shouldHideOurStory = $hideOurStory === '1';
+
+$showFAQs = '';
+if (isset($parameters['show_faq'])) {
+    $showFAQs = $parameters['show_faq'];
+}
+$shouldShowFaq = $showFAQs === '1';
+
+$faqs = [];
+for ($i = 0; $i < 7; $i++) {
+    if (isset($parameters['faq_question_' . $i])) {
+        $faqs[$i]['question'] = $parameters['faq_question_' . $i];
+    }
+    if (isset($parameters['faq_answer_' . $i])) {
+        $faqs[$i]['answer'] = $parameters['faq_answer_' . $i];
+    }
+}
 @endphp
 
 <section class="who-we-are-head" style="background-image: url('{{ $bgImage }}');">
@@ -182,15 +216,17 @@ if (isset($parameters['donation_module_enabled'])) {
     </div>
 </section>
 
+@if(!$shouldHideMap)
 <section class="gw-map-btn">
     <div style="background-image: url({{ $mapImage }})" alt-src="{{ $mapAlternativeImage }}">
         <a href="#" id="btn-view-global-work" class="btn btn-info">View Global Work</a>
     </div>
 </section>
+@endif
 
 @empty(!$actionActive)
-    <section class="mb-5 mt-n5">
-        <p class="font-size-20 text-uppercase"><b>Our values in action</b></p>
+    <section class="mb-5 @if($shouldHideMap) mt-5 @else mt-n5 @endif">
+        <p class="font-size-20 text-uppercase"><b>{{ $ourValuesInActionTitle ? $ourValuesInActionTitle : 'Our values in action' }}</b></p>
         <div class="black-line"></div>
     </section>
     <section class="values-action">
@@ -239,6 +275,7 @@ if (isset($parameters['donation_module_enabled'])) {
     </section>
 @endempty
 
+@if(!$shouldHideOurStory)
 @empty(!$storyActive)
     <section class="our-story-swiper" swiper-wrapper="our-story">
         <div class="wrap">
@@ -273,6 +310,37 @@ if (isset($parameters['donation_module_enabled'])) {
         </div>
     </section>
 @endempty
+@endif
+
+@if($shouldShowFaq)
+    <section class="mb-5">
+        <p class="font-size-45 text-uppercase"><b>FAQ</b></p>
+        <div class="faq-block">
+            @foreach($faqs as $index => $faqItem)
+                <div class="faq-item">
+                    <div class="faq-item__question">{{ $faqItem['question'] }} <i class="far fa-plus float-right mr-3"></i></div>
+                    <div class="faq-item__answer">{{ $faqItem['answer'] }}</div>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+    <script>
+        $('.faq-item').on('click', function () {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                $(this).find('.faq-item__answer').hide();
+                $(this).find('.far').removeClass('fa-minus');
+                $(this).find('.far').addClass('fa-plus');
+            } else {
+                $(this).addClass('active');
+                $(this).find('.faq-item__answer').show();
+                $(this).find('.far').removeClass('fa-plus');
+                $(this).find('.far').addClass('fa-minus');
+            }
+        })
+    </script>
+@endif
 
 <section class="mb-5">
     <p class="font-size-45"><b>Life changing support.</b></p>
@@ -319,6 +387,10 @@ if (isset($parameters['donation_module_enabled'])) {
 </section>
 
 <div class="pt-5 pb-5"></div>
+
+@if ($showPriceHandlers)
+    @include('modules.presentation.we_still_need_support')
+@endif
 
 @include('modules.presentation.related_topics_project')
 
