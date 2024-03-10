@@ -97,7 +97,7 @@ class StripeService
         ]);
     }
 
-    public function getCheckeoutSessionUrl(Collection $plans, Customer $customer, string $url, bool $isFuture = false): string
+    public function getCheckeoutSessionUrl(Collection $plans, Customer $customer, string $url, bool $isFuture = false, $billingAnchor = null, $endDate = null): string
     {
         $payload = [];
 
@@ -109,11 +109,36 @@ class StripeService
                 'customer' => $customer->id,
             ];
         } else {
+            $plansMetadata = [];
+            $totalPrice = 0;
+            foreach ($plans as $index => $plan) {
+                $plansMetadata['plan_' . $index . '_id'] = $plan->id;
+                $totalPrice += $plan->amount;
+            }
+            $totalPrice = $totalPrice / 100;
+            $metadata = array_merge([
+                'ramadan_subscription_setup' => true,
+                'plans_count' => count($plans),
+                'billing_anchor' => $billingAnchor,
+            ], $plansMetadata);
+            if ($billingAnchor) {
+                $metadata['billing_anchor'] = $billingAnchor;
+            }
+            if ($endDate) {
+                $metadata['end_date'] = $endDate;
+            }
             $payload = [
-                'line_items' => [$this->prepareLineItemsForSession($plans)],
-                'mode' => 'subscription',
+                'mode' => 'setup',
                 'success_url' => $url,
                 'customer' => $customer->id,
+                'payment_method_types' => ['card'],
+                'currency' => 'gbp',
+                'custom_text' => [
+                    'after_submit' => [
+                        'message' => 'Subscription. £' . $totalPrice . ' will be charged daily.',
+                    ],
+                ],
+                'metadata' => $metadata,
             ];
         }
 

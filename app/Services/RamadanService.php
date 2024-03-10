@@ -20,8 +20,8 @@ class RamadanService
 {
     use SendThankYouEmail;
 
-    public const START_DATE = '22-03-2023';
-    public const END_DATE = '20-04-2023';
+    public $startDate = '10-03-2024';
+    public $endDate = '10-04-2024';
 
     private StripeService $stripeService;
     private ConvertCurrency $convertCurrency;
@@ -38,6 +38,14 @@ class RamadanService
     public function createDonates(array $donatesData, string $ip): string
     {
         try {
+            if (isset($donatesData['start_date'])) {
+                $this->startDate = $donatesData['start_date'];
+                $startDateCarbon = Carbon::createFromFormat('Y-m-d', $donatesData['start_date'], 'UTC');
+                $maxStartDateOption = Carbon::createFromFormat('Y-m-d', '2024-03-11', 'UTC');
+                if ($startDateCarbon->startOfDay()->lessThanOrEqualTo($maxStartDateOption->startOfDay())) {
+                    $this->endDate = $startDateCarbon->addDays(30)->format('d-m-Y');
+                }
+            }
             $customer = $this->stripeService->processCustomer($donatesData);
             $donatesData = $this->processDonateData($donatesData, $customer);
             $this->stripeService->processUser($donatesData, $customer);
@@ -45,7 +53,13 @@ class RamadanService
             $order = $this->createOrder($donatesData, $countryName);
             $plans = $this->createPlans($order, $customer, $donatesData, $ip);
 
-            return $this->prepareRedirectUrl($plans, $customer, in_array($donatesData['frequency'], [2, 3]) ? true : false);
+            $startDate = $this->getStartDate((int)$donatesData['frequency']);
+
+            $billingAnchor = $startDate->startOfDay()->addDay()->addMinute()->timestamp;
+            $endDate = isset($donatesData['start_date'])
+                ? $this->getStartDate((int)$donatesData['frequency'])->addDays(30)->startOfDay()->addDay()->addMinute()->timestamp
+                : Carbon::createFromFormat('d-m-Y', $this->endDate, 'UTC')->startOfDay()->addDay()->addMinute()->timestamp;
+            return $this->prepareRedirectUrl($plans, $customer, in_array($donatesData['frequency'], [2, 3]) ? true : false, $billingAnchor, $endDate);
         } catch (Exception $e) {
             throw new RuntimeException($e->getMessage());
         }
@@ -77,12 +91,12 @@ class RamadanService
         return Order::create(array_merge($donatesData, ['country' => $countryName]));
     }
 
-    private function prepareRedirectUrl(Collection $plans, Customer $customer, bool $isFuture = false): string
+    private function prepareRedirectUrl(Collection $plans, Customer $customer, bool $isFuture = false, $billingAnchor = null, $endDate = null): string
     {
         $thanksUrl = route('stripe.ramadan.process');
         $url = url($thanksUrl . '?order={CHECKOUT_SESSION_ID}');
 
-        return $this->stripeService->getCheckeoutSessionUrl($plans, $customer, $url, $isFuture);
+        return $this->stripeService->getCheckeoutSessionUrl($plans, $customer, $url, $isFuture, $billingAnchor, $endDate);
     }
 
     private function createPlans(Order $order, Customer $customer, array $donatesData, string $ip): Collection
@@ -113,7 +127,7 @@ class RamadanService
                 $plansOven->push($planOven);
                 $plansOdd->push($planOdd);
             } else {
-                $countDay = Carbon::parse(self::END_DATE)->diffInDays($startDate) + 1;
+                $countDay = Carbon::parse($this->endDate)->startOfDay()->diffInDays($startDate);
                 $donation = $this->prepareDonation((float)$value / $countDay, $order, $ip, $nameDonate, (int)$donatesData['country']);
                 $product = $this->stripeService->createProduct($nameDonate);
                 $plan = $this->stripeService->createPlanRamadan($product, $customer, $value / $countDay, $donation);
@@ -128,7 +142,7 @@ class RamadanService
                 ->createSubscriptionTmp(
                     $customer,
                     $startDate->timestamp,
-                    Carbon::parse(self::END_DATE)->timestamp,
+                    Carbon::parse($this->endDate)->timestamp,
                     $plans,
                 );
         } elseif ((int)$donatesData['frequency'] === 3) {
@@ -136,7 +150,7 @@ class RamadanService
                 ->createSubscriptionTmp(
                     $customer,
                     $this->isOvenDay($startDate) ? $startDate->timestamp : $startDate->addDay()->timestamp,
-                    Carbon::parse(self::END_DATE)->timestamp,
+                    Carbon::parse($this->endDate)->timestamp,
                     $plansOven,
                     'oven'
                 );
@@ -145,7 +159,7 @@ class RamadanService
                 ->createSubscriptionTmp(
                     $customer,
                     $this->isOvenDay($startDate) ? $startDate->addDay()->timestamp : $startDate->timestamp,
-                    Carbon::parse(self::END_DATE)->timestamp,
+                    Carbon::parse($this->endDate)->timestamp,
                     $plansOdd,
                     'odd'
                 );
@@ -174,7 +188,7 @@ class RamadanService
 
     public function prepareAmount($amount, Carbon $startDate): array
     {
-        $days = Carbon::parse(self::END_DATE)->endOfDay()->diffInDays($startDate->startOfDay()) + 1;
+        $days = Carbon::parse($this->endDate)->endOfDay()->diffInDays($startDate->startOfDay()) + 1;
 
         $even = round($amount / ($days * 1.5), 2);
         $odd = round($even * 2, 2);
@@ -192,19 +206,19 @@ class RamadanService
 
     private function getStartDate(int $frequency): Carbon
     {
-        if (Carbon::now()->gte(Carbon::parse(self::START_DATE)->subDays(10)) && $frequency === 1) {
-            return Carbon::now()->startOfDay();
+        if (Carbon::now()->gte(Carbon::parse($this->startDate)->subDays(10)) && $frequency === 1) {
+            return Carbon::now('UTC')->startOfDay();
         }
 
-        if (Carbon::now()->lte(Carbon::parse(self::START_DATE)->subDays(10)) && $frequency === 1) {
-            return Carbon::parse(self::START_DATE);
+        if (Carbon::now()->lte(Carbon::parse($this->startDate)->subDays(10)) && $frequency === 1) {
+            return Carbon::parse($this->startDate);
         }
 
-        if (Carbon::now()->gte(Carbon::parse(self::END_DATE)->subDays(10)) && in_array($frequency, [2, 3])) {
-            return Carbon::now()->startOfDay();
+        if (Carbon::now()->gte(Carbon::parse($this->endDate)->subDays(10)) && in_array($frequency, [2, 3])) {
+            return Carbon::now('UTC')->startOfDay();
         }
 
-        return Carbon::parse(self::END_DATE)->subDays(10);
+        return Carbon::parse($this->endDate)->subDays(10);
     }
 
     public function processSubcription(string $order): void
@@ -225,7 +239,7 @@ class RamadanService
         if (isset($subscriptionRetrieved->items)) {
             foreach ($subscriptionRetrieved->items->data as $data) {
                 if (isset($data->plan->metadata->type_donation)) {
-                    $this->stripeService->setCancelAt($subscriptionRetrieved->id, self::END_DATE);
+                    $this->stripeService->setCancelAt($subscriptionRetrieved->id, $this->endDate);
                 }
             }
         }

@@ -20,6 +20,7 @@
     $cartSum = \App\Models\CartItem::getCartSum();
     $hasSingleDonations = \App\Models\CartItem::hasSingleDonations();
     $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
+    $showStartDateSelector = now()->isBefore(\Carbon\Carbon::createFromFormat('Y-m-d', '2024-03-11')->startOfDay());
     @endphp
 
     <div class="donated-page">
@@ -147,6 +148,21 @@
                             </div>
                         </div>
                     </div>
+                    @if(!$showStartDateSelector)
+                        <div class="row" id="start_date_container">
+                            <div class="col-md-1"></div>
+                            <div class="col-10">
+                                <div class="form-group">
+                                    <label><b>WHEN DO YOU WANT TO START DONATE?</b></label>
+                                    <select class="form-control" required name="start_date" id="start_date">
+                                        <option value="2024-03-10">10th of March</option>
+                                        <option value="2024-03-11">11th of March</option>
+                                    </select>
+                                </div>
+                                <p class="text-danger ml-3 font-size-14" id="message-error-amount"></p>
+                            </div>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-10">
@@ -379,13 +395,18 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" crossorigin="anonymous"></script>
     <script>
-        let startDate = moment('2023-03-22');
-        let endDate = moment('2023-04-20');
+        let startDate = moment('2024-03-10');
+        let endDate = moment('2024-04-09');
 
         const frequencyElement = document.getElementById('frequency');
         const nodeDesktop = document.getElementById('withdrawal-frequency-desktop');
         const nodeMobile = document.getElementById('withdrawal-frequency-mobile');
+        const startDateSelector = document.getElementById('start_date');
 
+        if (startDateSelector) {
+            startDate = moment(startDateSelector.value);
+            endDate = startDate.clone().add(29, 'days');
+        }
 
        const paymentForm = document.getElementById("ramadan-form");
 
@@ -506,6 +527,7 @@
         const drawTableDonates = () => {
             const currentStartDate = getStartDate(startDate, endDate);
             const range = getDaysBetweenDates(currentStartDate, endDate);
+
             const countDay = range.length;
             const amount = calculateAmount(parseInt(countDay), getSum());
 
@@ -526,7 +548,21 @@
            amount.addEventListener('input', drawTableDonates);
         }
 
-        frequencyElement.addEventListener('change', drawTableDonates)
+        frequencyElement.addEventListener('change', (event) => {
+            if (event.target.value === '1' && startDateSelector) {
+                $('#start_date_container').show();
+            } else {
+                $('#start_date_container').hide();
+            }
+            drawTableDonates();
+        });
+        if (startDateSelector) {
+            startDateSelector.addEventListener('change', (event) => {
+                startDate = moment(event.target.value);
+                endDate = moment(event.target.value).add(29, 'days');
+                drawTableDonates();
+            });
+        }
     </script>
 {{--    <script>--}}
 {{--        var stripe = Stripe('{{ config('stripe.public_key') }}');--}}

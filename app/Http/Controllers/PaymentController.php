@@ -151,14 +151,50 @@ class PaymentController extends Controller
                     $setupIntent = $stripe->setupIntents->retrieve($checkoutSession->setup_intent, []);
 
                     $customer = $stripe->customers->retrieve($checkoutSession->customer, []);
+                    if (isset($checkoutSession->metadata['ramadan_subscription_setup']) && $checkoutSession->metadata['ramadan_subscription_setup'] === 'true') {
+                        $plansCount = intval($checkoutSession->metadata['plans_count']);
+                        Log::error('plansCount: ' . $plansCount);
+                        $items = [];
+                        for ($i = 0; $i < $plansCount; $i++) {
+                            Log::error('plan_' . $i . '_id: ' . $checkoutSession->metadata['plan_' . $i . '_id']);
+                            $items[] = [
+                                'price' => $checkoutSession->metadata['plan_' . $i . '_id'],
+                                'quantity' => 1,
+                            ];
+                        }
+                        $phases = [
+                            [
+                                'metadata' => [
+                                    'Donation type' => 'Daily Ramadan subscription',
+                                    'billing_anchor' => $checkoutSession->metadata['billing_anchor'],
+                                ],
+                                'items' => $items,
+                                'proration_behavior' => 'none',
+                                'end_date' => $checkoutSession->metadata['end_date'],
+                            ],
+                        ];
+                        $stripe->subscriptionSchedules->create([
+                            'start_date' => $checkoutSession->metadata['billing_anchor'],
+                            'customer' => $customer->id,
+                            'end_behavior' => 'cancel',
+                            'default_settings' => [
+                                'default_payment_method' => $setupIntent->payment_method,
+                            ],
+                            'phases' => $phases,
+                            'metadata' => [
+                                'Donation type' => 'Daily Ramadan subscription',
+                                'billing_anchor' => $checkoutSession->metadata['billing_anchor'],
+                            ],
+                        ]);
+                    } else {
+                        SubscriptionTmp::query()
+                            ->where('customer_email', $customer->email)
+                            ->each(function (SubscriptionTmp $item) {
+                                $this->stripeService->createScheduleSubscribe($item->payload);
 
-                    SubscriptionTmp::query()
-                        ->where('customer_email', $customer->email)
-                        ->each(function (SubscriptionTmp $item) {
-                            $this->stripeService->createScheduleSubscribe($item->payload);
-
-                            $item->delete();
-                        });
+                                $item->delete();
+                            });
+                    }
 
                     $stripe->customers->update(
                         $customer->id,
