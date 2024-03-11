@@ -166,6 +166,7 @@ class PaymentController extends Controller
                             [
                                 'metadata' => [
                                     'Donation type' => 'Daily Ramadan subscription',
+                                    'subscription_type' => 'daily-ramadan',
                                     'billing_anchor' => $checkoutSession->metadata['billing_anchor'],
                                 ],
                                 'items' => $items,

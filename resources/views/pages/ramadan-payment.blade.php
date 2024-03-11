@@ -588,12 +588,7 @@
            amount.addEventListener('input', drawTableDonates);
         }
 
-        frequencyElement.addEventListener('change', (event) => {
-            if (event.target.value === '1' && startDateSelector) {
-                $('#start_date_container').show();
-            } else {
-                $('#start_date_container').hide();
-            }
+        frequencyElement.addEventListener('change', () => {
             drawTableDonates();
         });
         if (startDateSelector) {

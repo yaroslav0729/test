@@ -50,7 +50,7 @@ class RamadanService
 
             $startDate = $this->getStartDate((int)$donatesData['frequency']);
 
-            $billingAnchor = $startDate->endOfDay()->timestamp;
+            $billingAnchor = $startDate->timestamp;
             $endDate = Carbon::createFromFormat('d-m-Y', $this->endDate, 'UTC')->endOfDay()->timestamp;
             return $this->prepareRedirectUrl($plans, $customer, in_array($donatesData['frequency'], [2, 3]) ? true : false, $billingAnchor, $endDate);
         } catch (Exception $e) {
@@ -120,7 +120,10 @@ class RamadanService
                 $plansOven->push($planOven);
                 $plansOdd->push($planOdd);
             } else {
-                $countDay = Carbon::parse($this->endDate)->endOfDay()->diffInDays($startDate) + 1;
+                $countDay = Carbon::parse($this->endDate, 'UTC')->endOfDay()->diffInDays($startDate->endOfDay());
+                if ((int)$donatesData['frequency'] === 1) {
+                    $countDay += 1;
+                }
                 $donation = $this->prepareDonation((float)$value / $countDay, $order, $ip, $nameDonate, (int)$donatesData['country']);
                 $product = $this->stripeService->createProduct($nameDonate);
                 $plan = $this->stripeService->createPlanRamadan($product, $customer, $value / $countDay, $donation);
@@ -135,7 +138,7 @@ class RamadanService
                 ->createSubscriptionTmp(
                     $customer,
                     $startDate->timestamp,
-                    Carbon::parse($this->endDate)->timestamp,
+                    Carbon::parse($this->endDate, 'UTC')->endOfDay()->timestamp,
                     $plans,
                 );
         } elseif ((int)$donatesData['frequency'] === 3) {
@@ -143,7 +146,7 @@ class RamadanService
                 ->createSubscriptionTmp(
                     $customer,
                     $this->isOvenDay($startDate) ? $startDate->timestamp : $startDate->addDay()->timestamp,
-                    Carbon::parse($this->endDate)->timestamp,
+                    Carbon::parse($this->endDate, 'UTC')->endOfDay()->timestamp,
                     $plansOven,
                     'oven'
                 );
@@ -152,7 +155,7 @@ class RamadanService
                 ->createSubscriptionTmp(
                     $customer,
                     $this->isOvenDay($startDate) ? $startDate->addDay()->timestamp : $startDate->timestamp,
-                    Carbon::parse($this->endDate)->timestamp,
+                    Carbon::parse($this->endDate, 'UTC')->endOfDay()->timestamp,
                     $plansOdd,
                     'odd'
                 );
@@ -166,9 +169,13 @@ class RamadanService
         $payload = [
             'customer' => $customer->id,
             'start_date' => $startTimestamp,
-            'end_behavior' => 'release',
+            'end_behavior' => 'cancel',
             'phases' => [
                 [
+                    'metadata' => [
+                        'Donation type' => 'Last 10 nights subscription',
+                        'subscription_type' => 'odd-even-ramadan',
+                    ],
                     'items' => [$this->stripeService->prepareLineItemsForSession($plans)],
                     'end_date' => $endTimestamp,
                 ],
@@ -181,7 +188,7 @@ class RamadanService
 
     public function prepareAmount($amount, Carbon $startDate): array
     {
-        $days = Carbon::parse($this->endDate)->endOfDay()->diffInDays($startDate->startOfDay()) + 1;
+        $days = Carbon::parse($this->endDate, 'UTC')->endOfDay()->diffInDays($startDate->endOfDay()) + 1;
 
         $even = round($amount / ($days * 1.5), 2);
         $odd = round($even * 2, 2);
