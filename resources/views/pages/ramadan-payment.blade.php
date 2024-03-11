@@ -148,21 +148,19 @@
                             </div>
                         </div>
                     </div>
-                    @if(!$showStartDateSelector)
-                        <div class="row" id="start_date_container">
-                            <div class="col-md-1"></div>
-                            <div class="col-10">
-                                <div class="form-group">
-                                    <label><b>When was the date of your first fast this Ramadan?</b></label>
-                                    <select class="form-control" required name="start_date" id="start_date">
-                                        <option value="2024-03-11">11th of March</option>
-                                        <option value="2024-03-12">12th of March</option>
-                                    </select>
-                                </div>
-                                <p class="text-danger ml-3 font-size-14" id="message-error-amount"></p>
+                    <div class="row" id="start_date_container">
+                        <div class="col-md-1"></div>
+                        <div class="col-10">
+                            <div class="form-group">
+                                <label><b>When was the date of your first fast this Ramadan?</b></label>
+                                <select class="form-control" required name="start_date" id="start_date">
+                                    <option value="2024-03-11">11th of March</option>
+                                    <option value="2024-03-12">12th of March</option>
+                                </select>
                             </div>
+                            <p class="text-danger ml-3 font-size-14" id="message-error-amount"></p>
                         </div>
-                    @endif
+                    </div>
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-10">
