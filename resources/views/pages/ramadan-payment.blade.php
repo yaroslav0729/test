@@ -203,6 +203,7 @@
                                     <option value="mr">Mr</option>
                                     <option value="mrs">Mrs</option>
                                     <option value="miss">Miss</option>
+                                    <option value="ms">Ms</option>
                                     <option value="dr">Dr</option>
                                 </select>
                             </div>

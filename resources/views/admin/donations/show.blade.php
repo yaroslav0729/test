@@ -48,6 +48,7 @@ if ($donation->campaign)
                                 <option value="mr" @if($donation->order->title === 'mr') selected @endif>Mr</option>
                                 <option value="mrs" @if($donation->order->title === 'mrs') selected @endif>Mrs</option>
                                 <option value="miss" @if($donation->order->title === 'miss') selected @endif>Miss</option>
+                                <option value="ms" @if($donation->order->title === 'ms') selected @endif>Ms</option>
                                 <option value="dr" @if($donation->order->title === 'dr') selected @endif>Dr</option>
                             </select>
                         </div>
