@@ -3266,6 +3266,13 @@ input[type="number"].color-danger + .input-group .btn {
         right: 70px;
     }
 }
+
+@media (max-width: 991px) {
+    .blog-article-body iframe {
+        width: 100% !important;
+    }
+}
+
 .blog-article-body blockquote,
 .blockquote {
     border-left: 4px solid #f7796a;
@@ -7776,7 +7783,7 @@ section.back {
     content: "";
     position: absolute;
     display: block;
-    width: 135%;
+    width: 100%;
     height: 4px;
     left: -50px;
     bottom: -4px;
