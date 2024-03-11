@@ -126,11 +126,11 @@
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label class="@error('first_name') text-danger @enderror"><b>Turkey Emergency Appeal</b></label>
+                                <label class="@error('first_name') text-danger @enderror"><b>Surgeo in Gaza</b></label>
                                 <div class="form-group" currency="£">
                                     <input
                                         type="number"
-                                        name="amount[turkey_emergency_appeal]"
+                                        name="amount[surgeons_in_gaza]"
                                         id="amount"
                                         class="form-control"
                                         placeholder="Enter Total Amount"
@@ -153,10 +153,10 @@
                             <div class="col-md-1"></div>
                             <div class="col-10">
                                 <div class="form-group">
-                                    <label><b>WHEN DO YOU WANT TO START DONATE?</b></label>
+                                    <label><b>WHEN DID YOU START RAMADAN?</b></label>
                                     <select class="form-control" required name="start_date" id="start_date">
-                                        <option value="2024-03-10">10th of March</option>
                                         <option value="2024-03-11">11th of March</option>
+                                        <option value="2024-03-12">12th of March</option>
                                     </select>
                                 </div>
                                 <p class="text-danger ml-3 font-size-14" id="message-error-amount"></p>
@@ -384,19 +384,61 @@
                         <div class="col-md-12 d-flex justify-content-center mt-3">
                             <button type="submit" id="ramadan-pay" class="btn btn-danger border-white">Automate My Donations</button>
                         </div>
-                        <div class="col-md-12 d-flex justify-content-center mt-3">
-                            <p>You may be asked to approve your donations from your banking app. The amount will show as £0.00, which is purely to authorise future payments.</p>
+                        <div class="col-md-12 d-flex justify-content-center mt-3 text-center">
+                            <p>
+                                One final step - we need your payment details.
+                                Your bank may request approval via its app. A £0.00 charge might pop up—it's purely to schedule your future donations.
+                                After clicking 'automate my donations', please don't close the window until you see the payment screen.
+                            </p>
                         </div>
                     </div>
                 </form>
             </div>
         </section>
     </div>
+    <div id="ramadan-overlay">
+        <div class="loading-container">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <p class="mt-3 mb-0">Please do not close this window</p>
+        </div>
+    </div>
+    <style>
+        #ramadan-overlay {
+            position: fixed;
+            flex-direction: column;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            color: whitesmoke;
+        }
+
+        #ramadan-overlay.active {
+            display: flex;
+        }
+
+        .loading-container {
+            background: white;
+            border-radius: 4px;
+            padding: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #101525;
+        }
+    </style>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" crossorigin="anonymous"></script>
     <script>
-        let startDate = moment('2024-03-10');
-        let endDate = moment('2024-04-09');
+        let startDate = moment('2024-03-11');
+        let endDate = moment('2024-04-10');
 
         const frequencyElement = document.getElementById('frequency');
         const nodeDesktop = document.getElementById('withdrawal-frequency-desktop');
@@ -410,8 +452,6 @@
 
        const paymentForm = document.getElementById("ramadan-form");
 
-       console.log(paymentForm)
-
        paymentForm.addEventListener("submit", (e) => {
            e.preventDefault();
 
@@ -422,7 +462,9 @@
            button.innerHTML = spinner;
            button.disabled = true;
 
-           paymentForm.submit()
+           paymentForm.submit();
+           $('#ramadan-overlay').addClass('active');
+           $('body').css('overflow', 'hidden');
        })
 
         let getDaysBetweenDates = function(startDate, endDate) {

@@ -20,8 +20,8 @@ class RamadanService
 {
     use SendThankYouEmail;
 
-    public $startDate = '10-03-2024';
-    public $endDate = '10-04-2024';
+    public string $startDate = '11-03-2024';
+    public string $endDate = '10-04-2024';
 
     private StripeService $stripeService;
     private ConvertCurrency $convertCurrency;
@@ -41,7 +41,7 @@ class RamadanService
             if (isset($donatesData['start_date'])) {
                 $this->startDate = $donatesData['start_date'];
                 $startDateCarbon = Carbon::createFromFormat('Y-m-d', $donatesData['start_date'], 'UTC');
-                $maxStartDateOption = Carbon::createFromFormat('Y-m-d', '2024-03-11', 'UTC');
+                $maxStartDateOption = Carbon::createFromFormat('Y-m-d', '2024-03-12', 'UTC');
                 if ($startDateCarbon->startOfDay()->lessThanOrEqualTo($maxStartDateOption->startOfDay())) {
                     $this->endDate = $startDateCarbon->addDays(30)->format('d-m-Y');
                 }
@@ -55,10 +55,10 @@ class RamadanService
 
             $startDate = $this->getStartDate((int)$donatesData['frequency']);
 
-            $billingAnchor = $startDate->startOfDay()->addDay()->addMinute()->timestamp;
+            $billingAnchor = $startDate->endOfDay()->timestamp;
             $endDate = isset($donatesData['start_date'])
-                ? $this->getStartDate((int)$donatesData['frequency'])->addDays(30)->startOfDay()->addDay()->addMinute()->timestamp
-                : Carbon::createFromFormat('d-m-Y', $this->endDate, 'UTC')->startOfDay()->addDay()->addMinute()->timestamp;
+                ? $this->getStartDate((int)$donatesData['frequency'])->addDays(30)->endOfDay()->timestamp
+                : Carbon::createFromFormat('d-m-Y', $this->endDate, 'UTC')->endOfDay()->timestamp;
             return $this->prepareRedirectUrl($plans, $customer, in_array($donatesData['frequency'], [2, 3]) ? true : false, $billingAnchor, $endDate);
         } catch (Exception $e) {
             throw new RuntimeException($e->getMessage());
