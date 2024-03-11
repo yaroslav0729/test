@@ -126,7 +126,7 @@
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label class="@error('first_name') text-danger @enderror"><b>Surgeo in Gaza</b></label>
+                                <label class="@error('first_name') text-danger @enderror"><b>Surgeons in Gaza</b></label>
                                 <div class="form-group" currency="£">
                                     <input
                                         type="number"
