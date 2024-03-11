@@ -153,7 +153,7 @@
                             <div class="col-md-1"></div>
                             <div class="col-10">
                                 <div class="form-group">
-                                    <label><b>WHEN DID YOU START RAMADAN?</b></label>
+                                    <label><b>When was the date of your first fast this Ramadan?</b></label>
                                     <select class="form-control" required name="start_date" id="start_date">
                                         <option value="2024-03-11">11th of March</option>
                                         <option value="2024-03-12">12th of March</option>
