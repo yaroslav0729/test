@@ -259,7 +259,7 @@ for($i = 0; $i < 10; $i++) {
                     @for ($i = 1; $i <= 4; $i++)
                         @if (in_array($i, $actionActive)) <div class="tab-pane fade
                         show @if ($ourValuesActive === false)active @endif"
-                            id="nav-{{ $i }}"
+                            id="nav-panel-{{ $i }}"
                             role="tabpanel">
                             <div class="row gutter-0">
                                 <div class="col-0 col-lg-6 img" style="background-image: url('{{ $actionPhoto[$i] }}')">
@@ -286,7 +286,7 @@ for($i = 0; $i < 10; $i++) {
                     @if (in_array($i, $actionActive)) <a class="nav-link
                     @if ($ourValuesActiveLink === false)active @endif"
                         data-toggle="tab"
-                        href="#nav-{{ $i }}"
+                        href="#nav-panel-{{ $i }}"
                         role="tab"
                         aria-selected="true">{{ $actionName[$i] }}</a>
                         @php($ourValuesActiveLink = true)
