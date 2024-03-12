@@ -8459,3 +8459,7 @@ section.back {
 .new-values-action .text a.donate-now-link {
     color: #fff;
 }
+
+.new-blog-article-body .body {
+    max-width: 100%;
+}

@@ -395,7 +395,7 @@ for($i = 0; $i < 10; $i++) {
     </section>
 @endempty
 
-<section class="blog-article-body">
+<section class="blog-article-body new-blog-article-body">
     <div class="wrap">
         <div class="body">
             <h2>{{ $lifeChangingBlockTitle }}</h2>
