@@ -178,6 +178,12 @@ for ($i = 0; $i < 7; $i++) {
     }
 }
 $isEmergency = true;
+$projectImagesCarousel = [];
+for($i = 0; $i < 10; $i++) {
+    if (isset($parameters['project_images_carousel_' . $i])) {
+        $projectImagesCarousel[] = $parameters['project_images_carousel_' . $i];
+    }
+}
 @endphp
 <style>
     .bg-emergency {
@@ -400,4 +406,75 @@ $isEmergency = true;
     @include('modules.presentation.we_still_need_support')
 @endif
 
-@include('modules.presentation.related_topics_project')
+@if(count($projectImagesCarousel) > 0)
+<style>
+    .project-images-carousel .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .project-images-carousel .swiper-slide {
+        width: 100%;
+        height: 100%;
+        position: relative
+    }
+
+    .project-images-carousel .swiper-slide .img-container {
+        position: relative;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        overflow: hidden;
+    }
+
+    .project-images-carousel .swiper-slide .img-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .project-images-carousel .swiper-pagination {
+        text-align: center;
+        margin-top: 0;
+        position: relative;
+        bottom: 20px;
+    }
+
+    .project-images-carousel .swiper-pagination .swiper-pagination-bullet {
+        background: #1b2030;
+        border-radius: 0;
+        height: 4px;
+        width: 65px;
+        min-width: 10px;
+        margin-right: 10px;
+        opacity: 1;
+    }
+
+    .project-images-carousel .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        background-color: #F4533C;
+    }
+</style>
+<section class="project-images-carousel mb-4" swiper-wrapper="project-image-carousel" swiper-autoHeight="true">
+    <div class="mb-4">
+        <b class="font-size-30 mr-4 text-uppercase letter-spacing-1 mb-3">
+            Together, with Gaza
+        </b>
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            @foreach($projectImagesCarousel as $image)
+                @if($image)
+                <div class="swiper-slide">
+                    <div class="img-container">
+                        <img src="{{ $image }}" alt="{{ $image }}" class="img" />
+                    </div>
+                </div>
+                @endif
+            @endforeach
+
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+@endif

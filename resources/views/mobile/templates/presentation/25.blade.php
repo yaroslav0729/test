@@ -178,6 +178,13 @@ for ($i = 0; $i < 7; $i++) {
     }
 }
 $isEmergency = true;
+
+$projectImagesCarousel = [];
+for($i = 0; $i < 10; $i++) {
+    if (isset($parameters['project_images_carousel_' . $i])) {
+        $projectImagesCarousel[] = $parameters['project_images_carousel_' . $i];
+    }
+}
 @endphp
 
 <style>
@@ -361,6 +368,84 @@ $isEmergency = true;
     @include('modules.presentation.we_still_need_support')
 @endif
 
-@include('modules.presentation.related_topics_project', [
-'svgWave' => true,
-])
+@if(count($projectImagesCarousel) > 0)
+<style>
+    .carousel-title {
+        color: #101525;
+        font-size: 25px;
+        font-weight: 900;
+        line-height: 1.3;
+        margin-bottom: 42px;
+        text-transform: uppercase;
+    }
+</style>
+<style>
+    .project-images-carousel .swiper-container {
+        width: 100%;
+        height: 100%;
+        padding-bottom: 45px;
+    }
+
+    .project-images-carousel .swiper-slide {
+        width: 100%;
+        height: 100%;
+        position: relative
+    }
+
+    .project-images-carousel .swiper-slide .img-container {
+        position: relative;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        overflow: hidden;
+    }
+
+    .project-images-carousel .swiper-slide .img-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .project-images-carousel .swiper-pagination {
+        text-align: center;
+        margin-top: 0;
+        position: relative;
+        bottom: -30px;
+    }
+
+    .project-images-carousel .swiper-pagination .swiper-pagination-bullet {
+        background: #1b2030;
+        border-radius: 0;
+        height: 4px;
+        width: 40px;
+        min-width: 10px;
+        margin-right: 10px;
+        opacity: 1;
+    }
+
+    .project-images-carousel .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        background-color: #F4533C;
+    }
+</style>
+<section class="project-images-carousel" swiper-wrapper="project-image-carousel" swiper-autoHeight="true">
+    <h2 class="carousel-title">
+            Together, with Gaza
+    </h2>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            @foreach($projectImagesCarousel as $image)
+                @if($image)
+                    <div class="swiper-slide">
+                        <div class="img-container">
+                            <img src="{{ $image }}" alt="{{ $image }}" class="img" />
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+@endif

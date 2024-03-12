@@ -173,6 +173,12 @@ for ($i = 0; $i < 7; $i++) {
         $faqs[$i]['answer'] = $parameters['faq_answer_' . $i];
     }
 }
+$projectImagesCarousel = [];
+for($i = 0; $i < 10; $i++) {
+    if (isset($parameters['project_images_carousel_' . $i])) {
+        $projectImagesCarousel = $parameters['project_images_carousel_' . $i];
+    }
+}
 @endphp
 
 <div class="row">
@@ -494,13 +500,16 @@ for ($i = 0; $i < 7; $i++) {
     </div>
 </div>
 
-@include('modules.admin.related_topics_project')
-
 <div class="row mt-5">
+    <div class="col-12 font-weight-bold">Together with Gaza carousel:</div>
     <div class="col-12">
-        @include('modules.admin.join_the_cause_subscribe', [
-        'parameters' => $parameters
-        ])
+        @for($i = 0; $i < 10; $i++)
+            <div class="form-group">
+                <label>Project image {{ $i + 1 }}:</label>
+                <input class="form-control" name="parameters[project_images_carousel_{{ $i }}]"
+                       placeholder="Insert image path" @if(isset($projectImagesCarousel[$i])) value="{{ $projectImagesCarousel[$i] }}" @endif />
+            </div>
+        @endfor
     </div>
 </div>
 
