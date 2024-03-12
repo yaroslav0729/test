@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Hard';
+    src: url('../webfonts/brush/Hard-Regular.woff2') format('woff2'),
+    url('../webfonts/brush/Hard-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 a[href^="tel"] {
     text-decoration: inherit;
     color: inherit;
@@ -8438,5 +8447,15 @@ section.back {
 
 .faq-item__question:hover, .faq-item.active .faq-item__question {
     background: #101525;
+    color: #fff;
+}
+
+.new-our-values p {
+    padding-right: 0;
+    text-align: justify;
+}
+
+.new-values-action .text .text-1, .new-values-action .text .text-2, .new-values-action .text .text-3,
+.new-values-action .text a.donate-now-link {
     color: #fff;
 }

@@ -191,8 +191,20 @@ for($i = 0; $i < 10; $i++) {
     .bg-emergency {
         background-color: #F4533C !important;
     }
+    .save-lives-head {
+        color: white;
+    }
+    .save-lives-title {
+        font-family: 'Hard';
+        font-size: 80px !important;
+    }
+
+    p {
+        text-align: justify !important;
+    }
 </style>
-<section class="who-we-are-head" style="background-color: #F4533C;">
+<section class="who-we-are-head save-lives-head" style="background-color: #F4533C;">
+    <h1 class="save-lives-title">SAVE LIVES</h1>
     <h1>{!! $ourMissionTitle !!}</h1>
 </section>
 
@@ -206,8 +218,8 @@ for($i = 0; $i < 10; $i++) {
     </section>
 @endif
 
-<section class="our-values">
-    <div class="title">OUR VALUES</div>
+<section class="our-values new-our-values">
+    <div class="title">The Need for Surgeons in Gaza</div>
     <p>{!! $ourValuesDescription !!}</p>
     <div class="pb-4"></div>
     <div class="img-video play-tr videoWrapper" style="">
@@ -236,7 +248,7 @@ for($i = 0; $i < 10; $i++) {
         <div class="black-line"></div>
         <p class="mt-4">{!! $ourValuesInActionDescription !!}</p>
     </section>
-    <section class="values-action" swiper-wrapper="our-values" swiper-autoHeight="true">
+    <section class="values-action new-values-action" swiper-wrapper="our-values" swiper-autoHeight="true">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 @for ($i = 1; $i <= 4; $i++)

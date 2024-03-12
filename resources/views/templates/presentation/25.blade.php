@@ -189,9 +189,21 @@ for($i = 0; $i < 10; $i++) {
     .bg-emergency {
         background-color: #F4533C !important;
     }
+    .save-lives-head {
+        color: white;
+    }
+    .save-lives-title {
+        font-family: 'Hard';
+        font-size: 130px !important;
+    }
+
+    p {
+        text-align: justify !important;
+    }
 </style>
 
 <section class="who-we-are-head" style="background-color: #F4533C;">
+    <h1 class="save-lives-title">SAVE LIVES</h1>
     <h1>{!! $ourMissionTitle !!}</h1>
 
     @if ($showPriceHandlers)
@@ -240,7 +252,7 @@ for($i = 0; $i < 10; $i++) {
         <p class="font-size-20 text-uppercase"><b>{{ $ourValuesInActionTitle ? $ourValuesInActionTitle : 'Our values in action' }}</b></p>
         <div class="black-line"></div>
     </section>
-    <section class="values-action">
+    <section class="values-action new-values-action">
         <div class="row gutter-0">
             <div class="col-7 col-lg-9">
                 <div class="tab-content" id="nav-tabContent">
