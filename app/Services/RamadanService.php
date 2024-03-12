@@ -50,8 +50,8 @@ class RamadanService
 
             $startDate = $this->getStartDate((int)$donatesData['frequency']);
 
-            $billingAnchor = $startDate->timestamp;
-            $endDate = Carbon::createFromFormat('d-m-Y', $this->endDate, 'UTC')->endOfDay()->timestamp;
+            $billingAnchor = $startDate->subHours(2)->timestamp;
+            $endDate = Carbon::createFromFormat('d-m-Y', $this->endDate, 'UTC')->endOfDay()->subHours(2)->timestamp;
             return $this->prepareRedirectUrl($plans, $customer, in_array($donatesData['frequency'], [2, 3]) ? true : false, $billingAnchor, $endDate);
         } catch (Exception $e) {
             throw new RuntimeException($e->getMessage());
@@ -137,16 +137,16 @@ class RamadanService
             $this
                 ->createSubscriptionTmp(
                     $customer,
-                    $startDate->timestamp,
-                    Carbon::parse($this->endDate, 'UTC')->endOfDay()->timestamp,
+                    $startDate->subHours(2)->timestamp,
+                    Carbon::parse($this->endDate, 'UTC')->endOfDay()->subHours(2)->timestamp,
                     $plans,
                 );
         } elseif ((int)$donatesData['frequency'] === 3) {
             $this
                 ->createSubscriptionTmp(
                     $customer,
-                    $this->isOvenDay($startDate) ? $startDate->timestamp : $startDate->addDay()->timestamp,
-                    Carbon::parse($this->endDate, 'UTC')->endOfDay()->timestamp,
+                    $this->isOvenDay($startDate) ? $startDate->subHours(2)->timestamp : $startDate->addDay()->subHours(2)->timestamp,
+                    Carbon::parse($this->endDate, 'UTC')->endOfDay()->subHours(2)->timestamp,
                     $plansOven,
                     'oven'
                 );
@@ -154,8 +154,8 @@ class RamadanService
             $this
                 ->createSubscriptionTmp(
                     $customer,
-                    $this->isOvenDay($startDate) ? $startDate->addDay()->timestamp : $startDate->timestamp,
-                    Carbon::parse($this->endDate, 'UTC')->endOfDay()->timestamp,
+                    $this->isOvenDay($startDate) ? $startDate->addDay()->subHours(2)->timestamp : $startDate->subHours(2)->timestamp,
+                    Carbon::parse($this->endDate, 'UTC')->endOfDay()->subHours(2)->timestamp,
                     $plansOdd,
                     'odd'
                 );
