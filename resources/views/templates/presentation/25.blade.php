@@ -191,7 +191,7 @@ for($i = 0; $i < 10; $i++) {
     }
 </style>
 
-<section class="who-we-are-head" style="background-image: url('{{ $bgImage }}');">
+<section class="who-we-are-head" style="background-color: #F4533C;">
     <h1>{!! $ourMissionTitle !!}</h1>
 
     @if ($showPriceHandlers)
