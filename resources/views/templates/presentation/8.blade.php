@@ -177,6 +177,7 @@ for ($i = 0; $i < 7; $i++) {
         $faqs[$i]['answer'] = $parameters['faq_answer_' . $i];
     }
 }
+$isEmergency = true;
 @endphp
 
 <section class="who-we-are-head" style="background-image: url('{{ $bgImage }}');">

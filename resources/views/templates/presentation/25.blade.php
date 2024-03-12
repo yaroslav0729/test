@@ -1,10 +1,8 @@
 @php
-
 $bgImage = '';
 $ourMissionTitle = '';
-$ourValuesDescription = '';
 $ourValuesInActionTitle = '';
-$ourValuesInActionDescription = '';
+$ourValuesDescription = '';
 $ourValuesVideo = '';
 $ourValuesVideoPreview = '';
 $mapImage = '';
@@ -22,6 +20,13 @@ for ($i = 1; $i <= 4; $i++) {
     $actionDescription[$i] = '';
     $actionLearnMoreLink[$i] = '';
 }
+
+$colorNameClass = [
+    1 => 'bg-emergency',
+    2 => 'bg-emergency',
+    3 => 'bg-emergency',
+    4 => 'bg-emergency',
+];
 
 for ($i = 1; $i <= 3; $i++) {
     ${'storyPhoto' . $i} = '';
@@ -70,12 +75,11 @@ if (isset($parameters['map_alt_image'])) {
     $mapAlternativeImage = $parameters['map_alt_image'];
 }
 
-$colorNameClass = [
-    1 => 'bg-primary-light',
-    2 => 'bg-warning',
-    3 => 'bg-danger',
-    4 => 'bg-info',
-];
+if (isset($parameters['our_values_action_title'])) {
+    $ourValuesInActionTitle = $parameters['our_values_action_title'];
+}
+
+/*    $actionActive = $parameters['action_active'] ?? [];*/
 
 for ($i = 1; $i <= 4; $i++) {
     if (isset($parameters['action_active_' . $i])) {
@@ -101,14 +105,6 @@ for ($i = 1; $i <= 4; $i++) {
     }
 }
 
-if (isset($parameters['our_values_action_title'])) {
-    $ourValuesInActionTitle = $parameters['our_values_action_title'];
-}
-
-if (isset($parameters['our_values_action_description'])) {
-    $ourValuesInActionDescription = $parameters['our_values_action_description'];
-}
-
 for ($i = 1; $i <= 3; $i++) {
     if (isset($parameters["story_year_{$i}"])) {
         ${'storyYear' . $i} = $parameters["story_year_{$i}"];
@@ -120,6 +116,8 @@ for ($i = 1; $i <= 3; $i++) {
         ${'storyText' . $i} = $parameters["story_text_{$i}"];
     }
 }
+
+
 
 for ($i = 1; $i <= 2; $i++) {
     if (isset($parameters["changing_block_photo_{$i}"])) {
@@ -144,6 +142,8 @@ if (isset($parameters['changing_block_text_mobile'])) {
     $lifeChangingBlockTextMobile = $parameters['changing_block_text_mobile'];
 }
 
+$ourValuesActive = false;
+$ourValuesActiveLink = false;
 $showPriceHandlers = false;
 
 if (isset($parameters['donation_module_enabled'])) {
@@ -179,75 +179,103 @@ for ($i = 0; $i < 7; $i++) {
 }
 $isEmergency = true;
 @endphp
+<style>
+    .bg-emergency {
+        background-color: #F4533C !important;
+    }
+</style>
 
-<section class="who-we-are-head" style="background-image: url({{ $bgImage }});">
-    <div>OUR MISSION</div>
+<section class="who-we-are-head" style="background-image: url('{{ $bgImage }}');">
     <h1>{!! $ourMissionTitle !!}</h1>
+
+    @if ($showPriceHandlers)
+        @include('modules.presentation.donate_module', [
+            'colorInfo' => true,
+            'priceHandlersOnly' => true
+        ])
+    @endif
 </section>
 
-@if ($showPriceHandlers)
-    <section class="who-we-are-donate">
-    @include('modules.presentation.donate_module', [
-        'colorInfo' => true,
-        'priceHandlersOnly' => true
-    ])
-
-    </section>
-@endif
-
-<section class="our-values">
-    <div class="title">OUR VALUES</div>
-    <p>{!! $ourValuesDescription !!}</p>
-    <div class="pb-4"></div>
-    <div class="img-video play-tr videoWrapper" style="">
-        <div class="video-poster">
-            <button class="video-poster__play video-poster__play"
-                data-url="https://www.youtube.com/embed/{{ $ourValuesVideo }}"><i class="ico-play"></i></button>
-            <img class="video-poster__img" src="@if (!$ourValuesVideoPreview) https://img.youtube.com/vi/{{ $ourValuesVideo }}/maxresdefault.jpg @else {{ $ourValuesVideoPreview }} @endif">
+<section class="our-values mt-n5">
+    <div class="box pt-4 pt-lg-0">
+        <div class="row gutter-0">
+            <div class="col-12 col-text">
+                <div class="title">The Need for Surgeons in Gaza</div>
+                <p>{!! $ourValuesDescription !!}</p>
+            </div>
+            <div class="col-12 col-media">
+                <div class="img-video play-tr videoWrapper" style="">
+                    <div class="video-poster">
+                        <button class="video-poster__play video-poster__play--medium"
+                            data-url="https://www.youtube.com/embed/{{ $ourValuesVideo }}"><i
+                                class="ico-play"></i></button>
+                        <img class="video-poster__img" src="@if (!$ourValuesVideoPreview) https://img.youtube.com/vi/{{ $ourValuesVideo }}/maxresdefault.jpg @else {{ $ourValuesVideoPreview }} @endif">
+                    </div>
+                    <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $ourValuesVideo }}"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
         </div>
-        <iframe width="1280" height="720" src="https://www.youtube.com/embed/{{ $ourValuesVideo }}" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
     </div>
 </section>
 
 @if(!$shouldHideMap)
 <section class="gw-map-btn">
-    <div style="background-image: url(img/who-we-are-map-mobile.jpg)" alt-src="{{ $mapAlternativeImage }}">
+    <div style="background-image: url({{ $mapImage }})" alt-src="{{ $mapAlternativeImage }}">
         <a href="#" id="btn-view-global-work" class="btn btn-info">View Global Work</a>
     </div>
 </section>
 @endif
 
 @empty(!$actionActive)
-    <section class="mb-5 @if($shouldHideMap) mt-5 @endif values-action-title">
-        <p class="font-size-16 text-uppercase"><b>{{ $ourValuesInActionTitle ? $ourValuesInActionTitle : 'Our values in action' }}</b></p>
+    <section class="mb-5 @if($shouldHideMap) mt-5 @else mt-n5 @endif">
+        <p class="font-size-20 text-uppercase"><b>{{ $ourValuesInActionTitle ? $ourValuesInActionTitle : 'Our values in action' }}</b></p>
         <div class="black-line"></div>
-        <p class="mt-4">{!! $ourValuesInActionDescription !!}</p>
     </section>
-    <section class="values-action" swiper-wrapper="our-values" swiper-autoHeight="true">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                @for ($i = 1; $i <= 4; $i++)
-                    @if (in_array($i, $actionActive)) <div class="swiper-slide
-                    {{ $colorNameClass[$i] }}">
-                    <i class="moon-icons-arrow-right swiper-button-next"></i>
-                    <div class="text">
-                    <p class="text-1">{!! $actionSlogan[$i] !!}</p>
-                    <p class="text-2">{!! $actionTitle[$i] !!}</p>
-                    <p class="text-3">{!! $actionDescription[$i] !!}</p>
-                    </div>
-                    <div><a href="{{ $actionLearnMoreLink[$i] }}" class="btn btn-primary-dark
-                    br-0"><b>Learn more</b></a></div>
-                    <div class="img" style="background-image:
-                    url({{ $actionPhoto[$i] }})">&nbsp;
-                    <span class="place"><i class="fal
-                    fa-map-marker-alt"></i>{{ $actionName[$i] }}</span>
-                    </div>
-                    </div> @endif
+    <section class="values-action">
+        <div class="row gutter-0">
+            <div class="col-7 col-lg-9">
+                <div class="tab-content" id="nav-tabContent">
+                    @for ($i = 1; $i <= 4; $i++)
+                        @if (in_array($i, $actionActive)) <div class="tab-pane fade
+                        show @if ($ourValuesActive === false)active @endif"
+                            id="nav-{{ $i }}"
+                            role="tabpanel">
+                            <div class="row gutter-0">
+                                <div class="col-0 col-lg-6 img" style="background-image: url('{{ $actionPhoto[$i] }}')">
+                                </div>
+                                <div class="col-12 col-lg-6 {{ $colorNameClass[$i] }} text">
+                                    <div>
+                                        <p class="text-1">{!! $actionSlogan[$i] !!}</p>
+                                        <p class="text-2">{!! $actionTitle[$i] !!}</p>
+                                        <p class="text-3">{!! $actionDescription[$i] !!}</p>
+                                        <div><a class="donate-now-link" href="{{ $actionLearnMoreLink[$i] }}"><b>DONATE NOW</b></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+                @php($ourValuesActive = true)
+                @endif
                 @endfor
             </div>
-            <div class="swiper-pagination"></div>
+        </div>
+        <div class="col-5 col-lg-3 values-action-nav">
+            <div class="nav flex-column nav-pills" id="nav-tab" role="tablist">
+                @for ($i = 1; $i <= 4; $i++)
+                    @if (in_array($i, $actionActive)) <a class="nav-link
+                    @if ($ourValuesActiveLink === false)active @endif"
+                        data-toggle="tab"
+                        href="#nav-{{ $i }}"
+                        role="tab"
+                        aria-selected="true">{{ $actionName[$i] }}</a>
+                        @php($ourValuesActiveLink = true)
+                    @endif
+                @endfor
+            </div>
+        </div>
         </div>
     </section>
 @endempty
@@ -259,26 +287,31 @@ $isEmergency = true;
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     @for ($i = 1; $i <= 3; $i++)
-                        <div class="swiper-slide">
-                            <div class="box">
-                                <div class="row title">
-                                    <div class="col-9"><span class="d-block">OUR STORY | {{ ${'storyYear' . $i} }}</span>
-                                    </div>
-                                </div>
-                                <div class="black-line"></div>
-                                <p class="">{!! ${'storyText' . $i} !!}</p>
-                            </div>
-                            <div class="img-box">
-                                <div class="bg-warning">
-                                    <div class="img" style="background-image: url({{ ${'storyPhoto' . $i} }})"></div>
-                                </div>
-                                <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
-                            </div>
+                        @if (in_array($i, $storyActive)) <div class="swiper-slide
+                        d-flex align-items-start">
+                        <div class="img-box">
+                        <div class="bg-warning">
+                        <div class="img"
+                        style="background-image: url('{{ ${'storyPhoto' . $i} }}')"></div>
                         </div>
+                        </div>
+                        <div class="box">
+                        <div class="row title">
+                        <div class="col-4"><span
+                        class="d-inline-block pl-5">{{ ${'storyYear' . $i} }}</span>
+                        </div>
+                        <div class="col-8 text-right"><span>OUR STORY</span></div>
+                        </div>
+                        <div class="black-line"></div>
+                        <p class="pl-5 pr-5">{!! ${'storyText' . $i} !!}</p>
+                        </div>
+                        </div> @endif
                     @endfor
                 </div>
+                <div class="swiper-pagination"></div>
             </div>
             <div class="swiper-button-next"><i class="moon-icons-arrow-right"></i></div>
+
         </div>
     </section>
 @endempty
@@ -315,45 +348,56 @@ $isEmergency = true;
 @endif
 
 <section class="mb-5">
-    <p class="font-size-25"><b>Life changing support.</b></p>
+    <p class="font-size-45"><b>Life changing support.</b></p>
 </section>
 
 @empty(!$changingActive)
     <section class="promo-project-swiper" swiper-wrapper="our-support" swiper-autoHeight="true">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                @for ($i = 1; $i <= 2; $i++)
-                    <div class="swiper-slide">
-                        <div class="img" style="background-image: url({{ ${'lifeChangingPhoto' . $i} }})">
-                            {{-- <a href="#" class="prev swiper-button-prev"><i class="moon-icons-arrow-left"></i></a> --}}
-                            <a href="#" class="next swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
-                        </div>
-                        <div class="black-line"></div>
-                        <div class="text @if ($hdrColorType==='blue' ) bg-primary-light @else bg-danger-light @endif">
-                            {{ ${'lifeChangingPhrase' . $i} }}
-                            <a href="#" class="btn @if ($hdrColorType==='blue' ) btn-info @else btn-danger @endif">Donate to this project
-                                &nbsp;&nbsp;<i class="moon-icons-plus"></i></a>
-                        </div>
-                    </div>
-                @endfor
+        <div class="wrap @if ($hdrColorType==='blue' ) bg-primary-light @else bg-danger-light @endif">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @for ($i = 1; $i <= 2; $i++)
+                        @if (in_array($i, $changingActive)) <div
+                        class="swiper-slide">
+                        <div class="row gutter-0 align-content-center">
+                        <div class="col-6 img"
+                        style="background-image: url('{{ ${'lifeChangingPhoto' . $i} }}')">
+                </div>
+                <div class="col-6 text">
+                    <div>{{ ${'lifeChangingPhrase' . $i} }}</div>
+                </div>
             </div>
+        </div>
+        @endif
+        @endfor
+        </div>
+        <a href="#" class="next swiper-button-next"><i class="moon-icons-arrow-right"></i></a>
+        </div>
         </div>
     </section>
 @endempty
 
 <section class="blog-article-body">
-    <div class="body">
-        <h2>{{ $lifeChangingBlockTitle }}</h2>
-        <p>{!! $lifeChangingBlockTextMobile !!}</p>
+    <div class="wrap">
+        <div class="body">
+            <h2>{{ $lifeChangingBlockTitle }}</h2>
+            {!! $lifeChangingBlockText !!}
+        </div>
     </div>
 </section>
+
+<div class="pt-5 pb-5"></div>
+
+<script>
+    $(document).on("click", ".donate-now-link", function(e) {
+        e.preventDefault();
+        let donateModulePosition = $(".donate-today-sheet").offset().top;
+        $("html, body").animate({ scrollTop: donateModulePosition }, 1000);
+    });
+</script>
 
 @if ($showPriceHandlers)
     @include('modules.presentation.we_still_need_support')
 @endif
 
-@include('modules.presentation.related_topics_project', [
-'svgWave' => true,
-])
-
-@include('modules.presentation.join_the_cause_subscribe')
+@include('modules.presentation.related_topics_project')

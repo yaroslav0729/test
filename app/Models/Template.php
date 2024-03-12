@@ -22,6 +22,7 @@ class Template
     const WIDGET_PAGE_TEMPLATE = 22;
     const GET_INVOLVED_PAGE_TEMPLATE = 23;
     const GAZA_DOCTORS_PAGE = 24;
+    const WHO_WE_ARE_PROJECT_PAGE = 25;
     public const THANK_YOU_SUBSCRIPTION_PAGE = 21;
 
     const TEST_PAGE = 100;
@@ -47,6 +48,7 @@ class Template
         self::WIDGET_PAGE_TEMPLATE,
         self::GET_INVOLVED_PAGE_TEMPLATE,
         self::GAZA_DOCTORS_PAGE,
+        self::WHO_WE_ARE_PROJECT_PAGE,
         //self::TEST_PAGE,
     ];
 
@@ -93,6 +95,8 @@ class Template
                 return 'Get involved widget page';
             case self::GAZA_DOCTORS_PAGE:
                 return 'Gaza doctors page';
+            case self::WHO_WE_ARE_PROJECT_PAGE:
+                return 'Who we are project page';
 
 
             default:
@@ -118,6 +122,11 @@ class Template
             'headerType' => 'parts.header',
         ],
         self::WHO_WE_ARE_PAGE => [
+            'headerClassName' => 'white',
+            'footerClassName' => 'bg-primary',
+            'headerType' => 'parts.header',
+        ],
+        self::WHO_WE_ARE_PROJECT_PAGE => [
             'headerClassName' => 'white',
             'footerClassName' => 'bg-primary',
             'headerType' => 'parts.header',
@@ -338,6 +347,7 @@ class Template
                     break;
                 }
 
+            case self::WHO_WE_ARE_PROJECT_PAGE:
             case self::WHO_WE_ARE_PAGE: {
 
                     $rules = [

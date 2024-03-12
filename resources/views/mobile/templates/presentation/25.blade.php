@@ -71,10 +71,10 @@ if (isset($parameters['map_alt_image'])) {
 }
 
 $colorNameClass = [
-    1 => 'bg-primary-light',
-    2 => 'bg-warning',
-    3 => 'bg-danger',
-    4 => 'bg-info',
+    1 => 'bg-emergency',
+    2 => 'bg-emergency',
+    3 => 'bg-emergency',
+    4 => 'bg-emergency',
 ];
 
 for ($i = 1; $i <= 4; $i++) {
@@ -180,8 +180,12 @@ for ($i = 0; $i < 7; $i++) {
 $isEmergency = true;
 @endphp
 
+<style>
+    .bg-emergency {
+        background-color: #F4533C !important;
+    }
+</style>
 <section class="who-we-are-head" style="background-image: url({{ $bgImage }});">
-    <div>OUR MISSION</div>
     <h1>{!! $ourMissionTitle !!}</h1>
 </section>
 
@@ -238,7 +242,7 @@ $isEmergency = true;
                     <p class="text-3">{!! $actionDescription[$i] !!}</p>
                     </div>
                     <div><a href="{{ $actionLearnMoreLink[$i] }}" class="btn btn-primary-dark
-                    br-0"><b>Learn more</b></a></div>
+                    br-0 donate-now-link"><b>Donate now</b></a></div>
                     <div class="img" style="background-image:
                     url({{ $actionPhoto[$i] }})">&nbsp;
                     <span class="place"><i class="fal
@@ -331,8 +335,6 @@ $isEmergency = true;
                         <div class="black-line"></div>
                         <div class="text @if ($hdrColorType==='blue' ) bg-primary-light @else bg-danger-light @endif">
                             {{ ${'lifeChangingPhrase' . $i} }}
-                            <a href="#" class="btn @if ($hdrColorType==='blue' ) btn-info @else btn-danger @endif">Donate to this project
-                                &nbsp;&nbsp;<i class="moon-icons-plus"></i></a>
                         </div>
                     </div>
                 @endfor
@@ -347,6 +349,13 @@ $isEmergency = true;
         <p>{!! $lifeChangingBlockTextMobile !!}</p>
     </div>
 </section>
+<script>
+    $(document).on("click", ".donate-now-link", function(e) {
+        e.preventDefault();
+        let donateModulePosition = $(".donate-today-sheet").offset().top;
+        $("html, body").animate({ scrollTop: donateModulePosition }, 1000);
+    });
+</script>
 
 @if ($showPriceHandlers)
     @include('modules.presentation.we_still_need_support')
@@ -355,5 +364,3 @@ $isEmergency = true;
 @include('modules.presentation.related_topics_project', [
 'svgWave' => true,
 ])
-
-@include('modules.presentation.join_the_cause_subscribe')
