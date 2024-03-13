@@ -237,10 +237,10 @@
                                 class="fal fa-check"></i></span>
                         <b>PAY BY CARD</b>
                     </label>
-                    <label class="radio">
-                        <input type="radio" name="pay_method" value="paypal"><span><i class="fal fa-check"></i></span>
-                        <b>PAY BY PAYPAL</b>
-                    </label>
+{{--                    <label class="radio">--}}
+{{--                        <input type="radio" name="pay_method" value="paypal"><span><i class="fal fa-check"></i></span>--}}
+{{--                        <b>PAY BY PAYPAL</b>--}}
+{{--                    </label>--}}
                 </div>
             @if(Setting::get(Setting::ENABLE_STRIPE))
 {{--                <div class="mb-4 text-center" style="display: none" id="stripe-checkbox">--}}
