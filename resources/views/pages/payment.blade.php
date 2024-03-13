@@ -306,7 +306,7 @@
                     <div class="black-line height-1"></div>
 
                     <div class="row gutter-0">
-                        <div class="col-6 info-col hide">
+                        <div class="col-6 info-col">
                             <div id="donate-page-cart" class="order-cart-list">
                                 @isset($cart)
                                     @foreach ($cart as $cartItem)
