@@ -207,7 +207,7 @@ class RamadanService
     private function getStartDate(int $frequency): Carbon
     {
         if (Carbon::now()->gte(Carbon::parse($this->startDate)->subDays(10)) && $frequency === 1) {
-            return Carbon::parse($this->startDate, 'UTC')->endOfDay();
+            return Carbon::now('UTC')->endOfDay();
         }
 
         if (Carbon::now()->lte(Carbon::parse($this->startDate)->subDays(10)) && $frequency === 1) {
