@@ -104,7 +104,7 @@ class DonationController extends Controller
             "Expires" => "0",
         );
 
-        $columns = ['Id', 'Value', 'Type', 'Is Recurring', 'Status', 'First name', 'Last name', 'Email', 'Phone', 'Date (D/M/Y)', 'Time', 'Campaign', 'Project name', 'Program name', 'Name', 'Category', 'Gift aid', 'Paid commission', 'Do SMS', 'Do Email', 'Do Post Marketing', 'Help This Donation 100%', 'Account number', 'Sort code', 'Pay day', 'Payment type', 'Post code', 'Address 1', 'Address 2', 'Address 3', 'City', 'State', 'Country', 'Notes', 'Order notes', 'Order ID', 'Subscription ID'];
+        $columns = ['Id', 'Value', 'Type', 'Is Recurring', 'Status', 'First name', 'Last name', 'Email', 'Phone', 'Date (D/M/Y)', 'Time', 'Campaign', 'Campaign country', 'Project name', 'Program name', 'Name', 'Category', 'Gift aid', 'Paid commission', 'Do SMS', 'Do Email', 'Do Post Marketing', 'Help This Donation 100%', 'Account number', 'Sort code', 'Pay day', 'Payment type', 'Post code', 'Address 1', 'Address 2', 'Address 3', 'City', 'State', 'Country', 'Notes', 'Order notes', 'Order ID', 'Subscription ID'];
 
         $callback = function () use ($columns, $request) {
             $file = fopen('php://output', 'w');
@@ -135,6 +135,7 @@ class DonationController extends Controller
                     } else {
                         $row['Campaign'] = 'no campaign';
                     }
+                    $row['Campaign country'] = $donation->campaign && $donation->campaign->country ? $donation->campaign->country->name : '';
                     $row['Project name'] = $donation->campaign && $donation->campaign->project_name ? $donation->campaign->project_name : '';
                     $row['Program name'] = $donation->campaign && $donation->campaign->program_name ? $donation->campaign->program_name : '';
                     $row['Name'] = $donation->qurbani_name;
