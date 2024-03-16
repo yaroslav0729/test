@@ -415,6 +415,33 @@ class StripeService
             return false;
         });
 
-        return count($subscriptions) > 0;
+        return count($scheduledSubscriptions) > 0;
     }
+
+    public $items = [
+        [
+            'price' => 'plan_PkaFMav8xOZrJU',
+            'quantity' => 1,
+        ],
+        [
+            'price' => 'plan_PkaFrYobmO60YU',
+            'quantity' => 1,
+        ],
+        [
+            'price' => 'plan_PkaFbIXrEaUnDl',
+            'quantity' => 1,
+        ],
+        [
+            'price' => 'plan_PkaFnFHixSj4zR',
+            'quantity' => 1,
+        ],
+        [
+            'price' => 'plan_PkaFdQ5hjbFlgY',
+            'quantity' => 1,
+        ],
+        [
+            'price' => 'plan_PkaFZLOaxuZuU6',
+            'quantity' => 1,
+        ],
+    ];
 }
