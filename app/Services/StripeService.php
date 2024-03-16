@@ -428,7 +428,7 @@ class StripeService
                 foreach ($items as $item) {
                     $found = false;
                     foreach($subscription->items->data as $subscriptionItem) {
-                        if ($subscriptionItem->price->id === $item['price_id']) {
+                        if ($subscriptionItem->price->id === $item['price']) {
                             $found = true;
                             break;
                         }
