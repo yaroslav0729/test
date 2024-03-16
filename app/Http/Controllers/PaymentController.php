@@ -395,6 +395,10 @@ class PaymentController extends Controller
                     'success' => true,
                 ]);
             default:
+                return response()->json([
+                    'message' => 'Success',
+                    'success' => true,
+                ]);
         }
         return response()->json([
             'message' => 'Error',
