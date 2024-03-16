@@ -418,6 +418,34 @@ class StripeService
         return count($scheduledSubscriptions) > 0;
     }
 
+    public function customerHaveGeneralSubscriptionWithItems(string $customerId, array $items): bool
+    {
+        $subscriptions = $this->stripe->subscriptions->all(['customer' => $customerId]);
+        $subscriptions = $subscriptions->data;
+        $filteredSubscriptions = array_filter($subscriptions, function ($subscription) use ($items) {
+            if (count($items) === count($subscription->items->data)) {
+                $hasAllItems = true;
+                foreach ($items as $item) {
+                    $found = false;
+                    foreach($subscription->items->data as $subscriptionItem) {
+                        if ($subscriptionItem->price->id === $item['price_id']) {
+                            $found = true;
+                            break;
+                        }
+                    }
+                    if (!$found) {
+                        $hasAllItems = false;
+                        break;
+                    }
+                }
+                return $hasAllItems;
+            }
+            return false;
+        });
+
+        return count($filteredSubscriptions) > 0;
+    }
+
     public $items = [
         [
             'price' => 'plan_PkaFMav8xOZrJU',

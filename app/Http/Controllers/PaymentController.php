@@ -162,12 +162,13 @@ class PaymentController extends Controller
                                 'quantity' => 1,
                             ];
                         }
-//                        if ($this->stripeService->customerHaveSubscriptionWithItems($customer->id, $items)) {
-//                            return response()->json([
-//                                'message' => 'Aborting. Duplication',
-//                                'success' => true,
-//                            ]);
-//                        }
+                        if ($this->stripeService->customerHaveSubscriptionWithItems($customer->id, $items)
+                            || $this->stripeService->customerHaveGeneralSubscriptionWithItems($customer->id, $items)) {
+                            return response()->json([
+                                'message' => 'Aborting. Duplication',
+                                'success' => true,
+                            ]);
+                        }
                         $phases = [
                             [
                                 'metadata' => [
