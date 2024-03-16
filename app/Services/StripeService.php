@@ -382,4 +382,39 @@ class StripeService
     {
         return $this->stripe;
     }
+
+    public function getCustomerScheduledSubscriptions(string $customerId): \Stripe\Collection
+    {
+        return $this->stripe->subscriptionSchedules->all([
+            'customer' => $customerId,
+        ]);
+    }
+
+    public function customerHaveSubscriptionWithItems(string $customerId, array $items): bool
+    {
+        $subscriptions = $this->getCustomerScheduledSubscriptions($customerId);
+        $subscriptions = $subscriptions->data;
+        $scheduledSubscriptions = array_filter($subscriptions, function ($subscription) use ($items) {
+            if (count($items) === count($subscription->phases[0]->items)) {
+                $hasAllItems = true;
+                foreach ($items as $item) {
+                    $found = false;
+                    foreach($subscription->phases[0]->items as $subscriptionItem) {
+                        if ($subscriptionItem->price === $item['price']) {
+                            $found = true;
+                            break;
+                        }
+                    }
+                    if (!$found) {
+                        $hasAllItems = false;
+                        break;
+                    }
+                }
+                return $hasAllItems;
+            }
+            return false;
+        });
+
+        return count($subscriptions) > 0;
+    }
 }
