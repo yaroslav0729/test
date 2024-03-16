@@ -37,12 +37,12 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('clear:cart')->dailyAt('00:00');
         $schedule->command('icharm:send')->everyThirtyMinutes();
-        $schedule->command(CancelSubscriptionsCreateBefore21April::class)->at('23:59')->when(function() use ($now) {
-            return $now->toDateString() === Carbon::parse('2023-04-21')->toDateString();
-        });
-        $schedule->command(CancelSubscriptionsCreateAfter21April::class)->at('23:59')->when(function() use ($now) {
-            return $now->toDateString() === Carbon::parse('2023-04-20')->toDateString();
-        });
+//        $schedule->command(CancelSubscriptionsCreateBefore21April::class)->at('23:59')->when(function() use ($now) {
+//            return $now->toDateString() === Carbon::parse('2023-04-21')->toDateString();
+//        });
+//        $schedule->command(CancelSubscriptionsCreateAfter21April::class)->at('23:59')->when(function() use ($now) {
+//            return $now->toDateString() === Carbon::parse('2023-04-20')->toDateString();
+//        });
     }
 
     /**
