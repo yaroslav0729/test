@@ -206,6 +206,11 @@ class PaymentController extends Controller
                             ],
                         ]
                     );
+
+                    return response()->json([
+                        'message' => 'Success',
+                        'success' => true,
+                    ]);
                 }
 
                 $order = Order::where('order_id', $event->data->object->id)->firstOrFail();
