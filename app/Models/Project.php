@@ -18,7 +18,7 @@ class Project
         })
             ->published()
             ->limit(3)
-            ->orderBy('created_at', 'asc')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return $pages;
