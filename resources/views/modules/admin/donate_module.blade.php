@@ -3,6 +3,7 @@
     $donateImg = "";
     $donateVideo = "";
     $donateText = "";
+    $paymentWidget = "";
 
     if (isset($parameters['donate_img'])) {
         $donateImg = $parameters['donate_img'];
@@ -14,6 +15,10 @@
 
     if (isset($parameters['donate_text'])) {
         $donateText = $parameters['donate_text'];
+    }
+
+    if (isset($parameters['payment_widget'])) {
+        $paymentWidget = $parameters['payment_widget'];
     }
 
 @endphp
@@ -34,6 +39,12 @@
     <div class="form-group">
         <label>Donate module text:</label>
         <textarea class="form-control" placeholder="Insert donate module text" name="parameters[donate_text]">{{ $donateText }}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Swipify widget:</label>
+        <textarea wysiwyg-editor id="payment_widget" class="form-control" name="parameters[payment_widget]"
+                  placeholder="Insert widget code here">{{ $paymentWidget }}</textarea>
     </div>
 @endif
 
