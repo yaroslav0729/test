@@ -300,7 +300,7 @@ if (!isset($useAppeal)) {
         </div>
         <div class="{{ $col2Class }}">
             {{--            if 1-2 tabs - col-5--}}
-            <div class="donate-today-sheet @if($showPaymentWidget)donate-today-sheet--with-widget@endif">
+            <div class="donate-today-sheet @if($showPaymentWidget) donate-today-sheet--with-widget @endif">
                 <style>
                     .donate-today-sheet--with-widget {
                         padding-top: 40px !important;
