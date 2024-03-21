@@ -62,11 +62,16 @@
     }
 
     $allCategories = \App\Models\CampaignCategory::all();
-    $paymentWidget = '';
-    if (isset($parameters['payment_widget'])) {
-        $paymentWidget = $parameters['payment_widget'];
+    $swipifyWidgetId = "";
+    $swipifyWidgetToken = "";
+    if (isset($parameters['swipify_widget_id'])) {
+        $swipifyWidgetId = $parameters['swipify_widget_id'];
     }
-    $showPaymentWidget = strlen($paymentWidget) > 0;
+
+    if (isset($parameters['swipify_widget_token'])) {
+        $swipifyWidgetToken = $parameters['swipify_widget_token'];
+    }
+    $showPaymentWidget = strlen($swipifyWidgetId) > 0 && strlen($swipifyWidgetToken) > 0;
 
 @endphp
 
@@ -303,7 +308,16 @@
         <div class="payment-widget">
             <h2 class="payment-widget__title">Donate with a quick swipe</h2>
             <div class="payment-widget__container">
-                {!! $paymentWidget !!}
+                <div id="SwipifyWidgetApp"></div>
+                <script>
+                    window.SwipifyAsyncInit = function() {
+                        window.SF = {
+                            id: {{ $swipifyWidgetId }},
+                            token: '{{ $swipifyWidgetToken }}'
+                        };
+                    };
+                </script>
+                <script async defer src="https://app.swipify.io/static/sdk/swipify-form.min.js"></script>
             </div>
             <div class="payment-widget__decor">
                 <svg class="decor-wave d-inline-block" version="1.0" xmlns="http://www.w3.org/2000/svg" width="2202.000000pt" height="166.000000pt" viewBox="0 0 2202.000000 166.000000" preserveAspectRatio="xMidYMid meet">

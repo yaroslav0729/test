@@ -3,7 +3,6 @@
     $donateImg = "";
     $donateVideo = "";
     $donateText = "";
-    $paymentWidget = "";
 
     if (isset($parameters['donate_img'])) {
         $donateImg = $parameters['donate_img'];
@@ -17,8 +16,14 @@
         $donateText = $parameters['donate_text'];
     }
 
-    if (isset($parameters['payment_widget'])) {
-        $paymentWidget = $parameters['payment_widget'];
+    $swipifyWidgetId = "";
+    $swipifyWidgetToken = "";
+    if (isset($parameters['swipify_widget_id'])) {
+        $swipifyWidgetId = $parameters['swipify_widget_id'];
+    }
+
+    if (isset($parameters['swipify_widget_token'])) {
+        $swipifyWidgetToken = $parameters['swipify_widget_token'];
     }
 
 @endphp
@@ -42,9 +47,12 @@
     </div>
 
     <div class="form-group">
-        <label>Swipify widget:</label>
-        <textarea wysiwyg-editor id="payment_widget" class="form-control" name="parameters[payment_widget]"
-                  placeholder="Insert widget code here">{{ $paymentWidget }}</textarea>
+        <label>Swipify widget id:</label>
+        <input class="form-control" name="parameters[swipify_widget_id]" placeholder="Insert widget id" value="{{ $swipifyWidgetId }}" />
+    </div>
+    <div class="form-group">
+        <label>Swipify widget token:</label>
+        <input class="form-control" name="parameters[swipify_widget_token]" placeholder="Insert widget token" value="{{ $swipifyWidgetToken }}" />
     </div>
 @endif
 
