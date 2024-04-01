@@ -37,15 +37,15 @@ class ThankYouDonation extends Mailable
      */
     public function build()
     {
-        EmailLog::create([
-            'email_to' => $this->emailTo,
-            'email_from' => $this->emailFrom,
-            'subject' => $this->subject,
-            'body' => view('mail.thank_you_donation', ['order' => $this->order])->render(),
-        ]);
+//        EmailLog::create([
+//            'email_to' => $this->emailTo,
+//            'email_from' => $this->emailFrom,
+//            'subject' => $this->subject,
+//            'body' => view('mail.new-thank-you-donation', ['order' => $this->order])->render(),
+//        ]);
 
         return $this->from($this->emailFrom)
             ->subject($this->subject)
-            ->view('mail.thank_you_donation', ['order' => $this->order]);
+            ->view('mail.new-thank-you-donation', ['order' => $this->order]);
     }
 }
