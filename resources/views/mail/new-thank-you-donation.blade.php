@@ -498,9 +498,20 @@
                                                                     <tr style="background-color: #fff">
                                                                         <td style="padding: 2px;" colspan="3"></td>
                                                                     </tr>
+                                                                    @php
+                                                                        $notesOnBehalfOf = '';
+                                                                        $plaqueNames = [];
+                                                                        $donations = $order->donations()->where('is_recurring', false)->get();
+                                                                        $donations->each(function ($donation) use (&$plaqueNames) {
+                                                                            if ($donation->note) {
+                                                                                $plaqueNames[] = $donation->note;
+                                                                            }
+                                                                        });
+                                                                        $notesOnBehalfOf = implode(', ', $plaqueNames);
+                                                                    @endphp
                                                                     <tr style="text-align:left; background-color: #FFF4F1;">
                                                                         <td style="padding: 10px; font-weight: 200;">Additional Note(s)</td>
-                                                                        <td style="padding: 10px; font-weight: 200;" colspan="2">{{ $order->notes }}</td>
+                                                                        <td style="padding: 10px; font-weight: 200;" colspan="2">{{ $notesOnBehalfOf }}</td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
