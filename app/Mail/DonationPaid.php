@@ -46,13 +46,13 @@ class DonationPaid extends Mailable
             'email_to' => $this->emailTo,
             'email_from' => $this->emailFrom,
             'subject' => $this->subject,
-            'body' => view('mail.donate.paid', ['sum' => $this->sum / 100, 'created_at' => $this->time, 'donations' => $this->donates])
+            'body' => view('mail.donate.new-paid', ['sum' => $this->sum / 100, 'created_at' => $this->time, 'donations' => $this->donates])
                 ->render(),
         ]);
 
         return $this
             ->from($this->emailFrom)
             ->subject($this->subject)
-            ->view('mail.donate.paid', ['sum' => $this->sum / 100, 'created_at' => $this->time, 'donations' => $this->donates]);
+            ->view('mail.donate.new-paid', ['sum' => $this->sum / 100, 'created_at' => $this->time, 'donations' => $this->donates]);
     }
 }
