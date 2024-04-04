@@ -234,7 +234,12 @@ class PaymentController extends Controller
 
                 $thanksUrl = Page::getSinglePageUrl(Template::THANK_YOU_DONATE_PAGE);
                 $this->sendThankYouEmail($order);
-                $this->hubspotService->importDonations($order->donations);
+                try {
+                    $this->hubspotService->importDonations($order->donations);
+                } catch (\Exception $e) {
+                    Log::error($e->getMessage());
+                    Log::error('Error importing donations to Hubspot. Order id ' . $order->id);
+                }
 
                 if ($thanksUrl === url('/')) {
                     die('Page with template "' . Template::getLabel(Template::THANK_YOU_DONATE_PAGE) . '" is not found.');
