@@ -11,7 +11,7 @@
 @section('content')
     <div id="admin_content" class="flex-auto">
         <div class="p-5 pb-8 lg:w-1/2">
-            <h1>Banner</h1>
+            <h1>Upsell</h1>
 
             <form action="{{ $actionRoute }}" method="post">
                 @csrf
