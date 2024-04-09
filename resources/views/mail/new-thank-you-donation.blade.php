@@ -476,7 +476,7 @@
                                                                             }elseif(isset($donation->foodpackqurbani)) {
                                                                                 $campaign = $donation->foodpackqurbani->country->name. " Qurbani (" . $donation->foodpackqurbanitype->name . ")";
                                                                             } elseif($donation->upsell) {
-                                                                                $campaign = 'Provide Rice This Eid';
+                                                                                $campaign = $donation->name;
                                                                             }
                                                                         @endphp
                                                                         <tr style="text-align:left; background-color: #FFF4F1;">
