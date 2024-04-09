@@ -125,6 +125,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
         Route::post('/banners/create', [BannerController::class, 'store'])->name('admin.banner.store');
         Route::put('/banners/edit/{id}', [BannerController::class, 'update'])->name('admin.banner.update');
 
+        Route::prefix('upsells')->name('admin.upsells.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\UpsellController::class, 'createOrEdit'])->name('create_or_edit');
+            Route::post('/create', [\App\Http\Controllers\Admin\UpsellController::class, 'store'])->name('store');
+            Route::put('/edit/{id}', [\App\Http\Controllers\Admin\UpsellController::class, 'update'])->name('update');
+        });
+
         Route::resource('foodpack', \App\Http\Controllers\Admin\FoodPackController::class, ['as' => 'admin'])->except([
             'show',
         ]);

@@ -66,7 +66,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                 </div>
                 <div class="order-cart-list mb-">
 
-                @isset($cart)
+                @if($cart)
                     @php
                         $upsellItem = null;
                     @endphp
@@ -118,23 +118,28 @@ $cartSum = \App\Models\CartItem::getCartSum();
                             @endif
                         @endisset
                     @endforeach
-                    <div class="row mt-4 d-none">
+                    @php
+                        $upsell = \App\Models\Upsell::first();
+                    @endphp
+                    @if($upsell)
+                    <div class="row mt-4 @if(!$upsell->active) d-none @endif">
                         <div class="col-12">
                             <form class="cart-upsell">
                                 @csrf
                                 <label class="checkbox lPos" data-url="{{ route('cart.upsell') }}">
                                     <input type="checkbox" value="1" name="upsell" @if($upsellItem) checked="checked" @endif><span><i class="fal fa-check"></i></span>
-                                    <b>PROVIDE RICE THIS EID - £5</b>
+                                    <b>{{ $upsell->title }} - £{{ $upsell->price }}</b>
                                 </label>
                                 <div class="cart-upsell__description">
-                                    During the days of Eid ul Adha help us provide families with rice along with the Qurbani meat they receive, so they can cook a delicious meal and celebrate Eid with us. £5 provides rice to 1 family
+                                    {{ $upsell->description }}
                                 </div>
                             </form>
                         </div>
                     </div>
+                    @endif
                 @else
                     <span class="text-danger">Cart is not defined</span>
-                @endisset
+                @endif
 
                 </div>
                 <div class="down-bar">

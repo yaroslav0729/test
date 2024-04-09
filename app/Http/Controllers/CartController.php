@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\SettingHelper;
 use App\Http\Requests\OrderRequest;
+use App\Models\Upsell;
 use App\Services\BlackListService;
 use App\Services\StripeService;
 use Illuminate\Http\Request;
@@ -91,6 +92,7 @@ class CartController extends Controller
             'note' => $note,
             'project_id' => $projectId,
             'goal' => $request->get('goal') ?? null,
+            'upsell' => $request->get('upsell') ?? false,
         ]);
 
         $this->sessionCartPut($cartItem->cart_item_id);
@@ -116,12 +118,14 @@ class CartController extends Controller
         $itemIds = session()->get('cart');
 
         $upsellItem = CartItem::whereIn('cart_item_id', $itemIds)->where('upsell', true)->first();
+        $upsell = Upsell::first();
 
         if (!$upsellItem) {
             $upsellItem = CartItem::create([
-                'amount' => 5,
+                'amount' => $upsell->price,
                 'period' => CampaignPrice::TYPE_SINGLE,
                 'upsell' => true,
+                'name' => $upsell->title,
             ]);
 
             $this->sessionCartPut($upsellItem->cart_item_id);
@@ -298,6 +302,7 @@ class CartController extends Controller
                 'ip' => $request->ip(),
                 'upsell' => $cartItem->upsell,
                 'goal' => $cartItem->goal,
+                'name' => $cartItem->name,
             ]);
             $donationName = 'Quick Donation';
             if (isset($cartItem->campaign)) {

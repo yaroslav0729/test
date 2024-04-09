@@ -20,6 +20,7 @@
         <li><a class="@if(Request::url() === route('admin.foodpack-qurbanies.index')) active @endif" href="{{ route('admin.foodpack-qurbanies.index') }}"><i class="fas fa-utensils-alt"></i>FoodPack Qurbani</a></li>
         <li><a class="@if(Request::url() === route('admin.black-list.index')) active @endif" href="{{ route('admin.black-list.index') }}"><i class="fas fa-list"></i>Black List</a></li>
         <li><a class="@if(Request::url() === route('admin.banner.create_or_edit')) active @endif" href="{{ route('admin.banner.create_or_edit') }}"><i class="fas fa-ad"></i>Banner</a></li>
+        <li><a class="@if(Request::url() === route('admin.upsells.create_or_edit')) active @endif" href="{{ route('admin.upsells.create_or_edit') }}"><i class="fas fa-cart-plus"></i>Upsell</a></li>
     </ul>
     <br><br>
 

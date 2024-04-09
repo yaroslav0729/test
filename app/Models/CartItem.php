@@ -65,7 +65,9 @@ class CartItem extends Model
                 'campaign_category_id' => $this->campaign_category_id,
                 'period' => $this->period,
                 'note' => $this->note,
-                'project_id' => $this->projectId
+                'project_id' => $this->projectId,
+                'upsell' => $this->upsell,
+                'name' => $this->name,
             ]);
 
             $newItems[] = $newItem->cart_item_id;

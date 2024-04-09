@@ -314,6 +314,11 @@
                                             <div class="item">
                                                 <div class="row">
                                                     <div class="col-7">
+                                                        @isset($cartItem[0]->upsell)
+                                                            <p class="font-size-20 mb-0 letter-spacing-0">
+                                                                <b>{{ $cartItem[0]->name }}</b>
+                                                            </p>
+                                                        @endisset
                                                         @isset($cartItem[0]->campaign_category)
                                                             <p class="font-size-20 mb-0 letter-spacing-0">
                                                                 <b>{{ $cartItem[0]->campaign_category->name }}</b>
