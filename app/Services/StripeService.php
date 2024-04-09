@@ -216,7 +216,7 @@ class StripeService
             } else  if (isset($cartItem->foodpackqurbani)) {
                 $donationName =  $cartItem->foodpackqurbani->country->name . " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
             } else if ($cartItem->upsell) {
-                $donationName = 'Provide Rice This Eid';
+                $donationName = $cartItem->name ?? 'Provide Rice This Eid';
             }
             $metadata[substr($donationName, 0, 40)] = $cartItem->amount . '£';
             $donationCampaigns[] = $donationName;

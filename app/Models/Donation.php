@@ -185,7 +185,7 @@ class Donation extends Model
         } elseif (isset($this->foodpack)) {
             $name = "FoodPack " . $this->foodpack->country->name;
         } else if ($this->upsell) {
-            $name = 'Provide Rice This Eid';
+            $name = $this->name ?? 'Provide Rice This Eid';
         }
 
         return $name;

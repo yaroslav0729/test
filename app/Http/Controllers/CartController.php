@@ -312,7 +312,7 @@ class CartController extends Controller
             } else  if (isset($cartItem->foodpackqurbani)) {
                 $donationName =  $cartItem->foodpackqurbani->country->name . " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
             } else if ($cartItem->upsell) {
-                $donationName = 'Provide Rice This Eid';
+                $donationName = $cartItem->name ?? 'Provide Rice This Eid';
             }
             if ($cartItem->period !== 20) {
                 $items[] = [
