@@ -131,7 +131,7 @@ class DonationController extends Controller
                     } elseif (isset($donation->foodpack)) {
                         $row['Campaign'] = "FoodPack " . $donation->foodpack->country->name;
                     } else if ($donation->upsell) {
-                        $row['Campaign'] = 'Provide Rice This Eid';
+                        $row['Campaign'] = $donation->name ?? 'Provide Rice This Eid';
                     } else {
                         $row['Campaign'] = 'no campaign';
                     }

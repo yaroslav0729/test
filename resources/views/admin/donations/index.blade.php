@@ -115,7 +115,7 @@
                                         @elseif(isset($donation->foodpackqurbani))
                                             {{$donation->foodpackqurbani->country->name. " Qurbani (" . $donation->foodpackqurbanitype->name . ")"}}
                                         @elseif($donation->upsell)
-                                            {{ "Provide Rice This Eid" }}
+                                            {{ $donation->name ?? "Provide Rice This Eid" }}
                                         @else
                                             'no campaign'
                                         @endif

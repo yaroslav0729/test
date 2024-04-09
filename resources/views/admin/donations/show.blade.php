@@ -10,7 +10,7 @@ if ($donation->campaign)
 }elseif(isset($donation->foodpack)) {
     $campaign = "FoodPack " . $donation->foodpack->country->name;
 } elseif($donation->upsell) {
-    $campaign = 'Provide Rice This Eid';
+    $campaign = $donation->name ?? 'Provide Rice This Eid';
 }else {
     $campaign = 'no campaign';
 }
