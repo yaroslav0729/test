@@ -68,7 +68,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
 
                 @if($cart)
                     @php
-                        $upsellItem = null;
+                        $upsellItems = null;
                     @endphp
                     @foreach ($cart as $cartItem)
                         @isset($cartItem[0])
@@ -113,13 +113,14 @@ $cartSum = \App\Models\CartItem::getCartSum();
                             </div>
                             @else
                                 @php
-                                $upsellItem = $cartItem[0];
+                                $upsellItems = $cartItem;
                                 @endphp
                             @endif
                         @endisset
                     @endforeach
                     @php
                         $upsell = \App\Models\Upsell::first();
+                        $hasUpsellItems = is_array($upsellItems) && count($upsellItems) > 0;
                     @endphp
                     @if($upsell)
                     <div class="row mt-4 @if(!$upsell->active) d-none @endif">
@@ -127,7 +128,7 @@ $cartSum = \App\Models\CartItem::getCartSum();
                             <form class="cart-upsell">
                                 @csrf
                                 <label class="checkbox lPos" data-url="{{ route('cart.upsell') }}">
-                                    <input type="checkbox" value="1" name="upsell" @if($upsellItem) checked="checked" @endif><span><i class="fal fa-check"></i></span>
+                                    <input type="checkbox" value="1" name="upsell" @if($hasUpsellItems) checked="checked" @endif><span><i class="fal fa-check"></i></span>
                                     <b>{{ $upsell->title }} - £{{ $upsell->price }}</b>
                                 </label>
                                 <div class="cart-upsell__description">
@@ -136,6 +137,18 @@ $cartSum = \App\Models\CartItem::getCartSum();
                             </form>
                         </div>
                     </div>
+                        @if($hasUpsellItems && $upsell->active)
+                            <div class="row align-items-center mt-4">
+                                <div class="col-md-8 col-6">
+                                    <p class="font-size-20 mb-0 mt-2 letter-spacing-zero">
+                                        <b>£{{ \App\Models\CartItem::roundCurrency($upsellItems[0]->amount) }}</b>
+                                    </p>
+                                </div>
+                                <div class="col-md-4 col-6 text-right cart-counter">
+                                    <input type="number" input_number_spinner data-id="{{ $upsellItems[0]->id }}" value="{{ count($upsellItems) }}" min="1" max="1000" step="1" class="color-danger"/>
+                                </div>
+                            </div>
+                        @endif
                     @endif
                 @else
                     <span class="text-danger">Cart is not defined</span>
