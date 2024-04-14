@@ -66,11 +66,11 @@ class ArticlesHelper
 
         $pages = Page::whereHas('pageInstances', function (Builder $query) {
             $query->where('template', Template::COMMON_CONTENT_PAGE)
-                    ->where('slug', 'like', '%' . 'media-centre/press-releases/' . '%')
-                    ->orderBy('title', 'asc');
-
-        })
-        ->published();
+                ->where('slug', 'like', '%' . 'media-centre/press-releases/' . '%')
+                ->orderBy('title', 'asc');
+        })->orWhereHas('pageInstances.categories', function (Builder $query) {
+            $query->where('slug', '=', 'press-releases');
+        })->published()->orderBy('published_at', 'desc');
         if ($sortParam === 'date') {
             $pages->orderBy('published_at', 'desc');
         }
