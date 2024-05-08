@@ -26,6 +26,18 @@ export function refreshCardAddHtml(response) {
     }
 }
 
+export function openCart() {
+    $('#cartBackdrop').fadeIn('slow');
+    $('#cartModal').addClass('open');
+    document.body.style.overflow = 'hidden';
+}
+
+export function hideCart() {
+    $('#cartBackdrop').fadeOut('slow');
+    $('#cartModal').removeClass('open');
+    document.body.style.overflow = '';
+}
+
 export function number_format(
     number,
     decimals = 0,
@@ -689,18 +701,6 @@ $(function () {
         //form.submit();
         sendFormAndRefreshCard(form, true);
     });
-
-    function openCart() {
-        $('#cartBackdrop').fadeIn('slow');
-        $('#cartModal').addClass('open');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function hideCart() {
-        $('#cartBackdrop').fadeOut('slow');
-        $('#cartModal').removeClass('open');
-        document.body.style.overflow = '';
-    }
 
     $('.basket').first().on('click', openCart);
     $('#cartBackdrop').on('click', hideCart);

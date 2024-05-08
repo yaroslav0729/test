@@ -1,4 +1,4 @@
-import { refreshCardAddHtml, number_format } from './cart';
+import {refreshCardAddHtml, number_format, openCart} from './cart';
 
 $(function () {
     const widgetBtn = document.querySelector('.foodpack-qurbani-widget');
@@ -211,12 +211,7 @@ $(function () {
                 item.setValue(0);
             });
             foodpackQurbaniModal.classList.remove('open');
-            window.location = '/donate#about-donation';
-            $("#add_to_cart_popup").toggleClass('show-up');
-            setTimeout(() => {
-                $("#add_to_cart_popup").toggleClass('show-up');
-                $("#add_to_cart_popup").toggleClass('show-out');
-            }, 5000)
+            openCart();
         }
         finally {
             submitBtn.innerHTML = 'Add to cart';
