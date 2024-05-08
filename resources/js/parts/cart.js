@@ -10,6 +10,7 @@ export function refreshCardAddHtml(response) {
     $("[input_number_spinner]").inputSpinner();
 
     $(".basket #sum").text(response.sum_for_view);
+    $('.cart-close').on('click', hideCart);
 
     if (response.sum > 0) {
         $(".basket span").removeClass("d-none");
@@ -373,8 +374,6 @@ $(function () {
     }
 
     function refreshCardAddHtml(response) {
-        console.log(response.cart_html);
-
         let newCart = $(".modal-body", response.cart_html);
         $("#cartModal .modal-body").html(newCart.html());
 
@@ -384,7 +383,6 @@ $(function () {
         $("[input_number_spinner]").inputSpinner();
 
         $(".basket #sum").text(response.sum_for_view);
-        console.log(response.commission)
         $("#page-sum-fee").text(response.commission);
 
         $('.cart-close').on('click', hideCart);
