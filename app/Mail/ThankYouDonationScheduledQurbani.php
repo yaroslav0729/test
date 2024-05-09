@@ -42,11 +42,11 @@ class ThankYouDonationScheduledQurbani extends Mailable
             'email_to' => $this->emailTo,
             'email_from' => $this->emailFrom,
             'subject' => $this->subject,
-            'body' => view('mail.thank_you_scheduled_qurbani', ['order' => $this->order])->render(),
+            'body' => view('mail.new_thank_you_scheduled_qurbani', ['order' => $this->order])->render(),
         ]);
 
         return $this->from($this->emailFrom)
             ->subject($this->subject)
-            ->view('mail.thank_you_scheduled_qurbani', ['order' => $this->order]);
+            ->view('mail.new_thank_you_scheduled_qurbani', ['order' => $this->order]);
     }
 }
