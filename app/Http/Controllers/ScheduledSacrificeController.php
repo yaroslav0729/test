@@ -29,7 +29,7 @@ class ScheduledSacrificeController extends Controller
 
     public function index()
     {
-        $pageInstance = PageInstance::where('slug', 'qurbani-2023')->where('actual', true)->firstOrFail();
+        $pageInstance = PageInstance::where('slug', 'qurbani-2024')->where('actual', true)->firstOrFail();
         $amount = $pageInstance->parameters['amount'];
         $campaignIds = [];
         foreach ($amount as $item) {
@@ -50,7 +50,7 @@ class ScheduledSacrificeController extends Controller
         $pricesList = $this->foodPackService->getList();
         $amount = collect($amount);
 
-        $qurbaniPage = PageInstance::where('slug', 'qurbani-2023')->where('actual', true)->first();
+        $qurbaniPage = PageInstance::where('slug', 'qurbani-2024')->where('actual', true)->first();
         $parameters = $qurbaniPage->parameters;
 
         SEOMeta::setTitle('Schedule Your Sacrifice | Qurbani with Islamic Help');
