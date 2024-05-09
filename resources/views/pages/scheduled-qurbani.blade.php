@@ -65,7 +65,7 @@
                                         <div class="col-md-6 col-6 text-center">
                                             <img class="qurbani-options__image mx-auto d-block"
                                                  src="https://islamichelp.org.uk/storage/goat.png">
-                                            <p class="mt-2">goat</p>
+                                            <p class="mt-2">goat/sheep</p>
                                         </div>
                                     </div>
                                 </div>

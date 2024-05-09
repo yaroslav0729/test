@@ -40,7 +40,7 @@ class ScheduledSacrificeController extends Controller
         $campaignsCountries = \App\Models\Project::getProjectCampaignsCountries($pageInstance);
 
         $startDate = Carbon::today();
-        $endDate = Carbon::createFromDate(null, 7, 4)->endOfDay();
+        $endDate = Carbon::createFromDate(null, 6, 18)->endOfDay();
         $availableDates = [];
 
         for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
