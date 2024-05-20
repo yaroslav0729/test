@@ -2,7 +2,7 @@
     if (isset($isColorInfo) && $isColorInfo == true) {
         $class = 'active-color-info';
     }
-    
+
     $collection = collect($amount)->transform(function ($item, $key) use ($campaignsCountries) {
         $item['id'] = $key;
         return $item;
@@ -14,20 +14,18 @@
         $pricesGrouped = [
             [
                 'min' => 25,
-                'max' => 100,
-            ],
-            [
-                'min' => 105,
+                'max' => 75,
+            ],[
+                'min' => 80,
                 'max' => 150,
-            ],
-            [
+            ],[
                 'min' => 200,
                 'max' => 390,
-            ],
+            ]
         ];
-        
+
         $maxGrouped = collect($pricesGrouped)->max('max');
-        
+
         $min = $collection->min('value');
         $max = $collection->max('value');
     @endphp

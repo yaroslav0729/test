@@ -15,9 +15,9 @@ $collection = collect($amount)->transform(function ($item, $key) use ($campaigns
     $pricesGrouped = [
         [
             'min' => 25,
-            'max' => 100,
+            'max' => 75,
         ],[
-            'min' => 105,
+            'min' => 80,
             'max' => 150,
         ],[
             'min' => 200,
