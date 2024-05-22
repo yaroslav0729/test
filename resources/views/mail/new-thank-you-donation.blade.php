@@ -501,9 +501,11 @@
                                                                     @php
                                                                         $notesOnBehalfOf = '';
                                                                         $plaqueNames = [];
-                                                                        $donations = $order->donations()->where('is_recurring', false)->get();
+                                                                        $donations = $order->donations;
                                                                         $donations->each(function ($donation) use (&$plaqueNames) {
-                                                                            if ($donation->note) {
+                                                                            if ($donation->qurbani_name) {
+                                                                                $plaqueNames[] = $donation->qurbani_name;
+                                                                            } else if ($donation->note) {
                                                                                 $plaqueNames[] = $donation->note;
                                                                             }
                                                                         });
