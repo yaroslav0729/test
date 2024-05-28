@@ -21,7 +21,7 @@ $collection = collect($amount)->transform(function ($item, $key) use ($campaigns
             'max' => 150,
         ],[
             'min' => 200,
-            'max' => 390,
+            'max' => PHP_INT_MAX,
         ]
     ];
 
@@ -37,7 +37,7 @@ $collection = collect($amount)->transform(function ($item, $key) use ($campaigns
 
         <div class="accordion">
             <label class="item accordion-header collapsed active-color-info text-center" select-amount="" data-amount_id="0" style="background: aliceblue;padding: 31px;" data-toggle="collapse" href="#collapse{{$loop->iteration}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <span><h5><b>Give from £{{ $group['min'] }} to £{{ $group['max'] }}</b></h5></span>
+                <span><h5><b>Give from £{{ $group['min'] }} {{ $loop->last ? 'and above' : "to £" . $group['max'] }}</b></h5></span>
             </label>
 
             <div class="collapse" id="collapse{{$loop->iteration}}">
