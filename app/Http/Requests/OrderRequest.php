@@ -37,7 +37,7 @@ class OrderRequest extends FormRequest
 
         foreach ($this->all() as $key => $value) {
             if (strpos($key, 'notes_') === 0) { // changed this line
-                $rules[$key] = 'required|max:25'; // add other rules as necessary
+                $rules[$key] = 'required|max:70'; // add other rules as necessary
             }
         }
 
