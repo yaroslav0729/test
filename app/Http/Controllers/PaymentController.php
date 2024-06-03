@@ -151,7 +151,7 @@ class PaymentController extends Controller
                     $setupIntent = $stripe->setupIntents->retrieve($checkoutSession->setup_intent, []);
 
                     $customer = $stripe->customers->retrieve($checkoutSession->customer, []);
-                    if (isset($checkoutSession->metadata['ramadan_subscription_setup']) && $checkoutSession->metadata['ramadan_subscription_setup'] === 'true') {
+                    if (isset($checkoutSession->metadata['dom_subscription_setup']) && $checkoutSession->metadata['dom_subscription_setup'] === 'true') {
                         $plansCount = intval($checkoutSession->metadata['plans_count']);
                         Log::error('plansCount: ' . $plansCount);
                         $items = [];
@@ -172,8 +172,8 @@ class PaymentController extends Controller
                         $phases = [
                             [
                                 'metadata' => [
-                                    'Donation type' => 'Daily Ramadan subscription',
-                                    'subscription_type' => 'daily-ramadan',
+                                    'Donation type' => 'Days of Mercy subscription',
+                                    'subscription_type' => 'days-of-mercy',
                                     'billing_anchor' => $checkoutSession->metadata['billing_anchor'],
                                 ],
                                 'items' => $items,
@@ -190,8 +190,8 @@ class PaymentController extends Controller
                             ],
                             'phases' => $phases,
                             'metadata' => [
-                                'Donation type' => 'Daily Ramadan subscription',
-                                'subscription_type' => 'daily-ramadan',
+                                'Donation type' => 'Days of Mercy subscription',
+                                'subscription_type' => 'days-of-mercy',
                                 'billing_anchor' => $checkoutSession->metadata['billing_anchor'],
                             ],
                         ]);

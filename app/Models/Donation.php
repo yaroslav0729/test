@@ -20,6 +20,7 @@ class Donation extends Model
     const TYPE_SINGLE = 10;
     const TYPE_MONTHLY = 20;
     public const TYPE_RAMADAN = 30;
+    public const TYPE_DAYS_OF_MERCY = 40;
 
     protected $guarded = ['id'];
 
@@ -34,6 +35,8 @@ class Donation extends Model
                 return 'monthly';
             case self::TYPE_RAMADAN:
                 return 'ramadan subscription';
+            case self::TYPE_DAYS_OF_MERCY:
+                return 'days of mercy subscription';
         }
     }
 
@@ -91,6 +94,10 @@ class Donation extends Model
             [
                 'id' => self::TYPE_RAMADAN,
                 'name' => self::getTypeLabel(self::TYPE_RAMADAN),
+            ],
+            [
+                'id' => self::TYPE_DAYS_OF_MERCY,
+                'name' => self::getTypeLabel(self::TYPE_DAYS_OF_MERCY),
             ],
         ];
 

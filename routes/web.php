@@ -221,6 +221,8 @@ Route::prefix('foodpack')->group(function () {
 
 Route::resource('nights-of-mercy', \App\Http\Controllers\RamadanController::class)
     ->except('show', 'edit', 'update', 'destroy', 'create');
+Route::resource('days-of-mercy', \App\Http\Controllers\DaysOfMercyController::class)
+    ->except('show', 'edit', 'update', 'destroy', 'create');
 Route::name('schedule-qurbani.')->group(function () {
     Route::get('/schedule-Qurbani', [\App\Http\Controllers\ScheduledSacrificeController::class, 'index'])->name('index');
     Route::post('/schedule-Qurbani', [\App\Http\Controllers\ScheduledSacrificeController::class, 'schedule'])->name('schedule');

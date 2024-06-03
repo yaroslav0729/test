@@ -117,7 +117,7 @@ class StripeService
             }
             $totalPrice = $totalPrice / 100;
             $metadata = array_merge([
-                'ramadan_subscription_setup' => true,
+                'dom_subscription_setup' => true,
                 'plans_count' => count($plans),
                 'billing_anchor' => $billingAnchor,
             ], $plansMetadata);
