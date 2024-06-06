@@ -71,9 +71,8 @@
                                 </div>
 
                                 @foreach($pricesList as $price)
-                                <div class="col-12 mt-4 row qurbani-options__item align-middle">
-                                    <div class="col-md-4 col-12 text-xs-center top-0-xs xs-align-center"
-                                         style="top: 30%">
+                                <div class="mt-4 qurbani-options__item align-middle">
+                                    <div class="text-xs-center xs-align-center qurbani-options__item-country">
                                         <label class="align-middle" style="display: table-cell;">
                                             <input type="checkbox" name="countries[]" value="{{ $price->id }}">
                                             <i class="fas fa-check-circle"></i>
@@ -81,12 +80,11 @@
                                         </label>
                                     </div>
 
-                                    <div class="qurbani-row col-md-8 col-12">
                                     @foreach($price->types as $type)
                                         @if($type->pivot->price > 0)
-                                            <div class="col-md-6 col-6 text-center">
+                                            <div class="text-center">
                                                 <div class="qurbani-options__quantity-selector">
-                                                    <span class="qurbani-options__price">£{{ $type->pivot->price }}</span>
+                                                    <div class="qurbani-options__price">£{{ $type->pivot->price }}</div>
 
                                                     @php
                                                         $priceFromAmount = $amount->firstWhere('value', $type->pivot->price);
@@ -95,6 +93,17 @@
                                                         $campaign = $filteredCampaigns->firstWhere('country_id', $price->country->id);
                                                     @endphp
                                                     <div class="qurbani-options__number">
+                                                        @if($type->name === 'Cow')
+                                                            <div class="qurbani-options__number-image-container">
+                                                                <img class="qurbani-options__number-image"
+                                                                 src="https://islamichelp.org.uk/storage/cow.png">
+                                                            </div>
+                                                        @else
+                                                            <div class="qurbani-options__number-image-container">
+                                                                <img class="qurbani-options__number-image"
+                                                                 src="https://islamichelp.org.uk/storage/goat.png">
+                                                            </div>
+                                                        @endif
                                                         <input type="number"
                                                                input_number_spinner_food
                                                                data-id="{{ $type->id }}"
@@ -104,16 +113,14 @@
                                                                data-type-id="{{ $type->id }}"
                                                                data-price="{{ $type->pivot->price }}"
                                                                min="0" max="1000"
-                                                               step="1"
-                                                               class="color-danger"/>
+                                                               step="1"/>
                                                     </div>
                                                 </div>
                                             </div>
                                         @else
-                                            <div class="col-md-6 col-6 text-center"></div>
+                                            <div class="text-center"></div>
                                         @endif
                                     @endforeach
-                                    </div>
 
                                 </div>
                                 @endforeach
@@ -459,7 +466,6 @@
             crossorigin="anonymous"></script>
     <script>
         const amount = {!! json_encode($amount) !!};
-        console.log(amount);
     </script>
 
 @endsection

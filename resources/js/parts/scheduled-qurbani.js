@@ -51,11 +51,23 @@ $(function() {
 
     qurbaniOptionsClick();
     function qurbaniOptionsClick() {
+        $('.qurbani-options input[type="checkbox"]').on('change', function () {
+            const $parent = $(this).closest('.qurbani-options__item');
+            const $checkboxes = $parent.find('input[type="checkbox"]');
+
+            if ($checkboxes.is(':checked')) {
+                $parent.addClass('active');
+            } else {
+                $parent.removeClass('active');
+            }
+        });
        $('[input_number_spinner_food]').on('change', function () {
            const $qurbaniItem = $(this).closest('.qurbani-options__item')
            const $checkbox = $qurbaniItem.find('[type="checkbox"]');
+
            if (!$checkbox.is(':checked')) {
                $checkbox.click();
+               $qurbaniItem.addClass('active');
            }
 
            let emptyCounter = true;
@@ -68,6 +80,7 @@ $(function() {
 
            if (emptyCounter) {
                $checkbox.click();
+               $qurbaniItem.removeClass('active');
            }
 
            const itemsCount = +$(this).val();

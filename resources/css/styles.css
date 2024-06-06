@@ -8015,24 +8015,55 @@ section.back {
     display: flex;
     flex-wrap: wrap;
 }
+.qurbani-options__item-country {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #232051;
+    border-radius: 5px;
+    background-color: rgb(227, 239, 254);
+    padding-left: 10px;
+    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+}
+.qurbani-options__item {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    width: 100%;
+}
+
+.qurbani-options__item.active .qurbani-options__item-country {
+    background-color: #232051;
+    color: #fff;
+}
+.qurbani-options__item.active .fa-check-circle {
+    color: #fff !important;
+}
 
 .qurbani-options label {
     cursor: pointer;
     display: flex;
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    margin-right: 25px;
-    width: 70%;
-    transform: translateY(100%);
+    width: 100%;
+    margin-bottom: 0;
 }
 
 .qurbani-options__price {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: bold;
-    color: #F97866;
+    color: #232051;
+    background-color: rgb(227, 239, 254);
+    border-right: 1px solid #232051;
 }
 
 .qurbani-options input {
@@ -8120,13 +8151,47 @@ section.back {
 .qurbani-options .qurbani-options__number input {
     display: inherit;
 }
-
+.qurbani-options__number {
+    width: 100%;
+}
+.qurbani-options__number input[type=number]+.input-group {
+    display: flex;
+    width: 90px;
+    max-height: 30px;
+}
+.qurbani-options__number input[type=number]+.input-group .form-control {
+    border-right-color: transparent !important;
+    border-left-color: transparent !important;
+    font-size: 14px;
+}
 .qurbani-options__number input[type=number]+.input-group .btn {
-    padding: 1px 12px;
+    padding: 5px;
+    line-height: 21px;
+    font-size: 16px;
+    border-color: #232051;
+    min-width: 2rem !important;
+}
+.qurbani-options__number-image {
+    height: 40px !important;
+    margin-inline: auto;
+}
+.qurbani-options__number input[type=number]+.input-group .input-group-prepend {
+    margin-right: -1px;
+}
+.qurbani-options__number input[type=number]+.input-group .input-group-append {
+    margin-left: -1px;
+}
+.qurbani-options__number input[type=number]+.input-group .btn-decrement {
+    border-right-color: transparent;
+}
+.qurbani-options__number input[type=number]+.input-group .btn-increment {
+    border-left-color: transparent;
 }
 .qurbani-options .qurbani-options__number {
-    margin-top: 10px;
-    padding-left: 30px;
+    display: grid;
+    padding: 5px;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
 }
 .qurbani-options__items .fas {
     font-size: 26px;
@@ -8172,8 +8237,10 @@ section.back {
 
 .qurbani-options__quantity-selector {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    border: 1px solid #232051;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .schedule-option {
@@ -8273,6 +8340,10 @@ section.back {
         color: #232051;
         font-size: 18px;
         font-weight: bold;
+        margin-left: 0;
+        width: 100%;
+        background-color: transparent;
+        border: none;
     }
 
     .qurbani-selectors {
@@ -8290,6 +8361,7 @@ section.back {
         grid-template-columns: repeat(2, 50%);
         position: relative;
         padding: 10px 0px;
+        border: none;
     }
 
     .qurbani-options__quantity-selector-container:last-child {
@@ -8310,7 +8382,7 @@ section.back {
     }
 
     .qurbani-options__quantity-selector .qurbani-options__number > .input-group {
-        transform: translateX(-13%);
+        /*transform: translateX(-13%);*/
     }
 
     .qurbani-options__quantity-selector .qurbani-options__number > .input-group > input.form-control {
