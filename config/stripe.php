@@ -5,4 +5,5 @@ return [
     'secret_key' => env('STRIPE_SECRET'),
     'endpoint_secret' => env('STRIPE_ENDPOINT_SECRET'),
     'stripe_webhook_key' => env('STRIPE_WEBHOOK_KEY'),
+    'website_key' => env('STRIPE_WEBSITE_KEY'),
 ];

@@ -25,13 +25,23 @@ class StripeService
 
     private StripeClient $stripe;
 
+    private array $baseMetadata;
+
     public function __construct()
     {
         $this->stripe = new StripeClient(
             config('stripe.secret_key')
         );
+        $this->baseMetadata = [
+            'website_key' => config('stripe.website_key'),
+        ];
 
         Stripe::setApiKey(config('stripe.secret_key'));
+    }
+
+    public function combineWithBaseMetadata(array $metadata): array
+    {
+        return array_merge($this->baseMetadata, $metadata);
     }
 
     /**
@@ -138,7 +148,7 @@ class StripeService
                         'message' => 'Subscription. £' . $totalPrice . ' will be charged daily.',
                     ],
                 ],
-                'metadata' => $metadata,
+                'metadata' => $this->combineWithBaseMetadata($metadata),
             ];
         }
 
@@ -156,7 +166,7 @@ class StripeService
             'interval' => self::INTERVAL_DAY,
             'interval_count' => $interval,
             'amount' => round($amount * 100, 0),
-            'metadata' => $donation
+            'metadata' => $this->combineWithBaseMetadata($donation),
         ]);
     }
 
@@ -227,6 +237,7 @@ class StripeService
         if ($withGoal) {
             $metadata['with_goal'] = true;
         }
+        $metadata = $this->combineWithBaseMetadata($metadata);
 
         return $this->stripe->plans->create([
             'amount' => $sum * 100,

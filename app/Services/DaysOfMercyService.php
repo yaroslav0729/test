@@ -169,10 +169,10 @@ class DaysOfMercyService
             'end_behavior' => 'cancel',
             'phases' => [
                 [
-                    'metadata' => [
+                    'metadata' => $this->stripeService->combineWithBaseMetadata([
                         'Donation type' => 'Last 10 nights subscription',
                         'subscription_type' => 'odd-even-ramadan',
-                    ],
+                    ]),
                     'items' => [$this->stripeService->prepareLineItemsForSession($plans)],
                     'end_date' => $endTimestamp,
                 ],

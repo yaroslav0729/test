@@ -370,6 +370,7 @@ class CartController extends Controller
                     'success_url' => $url,
                     'cancel_url' => route('index'),
                     'customer_email' => $order->email,
+                    'metadata' => $this->stripeService->combineWithBaseMetadata([]),
                 ]);
 
                 $payLink = $session->url;

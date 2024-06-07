@@ -108,6 +108,13 @@ class PaymentController extends Controller
                     ]);
                 }
 
+                if (!isset($checkoutSession->metadata['website_key']) || $checkoutSession->metadata['website_key'] !== config('stripe.website_key')) {
+                    return response()->json([
+                        'message' => 'Different website key',
+                        'success' => true,
+                    ]);
+                }
+
                 if ($checkoutSession->metadata['scheduled_qurbani']) {
                     $customer_id = $checkoutSession->customer;
                     $setupIntent = $stripe->setupIntents->retrieve($checkoutSession->setup_intent);
@@ -259,6 +266,13 @@ class PaymentController extends Controller
                 if (isset($subscrition->metadata['portal_donation'])) {
                     return response()->json([
                         'message' => 'Portal donation',
+                        'success' => true,
+                    ]);
+                }
+
+                if (!isset($subscription->metadata['website_key']) || $subscription->metadata['website_key'] !== config('stripe.website_key')) {
+                    return response()->json([
+                        'message' => 'Different website key',
                         'success' => true,
                     ]);
                 }
