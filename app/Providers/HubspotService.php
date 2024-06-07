@@ -8,15 +8,21 @@ class HubspotService
 {
     private $accessToken;
     public $client;
+    private $isEnabled;
 
     public function __construct()
     {
         $this->accessToken = config('hubspot.access_token');
         $this->client = HSFactory::createWithAccessToken($this->accessToken);
+        $this->isEnabled = config('hubspot.enabled');
     }
 
     public function importDonations($donations)
     {
+        if (!$this->isEnabled) {
+            Log::info('Hubspot is not enabled');
+            return;
+        }
         $contactData = $this->prepareContactObject($donations[0]);
         $contact = $this->createContact($contactData);
 
