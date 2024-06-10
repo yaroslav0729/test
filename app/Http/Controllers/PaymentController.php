@@ -270,7 +270,7 @@ class PaymentController extends Controller
                     ]);
                 }
 
-                if (!isset($subscription->metadata['website_key']) || $subscription->metadata['website_key'] !== config('stripe.website_key')) {
+                if (isset($subscription->metadata['website_key']) && $subscription->metadata['website_key'] !== config('stripe.website_key')) {
                     return response()->json([
                         'message' => 'Different website key',
                         'success' => true,
