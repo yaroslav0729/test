@@ -108,7 +108,7 @@ class PaymentController extends Controller
                     ]);
                 }
 
-                if (!isset($checkoutSession->metadata['website_key']) || $checkoutSession->metadata['website_key'] !== config('stripe.website_key')) {
+                if (isset($checkoutSession->metadata['website_key']) && $checkoutSession->metadata['website_key'] !== config('stripe.website_key')) {
                     return response()->json([
                         'message' => 'Different website key',
                         'success' => true,
@@ -122,7 +122,7 @@ class PaymentController extends Controller
                     $payment_method = $stripe->paymentMethods->retrieve($payment_method_id)->attach(['customer' => $customer_id]);
                     $customer = $stripe->customers->update($customer_id, ['invoice_settings' => ['default_payment_method' => $payment_method_id]]);
 
-                    $order = Order::findOrFail($checkoutSession->metadata->order_id);
+                    $order = Order::findOrFail($checkoutSession->metadata['order_id']);
                     $plan = $this->stripeService->createScheduledQurbaniPlan($order->donations);
                     $stripe->subscriptionSchedules->create([
                         'customer' => $customer_id,
