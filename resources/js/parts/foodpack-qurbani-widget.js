@@ -101,7 +101,7 @@ $(function () {
                         <span class="modal--foodpack-qurbani__price">£${item.pivot.price}</span>
 
                         <div class="modal--foodpack-qurbani__number"><input type="number" input_number_spinner_food
-                                data-id="${id}" value="0" data-type-id="${item.id}" data-price="${item.pivot.price}"
+n                                data-id="${id}" value="0" data-type-id="${item.id}" data-price="${item.pivot.price}" data-campaign-id="${item.pivot.campaign_id}"
                                 min="0" max="1000" step="1" class="color-danger" /></div>
                     </div>`
                     }else {
@@ -172,7 +172,7 @@ $(function () {
                     if (numberOfItems >= 1)
                     {
                         for(let i=0; i<numberOfItems; i++) {
-                            items.push({id: item.value, typeId: iItem.dataset.typeId, price: iItem.dataset.price});
+                            items.push({id: item.value, typeId: iItem.dataset.typeId, price: iItem.dataset.price, campaignId: iItem.dataset.campaignId});
                         }
                     }
 
@@ -222,6 +222,7 @@ $(function () {
         let formData = new FormData();
         formData.append('food_pack_qurbani_id', item.id);
         formData.append('food_pack_qurbani_type_id', item.typeId);
+        formData.append('campaigns', item.campaignId);
         formData.append('amount', item.price);
 
         return await $.ajax({
