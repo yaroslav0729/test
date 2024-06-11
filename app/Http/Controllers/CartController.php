@@ -46,7 +46,6 @@ class CartController extends Controller
     public function add(Request $request)
     {
         $categoryId = null;
-
         $amount = $request->amount;
         $campaignId = $request->campaigns;
         $projectId = $request->project_id;
