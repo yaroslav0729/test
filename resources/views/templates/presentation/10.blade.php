@@ -72,7 +72,7 @@ if ($eventsForSlide->isEmpty()) {
                         <div class="swiper-slide">
                             <div class="row gutter-0">
                                 <div class="col-8 col-img img"
-                                    style="background-image: url({{ $event->page->getActualPageInstanceAttribute()->preview_img }})">
+                                    style="background-image: url('{{ $event->page->getActualPageInstanceAttribute()->preview_img }}')">
                                 </div>
                                 <div class="col-4 col-text text">
                                     <div>

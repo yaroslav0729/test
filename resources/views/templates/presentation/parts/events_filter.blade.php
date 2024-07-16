@@ -5,7 +5,7 @@
                 <div class="item">
                     <a href="{{ url($event->page->getActualPageInstanceAttribute()->slug) }}"
                        class="img d-block"
-                       style="background-image: url({{ $event->page->getActualPageInstanceAttribute()->preview_img }})">
+                       style="background-image: url('{{ $event->page->getActualPageInstanceAttribute()->preview_img }}')">
                         <span class="price text-uppercase">
                             @if($event->entry_type === \App\Models\Event::ENTRY_PAID)
                                 £{{ $event->page->getActualPageInstanceAttribute()->parameters['event_entry_price'] }}
