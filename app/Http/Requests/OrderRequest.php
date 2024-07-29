@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\WhitelistEmail;
 use Illuminate\Foundation\Http\FormRequest;
 
 class OrderRequest extends FormRequest
@@ -27,7 +28,7 @@ class OrderRequest extends FormRequest
             'post_code' => 'required',
             'first_name' => 'required|max:100',
             'last_name' => 'required|max:100',
-            'email' => 'required|email',
+            'email' => ['required', 'email', new WhitelistEmail],
             'address_1' => 'required|max:200',
             'address_2' => 'nullable|max:200',
             'city' => 'required|max:100',
