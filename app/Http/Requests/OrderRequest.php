@@ -36,11 +36,11 @@ class OrderRequest extends FormRequest
             'notes' => 'nullable|max:70',
         ];
 
-        foreach ($this->all() as $key => $value) {
-            if (strpos($key, 'notes_') === 0) { // changed this line
-                $rules[$key] = 'required|max:70'; // add other rules as necessary
-            }
-        }
+//        foreach ($this->all() as $key => $value) {
+//            if (strpos($key, 'notes_') === 0) { // changed this line
+//                $rules[$key] = 'required|max:70'; // add other rules as necessary
+//            }
+//        }
 
         if (!config('app.debug'))
         {
@@ -54,11 +54,11 @@ class OrderRequest extends FormRequest
     {
         $messages = [];
 
-        foreach ($this->all() as $key => $value) {
-            if (strpos($key, 'notes_') === 0) {
-                $messages[$key . '.required'] = 'This field is required.';
-            }
-        }
+//        foreach ($this->all() as $key => $value) {
+//            if (strpos($key, 'notes_') === 0) {
+//                $messages[$key . '.required'] = 'This field is required.';
+//            }
+//        }
 
         return $messages;
     }
