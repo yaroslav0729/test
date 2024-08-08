@@ -2,7 +2,6 @@
 
 <section class="pt-5">
     <p class="mb-3"><b>FEATURED EVENT</b></p>
-    <div class="black-line"></div>
 </section>
 
 <section class="events-home-swiper">
