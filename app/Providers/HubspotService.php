@@ -23,11 +23,13 @@ class HubspotService
             Log::info('Hubspot is not enabled');
             return;
         }
+
         $contactData = $this->prepareContactObject($donations[0]);
         $contact = $this->createContact($contactData);
 
         foreach ($donations as $donation) {
             $dealData = $this->prepareDealObject($donation);
+
             $deal = $this->createDeal($dealData);
 
             Log::info('Deal ' . $deal->getId());

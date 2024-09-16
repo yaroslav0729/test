@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Order;
+use App\Services\HubspotService;
 use App\Services\StripeService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -24,16 +25,18 @@ class FixMonthlyDonations extends Command
     protected $description = 'Restore donation records for recurring payments';
 
     private StripeService $stripeService;
+    private HubspotService $hubspotService;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(StripeService $stripeService)
+    public function __construct(StripeService $stripeService, HubspotService $hubspotService)
     {
         parent::__construct();
         $this->stripeService = $stripeService;
+        $this->hubspotService = $hubspotService;
     }
 
     /**
@@ -49,23 +52,41 @@ class FixMonthlyDonations extends Command
             $donationsCount = $order->donations()->count();
             $this->info('Order ' . $order->id . ' has ' . $donationsCount . ' donations');
             $subscription = $this->stripeService->fetchSubscription($order->subscription_id);
-            $invoices = $this->stripeService->fetchInvoicesBySubscription($order->subscription_id);
-            $this->info('Order ' . $order->id . ' has ' . count($invoices->data) . ' invoices');
-            $this->info('Order has next metadata: ' . $subscription->metadata['donated_campaigns']);
+            $invoices = collect($this->stripeService->fetchInvoicesBySubscription($order->subscription_id)->data)->reverse();
+            $donatedCampaigns = $subscription->metadata['donated_campaigns'] ?? 0;
+            $this->info('donated campaigns' . $donatedCampaigns);
 
+            if ($donatedCampaigns < 1) {
+                continue;
+            }
 
-            if (count($invoices->data) > 1) {
-                $donations = $order->donations()->take($subscription->metadata['donated_campaigns'])->get();
-                for ($i = 0; $i < count($invoices->data) - 1; $i++) {
-                    $invoiceDate = Carbon::createFromTimestamp($invoices->data[$i]->created);
-                    foreach ($donations as $donation) {
-                        $this->info('Fetched donation ' . $donation->id);
-                        $newDonation = $donation->replicate();
-                        $newDonation->created_at = $invoiceDate;
-                        $newDonation->is_recurring = true;
-                        $newDonation->save();
-                        $newDonationsCount = $newDonationsCount + 1;
-                        $this->info('Created new donation created for campaign' . $newDonation->campaign_id);
+            $originalDonations = $order->donations()->where('is_recurring', false)->get();
+            $orderNumbers = intval($donationsCount / $originalDonations->count());
+            if ($invoices->count() > $orderNumbers) {
+                for ($i = 0; $i < $invoices->count(); $i++) {
+                    if ($i === 0) {
+                        foreach($originalDonations as $donation) {
+                            $donation->invoice_id = $invoices[$i]->id;
+                            $donation->save();
+                        }
+                    } else {
+                        $invoiceDate = Carbon::createFromTimestamp($invoices[$i]->created);
+                        $newDonationsCollection = collect();
+                        foreach ($originalDonations as $donation) {
+                            $newDonation = $donation->replicate();
+                            $newDonation->created_at = $invoiceDate;
+                            $newDonation->is_recurring = true;
+                            $newDonation->invoice_id = $invoices[$i]->id;
+                            $newDonation->save();
+                            $newDonationsCollection->push($newDonation);
+                            $newDonationsCount = $newDonationsCount + 1;
+                        }
+
+                        try {
+                            $this->hubspotService->importDonations($newDonationsCollection);
+                        } catch (\Exception $exception) {
+                            $this->error('Failed to import donations: ' . $order->id);
+                        }
                     }
                 }
             }

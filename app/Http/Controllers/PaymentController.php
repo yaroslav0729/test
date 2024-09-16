@@ -311,18 +311,29 @@ class PaymentController extends Controller
                         }
                     }
 
+                    $originalDonations = $order->donations()->where('is_recurring', false)->get();
+                    foreach ($originalDonations as $donation) {
+                        if (!$donation->invoice_id) {
+                            $donation->invoice_id = $invoice->id;
+                            $donation->save();
+                        }
+                    }
+
                     if (count($subscriptionInvoices->data) > 1) {
                         $lastInvoice = $subscriptionInvoices->data[0];
-                        if (floatval($lastInvoice->amount_due) === $order->sum) {
+                        if (floatval($lastInvoice->amount_due) === ($originalDonations->sum('value') * 100)) {
                             $createdTime = now();
+                            $newDonationsCollection = collect();
                             foreach ($donations as $key => $donation) {
                                 $newDonation = $donation->replicate();
                                 $newDonation->created_at = $createdTime;
                                 $newDonation->is_recurring = true;
+                                $newDonation->invoice_id = $lastInvoice->id;
                                 $newDonation->save();
+                                $newDonationsCollection->push($newDonation);
                                 Log::error('Created new donation ' . $newDonation->id . ' for order ' . $order->id);
                             }
-                            $this->hubspotService->importDonations($donations);
+                            $this->hubspotService->importDonations($newDonationsCollection);
                         }
                     }
                 } else {

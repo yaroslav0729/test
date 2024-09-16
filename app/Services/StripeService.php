@@ -284,10 +284,10 @@ class StripeService
         return $subscription;
     }
 
-    public function fetchInvoicesBySubscription(string $subscriptionId): \Stripe\SearchResult
+    public function fetchInvoicesBySubscription(string $subscriptionId): \Stripe\Collection
     {
-        return $this->stripe->invoices->search([
-            'query' => 'subscription:"' . $subscriptionId . '"'
+        return $this->stripe->invoices->all([
+            'subscription' => $subscriptionId
         ]);
     }
 
