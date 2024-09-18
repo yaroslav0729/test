@@ -333,7 +333,12 @@ class PaymentController extends Controller
                                 $newDonationsCollection->push($newDonation);
                                 Log::error('Created new donation ' . $newDonation->id . ' for order ' . $order->id);
                             }
-                            $this->hubspotService->importDonations($newDonationsCollection);
+                            try {
+                                $this->hubspotService->importDonations($newDonationsCollection);
+                            } catch (\Exception $e) {
+                                Log::error($e->getMessage());
+                                Log::error('Error importing donations to Hubspot. Order id ' . $order->id);
+                            }
                         }
                     }
                 } else {
