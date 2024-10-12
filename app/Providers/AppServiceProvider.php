@@ -12,6 +12,7 @@ use App\Models\CartItem;
 use App\Services\Menu;
 use App\Services\PageInstanceService;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (config('app.env') !== 'local') {
+            URL::forceScheme('https');
+        }
+
         Paginator::useBootstrap();
 
         Validator::extend('page_slug', function ($value, $parameters) {
