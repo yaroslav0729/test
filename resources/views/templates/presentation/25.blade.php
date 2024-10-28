@@ -184,6 +184,11 @@ for($i = 0; $i < 10; $i++) {
         $projectImagesCarousel[] = $parameters['project_images_carousel_' . $i];
     }
 }
+$requestPath = request()->path();
+$locationText = 'Gaza';
+if(strpos($requestPath, 'lebanon') !== false) {
+    $locationText = 'Lebanon';
+}
 @endphp
 <style>
     .bg-emergency {
@@ -218,7 +223,7 @@ for($i = 0; $i < 10; $i++) {
     <div class="box pt-4 pt-lg-0">
         <div class="row gutter-0">
             <div class="col-12 col-text">
-                <div class="title">The Need for Surgeons in Gaza</div>
+                <div class="title">The Need for Surgeons in {{$locationText}}</div>
                 <p>{!! $ourValuesDescription !!}</p>
             </div>
             <div class="col-12 col-media">

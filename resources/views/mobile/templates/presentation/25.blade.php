@@ -185,6 +185,12 @@ for($i = 0; $i < 10; $i++) {
         $projectImagesCarousel[] = $parameters['project_images_carousel_' . $i];
     }
 }
+
+$requestPath = request()->path();
+$locationText = 'Gaza';
+if(strpos($requestPath, 'lebanon') !== false) {
+    $locationText = 'Lebanon';
+}
 @endphp
 
 <style>
@@ -219,7 +225,7 @@ for($i = 0; $i < 10; $i++) {
 @endif
 
 <section class="our-values new-our-values">
-    <div class="title">The Need for Surgeons in Gaza</div>
+    <div class="title">The Need for Surgeons in {{$locationText}}</div>
     <p>{!! $ourValuesDescription !!}</p>
     <div class="pb-4"></div>
     <div class="img-video play-tr videoWrapper" style="">
