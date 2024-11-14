@@ -12,23 +12,30 @@ $collection = collect($amount)->transform(function ($item, $key) use ($campaigns
 
 @if($collection->count() >= 15)
     @php
-    $pricesGrouped = [
-        [
-            'min' => 25,
-            'max' => 75,
-        ],[
-            'min' => 80,
-            'max' => 150,
-        ],[
-            'min' => 200,
-            'max' => PHP_INT_MAX,
-        ]
-    ];
+        $pricesGrouped = [
+                [
+                    'min' => 25,
+                    'max' => 75,
+                ],[
+                    'min' => 80,
+                    'max' => 150,
+                ],[
+                    'min' => 200,
+                    'max' => PHP_INT_MAX,
+                ]
+            ];
+         if(isset($isWinter2024Page)) {
+            array_unshift($pricesGrouped,  [
+                'min' => 1,
+                'max' => 25,
+            ]);
+            array_pop($pricesGrouped);
+        }
 
-    $maxGrouped = collect($pricesGrouped)->max('max');
+        $maxGrouped = collect($pricesGrouped)->max('max');
 
-    $min = $collection->min('value');
-    $max = $collection->max('value');
+        $min = $collection->min('value');
+        $max = $collection->max('value');
     @endphp
     @foreach ($pricesGrouped as $group)
         @php

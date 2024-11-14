@@ -53,6 +53,9 @@ $videoRenderedBlock = \App\Models\Widget::replaceMonikers('{video-carousel|' . $
 
 $isEmergency = \App\Models\Project::isEmergency($pageInstance);
 
+$requestPath = request()->path();
+$isWinter2024Page = ($requestPath === 'winter-2024');
+
 @endphp
 
 <div class="pt-4"></div>
@@ -74,7 +77,8 @@ $isEmergency = \App\Models\Project::isEmergency($pageInstance);
         <div class="pt-5"></div>
 
         @include('modules.presentation.donate_module', [
-        'colorInfo' => true
+            'colorInfo' => true,
+            'isWinter2024Page' => true
         ])
 
     </div>

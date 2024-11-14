@@ -72,7 +72,9 @@
         $swipifyWidgetToken = $parameters['swipify_widget_token'];
     }
     $showPaymentWidget = strlen($swipifyWidgetId) > 0 && strlen($swipifyWidgetToken) > 0;
-
+    if (isset($isWinter2024Page)) {
+         unset($useMonthlyTab);
+    }
 @endphp
 
 @if($showPriceHandlersOnly)
@@ -106,6 +108,7 @@
                         @csrf
                         @include('modules.presentation.parts.donate_options', [
                             'donateOptionsType' => \App\Models\CampaignPrice::TYPE_SINGLE,
+                             'isWinter2024Page' => $isWinter2024Page
                         ])
 
                         <input type="hidden" value="single" name="period" />
