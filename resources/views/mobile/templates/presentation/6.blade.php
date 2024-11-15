@@ -68,7 +68,7 @@ $isWinter2024Page = ($requestPath === 'winter-2024');
 
         @include('modules.presentation.donate_module', [
              'colorInfo' => true,
-             'isWinter2024Page' => true
+             'isWinter2024Page' => $isWinter2024Page
         ])
 
     </div>
