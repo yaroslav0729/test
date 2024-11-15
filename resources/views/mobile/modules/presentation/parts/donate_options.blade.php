@@ -23,6 +23,13 @@
                 'max' => PHP_INT_MAX,
             ]
         ];
+        if(isset($isWinter2024Page)) {
+            array_unshift($pricesGrouped,  [
+                'min' => 1,
+                'max' => 25,
+            ]);
+            array_pop($pricesGrouped);
+        }
 
         $maxGrouped = collect($pricesGrouped)->max('max');
 

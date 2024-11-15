@@ -61,7 +61,9 @@ $allCategories = \App\Models\CampaignCategory::all();
         $swipifyWidgetToken = $parameters['swipify_widget_token'];
     }
     $showPaymentWidget = strlen($swipifyWidgetId) > 0 && strlen($swipifyWidgetToken) > 0;
-
+    if (isset($isWinter2024Page)) {
+         unset($useMonthlyTab);
+    }
 @endphp
 
 @php
@@ -403,7 +405,8 @@ if (!isset($useAppeal)) {
                         <form action="{{ route('cart.add') }}" method="POST">
                             @csrf
                             @include('modules.presentation.parts.donate_options',[
-                                'donateOptionsType' => \App\Models\CampaignPrice::TYPE_SINGLE
+                                'donateOptionsType' => \App\Models\CampaignPrice::TYPE_SINGLE,
+                                'isWinter2024Page' => $isWinter2024Page
                             ])
 
                             <input type="hidden" value="single" name="period" />
