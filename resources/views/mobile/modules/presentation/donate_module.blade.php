@@ -72,7 +72,7 @@
         $swipifyWidgetToken = $parameters['swipify_widget_token'];
     }
     $showPaymentWidget = strlen($swipifyWidgetId) > 0 && strlen($swipifyWidgetToken) > 0;
-    if (isset($isWinter2024Page)) {
+    if (isset($isWinter2024Page) && $isWinter2024Page) {
          unset($useMonthlyTab);
     } else {
         $isWinter2024Page = false;
