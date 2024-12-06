@@ -51,11 +51,11 @@ if (isset($parameters['proj_video_preview'])) {
 
 $videoRenderedBlock = \App\Models\Widget::replaceMonikers('{video-carousel|' . $projVideo . ',' . $projVideoPreview . '}');
 
-$isEmergency = \App\Models\Project::isEmergency($pageInstance);
+$isEmergency = \App\Models\Project::isEmergency($pageInstance ?? null);
 
 $requestPath = request()->path();
 $isWinter2024Page = ($requestPath === 'winter-2024');
-
+$isOrphanCarePage = ($requestPath === 'orphancare');
 @endphp
 
 <div class="pt-4"></div>
@@ -68,7 +68,8 @@ $isWinter2024Page = ($requestPath === 'winter-2024');
 
         @include('modules.presentation.donate_module', [
              'colorInfo' => true,
-             'isWinter2024Page' => $isWinter2024Page
+             'isWinter2024Page' => $isWinter2024Page,
+             'isOrphanCarePage' => $isOrphanCarePage
         ])
 
     </div>

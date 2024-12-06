@@ -66,6 +66,10 @@ $allCategories = \App\Models\CampaignCategory::all();
     } else {
         $isWinter2024Page = false;
     }
+
+    if(!isset($isOrphanCarePage)) {
+        $isOrphanCarePage = false;
+    }
 @endphp
 
 @php
@@ -391,10 +395,10 @@ if (!isset($useAppeal)) {
                 <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                         @isset($useSingleTab)
-                        <a run-trigger="click" class="nav-link active @isset($isColorInfo) color-info @endisset @if($isEmergency) color-red @endif"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true" donate-filter data-filter="single">Single Donation</a>
+                        <a class="nav-link @if(!$isOrphanCarePage) active @endif @isset($isColorInfo) color-info @endisset @if($isEmergency) color-red @endif"  data-toggle="tab" href="#nav-1" role="tab" aria-selected="true" donate-filter data-filter="single">Single Donation</a>
                         @endisset
                         @isset($useMonthlyTab)
-                        <a class="nav-link @isset($isColorInfo) color-info @endisset @if($isEmergency) color-red @endif @empty($useSingleTab) active @endempty"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false" donate-filter data-filter="monthly">Monthly Donation</a>
+                        <a class="nav-link @if($isOrphanCarePage) active @endif @isset($isColorInfo) color-info @endisset @if($isEmergency) color-red @endif @empty($useSingleTab) active @endempty"  data-toggle="tab" href="#nav-2" role="tab"  aria-selected="false" donate-filter data-filter="monthly">Monthly Donation</a>
                         @endisset
                         @isset($useAppeal)
                         <a class="nav-link color-red"  data-toggle="tab" href="#nav-3" role="tab"  aria-selected="false" donate-filter data-filter="appeal">Appeal Donation</a>
@@ -403,7 +407,7 @@ if (!isset($useAppeal)) {
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     @isset($useSingleTab)
-                    <div class="tab-pane fade show active" id="nav-1" role="tabpanel" >
+                    <div class="tab-pane fade @if(!$isOrphanCarePage) show active @endif" id="nav-1" role="tabpanel" >
                         <form action="{{ route('cart.add') }}" method="POST">
                             @csrf
                             @include('modules.presentation.parts.donate_options',[
@@ -451,7 +455,7 @@ if (!isset($useAppeal)) {
                     </div>
                     @endisset
                     @isset($useMonthlyTab)
-                    <div class="tab-pane fade @empty($useSingleTab) show active @endempty" id="nav-2" role="tabpanel" >
+                    <div class="tab-pane fade @if($isOrphanCarePage) show active @endif @empty($useSingleTab) show active @endempty" id="nav-2" role="tabpanel" >
                         <form action="{{ route('cart.add') }}" method="POST">
                             @csrf
 
