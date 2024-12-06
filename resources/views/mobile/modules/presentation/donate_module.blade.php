@@ -77,6 +77,9 @@
     } else {
         $isWinter2024Page = false;
     }
+    if(!isset($isOrphanCarePage)) {
+        $isOrphanCarePage = false;
+    }
 @endphp
 
 @if($showPriceHandlersOnly)
@@ -378,12 +381,12 @@
         <nav>
             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                 @isset($useSingleTab)
-                    <a class="nav-link @isset($isColorInfo) color-info @endisset @if ($isEmergency) color-red @endif active"
-                        run-trigger="click" data-toggle="tab" href="#nav-1" role="tab" donate-filter
+                    <a class="nav-link @if(!$isOrphanCarePage) active @endif @isset($isColorInfo) color-info @endisset @if ($isEmergency) color-red @endif"
+                        data-toggle="tab" href="#nav-1" role="tab" donate-filter
                         data-filter="single" aria-selected="true">Single</a>
                 @endisset
                 @isset($useMonthlyTab)
-                    <a class="nav-link @isset($isColorInfo) color-info @endisset @if ($isEmergency) color-red @endif "
+                    <a class="nav-link @if($isOrphanCarePage) active @endif @isset($isColorInfo) color-info @endisset @if ($isEmergency) color-red @endif "
                         data-toggle="tab" href="#nav-2" role="tab" donate-filter data-filter="monthly"
                         aria-selected="false">Monthly</a>
                 @endisset
@@ -397,7 +400,7 @@
         <div class="tab-content" id="nav-tabContent">
 
             @isset($useSingleTab)
-                <div class="tab-pane fade show active" id="nav-1" role="tabpanel">
+                <div class="tab-pane fade  @if(!$isOrphanCarePage) show active @endif" id="nav-1" role="tabpanel">
                     <form action="{{ route('cart.add') }}" method="POST">
                         @csrf
                         @include('modules.presentation.parts.donate_options', [
@@ -440,7 +443,7 @@
             @endisset
 
             @isset($useMonthlyTab)
-                <div class="tab-pane fade" id="nav-2" role="tabpanel">
+                <div class="tab-pane fade @if($isOrphanCarePage) show active @endif" id="nav-2" role="tabpanel">
                     <form action="{{ route('cart.add') }}" method="POST">
                         @csrf
                         @include('modules.presentation.parts.donate_options', [
