@@ -203,15 +203,17 @@ if(strpos($requestPath, 'lebanon') !== false) {
     .save-lives-title {
         font-family: 'Hard';
         font-size: 80px !important;
+        color: #F97866;
     }
 
     p {
         text-align: justify !important;
     }
 </style>
-<section class="who-we-are-head save-lives-head" style="background-color: #F4533C;">
-    <h1 class="save-lives-title">SAVE LIVES</h1>
-    <h1>{!! $ourMissionTitle !!}</h1>
+<section class="who-we-are-head save-lives-head" style="background-color: #232051;">
+    <h1 class="save-lives-title">DELIVER HOPE</h1>
+    {{-- <h1>{!! $ourMissionTitle !!}</h1> --}}
+    <h1>Send Trucks<br>To Gaza</h1>
 </section>
 
 @if ($showPriceHandlers)
@@ -225,7 +227,8 @@ if(strpos($requestPath, 'lebanon') !== false) {
 @endif
 
 <section class="our-values new-our-values">
-    <div class="title">The Need for Surgeons in {{$locationText}}</div>
+    {{-- <div class="title">The Need for Surgeons in {{$locationText}}</div> --}}
+    <div class="title">A Tentative Ceasefire</div>
     <p>{!! $ourValuesDescription !!}</p>
     <div class="pb-4"></div>
     <div class="img-video play-tr videoWrapper" style="">

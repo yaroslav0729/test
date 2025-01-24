@@ -200,6 +200,7 @@ if(strpos($requestPath, 'lebanon') !== false) {
     .save-lives-title {
         font-family: 'Hard';
         font-size: 130px !important;
+        color: #F97866;
     }
 
     p {
@@ -207,9 +208,10 @@ if(strpos($requestPath, 'lebanon') !== false) {
     }
 </style>
 
-<section class="who-we-are-head" style="background-color: #F4533C;">
-    <h1 class="save-lives-title">SAVE LIVES</h1>
-    <h1>{!! $ourMissionTitle !!}</h1>
+<section class="who-we-are-head" style="background-color: #232051;">
+    <h1 class="save-lives-title">DELIVER HOPE</h1>
+    {{-- <h1>{!! $ourMissionTitle !!}</h1> --}}
+    <h1>Send Trucks<br>To Gaza</h1>
 
     @if ($showPriceHandlers)
         @include('modules.presentation.donate_module', [
@@ -223,7 +225,8 @@ if(strpos($requestPath, 'lebanon') !== false) {
     <div class="box pt-4 pt-lg-0">
         <div class="row gutter-0">
             <div class="col-12 col-text">
-                <div class="title">The Need for Surgeons in {{$locationText}}</div>
+                {{-- <div class="title">The Need for Surgeons in {{$locationText}}</div> --}}
+                <div class="title">A Tentative Ceasefire</div>
                 <p>{!! $ourValuesDescription !!}</p>
             </div>
             <div class="col-12 col-media">
