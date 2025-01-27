@@ -203,22 +203,15 @@ if(strpos($requestPath, 'lebanon') !== false) {
     .save-lives-title {
         font-family: 'Hard';
         font-size: 80px !important;
+        color: #F97866;
     }
 
     p {
         text-align: justify !important;
     }
 </style>
-<section class="who-we-are-head save-lives-head" style="background-color: {{ request()->is('trucks-for-gaza') ? '#232051' : '#f4533c' }};">
-    @php
-        $title = '';
-        if (request()->is('trucks-for-gaza')) {
-            $title = 'DELIVER HOPE';
-        } else {
-            $title = 'SAVE LIVES';
-        }
-    @endphp
-    <h1 class="save-lives-title" style="color: {{ request()->is('trucks-for-gaza') ? '#F97866' : '#fff' }};">{{ $title }}</h1>
+<section class="who-we-are-head save-lives-head" style="background-color: #232051;">
+    <h1 class="save-lives-title">Deliver Hope</h1>
     <h1>{!! $ourMissionTitle !!}</h1>
 </section>
 
