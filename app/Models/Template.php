@@ -23,6 +23,7 @@ class Template
     const GET_INVOLVED_PAGE_TEMPLATE = 23;
     const GAZA_DOCTORS_PAGE = 24;
     const WHO_WE_ARE_PROJECT_PAGE = 25;
+    const GAZA_SURGEONS_PAGE = 26;
     public const THANK_YOU_SUBSCRIPTION_PAGE = 21;
 
     const TEST_PAGE = 100;
@@ -48,6 +49,7 @@ class Template
         self::WIDGET_PAGE_TEMPLATE,
         self::GET_INVOLVED_PAGE_TEMPLATE,
         self::GAZA_DOCTORS_PAGE,
+        self::GAZA_SURGEONS_PAGE,
         self::WHO_WE_ARE_PROJECT_PAGE,
         //self::TEST_PAGE,
     ];
@@ -97,6 +99,8 @@ class Template
                 return 'Gaza doctors page';
             case self::WHO_WE_ARE_PROJECT_PAGE:
                 return 'Who we are project page';
+            case self::GAZA_SURGEONS_PAGE:
+                return 'Gaza surgeons page';
 
 
             default:
@@ -184,6 +188,12 @@ class Template
         self::GAZA_DOCTORS_PAGE => [
             'headerClassName' => 'bg-white',
             'footerClassName' => 'bg-info-red',
+            'headerType' => 'parts.header',
+        ],
+
+        self::GAZA_SURGEONS_PAGE => [
+            'headerClassName' => 'white',
+            'footerClassName' => 'bg-primary',
             'headerType' => 'parts.header',
         ],
 
@@ -348,7 +358,8 @@ class Template
                 }
 
             case self::WHO_WE_ARE_PROJECT_PAGE:
-            case self::WHO_WE_ARE_PAGE: {
+            case self::WHO_WE_ARE_PAGE:
+            case self::GAZA_SURGEONS_PAGE: {
 
                     $rules = [
                         'parameters.background_image' => 'required',
