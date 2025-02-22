@@ -51,7 +51,7 @@ if ($banner && $banner->is_active) {
         @endif
 
         @yield('content')
-        @include('cookieConsent::index')
+        {{-- @include('cookieConsent::index') --}}
         @yield('footer')
     </div>
     @include('templates.presentation.parts.add_to_cart_popup')
