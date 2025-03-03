@@ -116,7 +116,8 @@ class HubspotService
         $object['donation_date'] = $donation->created_at->timezone('UTC')->startOfDay()->timestamp . '000';
         $object['time'] = $donation->created_at->format('H:i:s');
         $object['campaign_name'] = $donation->campaign ? $donation->campaign->name : 'No campaign';
-        $object['program'] = $donation->campaign ? $donation->campaign->program_name : 'No program';
+        $object['program'] = $donation->campaign ? $donation->campaign->project_name : 'No program';
+        $object['project_category'] = $donation->campaign ? $donation->campaign->program_name : 'No project category';
         $object['donation_type'] = $donation->campaign_category ? $donation->campaign_category->name : 'General Donation';
         $object['gift_aid_'] = $donation->order && $donation->order->gift_aid ? true : false;
         $object['remark'] = $donation->order ? $donation->order->notes : '';
