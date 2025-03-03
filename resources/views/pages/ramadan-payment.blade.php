@@ -142,7 +142,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <div class="col-md-5">
+                        <div class="col-md-9">
                             <div class="form-group">
                                 <label id="total-amount" style="font-size: 1.2em;"></label>
                             </div>
@@ -154,8 +154,8 @@
                             <div class="form-group">
                                 <label><b>When was the date of your first fast this Ramadan?</b></label>
                                 <select class="form-control" required name="start_date" id="start_date">
-                                    <option value="2024-03-01">1st March</option>
-                                    <option value="2024-03-02">2nd March</option>
+                                    <option value="{{ now()->format('Y') }}-03-01">1st of March</option>
+                                    <option value="{{ now()->format('Y') }}-03-02">2nd of March</option>
                                 </select>
                             </div>
                             <p class="text-danger ml-3 font-size-14" id="message-error-amount"></p>
@@ -436,9 +436,11 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" crossorigin="anonymous"></script>
     <script>
-        let startDate = moment('2024-03-01');
-        let endDate = moment('2024-04-01');
-
+        // Get current year
+        const currentYear = moment().format('YYYY');
+        let startDate = moment(`${currentYear}-03-01`);
+        let endDate = moment(`${currentYear}-03-31`);
+        
         const frequencyElement = document.getElementById('frequency');
         const nodeDesktop = document.getElementById('withdrawal-frequency-desktop');
         const nodeMobile = document.getElementById('withdrawal-frequency-mobile');
@@ -478,17 +480,24 @@
             return dates;
         };
 
-        const getStartDate = function (startDate, endDate) {
+        const getStartDate = function (startDate, paramendDate) {
+            const dateFormat = 'MM-DD-YYYY';
             if ([2, 3].includes(parseInt(frequencyElement.value))) {
-                const date = endDate.clone().subtract(9, 'days');
-                return date.format('MM-DD-YYYY') > moment().format('MM-DD-YYYY')
-                    ? date
-                    : moment();
+                const date = paramendDate.clone().subtract(9, 'days');
+                if (moment(date.format(dateFormat)).isAfter(moment().format(dateFormat))) {
+                    return date;
+                } else {
+                    endDate = moment().add(29, 'days');
+                    return moment(moment().format('YYYY-MM-DD'));
+                }
             }
 
-            return startDate.format('MM-DD-YYYY') > moment().format('MM-DD-YYYY')
-                ? startDate
-                : moment();
+            if (moment(startDate.format(dateFormat)).isAfter(moment().format(dateFormat))) {
+                return startDate;
+            } else {
+                endDate = moment().add(29, 'days');
+                return moment(moment().format('YYYY-MM-DD'));
+            }
         }
 
         const createItem = function (date, amount, numberDay) {
@@ -562,7 +571,29 @@
 
         const showTotalAmount = (total) => {
             const element = document.getElementById('total-amount');
-            element.innerHTML = `Total £${total}`;
+            if (total > 0) {
+                const amounts = document.querySelectorAll('#amount');
+                let selectedReasons = [];
+                
+                amounts.forEach(input => {
+                    if (input.value && input.value > 0) {
+                        // Get just the reason name from the input's name attribute
+                        const reason = input.name.match(/\[(.*?)\]/)[1]  // extracts text between square brackets
+                            .split('_')  // split by underscore
+                            .map(word => word.charAt(0).toUpperCase() + word.slice(1))  // capitalize each word
+                            .join(' ');  // join with spaces
+                        selectedReasons.push(reason);
+                    }
+                });
+                
+                if (selectedReasons.length > 0) {
+                    element.innerHTML = `Total £${total} (${selectedReasons.join(', ')})`;
+                } else {
+                    element.innerHTML = `Total £${total}`;
+                }
+            } else {
+                element.innerHTML = '';
+            }
         }
 
         const drawTableDonates = () => {
@@ -723,7 +754,6 @@
 {{--                            // hiddenInput.setAttribute('type', 'hidden');--}}
 {{--                            // hiddenInput.setAttribute('name', 'stripe_token');--}}
 {{--                            // hiddenInput.setAttribute('value', token.id);--}}
-{{--                            // form.appendChild(hiddenInput);--}}
 {{--                            form.submit();--}}
 {{--                        }--}}
 {{--                    });--}}
