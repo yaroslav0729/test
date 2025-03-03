@@ -154,8 +154,8 @@
                             <div class="form-group">
                                 <label><b>When was the date of your first fast this Ramadan?</b></label>
                                 <select class="form-control" required name="start_date" id="start_date">
-                                    <option value="2024-03-11">11th of March</option>
-                                    <option value="2024-03-12">12th of March</option>
+                                    <option value="2024-03-01">1st March</option>
+                                    <option value="2024-03-02">2nd March</option>
                                 </select>
                             </div>
                             <p class="text-danger ml-3 font-size-14" id="message-error-amount"></p>
@@ -436,8 +436,8 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" crossorigin="anonymous"></script>
     <script>
-        let startDate = moment('2024-03-11');
-        let endDate = moment('2024-04-10');
+        let startDate = moment('2024-03-01');
+        let endDate = moment('2024-04-01');
 
         const frequencyElement = document.getElementById('frequency');
         const nodeDesktop = document.getElementById('withdrawal-frequency-desktop');
