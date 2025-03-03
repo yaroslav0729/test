@@ -448,7 +448,8 @@
 
         if (startDateSelector) {
             startDate = moment(startDateSelector.value);
-            endDate = startDate.clone().add(29, 'days');
+            endDate = startDate.clone().add(30, 'days');
+            console.log(startDate.format('MM-DD-YYYY'), endDate.format('MM-DD-YYYY'), 'startDate', 'endDate');
         }
 
        const paymentForm = document.getElementById("ramadan-form");
@@ -468,37 +469,49 @@
            $('body').css('overflow', 'hidden');
        })
 
-        let getDaysBetweenDates = function(startDate, endDate) {
-            let currentStartDate = startDate.clone();
+        const getStartDate = function (startDate, endDate) {
+            const dateFormat = 'MM-DD-YYYY';
+            const today = moment();
+
+            if ([2, 3].includes(parseInt(frequencyElement.value))) {
+                const date = endDate.clone().subtract(9, 'days');
+                if (moment(date.format(dateFormat)).isAfter(moment().format(dateFormat))) {
+                    return date;
+                } else {
+                    return today;
+                }
+            }
+
+            // For regular donations, if selected start date is before today,
+            // use today as the start date but keep the original end date
+            if (moment(startDate.format(dateFormat)).isBefore(moment().format(dateFormat))) {
+                return today;
+            }
+            return startDate;
+        }
+
+        const getDaysBetweenDates = function(startDate, endDate) {
+            let currentStartDate = moment(startDate);
+            let momentEndDate = moment(endDate);
             let dates = [];
 
-            while (currentStartDate.startOf('day').isSameOrBefore(endDate.startOf('day'))) {
+            // For last 10 nights options
+            if ([2, 3].includes(parseInt(frequencyElement.value))) {
+                currentStartDate = momentEndDate.clone().subtract(9, 'days');
+            }
+
+            // Ensure we don't include past dates
+            if (currentStartDate.isBefore(moment(), 'day')) {
+                currentStartDate = moment();
+            }
+
+            while (currentStartDate.isSameOrBefore(momentEndDate)) {
                 dates.push(currentStartDate.format('MM-DD-YYYY'));
                 currentStartDate.add(1, 'days');
             }
 
             return dates;
         };
-
-        const getStartDate = function (startDate, paramendDate) {
-            const dateFormat = 'MM-DD-YYYY';
-            if ([2, 3].includes(parseInt(frequencyElement.value))) {
-                const date = paramendDate.clone().subtract(9, 'days');
-                if (moment(date.format(dateFormat)).isAfter(moment().format(dateFormat))) {
-                    return date;
-                } else {
-                    endDate = moment().add(29, 'days');
-                    return moment(moment().format('YYYY-MM-DD'));
-                }
-            }
-
-            if (moment(startDate.format(dateFormat)).isAfter(moment().format(dateFormat))) {
-                return startDate;
-            } else {
-                endDate = moment().add(29, 'days');
-                return moment(moment().format('YYYY-MM-DD'));
-            }
-        }
 
         const createItem = function (date, amount, numberDay) {
             const parentElement = document.createElement('div');
@@ -599,7 +612,6 @@
         const drawTableDonates = () => {
             const currentStartDate = getStartDate(startDate, endDate);
             const range = getDaysBetweenDates(currentStartDate, endDate);
-
             const countDay = range.length;
             const amount = calculateAmount(parseInt(countDay), getSum());
 
@@ -607,9 +619,12 @@
                 nodeDesktop.removeChild(nodeDesktop.lastChild);
             }
 
-            range.forEach(function (date, index) {
-                createItem(date, amount, index + 1);
-            })
+            // Only draw if we have a sum greater than 0
+            if (getSum() > 0) {
+                range.forEach(function (date, index) {
+                    createItem(date, amount, index + 1);
+                });
+            }
 
             showTotalAmount(getSum());
         }
@@ -624,10 +639,10 @@
             drawTableDonates();
         });
         if (startDateSelector) {
-            startDateSelector.addEventListener('change', (event) => {
-                startDate = moment(event.target.value);
-                endDate = moment(event.target.value).add(29, 'days');
-                drawTableDonates();
+            startDateSelector.addEventListener('change', function() {
+                startDate = moment(this.value);
+                endDate = startDate.clone().add(30, 'days'); // Always 30 days total
+                drawTableDonates(); // Redraw the table with new dates
             });
         }
     </script>
