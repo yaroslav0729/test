@@ -8,9 +8,13 @@ $collection = collect($amount)->transform(function ($item, $key) use ($campaigns
     $item['id'] = $key;
     return $item;
 });
+
+// Calculate count per donation type
+$countsByType = $collection->groupBy('type')->map->count();
+$maxTypeCount = $countsByType->max();
 @endphp
 
-@if($collection->count() >= 15)
+@if($maxTypeCount >= 15)
     @php
         $pricesGrouped = [
                 [
