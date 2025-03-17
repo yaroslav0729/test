@@ -29,7 +29,7 @@
                 <form id="ramadan-form" action="{{ route('nights-of-mercy.store') }}" method="POST">
                     @csrf
                     <p class="font-size-30 mb-5"><b>Your Nights of Mercy Donation</b></p>
-                    <h5>Set up your automated donations here, it takes just a few minutes</h5>
+                    <h5>Split your donations throughout Ramadan, or on the last 10 nights. If you like, donate more on the odd nights so you're sure to donate on Laylatul-Qadr.</h5>
                     <div class="text-right pb-3"><b>DONATION OPTIONS</b></div>
                     <div class="black-line"></div>
                     <div class="pt-5"></div>
