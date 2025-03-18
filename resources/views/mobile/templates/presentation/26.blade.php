@@ -227,7 +227,7 @@ if(strpos($requestPath, 'lebanon') !== false) {
 
 <section class="our-values new-our-values">
     {{-- <div class="title">The Need for Surgeons in {{$locationText}}</div> --}}
-    <div class="title">A Continuing Conflict</div>
+    <div class="title">A Ceasefire Shattered</div>
     <p>{!! $ourValuesDescription !!}</p>
     <div class="pb-4"></div>
     <div class="img-video play-tr videoWrapper" style="">
