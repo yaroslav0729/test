@@ -24,10 +24,13 @@ class UpsellCreateEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required_if:active,1|string',
-            'description' => 'required_if:active,1|string',
-            'price' => 'required_if:active,1|numeric',
-            'active' => 'boolean'
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'active' => 'boolean',
+            'project_name' => 'nullable|string|max:255',
+            'program_name' => 'nullable|string|max:255',
+            'campaign_category_id' => 'nullable|exists:campaign_categories,id'
         ];
     }
 }

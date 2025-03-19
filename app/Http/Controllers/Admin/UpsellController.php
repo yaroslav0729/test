@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpsellCreateEditRequest;
 use App\Models\Upsell;
+use App\Models\CampaignCategory;
 use Illuminate\Http\Request;
 
 class UpsellController extends Controller
@@ -12,8 +13,9 @@ class UpsellController extends Controller
     public function createOrEdit()
     {
         $upsell = Upsell::find(["id" => 1])->first();
+        $categories = CampaignCategory::all();
 
-        return view('admin.upsell.create_edit', compact('upsell'));
+        return view('admin.upsell.create_edit', compact('upsell', 'categories'));
     }
 
     public function store(UpsellCreateEditRequest $request)

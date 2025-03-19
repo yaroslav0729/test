@@ -13,13 +13,24 @@ class Upsell extends Model
         'title',
         'description',
         'price',
-        'active'
+        'active',
+        'project_name',
+        'program_name',
+        'campaign_category_id'
     ];
 
     protected $casts = [
         'title' => 'string',
         'description' => 'string',
         'price' => 'float',
-        'active' => 'boolean'
+        'active' => 'boolean',
+        'project_name' => 'string',
+        'program_name' => 'string',
+        'campaign_category_id' => 'integer'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(CampaignCategory::class, 'campaign_category_id');
+    }
 }

@@ -22,6 +22,10 @@ class FoodPackQurbaniService extends AbstractModelService
     {
         $this->create([
             'country_id' => $request->get('country_id'),
+            'campaign_name' => $request->get('campaign_name'),
+            'project_name' => $request->get('project_name'),
+            'program_name' => $request->get('program_name'),
+            'campaign_category_id' => $request->get('campaign_category_id'),
         ]);
 
         if (!empty($this->model->id)) {
@@ -40,6 +44,10 @@ class FoodPackQurbaniService extends AbstractModelService
     {
         $this->update($foodPacksPrice, [
             'country_id' => $request->get('country_id'),
+            'campaign_name' => $request->get('campaign_name'),
+            'project_name' => $request->get('project_name'),
+            'program_name' => $request->get('program_name'),
+            'campaign_category_id' => $request->get('campaign_category_id'),
         ]);
 
         if (!empty($this->model->id)) {

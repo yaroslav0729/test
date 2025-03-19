@@ -49,8 +49,9 @@ class FoodPackController extends Controller
     public function edit($id)
     {
         return view('admin.foodpack.edit', [
-            'countries' => Country::all(),
-            'foodpack' => $this->foodPackService->getById($id)
+            'countries' => Country::query()->orderBy('name')->get(),
+            'foodpack' => $this->foodPackService->getById($id),
+            'categories' => \App\Models\CampaignCategory::all()
         ]);
     }
 

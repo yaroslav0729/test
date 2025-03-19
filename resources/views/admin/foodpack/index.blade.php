@@ -45,6 +45,10 @@
                             <th class="px-4 py-2">Id</th>
                             <th class="px-4 py-2">Country</th>
                             <th class="px-4 py-2">Price</th>
+                            <th class="px-4 py-2">Campaign Name</th>
+                            <th class="px-4 py-2">Project Name</th>
+                            <th class="px-4 py-2">Program Name</th>
+                            <th class="px-4 py-2">Category</th>
                             <th class="px-4 py-2">Action</th>
                         </tr>
                         </thead>
@@ -54,6 +58,10 @@
                                 <td class="px-4">{{ $foodpack->id }}</td>
                                 <td class="px-4">{{ $foodpack->country->name }}</td>
                                 <td class="px-4">{{ $foodpack->price }}</td>
+                                <td class="px-4">{{ $foodpack->campaign_name }}</td>
+                                <td class="px-4">{{ $foodpack->project_name }}</td>
+                                <td class="px-4">{{ $foodpack->program_name }}</td>
+                                <td class="px-4">{{ $foodpack->campaign_category->name ?? '-' }}</td>
                                 <td class="px-4">
                                     <a href="{{ route('admin.foodpack.edit', $foodpack->id) }}">
                                         <button class="btn btn-info action-btn" type="submit" title="Edit foodpack">

@@ -38,12 +38,37 @@
                               name="price" value="{{ old('price', $upsell->price ?? null) }}" />
                 </div>
 
+                <div class="form-group">
+                    <label for="project_name">Project Name</label>
+                    <input type="text" class="form-control" id="project_name" name="project_name" 
+                           value="{{ old('project_name', $upsell->project_name ?? '') }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="program_name">Program Name</label>
+                    <input type="text" class="form-control" id="program_name" name="program_name" 
+                           value="{{ old('program_name', $upsell->program_name ?? '') }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="campaign_category_id">Category</label>
+                    <select name="campaign_category_id" id="campaign_category_id" class="form-control">
+                        <option value="">Select Category</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}" 
+                                {{ old('campaign_category_id', $upsell->campaign_category_id) == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="form-check">
                     <input class="form-check-input" id="active" name="active" type="checkbox" value="1"
                            @if (old('active', $upsell->active ?? false)) checked @endif>
                     <label for="active" class="form-check-label">Active</label>
                 </div>
-
+                
                 <hr>
                 <button class="btn btn-info" type="submit">Submit</button>
             </form>

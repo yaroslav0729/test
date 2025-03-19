@@ -17,11 +17,16 @@ class FoodPackQurbaniController extends Controller
 {
     private $foodPackService;
     private $types;
+    private $settings;
 
-    public function __construct(FoodPackQurbaniService $foodPackService, FoodPacksQurbaniesType $foodPacksQurbaniesType)
-    {
+    public function __construct(
+        FoodPackQurbaniService $foodPackService,
+        FoodPacksQurbaniesType $foodPacksQurbaniesType,
+        FoodPackSettings $settings
+    ) {
         $this->foodPackService = $foodPackService;
         $this->types = $foodPacksQurbaniesType;
+        $this->settings = $settings;
     }
 
     public function index(Request $request)
@@ -37,6 +42,7 @@ class FoodPackQurbaniController extends Controller
         return view('admin.foodpack-qurbani.create', [
             'countries' => Country::query()->orderBy('name')->get(),
             'types' => $this->types->get(),
+            'categories' => \App\Models\CampaignCategory::all()
         ]);
     }
 
@@ -53,8 +59,9 @@ class FoodPackQurbaniController extends Controller
     public function edit($id)
     {
         return view('admin.foodpack-qurbani.edit', [
-            'countries' => Country::all(),
-            'foodpack' => $this->foodPackService->getById($id)
+            'countries' => Country::query()->orderBy('name')->get(),
+            'foodpack' => $this->foodPackService->getById($id),
+            'categories' => \App\Models\CampaignCategory::all()
         ]);
     }
 

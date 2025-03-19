@@ -14,6 +14,10 @@ class FoodPackQurbaniRequest extends FormRequest
             'prices.*' => 'numeric',
             'types' => 'required|array',
             'types.*' => 'numeric',
+            'campaign_name' => 'nullable|string|max:255',
+            'project_name' => 'nullable|string|max:255',
+            'program_name' => 'nullable|string|max:255',
+            'campaign_category_id' => 'nullable|exists:campaign_categories,id',
         ];
     }
 

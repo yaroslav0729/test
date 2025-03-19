@@ -15,13 +15,30 @@
             <form action="{{ route('admin.foodpack.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
-                <label for="name">Price</label><br>
+                <label for="price">Price</label><br>
                 <input id="price" name="price" class="form-control" type="text" value="{{ old('price') }}" /><br>
 
                 <label for="country_id">Country</label><br>
                 <select name="country_id" class="form-control mb-3">
                     @foreach($countries as $country)
                         <option value="{{ $country->id }}">{{ $country->name }}</option>
+                    @endforeach
+                </select>
+
+                <label for="campaign_name">Campaign Name</label><br>
+                <input id="campaign_name" name="campaign_name" class="form-control" type="text" value="{{ old('campaign_name') }}" /><br>
+
+                <label for="project_name">Project Name</label><br>
+                <input id="project_name" name="project_name" class="form-control" type="text" value="{{ old('project_name') }}" /><br>
+
+                <label for="program_name">Program Name</label><br>
+                <input id="program_name" name="program_name" class="form-control" type="text" value="{{ old('program_name') }}" /><br>
+
+                <label for="campaign_category_id">Category</label><br>
+                <select name="campaign_category_id" class="form-control mb-3">
+                    <option value="">Select Category</option>
+                    @foreach(\App\Models\CampaignCategory::all() as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
 
