@@ -243,7 +243,7 @@ if(strpos($requestPath, 'lebanon') !== false) {
 </section>
 
 @if(!$shouldHideMap)
-<section class="gw-map-btn" style="display: none;">
+<section class="gw-map-btn">
     <div style="background-image: url(img/who-we-are-map-mobile.jpg)" alt-src="{{ $mapAlternativeImage }}">
         <a href="#" id="btn-view-global-work" class="btn btn-info">View Global Work</a>
     </div>
