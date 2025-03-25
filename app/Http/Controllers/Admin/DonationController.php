@@ -133,11 +133,11 @@ class DonationController extends Controller
                     } else if ($donation->upsell) {
                         $row['Campaign'] = $donation->name ?? 'Provide Rice This Eid';
                     } else {
-                        $row['Campaign'] = 'no campaign';
-                    }
-                    $row['Campaign country'] = $donation->campaign && $donation->campaign->country ? $donation->campaign->country->name : '';
-                    $row['Project name'] = $donation->campaign && $donation->campaign->project_name ? $donation->campaign->project_name : '';
-                    $row['Program name'] = $donation->campaign && $donation->campaign->program_name ? $donation->campaign->program_name : '';
+                        $row['Campaign'] = 'No Campaign';
+                    }   
+                    $row['Campaign country'] = $donation->campaign && $donation->campaign->country ? $donation->campaign->country->name : 'No Country';
+                    $row['Project name'] = $donation->campaign && $donation->campaign->project_name ? $donation->campaign->project_name : 'No Project';
+                    $row['Program name'] = $donation->campaign && $donation->campaign->program_name ? $donation->campaign->program_name : 'No Program';
                     $row['Name'] = $donation->qurbani_name;
                     $row['Category'] = $donation->campaign_category ? $donation->campaign_category->name : 'no category';
                     $row['Gift aid'] = $donation->order && $donation->order->gift_aid ? $donation->order->gift_aid : '';
