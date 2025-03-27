@@ -104,6 +104,18 @@ class HubspotService
 
     public function prepareDealObject($donation)
     {
+        $program_category = [
+            "Orphan & Child Care"=>"Orphan & Children Programmes",
+            "Medical & Healthcare"=>"Medical and Healthcare Programmes",
+            "Emergency Relief"=>"Emergency Relief",
+            "Community Establishment"=>"Community Establishment & Rehabilitation",
+            "General"=>"General & Overseas Staff Cost",
+            "Water & Sanitation"=>"Water and Sanitation Programme",
+            "Food & Social"=>"Food & Social Programmes",
+            "Education"=>"Education Programmes",
+            "Livelihood"=>"Livelihood & Economic Empowerment"
+        ];
+
         $pipeline = $this->getDealPipeline('Website');
         $stage = $pipeline->getStages()[0];
         $object = [];
@@ -117,7 +129,7 @@ class HubspotService
         $object['time'] = $donation->created_at->format('H:i:s');
         $object['campaign_name'] = $donation->campaign ? $donation->campaign->name : 'No campaign';
         $object['program'] = $donation->campaign ? $donation->campaign->project_name : 'No program';
-        $object['program_category'] = $donation->campaign ? $donation->campaign->program_name : 'No project category';
+        $object['program_category'] = $donation->campaign ? ($program_category[$donation->campaign->program_name] ?? "No project category") : "No project category";
         $object['donation_type'] = $donation->campaign_category ? $donation->campaign_category->name : 'General Donation';
         $object['gift_aid_'] = $donation->order && $donation->order->gift_aid ? true : false;
         $object['remark'] = $donation->order ? $donation->order->notes : '';
