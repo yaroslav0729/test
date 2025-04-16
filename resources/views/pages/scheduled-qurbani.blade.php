@@ -88,9 +88,9 @@
 
                                                     @php
                                                         $priceFromAmount = $amount->firstWhere('value', $type->pivot->price);
-                                                        $campaignsIds = $priceFromAmount['campaigns'];
+                                                        $campaignsIds = $priceFromAmount ? $priceFromAmount['campaigns'] : [];
                                                         $filteredCampaigns = $campaigns->whereIn('id', $campaignsIds);
-                                                        $campaign = $filteredCampaigns->firstWhere('country_id', $price->country->id);
+                                                        $campaign = $price->country ? $filteredCampaigns->firstWhere('country_id', $price->country->id) : null;
                                                     @endphp
                                                     <div class="qurbani-options__number">
                                                         @if($type->name === 'Cow')
@@ -107,8 +107,8 @@
                                                         <input type="number"
                                                                input_number_spinner_food
                                                                data-id="{{ $type->id }}"
-                                                               data-campaign="{{ $campaign->id }}"
-                                                               data-campaign-name="{{ $campaign->name }}"
+                                                               data-campaign="{{ $campaign ? $campaign->id : '' }}"
+                                                               data-campaign-name="{{ $campaign ? $campaign->name : '' }}"
                                                                value="0"
                                                                data-type-id="{{ $type->id }}"
                                                                data-price="{{ $type->pivot->price }}"
@@ -129,7 +129,7 @@
                                             <div class="qurbani-options__item-header">
                                                 <p class="align-middle qurbani-country" data-toggle="collapse" href="#{{ $price->id }}">
                                                     <span class="qurbani-options__name">
-                                                        {{ $price->country->name }}
+                                                        {{ $price->country ? $price->country->name : 'Unknown Country' }}
                                                         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
                                                     </span>
                                                 </p>
@@ -155,16 +155,16 @@
 
                                                                 @php
                                                                     $priceFromAmount = $amount->firstWhere('value', $type->pivot->price);
-                                                                    $campaignsIds = $priceFromAmount['campaigns'];
+                                                                    $campaignsIds = $priceFromAmount ? $priceFromAmount['campaigns'] : [];
                                                                     $filteredCampaigns = $campaigns->whereIn('id', $campaignsIds);
-                                                                    $campaign = $filteredCampaigns->firstWhere('country_id', $price->country->id);
+                                                                    $campaign = $price->country ? $filteredCampaigns->firstWhere('country_id', $price->country->id) : null;
                                                                 @endphp
                                                                 <div class="qurbani-options__number">
                                                                     <input type="number"
                                                                            input_number_spinner_food
                                                                            data-id="{{ $type->id }}"
-                                                                           data-campaign="{{ $campaign->id }}"
-                                                                           data-campaign-name="{{ $campaign->name }}"
+                                                                           data-campaign="{{ $campaign ? $campaign->id : '' }}"
+                                                                           data-campaign-name="{{ $campaign ? $campaign->name : '' }}"
                                                                            value="0"
                                                                            data-type-id="{{ $type->id }}"
                                                                            data-price="{{ $type->pivot->price }}"
