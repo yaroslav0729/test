@@ -7,43 +7,41 @@ use ctf0\MediaManager\App\Events\MediaFileOpsNotifications;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Models\Locked;
 
 class MediaController extends MC
 {
     /**
      * Override getFiles method to add error handling
      */
-    public function getFiles(Request $request)
-    {
-        try {
-            // Check if the locked table exists
-            $path = $request->path == '/' ? '' : $request->path;
-            // Return an empty locked list if table doesn't exist
-            return response()->json([
-                'locked' => $this->lockList(),
-                'files' => [
-                    'path'  => $path,
-                    'items' => $this->paginate($this->getData($path), config('mediaManager.pagination_amount', 50)),
-                ],
-            ]);
+    // public function getFiles(Request $request)
+    // {
+    //     try {
+    //         $path = $request->path == '/' ? '' : $request->path;
+    //         return response()->json([
+    //             'locked' => Locked::pluck('path'),
+    //             'files' => [
+    //                 'path'  => $path,
+    //                 'items' => $this->paginate($this->getData($path), config('mediaManager.pagination_amount', 50)),
+    //             ],
+    //         ]);
         
-        } catch (Exception $e) {
-            // Log the error for debugging
-            Log::error('MediaManager getFiles error: ' . $e->getMessage(), [
-                'exception' => $e,
-                'path' => $request->path ?? '/'
-            ]);
+    //     } catch (Exception $e) {
+    //         // Log the error for debugging
+    //         Log::error('MediaManager getFiles error: ' . $e->getMessage(), [
+    //             'exception' => $e,
+    //             'path' => $request->path ?? '/'
+    //         ]);
             
-            // Return a user-friendly error response
-            return response()->json([
-                'error' => 'An error occurred while retrieving media files. Please check the logs for details.',
-                'message' => $e->getMessage()
-            ], 500);
-        }
-    }
+    //         // Return a user-friendly error response
+    //         return response()->json([
+    //             'error' => 'An error occurred while retrieving media files. Please check the logs for details.',
+    //             'message' => $e->getMessage()
+    //         ], 500);
+    //     }
+    // }
 
     /**
      * Override upload method to add error handling
