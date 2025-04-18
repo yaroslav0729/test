@@ -4,6 +4,13 @@
 echo "Navigating to /var/www/html..."
 cd /var/www/html || { echo "Failed to navigate to /var/www/html. Exiting."; exit 1; }
 
+# Fix permissions for log and cache directories
+echo "Fixing permissions for storage/logs and bootstrap/cache..."
+mkdir -p storage/logs bootstrap/cache
+touch storage/logs/laravel.log
+chmod -R 775 storage/logs bootstrap/cache
+chown -R www-data:www-data bootstrap/cache
+
 # Check if the .env file exists and if the APP_KEY is set
 if [ -f ".env" ]; then
     if ! grep -q "APP_KEY=base64" .env; then
@@ -15,7 +22,6 @@ else
     echo ".env file not found. Please make sure the .env file exists."
     exit 1
 fi
-
 
 # Clear caches before running migration
 echo "Clearing Laravel config and caches before migration..."
