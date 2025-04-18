@@ -40,6 +40,7 @@ export default {
             })
         },
         loadPaginatedFiles($state) {
+            this.files.next = this.files.next.replace('http://', 'https://');
             return axios.post(this.files.next, {
                 path: this.files.path || '/'
             }).then(({data}) => {
