@@ -1,57 +1,50 @@
-#!/bin/bash
+FROM 694783502979.dkr.ecr.eu-west-2.amazonaws.com/php7.4-base:latest AS base
 
-# Navigate to the application directory
-echo "Navigating to /var/www/html..."
-cd /var/www/html || { echo "Failed to navigate to /var/www/html. Exiting."; exit 1; }
+# Install PHP extensions and MySQL client
+RUN apt-get update && apt-get install -y \
+    libzip-dev default-mysql-client \
+    && docker-php-ext-install zip pdo_mysql \
+    && rm -rf /var/lib/apt/lists/*
 
-# Fix permissions for log and cache directories
-echo "Fixing permissions for storage/logs and bootstrap/cache..."
-mkdir -p storage/logs bootstrap/cache
-touch storage/logs/laravel.log
-chmod -R 775 storage/logs bootstrap/cache
-chown -R www-data:www-data bootstrap/cache
+# Set working directory
+WORKDIR /var/www/html
 
-# Check if the .env file exists and if the APP_KEY is set
-if [ -f ".env" ]; then
-    if ! grep -q "APP_KEY=base64" .env; then
-        # Generate the application key
-        echo "Generating application key..."
-        php artisan key:generate
-    fi
-else
-    echo ".env file not found. Please make sure the .env file exists."
-    exit 1
-fi
+# Copy composer files and install dependencies without scripts
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --no-interaction --optimize-autoloader --no-scripts
 
-# Clear caches before running migration
-echo "Clearing Laravel config and caches before migration..."
-php artisan config:clear
-php artisan cache:clear
-php artisan view:clear
-php artisan route:clear
+# Copy application files
+COPY . .
 
-# Run migration with detailed output
-echo "Running migrations..."
-php artisan migrate
+# Ensure writable directories exist and are accessible
+RUN mkdir -p storage/logs bootstrap/cache \
+    && touch storage/logs/laravel.log \
+    && chmod -R 775 storage bootstrap/cache
 
-# Run seeders
-echo "Running seeders..."
+# Node build stage for assets
+FROM node:16.20.2 AS node_build
+WORKDIR /app
+COPY --from=base /var/www/html /app
 
-# Create storage symlink
-echo "Creating storage symlink..."
-php artisan storage:link
+RUN npm install && npm run prod
 
-# Publish log viewer
-echo "Publishing log viewer..."
-php artisan log-viewer:publish
+# Final production image
+FROM 694783502979.dkr.ecr.eu-west-2.amazonaws.com/php7.4-base:latest
+WORKDIR /var/www/html
 
-# Clear Laravel caches again
-echo "Clearing Laravel config and caches..."
-php artisan config:clear
-php artisan cache:clear
-php artisan view:clear
-php artisan route:clear
+# Copy built Laravel app and frontend assets
+COPY --from=base /var/www/html /var/www/html
+COPY --from=node_build /app/public /var/www/html/public
 
-# Start Laravel's built-in development server on port 8000
-echo "Starting Laravel development server..."
-php artisan serve --host=0.0.0.0 --port=8000
+# Set proper permissions
+RUN mkdir -p storage/logs bootstrap/cache \
+    && touch storage/logs/laravel.log \
+    && chmod -R 775 storage bootstrap/cache
+
+# Copy entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Run as root (default)
+EXPOSE 8000
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
