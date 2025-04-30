@@ -54,8 +54,8 @@ $videoRenderedBlock = \App\Models\Widget::replaceMonikers('{video-carousel|' . $
 $isEmergency = \App\Models\Project::isEmergency($pageInstance ?? null);
 
 $requestPath = request()->path();
-$isWinter2024Page = ($requestPath === 'winter-2024');
-$isOrphanCarePage = ($requestPath === 'orphancare');
+if($requestPath === 'winter-2024') $isWinter2024Page = true;
+if($requestPath === 'orphancare') $isOrphanCarePage = true;
 @endphp
 
 <div class="pt-4"></div>
