@@ -56,6 +56,9 @@ $isEmergency = \App\Models\Project::isEmergency($pageInstance ?? null);
 $requestPath = request()->path();
 if($requestPath === 'winter-2024') $isWinter2024Page = true;
 if($requestPath === 'orphancare') $isOrphanCarePage = true;
+$pageData = [];
+if(isset($isWinter2024Page)) $pageData['isWinter2024Page'] = $isWinter2024Page;
+if(isset($isOrphanCarePage)) $pageData['isOrphanCarePage'] = $isOrphanCarePage;
 @endphp
 
 <div class="pt-4"></div>
@@ -76,11 +79,7 @@ if($requestPath === 'orphancare') $isOrphanCarePage = true;
         </div>
         <div class="pt-5"></div>
 
-        @include('modules.presentation.donate_module', [
-            'colorInfo' => true,
-            'isWinter2024Page' => $isWinter2024Page,
-            'isOrphanCarePage' => $isOrphanCarePage
-        ])
+        @include('modules.presentation.donate_module', $pageData)
 
     </div>
 </section>
