@@ -8,10 +8,12 @@ RUN apt-get update && apt-get install -y \
 
 # Set working directory
 WORKDIR /var/www/html
-
+RUN chmod -R 777 /var/www/html
 # Copy composer files and install dependencies without scripts
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --no-interaction --optimize-autoloader --no-scripts
+
+
 
 # Copy application files
 COPY . .
@@ -42,10 +44,12 @@ RUN mkdir -p bootstrap/cache \
 
 # Create non-root user
 RUN useradd -m -s /bin/bash appuser
+RUN chmod -R 777 /var/www/html
 
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN chmod -R 777 /var/www/html
 
 # Use non-root user
 USER appuser
