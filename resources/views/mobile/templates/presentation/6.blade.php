@@ -54,8 +54,9 @@ $videoRenderedBlock = \App\Models\Widget::replaceMonikers('{video-carousel|' . $
 $isEmergency = \App\Models\Project::isEmergency($pageInstance ?? null);
 
 $requestPath = request()->path();
-$isWinter2024Page = ($requestPath === 'winter-2024');
-$isOrphanCarePage = ($requestPath === 'orphancare');
+$pageData = [];
+if ($requestPath === 'winter-2024') $pageData['isWinter2024Page'] = true;
+if ($requestPath === 'orphancare') $pageData['isOrphanCarePage'] = true;
 @endphp
 
 <div class="pt-4"></div>
@@ -67,10 +68,7 @@ $isOrphanCarePage = ($requestPath === 'orphancare');
         </div>
 
         @include('modules.presentation.donate_module', [
-             'colorInfo' => true,
-             'isWinter2024Page' => $isWinter2024Page,
-             'isOrphanCarePage' => $isOrphanCarePage
-        ])
+             'colorInfo' => true, $pageData])
 
     </div>
 </section>
