@@ -8,12 +8,12 @@ class FoodPacksQurbaniesPrice extends Model
 {
     protected $with = [
         'country',
-        'campaign_category'
+        'campaign_category',
+        'campaigns'
     ];
 
     protected $fillable = [
         'country_id',
-        'campaign_name',
         'project_name',
         'program_name',
         'campaign_category_id'
@@ -32,5 +32,15 @@ class FoodPacksQurbaniesPrice extends Model
     public function campaign_category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(CampaignCategory::class);
+    }
+
+    public function campaigns(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(
+            Campaign::class,
+            'food_packs_qurbanies_price_food_packs_qurbanies_type',
+            'food_packs_qurbanies_price_id',
+            'campaign_id'
+        )->distinct();
     }
 }

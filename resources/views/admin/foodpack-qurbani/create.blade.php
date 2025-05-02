@@ -22,8 +22,15 @@
                     @endforeach
                 </select>
 
-                <label for="campaign_name">Campaign Name</label><br>
-                <input id="campaign_name" name="campaign_name" class="form-control" type="text" value="{{ old('campaign_name') }}" /><br>
+                <label for="campaign_id">Campaign</label><br>
+                <select id="campaign_id" name="campaign_id" class="form-control mb-3">
+                    <option value="">Select Campaign</option>
+                    @foreach($campaigns as $campaign)
+                        <option value="{{ $campaign->id }}" {{ old('campaign_id') == $campaign->id ? 'selected' : '' }}>
+                            {{ $campaign->name }}
+                        </option>
+                    @endforeach
+                </select><br>
 
                 <label for="project_name">Project Name</label><br>
                 <input id="project_name" name="project_name" class="form-control" type="text" value="{{ old('project_name') }}" /><br>

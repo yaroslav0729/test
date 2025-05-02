@@ -39,7 +39,7 @@
                             <tr>
                                 <td class="px-4">{{ $foodpack->id }}</td>
                                 <td class="px-4">{{ $foodpack->country->name }}</td>
-                                <td class="px-4">{{ $foodpack->campaign_name }}</td>
+                                <td class="px-4">{{ $foodpack->campaigns->first() ? $foodpack->campaigns->first()->name : '-' }}</td>
                                 <td class="px-4">{{ $foodpack->project_name }}</td>
                                 <td class="px-4">{{ $foodpack->program_name }}</td>
                                 <td class="px-4">{{ $foodpack->campaign_category? $foodpack->campaign_category->name : '-' }}</td>

@@ -22,7 +22,6 @@ class FoodPackQurbaniService extends AbstractModelService
     {
         $this->create([
             'country_id' => $request->get('country_id'),
-            'campaign_name' => $request->get('campaign_name'),
             'project_name' => $request->get('project_name'),
             'program_name' => $request->get('program_name'),
             'campaign_category_id' => $request->get('campaign_category_id'),
@@ -31,7 +30,10 @@ class FoodPackQurbaniService extends AbstractModelService
         if (!empty($this->model->id)) {
             foreach ($request->get('prices') as $key => $price)
             {
-                $this->model->types()->attach($this->foodPacksQurbaniesType->getById($request->get('types')[$key]), ['price' => $price]);
+                $this->model->types()->attach($this->foodPacksQurbaniesType->getById($request->get('types')[$key]), [
+                    'price' => $price,
+                    'campaign_id' => $request->get('campaign_id')
+                ]);
             }
 
             return true;
@@ -44,7 +46,6 @@ class FoodPackQurbaniService extends AbstractModelService
     {
         $this->update($foodPacksPrice, [
             'country_id' => $request->get('country_id'),
-            'campaign_name' => $request->get('campaign_name'),
             'project_name' => $request->get('project_name'),
             'program_name' => $request->get('program_name'),
             'campaign_category_id' => $request->get('campaign_category_id'),
@@ -55,7 +56,10 @@ class FoodPackQurbaniService extends AbstractModelService
 
             foreach ($request->get('prices') as $key => $price)
             {
-                $arr[$request->get('types')[$key]] = ['price' => $price];
+                $arr[$request->get('types')[$key]] = [
+                    'price' => $price,
+                    'campaign_id' => $request->get('campaign_id')
+                ];
             }
 
             $this->model->types()->sync($arr);

@@ -14,7 +14,8 @@ class AddCampaignToFoodPacksQurbaniesPriceFoodPacksQurbaniesTypeTable extends Mi
     public function up()
     {
         Schema::table('food_packs_qurbanies_price_food_packs_qurbanies_type', function (Blueprint $table) {
-            $table->integer('campaign_id')->nullable();
+            $table->unsignedBigInteger('campaign_id')->nullable()->after('price');
+            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('set null');
         });
     }
 
@@ -26,6 +27,7 @@ class AddCampaignToFoodPacksQurbaniesPriceFoodPacksQurbaniesTypeTable extends Mi
     public function down()
     {
         Schema::table('food_packs_qurbanies_price_food_packs_qurbanies_type', function (Blueprint $table) {
+            $table->dropForeign(['campaign_id']);
             $table->dropColumn('campaign_id');
         });
     }

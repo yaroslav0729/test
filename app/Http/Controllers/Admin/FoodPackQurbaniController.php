@@ -9,6 +9,7 @@ use App\Http\Requests\FoodPackUpdateRequest;
 use App\Models\Country;
 use App\Models\FoodPackSettings;
 use App\Models\FoodPacksQurbaniesType;
+use App\Models\Campaign;
 use App\Services\FoodPackQurbaniService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -42,7 +43,10 @@ class FoodPackQurbaniController extends Controller
         return view('admin.foodpack-qurbani.create', [
             'countries' => Country::query()->orderBy('name')->get(),
             'types' => $this->types->get(),
-            'categories' => \App\Models\CampaignCategory::all()
+            'categories' => \App\Models\CampaignCategory::all(),
+            'campaigns' => Campaign::whereHas('campaign_categories', function ($query) {
+                $query->where('name', 'Qurbani');
+            })->orderBy('name')->get()
         ]);
     }
 
@@ -61,7 +65,10 @@ class FoodPackQurbaniController extends Controller
         return view('admin.foodpack-qurbani.edit', [
             'countries' => Country::query()->orderBy('name')->get(),
             'foodpack' => $this->foodPackService->getById($id),
-            'categories' => \App\Models\CampaignCategory::all()
+            'categories' => \App\Models\CampaignCategory::all(),
+            'campaigns' => Campaign::whereHas('campaign_categories', function ($query) {
+                $query->where('name', 'Qurbani');
+            })->orderBy('name')->get()
         ]);
     }
 
