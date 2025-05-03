@@ -19,12 +19,13 @@ class Template
     const VOLUNTEER_START_PAGE = 13;
     const NEWSROOM_PAGE = 14;
     const CALCULATOR_PAGE = 20;
+    public const THANK_YOU_SUBSCRIPTION_PAGE = 21;
     const WIDGET_PAGE_TEMPLATE = 22;
     const GET_INVOLVED_PAGE_TEMPLATE = 23;
     const GAZA_DOCTORS_PAGE = 24;
     const WHO_WE_ARE_PROJECT_PAGE = 25;
     const GAZA_SURGEONS_PAGE = 26;
-    public const THANK_YOU_SUBSCRIPTION_PAGE = 21;
+    const INHANCED_QURBANI_PAGE = 27;
 
     const TEST_PAGE = 100;
 
@@ -50,6 +51,7 @@ class Template
         self::GET_INVOLVED_PAGE_TEMPLATE,
         self::GAZA_DOCTORS_PAGE,
         self::GAZA_SURGEONS_PAGE,
+        self::INHANCED_QURBANI_PAGE,
         self::WHO_WE_ARE_PROJECT_PAGE,
         //self::TEST_PAGE,
     ];
@@ -101,7 +103,8 @@ class Template
                 return 'Who we are project page';
             case self::GAZA_SURGEONS_PAGE:
                 return 'Gaza surgeons page';
-
+            case self::INHANCED_QURBANI_PAGE:
+                return 'Enhanced qurbani page';
 
             default:
                 return "Unknown template type";
@@ -219,6 +222,12 @@ class Template
         self::THANK_YOU_SUBSCRIPTION_PAGE => [
             'headerClassName' => 'white',
             'footerClassName' => 'bg-info-yellow',
+            'headerType' => 'parts.header',
+        ],
+
+        self::INHANCED_QURBANI_PAGE => [
+            'headerClassName' => 'white',
+            'footerClassName' => 'bg-info',
             'headerType' => 'parts.header',
         ],
 
@@ -618,6 +627,13 @@ class Template
                         'parameters' => 'amount_limit_items'
                     ];
 
+                    break;
+                }
+
+            case self::INHANCED_QURBANI_PAGE: {
+                    $rules = [
+                        'parameters' => 'amount_limit_items'
+                    ];
                     break;
                 }
         }
