@@ -16,9 +16,11 @@ if (isset($parameters['amount'])) {
     $amount = $parameters['amount'];
 }
 
-foreach ($amount as $amountKey => $item) {
-    if (isset($item['type']) && (int) $item['type'] === \App\Models\CampaignPrice::TYPE_SINGLE) {
-        $singleItems[$amountKey] = $item;
+if($amount) {
+    foreach ($amount as $amountKey => $item) {
+        if (isset($item['type']) && (int) $item['type'] === \App\Models\CampaignPrice::TYPE_SINGLE) {
+            $singleItems[$amountKey] = $item;
+        }
     }
 }
 
