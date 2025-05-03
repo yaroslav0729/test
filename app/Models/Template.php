@@ -631,9 +631,8 @@ class Template
                 }
 
             case self::INHANCED_QURBANI_PAGE: {
-                    $rules = [
-                        'parameters' => 'amount_limit_items'
-                    ];
+                    $rules = [];
+
                     break;
                 }
         }

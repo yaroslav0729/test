@@ -146,6 +146,8 @@ if (isset($parameters['countries_image'])) {
     <input class="form-control" name="parameters[countries_image]" placeholder="Image url here" value="{{ $countriesImage }}" />
 </div>
 
+@include('modules.admin.donate_module')
+
 @include('modules.admin.what_happens_so_far')
 
 @include('modules.admin.we_still_need_support')

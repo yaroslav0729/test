@@ -97,7 +97,7 @@ $(function() {
                prices[newIndex] = {
                    amount: $(this).data('price'),
                    campaignId: $(this).data('campaign'),
-                   campaignCategory: campaignCategories[$(this).data('campaign')].categories[0],
+                //    campaignCategory: campaignCategories[$(this).data('campaign')].categories[0],
                    period: 10,
                }
 

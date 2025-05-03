@@ -5,10 +5,11 @@ $(function() {
         let itemKey = $(this).data("item_num");
         let donateEl = $('[select-amount][data-amount_id="' + itemKey + '"]');
 
-        let donateModulePosition = $(".donate-today-sheet").offset().top;
-        $("html, body").animate({ scrollTop: donateModulePosition }, 1000);
-
-        $('a[data-filter="single"]').click();
+        let donateModulePosition = $(".donate-today-sheet").offset()?.top;
+        if(donateModulePosition) {
+            $("html, body").animate({ scrollTop: donateModulePosition }, 1000);
+            $('a[data-filter="single"]').click();
+        }
         donateEl.click();
     });
 

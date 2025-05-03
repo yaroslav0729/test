@@ -27,23 +27,10 @@ $campaignsCountries = \App\Models\Project::getProjectCampaignsCountries($pageIns
 if (!isset($isEmergency)) {
     $isEmergency = false;
 }
-$data=[
-    [
-        'value' => 25,
-        'text' => 'Give 1/7 cow share in India'
-    ],
-    [
-        'value' => 45,
-        'text' => 'Give 1/7 cow share in Bangladesh'
-    ],
-    [
-        'value' => 65,
-        'text' => 'Give 1/7 cow share in Malaysia'
-    ]
-]
+
 @endphp
 
-<section class="donate-today-card" id="donate_today">
+<section class="donate-today-card" id="donate-today-card">
     <div class="wrap">
         <div class="title">
             @empty($moduleTitle)
@@ -56,18 +43,62 @@ $data=[
             @php
                 $loopCou = 0;
             @endphp
-            @for ($i = 0; $i < 3; $i++)
+            @foreach ($singleItems as $itemKey => $item)
                 @if ($loopCou == 3)
                     @continue
                 @endif
-                <div class="item active-color-info" data-item_num='{{ $i }}'>
-                    <div>£<b>{{ $data[$i]['value'] }}</b></div>
-                    {{ $data[$i]['text'] }}
-                </div>
+                @if (count($campaignsCountries[$itemKey]) > 0) {{-- price exists & ok in campaign --}}
+                    <div class="item donate-today-item @if ($isEmergency) active-color-danger @else active-color-info @endisset" 
+                        data-item_num='{{ $itemKey }}' 
+                        data-amount='{{ $item['value'] }}' 
+                        data-campaign_id='{{ $itemKey }}'
+                        data-period='single'
+                        data-note='{{ strip_tags($item['text']) }}'
+                    >
+                        <div>£<b>{{ $item['value'] }}</b></div>
+                        {!! $item['text'] !!}
+                    </div>
+                @endif 
                 @php
                     $loopCou++;
                 @endphp
-            @endfor
+            @endforeach
         </div>
     </div>
 </section>
+
+{{-- Hidden form to be populated by JS --}}
+<form id="donate-today-hidden-form" action="{{ route('cart.add') }}" method="POST" style="display: none;">
+    @csrf
+    <input type="hidden" name="amount" value="">
+    <input type="hidden" name="campaigns" value="">
+    <input type="hidden" name="period" value="single">
+    <input type="hidden" name="note" value="">
+</form>
+
+<script>
+    function qurbaniClickHandler(e) {
+        e.preventDefault();
+            
+        let $item = $(this);
+        
+        let amount = $item.data('amount');
+        let campaignId = $item.data('campaign_id');
+        let note = $item.data('note');
+        let formNote = note ? `Donate Today: ${note}` : 'Donate Today Item';
+
+        let $hiddenForm = $('#donate-today-hidden-form');
+        $hiddenForm.find('input[name="amount"]').val(amount);
+        $hiddenForm.find('input[name="campaigns"]').val(campaignId);
+        $hiddenForm.find('input[name="note"]').val(formNote);
+
+        let formElement = $hiddenForm.get(0);
+
+        if (typeof sendFormAndRefreshCard === 'function') {
+            sendFormAndRefreshCard($hiddenForm, true);
+        } else {
+            console.error('Error: sendFormAndRefreshCard function is not defined. Cannot add item.');
+            toastr.error('A critical error occurred. Please contact support.', 'Error');
+        }
+    }
+</script>
