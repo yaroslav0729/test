@@ -78,18 +78,6 @@ if(isset($isOrphanCarePage)) $pageData['isOrphanCarePage'] = $isOrphanCarePage;
             <i class="moon-icons-arrow-down"></i>
         </div>
         <div class="pt-5"></div>
-        <div style="display: none;" id="donate-module-test-console">
-            @isset($pageData['isWinter2024Page'])
-                <div class="alert alert-info">
-                    <p>This is the Winter 2024 page.</p>
-                </div>
-            @endisset
-            @isset($pageData['isOrphanCarePage'])
-                <div class="alert alert-info">
-                    <p>This is the Orphan Care page.</p>
-                </div>
-            @endisset
-        </div>
 
         @include('modules.presentation.donate_module', $pageData)
 
