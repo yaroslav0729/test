@@ -41,7 +41,7 @@ if (!isset($isEmergency)) {
                 <span>{{ $moduleTitle }}</span>
             @endempty
         </div>
-        <div class="list d-flex justify-content-center">
+        <div class="list d-flex justify-content-center" style="overflow-x: hidden;">
             @php
                 $loopCou = 0;
             @endphp

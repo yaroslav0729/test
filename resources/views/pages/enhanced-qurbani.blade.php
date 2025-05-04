@@ -112,27 +112,28 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                             @foreach($pricesList as $price)
                                 <div class="mt-4 qurbani-options__item qurbani-options__item-mobile">
                                     <div class="qurbani-options__item-header">
-                                        <p class="align-middle qurbani-country" data-toggle="collapse" href="#{{ $price->id }}">
-                                            <span class="qurbani-options__name">
+                                        <div class="qurbani-country" style="display: flex; align-items: center; justify-content: space-between;">
+                                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                                <div class="">
+                                                    <img class="qurbani-options__image mx-auto d-block" width="50px" src="https://islamichelp.org.uk/storage/cow.png">
+                                                </div>
+                                                <div style="font-size: 0.5rem; font-weight: bold;">1/7 cow share</div>
+                                            </div>
+                                            <div class="qurbani-options__name">
                                                 {{ $price->country ? $price->country->name : 'Unknown Country' }}
-                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
-                                            </span>
-                                        </p>
+                                            </div>
+                                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                                <div class="">
+                                                    <img class="qurbani-options__image mx-auto d-block" width="50px" src="https://islamichelp.org.uk/storage/goat.png">
+                                                </div>
+                                                <div style="font-size: 0.5rem; font-weight: bold;">goat</div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="qurbani-selectors qurbani-options__item-collapse collapse" id="{{ $price->id }}">
+                                    <div class="qurbani-selectors" id="{{ $price->id }}">
                                         @foreach($price->types as $key => $type)
                                             @if($type->pivot->price > 0)
                                                 <div class="text-center qurbani-options__quantity-selector-container {{$key}}">
-                                                    @if($key === 0)
-                                                        <img class="qurbani-options__image mx-auto d-block"
-                                                            src="https://islamichelp.org.uk/storage/cow.png">
-                                                        <p class="mt-2">1/7 cow share</p>
-                                                    @endif
-                                                    @if($key === 1)
-                                                        <img class="qurbani-options__image mx-auto d-block"
-                                                            src="https://islamichelp.org.uk/storage/goat.png">
-                                                        <p class="mt-2">goat</p>
-                                                    @endif
                                                     <div class="qurbani-options__quantity-selector">
                                                         <span class="qurbani-options__price">£{{ $type->pivot->price }}</span>
                                                         @php
