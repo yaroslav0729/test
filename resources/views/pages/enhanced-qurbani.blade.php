@@ -20,7 +20,6 @@ for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
 $pricesList = \App\Models\FoodPacksQurbaniesPrice::with('country', 'types')->get();
 $amount = collect($amount);
 
-$qurbaniPage = \App\Models\PageInstance::where('slug', 'qurbani-2024')->where('actual', true)->first();
 $cart = \App\Models\CartItem::getCart();
 $cartSum = \App\Models\CartItem::getCartSum();
 $hasSingleDonations = \App\Models\CartItem::hasSingleDonations();
@@ -63,7 +62,6 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                                     </div>
                                 </div>
                             </div>
-
                             @foreach($pricesList as $price)
                             <div class="mt-4 qurbani-options__item align-middle">
                                 <div class="text-xs-center xs-align-center qurbani-options__item-country">
@@ -73,7 +71,6 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                                         <span class="qurbani-options__name">{{ $price->country->name }}</span>
                                     </label>
                                 </div>
-
                                 @foreach($price->types as $type)
                                     @if($type->pivot->price > 0)
                                         <div class="text-center">
@@ -83,7 +80,7 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                                                     $priceFromAmount = $amount->firstWhere('value', $type->pivot->price);
                                                     $campaignsIds = $priceFromAmount ? $priceFromAmount['campaigns'] : [];
                                                     $filteredCampaigns = $campaigns->whereIn('id', $campaignsIds);
-                                                    $campaign = $price->country ? $filteredCampaigns->firstWhere('country_id', $price->country->id) : null;
+                                                    $campaign = $price->campaigns[0];
                                                 @endphp
                                                 <div class="qurbani-options__number">
                                                     @if($type->name === 'Cow')
