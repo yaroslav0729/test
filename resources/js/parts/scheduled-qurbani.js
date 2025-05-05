@@ -108,7 +108,7 @@ $(function() {
                let lastIndexWithPrice = 0;
                const reversedKeys = pricesKeys.reverse();
                for (let key of reversedKeys) {
-                   if (prices[key].campaignId === $(this).data('campaign')) {
+                   if (prices[key].campaignId === $(this).data('campaign') && prices[key].type === $(this).data('type') && prices[key].country === $(this).data('country')) {
                        lastIndexWithPrice = key;
                        delete prices[lastIndexWithPrice];
                        removeQurbaniNote(lastIndexWithPrice);
