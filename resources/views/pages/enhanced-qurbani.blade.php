@@ -103,8 +103,9 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                                                         data-campaign="{{ $campaign ? $campaign->id : '' }}"
                                                         data-campaign-name="{{ $campaign ? $campaign->name : '' }}"
                                                         value="0"
-                                                        data-type-id="{{ $type->id }}"
+                                                        data-type="{{ $type->id }}"
                                                         data-price="{{ $type->pivot->price }}"
+                                                        data-country="{{ $price->country ? $price->country->id : '' }}"
                                                         min="0" max="1000"
                                                         step="1"
                                                     />

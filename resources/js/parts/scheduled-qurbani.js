@@ -88,7 +88,7 @@ $(function() {
            for (let key in prices) {
                pricesArray.push(prices[key]);
            }
-           const pricesCount = pricesArray.filter((item) => item.campaignId === $(this).data('campaign')).length;
+           const pricesCount = pricesArray.filter((item) => item.campaignId === $(this).data('campaign') && item.type === $(this).data('type') && item.country === $(this).data('country')).length;
            const pricesKeys = Object.keys(prices);
            const lastPricesIndex = pricesKeys.length > 0 ? pricesKeys[pricesKeys.length - 1] : 0;
 
@@ -99,10 +99,12 @@ $(function() {
                    campaignId: $(this).data('campaign'),
                 //    campaignCategory: campaignCategories[$(this).data('campaign')].categories[0],
                    period: 10,
+                   type: $(this).data('type'),
+                   country: $(this).data('country'),
                }
 
                addQurbaniNote(newIndex, $(this).data('campaign-name'));
-           } else {
+           } else if (pricesCount > itemsCount) {
                let lastIndexWithPrice = 0;
                const reversedKeys = pricesKeys.reverse();
                for (let key of reversedKeys) {
