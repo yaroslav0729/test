@@ -27,6 +27,14 @@ $hasSingleDonations = \App\Models\CartItem::hasSingleDonations();
 $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
 @endphp
 
+@section('scripts')
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ config('googlemap.map_key') }}&libraries=places&language=EN"
+        defer>
+    </script>
+    {!! NoCaptcha::renderJs() !!}
+@endsection
+
 <div >
     <div id="donate_module_options" class="alert alert-warning d-none">
         {{ json_encode($campaignsCategories) }}
