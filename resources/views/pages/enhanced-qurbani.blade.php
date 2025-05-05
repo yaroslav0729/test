@@ -146,7 +146,7 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                                                             $priceFromAmount = $amount->firstWhere('value', $type->pivot->price);
                                                             $campaignsIds = $priceFromAmount ? $priceFromAmount['campaigns'] : [];
                                                             $filteredCampaigns = $campaigns->whereIn('id', $campaignsIds);
-                                                            $campaign = $price->country ? $filteredCampaigns->firstWhere('country_id', $price->country->id) : null;
+                                                            $campaign = $price->campaigns[0];
                                                         @endphp
                                                         <div class="qurbani-options__number">
                                                             <input type="number"
