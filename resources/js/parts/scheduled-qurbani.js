@@ -84,6 +84,8 @@ $(function() {
            }
 
            const itemsCount = +$(this).val();
+           console.log(prices);
+           
            const pricesArray = [];
            for (let key in prices) {
                pricesArray.push(prices[key]);
@@ -116,6 +118,8 @@ $(function() {
                    }
                }
            }
+           const totalAmount = Object.values(prices).reduce((acc, item) => acc + item.amount, 0);
+           $('#total-amount-value').text(totalAmount);
        })
 
     }

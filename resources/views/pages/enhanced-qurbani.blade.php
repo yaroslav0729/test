@@ -193,6 +193,7 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                         </div>
                     </div>
                 </div>
+                <div class="text-right pb-5 mt-3"><b>Total Amount: £<span id="total-amount-value">0</span></b></div>
                 <div class="text-right pb-3"><b>YOUR DETAILS</b></div>
                 <div class="black-line"></div>
                 <div class="pt-5"></div>
