@@ -71,9 +71,9 @@ class ScheduledSacrificeController extends Controller
 
         $donationsData = $request->prices;
         $donations = [];
-
         foreach ($donationsData as $donationData) {
-            $donations[] = $this->prepareDonation($donationData, $order, $request->ip());
+            $campaign = Campaign::find($donationData['campaignId']);
+            $donations[] = $this->prepareDonation($donationData, $order, $request->ip(), $campaign);
         }
 
         $scheduleDate = Carbon::createFromTimestamp($request->schedule)->startOfDay();
@@ -132,7 +132,7 @@ class ScheduledSacrificeController extends Controller
         ]);
     }
 
-    public function prepareDonation(array $donationData, Order $order, string $ip)
+    public function prepareDonation(array $donationData, Order $order, string $ip, Campaign $campaign)
     {
         $categoryId = null;
         if (isset($donationData['campaignCategory'])) {
@@ -145,12 +145,13 @@ class ScheduledSacrificeController extends Controller
             'order_id' => $order->id,
             'type' => $donationData['period'],
             'currency' => 'GBP',
-            'campaign_id' => (int)$donationData['campaignId'],
+            'campaign_id' => $campaign->id,
             'campaign_category' => $categoryId,
             'user_id' => auth()->user() ? auth()->user()->id : null,
             'email' => $order->email,
-            'qurbani_name' => $donationData['name'],
+            'qurbani_name' => $campaign->name,
             'commission' => null,
+            'status' => Donation::STATUS_SCHEDULED,
             'ip' => $ip,
         ]);
     }
