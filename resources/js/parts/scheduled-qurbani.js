@@ -61,12 +61,12 @@ $(function() {
                 $parent.removeClass('active');
             }
         });
-       $('[input_number_spinner_food]').on('change', function () {
+       $('[input_number_spinner_food]').on('change input', function () {
            const $qurbaniItem = $(this).closest('.qurbani-options__item')
            const $checkbox = $qurbaniItem.find('[type="checkbox"]');
 
-           if (!$checkbox.is(':checked')) {
-               $checkbox.click();
+           if (!$checkbox.is(':checked') && +$(this).val() > 0) {
+               $checkbox.prop('checked', true);
                $qurbaniItem.addClass('active');
            }
 
@@ -78,49 +78,65 @@ $(function() {
                }
            });
 
-           if (emptyCounter) {
-               $checkbox.click();
+           if (emptyCounter && $checkbox.is(':checked')) {
+               $checkbox.prop('checked', false);
                $qurbaniItem.removeClass('active');
            }
 
            const itemsCount = +$(this).val();
-           console.log(prices);
-           
-           const pricesArray = [];
-           for (let key in prices) {
-               pricesArray.push(prices[key]);
-           }
-           const pricesCount = pricesArray.filter((item) => item.campaignId === $(this).data('campaign') && item.type === $(this).data('type') && item.country === $(this).data('country')).length;
-           const pricesKeys = Object.keys(prices);
-           const lastPricesIndex = pricesKeys.length > 0 ? pricesKeys[pricesKeys.length - 1] : 0;
+           const campaignId = $(this).data('campaign');
+           const type = $(this).data('type');
+           const country = $(this).data('country');
+           const price = $(this).data('price');
+           const campaignName = $(this).data('campaign-name');
 
-           if (pricesCount < itemsCount) {
-               const newIndex = lastPricesIndex === 0 ? +lastPricesIndex : +lastPricesIndex + 1;
-               prices[newIndex] = {
-                   amount: $(this).data('price'),
-                   campaignId: $(this).data('campaign'),
-                //    campaignCategory: campaignCategories[$(this).data('campaign')].categories[0],
-                   period: 10,
-                   type: $(this).data('type'),
-                   country: $(this).data('country'),
+           let pricesCount = 0;
+           let existingKeys = [];
+           for (const key in prices) {
+               if (prices[key].campaignId === campaignId && prices[key].type === type && prices[key].country === country) {
+                   pricesCount++;
+                   existingKeys.push(key);
                }
+           }
 
-               addQurbaniNote(newIndex, $(this).data('campaign-name'));
-           } else if (pricesCount > itemsCount) {
-               let lastIndexWithPrice = 0;
-               const reversedKeys = pricesKeys.reverse();
-               for (let key of reversedKeys) {
-                   if (prices[key].campaignId === $(this).data('campaign') && prices[key].type === $(this).data('type') && prices[key].country === $(this).data('country')) {
-                       lastIndexWithPrice = key;
-                       delete prices[lastIndexWithPrice];
-                       removeQurbaniNote(lastIndexWithPrice);
-                       break;
+           const difference = itemsCount - pricesCount;
+
+           if (difference > 0) {
+               for (let i = 0; i < difference; i++) {
+                   let newIndex = 0;
+                   const pricesKeys = Object.keys(prices).map(Number);
+                   if (pricesKeys.length > 0) {
+                       newIndex = Math.max(...pricesKeys) + 1;
+                   } else {
+                       newIndex = 0;
+                   }
+
+                   prices[newIndex] = {
+                       amount: price,
+                       campaignId: campaignId,
+                       period: 10,
+                       type: type,
+                       country: country,
+                   };
+                   addQurbaniNote(newIndex, campaignName);
+               }
+           } else if (difference < 0) {
+               const itemsToRemove = Math.abs(difference);
+               existingKeys.sort((a, b) => Number(b) - Number(a));
+               for (let i = 0; i < itemsToRemove; i++) {
+                   if (existingKeys.length > 0) {
+                       const keyToRemove = existingKeys.shift();
+                       if (prices[keyToRemove]) {
+                            delete prices[keyToRemove];
+                            removeQurbaniNote(keyToRemove);
+                       }
                    }
                }
            }
+
            const totalAmount = Object.values(prices).reduce((acc, item) => acc + item.amount, 0);
            $('#total-amount-value').text(totalAmount);
-       })
+       });
 
     }
 
