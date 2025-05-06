@@ -66,39 +66,41 @@ class ScheduledSacrificeController extends Controller
             compact('amount', 'campaignsCategories', 'campaignsCountries', 'availableDates', 'pricesList', 'campaigns', 'parameters'));
     }
 
-    public function schedule(Request $request)
-    {
+    public function schedule(Request $request){
         $order = Order::create($request->except(['prices', 'schedule']));
-
         $donationsData = $request->prices;
+
+        $isScheduled = isset($request->schedule) && $request->schedule;
+        $isScheduled = $isScheduled ? $isScheduled && !Carbon::createFromTimestamp($request->schedule)->startOfDay()->eq(Carbon::now()->startOfDay()) : false;
+        
         $donations = [];
         foreach ($donationsData as $donationData) {
             $campaign = Campaign::find($donationData['campaignId']);
-            $donations[] = $this->prepareDonation($donationData, $order, $request->ip(), $campaign, $request->schedule);
+            $donations[] = $this->prepareDonation($donationData, $order, $request->ip(), $campaign, $isScheduled);
         }
 
         $payLink = '';
         $thanksUrl = Page::getSinglePageUrl(Template::THANK_YOU_DONATE_PAGE);
         $successUrl = url($thanksUrl . '?order={CHECKOUT_SESSION_ID}');
         $cancelUrl = route('index');
+        $url = url($thanksUrl . '?order={CHECKOUT_SESSION_ID}');
 
         \Stripe\Stripe::setApiKey(config('stripe.secret_key'));
 
-        $items = [];
-        foreach ($donations as $donation) {
-            $items[] = [
-                'price_data' => [
-                    'currency' => 'gbp',
-                    'product_data' => [
-                        'name' => $donation->campaign->name,
+        if (!$isScheduled) {
+            $items = [];
+            foreach ($donations as $donation) {
+                $items[] = [
+                    'price_data' => [
+                        'currency' => 'gbp',
+                        'product_data' => [
+                            'name' => $donation->campaign->name,
+                        ],
+                        'unit_amount' => $donation->value * 100,
                     ],
-                    'unit_amount' => $donation->value * 100,
-                ],
-                'quantity' => 1,
-            ];
-        }
-
-        try {
+                    'quantity' => 1,
+                ];
+            }
             $session = \Stripe\Checkout\Session::create([
                 'line_items' => $items,
                 'mode' => 'payment',
@@ -110,26 +112,38 @@ class ScheduledSacrificeController extends Controller
                     'scheduled_timestamp' => $request->schedule,
                 ]),
             ]);
-
             $payLink = $session->url;
             $order->order_id = $session->id;
             $order->pay_with = 'stripe';
-            $order->save();
-
-        } catch (\Exception $e) {
-            Log::error("Stripe Checkout Session creation failed for order {$order->id}: " . $e->getMessage());
-            return response()->json([
-                'error' => 'Could not initiate payment. Please try again later.',
-                'message' => $e->getMessage()
-            ], 500);
+        } else {
+            $customer = $this->stripeService->processCustomer($request->except(['prices', 'schedule']));
+            $session = \Stripe\Checkout\Session::create([
+                'mode' => 'setup',
+                'success_url' => $url,
+                'cancel_url' => route('index'),
+                'customer' => $customer->id,
+                'metadata' => [
+                    'scheduled_qurbani' => true,
+                    'order_id' => $order->id,
+                    'billing_anchor' => $request->schedule,
+                ],
+                'payment_method_types' => [
+                    'card',
+                    'bacs_debit',
+                ],
+            ]);
+            $payLink = $session->url;
+            $order->order_id = $session->id;
+            $order->pay_with = 'stripe';
         }
+        $order->save();
 
         return response()->json([
             'payment_link' => $payLink,
-        ]);
+        ]);        
     }
 
-    public function prepareDonation(array $donationData, Order $order, string $ip, Campaign $campaign, ?int $scheduledTimestamp = null)
+    public function prepareDonation(array $donationData, Order $order, string $ip, Campaign $campaign, ?int $isScheduled = null)
     {
         $categoryId = null;
         if (isset($donationData['campaignCategory'])) {
@@ -148,7 +162,7 @@ class ScheduledSacrificeController extends Controller
             'email' => $order->email,
             'qurbani_name' => $campaign->name,
             'commission' => null,
-            'status' => Donation::STATUS_SCHEDULED,
+            'status' => $isScheduled ? Donation::STATUS_SCHEDULED : Donation::STATUS_COMPLETE,
             'note' => $donationData['name'],
             'ip' => $ip,
         ]);
