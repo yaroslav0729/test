@@ -17,7 +17,7 @@ for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
     $availableDates[$date->format('jS \\of F')] = $date->hour(10)->timestamp;
 }
 
-$pricesList = \App\Models\FoodPacksQurbaniesPrice::with('country', 'types')->get();
+$pricesList = \App\Models\FoodPacksQurbaniesPrice::with('country', 'types')->orderBy('order', 'asc')->get();
 $amount = collect($amount);
 
 $cart = \App\Models\CartItem::getCart();
