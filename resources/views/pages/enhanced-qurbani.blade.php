@@ -53,12 +53,12 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                                     <div class="col-md-6 col-6 text-center">
                                         <img class="qurbani-options__image mx-auto d-block"
                                             src="https://islamichelp.org.uk/storage/cow.png">
-                                        <p class="mt-2">1/7 cow share</p>
+                                        <p class="mt-2">1/7 COW SHARE</p>
                                     </div>
                                     <div class="col-md-6 col-6 text-center">
                                         <img class="qurbani-options__image mx-auto d-block"
                                             src="https://islamichelp.org.uk/storage/goat.png">
-                                        <p class="mt-2">goat/sheep</p>
+                                        <p class="mt-2">GOAT/SHEEP</p>
                                     </div>
                                 </div>
                             </div>
