@@ -7,6 +7,7 @@ use App\Models\FoodPacksQurbaniesPrice;
 use App\Models\FoodPacksQurbaniesType;
 use Database\Seeders\FoodPackQurbaniTypesSeeder;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class FoodPackQurbaniService extends AbstractModelService
 {
@@ -77,5 +78,22 @@ class FoodPackQurbaniService extends AbstractModelService
     public function getList()
     {
         return $this->model->with(['country', 'types'])->get();
+    }
+
+    /**
+     * Get records with pagination, ordered by the 'order' field.
+     *
+     * @param Request $request
+     * @param int $perPage
+     * @param int $currentPage
+     * @return LengthAwarePaginator
+     */
+    public function getWithPaginate(Request $request, int $perPage = 10, int $currentPage = 0): LengthAwarePaginator
+    {
+        // The $currentPage parameter might be used by paginate if not null or 0, depending on Laravel version and implementation.
+        // If $currentPage is 0, paginate typically defaults to page 1.
+        // If AbstractModelService used $currentPage, we should honor it.
+        // For now, let's assume $perPage is the primary concern for overriding.
+        return $this->model->orderBy('order', 'asc')->paginate($perPage, ['*'], 'page', $currentPage == 0 ? null : $currentPage);
     }
 }
