@@ -70,9 +70,9 @@ $videoRenderedBlock = \App\Models\Widget::replaceMonikers('{video-carousel|' . $
 
 <section class="donate-today" style="background-color: #291f4d;">
     <div class="wrap">
-        <div style="border-bottom: 5px solid #fff; padding: 0 10px; position: relative;">
-            <div class="media" style="width: 100%; margin: 0;">
-                <img src="{{ $projImage }}" style="width: 100%; height: 100%; object-fit: cover; max-height: 400px;">
+        <div style="border-bottom: 5px solid #fff; padding: 0 10px; position: relative; display: flex; flex-direction: column;">
+            <div style="width: 100%; margin: 0;">
+                <img src="{{ $projImage }}" style="width: 100%; height: 100%; object-fit: cover; max-height: 300px;">
             </div>
             <div class="title" style="display: flex; align-items: center; justify-content: center; width: 100%;" project-title>
                 <div style="display: flex; flex-direction: column;">
