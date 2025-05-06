@@ -149,6 +149,7 @@ class ScheduledSacrificeController extends Controller
             'qurbani_name' => $campaign->name,
             'commission' => null,
             'status' => Donation::STATUS_SCHEDULED,
+            'note' => $donationData['name'],
             'ip' => $ip,
         ]);
     }
