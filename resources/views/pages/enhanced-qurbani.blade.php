@@ -129,7 +129,7 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                                         <div class="qurbani-country" style="display: flex; align-items: center; justify-content: space-between;">
                                             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                                                 <div class="">
-                                                    <img class="qurbani-options__image mx-auto d-block" width="50px" src="https://islamichelp.org.uk/storage/cow.png">
+                                                    <img class="qurbani-options__image mx-auto d-block" width="50px" src="https://islamichelp.org.uk/storage/cow.png" style="filter: brightness(0) invert(1);">
                                                 </div>
                                                 <div style="font-size: 0.5rem; font-weight: bold;">1/7 cow share</div>
                                             </div>
@@ -138,7 +138,7 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                                             </div>
                                             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                                                 <div class="">
-                                                    <img class="qurbani-options__image mx-auto d-block" width="50px" src="https://islamichelp.org.uk/storage/goat.png">
+                                                    <img class="qurbani-options__image mx-auto d-block" width="50px" src="https://islamichelp.org.uk/storage/goat.png" style="filter: brightness(0) invert(1);">
                                                 </div>
                                                 <div style="font-size: 0.5rem; font-weight: bold;">goat</div>
                                             </div>
