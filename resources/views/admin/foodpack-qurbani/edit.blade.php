@@ -27,7 +27,7 @@
                 <select id="campaign_id" name="campaign_id" class="form-control mb-3">
                     <option value="">Select Campaign</option>
                     @foreach($campaigns as $campaign)
-                        <option value="{{ $campaign->id }}" {{ $foodpack->campaign_id == $campaign->id ? 'selected' : '' }}>
+                        <option value="{{ $campaign->id }}" {{ old('campaign_id', optional($foodpack->campaigns->first())->id) == $campaign->id ? 'selected' : '' }}>
                             {{ $campaign->name }}
                         </option>
                     @endforeach
@@ -48,6 +48,9 @@
                         </option>
                     @endforeach
                 </select>
+
+                <label for="feedback">Feedback</label><br>
+                <textarea id="feedback" name="feedback" class="form-control mb-3">{{ old('feedback', $foodpack->feedback) }}</textarea><br>
 
                 @foreach($foodpack->types as $type)
                     <label for="name">Price Of {{ $type->name }}</label><br>

@@ -46,6 +46,9 @@
                     @endforeach
                 </select>
 
+                <label for="feedback">Feedback</label><br>
+                <textarea id="feedback" name="feedback" class="form-control mb-3">{{ old('feedback') }}</textarea><br>
+
                 @foreach($types as $type)
                     <label for="name">Price Of {{ $type->name }}</label><br>
                     <input type="hidden" name="types[]" value="{{ $type->id }}">

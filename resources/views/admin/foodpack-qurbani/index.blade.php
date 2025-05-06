@@ -28,6 +28,7 @@
                             <th class="px-4 py-2">Project Name</th>
                             <th class="px-4 py-2">Program Name</th>
                             <th class="px-4 py-2">Category</th>
+                            <th class="px-4 py-2">Feedback</th>
                             @foreach($types as $type)
                                 <th class="px-4 py-2">{{ $type->name }} Price</th>
                             @endforeach
@@ -43,6 +44,7 @@
                                 <td class="px-4">{{ $foodpack->project_name }}</td>
                                 <td class="px-4">{{ $foodpack->program_name }}</td>
                                 <td class="px-4">{{ $foodpack->campaign_category? $foodpack->campaign_category->name : '-' }}</td>
+                                <td class="px-4">{{ $foodpack->feedback }}</td>
                                 @foreach($foodpack->types as $type)
                                     <td class="px-4">{{ $type->pivot->price }}</td>
                                 @endforeach

@@ -16,7 +16,8 @@ class FoodPacksQurbaniesPrice extends Model
         'country_id',
         'project_name',
         'program_name',
-        'campaign_category_id'
+        'campaign_category_id',
+        'feedback'
     ];
 
     public function types(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
