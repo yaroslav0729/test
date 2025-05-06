@@ -68,7 +68,8 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                                     <label class="align-middle" style="display: table-cell;">
                                         <input type="checkbox" name="countries[]" value="{{ $price->id }}">
                                         <i class="fas fa-check-circle"></i>
-                                        <span class="qurbani-options__name">{{ $price->country->name }}</span>
+                                        <span class="qurbani-options__name">{{ $price->country->name }} </span>
+                                        <span style="font-size: 0.8rem; font-weight: 400;">{{ $price->feedback }}</span>
                                     </label>
                                 </div>
                                 @foreach($price->types as $type)
@@ -133,8 +134,9 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                                                 </div>
                                                 <div style="font-size: 0.5rem; font-weight: bold;">1/7 cow share</div>
                                             </div>
-                                            <div class="qurbani-options__name">
-                                                {{ $price->country ? $price->country->name : 'Unknown Country' }}
+                                            <div class="qurbani-options__name" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                                <div>{{ $price->country ? $price->country->name : 'Unknown Country' }}</div>
+                                                <div style="font-size: 0.8rem; font-weight: 400;">{{ $price->feedback }}</div>
                                             </div>
                                             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                                                 <div class="">
