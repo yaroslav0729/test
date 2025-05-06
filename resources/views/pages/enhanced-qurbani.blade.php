@@ -81,6 +81,13 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                                                     $campaignsIds = $priceFromAmount ? $priceFromAmount['campaigns'] : [];
                                                     $filteredCampaigns = $campaigns->whereIn('id', $campaignsIds);
                                                     $campaign = $price->campaigns[0];
+                                                    $campaignName = $campaign ? $campaign->name : '';
+                                                    $mainCampaignName = $campaignName; // Default to full name
+                                                    $parenthesisPosition = strpos($campaignName, ' (');
+                                                    if ($parenthesisPosition !== false) {
+                                                        $mainCampaignName = substr($campaignName, 0, $parenthesisPosition);
+                                                    }
+                                                    $mainCampaignName = $mainCampaignName . ' | ' . $price->country->name. ' | ' . $type->name. ' | £' . $type->pivot->price  ;
                                                 @endphp
                                                 <div class="qurbani-options__number">
                                                     @if($type->name === 'Cow')
@@ -98,9 +105,10 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                                                         input_number_spinner_food
                                                         data-id="{{ $type->id }}"
                                                         data-campaign="{{ $campaign ? $campaign->id : '' }}"
-                                                        data-campaign-name="{{ $campaign ? $campaign->name : '' }}"
+                                                        data-campaign-name="{{ $mainCampaignName }}"
                                                         value="0"
                                                         data-type="{{ $type->id }}"
+                                                        data-type-name="{{ $type->name }}"
                                                         data-price="{{ $type->pivot->price }}"
                                                         data-country="{{ $price->country ? $price->country->id : '' }}"
                                                         min="0" max="1000"
@@ -147,15 +155,23 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                                                             $campaignsIds = $priceFromAmount ? $priceFromAmount['campaigns'] : [];
                                                             $filteredCampaigns = $campaigns->whereIn('id', $campaignsIds);
                                                             $campaign = $price->campaigns[0];
+                                                            $campaignName = $campaign ? $campaign->name : '';
+                                                            $mainCampaignName = $campaignName; // Default to full name
+                                                            $parenthesisPosition = strpos($campaignName, ' (');
+                                                            if ($parenthesisPosition !== false) {
+                                                                $mainCampaignName = substr($campaignName, 0, $parenthesisPosition);
+                                                            }
+                                                            $mainCampaignName = $mainCampaignName . ' | ' . $price->country->name. ' | ' . $type->name. ' | £' . $type->pivot->price  ;
                                                         @endphp
                                                         <div class="qurbani-options__number">
                                                             <input type="number"
                                                                 input_number_spinner_food
                                                                 data-id="{{ $type->id }}"
                                                                 data-campaign="{{ $campaign ? $campaign->id : '' }}"
-                                                                data-campaign-name="{{ $campaign ? $campaign->name : '' }}"
+                                                                data-campaign-name="{{ $mainCampaignName }}"
                                                                 value="0"
                                                                 data-type="{{ $type->id }}"
+                                                                data-type-name="{{ $type->name }}"
                                                                 data-price="{{ $type->pivot->price }}"
                                                                 data-country="{{ $price->country ? $price->country->id : '' }}"
                                                                 min="0" max="1000"
@@ -384,7 +400,7 @@ $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-12 d-flex justify-content-center mt-3">
-                        <button style="transform: translateY(50%);" type="submit" id="qurbani-pay" class="btn btn-danger">GIVE</button>
+                        <button style="transform: translateY(50%);" type="submit" id="qurbani-pay" class="btn btn-danger">PAY NOW</button>
                     </div>
                 </div>
             </form>
