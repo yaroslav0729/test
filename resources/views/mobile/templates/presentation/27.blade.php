@@ -71,20 +71,20 @@ $videoRenderedBlock = \App\Models\Widget::replaceMonikers('{video-carousel|' . $
 <section class="donate-today" style="background-color: #291f4d;">
     <div class="wrap">
         <div style="border-bottom: 5px solid #fff; padding: 0 10px; position: relative;">
-            <div class="title" style="display: flex; align-items: center; justify-content: center; width: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" project-title>
+            <div class="media" style="width: 100%; margin: 0;">
+                <img src="{{ $projImage }}" style="width: 100%; height: 100%; object-fit: cover; max-height: 400px;">
+            </div>
+            <div class="title" style="display: flex; align-items: center; justify-content: center; width: 100%;" project-title>
                 <div style="display: flex; flex-direction: column;">
-                    <div style="color: #fac16a; font-size: 3rem; text-wrap: nowrap;">
+                    <div style="color: #fac16a; font-size: 2rem; text-wrap: nowrap;">
                         @empty($projHeading)
                         <b>{{ $pageInstance->name }}</b>
                         @else
                         <b>{{ $projHeading }}</b>
                         @endempty
                     </div>
-                    <div style="text-align: left; white-space: pre-wrap; color: #fff; font-size: 2rem; font-weight: 900;">{{ $projSubheading }}</div>
+                    <div style="text-align: left; white-space: pre-wrap; color: #fff; font-size: 1.5rem; font-weight: 900;">{{ $projSubheading }}</div>
                 </div>
-            </div>
-            <div class="media" style="width: 100%; margin: 0;">
-                <img src="{{ $projImage }}" style="width: 100%; height: 100%; object-fit: cover; max-height: 400px;">
             </div>
         </div>
         <div style="">
