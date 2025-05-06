@@ -117,36 +117,58 @@ class PaymentController extends Controller
 
                 if ($checkoutSession->metadata['scheduled_qurbani']) {
                     $customer_id = $checkoutSession->customer;
-                    $setupIntent = $stripe->setupIntents->retrieve($checkoutSession->setup_intent);
-                    $payment_method_id = $setupIntent->payment_method;
-                    $payment_method = $stripe->paymentMethods->retrieve($payment_method_id)->attach(['customer' => $customer_id]);
-                    $customer = $stripe->customers->update($customer_id, ['invoice_settings' => ['default_payment_method' => $payment_method_id]]);
-
                     $order = Order::findOrFail($checkoutSession->metadata['order_id']);
-                    $plan = $this->stripeService->createScheduledQurbaniPlan($order->donations);
-                    $stripe->subscriptionSchedules->create([
-                        'customer' => $customer_id,
-                        'start_date' => $checkoutSession->metadata->billing_anchor,
-                        'end_behavior' => 'cancel',
-                        'phases' => [
-                            [
-                                'metadata' => [
-                                    'scheduled_qurbani' => true,
-                                ],
-                                'items' => [
-                                    [
-                                        'price' => $plan->id,
-                                        'quantity' => 1,
+
+                    if ($checkoutSession->mode === 'payment') { // This was a "pay now" scheduled Qurbani
+                        // Ensure donations are marked as complete
+                        foreach ($order->donations as $donation) {
+                            if ($donation->status !== Donation::STATUS_COMPLETE) {
+                                $donation->status = Donation::STATUS_COMPLETE;
+                                $donation->save();
+                            }
+                        }
+                        // The 'payment_intent' is in $checkoutSession->payment_intent
+                        // This confirms payment was made.
+                    } else if ($checkoutSession->mode === 'setup') { // This was "schedule for later"
+                        $setupIntent = $stripe->setupIntents->retrieve($checkoutSession->setup_intent);
+                        $payment_method_id = $setupIntent->payment_method;
+                        $stripe->paymentMethods->retrieve($payment_method_id)->attach(['customer' => $customer_id]);
+                        $stripe->customers->update($customer_id, ['invoice_settings' => ['default_payment_method' => $payment_method_id]]);
+                        
+                        $plan = $this->stripeService->createScheduledQurbaniPlan($order->donations);
+                        $stripe->subscriptionSchedules->create([
+                            'customer' => $customer_id,
+                            'start_date' => $checkoutSession->metadata->billing_anchor,
+                            'end_behavior' => 'cancel',
+                            'phases' => [
+                                [
+                                    'metadata' => [
+                                        'scheduled_qurbani' => true,
                                     ],
+                                    'items' => [
+                                        [
+                                            'price' => $plan->id,
+                                            'quantity' => 1,
+                                        ],
+                                    ],
+                                    'iterations' => 1,
                                 ],
-                                'iterations' => 1,
                             ],
-                        ],
-                        'metadata' => [
-                            'scheduled_qurbani' => true,
-                        ],
-                    ]);
+                            'metadata' => [
+                                'scheduled_qurbani' => true,
+                            ],
+                        ]);
+                        // Donations for 'setup' mode are already STATUS_SCHEDULED from ScheduledSacrificeController
+                    }
+
                     $this->sendThankYouScheduledQurbaniEmail($order);
+
+                    try {
+                        $this->hubspotService->importDonations($order->donations);
+                    } catch (\Exception $e) {
+                        Log::error($e->getMessage());
+                        Log::error('Error importing scheduled qurbani donations to Hubspot. Order id ' . $order->id);
+                    }
 
                     return response()->json([
                         'message' => 'Success',

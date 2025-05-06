@@ -110,6 +110,7 @@ class ScheduledSacrificeController extends Controller
                 'metadata' => $this->stripeService->combineWithBaseMetadata([
                     'internal_order_id' => $order->id,
                     'scheduled_timestamp' => $request->schedule,
+                    'scheduled_qurbani' => true,
                 ]),
             ]);
             $payLink = $session->url;
