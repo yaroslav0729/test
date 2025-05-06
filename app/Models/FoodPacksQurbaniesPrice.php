@@ -17,7 +17,8 @@ class FoodPacksQurbaniesPrice extends Model
         'project_name',
         'program_name',
         'campaign_category_id',
-        'feedback'
+        'feedback',
+        'order'
     ];
 
     public function types(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

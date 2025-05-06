@@ -18,7 +18,8 @@ class FoodPackQurbaniRequest extends FormRequest
             'project_name' => 'nullable|string|max:255',
             'program_name' => 'nullable|string|max:255',
             'campaign_category_id' => 'nullable|exists:campaign_categories,id',
-            'feedback' => 'nullable|string'
+            'feedback' => 'nullable|string',
+            'order' => 'nullable|integer'
         ];
     }
 

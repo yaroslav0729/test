@@ -25,7 +25,8 @@ class FoodPackQurbaniService extends AbstractModelService
             'project_name' => $request->get('project_name'),
             'program_name' => $request->get('program_name'),
             'campaign_category_id' => $request->get('campaign_category_id'),
-            'feedback' => $request->get('feedback')
+            'feedback' => $request->get('feedback'),
+            'order' => $request->get('order')
         ]);
 
         if (!empty($this->model->id)) {
@@ -50,7 +51,8 @@ class FoodPackQurbaniService extends AbstractModelService
             'project_name' => $request->get('project_name'),
             'program_name' => $request->get('program_name'),
             'campaign_category_id' => $request->get('campaign_category_id'),
-            'feedback' => $request->get('feedback')
+            'feedback' => $request->get('feedback'),
+            'order' => $request->get('order')
         ]);
 
         if (!empty($this->model->id)) {

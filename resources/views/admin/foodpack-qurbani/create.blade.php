@@ -49,6 +49,9 @@
                 <label for="feedback">Feedback</label><br>
                 <textarea id="feedback" name="feedback" class="form-control mb-3">{{ old('feedback') }}</textarea><br>
 
+                <label for="order">Order</label><br>
+                <input id="order" name="order" class="form-control mb-3" type="number" value="{{ old('order', 0) }}" /><br>
+
                 @foreach($types as $type)
                     <label for="name">Price Of {{ $type->name }}</label><br>
                     <input type="hidden" name="types[]" value="{{ $type->id }}">
