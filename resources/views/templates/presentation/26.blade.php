@@ -225,7 +225,7 @@ if(strpos($requestPath, 'lebanon') !== false) {
         <div class="row gutter-0">
             <div class="col-12 col-text">
                 {{-- <div class="title">The Need for Surgeons in {{$locationText}}</div> --}}
-                <div class="title">A Ceasefire Shattered</div>
+                {{-- <div class="title">A Ceasefire Shattered</div> --}}
                 <p>{!! $ourValuesDescription !!}</p>
             </div>
             <div class="col-12 col-media">
