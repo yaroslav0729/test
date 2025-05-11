@@ -208,7 +208,7 @@ if(strpos($requestPath, 'lebanon') !== false) {
     }
 </style>
 
-<section class="who-we-are-head" style="background-color: #F4533C;">
+<section class="who-we-are-head" style="background-color: #22B14C">
     <h1 class="save-lives-title">Save Lives</h1>
     <h1>{!! $ourMissionTitle !!}</h1>
 
