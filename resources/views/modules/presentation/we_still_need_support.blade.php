@@ -39,24 +39,27 @@ if (!isset($isEmergency)) {
             @endempty
         </div>
         <div class="list d-flex justify-content-center">
-
             @php
                 $loopCou = 0;
             @endphp
             @foreach ($singleItems as $itemKey => $item)
-
                 @if ($loopCou == 3)
                     @continue
                 @endif
-
-                @if (count($campaignsCountries[$itemKey]) > 0) {{-- price exists & ok in campaign --}}
-                    <div class="item @if ($isEmergency) active-color-danger @else active-color-info @endisset" data-item_num='{{ $itemKey }}'>
+                @if (isset($campaignsCountries[$itemKey]) && count($campaignsCountries[$itemKey]) > 0) {{-- price exists & ok in campaign --}}
+                    <div class="item 
+                        @if ($isEmergency) active-color-danger 
+                        @else active-color-info
+                        @endif
+                        " data-item_num='{{ $itemKey }}'>
                         <div>£<b>{{ $item['value'] }}</b></div>
                         {!! $item['text'] !!}
-                    </div> @endif @php
-                        $loopCou++;
-                    @endphp @endforeach
-
                     </div>
+                @endif
+                @php
+                    $loopCou++;
+                @endphp
+            @endforeach
         </div>
+    </div>
 </section>
