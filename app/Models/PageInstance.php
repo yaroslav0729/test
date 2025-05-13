@@ -219,7 +219,8 @@ class PageInstance extends Model
         if ($this->template) {
             return view('templates.presentation.' . $this->template, [
                 'parameters' => $this->parameters,
-                'pageInstance' => $this
+                'pageInstance' => $this,
+                'slug' => $this->slug
             ]);
         } else {
             return null;

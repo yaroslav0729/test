@@ -208,7 +208,7 @@ if(strpos($requestPath, 'lebanon') !== false) {
     }
 </style>
 
-<section class="who-we-are-head" style="background-color: #22B14C">
+<section class="who-we-are-head" style="background-color: @if(isset($slug) && $slug === 'Pakistan-Emergency') #22B14C @else #F4533C @endif">
     <h1 class="save-lives-title">Save Lives</h1>
     <h1>{!! $ourMissionTitle !!}</h1>
 
