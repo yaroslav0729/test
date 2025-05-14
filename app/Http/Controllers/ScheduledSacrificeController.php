@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Campaign;
 use App\Models\CampaignCategory;
 use App\Models\Donation;
+use App\Models\FoodPacksQurbaniesType;
 use App\Models\Order;
 use App\Models\Page;
 use App\Models\PageInstance;
@@ -89,17 +90,27 @@ class ScheduledSacrificeController extends Controller
 
         if (!$isScheduled) {
             $items = [];
+            $ite=0;
             foreach ($donations as $donation) {
+                $campaignName = $donation->campaign->name;
+                $parenthesisPosition = strpos($campaignName, ' (');
+                $country = $donation->campaign->country->name;
+                $price = $donation->value;
+                $animalName = FoodPacksQurbaniesType::find($donationsData[$ite]['type'])->name;
+                if ($parenthesisPosition !== false) {
+                    $campaignName = substr($campaignName, 0, $parenthesisPosition);
+                }
                 $items[] = [
                     'price_data' => [
                         'currency' => 'gbp',
                         'product_data' => [
-                            'name' => $donation->campaign->name,
+                            'name' => $campaignName . ' | ' . $country . ' | ' . $animalName . ' | £'  . $price,
                         ],
-                        'unit_amount' => $donation->value * 100,
+                        'unit_amount' => $price * 100,
                     ],
                     'quantity' => 1,
                 ];
+                $ite++;
             }
             $session = \Stripe\Checkout\Session::create([
                 'line_items' => $items,
