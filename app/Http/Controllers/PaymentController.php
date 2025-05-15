@@ -457,9 +457,5 @@ class PaymentController extends Controller
                     'success' => true,
                 ]);
         }
-        return response()->json([
-            'message' => 'Error',
-            'success' => false,
-        ], 400);
     }
 }

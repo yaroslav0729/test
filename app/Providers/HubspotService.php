@@ -124,7 +124,7 @@ class HubspotService
         $object['pipeline'] = $pipeline->getId();
         $object['dealstage'] = $stage->getId();
         $object['dealname'] = $donation->order->first_name . ' ' . $donation->order->last_name . ' ' . $donation->getDonationName();
-
+        $object['donated_by'] = $donation->donated_by;
         $object['donation_date'] = $donation->created_at->timezone('UTC')->startOfDay()->timestamp . '000';
         $object['time'] = $donation->created_at->format('H:i:s');
         $object['campaign_name'] = $donation->campaign ? $donation->campaign->name : 'No campaign';

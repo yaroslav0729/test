@@ -229,18 +229,28 @@
                                     @foreach($group as $cartItem)
                                         @continue($cartItem->upsell)
                                         @php
-                                            $donationName = 'Quick Donation (' . ($cartItem->period === \App\Models\Donation::TYPE_MONTHLY ? 'Monthly' : 'Single') . ')';
                                             if(isset($cartItem->campaign)){
                                                 $donationName =  $cartItem->campaign->name;
                                             } else  if(isset($cartItem->foodpack)){
                                                 $donationName =  $cartItem->foodpack->country->name. " FoodPack";
                                             } else  if(isset($cartItem->foodpackqurbani)){
                                                 $donationName =  $cartItem->foodpackqurbani->country->name. " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
+                                            } else {
+                                                $donationName = 'Quick Donation (' . ($cartItem->period === \App\Models\Donation::TYPE_MONTHLY ? 'Monthly' : 'Single') . ')';
                                             }
-                                        @endphp
-                                        <div class="form-group" data-cart_item_id="{{ $cartItem->cart_item_id }}">
-                                            <label class="@error('notes_' . $cartItem->cart_item_id) text-danger @enderror">Notes for {{ $donationName }} £{{ $cartItem->amount }}</label>
-                                            <input class="form-control @error('notes_' . $cartItem->cart_item_id) border-danger @enderror" name="notes_{{ $cartItem->cart_item_id }}" required="" maxlength="70" placeholder="Please insert any names here. 70 characters max.">
+                                            $isWater = str_contains($donationName, 'water') || str_contains($donationName, 'Water');
+                                            @endphp
+                                        <div class="d-flex" style="width: 100%; gap: 10px;">
+                                            <div class="form-group" @if($isWater) style="width: 70%;" @else style="width: 100%;" @endif data-cart_item_id="{{ $cartItem->cart_item_id }}">
+                                                <label class="@error('notes_' . $cartItem->cart_item_id) text-danger @enderror">Notes for {{ $donationName }} £{{ $cartItem->amount }}</label>
+                                                <input class="form-control @error('notes_' . $cartItem->cart_item_id) border-danger @enderror" name="notes_{{ $cartItem->cart_item_id }}" required="" maxlength="70" placeholder="Please insert any names here. 70 characters max.">
+                                            </div>
+                                            @if($isWater)
+                                            <div class="form-group" style="width: 30%;">
+                                                <label class="@error('donated_by_' . $cartItem->cart_item_id) text-danger @enderror">Donated by</label>
+                                                <input class="form-control @error('donated_by_' . $cartItem->cart_item_id) border-danger @enderror" name="donated_by_{{ $cartItem->cart_item_id }}" required="" value="Anonymous" maxlength="70" placeholder="Please insert any names here. 70 characters max.">
+                                            </div>
+                                            @endif
                                         </div>
                                         @error('notes_' . $cartItem->cart_item_id)
                                             <p class="text-danger ml-3">*{{ $message }}</p>

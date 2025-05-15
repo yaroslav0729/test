@@ -24,7 +24,7 @@ class Donation extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['value', 'order_id', 'type', 'currency', 'campaign_id', 'food_pack_id', 'food_pack_qurbani_id', 'food_pack_qurbani_type_id', 'campaign_category_id', 'user_id', 'email', 'note', 'schedule', 'created_at', 'wp_id', 'status', 'commission', 'ip', 'qurbani_name', 'created_at', 'is_recurring', 'upsell', 'goal', 'name'];
+    protected $fillable = ['value', 'order_id', 'type', 'currency', 'campaign_id', 'food_pack_id', 'food_pack_qurbani_id', 'food_pack_qurbani_type_id','donated_by', 'campaign_category_id', 'user_id', 'email', 'note', 'schedule', 'created_at', 'wp_id', 'status', 'commission', 'ip', 'qurbani_name', 'created_at', 'is_recurring', 'upsell', 'goal', 'name'];
 
     protected static function getTypeLabel($type)
     {

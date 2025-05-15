@@ -217,8 +217,6 @@ class CartController extends Controller
 
     public function order(OrderRequest $request)
     {
-        $DonationCollection = [];
-        $AllDonationData = [];
         $cartIds = session()->get('cart');
         $country = Country::find(intval($request->get('country')));
         $cartItems = CartItem::whereIn('cart_item_id', $cartIds)->get();
@@ -294,6 +292,7 @@ class CartController extends Controller
                 'email' => $order->email,
                 'commission' => $request->stripe_fee ? StripeService::countCommission(CartItem::getCartSum()) / $totalDonations : null,
                 'note' => $request->get('notes_' . $cartItem->cart_item_id) ?? $cartItem->note,
+                'donated_by' => $request->get('donated_by_' . $cartItem->cart_item_id) ?? '',
                 'schedule' => $cartItem->period === 20 ? 'Number: ' . $order->account_number . ', Sort: ' . $order->sort_code . ', Day: ' . $order->pay_day : '',
                 'account_number' => $cartItem->period === 20 ? $request->account_number : null,
                 'sort_code' => $cartItem->period === 20 ? $request->sort_code : null,
