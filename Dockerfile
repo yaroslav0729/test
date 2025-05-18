@@ -1,7 +1,7 @@
 ############################
 # 1 – PHP build stage
 ############################
-FROM base:latest AS php-build
+FROM 694783502979.dkr.ecr.eu-west-2.amazonaws.com/php7.4-base:latest AS php-build
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -34,7 +34,7 @@ RUN npm i && npm run prod
 ############################
 # 3 – Runtime image
 ############################
-FROM base:latest AS runtime
+FROM 694783502979.dkr.ecr.eu-west-2.amazonaws.com/php7.4-base:latest AS runtime
 
 # bring PHP extensions into the final image
 COPY --from=php-build /usr/local/lib/php/extensions /usr/local/lib/php/extensions/
