@@ -1,57 +1,46 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+log() { printf '\e[32m[entrypoint]\e[0m %s\n' "$*"; }
 
-# Navigate to the application directory
-echo "Navigating to /var/www/html..."
-cd /var/www/html || { echo "Failed to navigate to /var/www/html. Exiting."; exit 1; }
+APP_DIR=/var/www/html
+cd "${APP_DIR}" || { echo "Cannot cd to ${APP_DIR}"; exit 1; }
 
-# Fix permissions for log and cache directories
-echo "Fixing permissions for storage/logs and bootstrap/cache..."
+# ── writable dirs ─────────────────────────────────────────────────────
+log "Ensuring storage & cache exist"
 mkdir -p storage/logs bootstrap/cache
-touch storage/logs/laravel.log
-chmod -R 777 /var/www/html
-chown -R www-data:www-data bootstrap/cache
+touch    storage/logs/laravel.log
 
-# Check if the .env file exists and if the APP_KEY is set
-if [ -f ".env" ]; then
-    if ! grep -q "APP_KEY=base64" .env; then
-        # Generate the application key
-        echo "Generating application key..."
-        php artisan key:generate
-    fi
+# ── APP_KEY ───────────────────────────────────────────────────────────
+if [[ -f .env ]]; then
+  if ! grep -qE '^APP_KEY=' .env || grep -qE '^APP_KEY=$' .env; then
+    log "Generating APP_KEY"
+    php artisan key:generate --quiet
+  fi
 else
-    echo ".env file not found. Please make sure the .env file exists."
-    exit 1
+  echo ".env not found – aborting."; exit 1
 fi
 
-# Clear caches before running migration
-echo "Clearing Laravel config and caches before migration..."
-php artisan config:clear
-php artisan cache:clear
-php artisan view:clear
-php artisan route:clear
+# ── clear caches ──────────────────────────────────────────────────────
+log "Clearing caches"
+php artisan config:clear --quiet || true
+php artisan cache:clear  --quiet || true
+php artisan view:clear   --quiet || true
+php artisan route:clear  --quiet || true
 
-# Run migration with detailed output
-echo "Running migrations..."
-php artisan migrate
+# ── migrate (optional seed) ───────────────────────────────────────────
+log "Running migrations"
+php artisan migrate --force --no-interaction
+# php artisan db:seed --force --no-interaction
 
-# Run seeders
-echo "Running seeders..."
-
-# Create storage symlink
-echo "Creating storage symlink..."
+# ── symlink for storage ───────────────────────────────────────────────
 php artisan storage:link
 
-# Publish log viewer
-echo "Publishing log viewer..."
-php artisan log-viewer:publish
+# ── rebuild caches ────────────────────────────────────────────────────
+log "Caching config & routes"
+php artisan config:cache --quiet
+php artisan route:cache  --quiet
+php artisan view:cache   --quiet
 
-# Clear Laravel caches again
-echo "Clearing Laravel config and caches..."
-php artisan config:clear
-php artisan cache:clear
-php artisan view:clear
-php artisan route:clear
-
-# Start Laravel's built-in development server on port 8000
-echo "Starting Laravel development server..."
-php artisan serve --host=0.0.0.0 --port=8000
+# ── start dev server (swap to php-fpm behind Nginx in prod) ───────────
+log "Launching server on :${APP_PORT:-8000}"
+exec php artisan serve --host=0.0.0.0 --port="${APP_PORT:-8000}"
