@@ -1,4 +1,4 @@
-FROM php:7.4-cli AS php-base
+FROM php:8.2-cli AS php-base
 
 # Set environment variables to avoid interactive prompts during build
 ARG DEBIAN_FRONTEND=noninteractive
