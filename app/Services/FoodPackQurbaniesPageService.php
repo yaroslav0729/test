@@ -16,8 +16,16 @@ class FoodPackQurbaniesPageService extends AbstractModelService
 
     public function createNewPage(Request $request): bool
     {
+        $pageUrl = trim($request->get('page_url', ''));
+        if (empty($pageUrl)) {
+            return false;
+        }
+        
+        // Sanitize the URL to prevent SQL injection
+        $pageUrl = filter_var($pageUrl, FILTER_SANITIZE_STRING);
+        
         $this->create([
-            'page_url' => $request->get('page_url'),
+            'page_url' => $pageUrl,
             'active_at' => now(),
         ]);
 
@@ -43,6 +51,6 @@ class FoodPackQurbaniesPageService extends AbstractModelService
 
     public function showWidget(string $pageUrl): bool
     {
-        return $this->model->whereRaw("'{$pageUrl}' like `page_url`")->exists();
+        return $this->model->where('page_url', 'like', $pageUrl)->exists();
     }
 }

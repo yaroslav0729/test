@@ -83,10 +83,35 @@ abstract class AbstractParser
 
             if ((!$exists) && ($imageUrl !== "")) {
                 try {
-                    $contents = file_get_contents($imageUrl);
+                    // Validate URL is from our trusted domain
+                    if (!filter_var($imageUrl, FILTER_VALIDATE_URL) || 
+                        !preg_match('/^https:\/\/www\.islamichelp\.org\.uk\//', $imageUrl)) {
+                        throw new Exception('Invalid image URL');
+                    }
+                    
+                    // Set a timeout for the request
+                    $context = stream_context_create([
+                        'http' => [
+                            'timeout' => 5,
+                            'header' => [
+                                'User-Agent: IslamicHelp/1.0'
+                            ]
+                        ]
+                    ]);
+                    
+                    $contents = file_get_contents($imageUrl, false, $context);
+                    if ($contents === false) {
+                        throw new Exception('Failed to download image');
+                    }
+                    
+                    // Validate the content is actually an image
+                    if (!getimagesizefromstring($contents)) {
+                        throw new Exception('Invalid image content');
+                    }
+                    
                     Storage::disk('public')->put($path, $contents);
                 } catch (Exception $e) {
-                    $this->info('WARNING: file not found: ' . $imageUrl);
+                    $this->info('WARNING: file not found: ' . $imageUrl . ' - ' . $e->getMessage());
                 }
             }
 
@@ -203,7 +228,6 @@ abstract class AbstractParser
 
         if ($images !== []) {
             foreach ($images as $imageUrl) {
-
                 list($linkMonth, $linkYear) = $this->searchMonthYear($imageUrl);
 
                 if (($linkMonth !== '') && ($linkYear !== '')) {
@@ -218,10 +242,35 @@ abstract class AbstractParser
 
                 if ((!$exists) && ($imageUrl !== "")) {
                     try {
-                        $contents = file_get_contents($imageUrl);
+                        // Validate URL is from our trusted domain
+                        if (!filter_var($imageUrl, FILTER_VALIDATE_URL) || 
+                            !preg_match('/^https:\/\/www\.islamichelp\.org\.uk\//', $imageUrl)) {
+                            throw new Exception('Invalid image URL');
+                        }
+                        
+                        // Set a timeout for the request
+                        $context = stream_context_create([
+                            'http' => [
+                                'timeout' => 5,
+                                'header' => [
+                                    'User-Agent: IslamicHelp/1.0'
+                                ]
+                            ]
+                        ]);
+                        
+                        $contents = file_get_contents($imageUrl, false, $context);
+                        if ($contents === false) {
+                            throw new Exception('Failed to download image');
+                        }
+                        
+                        // Validate the content is actually an image
+                        if (!getimagesizefromstring($contents)) {
+                            throw new Exception('Invalid image content');
+                        }
+                        
                         Storage::disk('public')->put($path, $contents);
                     } catch (Exception $e) {
-                        $this->info('WARNING: file not found: ' . $imageUrl);
+                        $this->info('WARNING: file not found: ' . $imageUrl . ' - ' . $e->getMessage());
                     }
                 }
 
@@ -266,10 +315,35 @@ abstract class AbstractParser
         $exists = Storage::disk('public')->exists($path);
         if ((!$exists) && ($url !== "")) {
             try {
-                $contents = file_get_contents($url);
+                // Validate URL is from our trusted domain
+                if (!filter_var($url, FILTER_VALIDATE_URL) || 
+                    !preg_match('/^https:\/\/www\.islamichelp\.org\.uk\//', $url)) {
+                    throw new Exception('Invalid image URL');
+                }
+                
+                // Set a timeout for the request
+                $context = stream_context_create([
+                    'http' => [
+                        'timeout' => 5,
+                        'header' => [
+                            'User-Agent: IslamicHelp/1.0'
+                        ]
+                    ]
+                ]);
+                
+                $contents = file_get_contents($url, false, $context);
+                if ($contents === false) {
+                    throw new Exception('Failed to download image');
+                }
+                
+                // Validate the content is actually an image
+                if (!getimagesizefromstring($contents)) {
+                    throw new Exception('Invalid image content');
+                }
+                
                 Storage::disk('public')->put($path, $contents);
             } catch (Exception $e) {
-                $this->info('WARNING: file not found: ' . $url);
+                $this->info('WARNING: file not found: ' . $url . ' - ' . $e->getMessage());
             }
         }
 

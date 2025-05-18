@@ -29,9 +29,6 @@ class PageController extends Controller
     {
         $indexPage = Page::published()->index()->first();
         $pageInstance = $indexPage->actual_page_instance;
-        if(!$pageInstance)$pageInstance=[];
-        if(isset($pageInstance['title']))$pageInstance->title="Islamic Help";
-        if(isset($pageInstance['description']))$pageInstance->description="Islamic Help";
 
         SEOMeta::setTitle($pageInstance->title);
         SEOMeta::setDescription($pageInstance->description);

@@ -74,7 +74,22 @@ class PaymentController extends Controller
     public function stripePaymentSuccess(Request $request, StripeService $stripeService)
     {
         Log::error('stripePaymentSuccess');
+        
+        // Verify request is from Stripe
+        if (!isset($_SERVER['HTTP_STRIPE_SIGNATURE'])) {
+            Log::error('No Stripe signature found');
+            http_response_code(400);
+            exit();
+        }
+        
+        // Read raw POST data
         $payload = @file_get_contents('php://input');
+        if ($payload === false) {
+            Log::error('Failed to read POST data');
+            http_response_code(400);
+            exit();
+        }
+        
         $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
         $event = null;
 
@@ -84,12 +99,12 @@ class PaymentController extends Controller
             );
         } catch (\UnexpectedValueException $e) {
             // Invalid payload
-            Log::error('UnexpectedValueException');
+            Log::error('UnexpectedValueException: ' . $e->getMessage());
             http_response_code(400);
             exit();
         } catch (\Stripe\Exception\SignatureVerificationException $e) {
             // Invalid signature
-            Log::error('SignatureVerificationException ' . config('stripe.secret_endpoint_secret') . ' ' . $sig_header);
+            Log::error('SignatureVerificationException: ' . $e->getMessage());
             http_response_code(400);
             exit();
         }

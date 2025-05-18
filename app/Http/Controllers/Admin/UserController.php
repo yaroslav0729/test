@@ -6,18 +6,26 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $keyword = $request->keyword;
+        // Validate and sanitize input
+        $keyword = Str::of($request->input('keyword', ''))
+            ->trim()
+            ->limit(255) // Prevent extremely long searches
+            ->toString();
+
         $users = new User;
 
         if (!empty($keyword)) {
-            $users = $users->where('email', 'like', '%' . $keyword . '%')
-                ->orWhere('name', 'like', '%' . $keyword . '%')
-                ->orWhere('last_name', 'like', '%' . $keyword . '%');
+            $users = $users->where(function ($query) use ($keyword) {
+                $query->where('email', 'like', '%' . $keyword . '%')
+                    ->orWhere('name', 'like', '%' . $keyword . '%')
+                    ->orWhere('last_name', 'like', '%' . $keyword . '%');
+            });
         }
 
         $users = $users->paginate(10);

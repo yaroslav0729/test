@@ -1,27 +1,31 @@
 <?php
 
-
 namespace App\Http\Controllers;
-
 
 use App\Models\Page;
 use App\Models\PageInstance;
 use Illuminate\Http\Request;
 use App\Models\Template;
 use Illuminate\Database\Eloquent\Builder;
-
+use Illuminate\Support\Str;
 
 class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        $keyword = $request->get('keyword');
+        // Validate and sanitize input
+        $keyword = Str::of($request->get('keyword', ''))
+            ->trim()
+            ->limit(255) // Prevent extremely long searches
+            ->toString();
 
         $pages = Page::whereHas('pageInstances')->published();
         if (!empty($keyword)) {
             $pages = $pages->whereHas('pageInstances', function (Builder $query) use ($keyword) {
-                $query->where('name', 'like',  '%' . $keyword . '%');
-                $query->orWhere('preview_text', 'like',  '%' . $keyword . '%');
+                $query->where(function ($q) use ($keyword) {
+                    $q->where('name', 'like', '%' . $keyword . '%')
+                      ->orWhere('preview_text', 'like', '%' . $keyword . '%');
+                });
             });
         }
 
@@ -31,5 +35,4 @@ class SearchController extends Controller
 
         return view('search.index', compact('configTemplate', 'pages', 'keyword', 'countPage'));
     }
-
 }

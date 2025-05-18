@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', [PageController::class, 'index'])->name('index');
-Route::get('/check-donation-cron', [PageController::class, 'CheckDonationPingCron']);
+Route::get('/check-donation-cron', [PageController::class, 'CheckDonationPingCron'])->middleware('throttle:60,1');
 Route::get('/sitemap.xml', [SitemapController::class, 'sitemap']);
 Route::get('search', [SearchController::class, 'index'])->name('search.index');
 
@@ -119,7 +119,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'role:' . User::ROLE_
 
         Route::get('/get_template_form/{templateId}', [AdminPageController::class, 'getTemplateForm'])->name('admin.get_template_form');
 
-        Route::post('media/upload_mce', [MediaController::class, 'upload']);
+        Route::post('media/upload_mce', [MediaController::class, 'upload'])->middleware(['throttle:60,1', 'validate.media']);
 
         Route::get('/banners', [BannerController::class, 'createOrEdit'])->name('admin.banner.create_or_edit');
         Route::post('/banners/create', [BannerController::class, 'store'])->name('admin.banner.store');
@@ -211,7 +211,7 @@ Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('s
 Route::get('auth/facebook', [SocialController::class, 'facebookRedirect'])->name('auth_facebook');
 Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
 
-Route::prefix('foodpack')->group(function () {
+Route::prefix('foodpack')->middleware('throttle:60,1')->group(function () {
     Route::get('price', [\App\Http\Controllers\FoodPackController::class, 'index']);
     Route::any('show', [\App\Http\Controllers\FoodPackPagesController::class, 'show']);
     Route::prefix('qurbani')->group(function () {
@@ -229,5 +229,7 @@ Route::name('schedule-qurbani.')->group(function () {
     Route::post('/schedule-Qurbani', [\App\Http\Controllers\ScheduledSacrificeController::class, 'schedule'])->name('schedule');
 });
 
-Route::get('/test', [Controller::class, 'test']);
+if (app()->environment('local')) {
+    Route::get('/test', [Controller::class, 'test']);
+}
 Route::get('/{slug}', [PageController::class, 'showFromSlug'])->where('slug', '.*');

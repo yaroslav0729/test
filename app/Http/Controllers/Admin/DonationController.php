@@ -92,7 +92,12 @@ class DonationController extends Controller
 
     public function exportCsv(Request $request)
     {
-        $fileName = 'donations.csv';
+        // Validate request
+        if (!$request->user()->can('export-donations')) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $fileName = 'donations-' . date('Y-m-d-H-i-s') . '.csv';
 
         $headers = array(
             "Content-type" => "text/csv",
@@ -106,59 +111,61 @@ class DonationController extends Controller
 
         $callback = function () use ($columns, $request) {
             $file = fopen('php://output', 'w');
+            if ($file === false) {
+                throw new \RuntimeException('Failed to open output stream');
+            }
+            
+            // Add BOM for Excel compatibility
+            fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
+            
             fputcsv($file, $columns);
 
             [$donations] = $this->filterDonations($request, $request->has('qurbani'));
             $donations->with('order')->orderBy('created_at', 'desc')->chunk(100, function ($donations) use ($file) {
                 foreach ($donations as $donation) {
-                    $row['Id'] = $donation->id;
-                    $row['Value'] = $donation->value;
-                    $row['Type'] = $donation->type_name;
-                    $row['Is Recurring'] = $donation->is_recurring ? 'Yes' : 'No';
-                    $row['Status'] = $donation->status_name;
-                    $row['First name'] = $donation->order ? $donation->order->first_name : '';
-                    $row['Last name'] = $donation->order ? $donation->order->last_name : '';
-                    $row['Email'] = $donation->email;
-                    $row['Phone'] = $donation->order ? $donation->order->phone : '';
-                    $row['Date'] = $donation->created_at->format('d/m/Y');
-                    $row['Time'] = $donation->created_at->format('H:i:s');
-                    if ($donation->campaign) {
-                        $row['Campaign'] = $donation->campaign->name;
-                    } elseif (isset($donation->foodpackqurbani)) {
-                        $row['Campaign'] = $donation->foodpackqurbani->country->name . " Qurbani (" . $donation->foodpackqurbanitype->name . ")";
-                    } elseif (isset($donation->foodpack)) {
-                        $row['Campaign'] = "FoodPack " . $donation->foodpack->country->name;
-                    } else if ($donation->upsell) {
-                        $row['Campaign'] = $donation->name ?? 'Provide Rice This Eid';
-                    } else {
-                        $row['Campaign'] = 'No Campaign';
-                    }   
-                    $row['Campaign country'] = $donation->campaign && $donation->campaign->country ? $donation->campaign->country->name : 'No Country';
-                    $row['Project name'] = $donation->campaign && $donation->campaign->project_name ? $donation->campaign->project_name : 'No Project';
-                    $row['Program name'] = $donation->campaign && $donation->campaign->program_name ? $donation->campaign->program_name : 'No Program';
-                    $row['Name'] = $donation->qurbani_name;
-                    $row['Category'] = $donation->campaign_category ? $donation->campaign_category->name : 'no category';
-                    $row['Gift aid'] = $donation->order && $donation->order->gift_aid ? $donation->order->gift_aid : '';
-                    $row['Paid commission'] = $donation->commission ? round($donation->commission, 2) : 'No';
-                    $row['Do SMS'] = $donation->order && $donation->order->do_sms ? $donation->order->do_sms : '';
-                    $row['Do Email'] = $donation->order && $donation->order->do_email ? $donation->order->do_email : '';
-                    $row['Do Post Marketing'] = $donation->order && $donation->order->do_post ? $donation->order->do_post : '';
-                    $row['Help This Donation 100%'] = !empty($donation->commission) ? 'Yes' : 'No';
-                    $row['Account number'] = $donation->order && $donation->order->account_number ? "'" . $donation->order->account_number . "'" : '';
-                    $row['Sort code'] = $donation->order && $donation->order->sort_code ? "'" . $donation->order->sort_code . "'" : '';
-                    $row['Pay day'] = $donation->order && $donation->order->pay_day ? $donation->order->pay_day : '';
-                    $row['Payment type'] = $donation->order ? $donation->order->pay_with : '';
-                    $row['Post code'] = $donation->order ? $donation->order->post_code : '';
-                    $row['Address 1'] = $donation->order ? $donation->order->address_1 : '';
-                    $row['Address 2'] = $donation->order ? $donation->order->address_2 : '';
-                    $row['Address 3'] = $donation->order ? $donation->order->address_3 : '';
-                    $row['City'] = $donation->order ? $donation->order->city : '';
-                    $row['State'] = $donation->order ? $donation->order->state : '';
-                    $row['Country'] = $donation->order ? $donation->order->country : '';
-                    $row['Notes'] = $donation->note ? $donation->note : '';
-                    $row['Order notes'] = $donation->order ? $donation->order->notes : '';
-                    $row['Order ID'] = $donation->order ? $donation->order->order_id : '';
-                    $row['Subscription ID'] = $donation->order ? $donation->order->subscription_id : '';
+                    // Sanitize all output data
+                    $row = array_map(function($value) {
+                        return is_string($value) ? htmlspecialchars($value, ENT_QUOTES, 'UTF-8') : $value;
+                    }, [
+                        'Id' => $donation->id,
+                        'Value' => $donation->value,
+                        'Type' => $donation->type_name,
+                        'Is Recurring' => $donation->is_recurring ? 'Yes' : 'No',
+                        'Status' => $donation->status_name,
+                        'First name' => $donation->order ? $donation->order->first_name : '',
+                        'Last name' => $donation->order ? $donation->order->last_name : '',
+                        'Email' => $donation->email,
+                        'Phone' => $donation->order ? $donation->order->phone : '',
+                        'Date' => $donation->created_at->format('d/m/Y'),
+                        'Time' => $donation->created_at->format('H:i:s'),
+                        'Campaign' => $this->getCampaignName($donation),
+                        'Campaign country' => $donation->campaign && $donation->campaign->country ? $donation->campaign->country->name : 'No Country',
+                        'Project name' => $donation->campaign && $donation->campaign->project_name ? $donation->campaign->project_name : 'No Project',
+                        'Program name' => $donation->campaign && $donation->campaign->program_name ? $donation->campaign->program_name : 'No Program',
+                        'Name' => $donation->qurbani_name,
+                        'Category' => $donation->campaign_category ? $donation->campaign_category->name : 'no category',
+                        'Gift aid' => $donation->order && $donation->order->gift_aid ? $donation->order->gift_aid : '',
+                        'Paid commission' => $donation->commission ? round($donation->commission, 2) : 'No',
+                        'Do SMS' => $donation->order && $donation->order->do_sms ? $donation->order->do_sms : '',
+                        'Do Email' => $donation->order && $donation->order->do_email ? $donation->order->do_email : '',
+                        'Do Post Marketing' => $donation->order && $donation->order->do_post ? $donation->order->do_post : '',
+                        'Help This Donation 100%' => !empty($donation->commission) ? 'Yes' : 'No',
+                        'Account number' => $donation->order && $donation->order->account_number ? "'" . $donation->order->account_number . "'" : '',
+                        'Sort code' => $donation->order && $donation->order->sort_code ? "'" . $donation->order->sort_code . "'" : '',
+                        'Pay day' => $donation->order && $donation->order->pay_day ? $donation->order->pay_day : '',
+                        'Payment type' => $donation->order ? $donation->order->pay_with : '',
+                        'Post code' => $donation->order ? $donation->order->post_code : '',
+                        'Address 1' => $donation->order ? $donation->order->address_1 : '',
+                        'Address 2' => $donation->order ? $donation->order->address_2 : '',
+                        'Address 3' => $donation->order ? $donation->order->address_3 : '',
+                        'City' => $donation->order ? $donation->order->city : '',
+                        'State' => $donation->order ? $donation->order->state : '',
+                        'Country' => $donation->order ? $donation->order->country : '',
+                        'Notes' => $donation->note ? $donation->note : '',
+                        'Order notes' => $donation->order ? $donation->order->notes : '',
+                        'Order ID' => $donation->order ? $donation->order->order_id : '',
+                        'Subscription ID' => $donation->order ? $donation->order->subscription_id : ''
+                    ]);
 
                     fputcsv($file, $row);
                 }
@@ -170,8 +177,13 @@ class DonationController extends Controller
         return response()->stream($callback, 200, $headers);
     }
 
-    public function exportDonationPdf(Donation $donation)
+    public function exportDonationPdf(Request $request, Donation $donation)
     {
+        // Validate request
+        if (!$request->user()->can('export-donations')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $order = $donation->order;
         $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
         $fontDirs = $defaultConfig['fontDir'];
@@ -185,20 +197,44 @@ class DonationController extends Controller
             'mode' => 'utf-8',
         ]);
 
-        $mpdf->WriteHTML(view('pdf.donation', [
+        // Sanitize HTML content
+        $html = view('pdf.donation', [
             'order' => $order,
-        ]));
+        ])->render();
+        
+        $html = htmlspecialchars_decode($html);
+        $mpdf->WriteHTML($html);
 
         $headers = [
-            'Content-type' => 'text/pdf',
-            'Content-Disposition' => 'attachment; filename="donation.pdf"',
+            'Content-type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="donation-' . $donation->id . '.pdf"',
+            'X-Content-Type-Options' => 'nosniff',
+            'X-Frame-Options' => 'DENY',
+            'X-XSS-Protection' => '1; mode=block'
         ];
 
         return response()->stream(function () use ($mpdf) {
             $file = fopen('php://output', 'w');
+            if ($file === false) {
+                throw new \RuntimeException('Failed to open output stream');
+            }
             fputs($file, $mpdf->Output('', \Mpdf\Output\Destination::STRING_RETURN));
             fclose($file);
         }, 200, $headers);
+    }
+
+    private function getCampaignName($donation)
+    {
+        if ($donation->campaign) {
+            return $donation->campaign->name;
+        } elseif (isset($donation->foodpackqurbani)) {
+            return $donation->foodpackqurbani->country->name . " Qurbani (" . $donation->foodpackqurbanitype->name . ")";
+        } elseif (isset($donation->foodpack)) {
+            return "FoodPack " . $donation->foodpack->country->name;
+        } else if ($donation->upsell) {
+            return $donation->name ?? 'Provide Rice This Eid';
+        }
+        return 'No Campaign';
     }
 
     private function filterDonations($request, $isQurbani = false)
