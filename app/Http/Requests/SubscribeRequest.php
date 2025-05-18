@@ -24,7 +24,7 @@ class SubscribeRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'unique:subscriptions'
+            'email' => 'required|email:filter|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/|unique:subscriptions,email'
         ];
     }
 }
