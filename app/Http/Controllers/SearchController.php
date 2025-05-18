@@ -16,8 +16,7 @@ class SearchController extends Controller
         // Validate and sanitize input
         $keyword = Str::of($request->get('keyword', ''))
             ->trim()
-            ->limit(255) // Prevent extremely long searches
-            ->toString();
+            ->limit(255);
 
         $pages = Page::whereHas('pageInstances')->published();
         if (!empty($keyword)) {

@@ -15,8 +15,7 @@ class UserController extends Controller
         // Validate and sanitize input
         $keyword = Str::of($request->input('keyword', ''))
             ->trim()
-            ->limit(255) // Prevent extremely long searches
-            ->toString();
+            ->limit(255);
 
         $users = new User;
 
