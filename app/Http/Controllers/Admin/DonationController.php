@@ -92,10 +92,6 @@ class DonationController extends Controller
 
     public function exportCsv(Request $request)
     {
-        // Validate request
-        if (!$request->user()->can('export-donations')) {
-            abort(403, 'Unauthorized action.');
-        }
 
         $fileName = 'donations-' . date('Y-m-d-H-i-s') . '.csv';
 
@@ -179,11 +175,6 @@ class DonationController extends Controller
 
     public function exportDonationPdf(Request $request, Donation $donation)
     {
-        // Validate request
-        if (!$request->user()->can('export-donations')) {
-            abort(403, 'Unauthorized action.');
-        }
-
         $order = $donation->order;
         $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
         $fontDirs = $defaultConfig['fontDir'];
