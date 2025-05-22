@@ -355,29 +355,6 @@ class PaymentController extends Controller
                             $donation->save();
                         }
                     }
-
-                    if (count($subscriptionInvoices->data) > 1) {
-                        $lastInvoice = $subscriptionInvoices->data[0];
-                        if (floatval($lastInvoice->amount_due) === ($originalDonations->sum('value') * 100)) {
-                            $createdTime = now();
-                            $newDonationsCollection = collect();
-                            foreach ($donations as $key => $donation) {
-                                $newDonation = $donation->replicate();
-                                $newDonation->created_at = $createdTime;
-                                $newDonation->is_recurring = true;
-                                $newDonation->invoice_id = $lastInvoice->id;
-                                $newDonation->save();
-                                $newDonationsCollection->push($newDonation);
-                                Log::error('Created new donation ' . $newDonation->id . ' for order ' . $order->id);
-                            }
-                            try {
-                                $this->hubspotService->importDonations($newDonationsCollection);
-                            } catch (\Exception $e) {
-                                Log::error($e->getMessage());
-                                Log::error('Error importing donations to Hubspot. Order id ' . $order->id);
-                            }
-                        }
-                    }
                 } else {
                     $donations = collect();
 
@@ -406,7 +383,7 @@ class PaymentController extends Controller
                                 $payload['campaign_id'] = $campaignId;
                             }
 
-                            $donation = Donation::create($payload);
+                            $donation = new Donation($payload);
 
                             $donations->push($donation);
                         }
@@ -434,14 +411,10 @@ class PaymentController extends Controller
                             $payload['campaign_id'] = $campaignId;
                         }
 
-                        $donation = Donation::create($payload);
+                        $donation = new Donation($payload);
 
                         $donations->push($donation);
                     }
-
-                    $sum = $donations->sum(function ($donation) {
-                        return $donation->value;
-                    });
 
                     $thanksUrl = Page::getSinglePageUrl(Template::THANK_YOU_DONATE_PAGE);
                     $this->sendThankEmailRamadan($donations, $invoice->total, $invoice->period_end);
