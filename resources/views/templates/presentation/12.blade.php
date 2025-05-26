@@ -5,7 +5,11 @@
     if (isset($parameters['main_img'])) {
         $mainImg = $parameters['main_img'];
     }
+    $deployment_date = "";
 
+    if (isset($parameters['our_latest_text1'])) {
+        $deployment_date = $parameters['our_latest_text1'];    
+    }
 @endphp
 
 <section class="head-mission-impossible bg-light">
@@ -16,7 +20,12 @@
     <div class="wrap" style="background-image: url({{ $mainImg }})">
     @endempty
 
-        <div class="text">EMPOWERING PEOPLE IN NEED</div>
+        <div class="text">
+            <div>EMPOWERING PEOPLE IN NEED</div>
+            <div class="">
+                {{ $deployment_date }}
+            </div>
+        </div>
         <div class="decor-text">
             <span class="text-red">Mission</span>
             <span>Possible</span>
