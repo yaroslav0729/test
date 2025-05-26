@@ -57,7 +57,7 @@
                             <img src="{{ $projImg1 }}" alt="">
                             <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> 
                                 @empty($projText1)
-                                    Turkey
+                                    Turkey, Jordan, and Egypt
                                 @else
                                     {{ $projText1 }}
                                 @endempty
