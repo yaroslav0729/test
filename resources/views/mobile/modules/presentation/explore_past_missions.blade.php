@@ -55,7 +55,14 @@
                     <div class="swiper-slide">
                         <div class="item">
                             <img src="{{ $projImg1 }}" alt="">
-                            <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> {{ $projText1 }}</span></span>
+                            <span class="place"><span class="text-dark"><i class="fal fa-map-marker-alt"></i> 
+                                @empty($projText1)
+                                    Turkey
+                                @else
+                                    {{ $projText1 }}
+                                @endempty
+                            </span>
+                        </span>
                         </div>
                     </div>
                     <div class="swiper-slide">
