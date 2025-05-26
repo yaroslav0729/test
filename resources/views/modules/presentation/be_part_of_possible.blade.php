@@ -31,7 +31,7 @@
                     <span>Children educated</span>
                 </div>
                 <div>
-                    <span>6.6k</span>
+                    <span>100k+</span>
                     <span>People empowered</span>
                 </div>
                 <div>
