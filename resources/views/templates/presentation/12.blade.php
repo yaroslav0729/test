@@ -14,7 +14,7 @@
 
 <section class="head-mission-impossible bg-light">
 
-    @empty($main_img)
+    @empty($mainImg)
     <div class="wrap" style="background-image: url(img/content/head-mission-impossible.jpg)">
     @else
     <div class="wrap" style="background-image: url({{ $mainImg }})">
