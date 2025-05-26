@@ -37,6 +37,7 @@
         <p class="font-size-16 text-white mb-0">
             {{ $soWhatText }}
         </p>
+        <a href="{{ $applyNowLink }}" class="btn btn-outline-primary border-white mt-3">Apply now</a>
     </div>
     <div class="img" style="background-image: url({{ $soWhatImg }})"></div>
 
@@ -86,7 +87,6 @@
                     @endempty
                 </b>
             </p>
-            <a href="{{ $applyNowLink }}" class="btn btn-outline-primary border-white">Apply now</a>
         </div>
         <div class="pt-5"></div>
         <div class="pl-4">
