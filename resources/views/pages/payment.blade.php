@@ -525,12 +525,8 @@
                                     @endif
                                 </div>
 
-                                <button type="submit" id="cart-pay" class="btn btn-danger border-white btn-submit">
-                                    @if($hasMonthlyDonations && Setting::get(Setting::ENABLE_STRIPE))
-                                        Set up your monthly payments
-                                    @else
-                                        Pay Now
-                                    @endif
+                                <button type="button" id="cart-pay" class="btn btn-danger border-white btn-submit">
+                                    Pay Now
                                 </button>
                             </div>
                         </div>
@@ -539,6 +535,38 @@
             </div>
         </section>
     </div>
+
+    <!-- Card Payment Modal -->
+    <div class="modal fade" id="cardPaymentModal" tabindex="-1" role="dialog" aria-labelledby="cardPaymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cardPaymentModalLabel">Card Payment Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="card-payment-form">
+                        <div class="form-group">
+                            <label><b>CARD NUMBER</b></label>
+                            <input type="text" class="form-control" name="card_number" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                        </div>
+                        <div class="form-group">
+                            <label><b>EXPIRY DATE</b></label>
+                            <input type="text" class="form-control" name="expiry_date" placeholder="MM / YY" maxlength="7" required>
+                        </div>
+                        <div class="form-group">
+                            <label><b>CVV</b></label>
+                            <input type="text" class="form-control" name="cvv" placeholder="123" maxlength="3" required>
+                        </div>
+                        <button type="submit" class="btn btn-danger w-100">Pay Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <script>
     $( document ).ready(function() {
 
