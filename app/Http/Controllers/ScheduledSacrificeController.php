@@ -174,7 +174,7 @@ class ScheduledSacrificeController extends Controller
             'email' => $order->email,
             'qurbani_name' => $campaign->name,
             'commission' => null,
-            'status' => $isScheduled ? Donation::STATUS_SCHEDULED : Donation::STATUS_COMPLETE,
+            'status' => $isScheduled ? Donation::STATUS_SCHEDULED : Donation::STATUS_PROCESSING,
             'note' => $donationData['name'],
             'ip' => $ip,
         ]);
