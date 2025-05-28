@@ -246,7 +246,7 @@ class DonationController extends Controller
         $donations = new Donation;
 
         if ($isQurbani) {
-            $donations = $donations->whereNotNull('qurbani_name')->where('status', '!=', Donation::STATUS_PROCESSING);
+            $donations = $donations->whereNotNull('qurbani_name');
         } else {
             $donations = $donations->whereNull('qurbani_name');
         }
