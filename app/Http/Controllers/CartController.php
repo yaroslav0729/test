@@ -231,44 +231,10 @@ class CartController extends Controller
             return back()->with('error', "For donations of this value please contact our team on 0121 446 568.");
         }
 
-        foreach ($cartItems as $key => $cartItem) {
+        foreach ($cartItems as $cartItem) {
             if ($cartItem->period !== 20) {
                 $sum = $sum + $cartItem->amount;
             }
-            //  ====================================  Donation Data AssignMent Start ======================================
-            // $AllDonationData['user_details'] = $request->all();
-            // $AllDonationData['user_details']['title'] = $request->title;
-            // $AllDonationData['user_details']['total_amount'] = $cartItem->amount;
-            // $AllDonationData['user_details']['pay_method'] = ($request->pay_method === 'paypal') ? 'paypal' : 'global';
-            // $categoryName = CampaignCategory::where('id', $cartItem->campaign_category_id)->first(); // sadqah
-            // $startDay = date("Y");
-            // $newEndingDate = date("Y", strtotime(date("Y", strtotime($startDay)) . " + 1 year"));
-            // $icharmeIdsFromDb = Campaign::where('id', $cartItem->campaign_id)->select(['icharm_program_id', 'icharm_country_id', 'name'])->first();
-            // $CampaignName = (!empty($icharmeIdsFromDb->name)) ? $icharmeIdsFromDb->name : 'Annual Campaign - ' . $startDay . ' - ' . $newEndingDate . '';
-            // $AllDonationData['user_details']['categoryName'] = (!empty($categoryName)) ? $categoryName->name : '';
-            // $AllDonationData['user_details']['campaignName'] = $CampaignName;
-
-            // $AllDonationData['user_details']['IcharmCategoryId'] =  (!empty($categoryName->name)) ? $this->getCategoryList($categoryName->name) : 19;
-            // $campaignId = (!empty($AllDonationData['user_details']['campaignName'])) ?  $this->getCampaignList($AllDonationData['user_details']['campaignName']) : 683;
-
-            // if(!empty($AllDonationData['user_details']['campaignName'])){
-            //     $res = $this->addCampaign($AllDonationData['user_details']['campaignName']);
-            //      if(isset($res['success']) && $res['success'] == 1){
-            //         $AllDonationData['user_details']['IcharmcCampaignId'] = $this->getCampaignList($AllDonationData['user_details']['campaignName']);
-            //      }
-            // }else{
-            //    $AllDonationData['user_details']['IcharmcCampaignId'] = $campaignId;
-            // }
-            // $AllDonationData['user_details']['IcharmcCampaignId'] = 696; // As per request campaign Is set to default
-
-
-            // $AllDonationData['user_details']['IcharmProgramId'] =  (!empty($icharmeIdsFromDb->icharm_program_id)) ? $icharmeIdsFromDb->icharm_program_id : 28;
-
-            // if ($AllDonationData['user_details']['IcharmProgramId'] == 28) {
-            //     $AllDonationData['user_details']['icharmCountryId'] = 19;
-            // } else {
-            //     $AllDonationData['user_details']['icharmCountryId'] =  (!empty($icharmeIdsFromDb->icharm_country_id)) ? $icharmeIdsFromDb->icharm_country_id : 19;
-            // }
 
             if ($cartItem->period == 20) {
                 if ($this->blackListService->isBlackIp($request->ip())) {
@@ -276,8 +242,6 @@ class CartController extends Controller
                 }
             }
 
-
-            //  ====================================  Donation Data AssignMent End ======================================
             $donation =  Donation::create([
                 'value' => $cartItem->amount,
                 'order_id' => $order->id,
@@ -324,22 +288,17 @@ class CartController extends Controller
                     'quantity' => 1,
                 ];
             }
-
-            // $AllDonationData['user_details']['order_id'] =  'IH-donationID-' . $donationId->id;
-            // $DonationCollection[] = $AllDonationData;
         }
 
         $this->clearCart();
         $response = null;
         $payLink = null;
         $order->pay_with = $request->pay_method;
-        $IcharmDontion = [];
         if ($sum > 0) {
             if ($request->pay_method === 'paypal') {
                 $response = Paypal::createOrder($sum, 'GBP', 'Order id: ' . $order->id);
 
                 $order->order_id = $response->result->id;
-                $OrderId = $response->result->id;
 
                 $payLink = $response->result->links[1]->href;
                 $order->save();
@@ -413,7 +372,6 @@ class CartController extends Controller
                 ]);
                 $order->order_id = $payment->orderId;
 
-                $OrderId  = $payment->orderId;
 
                 $responce = $payment->getPayLink();
 
@@ -428,17 +386,6 @@ class CartController extends Controller
             if (empty($payLink)) {
                 die('Bad request');
             }
-
-            // //  ====================================  Store donation Data in Temp Table ======================================
-            // foreach ($DonationCollection as $key => $donation) {
-            //     $aRR = [
-            //         'order_id' => $OrderId,
-            //         'donation_data' => serialize($donation['user_details'])
-            //     ];
-            //     TempStoreDonationData::create($aRR);
-            // }
-            // //  ====================================  Store donation Data in Temp Table ======================================
-
             return redirect($payLink);
         } else if (count($cartItems) > 0 && $sum == 0 && SettingHelper::get(SettingHelper::ENABLE_STRIPE)) {
             // monthly donation
@@ -479,7 +426,6 @@ class CartController extends Controller
         $order->pay_with = 'Number: ' . $order->account_number . ', Sort: ' . $order->sort_code . ', Day: ' . $order->pay_day;
         $order->order_id = hash('sha1', Str::random(10) . 'monthly');
         foreach ($order->donations as $donation) {
-            // $AllDonationData[]['user_details']['order_id']= $order->order_id;
             $donation->status = Donation::STATUS_COMPLETE;
             $donation->save();
         }
