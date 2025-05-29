@@ -195,7 +195,7 @@
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                             <tbody>
                             <tr>
-                                <td align="right" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                     <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
                                         <tbody>
                                         <tr>
