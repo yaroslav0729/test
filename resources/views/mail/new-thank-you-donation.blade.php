@@ -769,7 +769,7 @@
                                         <tbody>
                                         <tr>
                                             <td align="center" style="font-size:0px;padding:5px 0;word-break:break-word;">
-                                                <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:10px;line-height:1;text-align:center;color:#000000;"><a href="https://islamichelp.org.uk" style="color: white; text-decoration: none;">Islamic Help 2024</a></div>
+                                                <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:10px;line-height:1;text-align:center;color:#000000;"><a href="https://islamichelp.org.uk" style="color: white; text-decoration: none;">Islamic Help 2025</a></div>
                                             </td>
                                         </tr>
                                         </tbody>
