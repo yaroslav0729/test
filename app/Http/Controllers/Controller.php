@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Donation;
 use App\Models\User;
+use App\Models\Order;
 use App\Services\StripeService;
+use App\Traits\SendThankYouEmail;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 use App\Models\Campaign;
@@ -23,7 +26,7 @@ use Stripe\Stripe;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, SendThankYouEmail;
 
     public function test()
     {
@@ -97,6 +100,110 @@ class Controller extends BaseController
 //        User::where('email', 'jopafil@mailinator.com')->update([
 //            'password' => Hash::make('test123')
 //        ]);
+    }
+
+    /**
+     * Test email receipts - can be called via Postman or browser
+     * GET /test-email-receipt - Shows test form
+     * POST /test-email-receipt - Sends test email
+     * Body: {
+     *   "order_id": 123,
+     *   "subject": "Test Email Subject",
+     *   "to_email": "test@example.com",
+     *   "email_type": "donation" // or "scheduled_qurbani"
+     * }
+     */
+    public function testEmailReceipt(Request $request)
+    {
+        // If GET request, show a simple test form
+        if ($request->isMethod('get')) {
+            return response()->json([
+                'message' => 'Email Receipt Test Endpoint',
+                'usage' => [
+                    'method' => 'POST',
+                    'url' => url('/test-email-receipt'),
+                    'required_fields' => [
+                        'order_id' => 'integer (required)',
+                        'to_email' => 'email (required)',
+                        'email_type' => 'string: donation|scheduled_qurbani (required)'
+                    ],
+                    'optional_fields' => [
+                        'subject' => 'string (optional, defaults to "Test Email Receipt")'
+                    ],
+                    'example_body' => [
+                        'order_id' => 1,
+                        'to_email' => 'test@example.com',
+                        'email_type' => 'donation',
+                        'subject' => 'Test Email Subject'
+                    ]
+                ],
+                'available_orders' => Order::take(5)->get(['id', 'email', 'sum', 'created_at'])
+            ]);
+        }
+
+        try {
+            // Validate required parameters
+            $request->validate([
+                'order_id' => 'required|integer',
+                'to_email' => 'required|email',
+                'email_type' => 'required|in:donation,scheduled_qurbani'
+            ]);
+
+            $orderId = $request->input('order_id');
+            $toEmail = $request->input('to_email');
+            $subject = $request->input('subject', 'Test Email Receipt');
+            $emailType = $request->input('email_type', 'donation');
+
+            // Find the order
+            $order = Order::with(['donations.campaign', 'donations.campaign_category', 'donations.foodpack.country', 'donations.foodpackqurbani.country', 'donations.foodpackqurbanitype'])
+                          ->find($orderId);
+
+            if (!$order) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Order not found with ID: ' . $orderId,
+                    'available_orders' => Order::take(10)->get(['id', 'email', 'sum', 'created_at'])
+                ], 404);
+            }
+
+            // Override email for testing
+            $order->email = $toEmail;
+
+            // Send appropriate email based on type
+            if ($emailType === 'scheduled_qurbani') {
+                $this->sendThankYouScheduledQurbaniEmail($order);
+                $emailTypeSent = 'Scheduled Qurbani Thank You';
+            } else {
+                $this->sendThankYouEmail($order);
+                $emailTypeSent = 'Donation Thank You';
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Email sent successfully',
+                'data' => [
+                    'order_id' => $orderId,
+                    'to_email' => $toEmail,
+                    'subject' => $subject,
+                    'email_type' => $emailTypeSent,
+                    'order_total' => $order->sum,
+                    'donations_count' => $order->donations->count()
+                ]
+            ]);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors' => $e->errors()
+            ], 422);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error sending email: ' . $e->getMessage()
+            ], 500);
+        }
     }
 
     public function getStripePortalUrlByCustomerId($customerId)

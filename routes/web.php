@@ -229,6 +229,9 @@ Route::name('schedule-qurbani.')->group(function () {
     Route::post('/schedule-Qurbani', [\App\Http\Controllers\ScheduledSacrificeController::class, 'schedule'])->name('schedule');
 });
 
+// Test routes for email receipts
+Route::match(['get', 'post'], '/test-email-receipt', [Controller::class, 'testEmailReceipt'])->name('test.email.receipt');
+
 if (app()->environment('local')) {
     Route::get('/test', [Controller::class, 'test']);
 }

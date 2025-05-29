@@ -15,6 +15,7 @@ class VerifyCsrfToken extends Middleware
         '/admin/media/*',
         '/stripe/*',
         '/globalpay/payment_result',
-        '/globalpay/payment_status_update'
+        '/globalpay/payment_status_update',
+        '/test-email-receipt'
     ];
 }

@@ -22,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/get_proj_options/{id}', [ProjectController::class, 'getPopupOptions']);
 Route::get('/get_articles/{category}/{page}', [ArticleController::class, 'getArticles']);
+
+// Test route for email receipts (no CSRF protection needed)
+Route::match(['get', 'post'], '/test-email-receipt', [\App\Http\Controllers\Controller::class, 'testEmailReceipt']);
