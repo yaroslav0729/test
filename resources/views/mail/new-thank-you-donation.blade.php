@@ -180,7 +180,7 @@
                                         <tbody>
                                         <tr>
                                             <td style="width:240px;">
-                                                <img height="auto" src="https://islamichelp.org.uk/storage/emails/text-logo.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="240" />
+                                                <a href="https://islamichelp.org.uk"><img height="auto" src="https://islamichelp.org.uk/storage/emails/text-logo.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="240" /></a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -200,7 +200,7 @@
                                         <tbody>
                                         <tr>
                                             <td style="width:65px;">
-                                                <img height="auto" src="https://islamichelp.org.uk/storage/emails/logo.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="65" />
+                                                <a href="https://islamichelp.org.uk"><img height="auto" src="https://islamichelp.org.uk/storage/emails/logo.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="65" /></a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -217,9 +217,9 @@
         </table>
     </div>
     <!--[if mso | IE]></td></tr></table><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><v:rect style="width:600px;" xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false"><v:fill origin="0, -0.5" position="0, -0.5" src="https://islamichelp.org.uk/storage/emails/background.png" type="frame" size="100%,100%" /><v:textbox style="mso-fit-shape-to-text:true" inset="0,0,0,0"><![endif]-->
-    <div style="background:url(https://islamichelp.org.uk/storage/emails/background.png);background-size: 100%;margin:0px auto;max-width:600px;">
+    <div style="background: #F67866;margin:0px auto;max-width:600px;">
         <div style="line-height:0;font-size:0;">
-            <table align="center" background="https://islamichelp.org.uk/storage/emails/background.png" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:url(https://islamichelp.org.uk/storage/emails/background.png) center top / 100% 100% no-repeat;background-position:center top;background-repeat:no-repeat;background-size:100% 100%;width:100%;">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background: #F67866;width:100%;">
                 <tbody>
                 <tr>
                     <td style="direction:ltr;font-size:0px;padding:20px 10px;text-align:center;">
@@ -312,7 +312,7 @@
                                                                         <tbody>
                                                                         <tr>
                                                                             <td style="width:40px;">
-                                                                                <img height="auto" src="https://islamichelp.org.uk/storage/emails/gray-logo.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="40" />
+                                                                                <img height="auto" src="https://islamichelp.org.uk/storage/emails/logo.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="40" />
                                                                             </td>
                                                                         </tr>
                                                                         </tbody>
