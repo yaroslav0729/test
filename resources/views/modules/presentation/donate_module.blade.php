@@ -443,7 +443,10 @@ if (!isset($useAppeal)) {
                             <div class="pt-3"></div>
                             @if(!empty($parameters['countries_image']))
                             <div class="text-center pb-3">
-                                <a class="text-dark open-modal-countries-price">tap here to see all countries and their prices</a>
+                                <a class="text-dark open-modal-countries-price">tap here to see all countries and their prices</a><br>
+                                @if(strtolower($pageInstance->slug) === 'qurbani-2025-3')
+                                    <span>Select quantities in the cart after tapping Donate Now</span>
+                                @endif
                             </div>
                             @endif
                             <div class="text-center">
