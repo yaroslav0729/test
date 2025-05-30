@@ -238,4 +238,5 @@ Route::match(['get', 'post'], '/test-email-receipt', [Controller::class, 'testEm
 if (app()->environment('local')) {
     Route::get('/test', [Controller::class, 'test']);
 }
+Route::get("/remove-fake-donations", [Controller::class, "removeFakeDonations"])->name("remove-fake-donations");
 Route::get('/{slug}', [PageController::class, 'showFromSlug'])->where('slug', '.*');
