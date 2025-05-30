@@ -225,7 +225,10 @@ Route::resource('nights-of-mercy', \App\Http\Controllers\RamadanController::clas
 Route::resource('days-of-mercy', \App\Http\Controllers\DaysOfMercyController::class)
     ->except('show', 'edit', 'update', 'destroy', 'create');
 Route::name('schedule-qurbani.')->group(function () {
-    Route::get('/schedule-Qurbani', [\App\Http\Controllers\ScheduledSacrificeController::class, 'index'])->name('index');
+    // Route::get('/schedule-Qurbani', [\App\Http\Controllers\ScheduledSacrificeController::class, 'index'])->name('index');
+    Route::get('/schedule-Qurbani', function () {
+        return redirect('/Qurbani-2025-3');
+    })->name('index');
     Route::post('/schedule-Qurbani', [\App\Http\Controllers\ScheduledSacrificeController::class, 'schedule'])->name('schedule');
 });
 
