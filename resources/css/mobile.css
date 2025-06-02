@@ -1620,6 +1620,7 @@ span:first-child
     font-size: 16px;
     font-weight: 500;
     line-height: 26px;
+    margin-bottom: 10px;
 }
 .mobile-template .blog-article-body p span {
     font-size: 16px !important;

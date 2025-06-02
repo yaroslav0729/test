@@ -3507,7 +3507,7 @@ section.back {
     margin-bottom: 30px;
 }
 .blog-article-body p {
-    margin-bottom: 55px;
+    margin-bottom: 20px;
 }
 .blog-article-body p.m-video {
     margin-bottom: 45px;
@@ -7758,7 +7758,7 @@ section.back {
 @media (min-width: 992px) {
     .blog-page-template .blog-article-body h2,
     .blog-page-template .blog-article-body h1 {
-        margin-bottom: 44px;
+        margin-bottom: 20px;
     }
     .blog-page-template .blog-article-body .body {
         font-size: 16px;
