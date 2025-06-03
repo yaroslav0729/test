@@ -19,7 +19,6 @@
     @else
     <div class="wrap" style="background-image: url({{ $mainImg }})">
     @endempty
-
         <div class="text">
             <div>EMPOWERING PEOPLE IN NEED</div>
             <div class="">
@@ -32,6 +31,122 @@
         </div>
     </div>
 </section>
+
+<div class="additional-content mt-4 text-center d-flex justify-content-center">
+    <div class="mb-3">
+        <img src="/storage/Screenshot 2025-06-03 at 15.14.36.png" 
+             alt="Mission Possible Image" 
+             class="img-fluid mb-3 zoomable-image" 
+             style="max-width: 400px; width: 100%; border-radius: 10px; cursor: pointer; transition: transform 0.3s ease;" 
+             id="missionImage"
+             onmouseover="this.style.transform='scale(1.05)'" 
+             onmouseout="this.style.transform='scale(1)'">
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Mission Possible Image</h5>
+                <button type="button" class="btn-close" id="modalCloseBtn" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="/storage/Screenshot 2025-06-03 at 15.14.36.png" 
+                    alt="Mission Possible Image" 
+                    class="img-fluid" 
+                    style=" height: 80vh; border-radius: 10px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.zoomable-image {
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.zoomable-image:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2) !important;
+}
+
+#imageModal {
+    background-color: rgba(0,0,0,0.8);
+}
+
+#imageModal .modal-content {
+    border: none;
+    border-radius: 15px;
+}
+
+#imageModal .modal-body {
+    padding: 0;
+}
+
+#imageModal .modal-body img {
+    border-radius: 0 0 15px 15px;
+}
+
+#imageModal .modal-header {
+    border-bottom: 1px solid #dee2e6;
+}
+
+#imageModal .btn-close {
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    background: none;
+    padding: 0.5rem;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const image = document.getElementById('missionImage');
+    const modal = document.getElementById('imageModal');
+    const closeBtn = document.getElementById('modalCloseBtn');
+    
+    // Open modal when image is clicked
+    if (image && modal) {
+        image.addEventListener('click', function() {
+            modal.style.display = 'block';
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+    }
+    
+    // Close modal when close button is clicked
+    if (closeBtn && modal) {
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        });
+    }
+    
+    // Close modal when clicking outside the modal content
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        });
+    }
+    
+    // Close modal when pressing Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal && modal.style.display === 'block') {
+            modal.style.display = 'none';
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+    });
+});
+</script>
 
 <section class="swiper-mission-impossible bg-light" swiper-wrapper="mission_possible" space-between="0" centered-slides="true" slides-per-view="auto">
     <div class="swiper-container">

@@ -28,6 +28,18 @@
     </div>
 </section>
 
+<div class="additional-content mt-4 text-center d-flex justify-content-center">
+    <div class="mb-3">
+        <img src="/storage/Screenshot 2025-06-03 at 15.14.36.png" 
+             alt="Mission Possible Image" 
+             class="img-fluid mb-3 zoomable-image" 
+             style="max-width: 400px; width: 100%; border-radius: 10px; cursor: pointer; transition: transform 0.3s ease;" 
+             id="missionImage"
+             onmouseover="this.style.transform='scale(1.05)'" 
+             onmouseout="this.style.transform='scale(1)'">
+    </div>
+</div>
+
 <section class="pt-4 pb-4 pl-5 pr-5">
     <p class="font-size-16 mb-0"><b>THE NEXT STEP TO<br>VOLUNTEERING, MAKE IMPACTS<br>TO GLOBAL COMMUNITIES.</b></p>
 </section>
