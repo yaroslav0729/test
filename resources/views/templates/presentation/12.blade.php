@@ -32,12 +32,32 @@
     </div>
 </section>
 
+@php
+    $bePartLink = "";
+    if (isset($parameters['be_part_link'])) {
+        $bePartLink = $parameters['be_part_link'];    
+    }
+@endphp
+
+<!-- Large Apply Now Section -->
+<section class="apply-now-section text-center py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <a href="{{ $bePartLink }}" class="btn btn-outline-primary btn-xl px-5 py-3" style="font-size: 1.4rem; font-weight: bold; border-width: 2px; min-width: 200px;">
+                    APPLY NOW
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <div class="additional-content mt-4 text-center d-flex justify-content-center">
     <div class="mb-3">
         <img src="/storage/Screenshot 2025-06-03 at 15.14.36.png" 
              alt="Mission Possible Image" 
              class="img-fluid mb-3 zoomable-image" 
-             style="max-width: 400px; width: 100%; border-radius: 10px; cursor: pointer; transition: transform 0.3s ease;" 
+             style="max-width: 800px; width: 100%; border-radius: 10px; cursor: pointer; transition: transform 0.3s ease;" 
              id="missionImage"
              onmouseover="this.style.transform='scale(1.05)'" 
              onmouseout="this.style.transform='scale(1)'">
@@ -99,6 +119,16 @@
     border: none;
     background: none;
     padding: 0.5rem;
+}
+
+/* Apply Now Button Hover Effect */
+.btn-outline-primary:hover {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(0,123,255,0.3) !important;
+    transition: all 0.3s ease !important;
 }
 </style>
 
@@ -174,8 +204,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 </section>
-
-{{--<div class="pt-5 pb-5 bg-light"></div>--}}
 
 @include('modules.presentation.so_what_this_all')
 

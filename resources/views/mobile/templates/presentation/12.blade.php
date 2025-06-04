@@ -39,6 +39,26 @@
     </div>
 </div>
 
+@php
+    $bePartLink = "";
+    if (isset($parameters['be_part_link'])) {
+        $bePartLink = $parameters['be_part_link'];    
+    }
+@endphp
+
+<!-- Large Apply Now Section -->
+<section class="apply-now-section text-center py-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <a href="{{ $bePartLink }}" class="btn btn-outline-primary btn-lg px-4 py-3" style="font-size: 1.2rem; font-weight: bold; border-width: 2px; min-width: 180px; width: 100%;">
+                    APPLY NOW
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="pt-4 pb-4 pl-5 pr-5">
     <p class="font-size-16 mb-0"><b>THE NEXT STEP TO<br>VOLUNTEERING, MAKE IMPACTS<br>TO GLOBAL COMMUNITIES.</b></p>
 </section>
@@ -70,7 +90,6 @@
     </div>
 </section>
 
-
 @include('modules.presentation.so_what_this_all')
 
 @include('modules.presentation.how_does_it_work')
@@ -84,4 +103,16 @@
 @include('modules.presentation.our_latest_mission')
 
 @include('modules.presentation.related_topics_project')
+
+<style>
+/* Apply Now Button Hover Effect */
+.btn-outline-primary:hover {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(0,123,255,0.3) !important;
+    transition: all 0.3s ease !important;
+}
+</style>
 
