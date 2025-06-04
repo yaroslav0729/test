@@ -30,13 +30,12 @@
 
 <div class="additional-content mt-4 text-center d-flex justify-content-center">
     <div class="mb-3">
-        <img src="/storage/Screenshot 2025-06-03 at 15.14.36.png" 
-             alt="Mission Possible Image" 
-             class="img-fluid mb-3 zoomable-image" 
-             style="max-width: 400px; width: 100%; border-radius: 10px; cursor: pointer; transition: transform 0.3s ease;" 
-             id="missionImage"
-             onmouseover="this.style.transform='scale(1.05)'" 
-             onmouseout="this.style.transform='scale(1)'">
+        <img src="/storage/Screenshot 2025-06-03 at 15.14.36.jpg" 
+            alt="Mission Possible Image" 
+            class="img-fluid mb-3 zoomable-image" 
+            style="max-width: 400px; width: 100%; border-radius: 10px; cursor: pointer; transition: transform 0.3s ease;" 
+            id="missionImage"
+        >
     </div>
 </div>
 
