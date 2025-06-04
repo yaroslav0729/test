@@ -54,7 +54,7 @@
 
 <div class="additional-content mt-4 text-center d-flex justify-content-center">
     <div class="mb-3">
-        <img src="/storage/Screenshot 2025-06-03 at 15.14.36.png" 
+        <img src="/storage/Screenshot 2025-06-03 at 15.14.36.jpg" 
              alt="Mission Possible Image" 
              class="img-fluid mb-3 zoomable-image" 
              style="max-width: 800px; width: 100%; border-radius: 10px; cursor: pointer; transition: transform 0.3s ease;" 
@@ -73,7 +73,7 @@
                 <button type="button" class="btn-close" id="modalCloseBtn" aria-label="Close">&times;</button>
             </div>
             <div class="modal-body text-center">
-                <img src="/storage/Screenshot 2025-06-03 at 15.14.36.png" 
+                <img src="/storage/Screenshot 2025-06-03 at 15.14.36.jpg" 
                     alt="Mission Possible Image" 
                     class="img-fluid" 
                     style=" height: 80vh; border-radius: 10px;">
