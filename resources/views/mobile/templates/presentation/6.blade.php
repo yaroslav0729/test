@@ -83,17 +83,17 @@ if ($requestPath === 'orphancare') $pageData['isOrphanCarePage'] = true;
                 </div>
             @endif
             <h2>{{ $projHeader1 }}</h2>
-            <p>{{ $projPar1 }}</p>
+            <p>{!! nl2br(e($projPar1)) !!}</p>
 
             <h2>{{ $projHeader2 }}</h2>
-            <p>{{ $projPar2 }}</p>
+            <p>{!! nl2br(e($projPar2)) !!}</p>
 
             @if (!empty($projVideo))
                 {!! $videoRenderedBlock !!}
             @endif
 
             <h2>{{ $projHeader3 }}</h2>
-            <p>{{ $projPar3 }}</p>
+            <p>{!! nl2br(e($projPar3)) !!}</p>
         </div>
     </div>
 </section>

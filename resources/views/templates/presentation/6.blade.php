@@ -96,18 +96,18 @@ if(isset($isOrphanCarePage)) $pageData['isOrphanCarePage'] = $isOrphanCarePage;
                 </div>
             @endif
             <h2>{{ $projHeader1 }}</h2>
-            <p>{{ $projPar1 }}</p>
+            <p>{!! nl2br(e($projPar1)) !!}</p>
 
             <h2>{{ $projHeader2 }}</h2>
             <p @if (!empty($projVideo)) class="m-video" @endif>
-                {{ $projPar2 }}</p>
+                {!! nl2br(e($projPar2)) !!}</p>
 
             @if (!empty($projVideo))
                 {!! $videoRenderedBlock !!}
             @endif
 
             <h2>{{ $projHeader3 }}</h2>
-            <p class="m-last">{{ $projPar3 }}</p>
+            <p class="m-last">{!! nl2br(e($projPar3)) !!}</p>
         </div>
     </div>
     @include('modules.presentation.share_this')
