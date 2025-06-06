@@ -95,7 +95,7 @@
             @empty($bgImage)
             <div class="col-12 col-lg-7 img" style="background-image: url(img/content/project-2.jpg)"></div>
             @else
-            <div class="col-12 col-lg-7 img" style="background-image: url({{ $bgImage }})"></div>
+            <div class="col-12 col-lg-7 img" style="background-image: url({{ $bgImage }}); background-size: cover; background-position: left;"></div>
             @endempty
         </div>
     </div>
