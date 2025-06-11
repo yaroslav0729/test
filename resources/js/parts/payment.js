@@ -2,9 +2,13 @@ $(function() {
     const spinner = `<div class="spinner-border text-light" role="status">
   <span class="sr-only">Loading...</span>
 </div>`;
-    let payText = "";
+    let payText = "Pay Now";
     const stringCounter = document.querySelector(".string-counter");
     const notesInput = document.querySelector('[name="notes"]');
+    const mainForm = document.querySelector("#payment-form");
+    const cartPayButton = document.querySelector("#cart-pay");
+    const buttonText = document.getElementById('button-text');
+    const spinnerElement = document.getElementById('spinner');
 
     // Initialize Stripe if enabled
     let stripe = null;
@@ -14,7 +18,6 @@ $(function() {
         stripe = Stripe(window.stripe_public_key);
         const elements = stripe.elements();
         
-        // Custom styling can be passed to options when creating an Element.
         const style = {
             base: {
                 color: '#32325d',
@@ -31,8 +34,17 @@ $(function() {
             }
         };
 
-        // Create an instance of the card Element.
         card = elements.create('card', {style: style});
+        card.mount('#card-element');
+        
+        card.on('change', function(event) {
+            const displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
     }
 
     // Card number formatting (for non-Stripe fallback)
@@ -79,97 +91,32 @@ $(function() {
     });
 
     $(document).on("change", '[name="pay_method"]', function() {
-        $("#payment-card").toggleClass("d-none");
-    });
-
-    $("#cart-pay").on("click", function(e) {
-        e.preventDefault();
-        payText = this.innerHTML;
-        this.innerHTML = spinner;
-        this.disabled = true;
-
-        // Check if we're on mobile and have account number
-        if (document.querySelector('[name="account_number"]')) {
-            let accountNumber = document.querySelector('[name="account_number"]').value;
-            let sortCode = document.querySelector('[name="sort_code"]').value;
-
-            let data = {
-                _token: document.querySelector('[name="_token"]').value,
-                account_number: accountNumber,
-                sort_code: sortCode
-            };
-            $.ajax({
-                url: "/cart/check-account",
-                method: "post",
-                data: data,
-                success: response => {
-                    if (response.success) {
-                        let form = document.querySelector("#payment-form");
-                        form.submit();
-                    } else {
-                        alert(response.error);
-                        this.innerHTML = payText;
-                        this.disabled = false;
-                    }
-                }
-            });
-            return;
-        }
-
-        const paymentMethod = document.querySelector('[name="pay_method"]:checked').value;
-
-        if (paymentMethod === 'paypal') {
-            // Continue with PayPal payment
-            let form = document.querySelector("#payment-form");
-            form.submit();
+        if (this.value === 'paypal') {
+            $('#card-payment-container').hide();
         } else {
-            // Show card payment modal
-            this.innerHTML = payText;
-            this.disabled = false;
-            $('#cardPaymentModal').modal('show');
-            
-            // Mount Stripe card element when modal is shown
-            if (stripe && card) {
-                // Add the card Element to the page.
-                card.mount('#card-element');
-                
-                // Handle real-time validation errors from the card Element.
-                card.on('change', function(event) {
-                    const displayError = document.getElementById('card-errors');
-                    if (event.error) {
-                        displayError.textContent = event.error.message;
-                    } else {
-                        displayError.textContent = '';
-                    }
-                });
-            }
+            $('#card-payment-container').show();
         }
     });
 
-    // Handle card payment form submission
-    $('#card-payment-form').on('submit', function(e) {
+    mainForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        if (stripe && card) {
-            // Handle Stripe payment
+        const paymentMethod = document.querySelector('[name="pay_method"]:checked').value;
+        
+        cartPayButton.disabled = true;
+        buttonText.classList.add('d-none');
+        spinnerElement.classList.remove('d-none');
+
+        if (paymentMethod === 'paypal') {
+            mainForm.submit();
+        } else if (stripe && card) {
             handleStripePayment();
         } else {
-            // Handle non-Stripe payment (fallback)
             handleFallbackPayment();
         }
     });
 
     function handleStripePayment() {
-        const submitButton = document.getElementById('submit-payment');
-        const buttonText = document.getElementById('button-text');
-        const spinner = document.getElementById('spinner');
-        
-        // Disable the submit button and show loading state
-        submitButton.disabled = true;
-        buttonText.classList.add('d-none');
-        spinner.classList.remove('d-none');
-        
-        // Create payment method
         stripe.createPaymentMethod({
             type: 'card',
             card: card,
@@ -186,25 +133,18 @@ $(function() {
             }
         }).then(function(result) {
             if (result.error) {
-                // Show error to your customer
                 const errorElement = document.getElementById('card-errors');
                 errorElement.textContent = result.error.message;
                 
-                // Re-enable the submit button
-                submitButton.disabled = false;
+                cartPayButton.disabled = false;
                 buttonText.classList.remove('d-none');
-                spinner.classList.add('d-none');
+                spinnerElement.classList.add('d-none');
             } else {
-                // Add payment method to the main form and submit
-                const mainForm = document.querySelector("#payment-form");
                 const paymentMethodInput = document.createElement('input');
                 paymentMethodInput.type = 'hidden';
                 paymentMethodInput.name = 'payment_method_id';
                 paymentMethodInput.value = result.paymentMethod.id;
                 mainForm.appendChild(paymentMethodInput);
-
-                // Close modal and submit main form
-                $('#cardPaymentModal').modal('hide');
                 mainForm.submit();
             }
         });
@@ -253,8 +193,6 @@ $(function() {
         cvvInput.value = cvv;
         mainForm.appendChild(cvvInput);
 
-        // Close modal and submit main form
-        $('#cardPaymentModal').modal('hide');
         mainForm.submit();
     }
 

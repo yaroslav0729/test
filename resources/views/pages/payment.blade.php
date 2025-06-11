@@ -465,38 +465,32 @@
                                     @endif
                                 @endif
 
-                                {{-- <div id="payment-card" class="row">
-                                    <div class="col-12 name-card-col">
+                                <div id="card-payment-container">
+                                    @if(Setting::get(Setting::ENABLE_STRIPE))
                                         <div class="form-group">
-                                            <label><b>NAME ON CARD</b></label>
-                                            <input type="text" class="form-control">
+                                            <label><b>CARD DETAILS</b></label>
+                                            <div id="card-element" style="padding: 10px; border: 1px solid #ced4da; border-radius: 4px;">
+                                                <!-- A Stripe Element will be inserted here. -->
+                                            </div>
+                                            <!-- Used to display form errors. -->
+                                            <div id="card-errors" role="alert" class="text-danger mt-2"></div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
+                                    @else
                                         <div class="form-group">
-                                            <label class="row gutter-0 d-flex">
-                                                <b class="col-6 d-block">CARD NUMBER</b>
-                                                <span class="col-6 text-right d-block"><img
-                                                        src="/img/payment-global.png" alt=""></span>
-                                            </label>
-                                            <input type="text" class="form-control">
+                                            <label><b>CARD NUMBER</b></label>
+                                            <input type="text" class="form-control" name="card_number" placeholder="1234 5678 9012 3456" maxlength="19" required>
                                         </div>
-                                        <div class="row gutter-5">
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label><b>EXPIRY DATE</b></label>
-                                                    <input type="text" class="form-control" placeholder="MM / YY">
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label><b>CVV</b></label>
-                                                    <input type="text" class="form-control" placeholder="CVV">
-                                                </div>
-                                            </div>
+                                        <div class="form-group">
+                                            <label><b>EXPIRY DATE</b></label>
+                                            <input type="text" class="form-control" name="expiry_date" placeholder="MM / YY" maxlength="7" required>
                                         </div>
-                                    </div>
-                                </div> --}}
+                                        <div class="form-group">
+                                            <label><b>CVV</b></label>
+                                            <input type="text" class="form-control" name="cvv" placeholder="123" maxlength="3" required>
+                                        </div>
+                                    @endif
+                                </div>
+
                                 @if ($hasMonthlyDonations && !Setting::get(Setting::ENABLE_STRIPE))
                                     <div class="row">
                                         <div class="form-group pr-2">
@@ -528,8 +522,11 @@
                                     @endif
                                 </div>
 
-                                <button type="button" id="cart-pay" class="btn btn-danger border-white btn-submit">
-                                    Pay Now
+                                <button type="submit" id="cart-pay" class="btn btn-danger border-white btn-submit">
+                                    <span id="button-text">Pay Now</span>
+                                    <div id="spinner" class="spinner-border spinner-border-sm text-light d-none" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
                                 </button>
                             </div>
                         </div>

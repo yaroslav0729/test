@@ -7,6 +7,9 @@
 @section('scripts')
     <script src="https://maps.googleapis.com/maps/api/js?key={{ env('MAP_API_KEY') }}&libraries=places&language=EN" defer>
     </script>
+    @if(Setting::get(Setting::ENABLE_STRIPE))
+        <script src="https://js.stripe.com/v3/"></script>
+    @endif
     {!! NoCaptcha::renderJs() !!}
 @endsection
 
@@ -171,13 +174,14 @@
                                     @foreach($group as $cartItem)
                                         @continue($cartItem->upsell)
                                         @php
-                                            $donationName = 'Quick Donation (' . ($cartItem->period === \App\Models\Donation::TYPE_MONTHLY ? 'Monthly' : 'Single') . ')';
-                                            if(isset($cartItem->campaign)){
-                                                $donationName =  $cartItem->campaign->name;
-                                            } else  if(isset($cartItem->foodpack)){
-                                                $donationName =  $cartItem->foodpack->country->name. " FoodPack";
-                                            } else  if(isset($cartItem->foodpackqurbani)){
-                                                $donationName =  $cartItem->foodpackqurbani->country->name. " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
+                                            if (isset($cartItem->campaign)) {
+                                                $donationName = $cartItem->campaign->name;
+                                            } elseif (isset($cartItem->foodpack)) {
+                                                $donationName = $cartItem->foodpack->country->name . " FoodPack";
+                                            } elseif (isset($cartItem->foodpackqurbani)) {
+                                                $donationName = $cartItem->foodpackqurbani->country->name . " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
+                                            } else {
+                                                $donationName = 'Quick Donation (' . ($cartItem->period === \App\Models\Donation::TYPE_MONTHLY ? 'Monthly' : 'Single') . ')';
                                             }
                                         @endphp
                                         <div class="form-group" data-cart_item_id="{{ $cartItem->cart_item_id }}">
@@ -229,31 +233,31 @@
             <div class="pt-5"></div>
             <div class="form-title"><b>PAYMENT</b></div>
 
-            @if ($hasSingleDonations)
-                <div class="mb-4 text-center">
-                    <label class="radio mr-5">
-                        <input type="radio" name="pay_method"
-                               value="{{Setting::get(Setting::ENABLE_STRIPE)?'stripe':'global' }}" checked><span><i
-                                class="fal fa-check"></i></span>
-                        <b>PAY BY CARD</b>
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="pay_method" value="paypal"><span><i class="fal fa-check"></i></span>
-                        <b>PAY BY PAYPAL</b>
-                    </label>
-                </div>
-            @if(Setting::get(Setting::ENABLE_STRIPE))
-{{--                <div class="mb-4 text-center" style="display: none" id="stripe-checkbox">--}}
-{{--                    <label class="checkbox">--}}
-{{--                        <input type="checkbox" name="stripe_fee"><span><i--}}
-{{--                                    class="fal fa-check"></i></span>--}}
-{{--                        <b>I'm happy to cover the payment processing fees <b id="commission">{{ '(+£' . \App\Services\StripeService::countCommission(\App\Models\CartItem::getCartSum()) . ')' }}</b></b>--}}
-{{--                    </label>--}}
-{{--                </div>--}}
-            @endif
-            @endif
+            <div class="mb-4 text-center">
+                <label class="radio mr-5">
+                    <input type="radio" name="pay_method" value="{{Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE)?'stripe':'global' }}" checked>
+                    <span><i class="fal fa-check"></i></span>
+                    <b>PAY BY CARD</b>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="pay_method" value="paypal"><span><i class="fal fa-check"></i></span>
+                    <b>PAY BY PAYPAL</b>
+                </label>
+            </div>
 
-            @if ($hasMonthlyDonations && !Setting::get(Setting::ENABLE_STRIPE))
+            <div id="card-payment-container" style="display: none;">
+                @if(Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE))
+                    <div class="form-group">
+                        <label><b>CARD DETAILS</b></label>
+                        <div id="card-element" style="padding: 10px; border: 1px solid #ced4da; border-radius: 4px;">
+                            <!-- A Stripe Element will be inserted here. -->
+                        </div>
+                        <div id="card-errors" role="alert" class="text-danger mt-2"></div>
+                    </div>
+                @endif
+            </div>
+
+            @if ($hasMonthlyDonations && !Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE))
                 <div class="row mb-3">
                     <div class="form-group col-12">
                         <label><b>Account Number*</b></label>
@@ -274,92 +278,167 @@
                 </div>
             @endif
 
-        <div style="margin-right:auto;margin-left:auto;display:table;">
-            {!! NoCaptcha::display() !!}
+            <div style="margin-right:auto;margin-left:auto;display:table;">
+                {!! NoCaptcha::display() !!}
 
-            @if ($errors->has('g-recaptcha-response'))
-                <p class="text-danger ml-3 font-size-14">{{ $errors->first('g-recaptcha-response') }}</p>
-            @endif
-        </div>
+                @if ($errors->has('g-recaptcha-response'))
+                    <p class="text-danger ml-3 font-size-14">{{ $errors->first('g-recaptcha-response') }}</p>
+                @endif
+            </div>
 
-        <button type="submit" id="cart-pay" class="btn btn-danger w-100">
-            @if($hasMonthlyDonations && Setting::get(Setting::ENABLE_STRIPE))
-                Set up your monthly payments
-            @else
-                Pay Now
-            @endif
-            <i class="moon-icons-arrow-right"></i></button>
+            <button type="submit" id="cart-pay" class="btn btn-danger w-100">
+                <span id="button-text">
+                    Pay Now
+                </span>
+                <div id="spinner" class="spinner-border spinner-border-sm text-light d-none" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </button>
         </form>
 
         <div class="pt-5"></div>
     </div>
 
-    <!-- Card Payment Modal -->
-    <div class="modal fade" id="cardPaymentModal" tabindex="-1" role="dialog" aria-labelledby="cardPaymentModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cardPaymentModalLabel">Card Payment Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="card-payment-form">
-                        <div class="form-group">
-                            <label><b>CARD NUMBER</b></label>
-                            <input type="text" class="form-control" name="card_number" placeholder="1234 5678 9012 3456" maxlength="19" required>
-                        </div>
-                        <div class="form-group">
-                            <label><b>EXPIRY DATE</b></label>
-                            <input type="text" class="form-control" name="expiry_date" placeholder="MM / YY" maxlength="7" required>
-                        </div>
-                        <div class="form-group">
-                            <label><b>CVV</b></label>
-                            <input type="text" class="form-control" name="cvv" placeholder="123" maxlength="3" required>
-                        </div>
-                        <button type="submit" class="btn btn-danger w-100">Pay Now</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        $( document ).ready(function() {
+        // Stripe configuration
+        @if(Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE))
+        window.stripe_enabled = true;
+        window.stripe_public_key = '{{ config('stripe.public_key') }}';
+        @else
+        window.stripe_enabled = false;
+        @endif
 
-            $('[name="pay_method"]').change(function() {
-                if($('[name="pay_method"]:checked').val()  === 'stripe') {
-                    $('#stripe-checkbox').show();
-                    if($('#stripe-checkbox [name="stripe_fee"]').prop('checked')){
-                        $('#stripe-fee').show();
-                    } else {
-                        $('#stripe-fee').hide();
+        $(function() {
+            const mainForm = document.querySelector("#payment-form");
+            const cartPayButton = document.querySelector("#cart-pay");
+            const buttonText = document.getElementById('button-text');
+            const spinnerElement = document.getElementById('spinner');
+
+            let stripe = null;
+            let card = null;
+
+            if (window.stripe_enabled) {
+                stripe = Stripe(window.stripe_public_key);
+                const elements = stripe.elements();
+                const style = {
+                    base: {
+                        color: '#32325d',
+                        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                        fontSmoothing: 'antialiased',
+                        fontSize: '16px',
+                        '::placeholder': { color: '#aab7c4' }
+                    },
+                    invalid: {
+                        color: '#fa755a',
+                        iconColor: '#fa755a'
                     }
-                } else {
-                    $('#stripe-checkbox').hide();
-                    $('#stripe-fee').hide();
-                }
-            });
-
-            $('#stripe-checkbox [name="stripe_fee"]').change(function() {
-                if($('#stripe-checkbox [name="stripe_fee"]').prop('checked')){
-                    $('#stripe-fee').show();
-                } else {
-                    $('#stripe-fee').hide();
-                }
-            });
-
-            if($('[name="pay_method"]:checked').val()  === 'stripe') {
-                $('#stripe-checkbox').show();
+                };
+                card = elements.create('card', {style: style});
+                card.mount('#card-element');
+                card.on('change', function(event) {
+                    const displayError = document.getElementById('card-errors');
+                    if (event.error) {
+                        displayError.textContent = event.error.message;
+                    } else {
+                        displayError.textContent = '';
+                    }
+                });
             }
-            if($('#stripe-checkbox [name="stripe_fee"]').prop('checked')){
-                $('#stripe-fee').show();
+
+            function toggleCardPaymentView() {
+                if ($('[name="pay_method"]:checked').val() === 'paypal') {
+                    $('#card-payment-container').hide();
+                } else {
+                    $('#card-payment-container').show();
+                }
+            }
+            
+            $(document).on("change", '[name="pay_method"]', toggleCardPaymentView);
+            toggleCardPaymentView();
+
+            mainForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                cartPayButton.disabled = true;
+                if(buttonText) buttonText.classList.add('d-none');
+                if(spinnerElement) spinnerElement.classList.remove('d-none');
+
+                if (document.querySelector('[name="account_number"]') && document.querySelector('[name="account_number"]').value) {
+                    let accountNumber = document.querySelector('[name="account_number"]').value;
+                    let sortCode = document.querySelector('[name="sort_code"]').value;
+                    let data = {
+                        _token: document.querySelector('[name="_token"]').value,
+                        account_number: accountNumber,
+                        sort_code: sortCode
+                    };
+                    $.ajax({
+                        url: "/cart/check-account",
+                        method: "post",
+                        data: data,
+                        success: response => {
+                            if (response.success) {
+                                mainForm.submit();
+                            } else {
+                                alert(response.error);
+                                cartPayButton.disabled = false;
+                                if(buttonText) buttonText.classList.remove('d-none');
+                                if(spinnerElement) spinnerElement.classList.add('d-none');
+                            }
+                        },
+                        error: () => {
+                            alert('An error occurred while checking your bank account. Please try again.');
+                            cartPayButton.disabled = false;
+                            if(buttonText) buttonText.classList.remove('d-none');
+                            if(spinnerElement) spinnerElement.classList.add('d-none');
+                        }
+                    });
+                    return;
+                }
+
+                const paymentMethodRadio = document.querySelector('[name="pay_method"]:checked');
+                const paymentMethod = paymentMethodRadio ? paymentMethodRadio.value : 'stripe';
+
+                if (paymentMethod === 'paypal') {
+                    mainForm.submit();
+                } else if (stripe && card) {
+                    handleStripePayment();
+                } else {
+                    mainForm.submit();
+                }
+            });
+
+            function handleStripePayment() {
+                stripe.createPaymentMethod({
+                    type: 'card',
+                    card: card,
+                    billing_details: {
+                        name: document.querySelector('[name="first_name"]').value + ' ' + document.querySelector('[name="last_name"]').value,
+                        email: document.querySelector('[name="email"]').value,
+                        address: {
+                            line1: document.querySelector('[name="address_1"]').value,
+                            line2: document.querySelector('[name="address_2"]').value,
+                            city: document.querySelector('[name="city"]').value,
+                            postal_code: document.querySelector('[name="post_code"]').value,
+                            country: 'GB'
+                        }
+                    }
+                }).then(function(result) {
+                    if (result.error) {
+                        const errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                        cartPayButton.disabled = false;
+                        if(buttonText) buttonText.classList.remove('d-none');
+                        if(spinnerElement) spinnerElement.classList.add('d-none');
+                    } else {
+                        const paymentMethodInput = document.createElement('input');
+                        paymentMethodInput.type = 'hidden';
+                        paymentMethodInput.name = 'payment_method_id';
+                        paymentMethodInput.value = result.paymentMethod.id;
+                        mainForm.appendChild(paymentMethodInput);
+                        mainForm.submit();
+                    }
+                });
             }
         });
-
-
     </script>
-
-    {!! NoCaptcha::renderJs() !!}
 @endsection
