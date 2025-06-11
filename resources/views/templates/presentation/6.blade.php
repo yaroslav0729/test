@@ -5,6 +5,7 @@ $projHeading = '';
 $projPar1 = '';
 $projPar2 = '';
 $projPar3 = '';
+$projPar4 = '';
 
 $projVideo = '';
 $projVideoPreview = '';
@@ -12,6 +13,7 @@ $projVideoPreview = '';
 $projHeader1 = '';
 $projHeader2 = '';
 $projHeader3 = '';
+$projHeader4 = '';
 
 if (isset($parameters['proj_heading'])) {
     $projHeading = $parameters['proj_heading'];
@@ -29,6 +31,10 @@ if (isset($parameters['proj_par3'])) {
     $projPar3 = $parameters['proj_par3'];
 }
 
+if (isset($parameters['proj_par4'])) {
+    $projPar4 = $parameters['proj_par4'];
+}
+
 if (isset($parameters['proj_hdr1'])) {
     $projHeader1 = $parameters['proj_hdr1'];
 }
@@ -39,6 +45,10 @@ if (isset($parameters['proj_hdr2'])) {
 
 if (isset($parameters['proj_hdr3'])) {
     $projHeader3 = $parameters['proj_hdr3'];
+}
+
+if (isset($parameters['proj_hdr4'])) {
+    $projHeader4 = $parameters['proj_hdr4'];
 }
 
 if (isset($parameters['proj_video'])) {
@@ -108,6 +118,9 @@ if(isset($isOrphanCarePage)) $pageData['isOrphanCarePage'] = $isOrphanCarePage;
 
             <h2>{{ $projHeader3 }}</h2>
             <p class="m-last">{!! nl2br(e($projPar3)) !!}</p>
+
+            <h2>{{ $projHeader4 }}</h2>
+            <p class="m-last">{!! nl2br(e($projPar4)) !!}</p>
         </div>
     </div>
     @include('modules.presentation.share_this')
