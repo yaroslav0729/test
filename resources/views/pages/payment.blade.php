@@ -9,6 +9,9 @@
         src="https://maps.googleapis.com/maps/api/js?key={{ config('googlemap.map_key') }}&libraries=places&language=EN"
         defer>
     </script>
+    @if(Setting::get(Setting::ENABLE_STRIPE))
+        <script src="https://js.stripe.com/v3/"></script>
+    @endif
     {!! NoCaptcha::renderJs() !!}
 @endsection
 
@@ -547,21 +550,40 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="card-payment-form">
-                        <div class="form-group">
-                            <label><b>CARD NUMBER</b></label>
-                            <input type="text" class="form-control" name="card_number" placeholder="1234 5678 9012 3456" maxlength="19" required>
-                        </div>
-                        <div class="form-group">
-                            <label><b>EXPIRY DATE</b></label>
-                            <input type="text" class="form-control" name="expiry_date" placeholder="MM / YY" maxlength="7" required>
-                        </div>
-                        <div class="form-group">
-                            <label><b>CVV</b></label>
-                            <input type="text" class="form-control" name="cvv" placeholder="123" maxlength="3" required>
-                        </div>
-                        <button type="submit" class="btn btn-danger w-100">Pay Now</button>
-                    </form>
+                    @if(Setting::get(Setting::ENABLE_STRIPE))
+                        <form id="card-payment-form">
+                            <div class="form-group">
+                                <label><b>CARD DETAILS</b></label>
+                                <div id="card-element" style="padding: 10px; border: 1px solid #ced4da; border-radius: 4px;">
+                                    <!-- A Stripe Element will be inserted here. -->
+                                </div>
+                                <!-- Used to display form errors. -->
+                                <div id="card-errors" role="alert" class="text-danger mt-2"></div>
+                            </div>
+                            <button type="submit" class="btn btn-danger w-100" id="submit-payment">
+                                <span id="button-text">Pay Now</span>
+                                <div id="spinner" class="spinner-border spinner-border-sm text-light d-none" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </button>
+                        </form>
+                    @else
+                        <form id="card-payment-form">
+                            <div class="form-group">
+                                <label><b>CARD NUMBER</b></label>
+                                <input type="text" class="form-control" name="card_number" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                            </div>
+                            <div class="form-group">
+                                <label><b>EXPIRY DATE</b></label>
+                                <input type="text" class="form-control" name="expiry_date" placeholder="MM / YY" maxlength="7" required>
+                            </div>
+                            <div class="form-group">
+                                <label><b>CVV</b></label>
+                                <input type="text" class="form-control" name="cvv" placeholder="123" maxlength="3" required>
+                            </div>
+                            <button type="submit" class="btn btn-danger w-100">Pay Now</button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
@@ -600,7 +622,9 @@
         }
     });
 
-
+    // Stripe configuration
+    window.stripe_enabled = true;
+    window.stripe_public_key = '{{ config('stripe.public_key') }}';
 </script>
 
 

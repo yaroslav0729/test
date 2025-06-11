@@ -498,6 +498,7 @@ class StripeService
             'currency' => $data['currency'] ?? self::CURRENCY_GBP,
             'automatic_payment_methods' => [
                 'enabled' => true,
+                'allow_redirects' => 'never',
             ],
             'metadata' => $this->combineWithBaseMetadata($data['metadata'] ?? []),
         ];
@@ -590,8 +591,8 @@ class StripeService
         ];
 
         // Add payment method if provided
-        if (isset($data['payment_method'])) {
-            $subscriptionData['default_payment_method'] = $data['payment_method'];
+        if (isset($data['default_payment_method'])) {
+            $subscriptionData['default_payment_method'] = $data['default_payment_method'];
         }
 
         // Add trial period if provided
@@ -850,5 +851,30 @@ class StripeService
         
         // If no default payment method, return the intent for manual confirmation
         return $paymentIntent;
+    }
+
+    /**
+     * Attaches a PaymentMethod to a Customer and sets it as the default.
+     *
+     * @param string $paymentMethodId
+     * @param string $customerId
+     * @return \Stripe\PaymentMethod
+     * @throws ApiErrorException
+     */
+    public function attachPaymentMethodToCustomer(string $paymentMethodId, string $customerId): \Stripe\PaymentMethod
+    {
+        // Attach the PaymentMethod to the Customer.
+        $paymentMethod = $this->stripe->paymentMethods->attach($paymentMethodId, [
+            'customer' => $customerId
+        ]);
+
+        // Set it as the default payment method for the customer's invoices.
+        $this->stripe->customers->update($customerId, [
+            'invoice_settings' => [
+                'default_payment_method' => $paymentMethodId,
+            ],
+        ]);
+
+        return $paymentMethod;
     }
 }

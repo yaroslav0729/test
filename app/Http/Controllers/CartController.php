@@ -245,8 +245,16 @@ class CartController extends Controller
                 'post_code' => $order->post_code,
             ]);
             $this->stripeService->processUser($orderData, $customer);
+
+            // Attach the payment method to the customer to allow reuse.
+            if ($request->has('payment_method_id')) {
+                $this->stripeService->attachPaymentMethodToCustomer(
+                    $request->payment_method_id,
+                    $customer->id
+                );
+            }
         } catch (\Exception $e) {
-            Log::error('Stripe customer creation failed: ' . $e->getMessage());
+            Log::error('Stripe customer creation or payment method attachment failed: ' . $e->getMessage());
             dd($e);
             return back()->with('error', 'Payment processing failed. Please try again.');
         }
@@ -328,34 +336,49 @@ class CartController extends Controller
         $paymentResults = [];
         
         try {
-            // Process single payments
+            // Process single payments individually
             if (!empty($singleItems)) {
-                $totalSingleAmount = array_sum(array_column($singleItems, 'amount'));
+                $singlePaymentResults = [];
                 
-                $paymentIntent = $this->stripeService->createDirectPayment([
-                    'amount' => $totalSingleAmount,
-                    'currency' => 'gbp',
-                    'customer_id' => $customer->id,
-                    'description' => 'Islamic Help Donation - ' . implode(', ', array_column($singleItems, 'name')),
-                    'receipt_email' => $order->email,
-                    'metadata' => [
-                        'order_id' => $order->id,
-                        'total_donations' => count($singleItems),
-                        'donation_type' => 'single_payment',
-                    ]
-                ]);
-                
-                $paymentResults['single_payment'] = $paymentIntent;
+                foreach ($singleItems as $singleItem) {
+                    $paymentData = [
+                        'amount' => $singleItem['amount'],
+                        'currency' => 'gbp',
+                        'customer_id' => $customer->id,
+                        'description' => 'Islamic Help Donation - ' . $singleItem['name'],
+                        'receipt_email' => $order->email,
+                        'metadata' => array_merge($singleItem['metadata'], [
+                            'order_id' => $order->id,
+                            'donation_type' => 'single_payment_individual',
+                        ])
+                    ];
 
-                // Update donation statuses based on payment result
-                if ($paymentIntent->status === 'succeeded') {
-                    foreach ($singleItems as $item) {
-                        $donation = Donation::find($item['donation_id']);
+                    // Add payment method if provided (from Stripe frontend)
+                    if ($request->has('payment_method_id')) {
+                        $paymentData['payment_method'] = $request->payment_method_id;
+                        $paymentData['confirm'] = true;
+                    }
+
+                    $paymentIntent = $this->stripeService->createDirectPayment($paymentData);
+                    
+                    $singlePaymentResults[] = $paymentIntent;
+
+                    // Update individual donation status based on payment result
+                    if ($paymentIntent->status === 'succeeded') {
+                        $donation = Donation::find($singleItem['donation_id']);
                         $donation->status = Donation::STATUS_COMPLETE;
+                        $donation->stripe_payment_intent_id = $paymentIntent->id;
+                        $donation->save();
+                    } else if (in_array($paymentIntent->status, ['requires_action', 'requires_source_action'])) {
+                        // Payment requires additional authentication
+                        $donation = Donation::find($singleItem['donation_id']);
+                        $donation->status = Donation::STATUS_PROCESSING;
                         $donation->stripe_payment_intent_id = $paymentIntent->id;
                         $donation->save();
                     }
                 }
+                
+                $paymentResults['single_payments'] = $singlePaymentResults;
             }
 
             // Process monthly subscriptions
@@ -371,8 +394,8 @@ class CartController extends Controller
                         'metadata' => $item['metadata']
                     ]);
                     
-                    // Create subscription using StripeService method
-                    $subscription = $this->stripeService->createSubscriptionPayment([
+                    // Prepare subscription data
+                    $subscriptionData = [
                         'customer_id' => $customer->id,
                         'items' => [
                             [
@@ -386,13 +409,25 @@ class CartController extends Controller
                             'campaign_id' => $item['metadata']['campaign_id'],
                             'donation_type' => 'monthly_subscription_individual',
                         ]
-                    ]);
+                    ];
+
+                    // Add payment method if provided (from Stripe frontend)
+                    if ($request->has('payment_method_id')) {
+                        $subscriptionData['default_payment_method'] = $request->payment_method_id;
+                    }
+                    
+                    // Create subscription using StripeService method
+                    $subscription = $this->stripeService->createSubscriptionPayment($subscriptionData);
                     
                     $subscriptionResults[] = $subscription;
 
                     // Update individual donation status
                     $donation = Donation::find($item['donation_id']);
-                    $donation->status = Donation::STATUS_COMPLETE;
+                    if ($subscription->status === 'active') {
+                        $donation->status = Donation::STATUS_COMPLETE;
+                    } else {
+                        $donation->status = Donation::STATUS_PROCESSING;
+                    }
                     $donation->stripe_subscription_id = $subscription->id;
                     $donation->save();
                 }
@@ -408,8 +443,8 @@ class CartController extends Controller
             $order->order_id = hash('sha1', Str::random(10) . (empty($monthlyItems) ? 'single' : 'monthly'));
             
             // Add Stripe payment IDs to order
-            if (isset($paymentResults['single_payment'])) {
-                $order->stripe_payment_intent_id = $paymentResults['single_payment']->id;
+            if (isset($paymentResults['single_payments'])) {
+                $order->stripe_payment_intent_id = $paymentResults['single_payments'][0]->id;
             }
             if (isset($paymentResults['subscriptions'])) {
                 $order->stripe_subscription_id = $paymentResults['subscriptions'][0]->id;
@@ -418,10 +453,10 @@ class CartController extends Controller
             $order->save();
 
             // Clear cart after successful payment
-            $this->clearCart();
+            // $this->clearCart();
 
             // Send thank you email
-            $this->sendThankYouEmail($order);
+            // $this->sendThankYouEmail($order);
 
             $thanksUrl = Page::getSinglePageUrl(Template::THANK_YOU_DONATE_PAGE);
             $url = url($thanksUrl . '?order=' . $order->order_id);
@@ -432,7 +467,13 @@ class CartController extends Controller
             Log::error('Payment processing failed: ' . $e->getMessage());
             
             // Update donation statuses to failed
-            foreach (array_merge($singleItems, $monthlyItems) as $item) {
+            foreach ($singleItems as $item) {
+                $donation = Donation::find($item['donation_id']);
+                $donation->status = Donation::STATUS_CANCELED;
+                $donation->save();
+            }
+            
+            foreach ($monthlyItems as $item) {
                 $donation = Donation::find($item['donation_id']);
                 $donation->status = Donation::STATUS_CANCELED;
                 $donation->save();

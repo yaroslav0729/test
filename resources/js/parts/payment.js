@@ -6,7 +6,36 @@ $(function() {
     const stringCounter = document.querySelector(".string-counter");
     const notesInput = document.querySelector('[name="notes"]');
 
-    // Card number formatting
+    // Initialize Stripe if enabled
+    let stripe = null;
+    let card = null;
+
+    if (typeof window.stripe_enabled !== 'undefined' && window.stripe_enabled) {
+        stripe = Stripe(window.stripe_public_key);
+        const elements = stripe.elements();
+        
+        // Custom styling can be passed to options when creating an Element.
+        const style = {
+            base: {
+                color: '#32325d',
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                }
+            },
+            invalid: {
+                color: '#fa755a',
+                iconColor: '#fa755a'
+            }
+        };
+
+        // Create an instance of the card Element.
+        card = elements.create('card', {style: style});
+    }
+
+    // Card number formatting (for non-Stripe fallback)
     function formatCardNumber(input) {
         let value = input.value.replace(/\D/g, '');
         let formattedValue = '';
@@ -19,7 +48,7 @@ $(function() {
         input.value = formattedValue;
     }
 
-    // Expiry date formatting
+    // Expiry date formatting (for non-Stripe fallback)
     function formatExpiryDate(input) {
         let value = input.value.replace(/\D/g, '');
         if (value.length === 1 && Number(value) > 2) value = "0" + value;
@@ -30,13 +59,13 @@ $(function() {
         input.value = value;
     }
 
-    // CVV formatting
+    // CVV formatting (for non-Stripe fallback)
     function formatCVV(input) {
         let value = input.value.replace(/\D/g, '');
         input.value = value.substring(0, 3);
     }
 
-    // Add input event listeners for formatting
+    // Add input event listeners for formatting (non-Stripe fallback)
     $('[name="card_number"]').on('input', function() {
         formatCardNumber(this);
     });
@@ -98,6 +127,22 @@ $(function() {
             this.innerHTML = payText;
             this.disabled = false;
             $('#cardPaymentModal').modal('show');
+            
+            // Mount Stripe card element when modal is shown
+            if (stripe && card) {
+                // Add the card Element to the page.
+                card.mount('#card-element');
+                
+                // Handle real-time validation errors from the card Element.
+                card.on('change', function(event) {
+                    const displayError = document.getElementById('card-errors');
+                    if (event.error) {
+                        displayError.textContent = event.error.message;
+                    } else {
+                        displayError.textContent = '';
+                    }
+                });
+            }
         }
     });
 
@@ -105,6 +150,67 @@ $(function() {
     $('#card-payment-form').on('submit', function(e) {
         e.preventDefault();
         
+        if (stripe && card) {
+            // Handle Stripe payment
+            handleStripePayment();
+        } else {
+            // Handle non-Stripe payment (fallback)
+            handleFallbackPayment();
+        }
+    });
+
+    function handleStripePayment() {
+        const submitButton = document.getElementById('submit-payment');
+        const buttonText = document.getElementById('button-text');
+        const spinner = document.getElementById('spinner');
+        
+        // Disable the submit button and show loading state
+        submitButton.disabled = true;
+        buttonText.classList.add('d-none');
+        spinner.classList.remove('d-none');
+        
+        // Create payment method
+        stripe.createPaymentMethod({
+            type: 'card',
+            card: card,
+            billing_details: {
+                name: document.querySelector('[name="first_name"]').value + ' ' + document.querySelector('[name="last_name"]').value,
+                email: document.querySelector('[name="email"]').value,
+                address: {
+                    line1: document.querySelector('[name="address_1"]').value,
+                    line2: document.querySelector('[name="address_2"]').value,
+                    city: document.querySelector('[name="city"]').value,
+                    postal_code: document.querySelector('[name="post_code"]').value,
+                    country: 'GB'
+                }
+            }
+        }).then(function(result) {
+            if (result.error) {
+                // Show error to your customer
+                const errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+                
+                // Re-enable the submit button
+                submitButton.disabled = false;
+                buttonText.classList.remove('d-none');
+                spinner.classList.add('d-none');
+            } else {
+                // Add payment method to the main form and submit
+                const mainForm = document.querySelector("#payment-form");
+                const paymentMethodInput = document.createElement('input');
+                paymentMethodInput.type = 'hidden';
+                paymentMethodInput.name = 'payment_method_id';
+                paymentMethodInput.value = result.paymentMethod.id;
+                mainForm.appendChild(paymentMethodInput);
+
+                // Close modal and submit main form
+                $('#cardPaymentModal').modal('hide');
+                mainForm.submit();
+            }
+        });
+    }
+
+    function handleFallbackPayment() {
         const cardNumber = $('[name="card_number"]').val().replace(/\s/g, '');
         const expiryDate = $('[name="expiry_date"]').val().replace(/\s/g, '');
         const cvv = $('[name="cvv"]').val();
@@ -150,7 +256,7 @@ $(function() {
         // Close modal and submit main form
         $('#cardPaymentModal').modal('hide');
         mainForm.submit();
-    });
+    }
 
     if (stringCounter && notesInput) {
         stringCounter.innerText = `${notesInput.value.length}/${notesInput.maxLength}`;
