@@ -13,6 +13,7 @@ $projVideoPreview = '';
 $projHeader1 = '';
 $projHeader2 = '';
 $projHeader3 = '';
+$projHeader4 = '';
 
 if (isset($parameters['proj_heading'])) {
     $projHeading = $parameters['proj_heading'];
