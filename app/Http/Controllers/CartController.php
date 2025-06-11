@@ -231,6 +231,36 @@ class CartController extends Controller
             return back()->with('error', "For donations of this value please contact our team on 0121 446 568.");
         }
 
+        // Handle PayPal payment
+        if ($request->get('pay_method') === 'paypal') {
+            $order->order_id = 'temp-' . $order->id;
+            $order->save();
+
+            $sum = $cartItems->sum('amount');
+
+            $response = (object) Paypal::createOrder($sum, 'GBP', 'order-' . $order->id);
+
+            if (isset($response->result->id)) {
+                $order->paypal_payment_id = $response->result->id;
+                $order->save();
+
+                foreach ($response->result->links as $link) {
+                    if ($link->rel === 'approve') {
+                        return redirect()->away($link->href);
+                    }
+                }
+            }
+
+            // Handle PayPal error
+            $error_message = 'Error creating PayPal payment.';
+            if (isset($response->error) && is_object($response->error) && isset($response->error->message)) {
+                $error_message .= ' ' . $response->error->message;
+            } elseif (is_string($response->error)) {
+                $error_message .= ' ' . $response->error;
+            }
+            return back()->with('error', $error_message);
+        }
+
         $customer = null;
         
         try {

@@ -13,7 +13,7 @@ class Order extends Model
         'first_name', 'last_name', 'title', 'email', 'phone', 'address_1', 'address_2', 
         'city', 'country', 'post_code', 'gift_aid', 'comment', 'pay_with', 'order_id', 
         'is_subscription_active', 'pay_day', 'account_number', 'sort_code', 
-        'stripe_payment_intent_id', 'stripe_subscription_id'
+        'stripe_payment_intent_id', 'stripe_subscription_id', 'paypal_payment_id'
     ];
 
     protected $casts = [
