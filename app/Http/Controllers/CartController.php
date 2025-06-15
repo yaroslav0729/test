@@ -483,10 +483,10 @@ class CartController extends Controller
             $order->save();
 
             // Clear cart after successful payment
-            // $this->clearCart();
+            $this->clearCart();
 
             // Send thank you email
-            // $this->sendThankYouEmail($order);
+            $this->sendThankYouEmail($order);
 
             $thanksUrl = Page::getSinglePageUrl(Template::THANK_YOU_DONATE_PAGE);
             $url = url($thanksUrl . '?order=' . $order->order_id);
