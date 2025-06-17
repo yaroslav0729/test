@@ -14,6 +14,7 @@ use App\Models\CartItem;
 use App\Services\StripeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class OrderController extends Controller
 {
@@ -31,29 +32,29 @@ class OrderController extends Controller
 
     public function placeExpressOrder(Request $request)
     {
-        $validated = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'country' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'post_code' => 'required|string|max:20',
-            'phone' => 'nullable|string|max:20',
-        ]);
-
-        // Get cart items from session
-        $cartIds = session()->get('cart', []);
-        if (empty($cartIds)) {
-            return response()->json(['error' => 'Cart is empty'], 400);
-        }
-
-        $cartItems = CartItem::whereIn('cart_item_id', $cartIds)->get();
-        $totalAmount = $cartItems->sum('amount') * 100; // Convert to cents
-
-        DB::beginTransaction();
-
         try {
+            $validated = $request->validate([
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
+                'email' => 'required|email',
+                'country' => 'required|string|max:255',
+                'city' => 'required|string|max:255',
+                'address' => 'required|string|max:255',
+                'post_code' => 'required|string|max:20',
+                'phone' => 'nullable|string|max:20',
+            ]);
+
+            // Get cart items from session
+            $cartIds = session()->get('cart', []);
+            if (empty($cartIds)) {
+                return response()->json(['error' => 'Cart is empty'], 400);
+            }
+
+            $cartItems = CartItem::whereIn('cart_item_id', $cartIds)->get();
+            $totalAmount = $cartItems->sum('amount') * 100; // Convert to cents
+
+            DB::beginTransaction();
+
             $order = Order::create([
                 'first_name' => $validated['first_name'],
                 'last_name' => $validated['last_name'],
@@ -109,6 +110,11 @@ class OrderController extends Controller
                 'order' => $order,
                 'client_secret' => $clientSecret,
             ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'error' => 'Validation failed',
+                'messages' => $e->errors(),
+            ], 422);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['error' => 'Error placing order: ' . $e->getMessage()], 500);

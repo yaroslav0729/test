@@ -47,6 +47,8 @@ $(function() {
 
         // Initialize Express Checkout (Apple Pay / Google Pay)
         initializeExpressCheckout();
+    } else {
+        console.log('Stripe not enabled or not properly configured');
     }
 
     function initializeExpressCheckout() {
@@ -65,6 +67,11 @@ $(function() {
 
             const amount = Math.round(cartSum * 100); // Convert to cents
 
+            // Check if amount is valid
+            if (amount <= 0) {
+                return;
+            }
+
             const expressElements = stripe.elements({
                 mode: 'payment',
                 amount: amount,
@@ -74,18 +81,27 @@ $(function() {
             expressCheckout = expressElements.create('expressCheckout');
             expressCheckout.mount('#express-checkout');
 
+            // Add a fallback message if express checkout is not available
+            expressCheckout.on('ready', () => {
+                // Express checkout is ready
+            });
+
+            expressCheckout.on('unavailable', () => {
+                expressCheckoutContainer.innerHTML = '<p class="text-muted">Apple Pay / Google Pay not available on this device</p>';
+            });
+
             expressCheckout.on('confirm', async (event) => {
                 const billingDetails = event.billingDetails;
 
                 const billingData = {
-                    first_name: billingDetails.name.split(' ')[0] || '',
-                    last_name: billingDetails.name.split(' ').slice(1).join(' ') || '',
-                    email: billingDetails.email || '',
-                    phone: billingDetails.phone || '',
-                    country: billingDetails.address.country || 'GB',
-                    city: billingDetails.address.city || '',
-                    post_code: billingDetails.address.postal_code || '',
-                    address: billingDetails.address.line1 || '',
+                    first_name: (billingDetails.name ? billingDetails.name.split(' ')[0] : '') || document.querySelector('[name="first_name"]').value || '',
+                    last_name: (billingDetails.name ? billingDetails.name.split(' ').slice(1).join(' ') : '') || document.querySelector('[name="last_name"]').value || '',
+                    email: billingDetails.email || document.querySelector('[name="email"]').value || '',
+                    phone: billingDetails.phone || document.querySelector('[name="phone"]').value || '',
+                    country: (billingDetails.address ? billingDetails.address.country : '') || document.querySelector('[name="country"]').value || 'GB',
+                    city: (billingDetails.address ? billingDetails.address.city : '') || document.querySelector('[name="city"]').value || '',
+                    post_code: (billingDetails.address ? billingDetails.address.postal_code : '') || document.querySelector('[name="post_code"]').value || '',
+                    address: (billingDetails.address ? billingDetails.address.line1 : '') || document.querySelector('[name="address_1"]').value || '',
                 };
 
                 try {
@@ -132,6 +148,10 @@ $(function() {
 
         } catch (error) {
             console.error('Express checkout initialization error:', error);
+            // Check if express checkout is supported
+            if (error.message && error.message.includes('expressCheckout')) {
+                console.log('Express checkout not supported on this device/browser');
+            }
         }
     }
 

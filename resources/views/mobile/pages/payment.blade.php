@@ -17,6 +17,7 @@
 
     @php
         $cart = \App\Models\CartItem::getCart();
+        $cartSum = \App\Models\CartItem::getCartSum();
         $hasSingleDonations = \App\Models\CartItem::hasSingleDonations();
         $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
     @endphp
@@ -235,7 +236,7 @@
 
             <div class="mb-4 text-center">
                 <label class="radio mr-5">
-                    <input type="radio" name="pay_method" value="{{Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE)?'stripe':'global' }}" checked>
+                    <input type="radio" name="pay_method" value="{{Setting::get(Setting::ENABLE_STRIPE)?'stripe':'global' }}" checked>
                     <span><i class="fal fa-check"></i></span>
                     <b>PAY BY CARD</b>
                 </label>
@@ -245,8 +246,8 @@
                 </label>
             </div>
 
-            <div id="card-payment-container" style="display: none;">
-                @if(Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE))
+            <div id="card-payment-container">
+                @if(Setting::get(Setting::ENABLE_STRIPE))
                     <div class="form-group">
                         <label><b>CARD DETAILS</b></label>
                         <div id="card-element" style="padding: 10px; border: 1px solid #ced4da; border-radius: 4px;">
@@ -254,10 +255,12 @@
                         </div>
                         <div id="card-errors" role="alert" class="text-danger mt-2"></div>
                     </div>
+
+                    <div id="express-checkout" class="mb-3"></div>
                 @endif
             </div>
 
-            @if ($hasMonthlyDonations && !Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE))
+            @if ($hasMonthlyDonations && !Setting::get(Setting::ENABLE_STRIPE))
                 <div class="row mb-3">
                     <div class="form-group col-12">
                         <label><b>Account Number*</b></label>
@@ -286,10 +289,6 @@
                 @endif
             </div>
 
-            @if(Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE))
-                <div id="express-checkout" class="mb-3"></div>
-            @endif
-
             <button type="submit" id="cart-pay" class="btn btn-danger w-100">
                 <span id="button-text">
                     Pay Now
@@ -304,84 +303,54 @@
     </div>
 
     <script>
-        // Stripe configuration
-        @if(Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE))
-        window.stripe_enabled = true;
-        window.stripe_public_key = '{{ config('stripe.public_key') }}';
-        @else
-        window.stripe_enabled = false;
-        @endif
+        $( document ).ready(function() {
 
-        // Mobile-specific cart sum for express checkout
-        window.cartSum = {{ $cartSum ?? 0 }};
-
-        $(function() {
-            // Mobile-specific account checking logic (not in desktop)
-            const mainForm = document.querySelector("#payment-form");
-            const cartPayButton = document.querySelector("#cart-pay");
-            const buttonText = document.getElementById('button-text');
-            const spinnerElement = document.getElementById('spinner');
-
-            // Override the form submit handler for mobile-specific account checking
-            if (mainForm) {
-                mainForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-
-                    cartPayButton.disabled = true;
-                    if(buttonText) buttonText.classList.add('d-none');
-                    if(spinnerElement) spinnerElement.classList.remove('d-none');
-
-                    // Mobile-specific: Check bank account for monthly donations
-                    if (document.querySelector('[name="account_number"]') && document.querySelector('[name="account_number"]').value) {
-                        let accountNumber = document.querySelector('[name="account_number"]').value;
-                        let sortCode = document.querySelector('[name="sort_code"]').value;
-                        let data = {
-                            _token: document.querySelector('[name="_token"]').value,
-                            account_number: accountNumber,
-                            sort_code: sortCode
-                        };
-                        $.ajax({
-                            url: "/cart/check-account",
-                            method: "post",
-                            data: data,
-                            success: response => {
-                                if (response.success) {
-                                    mainForm.submit();
-                                } else {
-                                    alert(response.error);
-                                    cartPayButton.disabled = false;
-                                    if(buttonText) buttonText.classList.remove('d-none');
-                                    if(spinnerElement) spinnerElement.classList.add('d-none');
-                                }
-                            },
-                            error: () => {
-                                alert('An error occurred while checking your bank account. Please try again.');
-                                cartPayButton.disabled = false;
-                                if(buttonText) buttonText.classList.remove('d-none');
-                                if(spinnerElement) spinnerElement.classList.add('d-none');
-                            }
-                        });
-                        return;
-                    }
-
-                    // For other payment methods, let the shared payment.js handle it
-                    const paymentMethodRadio = document.querySelector('[name="pay_method"]:checked');
-                    const paymentMethod = paymentMethodRadio ? paymentMethodRadio.value : 'stripe';
-
-                    if (paymentMethod === 'paypal') {
-                        mainForm.submit();
+            $('[name="pay_method"]').change(function() {
+                if($('[name="pay_method"]:checked').val()  === 'stripe') {
+                    $('#card-payment-container').show();
+                    $('#stripe-checkbox').show();
+                    if($('#stripe-checkbox [name="stripe_fee"]').prop('checked')){
+                        $('#stripe-fee').show();
                     } else {
-                        // Let payment.js handle Stripe payments
-                        cartPayButton.disabled = false;
-                        if(buttonText) buttonText.classList.remove('d-none');
-                        if(spinnerElement) spinnerElement.classList.add('d-none');
-
-                        // Trigger the shared payment.js form submission
-                        const event = new Event('submit', { bubbles: true, cancelable: true });
-                        mainForm.dispatchEvent(event);
+                        $('#stripe-fee').hide();
                     }
-                });
+                } else if($('[name="pay_method"]:checked').val()  === 'paypal') {
+                    $('#card-payment-container').hide();
+                    $('#stripe-checkbox').hide();
+                    $('#stripe-fee').hide();
+                } else {
+                    $('#card-payment-container').show();
+                    $('#stripe-checkbox').hide();
+                    $('#stripe-fee').hide();
+                }
+            });
+
+            $('#stripe-checkbox [name="stripe_fee"]').change(function() {
+                if($('#stripe-checkbox [name="stripe_fee"]').prop('checked')){
+                    $('#stripe-fee').show();
+                } else {
+                    $('#stripe-fee').hide();
+                }
+            });
+
+            // Initialize based on default selection
+            if($('[name="pay_method"]:checked').val()  === 'stripe') {
+                $('#card-payment-container').show();
+                $('#stripe-checkbox').show();
+            } else if($('[name="pay_method"]:checked').val()  === 'paypal') {
+                $('#card-payment-container').hide();
+            } else {
+                $('#card-payment-container').show();
+            }
+
+            if($('#stripe-checkbox [name="stripe_fee"]').prop('checked')){
+                $('#stripe-fee').show();
             }
         });
+
+        // Stripe configuration
+        window.stripe_enabled = true;
+        window.stripe_public_key = '{{ config('stripe.public_key') }}';
+        window.cartSum = {{ $cartSum }};
     </script>
 @endsection
