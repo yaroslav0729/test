@@ -620,9 +620,13 @@
     });
 
     // Stripe configuration
+    @if(Setting::get(Setting::ENABLE_STRIPE))
     window.stripe_enabled = true;
     window.stripe_public_key = '{{ config('stripe.public_key') }}';
+    @else
+    window.stripe_enabled = false;
+    @endif
 </script>
-
+<script src="{{ asset('js/parts/payment.js') }}"></script>
 
 @endsection

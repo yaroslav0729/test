@@ -17,7 +17,7 @@ $(function() {
     if (typeof window.stripe_enabled !== 'undefined' && window.stripe_enabled) {
         stripe = Stripe(window.stripe_public_key);
         const elements = stripe.elements();
-        
+
         const style = {
             base: {
                 color: '#32325d',
@@ -36,13 +36,15 @@ $(function() {
 
         card = elements.create('card', {style: style});
         card.mount('#card-element');
-        
+
         card.on('change', function(event) {
             const displayError = document.getElementById('card-errors');
             if (event.error) {
                 displayError.textContent = event.error.message;
+                cardValid = false;
             } else {
                 displayError.textContent = '';
+                cardValid = event.complete;
             }
         });
     }
@@ -100,12 +102,77 @@ $(function() {
 
     mainForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        const paymentMethod = document.querySelector('[name="pay_method"]:checked').value;
-        
+
+        const paymentMethod = document.querySelector('[name="pay_method"]:checked')?.value;
+
+        // Validate payment method specific fields
+        if (paymentMethod !== 'paypal') {
+            if (stripe && card) {
+                const cardElement = document.getElementById('card-element');
+                if (!cardElement || cardElement.classList.contains('StripeElement--empty')) {
+                    const errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = 'Please enter your card details';
+                    return;
+                }
+            } else {
+                // Fallback validation
+                const cardNumber = document.querySelector('[name="card_number"]');
+                const expiryDate = document.querySelector('[name="expiry_date"]');
+                const cvv = document.querySelector('[name="cvv"]');
+
+                if (cardNumber && (!cardNumber.value || cardNumber.value.replace(/\s/g, '').length !== 16)) {
+                    alert('Please enter a valid 16-digit card number');
+                    return;
+                }
+
+                if (expiryDate && (!expiryDate.value || !/^\d{2}\s*\/\s*\d{2}$/.test(expiryDate.value))) {
+                    alert('Please enter a valid expiry date (MM/YY)');
+                    return;
+                }
+
+                if (cvv && (!cvv.value || cvv.value.length !== 3)) {
+                    alert('Please enter a valid 3-digit CVV');
+                    return;
+                }
+            }
+        }
+
         cartPayButton.disabled = true;
         buttonText.classList.add('d-none');
         spinnerElement.classList.remove('d-none');
+
+        // Check bank account for monthly donations (mobile specific)
+        if (document.querySelector('[name="account_number"]') && document.querySelector('[name="account_number"]').value) {
+            let accountNumber = document.querySelector('[name="account_number"]').value;
+            let sortCode = document.querySelector('[name="sort_code"]').value;
+            let data = {
+                _token: document.querySelector('[name="_token"]').value,
+                account_number: accountNumber,
+                sort_code: sortCode
+            };
+            $.ajax({
+                url: "/cart/check-account",
+                method: "post",
+                data: data,
+                success: response => {
+                    if (response.success) {
+                        mainForm.submit();
+                    } else {
+                        alert(response.error);
+                        cartPayButton.disabled = false;
+                        if(buttonText) buttonText.classList.remove('d-none');
+                        if(spinnerElement) spinnerElement.classList.add('d-none');
+                    }
+                },
+                error: () => {
+                    alert('An error occurred while checking your bank account. Please try again.');
+                    cartPayButton.disabled = false;
+                    if(buttonText) buttonText.classList.remove('d-none');
+                    if(spinnerElement) spinnerElement.classList.add('d-none');
+                }
+            });
+            return;
+        }
 
         if (paymentMethod === 'paypal') {
             mainForm.submit();
@@ -135,7 +202,7 @@ $(function() {
             if (result.error) {
                 const errorElement = document.getElementById('card-errors');
                 errorElement.textContent = result.error.message;
-                
+
                 cartPayButton.disabled = false;
                 buttonText.classList.remove('d-none');
                 spinnerElement.classList.add('d-none');
@@ -158,18 +225,27 @@ $(function() {
         // Validate card number (16 digits)
         if (cardNumber.length !== 16) {
             alert('Please enter a valid 16-digit card number');
+            cartPayButton.disabled = false;
+            buttonText.classList.remove('d-none');
+            spinnerElement.classList.add('d-none');
             return;
         }
 
         // Validate expiry date (MM/YY format)
         if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
             alert('Please enter a valid expiry date (MM/YY)');
+            cartPayButton.disabled = false;
+            buttonText.classList.remove('d-none');
+            spinnerElement.classList.add('d-none');
             return;
         }
 
         // Validate CVV (3 digits)
         if (cvv.length !== 3) {
             alert('Please enter a valid 3-digit CVV');
+            cartPayButton.disabled = false;
+            buttonText.classList.remove('d-none');
+            spinnerElement.classList.add('d-none');
             return;
         }
 
