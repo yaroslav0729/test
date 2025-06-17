@@ -22,7 +22,16 @@ trait SendThankYouEmail
             return;
         }
 
-        Mail::to($emailTo)->send(new ThankYouDonation($order, $subject, $emailTo, $emailFrom));
+        try {
+            Mail::to($emailTo)->send(new ThankYouDonation($order, $subject, $emailTo, $emailFrom));
+        } catch (\Exception $e) {
+            // Log the email error but don't break the payment process
+            \Log::error('Failed to send thank you email: ' . $e->getMessage(), [
+                'order_id' => $order->id,
+                'email' => $emailTo,
+                'error' => $e->getMessage()
+            ]);
+        }
     }
 
     public function sendThankYouScheduledQurbaniEmail($order)
