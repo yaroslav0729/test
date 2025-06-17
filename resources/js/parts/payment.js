@@ -13,6 +13,7 @@ $(function() {
     // Initialize Stripe if enabled
     let stripe = null;
     let card = null;
+    let paymentRequest = null;
 
     if (typeof window.stripe_enabled !== 'undefined' && window.stripe_enabled) {
         stripe = Stripe(window.stripe_public_key);
@@ -41,12 +42,159 @@ $(function() {
             const displayError = document.getElementById('card-errors');
             if (event.error) {
                 displayError.textContent = event.error.message;
-                cardValid = false;
             } else {
                 displayError.textContent = '';
-                cardValid = event.complete;
             }
         });
+
+        // Initialize Payment Request for Google Pay / Apple Pay
+        initializePaymentRequest(elements);
+    }
+
+    function initializePaymentRequest(elements) {
+        // Get cart total from the page - try multiple selectors for mobile/desktop
+        let cartSum = 0;
+        const pageSumElement = document.getElementById('page-sum') ||
+                              document.querySelector('.cart-total') ||
+                              document.querySelector('[data-cart-sum]');
+
+        if (pageSumElement) {
+            const sumText = pageSumElement.innerText || pageSumElement.textContent || '';
+            cartSum = parseFloat(sumText.replace(/[^0-9.-]+/g,"")) || 0;
+        }
+
+        // Fallback: try to get from cart items
+        if (cartSum <= 0) {
+            const cartItems = document.querySelectorAll('.cart-item-amount, [data-amount]');
+            cartItems.forEach(item => {
+                const amount = parseFloat((item.innerText || item.dataset.amount || '').replace(/[^0-9.-]+/g,"")) || 0;
+                cartSum += amount;
+            });
+        }
+
+        if (cartSum <= 0) {
+            console.log('PaymentRequest: Unable to determine cart total');
+            return;
+        }
+
+        console.log('PaymentRequest: Cart total detected:', cartSum);
+
+        paymentRequest = stripe.paymentRequest({
+            country: 'GB',
+            currency: 'gbp',
+            total: {
+                label: 'Islamic Help Donation',
+                amount: Math.round(cartSum * 100), // Convert to pence
+            },
+            requestPayerName: true,
+            requestPayerEmail: true,
+        });
+
+        const prButton = elements.create('paymentRequestButton', {
+            paymentRequest: paymentRequest,
+            style: {
+                paymentRequestButton: {
+                    type: 'donate',
+                    theme: 'dark',
+                    height: '48px',
+                },
+            },
+        });
+
+        // Check if Payment Request is available (Google Pay / Apple Pay)
+        paymentRequest.canMakePayment().then(function(result) {
+            if (result) {
+                console.log('PaymentRequest: Available payment methods:', result);
+                const paymentRequestContainer = document.getElementById('payment-request-button');
+                const paymentRequestDivider = document.getElementById('payment-request-divider');
+                if (paymentRequestContainer) {
+                    prButton.mount('#payment-request-button');
+                    paymentRequestContainer.style.display = 'block';
+                    if (paymentRequestDivider) {
+                        paymentRequestDivider.style.display = 'block';
+                    }
+                }
+            } else {
+                console.log('PaymentRequest: No supported payment methods available');
+            }
+        }).catch(function(error) {
+            console.error('PaymentRequest: Error checking availability:', error);
+        });
+
+        // Handle payment method creation from Payment Request
+        paymentRequest.on('paymentmethod', function(ev) {
+            console.log('PaymentRequest: Payment method created:', ev.paymentMethod);
+
+            // Validate required form fields before processing payment
+            if (!validateRequiredFields()) {
+                ev.complete('fail');
+                return;
+            }
+
+            // Add payment method ID to form
+            const existingPaymentMethodInput = mainForm.querySelector('[name="payment_method_id"]');
+            if (existingPaymentMethodInput) {
+                existingPaymentMethodInput.remove();
+            }
+
+            const paymentMethodInput = document.createElement('input');
+            paymentMethodInput.type = 'hidden';
+            paymentMethodInput.name = 'payment_method_id';
+            paymentMethodInput.value = ev.paymentMethod.id;
+            mainForm.appendChild(paymentMethodInput);
+
+            // Set payment method to indicate this came from Payment Request
+            const existingPayMethodInput = mainForm.querySelector('[name="pay_method"]');
+            if (!existingPayMethodInput) {
+                const paymentMethodTypeInput = document.createElement('input');
+                paymentMethodTypeInput.type = 'hidden';
+                paymentMethodTypeInput.name = 'pay_method';
+                paymentMethodTypeInput.value = 'stripe';
+                mainForm.appendChild(paymentMethodTypeInput);
+            }
+
+            // Complete the payment request
+            ev.complete('success');
+
+            // Submit the form
+            setTimeout(() => {
+                mainForm.submit();
+            }, 100);
+        });
+
+        paymentRequest.on('cancel', function() {
+            console.log('PaymentRequest: Payment cancelled by user');
+        });
+    }
+
+    function validateRequiredFields() {
+        const requiredFields = [
+            { name: 'first_name', label: 'First Name' },
+            { name: 'last_name', label: 'Last Name' },
+            { name: 'email', label: 'Email' },
+            { name: 'address_1', label: 'Address' },
+            { name: 'city', label: 'City' },
+            { name: 'post_code', label: 'Post Code' }
+        ];
+
+        for (let field of requiredFields) {
+            const input = document.querySelector(`[name="${field.name}"]`);
+            if (!input || !input.value.trim()) {
+                alert(`Please fill in the ${field.label} field before proceeding with payment.`);
+                return false;
+            }
+        }
+
+        // Validate donation notes if required
+        const donationNotes = document.querySelectorAll('[name^="notes_"]');
+        for (let note of donationNotes) {
+            if (note.hasAttribute('required') && !note.value.trim()) {
+                alert('Please fill in all required donation notes before proceeding with payment.');
+                return false;
+            }
+        }
+
+        return true;
     }
 
     // Card number formatting (for non-Stripe fallback)

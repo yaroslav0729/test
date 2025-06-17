@@ -465,6 +465,19 @@
                                     @endif
                                 @endif
 
+                                @if(Setting::get(Setting::ENABLE_STRIPE))
+                                    <!-- Google Pay / Apple Pay Button -->
+                                    <div id="payment-request-button" style="display: none; margin-bottom: 20px;">
+                                        <!-- Payment request button will be inserted here -->
+                                    </div>
+
+                                    <!-- OR divider -->
+                                    <div id="payment-request-divider" style="display: none; text-align: center; margin: 20px 0;">
+                                        <span style="background: white; padding: 0 15px; color: #666;">OR</span>
+                                        <hr style="margin-top: -12px; border-color: #ddd;">
+                                    </div>
+                                @endif
+
                                 <div id="card-payment-container">
                                     @if(Setting::get(Setting::ENABLE_STRIPE))
                                         <div class="form-group">
