@@ -443,14 +443,26 @@
                                 @if ($hasSingleDonations)
                                     <div class="mb-4 text-center">
                                         <label class="radio mr-5">
-                                            <input type="radio" name="pay_method" checked
-                                                   value="{{Setting::get(Setting::ENABLE_STRIPE)?'stripe':'global' }}"><span><i
-                                                    class="fal fa-check"></i></span>
+                                            <input
+                                                type="radio"
+                                                name="pay_method"
+                                                checked
+                                                value="{{Setting::get(Setting::ENABLE_STRIPE)?'stripe':'global' }}"
+                                            >
+                                            <span>
+                                                <i class="fal fa-check"></i>
+                                            </span>
                                             <b>PAY BY CARD</b>
                                         </label>
                                         <label class="radio">
-                                            <input type="radio" name="pay_method" value="paypal"><span><i
-                                                    class="fal fa-check"></i></span>
+                                            <input
+                                                type="radio"
+                                                name="pay_method"
+                                                value="paypal"
+                                            >
+                                            <span>
+                                                <i class="fal fa-check"></i>
+                                            </span>
                                             <b>PAY BY PAYPAL</b>
                                         </label>
                                     </div>
@@ -522,12 +534,20 @@
                                     @endif
                                 </div>
 
-                                <button type="submit" id="cart-pay" class="btn btn-danger border-white btn-submit">
-                                    <span id="button-text">Pay Now</span>
-                                    <div id="spinner" class="spinner-border spinner-border-sm text-light d-none" role="status">
-                                        <span class="sr-only">Loading...</span>
+                                <div class="d-flex justify-content-center btn-submit">
+                                    <div>
+                                        <button type="submit" id="cart-pay" class="btn btn-danger border-white">
+                                            <span id="button-text">Pay Now</span>
+                                            <div id="spinner" class="spinner-border spinner-border-sm text-light d-none" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </button>
                                     </div>
-                                </button>
+                                    <div id="payment-container">
+                                        <div id="payment-element"></div>
+                                        <div id="express-checkout"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

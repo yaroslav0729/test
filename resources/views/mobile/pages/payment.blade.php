@@ -286,6 +286,10 @@
                 @endif
             </div>
 
+            @if(Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE))
+                <div id="express-checkout" class="mb-3"></div>
+            @endif
+
             <button type="submit" id="cart-pay" class="btn btn-danger w-100">
                 <span id="button-text">
                     Pay Now
@@ -308,134 +312,73 @@
         window.stripe_enabled = false;
         @endif
 
+        // Mobile-specific cart sum for express checkout
+        window.cartSum = {{ $cartSum ?? 0 }};
+
         $(function() {
+            // Mobile-specific account checking logic (not in desktop)
             const mainForm = document.querySelector("#payment-form");
             const cartPayButton = document.querySelector("#cart-pay");
             const buttonText = document.getElementById('button-text');
             const spinnerElement = document.getElementById('spinner');
 
-            let stripe = null;
-            let card = null;
+            // Override the form submit handler for mobile-specific account checking
+            if (mainForm) {
+                mainForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
 
-            if (window.stripe_enabled) {
-                stripe = Stripe(window.stripe_public_key);
-                const elements = stripe.elements();
-                const style = {
-                    base: {
-                        color: '#32325d',
-                        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                        fontSmoothing: 'antialiased',
-                        fontSize: '16px',
-                        '::placeholder': { color: '#aab7c4' }
-                    },
-                    invalid: {
-                        color: '#fa755a',
-                        iconColor: '#fa755a'
-                    }
-                };
-                card = elements.create('card', {style: style});
-                card.mount('#card-element');
-                card.on('change', function(event) {
-                    const displayError = document.getElementById('card-errors');
-                    if (event.error) {
-                        displayError.textContent = event.error.message;
-                    } else {
-                        displayError.textContent = '';
-                    }
-                });
-            }
+                    cartPayButton.disabled = true;
+                    if(buttonText) buttonText.classList.add('d-none');
+                    if(spinnerElement) spinnerElement.classList.remove('d-none');
 
-            function toggleCardPaymentView() {
-                if ($('[name="pay_method"]:checked').val() === 'paypal') {
-                    $('#card-payment-container').hide();
-                } else {
-                    $('#card-payment-container').show();
-                }
-            }
-            
-            $(document).on("change", '[name="pay_method"]', toggleCardPaymentView);
-            toggleCardPaymentView();
-
-            mainForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                cartPayButton.disabled = true;
-                if(buttonText) buttonText.classList.add('d-none');
-                if(spinnerElement) spinnerElement.classList.remove('d-none');
-
-                if (document.querySelector('[name="account_number"]') && document.querySelector('[name="account_number"]').value) {
-                    let accountNumber = document.querySelector('[name="account_number"]').value;
-                    let sortCode = document.querySelector('[name="sort_code"]').value;
-                    let data = {
-                        _token: document.querySelector('[name="_token"]').value,
-                        account_number: accountNumber,
-                        sort_code: sortCode
-                    };
-                    $.ajax({
-                        url: "/cart/check-account",
-                        method: "post",
-                        data: data,
-                        success: response => {
-                            if (response.success) {
-                                mainForm.submit();
-                            } else {
-                                alert(response.error);
+                    // Mobile-specific: Check bank account for monthly donations
+                    if (document.querySelector('[name="account_number"]') && document.querySelector('[name="account_number"]').value) {
+                        let accountNumber = document.querySelector('[name="account_number"]').value;
+                        let sortCode = document.querySelector('[name="sort_code"]').value;
+                        let data = {
+                            _token: document.querySelector('[name="_token"]').value,
+                            account_number: accountNumber,
+                            sort_code: sortCode
+                        };
+                        $.ajax({
+                            url: "/cart/check-account",
+                            method: "post",
+                            data: data,
+                            success: response => {
+                                if (response.success) {
+                                    mainForm.submit();
+                                } else {
+                                    alert(response.error);
+                                    cartPayButton.disabled = false;
+                                    if(buttonText) buttonText.classList.remove('d-none');
+                                    if(spinnerElement) spinnerElement.classList.add('d-none');
+                                }
+                            },
+                            error: () => {
+                                alert('An error occurred while checking your bank account. Please try again.');
                                 cartPayButton.disabled = false;
                                 if(buttonText) buttonText.classList.remove('d-none');
                                 if(spinnerElement) spinnerElement.classList.add('d-none');
                             }
-                        },
-                        error: () => {
-                            alert('An error occurred while checking your bank account. Please try again.');
-                            cartPayButton.disabled = false;
-                            if(buttonText) buttonText.classList.remove('d-none');
-                            if(spinnerElement) spinnerElement.classList.add('d-none');
-                        }
-                    });
-                    return;
-                }
-
-                const paymentMethodRadio = document.querySelector('[name="pay_method"]:checked');
-                const paymentMethod = paymentMethodRadio ? paymentMethodRadio.value : 'stripe';
-
-                if (paymentMethod === 'paypal') {
-                    mainForm.submit();
-                } else if (stripe && card) {
-                    handleStripePayment();
-                } else {
-                    mainForm.submit();
-                }
-            });
-
-            function handleStripePayment() {
-                stripe.createPaymentMethod({
-                    type: 'card',
-                    card: card,
-                    billing_details: {
-                        name: document.querySelector('[name="first_name"]').value + ' ' + document.querySelector('[name="last_name"]').value,
-                        email: document.querySelector('[name="email"]').value,
-                        address: {
-                            line1: document.querySelector('[name="address_1"]').value,
-                            line2: document.querySelector('[name="address_2"]').value,
-                            city: document.querySelector('[name="city"]').value,
-                            postal_code: document.querySelector('[name="post_code"]').value,
-                            country: 'GB'
-                        }
+                        });
+                        return;
                     }
-                }).then(function(result) {
-                    if (result.error) {
-                        const errorElement = document.getElementById('card-errors');
-                        errorElement.textContent = result.error.message;
+
+                    // For other payment methods, let the shared payment.js handle it
+                    const paymentMethodRadio = document.querySelector('[name="pay_method"]:checked');
+                    const paymentMethod = paymentMethodRadio ? paymentMethodRadio.value : 'stripe';
+
+                    if (paymentMethod === 'paypal') {
+                        mainForm.submit();
+                    } else {
+                        // Let payment.js handle Stripe payments
                         cartPayButton.disabled = false;
                         if(buttonText) buttonText.classList.remove('d-none');
                         if(spinnerElement) spinnerElement.classList.add('d-none');
-                    } else {
-                        const paymentMethodInput = document.createElement('input');
-                        paymentMethodInput.type = 'hidden';
-                        paymentMethodInput.name = 'payment_method_id';
-                        paymentMethodInput.value = result.paymentMethod.id;
-                        mainForm.appendChild(paymentMethodInput);
-                        mainForm.submit();
+
+                        // Trigger the shared payment.js form submission
+                        const event = new Event('submit', { bubbles: true, cancelable: true });
+                        mainForm.dispatchEvent(event);
                     }
                 });
             }

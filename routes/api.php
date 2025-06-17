@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\OrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/get_proj_options/{id}', [ProjectController::class, 'getPopupOptions']);
 Route::get('/get_articles/{category}/{page}', [ArticleController::class, 'getArticles']);
+Route::post('/orders/express', [OrderController::class, 'placeExpressOrder']);

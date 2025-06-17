@@ -1,8 +1,4 @@
 $(function() {
-    const spinner = `<div class="spinner-border text-light" role="status">
-  <span class="sr-only">Loading...</span>
-</div>`;
-    let payText = "Pay Now";
     const stringCounter = document.querySelector(".string-counter");
     const notesInput = document.querySelector('[name="notes"]');
     const mainForm = document.querySelector("#payment-form");
@@ -13,11 +9,14 @@ $(function() {
     // Initialize Stripe if enabled
     let stripe = null;
     let card = null;
+    let paymentElement = null;
+    let expressCheckout = null;
+    let elements = null;
 
     if (typeof window.stripe_enabled !== 'undefined' && window.stripe_enabled) {
         stripe = Stripe(window.stripe_public_key);
-        const elements = stripe.elements();
-        
+        elements = stripe.elements();
+
         const style = {
             base: {
                 color: '#32325d',
@@ -36,7 +35,7 @@ $(function() {
 
         card = elements.create('card', {style: style});
         card.mount('#card-element');
-        
+
         card.on('change', function(event) {
             const displayError = document.getElementById('card-errors');
             if (event.error) {
@@ -45,6 +44,95 @@ $(function() {
                 displayError.textContent = '';
             }
         });
+
+        // Initialize Express Checkout (Apple Pay / Google Pay)
+        initializeExpressCheckout();
+    }
+
+    function initializeExpressCheckout() {
+        const expressCheckoutContainer = document.getElementById('express-checkout');
+        if (!expressCheckoutContainer) return;
+
+        try {
+            // Use mobile cart sum if available, otherwise get from page-sum element
+            let cartSum = 0;
+            if (typeof window.cartSum !== 'undefined') {
+                cartSum = window.cartSum;
+            } else {
+                const pageSumElement = document.getElementById('page-sum');
+                cartSum = pageSumElement ? parseFloat(pageSumElement.textContent) || 0 : 0;
+            }
+
+            const amount = Math.round(cartSum * 100); // Convert to cents
+
+            const expressElements = stripe.elements({
+                mode: 'payment',
+                amount: amount,
+                currency: 'gbp',
+            });
+
+            expressCheckout = expressElements.create('expressCheckout');
+            expressCheckout.mount('#express-checkout');
+
+            expressCheckout.on('confirm', async (event) => {
+                const billingDetails = event.billingDetails;
+
+                const billingData = {
+                    first_name: billingDetails.name.split(' ')[0] || '',
+                    last_name: billingDetails.name.split(' ').slice(1).join(' ') || '',
+                    email: billingDetails.email || '',
+                    phone: billingDetails.phone || '',
+                    country: billingDetails.address.country || 'GB',
+                    city: billingDetails.address.city || '',
+                    post_code: billingDetails.address.postal_code || '',
+                    address: billingDetails.address.line1 || '',
+                };
+
+                try {
+                    // Submit elements to prepare for payment
+                    const {error: submitError} = await expressElements.submit();
+                    if (submitError) {
+                        console.error('Submit error:', submitError);
+                        return;
+                    }
+
+                    // Create order via API
+                    const response = await fetch('/api/orders/express', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('[name="_token"]').value,
+                        },
+                        body: JSON.stringify(billingData),
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Failed to create order');
+                    }
+
+                    // Confirm payment with Stripe
+                    const {error} = await stripe.confirmPayment({
+                        elements: expressElements,
+                        clientSecret: data.client_secret,
+                        confirmParams: {
+                            return_url: window.location.origin + '/thank-you?order=' + data.order.order_id,
+                        },
+                    });
+
+                    if (error) {
+                        console.error('Payment confirmation error:', error);
+                    }
+                } catch (error) {
+                    console.error('Express checkout error:', error);
+                    alert('Payment failed: ' + error.message);
+                }
+            });
+
+        } catch (error) {
+            console.error('Express checkout initialization error:', error);
+        }
     }
 
     // Card number formatting (for non-Stripe fallback)
@@ -100,9 +188,9 @@ $(function() {
 
     mainForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         const paymentMethod = document.querySelector('[name="pay_method"]:checked').value;
-        
+
         cartPayButton.disabled = true;
         buttonText.classList.add('d-none');
         spinnerElement.classList.remove('d-none');
@@ -135,7 +223,7 @@ $(function() {
             if (result.error) {
                 const errorElement = document.getElementById('card-errors');
                 errorElement.textContent = result.error.message;
-                
+
                 cartPayButton.disabled = false;
                 buttonText.classList.remove('d-none');
                 spinnerElement.classList.add('d-none');
