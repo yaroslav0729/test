@@ -56,7 +56,8 @@ $(function() {
         let cartSum = 0;
         const pageSumElement = document.getElementById('page-sum') ||
                               document.querySelector('.cart-total') ||
-                              document.querySelector('[data-cart-sum]');
+                              document.querySelector('[data-cart-sum]') ||
+                              document.querySelector('#page-sum');
 
         if (pageSumElement) {
             const sumText = pageSumElement.innerText || pageSumElement.textContent || '';
@@ -242,6 +243,16 @@ $(function() {
 
     $(document).on("change", '[name="pay_method"]', function() {
         if (this.value === 'paypal') {
+            $('#card-payment-container').hide();
+        } else {
+            $('#card-payment-container').show();
+        }
+    });
+
+    // Initialize card payment container visibility on page load
+    $(document).ready(function() {
+        const selectedPayMethod = $('[name="pay_method"]:checked').val();
+        if (selectedPayMethod === 'paypal') {
             $('#card-payment-container').hide();
         } else {
             $('#card-payment-container').show();

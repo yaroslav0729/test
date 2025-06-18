@@ -17,6 +17,7 @@
 
     @php
         $cart = \App\Models\CartItem::getCart();
+        $cartSum = \App\Models\CartItem::getCartSum();
         $hasSingleDonations = \App\Models\CartItem::hasSingleDonations();
         $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
     @endphp
@@ -235,7 +236,7 @@
 
             <div class="mb-4 text-center">
                 <label class="radio mr-5">
-                    <input type="radio" name="pay_method" value="{{Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE)?'stripe':'global' }}" checked>
+                    <input type="radio" name="pay_method" value="{{Setting::get(Setting::ENABLE_STRIPE)?'stripe':'global' }}" checked>
                     <span><i class="fal fa-check"></i></span>
                     <b>PAY BY CARD</b>
                 </label>
@@ -245,7 +246,7 @@
                 </label>
             </div>
 
-            @if(Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE))
+            @if(Setting::get(Setting::ENABLE_STRIPE))
                 <!-- Google Pay / Apple Pay Button -->
                 <div id="payment-request-button" style="display: none; margin-bottom: 20px;">
                     <!-- Payment request button will be inserted here -->
@@ -258,8 +259,8 @@
                 </div>
             @endif
 
-            <div id="card-payment-container" style="display: none;">
-                @if(Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE))
+            <div id="card-payment-container">
+                @if(Setting::get(Setting::ENABLE_STRIPE))
                     <div class="form-group">
                         <label><b>CARD DETAILS</b></label>
                         <div id="card-element" style="padding: 10px; border: 1px solid #ced4da; border-radius: 4px;">
@@ -267,10 +268,23 @@
                         </div>
                         <div id="card-errors" role="alert" class="text-danger mt-2"></div>
                     </div>
+                @else
+                    <div class="form-group">
+                        <label><b>CARD NUMBER</b></label>
+                        <input type="text" class="form-control" name="card_number" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                    </div>
+                    <div class="form-group">
+                        <label><b>EXPIRY DATE</b></label>
+                        <input type="text" class="form-control" name="expiry_date" placeholder="MM / YY" maxlength="7" required>
+                    </div>
+                    <div class="form-group">
+                        <label><b>CVV</b></label>
+                        <input type="text" class="form-control" name="cvv" placeholder="123" maxlength="3" required>
+                    </div>
                 @endif
             </div>
 
-            @if ($hasMonthlyDonations && !Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE))
+            @if ($hasMonthlyDonations && !Setting::get(Setting::ENABLE_STRIPE))
                 <div class="row mb-3">
                     <div class="form-group col-12">
                         <label><b>Account Number*</b></label>
@@ -307,6 +321,9 @@
                     <span class="sr-only">Loading...</span>
                 </div>
             </button>
+
+            <!-- Hidden cart sum for Google Pay / Apple Pay initialization -->
+            <span id="page-sum" style="display: none;">{{ $cartSum }}</span>
         </form>
 
         <div class="pt-5"></div>
@@ -314,7 +331,7 @@
 
     <script>
         // Stripe configuration
-        @if(Setting::get(\App\Helpers\SettingHelper::ENABLE_STRIPE))
+        @if(Setting::get(Setting::ENABLE_STRIPE))
         window.stripe_enabled = true;
         window.stripe_public_key = '{{ config('stripe.public_key') }}';
         @else
