@@ -17,7 +17,9 @@ $(function() {
 
     if (typeof window.stripe_enabled !== 'undefined' && window.stripe_enabled) {
         stripe = Stripe(window.stripe_public_key);
-        const elements = stripe.elements();
+        const elements = stripe.elements({
+            locale: 'en-GB'
+        });
 
         const style = {
             base: {
@@ -35,16 +37,39 @@ $(function() {
             }
         };
 
-        card = elements.create('card', {style: style});
-        card.mount('#card-element');
+        // Create individual field elements for better control over UK postal code
+        const cardNumber = elements.create('cardNumber', {style: style});
+        const cardExpiry = elements.create('cardExpiry', {style: style});
+        const cardCvc = elements.create('cardCvc', {style: style});
+        const postalCode = elements.create('postalCode', {
+            style: style,
+            placeholder: 'Postal Code' // Explicitly set UK placeholder
+        });
 
-        card.on('change', function(event) {
-            const displayError = document.getElementById('card-errors');
-            if (event.error) {
-                displayError.textContent = event.error.message;
-            } else {
-                displayError.textContent = '';
-            }
+        // Mount individual elements
+        cardNumber.mount('#card-number-element');
+        cardExpiry.mount('#card-expiry-element');
+        cardCvc.mount('#card-cvc-element');
+        postalCode.mount('#postal-code-element');
+
+        // Store references for later use
+        card = {
+            cardNumber: cardNumber,
+            cardExpiry: cardExpiry,
+            cardCvc: cardCvc,
+            postalCode: postalCode
+        };
+
+        // Add error handling for all elements
+        [cardNumber, cardExpiry, cardCvc, postalCode].forEach(element => {
+            element.on('change', function(event) {
+                const displayError = document.getElementById('card-errors');
+                if (event.error) {
+                    displayError.textContent = event.error.message;
+                } else {
+                    displayError.textContent = '';
+                }
+            });
         });
 
         // Initialize Payment Request for Google Pay / Apple Pay
@@ -312,11 +337,32 @@ $(function() {
         // Validate payment method specific fields
         if (paymentMethod !== 'paypal') {
             if (stripe && card) {
-                const cardElement = document.getElementById('card-element');
-                if (!cardElement || cardElement.classList.contains('StripeElement--empty')) {
-                    const errorElement = document.getElementById('card-errors');
-                    errorElement.textContent = 'Please enter your card details';
-                    return;
+                // Check if we have individual elements or combined card element
+                if (card.cardNumber) {
+                    // Individual elements - check each one
+                    const cardElements = [card.cardNumber, card.cardExpiry, card.cardCvc, card.postalCode];
+                    let hasEmptyElement = false;
+
+                    cardElements.forEach(element => {
+                        const elementContainer = element._element;
+                        if (elementContainer && elementContainer.classList.contains('StripeElement--empty')) {
+                            hasEmptyElement = true;
+                        }
+                    });
+
+                    if (hasEmptyElement) {
+                        const errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = 'Please complete all card details';
+                        return;
+                    }
+                } else {
+                    // Combined card element
+                    const cardElement = document.getElementById('card-element');
+                    if (!cardElement || cardElement.classList.contains('StripeElement--empty')) {
+                        const errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = 'Please enter your card details';
+                        return;
+                    }
                 }
             } else {
                 // Fallback validation
@@ -388,9 +434,12 @@ $(function() {
     });
 
     function handleStripePayment() {
+        // Check if we have individual elements or combined card element
+        const cardElement = card.cardNumber ? card.cardNumber : card;
+
         stripe.createPaymentMethod({
             type: 'card',
-            card: card,
+            card: cardElement,
             billing_details: {
                 name: document.querySelector('[name="first_name"]').value + ' ' + document.querySelector('[name="last_name"]').value,
                 email: document.querySelector('[name="email"]').value,
