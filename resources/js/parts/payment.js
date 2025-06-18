@@ -242,20 +242,65 @@ $(function() {
     });
 
     $(document).on("change", '[name="pay_method"]', function() {
-        if (this.value === 'paypal') {
-            $('#card-payment-container').hide();
+        const paymentMethod = this.value;
+        const cardContainer = $('#card-payment-container');
+
+        if (paymentMethod === 'paypal') {
+            cardContainer.hide();
         } else {
-            $('#card-payment-container').show();
+            cardContainer.show();
+        }
+
+        // Also handle stripe-specific elements if they exist
+        const stripeCheckbox = $('#stripe-checkbox');
+        const stripeFee = $('#stripe-fee');
+
+        if (paymentMethod === 'stripe') {
+            stripeCheckbox.show();
+            if (stripeCheckbox.find('[name="stripe_fee"]').prop('checked')) {
+                stripeFee.show();
+            } else {
+                stripeFee.hide();
+            }
+        } else {
+            stripeCheckbox.hide();
+            stripeFee.hide();
         }
     });
 
     // Initialize card payment container visibility on page load
     $(document).ready(function() {
         const selectedPayMethod = $('[name="pay_method"]:checked').val();
+        const cardContainer = $('#card-payment-container');
+
         if (selectedPayMethod === 'paypal') {
-            $('#card-payment-container').hide();
+            cardContainer.hide();
         } else {
-            $('#card-payment-container').show();
+            cardContainer.show();
+        }
+
+        // Initialize stripe-specific elements
+        const stripeCheckbox = $('#stripe-checkbox');
+        const stripeFee = $('#stripe-fee');
+
+        if (selectedPayMethod === 'stripe') {
+            stripeCheckbox.show();
+            if (stripeCheckbox.find('[name="stripe_fee"]').prop('checked')) {
+                stripeFee.show();
+            }
+        } else {
+            stripeCheckbox.hide();
+            stripeFee.hide();
+        }
+    });
+
+    // Handle stripe fee checkbox changes
+    $(document).on('change', '#stripe-checkbox [name="stripe_fee"]', function() {
+        const stripeFee = $('#stripe-fee');
+        if ($(this).prop('checked')) {
+            stripeFee.show();
+        } else {
+            stripeFee.hide();
         }
     });
 

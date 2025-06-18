@@ -600,38 +600,6 @@
     </div>
 
 <script>
-    $( document ).ready(function() {
-
-        $('[name="pay_method"]').change(function() {
-            if($('[name="pay_method"]:checked').val()  === 'stripe') {
-                $('#stripe-checkbox').show();
-                if($('#stripe-checkbox [name="stripe_fee"]').prop('checked')){
-                    $('#stripe-fee').show();
-                } else {
-                    $('#stripe-fee').hide();
-                }
-            } else {
-                $('#stripe-checkbox').hide();
-                $('#stripe-fee').hide();
-            }
-        });
-
-        $('#stripe-checkbox [name="stripe_fee"]').change(function() {
-            if($('#stripe-checkbox [name="stripe_fee"]').prop('checked')){
-                $('#stripe-fee').show();
-            } else {
-                $('#stripe-fee').hide();
-            }
-        });
-
-        if($('[name="pay_method"]:checked').val()  === 'stripe') {
-            $('#stripe-checkbox').show();
-        }
-        if($('#stripe-checkbox [name="stripe_fee"]').prop('checked')){
-            $('#stripe-fee').show();
-        }
-    });
-
     // Stripe configuration
     @if(Setting::get(Setting::ENABLE_STRIPE))
     window.stripe_enabled = true;
