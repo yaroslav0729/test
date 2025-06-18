@@ -332,6 +332,46 @@ class CartController extends Controller
                 $donationName = $cartItem->name ?? 'Provide Rice This Eid';
             }
 
+            // Prepare metadata with campaign information
+            $baseMetadata = [
+                'donation_id' => $donation->id,
+                'order_id' => $order->id,
+                'campaign_id' => $cartItem->campaign_id,
+            ];
+
+            // Add campaign details to metadata
+            if ($cartItem->campaign) {
+                $baseMetadata['campaign_name'] = $cartItem->campaign->name;
+                $baseMetadata['campaign_country'] = $cartItem->campaign->country ? $cartItem->campaign->country->name : 'Not specified';
+
+                // Get total campaign amount (single payment price for this campaign)
+                $singlePrice = $cartItem->campaign->campaign_prices()
+                    ->where('type', CampaignPrice::TYPE_SINGLE)
+                    ->first();
+                if ($singlePrice) {
+                    $baseMetadata['total_campaign_amount'] = $singlePrice->value;
+                }
+            } elseif ($cartItem->foodpack) {
+                $baseMetadata['campaign_name'] = $cartItem->foodpack->country->name . " FoodPack";
+                $baseMetadata['campaign_country'] = $cartItem->foodpack->country->name;
+                $baseMetadata['total_campaign_amount'] = $cartItem->foodpack->price;
+            } elseif ($cartItem->foodpackqurbani) {
+                $baseMetadata['campaign_name'] = $cartItem->foodpackqurbani->country->name . " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
+                $baseMetadata['campaign_country'] = $cartItem->foodpackqurbani->country->name;
+
+                // Get the price for this specific qurbani type
+                $qurbaniPrice = $cartItem->foodpackqurbani->types()
+                    ->where('food_packs_qurbanies_types.id', $cartItem->food_pack_qurbani_type_id)
+                    ->first();
+                if ($qurbaniPrice) {
+                    $baseMetadata['total_campaign_amount'] = $qurbaniPrice->pivot->price;
+                }
+            } elseif ($cartItem->upsell) {
+                $baseMetadata['campaign_name'] = $cartItem->name ?? 'Provide Rice This Eid';
+                $baseMetadata['campaign_country'] = 'General';
+                $baseMetadata['total_campaign_amount'] = $cartItem->amount;
+            }
+
             // Prepare items for payment processing
             if ($cartItem->period !== 20) {
                 // Single payment items
@@ -339,12 +379,9 @@ class CartController extends Controller
                     'amount' => $cartItem->amount,
                     'name' => $donationName,
                     'donation_id' => $donation->id,
-                    'metadata' => [
-                        'donation_id' => $donation->id,
-                        'order_id' => $order->id,
-                        'campaign_id' => $cartItem->campaign_id,
+                    'metadata' => array_merge($baseMetadata, [
                         'donation_type' => 'single',
-                    ]
+                    ])
                 ];
             } else {
                 // Monthly subscription items
@@ -352,12 +389,9 @@ class CartController extends Controller
                     'amount' => $cartItem->amount,
                     'name' => $donationName,
                     'donation_id' => $donation->id,
-                    'metadata' => [
-                        'donation_id' => $donation->id,
-                        'order_id' => $order->id,
-                        'campaign_id' => $cartItem->campaign_id,
+                    'metadata' => array_merge($baseMetadata, [
                         'donation_type' => 'monthly',
-                    ]
+                    ])
                 ];
             }
         }
