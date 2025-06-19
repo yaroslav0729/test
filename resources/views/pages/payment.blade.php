@@ -466,12 +466,17 @@
                                 @endif
 
                                 @if(Setting::get(Setting::ENABLE_STRIPE))
-                                    <!-- Google Pay / Apple Pay Button -->
+                                    <!-- Express Checkout Element (Priority for Google Pay / Apple Pay) -->
+                                    <div id="express-checkout-element" style="display: none; margin-bottom: 20px;">
+                                        <!-- Express checkout element will be inserted here -->
+                                    </div>
+
+                                    <!-- Payment Request Button (Fallback for Google Pay / Apple Pay) -->
                                     <div id="payment-request-button" style="display: none; margin-bottom: 20px;">
                                         <!-- Payment request button will be inserted here -->
                                     </div>
 
-                                    <!-- OR divider -->
+                                    <!-- OR divider (shown when Google Pay / Apple Pay is available) -->
                                     <div id="payment-request-divider" style="display: none; text-align: center; margin: 20px 0;">
                                         <span style="background: white; padding: 0 15px; color: #666;">OR</span>
                                         <hr style="margin-top: -12px; border-color: #ddd;">

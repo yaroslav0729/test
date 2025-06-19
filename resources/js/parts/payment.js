@@ -74,6 +74,14 @@ $(function() {
 
         // Initialize Payment Request for Google Pay / Apple Pay
         initializePaymentRequest(elements);
+
+        // Also try Express Checkout Element as fallback/alternative
+        initializeExpressCheckout(elements);
+
+        // Add debug logging after initialization
+        setTimeout(() => {
+            debugPaymentButtons();
+        }, 2000);
     }
 
     function initializePaymentRequest(elements) {
@@ -105,6 +113,7 @@ $(function() {
 
         console.log('PaymentRequest: Cart total detected:', cartSum);
 
+        // Create Payment Request with enhanced configuration for Google Pay/Apple Pay
         paymentRequest = stripe.paymentRequest({
             country: 'GB',
             currency: 'gbp',
@@ -114,13 +123,16 @@ $(function() {
             },
             requestPayerName: true,
             requestPayerEmail: true,
+            // Disable Link to prioritize Google Pay/Apple Pay
+            disableWallets: ['link']
         });
 
+        // Create Payment Request Button with proper configuration
         const prButton = elements.create('paymentRequestButton', {
             paymentRequest: paymentRequest,
             style: {
                 paymentRequestButton: {
-                    type: 'donate',
+                    type: 'donate', // Changed from 'default' to 'donate' for better UX
                     theme: 'dark',
                     height: '48px',
                 },
@@ -131,14 +143,51 @@ $(function() {
         paymentRequest.canMakePayment().then(function(result) {
             if (result) {
                 console.log('PaymentRequest: Available payment methods:', result);
-                const paymentRequestContainer = document.getElementById('payment-request-button');
-                const paymentRequestDivider = document.getElementById('payment-request-divider');
-                if (paymentRequestContainer) {
-                    prButton.mount('#payment-request-button');
-                    paymentRequestContainer.style.display = 'block';
-                    if (paymentRequestDivider) {
-                        paymentRequestDivider.style.display = 'block';
+
+                // Check specifically for Google Pay and Apple Pay
+                const hasGooglePay = result.googlePay;
+                const hasApplePay = result.applePay;
+
+                console.log('Google Pay available:', hasGooglePay);
+                console.log('Apple Pay available:', hasApplePay);
+
+                if (hasGooglePay || hasApplePay) {
+                    const paymentRequestContainer = document.getElementById('payment-request-button');
+                    const paymentRequestDivider = document.getElementById('payment-request-divider');
+                    const expressContainer = document.getElementById('express-checkout-element');
+
+                    // Check if Express Checkout is actually visible (not just display: block but has content)
+                    const expressCheckoutVisible = expressContainer &&
+                                                  expressContainer.style.display === 'block' &&
+                                                  expressContainer.querySelector('button, [role="button"]');
+
+                    if (paymentRequestContainer) {
+                        if (!expressCheckoutVisible) {
+                            // Use a timeout to allow Express Checkout to initialize first
+                            setTimeout(() => {
+                                const stillNeedPaymentRequest = !expressContainer ||
+                                                               expressContainer.style.display !== 'block' ||
+                                                               !expressContainer.querySelector('button, [role="button"]');
+
+                                if (stillNeedPaymentRequest) {
+                                    prButton.mount('#payment-request-button');
+                                    paymentRequestContainer.style.display = 'block';
+                                    if (paymentRequestDivider) {
+                                        paymentRequestDivider.style.display = 'block';
+                                    }
+                                    console.log('PaymentRequest: Button mounted as fallback');
+                                } else {
+                                    console.log('PaymentRequest: Express Checkout working, PaymentRequest not needed');
+                                }
+                            }, 1000); // Wait longer than Express Checkout ready timeout
+                        } else {
+                            console.log('PaymentRequest: Express Checkout already visible with buttons');
+                        }
+                    } else {
+                        console.error('PaymentRequest: Container #payment-request-button not found');
                     }
+                } else {
+                    console.log('PaymentRequest: Neither Google Pay nor Apple Pay available');
                 }
             } else {
                 console.log('PaymentRequest: No supported payment methods available');
@@ -154,6 +203,7 @@ $(function() {
             // Validate required form fields before processing payment
             if (!validateRequiredFields()) {
                 ev.complete('fail');
+                console.log('PaymentRequest: Validation failed');
                 return;
             }
 
@@ -177,10 +227,13 @@ $(function() {
                 paymentMethodTypeInput.name = 'pay_method';
                 paymentMethodTypeInput.value = 'stripe';
                 mainForm.appendChild(paymentMethodTypeInput);
+            } else {
+                existingPayMethodInput.value = 'stripe';
             }
 
             // Complete the payment request
             ev.complete('success');
+            console.log('PaymentRequest: Payment completed successfully');
 
             // Submit the form
             setTimeout(() => {
@@ -191,6 +244,108 @@ $(function() {
         paymentRequest.on('cancel', function() {
             console.log('PaymentRequest: Payment cancelled by user');
         });
+    }
+
+    function initializeExpressCheckout(elements) {
+        try {
+            // Get cart total
+            let cartSum = 0;
+            const pageSumElement = document.getElementById('page-sum') ||
+                                  document.querySelector('.cart-total') ||
+                                  document.querySelector('[data-cart-sum]') ||
+                                  document.querySelector('#page-sum');
+
+            if (pageSumElement) {
+                const sumText = pageSumElement.innerText || pageSumElement.textContent || '';
+                cartSum = parseFloat(sumText.replace(/[^0-9.-]+/g,"")) || 0;
+            }
+
+            if (cartSum <= 0) {
+                console.log('ExpressCheckout: Unable to determine cart total');
+                return;
+            }
+
+            // Create Express Checkout Element with proper configuration
+            const expressCheckoutElement = elements.create('expressCheckout', {
+                paymentMethodCreation: 'manual',
+                layout: {
+                    maxColumns: 1,
+                    maxRows: 1,
+                    overflow: 'auto'
+                }
+            });
+
+            // Try to mount Express Checkout Element
+            const expressContainer = document.getElementById('express-checkout-element');
+            if (expressContainer) {
+                expressCheckoutElement.mount('#express-checkout-element');
+
+                // Wait for the element to be ready and check if it has payment methods
+                expressCheckoutElement.on('ready', function(event) {
+                    console.log('ExpressCheckout: Element ready');
+                    // Only show if there are actually payment methods available
+                    setTimeout(() => {
+                        const hasVisibleButtons = expressContainer.querySelector('button, [role="button"]');
+                        if (hasVisibleButtons) {
+                            expressContainer.style.display = 'block';
+                            const divider = document.getElementById('payment-request-divider');
+                            if (divider) {
+                                divider.style.display = 'block';
+                            }
+                            console.log('ExpressCheckout: Buttons found and container shown');
+                        } else {
+                            console.log('ExpressCheckout: No buttons found, keeping container hidden');
+                        }
+                    }, 500); // Small delay to ensure buttons are rendered
+                });
+
+                expressCheckoutElement.on('click', function(event) {
+                    console.log('ExpressCheckout: Button clicked:', event.expressPaymentType);
+                });
+
+                expressCheckoutElement.on('confirm', function(event) {
+                    console.log('ExpressCheckout: Payment confirmed');
+
+                    if (!validateRequiredFields()) {
+                        event.complete('fail');
+                        return;
+                    }
+
+                    // Add payment method to form
+                    const paymentMethodInput = document.createElement('input');
+                    paymentMethodInput.type = 'hidden';
+                    paymentMethodInput.name = 'payment_method_id';
+                    paymentMethodInput.value = event.paymentMethod.id;
+                    mainForm.appendChild(paymentMethodInput);
+
+                    // Set payment method
+                    let payMethodInput = mainForm.querySelector('[name="pay_method"]');
+                    if (!payMethodInput) {
+                        payMethodInput = document.createElement('input');
+                        payMethodInput.type = 'hidden';
+                        payMethodInput.name = 'pay_method';
+                        mainForm.appendChild(payMethodInput);
+                    }
+                    payMethodInput.value = 'stripe';
+
+                    event.complete('success');
+
+                    setTimeout(() => {
+                        mainForm.submit();
+                    }, 100);
+                });
+
+                expressCheckoutElement.on('cancel', function() {
+                    console.log('ExpressCheckout: Payment cancelled');
+                });
+
+                console.log('ExpressCheckout: Element mounted, waiting for ready event');
+            } else {
+                console.log('ExpressCheckout: Container not found, using Payment Request only');
+            }
+        } catch (error) {
+            console.error('ExpressCheckout: Error initializing:', error);
+        }
     }
 
     function validateRequiredFields() {
@@ -523,6 +678,37 @@ $(function() {
         mainForm.appendChild(cvvInput);
 
         mainForm.submit();
+    }
+
+    function debugPaymentButtons() {
+        console.log('=== Payment Button Debug ===');
+
+        const expressContainer = document.getElementById('express-checkout-element');
+        const paymentRequestContainer = document.getElementById('payment-request-button');
+        const divider = document.getElementById('payment-request-divider');
+
+        console.log('Express Checkout Container:', {
+            exists: !!expressContainer,
+            display: expressContainer?.style.display,
+            hasContent: !!expressContainer?.innerHTML,
+            hasButtons: !!expressContainer?.querySelector('button, [role="button"]'),
+            innerHTML: expressContainer?.innerHTML
+        });
+
+        console.log('Payment Request Container:', {
+            exists: !!paymentRequestContainer,
+            display: paymentRequestContainer?.style.display,
+            hasContent: !!paymentRequestContainer?.innerHTML,
+            hasButtons: !!paymentRequestContainer?.querySelector('button, [role="button"]'),
+            innerHTML: paymentRequestContainer?.innerHTML
+        });
+
+        console.log('Divider:', {
+            exists: !!divider,
+            display: divider?.style.display
+        });
+
+        console.log('=== End Debug ===');
     }
 
     if (stringCounter && notesInput) {
