@@ -11,6 +11,20 @@
         <script src="https://js.stripe.com/v3/"></script>
     @endif
     {!! NoCaptcha::renderJs() !!}
+
+    <style>
+        /* Ensure payment request button is visible */
+        #payment-request-button {
+            min-height: 48px;
+            margin-bottom: 20px;
+        }
+
+        /* Ensure proper spacing */
+        #payment-request-divider {
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -345,8 +359,10 @@
                 </div>
             </button>
 
-            <!-- Hidden cart sum for Google Pay / Apple Pay initialization -->
             <span id="page-sum" style="display: none;">{{ $cartSum }}</span>
+
+            <div class="cart-total" style="display: none;">{{ $cartSum }}</div>
+            <span data-cart-sum="{{ $cartSum }}" style="display: none;"></span>
         </form>
 
         <div class="pt-5"></div>
@@ -361,5 +377,4 @@
         window.stripe_enabled = false;
         @endif
     </script>
-    <script src="{{ asset('js/parts/payment.js') }}"></script>
 @endsection

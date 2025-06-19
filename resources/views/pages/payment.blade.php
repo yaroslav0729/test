@@ -13,6 +13,20 @@
         <script src="https://js.stripe.com/v3/"></script>
     @endif
     {!! NoCaptcha::renderJs() !!}
+
+    <style>
+        /* Ensure payment request button is visible */
+        #payment-request-button {
+            min-height: 48px;
+            margin-bottom: 20px;
+        }
+
+        /* Ensure proper spacing */
+        #payment-request-divider {
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
 @endsection
 
 
@@ -631,6 +645,4 @@
     window.stripe_enabled = false;
     @endif
 </script>
-<script src="{{ asset('js/parts/payment.js') }}"></script>
-
 @endsection

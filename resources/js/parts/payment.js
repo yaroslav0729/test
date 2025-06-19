@@ -77,12 +77,11 @@ $(function() {
     }
 
     function initializePaymentRequest(elements) {
-        // Get cart total from the page - try multiple selectors for mobile/desktop
+        // Get cart total from the page
         let cartSum = 0;
         const pageSumElement = document.getElementById('page-sum') ||
                               document.querySelector('.cart-total') ||
-                              document.querySelector('[data-cart-sum]') ||
-                              document.querySelector('#page-sum');
+                              document.querySelector('[data-cart-sum]');
 
         if (pageSumElement) {
             const sumText = pageSumElement.innerText || pageSumElement.textContent || '';
@@ -98,19 +97,32 @@ $(function() {
             });
         }
 
+        // Additional fallback: search for any amount on the page
         if (cartSum <= 0) {
-            console.log('PaymentRequest: Unable to determine cart total');
-            return;
+            const totalElements = document.querySelectorAll('*');
+            for (let element of totalElements) {
+                const text = element.innerText || element.textContent || '';
+                const match = text.match(/£\s*(\d+(?:\.\d{2})?)/);
+                if (match) {
+                    const amount = parseFloat(match[1]);
+                    if (amount > 0 && amount < 10000) {
+                        cartSum = amount;
+                        break;
+                    }
+                }
+            }
         }
 
-        console.log('PaymentRequest: Cart total detected:', cartSum);
+        if (cartSum <= 0) {
+            return;
+        }
 
         paymentRequest = stripe.paymentRequest({
             country: 'GB',
             currency: 'gbp',
             total: {
                 label: 'Islamic Help Donation',
-                amount: Math.round(cartSum * 100), // Convert to pence
+                amount: Math.round(cartSum * 100),
             },
             requestPayerName: true,
             requestPayerEmail: true,
@@ -128,12 +140,12 @@ $(function() {
             },
         });
 
-        // Check if Payment Request is available (Google Pay / Apple Pay)
+        // Check if Payment Request is available and show button
         paymentRequest.canMakePayment().then(function(result) {
-            if (result) {
-                console.log('PaymentRequest: Available payment methods:', result);
+            if (result && (result.applePay || result.googlePay)) {
                 const paymentRequestContainer = document.getElementById('payment-request-button');
                 const paymentRequestDivider = document.getElementById('payment-request-divider');
+
                 if (paymentRequestContainer) {
                     prButton.mount('#payment-request-button');
                     paymentRequestContainer.style.display = 'block';
@@ -141,18 +153,12 @@ $(function() {
                         paymentRequestDivider.style.display = 'block';
                     }
                 }
-            } else {
-                console.log('PaymentRequest: No supported payment methods available');
             }
-        }).catch(function(error) {
-            console.error('PaymentRequest: Error checking availability:', error);
         });
 
         // Handle payment method creation from Payment Request
         paymentRequest.on('paymentmethod', function(ev) {
-            console.log('PaymentRequest: Payment method created:', ev.paymentMethod);
-
-            // Validate required form fields before processing payment
+            // Validate required fields before processing payment
             if (!validateRequiredFields()) {
                 ev.complete('fail');
                 return;
@@ -190,7 +196,7 @@ $(function() {
         });
 
         paymentRequest.on('cancel', function() {
-            console.log('PaymentRequest: Payment cancelled by user');
+            // Payment cancelled by user
         });
     }
 
