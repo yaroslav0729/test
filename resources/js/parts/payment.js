@@ -114,6 +114,7 @@ $(function() {
             },
             requestPayerName: true,
             requestPayerEmail: true,
+            disableWallets: ['link']
         });
 
         const prButton = elements.create('paymentRequestButton', {
