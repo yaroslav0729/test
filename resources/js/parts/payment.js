@@ -335,6 +335,11 @@ $(function() {
 
         const paymentMethod = document.querySelector('[name="pay_method"]:checked')?.value;
 
+        // Validate required fields first
+        if (!validateRequiredFields()) {
+            return;
+        }
+
         // Validate payment method specific fields
         if (paymentMethod !== 'paypal') {
             if (stripe && card) {
