@@ -126,7 +126,7 @@ $(function() {
             },
             requestPayerName: true,
             requestPayerEmail: true,
-            disableWallets: ['link']
+            disableWallets: ['link', 'browserCard']
         });
 
         const prButton = elements.create('paymentRequestButton', {
