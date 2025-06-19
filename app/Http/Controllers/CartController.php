@@ -368,7 +368,11 @@ class CartController extends Controller
                 }
             } elseif ($cartItem->upsell) {
                 $baseMetadata['campaign_name'] = $cartItem->name ?? 'Provide Rice This Eid';
-                $baseMetadata['campaign_country'] = 'General';
+                $baseMetadata['campaign_country'] = 'Not specified';
+                $baseMetadata['total_campaign_amount'] = $cartItem->amount;
+            } else {
+                $baseMetadata['campaign_name'] = 'General';
+                $baseMetadata['campaign_country'] = 'Not specified';
                 $baseMetadata['total_campaign_amount'] = $cartItem->amount;
             }
 
