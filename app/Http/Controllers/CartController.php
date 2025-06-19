@@ -231,7 +231,6 @@ class CartController extends Controller
             return back()->with('error', "For donations of this value please contact our team on 0121 446 568.");
         }
 
-        // Handle PayPal payment
         if ($request->get('pay_method') === 'paypal') {
             $order->order_id = 'temp-' . $order->id;
             $order->save();
@@ -251,7 +250,6 @@ class CartController extends Controller
                 }
             }
 
-            // Handle PayPal error
             $error_message = 'Error creating PayPal payment.';
             if (isset($response->error) && is_object($response->error) && isset($response->error->message)) {
                 $error_message .= ' ' . $response->error->message;
@@ -276,7 +274,6 @@ class CartController extends Controller
             ]);
             $this->stripeService->processUser($orderData, $customer);
 
-            // Attach the payment method to the customer to allow reuse.
             if ($request->has('payment_method_id')) {
                 $this->stripeService->attachPaymentMethodToCustomer(
                     $request->payment_method_id,
@@ -332,39 +329,38 @@ class CartController extends Controller
                 $donationName = $cartItem->name ?? 'Provide Rice This Eid';
             }
 
-            // Prepare metadata with campaign information
             $baseMetadata = [
                 'donation_id' => $donation->id,
                 'order_id' => $order->id,
                 'campaign_id' => $cartItem->campaign_id,
             ];
 
-            // Add campaign details to metadata
             if ($cartItem->campaign) {
                 $baseMetadata['campaign_name'] = $cartItem->campaign->name;
                 $baseMetadata['campaign_country'] = $cartItem->campaign->country ? $cartItem->campaign->country->name : 'Not specified';
 
-                // Get total campaign amount (single payment price for this campaign)
-                $singlePrice = $cartItem->campaign->campaign_prices()
-                    ->where('type', CampaignPrice::TYPE_SINGLE)
-                    ->first();
-                if ($singlePrice) {
-                    $baseMetadata['total_campaign_amount'] = $singlePrice->value;
+                if ($cartItem->period === CampaignPrice::TYPE_SINGLE) {
+                    $baseMetadata['total_campaign_amount'] = $cartItem->amount;
+                } else {
+                    $baseMetadata['total_campaign_amount'] = $cartItem->goal;
                 }
             } elseif ($cartItem->foodpack) {
                 $baseMetadata['campaign_name'] = $cartItem->foodpack->country->name . " FoodPack";
                 $baseMetadata['campaign_country'] = $cartItem->foodpack->country->name;
-                $baseMetadata['total_campaign_amount'] = $cartItem->foodpack->price;
+
+                if ($cartItem->period === CampaignPrice::TYPE_SINGLE) {
+                    $baseMetadata['total_campaign_amount'] = $cartItem->amount;
+                } else {
+                    $baseMetadata['total_campaign_amount'] = $cartItem->goal;
+                }
             } elseif ($cartItem->foodpackqurbani) {
                 $baseMetadata['campaign_name'] = $cartItem->foodpackqurbani->country->name . " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
                 $baseMetadata['campaign_country'] = $cartItem->foodpackqurbani->country->name;
 
-                // Get the price for this specific qurbani type
-                $qurbaniPrice = $cartItem->foodpackqurbani->types()
-                    ->where('food_packs_qurbanies_types.id', $cartItem->food_pack_qurbani_type_id)
-                    ->first();
-                if ($qurbaniPrice) {
-                    $baseMetadata['total_campaign_amount'] = $qurbaniPrice->pivot->price;
+                if ($cartItem->period === CampaignPrice::TYPE_SINGLE) {
+                    $baseMetadata['total_campaign_amount'] = $cartItem->amount;
+                } else {
+                    $baseMetadata['total_campaign_amount'] = $cartItem->goal;
                 }
             } elseif ($cartItem->upsell) {
                 $baseMetadata['campaign_name'] = $cartItem->name ?? 'Provide Rice This Eid';
@@ -376,9 +372,7 @@ class CartController extends Controller
                 $baseMetadata['total_campaign_amount'] = $cartItem->amount;
             }
 
-            // Prepare items for payment processing
             if ($cartItem->period !== 20) {
-                // Single payment items
                 $singleItems[] = [
                     'amount' => $cartItem->amount,
                     'name' => $donationName,
@@ -388,7 +382,6 @@ class CartController extends Controller
                     ])
                 ];
             } else {
-                // Monthly subscription items
                 $monthlyItems[] = [
                     'amount' => $cartItem->amount,
                     'name' => $donationName,
@@ -400,11 +393,9 @@ class CartController extends Controller
             }
         }
 
-        // Process payments
         $paymentResults = [];
 
         try {
-            // Process single payments individually
             if (!empty($singleItems)) {
                 $singlePaymentResults = [];
 
@@ -421,7 +412,6 @@ class CartController extends Controller
                         ])
                     ];
 
-                    // Add payment method if provided (from Stripe frontend)
                     if ($request->has('payment_method_id')) {
                         $paymentData['payment_method'] = $request->payment_method_id;
                         $paymentData['confirm'] = true;
@@ -431,14 +421,12 @@ class CartController extends Controller
 
                     $singlePaymentResults[] = $paymentIntent;
 
-                    // Update individual donation status based on payment result
                     if ($paymentIntent->status === 'succeeded') {
                         $donation = Donation::find($singleItem['donation_id']);
                         $donation->status = Donation::STATUS_COMPLETE;
                         $donation->stripe_payment_intent_id = $paymentIntent->id;
                         $donation->save();
                     } else if (in_array($paymentIntent->status, ['requires_action', 'requires_source_action'])) {
-                        // Payment requires additional authentication
                         $donation = Donation::find($singleItem['donation_id']);
                         $donation->status = Donation::STATUS_PROCESSING;
                         $donation->stripe_payment_intent_id = $paymentIntent->id;
@@ -449,12 +437,10 @@ class CartController extends Controller
                 $paymentResults['single_payments'] = $singlePaymentResults;
             }
 
-            // Process monthly subscriptions
             if (!empty($monthlyItems)) {
                 $subscriptionResults = [];
 
                 foreach ($monthlyItems as $item) {
-                    // Create price for this donation using StripeService method
                     $price = $this->stripeService->createDonationSubscriptionPrice([
                         'amount' => $item['amount'],
                         'name' => $item['name'],
@@ -462,7 +448,6 @@ class CartController extends Controller
                         'metadata' => $item['metadata']
                     ]);
 
-                    // Prepare subscription data
                     $subscriptionData = [
                         'customer_id' => $customer->id,
                         'items' => [
@@ -479,17 +464,14 @@ class CartController extends Controller
                         ]
                     ];
 
-                    // Add payment method if provided (from Stripe frontend)
                     if ($request->has('payment_method_id')) {
                         $subscriptionData['default_payment_method'] = $request->payment_method_id;
                     }
 
-                    // Create subscription using StripeService method
                     $subscription = $this->stripeService->createSubscriptionPayment($subscriptionData);
 
                     $subscriptionResults[] = $subscription;
 
-                    // Update individual donation status
                     $donation = Donation::find($item['donation_id']);
                     if ($subscription->status === 'active') {
                         $donation->status = Donation::STATUS_COMPLETE;
@@ -503,14 +485,12 @@ class CartController extends Controller
                 $paymentResults['subscriptions'] = $subscriptionResults;
             }
 
-            // Update order with payment information
             $order->pay_with = $request->pay_method;
             if (!empty($monthlyItems)) {
                 $order->pay_with = 'Number: ' . $order->account_number . ', Sort: ' . $order->sort_code . ', Day: ' . $order->pay_day;
             }
             $order->order_id = hash('sha1', Str::random(10) . (empty($monthlyItems) ? 'single' : 'monthly'));
 
-            // Add Stripe payment IDs to order
             if (isset($paymentResults['single_payments'])) {
                 $order->stripe_payment_intent_id = $paymentResults['single_payments'][0]->id;
             }
@@ -520,10 +500,8 @@ class CartController extends Controller
 
             $order->save();
 
-            // Clear cart after successful payment
             $this->clearCart();
 
-            // Send thank you email
             $this->sendThankYouEmail($order);
 
             $thanksUrl = Page::getSinglePageUrl(Template::THANK_YOU_DONATE_PAGE);
@@ -534,7 +512,6 @@ class CartController extends Controller
         } catch (\Exception $e) {
             Log::error('Payment processing failed: ' . $e->getMessage());
 
-            // Update donation statuses to failed
             foreach ($singleItems as $item) {
                 $donation = Donation::find($item['donation_id']);
                 $donation->status = Donation::STATUS_CANCELED;
