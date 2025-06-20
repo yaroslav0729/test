@@ -16,6 +16,7 @@ use Stripe\Stripe;
 use Stripe\StripeClient;
 use Stripe\Subscription;
 use Stripe\SubscriptionSchedule;
+use Stripe\PaymentIntent;
 
 class StripeService
 {
@@ -90,11 +91,8 @@ class StripeService
                 'post_code' => $data['post_code'],
             ]);
         }
-
-        $user->update([
-            'stripe_customer_id' => $customer->id,
-            'stripe_portal_url' => $this->getStripePortalUrlByCustomerId($customer->id),
-        ]);
+        $user->stripe_customer_id = $customer->id;
+        $user->save();
 
         return $user;
     }
@@ -483,4 +481,400 @@ class StripeService
             'quantity' => 1,
         ],
     ];
+
+    /**
+     * Create a direct payment using PaymentIntent API
+     * For immediate payments without user interaction, you may need to confirm the payment separately
+     * or provide a payment method to enable auto-confirmation
+     * 
+     * @param array $data Payment data containing amount, currency, customer info, etc.
+     * @return PaymentIntent
+     * @throws ApiErrorException
+     */
+    public function createDirectPayment(array $data): PaymentIntent
+    {
+        $paymentData = [
+            'amount' => $data['amount'] * 100, // Convert to cents
+            'currency' => $data['currency'] ?? self::CURRENCY_GBP,
+            'automatic_payment_methods' => [
+                'enabled' => true,
+                'allow_redirects' => 'never',
+            ],
+            'metadata' => $this->combineWithBaseMetadata($data['metadata'] ?? []),
+        ];
+
+        // Add customer if provided
+        if (isset($data['customer_id'])) {
+            $paymentData['customer'] = $data['customer_id'];
+        }
+
+        // Add payment method if provided
+        if (isset($data['payment_method'])) {
+            $paymentData['payment_method'] = $data['payment_method'];
+            $paymentData['confirm'] = true; // Auto-confirm if payment method is provided
+        }
+
+        // Add auto-confirmation for immediate payment (requires setup intent or saved payment method)
+        if (isset($data['auto_confirm']) && $data['auto_confirm'] === true) {
+            $paymentData['confirm'] = true;
+            $paymentData['return_url'] = $data['return_url'] ?? config('app.url');
+        }
+
+        // Add description if provided
+        if (isset($data['description'])) {
+            $paymentData['description'] = $data['description'];
+        }
+
+        // Add receipt email if provided
+        if (isset($data['receipt_email'])) {
+            $paymentData['receipt_email'] = $data['receipt_email'];
+        }
+
+        // Add shipping information if provided
+        if (isset($data['shipping'])) {
+            $paymentData['shipping'] = $data['shipping'];
+        }
+
+        return $this->stripe->paymentIntents->create($paymentData);
+    }
+
+    /**
+     * Confirm a payment intent
+     * 
+     * @param string $paymentIntentId
+     * @param array $data Additional data for confirmation
+     * @return PaymentIntent
+     * @throws ApiErrorException
+     */
+    public function confirmPayment(string $paymentIntentId, array $data = []): PaymentIntent
+    {
+        return $this->stripe->paymentIntents->confirm($paymentIntentId, $data);
+    }
+
+    /**
+     * Retrieve a payment intent
+     * 
+     * @param string $paymentIntentId
+     * @return PaymentIntent
+     * @throws ApiErrorException
+     */
+    public function getPaymentIntent(string $paymentIntentId): PaymentIntent
+    {
+        return $this->stripe->paymentIntents->retrieve($paymentIntentId);
+    }
+
+    /**
+     * Cancel a payment intent
+     * 
+     * @param string $paymentIntentId
+     * @return PaymentIntent
+     * @throws ApiErrorException
+     */
+    public function cancelPayment(string $paymentIntentId): PaymentIntent
+    {
+        return $this->stripe->paymentIntents->cancel($paymentIntentId);
+    }
+
+    /**
+     * Create a subscription with immediate payment
+     * 
+     * @param array $data Subscription data
+     * @return Subscription
+     * @throws ApiErrorException
+     */
+    public function createSubscriptionPayment(array $data): Subscription
+    {
+        $subscriptionData = [
+            'customer' => $data['customer_id'],
+            'items' => $data['items'], // Array of ['price' => 'price_id', 'quantity' => 1]
+            'metadata' => $this->combineWithBaseMetadata($data['metadata'] ?? []),
+        ];
+
+        // Add payment method if provided
+        if (isset($data['default_payment_method'])) {
+            $subscriptionData['default_payment_method'] = $data['default_payment_method'];
+        }
+
+        // Add trial period if provided
+        if (isset($data['trial_period_days'])) {
+            $subscriptionData['trial_period_days'] = $data['trial_period_days'];
+        }
+
+        // Add billing cycle anchor if provided
+        if (isset($data['billing_cycle_anchor'])) {
+            $subscriptionData['billing_cycle_anchor'] = $data['billing_cycle_anchor'];
+        }
+
+        // Add proration behavior if provided
+        if (isset($data['proration_behavior'])) {
+            $subscriptionData['proration_behavior'] = $data['proration_behavior'];
+        }
+
+        // Add coupon if provided
+        if (isset($data['coupon'])) {
+            $subscriptionData['coupon'] = $data['coupon'];
+        }
+
+        // Add collection method
+        $subscriptionData['collection_method'] = $data['collection_method'] ?? 'charge_automatically';
+
+        return $this->stripe->subscriptions->create($subscriptionData);
+    }
+
+    /**
+     * Schedule a future subscription
+     * 
+     * @param array $data Scheduled subscription data
+     * @return SubscriptionSchedule
+     * @throws ApiErrorException
+     */
+    public function scheduleSubscription(array $data): SubscriptionSchedule
+    {
+        $scheduleData = [
+            'customer' => $data['customer_id'],
+            'start_date' => $data['start_date'], // Unix timestamp
+            'phases' => [
+                [
+                    'items' => $data['items'], // Array of ['price' => 'price_id', 'quantity' => 1]
+                    'iterations' => $data['iterations'] ?? null, // null for infinite
+                ]
+            ],
+            'metadata' => $this->combineWithBaseMetadata($data['metadata'] ?? []),
+        ];
+
+        // Add end behavior if provided
+        if (isset($data['end_behavior'])) {
+            $scheduleData['end_behavior'] = $data['end_behavior']; // 'release', 'cancel'
+        }
+
+        // Add default payment method if provided
+        if (isset($data['payment_method'])) {
+            $scheduleData['default_settings'] = [
+                'default_payment_method' => $data['payment_method']
+            ];
+        }
+
+        // Add trial period to phase if provided
+        if (isset($data['trial_period_days'])) {
+            $scheduleData['phases'][0]['trial_period_days'] = $data['trial_period_days'];
+        }
+
+        // Add billing cycle anchor to phase if provided
+        if (isset($data['billing_cycle_anchor'])) {
+            $scheduleData['phases'][0]['billing_cycle_anchor'] = $data['billing_cycle_anchor'];
+        }
+
+        // Add coupon to phase if provided
+        if (isset($data['coupon'])) {
+            $scheduleData['phases'][0]['coupon'] = $data['coupon'];
+        }
+
+        return $this->stripe->subscriptionSchedules->create($scheduleData);
+    }
+
+    /**
+     * Schedule a future one-time payment
+     * 
+     * @param array $data Scheduled payment data
+     * @return array Returns scheduling information
+     * @throws ApiErrorException
+     */
+    public function scheduleOneTimePayment(array $data): array
+    {
+        // Create a payment intent that will be processed later
+        $paymentData = [
+            'amount' => $data['amount'] * 100, // Convert to cents
+            'currency' => $data['currency'] ?? self::CURRENCY_GBP,
+            'customer' => $data['customer_id'],
+            'capture_method' => 'manual', // Don't capture immediately
+            'confirmation_method' => 'manual', // Manual confirmation
+            'metadata' => $this->combineWithBaseMetadata(array_merge(
+                $data['metadata'] ?? [],
+                [
+                    'scheduled_for' => $data['scheduled_date'],
+                    'payment_type' => 'scheduled_one_time'
+                ]
+            )),
+        ];
+
+        // Add payment method if provided
+        if (isset($data['payment_method'])) {
+            $paymentData['payment_method'] = $data['payment_method'];
+        }
+
+        // Add description if provided
+        if (isset($data['description'])) {
+            $paymentData['description'] = $data['description'];
+        }
+
+        // Add receipt email if provided
+        if (isset($data['receipt_email'])) {
+            $paymentData['receipt_email'] = $data['receipt_email'];
+        }
+
+        $paymentIntent = $this->stripe->paymentIntents->create($paymentData);
+
+        return [
+            'payment_intent_id' => $paymentIntent->id,
+            'client_secret' => $paymentIntent->client_secret,
+            'status' => $paymentIntent->status,
+            'scheduled_date' => $data['scheduled_date'],
+            'amount' => $data['amount'],
+            'currency' => $data['currency'] ?? self::CURRENCY_GBP,
+        ];
+    }
+
+    /**
+     * Process a scheduled one-time payment
+     * 
+     * @param string $paymentIntentId
+     * @param array $data Additional confirmation data
+     * @return PaymentIntent
+     * @throws ApiErrorException
+     */
+    public function processScheduledPayment(string $paymentIntentId, array $data = []): PaymentIntent
+    {
+        // First confirm the payment intent
+        $paymentIntent = $this->stripe->paymentIntents->confirm($paymentIntentId, $data);
+        
+        // Then capture the payment if confirmation was successful
+        if ($paymentIntent->status === 'requires_capture') {
+            $paymentIntent = $this->stripe->paymentIntents->capture($paymentIntentId);
+        }
+
+        return $paymentIntent;
+    }
+
+    /**
+     * Update a scheduled subscription
+     * 
+     * @param string $scheduleId
+     * @param array $data Update data
+     * @return SubscriptionSchedule
+     * @throws ApiErrorException
+     */
+    public function updateScheduledSubscription(string $scheduleId, array $data): SubscriptionSchedule
+    {
+        $updateData = [];
+
+        // Update phases if provided
+        if (isset($data['phases'])) {
+            $updateData['phases'] = $data['phases'];
+        }
+
+        // Update end behavior if provided
+        if (isset($data['end_behavior'])) {
+            $updateData['end_behavior'] = $data['end_behavior'];
+        }
+
+        // Update metadata if provided
+        if (isset($data['metadata'])) {
+            $updateData['metadata'] = $this->combineWithBaseMetadata($data['metadata']);
+        }
+
+        return $this->stripe->subscriptionSchedules->update($scheduleId, $updateData);
+    }
+
+    /**
+     * Cancel a scheduled subscription
+     * 
+     * @param string $scheduleId
+     * @return SubscriptionSchedule
+     * @throws ApiErrorException
+     */
+    public function cancelScheduledSubscription(string $scheduleId): SubscriptionSchedule
+    {
+        return $this->stripe->subscriptionSchedules->cancel($scheduleId);
+    }
+
+    /**
+     * Release a subscription schedule (convert to regular subscription)
+     * 
+     * @param string $scheduleId
+     * @return SubscriptionSchedule
+     * @throws ApiErrorException
+     */
+    public function releaseSubscriptionSchedule(string $scheduleId): SubscriptionSchedule
+    {
+        return $this->stripe->subscriptionSchedules->release($scheduleId);
+    }
+
+    /**
+     * Create a price for individual donation subscription
+     * 
+     * @param array $data Price data containing amount, name, metadata
+     * @return \Stripe\Price
+     * @throws ApiErrorException
+     */
+    public function createDonationSubscriptionPrice(array $data): \Stripe\Price
+    {
+        // Create product first
+        $product = $this->createProduct($data['name']);
+        
+        // Create price for this specific donation
+        $priceData = [
+            'currency' => $data['currency'] ?? self::CURRENCY_GBP,
+            'unit_amount' => $data['amount'] * 100, // Convert to pence
+            'recurring' => [
+                'interval' => $data['interval'] ?? 'month',
+            ],
+            'product' => $product->id,
+            'metadata' => $this->combineWithBaseMetadata($data['metadata'] ?? []),
+        ];
+        
+        return $this->stripe->prices->create($priceData);
+    }
+
+    /**
+     * Create and immediately process a payment using customer's default payment method
+     * This method is suitable for backend processing after customer has set up payment method
+     * 
+     * @param array $data Payment data
+     * @return PaymentIntent
+     * @throws ApiErrorException
+     */
+    public function createAndConfirmPayment(array $data): PaymentIntent
+    {
+        // First create the payment intent
+        $paymentIntent = $this->createDirectPayment($data);
+        
+        // If customer has a default payment method, use it to confirm
+        if (isset($data['customer_id'])) {
+            $customer = $this->stripe->customers->retrieve($data['customer_id']);
+            
+            if ($customer->invoice_settings->default_payment_method) {
+                return $this->confirmPayment($paymentIntent->id, [
+                    'payment_method' => $customer->invoice_settings->default_payment_method
+                ]);
+            }
+        }
+        
+        // If no default payment method, return the intent for manual confirmation
+        return $paymentIntent;
+    }
+
+    /**
+     * Attaches a PaymentMethod to a Customer and sets it as the default.
+     *
+     * @param string $paymentMethodId
+     * @param string $customerId
+     * @return \Stripe\PaymentMethod
+     * @throws ApiErrorException
+     */
+    public function attachPaymentMethodToCustomer(string $paymentMethodId, string $customerId): \Stripe\PaymentMethod
+    {
+        // Attach the PaymentMethod to the Customer.
+        $paymentMethod = $this->stripe->paymentMethods->attach($paymentMethodId, [
+            'customer' => $customerId
+        ]);
+
+        // Set it as the default payment method for the customer's invoices.
+        $this->stripe->customers->update($customerId, [
+            'invoice_settings' => [
+                'default_payment_method' => $paymentMethodId,
+            ],
+        ]);
+
+        return $paymentMethod;
+    }
 }

@@ -7,13 +7,31 @@
 @section('scripts')
     <script src="https://maps.googleapis.com/maps/api/js?key={{ env('MAP_API_KEY') }}&libraries=places&language=EN" defer>
     </script>
+    @if(Setting::get(Setting::ENABLE_STRIPE))
+        <script src="https://js.stripe.com/v3/"></script>
+    @endif
     {!! NoCaptcha::renderJs() !!}
+
+    <style>
+        /* Ensure payment request button is visible */
+        #payment-request-button {
+            min-height: 48px;
+            margin-bottom: 20px;
+        }
+
+        /* Ensure proper spacing */
+        #payment-request-divider {
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
 @endsection
 
 @section('content')
 
     @php
         $cart = \App\Models\CartItem::getCart();
+        $cartSum = \App\Models\CartItem::getCartSum();
         $hasSingleDonations = \App\Models\CartItem::hasSingleDonations();
         $hasMonthlyDonations = \App\Models\CartItem::hasMonthlyDonations();
     @endphp
@@ -171,13 +189,14 @@
                                     @foreach($group as $cartItem)
                                         @continue($cartItem->upsell)
                                         @php
-                                            $donationName = 'Quick Donation (' . ($cartItem->period === \App\Models\Donation::TYPE_MONTHLY ? 'Monthly' : 'Single') . ')';
-                                            if(isset($cartItem->campaign)){
-                                                $donationName =  $cartItem->campaign->name;
-                                            } else  if(isset($cartItem->foodpack)){
-                                                $donationName =  $cartItem->foodpack->country->name. " FoodPack";
-                                            } else  if(isset($cartItem->foodpackqurbani)){
-                                                $donationName =  $cartItem->foodpackqurbani->country->name. " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
+                                            if (isset($cartItem->campaign)) {
+                                                $donationName = $cartItem->campaign->name;
+                                            } elseif (isset($cartItem->foodpack)) {
+                                                $donationName = $cartItem->foodpack->country->name . " FoodPack";
+                                            } elseif (isset($cartItem->foodpackqurbani)) {
+                                                $donationName = $cartItem->foodpackqurbani->country->name . " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
+                                            } else {
+                                                $donationName = 'Quick Donation (' . ($cartItem->period === \App\Models\Donation::TYPE_MONTHLY ? 'Monthly' : 'Single') . ')';
                                             }
                                         @endphp
                                         <div class="form-group" data-cart_item_id="{{ $cartItem->cart_item_id }}">
@@ -229,29 +248,78 @@
             <div class="pt-5"></div>
             <div class="form-title"><b>PAYMENT</b></div>
 
-            @if ($hasSingleDonations)
-                <div class="mb-4 text-center">
-                    <label class="radio mr-5">
-                        <input type="radio" name="pay_method"
-                               value="{{Setting::get(Setting::ENABLE_STRIPE)?'stripe':'global' }}" checked><span><i
-                                class="fal fa-check"></i></span>
-                        <b>PAY BY CARD</b>
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="pay_method" value="paypal"><span><i class="fal fa-check"></i></span>
-                        <b>PAY BY PAYPAL</b>
-                    </label>
-                </div>
+            <div class="mb-4 text-center">
+                <label class="radio mr-5">
+                    <input type="radio" name="pay_method" value="{{Setting::get(Setting::ENABLE_STRIPE)?'stripe':'global' }}" checked>
+                    <span><i class="fal fa-check"></i></span>
+                    <b>PAY BY CARD</b>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="pay_method" value="paypal"><span><i class="fal fa-check"></i></span>
+                    <b>PAY BY PAYPAL</b>
+                </label>
+            </div>
+
             @if(Setting::get(Setting::ENABLE_STRIPE))
-{{--                <div class="mb-4 text-center" style="display: none" id="stripe-checkbox">--}}
-{{--                    <label class="checkbox">--}}
-{{--                        <input type="checkbox" name="stripe_fee"><span><i--}}
-{{--                                    class="fal fa-check"></i></span>--}}
-{{--                        <b>I'm happy to cover the payment processing fees <b id="commission">{{ '(+£' . \App\Services\StripeService::countCommission(\App\Models\CartItem::getCartSum()) . ')' }}</b></b>--}}
-{{--                    </label>--}}
-{{--                </div>--}}
+                <!-- Google Pay / Apple Pay Button -->
+                <div id="payment-request-button" style="display: none; margin-bottom: 20px;">
+                    <!-- Payment request button will be inserted here -->
+                </div>
+
+                <!-- OR divider -->
+                <div id="payment-request-divider" style="display: none; text-align: center; margin: 20px 0;">
+                    <span style="background: white; padding: 0 15px; color: #666;">OR</span>
+                    <hr style="margin-top: -12px; border-color: #ddd;">
+                </div>
             @endif
-            @endif
+
+            <div id="card-payment-container">
+                @if(Setting::get(Setting::ENABLE_STRIPE))
+                    <div class="form-group">
+                        <label><b>CARD DETAILS</b></label>
+                        <div class="mb-3">
+                            <label class="form-label">Card Number</label>
+                            <div id="card-number-element" style="padding: 10px; border: 1px solid #ced4da; border-radius: 4px;">
+                                <!-- Card number element will be inserted here -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-label">Expiry Date</label>
+                                <div id="card-expiry-element" style="padding: 10px; border: 1px solid #ced4da; border-radius: 4px;">
+                                    <!-- Card expiry element will be inserted here -->
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">CVC</label>
+                                <div id="card-cvc-element" style="padding: 10px; border: 1px solid #ced4da; border-radius: 4px;">
+                                    <!-- Card CVC element will be inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label class="form-label">Postal Code</label>
+                            <div id="postal-code-element" style="padding: 10px; border: 1px solid #ced4da; border-radius: 4px;">
+                                <!-- Postal code element will be inserted here -->
+                            </div>
+                        </div>
+                        <div id="card-errors" role="alert" class="text-danger mt-2"></div>
+                    </div>
+                @else
+                    <div class="form-group">
+                        <label><b>CARD NUMBER</b></label>
+                        <input type="text" class="form-control" name="card_number" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                    </div>
+                    <div class="form-group">
+                        <label><b>EXPIRY DATE</b></label>
+                        <input type="text" class="form-control" name="expiry_date" placeholder="MM / YY" maxlength="7" required>
+                    </div>
+                    <div class="form-group">
+                        <label><b>CVV</b></label>
+                        <input type="text" class="form-control" name="cvv" placeholder="123" maxlength="3" required>
+                    </div>
+                @endif
+            </div>
 
             @if ($hasMonthlyDonations && !Setting::get(Setting::ENABLE_STRIPE))
                 <div class="row mb-3">
@@ -274,60 +342,39 @@
                 </div>
             @endif
 
-        <div style="margin-right:auto;margin-left:auto;display:table;">
-            {!! NoCaptcha::display() !!}
+            <div style="margin-right:auto;margin-left:auto;display:table;">
+                {!! NoCaptcha::display() !!}
 
-            @if ($errors->has('g-recaptcha-response'))
-                <p class="text-danger ml-3 font-size-14">{{ $errors->first('g-recaptcha-response') }}</p>
-            @endif
-        </div>
+                @if ($errors->has('g-recaptcha-response'))
+                    <p class="text-danger ml-3 font-size-14">{{ $errors->first('g-recaptcha-response') }}</p>
+                @endif
+            </div>
 
-        <button type="submit" id="cart-pay" class="btn btn-danger w-100">
-            @if($hasMonthlyDonations && Setting::get(Setting::ENABLE_STRIPE))
-                Set up your monthly payments
-            @else
-                Pay Now
-            @endif
-            <i class="moon-icons-arrow-right"></i></button>
+            <button type="submit" id="cart-pay" class="btn btn-danger w-100">
+                <span id="button-text">
+                    Pay Now
+                </span>
+                <div id="spinner" class="spinner-border spinner-border-sm text-light d-none" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </button>
+
+            <span id="page-sum" style="display: none;">{{ $cartSum }}</span>
+
+            <div class="cart-total" style="display: none;">{{ $cartSum }}</div>
+            <span data-cart-sum="{{ $cartSum }}" style="display: none;"></span>
         </form>
 
         <div class="pt-5"></div>
     </div>
+
     <script>
-        $( document ).ready(function() {
-
-            $('[name="pay_method"]').change(function() {
-                if($('[name="pay_method"]:checked').val()  === 'stripe') {
-                    $('#stripe-checkbox').show();
-                    if($('#stripe-checkbox [name="stripe_fee"]').prop('checked')){
-                        $('#stripe-fee').show();
-                    } else {
-                        $('#stripe-fee').hide();
-                    }
-                } else {
-                    $('#stripe-checkbox').hide();
-                    $('#stripe-fee').hide();
-                }
-            });
-
-            $('#stripe-checkbox [name="stripe_fee"]').change(function() {
-                if($('#stripe-checkbox [name="stripe_fee"]').prop('checked')){
-                    $('#stripe-fee').show();
-                } else {
-                    $('#stripe-fee').hide();
-                }
-            });
-
-            if($('[name="pay_method"]:checked').val()  === 'stripe') {
-                $('#stripe-checkbox').show();
-            }
-            if($('#stripe-checkbox [name="stripe_fee"]').prop('checked')){
-                $('#stripe-fee').show();
-            }
-        });
-
-
+        // Stripe configuration
+        @if(Setting::get(Setting::ENABLE_STRIPE))
+        window.stripe_enabled = true;
+        window.stripe_public_key = '{{ config('stripe.public_key') }}';
+        @else
+        window.stripe_enabled = false;
+        @endif
     </script>
-
-    {!! NoCaptcha::renderJs() !!}
 @endsection

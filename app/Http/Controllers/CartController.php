@@ -223,62 +223,76 @@ class CartController extends Controller
         $orderData = $request->all();
         $orderData['country'] = $country ? $country->name : '';
         $order = Order::create($orderData);
-        $sum = 0;
-        $items = [];
+        $monthlyItems = [];
+        $singleItems = [];
 
         $totalDonations = $cartItems->count();
         if ($cartItems->where('period', 20)->sum('amount') > config('config.max_monthly_donate')) {
             return back()->with('error', "For donations of this value please contact our team on 0121 446 568.");
         }
 
-        foreach ($cartItems as $key => $cartItem) {
-            if ($cartItem->period !== 20) {
-                $sum = $sum + $cartItem->amount;
+        if ($request->get('pay_method') === 'paypal') {
+            $order->order_id = 'temp-' . $order->id;
+            $order->save();
+
+            $sum = $cartItems->sum('amount');
+
+            $response = (object) Paypal::createOrder($sum, 'GBP', 'order-' . $order->id);
+
+            if (isset($response->result->id)) {
+                $order->paypal_payment_id = $response->result->id;
+                $order->save();
+
+                foreach ($response->result->links as $link) {
+                    if ($link->rel === 'approve') {
+                        return redirect()->away($link->href);
+                    }
+                }
             }
-            //  ====================================  Donation Data AssignMent Start ======================================
-            // $AllDonationData['user_details'] = $request->all();
-            // $AllDonationData['user_details']['title'] = $request->title;
-            // $AllDonationData['user_details']['total_amount'] = $cartItem->amount;
-            // $AllDonationData['user_details']['pay_method'] = ($request->pay_method === 'paypal') ? 'paypal' : 'global';
-            // $categoryName = CampaignCategory::where('id', $cartItem->campaign_category_id)->first(); // sadqah
-            // $startDay = date("Y");
-            // $newEndingDate = date("Y", strtotime(date("Y", strtotime($startDay)) . " + 1 year"));
-            // $icharmeIdsFromDb = Campaign::where('id', $cartItem->campaign_id)->select(['icharm_program_id', 'icharm_country_id', 'name'])->first();
-            // $CampaignName = (!empty($icharmeIdsFromDb->name)) ? $icharmeIdsFromDb->name : 'Annual Campaign - ' . $startDay . ' - ' . $newEndingDate . '';
-            // $AllDonationData['user_details']['categoryName'] = (!empty($categoryName)) ? $categoryName->name : '';
-            // $AllDonationData['user_details']['campaignName'] = $CampaignName;
 
-            // $AllDonationData['user_details']['IcharmCategoryId'] =  (!empty($categoryName->name)) ? $this->getCategoryList($categoryName->name) : 19;
-            // $campaignId = (!empty($AllDonationData['user_details']['campaignName'])) ?  $this->getCampaignList($AllDonationData['user_details']['campaignName']) : 683;
+            $error_message = 'Error creating PayPal payment.';
+            if (isset($response->error) && is_object($response->error) && isset($response->error->message)) {
+                $error_message .= ' ' . $response->error->message;
+            } elseif (is_string($response->error)) {
+                $error_message .= ' ' . $response->error;
+            }
+            return back()->with('error', $error_message);
+        }
 
-            // if(!empty($AllDonationData['user_details']['campaignName'])){
-            //     $res = $this->addCampaign($AllDonationData['user_details']['campaignName']);
-            //      if(isset($res['success']) && $res['success'] == 1){
-            //         $AllDonationData['user_details']['IcharmcCampaignId'] = $this->getCampaignList($AllDonationData['user_details']['campaignName']);
-            //      }
-            // }else{
-            //    $AllDonationData['user_details']['IcharmcCampaignId'] = $campaignId;
-            // }
-            // $AllDonationData['user_details']['IcharmcCampaignId'] = 696; // As per request campaign Is set to default
+        $customer = null;
 
+        try {
+            $customer = $this->stripeService->processCustomer([
+                'first_name' => $order->first_name,
+                'last_name' => $order->last_name,
+                'email' => $order->email,
+                'phone' => $order->phone,
+                'city' => $order->city,
+                'address_1' => $order->address_1,
+                'address_2' => $order->address_2,
+                'post_code' => $order->post_code,
+            ]);
+            $this->stripeService->processUser($orderData, $customer);
 
-            // $AllDonationData['user_details']['IcharmProgramId'] =  (!empty($icharmeIdsFromDb->icharm_program_id)) ? $icharmeIdsFromDb->icharm_program_id : 28;
+            if ($request->has('payment_method_id')) {
+                $this->stripeService->attachPaymentMethodToCustomer(
+                    $request->payment_method_id,
+                    $customer->id
+                );
+            }
+        } catch (\Exception $e) {
+            Log::error('Stripe customer creation or payment method attachment failed: ' . $e->getMessage());
+            return back()->with('error', 'Payment processing failed. Please try again.');
+        }
 
-            // if ($AllDonationData['user_details']['IcharmProgramId'] == 28) {
-            //     $AllDonationData['user_details']['icharmCountryId'] = 19;
-            // } else {
-            //     $AllDonationData['user_details']['icharmCountryId'] =  (!empty($icharmeIdsFromDb->icharm_country_id)) ? $icharmeIdsFromDb->icharm_country_id : 19;
-            // }
-
+        foreach ($cartItems as $cartItem) {
             if ($cartItem->period == 20) {
                 if ($this->blackListService->isBlackIp($request->ip())) {
                     return back()->with('error', "Sorry, your ip ({$request->ip()}) is blocked. Please contact our support.");
                 }
             }
 
-
-            //  ====================================  Donation Data AssignMent End ======================================
-            $donation =  Donation::create([
+            $donation = Donation::create([
                 'value' => $cartItem->amount,
                 'order_id' => $order->id,
                 'type' => $cartItem->period,
@@ -302,192 +316,217 @@ class CartController extends Controller
                 'goal' => $cartItem->goal,
                 'name' => $cartItem->name,
             ]);
+
             $donationName = 'Quick Donation';
             if (isset($cartItem->campaign)) {
-                $donationName =  $cartItem->campaign->name;
-            } else  if (isset($cartItem->foodpack)) {
-                $donationName =  $cartItem->foodpack->country->name . " FoodPack";
-            } else  if (isset($cartItem->foodpackqurbani)) {
-                $donationName =  $cartItem->foodpackqurbani->country->name . " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
+                $donationName = $cartItem->campaign->name;
+            } else if (isset($cartItem->foodpack)) {
+                $donationName = $cartItem->foodpack->country->name . " FoodPack";
+            } else if (isset($cartItem->foodpackqurbani)) {
+                $donationName = $cartItem->foodpackqurbani->country->name . " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
             } else if ($cartItem->upsell) {
                 $donationName = $cartItem->name ?? 'Provide Rice This Eid';
             }
+
+            $baseMetadata = [
+                'donation_id' => $donation->id,
+                'order_id' => $order->id,
+                'campaign_id' => $cartItem->campaign_id,
+            ];
+
+            if ($cartItem->campaign) {
+                $baseMetadata['campaign_name'] = $cartItem->campaign->name;
+                $baseMetadata['campaign_country'] = $cartItem->campaign->country ? $cartItem->campaign->country->name : 'Not specified';
+
+                if ($cartItem->period === CampaignPrice::TYPE_SINGLE) {
+                    $baseMetadata['total_project_amount'] = $cartItem->amount;
+                } else {
+                    $baseMetadata['total_project_amount'] = $cartItem->goal;
+                }
+            } elseif ($cartItem->foodpack) {
+                $baseMetadata['campaign_name'] = $cartItem->foodpack->country->name . " FoodPack";
+                $baseMetadata['campaign_country'] = $cartItem->foodpack->country->name;
+
+                if ($cartItem->period === CampaignPrice::TYPE_SINGLE) {
+                    $baseMetadata['total_project_amount'] = $cartItem->amount;
+                } else {
+                    $baseMetadata['total_project_amount'] = $cartItem->goal;
+                }
+            } elseif ($cartItem->foodpackqurbani) {
+                $baseMetadata['campaign_name'] = $cartItem->foodpackqurbani->country->name . " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
+                $baseMetadata['campaign_country'] = $cartItem->foodpackqurbani->country->name;
+
+                if ($cartItem->period === CampaignPrice::TYPE_SINGLE) {
+                    $baseMetadata['total_project_amount'] = $cartItem->amount;
+                } else {
+                    $baseMetadata['total_project_amount'] = $cartItem->goal;
+                }
+            } elseif ($cartItem->upsell) {
+                $baseMetadata['campaign_name'] = $cartItem->name ?? 'Provide Rice This Eid';
+                $baseMetadata['campaign_country'] = 'Not specified';
+                $baseMetadata['total_project_amount'] = $cartItem->amount;
+            } else {
+                $baseMetadata['campaign_name'] = 'General';
+                $baseMetadata['campaign_country'] = 'Not specified';
+                $baseMetadata['total_project_amount'] = $cartItem->amount;
+            }
+
             if ($cartItem->period !== 20) {
-                $items[] = [
-                    'price_data' => [
-                        'currency' => 'gbp',
-                        'product_data' => [
-                            'name' => $donationName,
-                        ],
-                        'unit_amount' => $cartItem->amount * 100,
-                    ],
-                    'quantity' => 1,
+                $singleItems[] = [
+                    'amount' => $cartItem->amount,
+                    'name' => $donationName,
+                    'donation_id' => $donation->id,
+                    'metadata' => array_merge($baseMetadata, [
+                        'donation_type' => 'single',
+                    ])
+                ];
+            } else {
+                $monthlyItems[] = [
+                    'amount' => $cartItem->amount,
+                    'name' => $donationName,
+                    'donation_id' => $donation->id,
+                    'metadata' => array_merge($baseMetadata, [
+                        'donation_type' => 'monthly',
+                    ])
                 ];
             }
-
-            // $AllDonationData['user_details']['order_id'] =  'IH-donationID-' . $donationId->id;
-            // $DonationCollection[] = $AllDonationData;
         }
 
-        $this->clearCart();
-        $response = null;
-        $payLink = null;
-        $order->pay_with = $request->pay_method;
-        $IcharmDontion = [];
-        if ($sum > 0) {
-            if ($request->pay_method === 'paypal') {
-                $response = Paypal::createOrder($sum, 'GBP', 'Order id: ' . $order->id);
+        $paymentResults = [];
 
-                $order->order_id = $response->result->id;
-                $OrderId = $response->result->id;
+        try {
+            if (!empty($singleItems)) {
+                $singlePaymentResults = [];
 
-                $payLink = $response->result->links[1]->href;
-                $order->save();
-            } else if ($request->pay_method === 'stripe') {
-                $thanksUrl = Page::getSinglePageUrl(Template::THANK_YOU_DONATE_PAGE);
-                $url = url($thanksUrl . '?order={CHECKOUT_SESSION_ID}');
-                $sum = $sum * 100;
-                \Stripe\Stripe::setApiKey(config('stripe.secret_key'));
-
-                if ($request->stripe_fee) {
-                    $items[] = [
-                        'price_data' => [
-                            'currency' => 'gbp',
-                            'product_data' => [
-                                'name' => 'Payment processing fee',
-                            ],
-                            'unit_amount' => StripeService::countCommissionPence($sum),
-                        ],
-                        'quantity' => 1,
-                    ];
-                }
-
-                $session = \Stripe\Checkout\Session::create([
-                    'line_items' => [$items],
-                    'mode' => 'payment',
-                    'success_url' => $url,
-                    'cancel_url' => route('index'),
-                    'customer_email' => $order->email,
-                    'metadata' => $this->stripeService->combineWithBaseMetadata([]),
-                ]);
-
-                $payLink = $session->url;
-                $order->order_id = $session->id;
-                $order->save();
-            } else {
-                $thanksUrl = Page::getSinglePageUrl(Template::THANK_YOU_DONATE_PAGE);
-                $url = url($thanksUrl . '?order={CHECKOUT_SESSION_ID}');
-                $sum = $sum * 100;
-
-
-                $session = \Stripe\Checkout\Session::create([
-                    'line_items' => [[
+                foreach ($singleItems as $singleItem) {
+                    $paymentData = [
+                        'amount' => $singleItem['amount'],
                         'currency' => 'gbp',
-                        'name' => 'Monthly donation',
-                        'amount' => 500,
-                        'quantity' => 1
-                    ]],
-                    'mode' => 'subscription',
-                    'success_url' => $url,
-                    'cancel_url' => route('index'),
-                    'customer_email' => $order->email,
-                ]);
+                        'customer_id' => $customer->id,
+                        'description' => 'Islamic Help Donation - ' . $singleItem['name'],
+                        'receipt_email' => $order->email,
+                        'metadata' => array_merge($singleItem['metadata'], [
+                            'order_id' => $order->id,
+                            'donation_type' => 'single_payment_individual',
+                        ])
+                    ];
 
-                $payLink = $session->url;
-                $order->order_id = $session->id;
-                $order->save();
-                $sum = $sum * 100;
+                    if ($request->has('payment_method_id')) {
+                        $paymentData['payment_method'] = $request->payment_method_id;
+                        $paymentData['confirm'] = true;
+                    }
 
-                $payment = new GlobalPay($sum, 'GBP', [
-                    'email' => $request->get('email'),
-                    'first_name' => $request->get('first_name'),
-                    'last_name' => $request->get('last_name'),
-                    'post_code' => $request->get('post_code'),
-                    'phone' => $request->get('phone'),
-                    'address_1' => $request->get('address_1'),
-                    'address_2' => $request->get('address_2'),
-                    'city' => $request->get('city'),
-                    'notes' => $request->get('notes'),
-                    'country' => $country ? $country->name : '',
-                    'county' => $request->get('county')
-                ]);
-                $order->order_id = $payment->orderId;
+                    $paymentIntent = $this->stripeService->createDirectPayment($paymentData);
 
-                $OrderId  = $payment->orderId;
+                    $singlePaymentResults[] = $paymentIntent;
 
-                $responce = $payment->getPayLink();
-
-                if (isset($responce['hppPayByLink'])) {
-                    $payLink = $responce['hppPayByLink'];
-                } else {
-                    dd($responce);
+                    if ($paymentIntent->status === 'succeeded') {
+                        $donation = Donation::find($singleItem['donation_id']);
+                        $donation->status = Donation::STATUS_COMPLETE;
+                        $donation->stripe_payment_intent_id = $paymentIntent->id;
+                        $donation->save();
+                    } else if (in_array($paymentIntent->status, ['requires_action', 'requires_source_action'])) {
+                        $donation = Donation::find($singleItem['donation_id']);
+                        $donation->status = Donation::STATUS_PROCESSING;
+                        $donation->stripe_payment_intent_id = $paymentIntent->id;
+                        $donation->save();
+                    }
                 }
-                $order->save();
+
+                $paymentResults['single_payments'] = $singlePaymentResults;
             }
 
-            if (empty($payLink)) {
-                die('Bad request');
+            if (!empty($monthlyItems)) {
+                $subscriptionResults = [];
+
+                foreach ($monthlyItems as $item) {
+                    $price = $this->stripeService->createDonationSubscriptionPrice([
+                        'amount' => $item['amount'],
+                        'name' => $item['name'],
+                        'currency' => 'gbp',
+                        'metadata' => $item['metadata']
+                    ]);
+
+                    $subscriptionData = [
+                        'customer_id' => $customer->id,
+                        'items' => [
+                            [
+                                'price' => $price->id,
+                                'quantity' => 1,
+                            ]
+                        ],
+                        'metadata' => [
+                            'order_id' => $order->id,
+                            'donation_id' => $item['donation_id'],
+                            'campaign_id' => $item['metadata']['campaign_id'],
+                            'donation_type' => 'monthly_subscription_individual',
+                            'total_project_amount' => $item['metadata']['total_project_amount'] ?? $item['amount'],
+                            'paid_amount' => 0,
+                        ]
+                    ];
+
+                    if ($request->has('payment_method_id')) {
+                        $subscriptionData['default_payment_method'] = $request->payment_method_id;
+                    }
+
+                    $subscription = $this->stripeService->createSubscriptionPayment($subscriptionData);
+
+                    $subscriptionResults[] = $subscription;
+
+                    $donation = Donation::find($item['donation_id']);
+                    if ($subscription->status === 'active') {
+                        $donation->status = Donation::STATUS_COMPLETE;
+                    } else {
+                        $donation->status = Donation::STATUS_PROCESSING;
+                    }
+                    $donation->stripe_subscription_id = $subscription->id;
+                    $donation->save();
+                }
+
+                $paymentResults['subscriptions'] = $subscriptionResults;
             }
 
-            // //  ====================================  Store donation Data in Temp Table ======================================
-            // foreach ($DonationCollection as $key => $donation) {
-            //     $aRR = [
-            //         'order_id' => $OrderId,
-            //         'donation_data' => serialize($donation['user_details'])
-            //     ];
-            //     TempStoreDonationData::create($aRR);
-            // }
-            // //  ====================================  Store donation Data in Temp Table ======================================
+            $order->pay_with = $request->pay_method;
+            if (!empty($monthlyItems)) {
+                $order->pay_with = 'Number: ' . $order->account_number . ', Sort: ' . $order->sort_code . ', Day: ' . $order->pay_day;
+            }
+            $order->order_id = hash('sha1', Str::random(10) . (empty($monthlyItems) ? 'single' : 'monthly'));
 
-            return redirect($payLink);
-        } else if (count($cartItems) > 0 && $sum == 0 && SettingHelper::get(SettingHelper::ENABLE_STRIPE)) {
-            // monthly donation
-            \Stripe\Stripe::setApiKey(config('stripe.secret_key'));
-            $stripePlan = $this->stripeService->createPlan($cartItems, $order->email);
-            $thanksUrl = Page::getSinglePageUrl(Template::THANK_YOU_DONATE_PAGE);
-            $url = url($thanksUrl . '?order={CHECKOUT_SESSION_ID}');
+            if (isset($paymentResults['single_payments'])) {
+                $order->stripe_payment_intent_id = $paymentResults['single_payments'][0]->id;
+            }
+            if (isset($paymentResults['subscriptions'])) {
+                $order->stripe_subscription_id = $paymentResults['subscriptions'][0]->id;
+            }
 
-            $metadata = $stripePlan->metadata->toArray();
-            $campaigns = array_keys($metadata);
-            $description = implode(', ', $campaigns) . " monthly direct debit by Islamic Help";
-
-            $session = \Stripe\Checkout\Session::create([
-                'mode' => 'subscription',
-                'success_url' => $url,
-                'cancel_url' => route('index'),
-                'customer_email' => $order->email,
-                'line_items' => [[
-                    'price' => $stripePlan->id,
-                    'quantity' => 1
-                ]],
-                'subscription_data' => [
-                    'metadata' => $metadata,
-                    'description' => $description,
-                ],
-                'payment_method_types' => [
-                    'card',
-                    'bacs_debit',
-                ]
-            ]);
-            $payLink = $session->url;
-            $order->order_id = $session->id;
-            $order->pay_with = 'stripe';
             $order->save();
-            return redirect($payLink);
-        }
 
-        $order->pay_with = 'Number: ' . $order->account_number . ', Sort: ' . $order->sort_code . ', Day: ' . $order->pay_day;
-        $order->order_id = hash('sha1', Str::random(10) . 'monthly');
-        foreach ($order->donations as $donation) {
-            // $AllDonationData[]['user_details']['order_id']= $order->order_id;
-            $donation->status = Donation::STATUS_COMPLETE;
-            $donation->save();
+            $this->clearCart();
+
+            $this->sendThankYouEmail($order);
+
+            $thanksUrl = Page::getSinglePageUrl(Template::THANK_YOU_DONATE_PAGE);
+            $url = url($thanksUrl . '?order=' . $order->order_id);
+
+            return redirect()->to($url);
+
+        } catch (\Exception $e) {
+            Log::error('Payment processing failed: ' . $e->getMessage());
+
+            foreach ($singleItems as $item) {
+                $donation = Donation::find($item['donation_id']);
+                $donation->status = Donation::STATUS_CANCELED;
+                $donation->save();
+            }
+
+            foreach ($monthlyItems as $item) {
+                $donation = Donation::find($item['donation_id']);
+                $donation->status = Donation::STATUS_CANCELED;
+                $donation->save();
+            }
+
+            return back()->with('error', 'Payment processing failed: ' . $e->getMessage());
         }
-        $order->save();
-        $this->sendThankYouEmail($order);
-        $thanksUrl = Page::getSinglePageUrl(Template::THANK_YOU_DONATE_PAGE);
-        $url = url($thanksUrl . '?order=' . $order->order_id);
-        return redirect()->to($url);
     }
 
     protected function sessionCartPut($itemId)

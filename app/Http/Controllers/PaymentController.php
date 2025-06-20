@@ -74,14 +74,14 @@ class PaymentController extends Controller
     public function stripePaymentSuccess(Request $request, StripeService $stripeService)
     {
         Log::error('stripePaymentSuccess');
-        
+
         // Verify request is from Stripe
         if (!isset($_SERVER['HTTP_STRIPE_SIGNATURE'])) {
             Log::error('No Stripe signature found');
             http_response_code(400);
             exit();
         }
-        
+
         // Read raw POST data
         $payload = @file_get_contents('php://input');
         if ($payload === false) {
@@ -89,7 +89,7 @@ class PaymentController extends Controller
             http_response_code(400);
             exit();
         }
-        
+
         $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
         $event = null;
 
@@ -149,7 +149,7 @@ class PaymentController extends Controller
                         $payment_method_id = $setupIntent->payment_method;
                         $stripe->paymentMethods->retrieve($payment_method_id)->attach(['customer' => $customer_id]);
                         $stripe->customers->update($customer_id, ['invoice_settings' => ['default_payment_method' => $payment_method_id]]);
-                        
+
                         $plan = $this->stripeService->createScheduledQurbaniPlan($order->donations);
                         $stripe->subscriptionSchedules->create([
                             'customer' => $customer_id,
@@ -314,6 +314,45 @@ class PaymentController extends Controller
                     ]);
                 }
 
+                if (isset($subscription->metadata['donation_type']) && $subscription->metadata['donation_type'] === 'monthly_subscription_individual') {
+                    $donationId = $subscription->metadata['donation_id'] ?? null;
+
+                    // Update paid amount and evaluate goal
+                    $goalAmount = isset($subscription->metadata['total_project_amount']) ? floatval($subscription->metadata['total_project_amount']) : null;
+                    $alreadyPaid = isset($subscription->metadata['paid_amount']) ? floatval($subscription->metadata['paid_amount']) : 0;
+                    $currentPayment = $invoice->total / 100; // Stripe totals are in pence/cents
+                    $newPaid = $alreadyPaid + $currentPayment;
+
+                    // Prepare metadata update
+                    $metadataUpdate = $subscription->metadata->toArray();
+                    $metadataUpdate['paid_amount'] = $newPaid;
+
+                    // Persist donation record if provided
+                    if ($donationId) {
+                        $donation = Donation::find($donationId);
+                        if ($donation) {
+                            if (!$donation->invoice_id) {
+                                $donation->invoice_id = $invoice->id;
+                            }
+                            $donation->status = Donation::STATUS_COMPLETE;
+                            $donation->save();
+                        }
+                    }
+
+                    // Update subscription metadata with new paid amount
+                    $stripe->subscriptions->update($subscription->id, ['metadata' => $metadataUpdate]);
+
+                    // Cancel subscription if goal reached or exceeded
+                    if ($goalAmount && $newPaid >= $goalAmount) {
+                        $stripe->subscriptions->cancel($subscription->id);
+                    }
+
+                    return response()->json([
+                        'message' => 'Success',
+                        'success' => true,
+                    ]);
+                }
+
                 if (isset($subscription->metadata['donated_campaigns'])) {
                     $subscriptionId = $invoice->subscription;
                     $subscription = $this->stripeService->fetchSubscription($subscriptionId);
@@ -435,6 +474,31 @@ class PaymentController extends Controller
                     'success' => true,
                 ]);
             case 'subscription_schedule.created':
+                return response()->json([
+                    'message' => 'Success',
+                    'success' => true,
+                ]);
+            case 'payment_intent.succeeded':
+                $paymentIntent = $event->data->object;
+
+                // Ignore events that belong to another website installation
+                if (isset($paymentIntent->metadata['website_key']) && $paymentIntent->metadata['website_key'] !== config('stripe.website_key')) {
+                    return response()->json([
+                        'message' => 'Different website key',
+                        'success' => true,
+                    ]);
+                }
+
+                // Process completed one-off payments that were created via the new checkout flow
+                if (isset($paymentIntent->metadata['donation_id'])) {
+                    $donation = Donation::find($paymentIntent->metadata['donation_id']);
+                    if ($donation) {
+                        $donation->status = Donation::STATUS_COMPLETE;
+                        $donation->stripe_payment_intent_id = $paymentIntent->id;
+                        $donation->save();
+                    }
+                }
+
                 return response()->json([
                     'message' => 'Success',
                     'success' => true,
