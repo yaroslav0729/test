@@ -282,7 +282,6 @@ class CartController extends Controller
             }
         } catch (\Exception $e) {
             Log::error('Stripe customer creation or payment method attachment failed: ' . $e->getMessage());
-            dd($e);
             return back()->with('error', 'Payment processing failed. Please try again.');
         }
 
