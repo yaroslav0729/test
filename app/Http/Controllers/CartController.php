@@ -340,36 +340,36 @@ class CartController extends Controller
                 $baseMetadata['campaign_country'] = $cartItem->campaign->country ? $cartItem->campaign->country->name : 'Not specified';
 
                 if ($cartItem->period === CampaignPrice::TYPE_SINGLE) {
-                    $baseMetadata['total_campaign_amount'] = $cartItem->amount;
+                    $baseMetadata['total_project_amount'] = $cartItem->amount;
                 } else {
-                    $baseMetadata['total_campaign_amount'] = $cartItem->goal;
+                    $baseMetadata['total_project_amount'] = $cartItem->goal;
                 }
             } elseif ($cartItem->foodpack) {
                 $baseMetadata['campaign_name'] = $cartItem->foodpack->country->name . " FoodPack";
                 $baseMetadata['campaign_country'] = $cartItem->foodpack->country->name;
 
                 if ($cartItem->period === CampaignPrice::TYPE_SINGLE) {
-                    $baseMetadata['total_campaign_amount'] = $cartItem->amount;
+                    $baseMetadata['total_project_amount'] = $cartItem->amount;
                 } else {
-                    $baseMetadata['total_campaign_amount'] = $cartItem->goal;
+                    $baseMetadata['total_project_amount'] = $cartItem->goal;
                 }
             } elseif ($cartItem->foodpackqurbani) {
                 $baseMetadata['campaign_name'] = $cartItem->foodpackqurbani->country->name . " Qurbani (" . $cartItem->foodpackqurbanitype->name . ")";
                 $baseMetadata['campaign_country'] = $cartItem->foodpackqurbani->country->name;
 
                 if ($cartItem->period === CampaignPrice::TYPE_SINGLE) {
-                    $baseMetadata['total_campaign_amount'] = $cartItem->amount;
+                    $baseMetadata['total_project_amount'] = $cartItem->amount;
                 } else {
-                    $baseMetadata['total_campaign_amount'] = $cartItem->goal;
+                    $baseMetadata['total_project_amount'] = $cartItem->goal;
                 }
             } elseif ($cartItem->upsell) {
                 $baseMetadata['campaign_name'] = $cartItem->name ?? 'Provide Rice This Eid';
                 $baseMetadata['campaign_country'] = 'Not specified';
-                $baseMetadata['total_campaign_amount'] = $cartItem->amount;
+                $baseMetadata['total_project_amount'] = $cartItem->amount;
             } else {
                 $baseMetadata['campaign_name'] = 'General';
                 $baseMetadata['campaign_country'] = 'Not specified';
-                $baseMetadata['total_campaign_amount'] = $cartItem->amount;
+                $baseMetadata['total_project_amount'] = $cartItem->amount;
             }
 
             if ($cartItem->period !== 20) {
@@ -461,6 +461,8 @@ class CartController extends Controller
                             'donation_id' => $item['donation_id'],
                             'campaign_id' => $item['metadata']['campaign_id'],
                             'donation_type' => 'monthly_subscription_individual',
+                            'total_project_amount' => $item['metadata']['total_project_amount'] ?? $item['amount'],
+                            'paid_amount' => 0,
                         ]
                     ];
 
