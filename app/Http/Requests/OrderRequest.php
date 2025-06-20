@@ -42,7 +42,7 @@ class OrderRequest extends FormRequest
 //            }
 //        }
 
-        if (!config('app.debug'))
+        if (!config('app.debug') && $this->input('pay_method') !== 'payment_request')
         {
             $rules['g-recaptcha-response'] = 'required|captcha';
         }

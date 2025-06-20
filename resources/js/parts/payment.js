@@ -182,8 +182,10 @@ $(function() {
                 const paymentMethodTypeInput = document.createElement('input');
                 paymentMethodTypeInput.type = 'hidden';
                 paymentMethodTypeInput.name = 'pay_method';
-                paymentMethodTypeInput.value = 'stripe';
+                paymentMethodTypeInput.value = 'payment_request';
                 mainForm.appendChild(paymentMethodTypeInput);
+            } else {
+                existingPayMethodInput.value = 'payment_request';
             }
 
             // Complete the payment request
