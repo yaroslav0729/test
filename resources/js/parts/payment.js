@@ -140,9 +140,8 @@ $(function() {
             },
         });
 
-        // Check if Payment Request is available and show button
         paymentRequest.canMakePayment().then(function(result) {
-            if (result && (result.applePay || result.googlePay)) {
+            if (result) {
                 const paymentRequestContainer = document.getElementById('payment-request-button');
                 const paymentRequestDivider = document.getElementById('payment-request-divider');
 
