@@ -623,9 +623,53 @@ $(function() {
                     }
                 };
 
-                paymentsClient.loadPaymentData(paymentDataRequest).then(function (paymentData) {
-                    const paymentToken = JSON.parse(paymentData.paymentMethodData.tokenizationData.token);
-                    const paymentMethodId = paymentToken.id;
+                paymentsClient.loadPaymentData(paymentDataRequest).then(async function (paymentData) {
+                    const tokenObject = JSON.parse(paymentData.paymentMethodData.tokenizationData.token);
+
+                    let paymentMethodId = null;
+
+                    if (tokenObject.id && tokenObject.id.startsWith('pm_')) {
+                        // Token already represents a PaymentMethod
+                        paymentMethodId = tokenObject.id;
+                    } else if (tokenObject.id && tokenObject.id.startsWith('tok_')) {
+                        // Received a legacy card token – convert to PaymentMethod first
+                        if (!stripe) {
+                            console.error('Stripe.js instance not found.');
+                            return;
+                        }
+
+                        const billingDetails = {
+                            name: document.querySelector('[name="first_name"]').value + ' ' + document.querySelector('[name="last_name"]').value,
+                            email: document.querySelector('[name="email"]').value,
+                            address: {
+                                line1: document.querySelector('[name="address_1"]').value,
+                                line2: document.querySelector('[name="address_2"]').value,
+                                city: document.querySelector('[name="city"]').value,
+                                postal_code: document.querySelector('[name="post_code"]').value,
+                                country: 'GB'
+                            }
+                        };
+
+                        const pmResult = await stripe.createPaymentMethod({
+                            type: 'card',
+                            card: {token: tokenObject.id},
+                            billing_details: billingDetails
+                        });
+
+                        if (pmResult.error) {
+                            console.error('Failed to create PaymentMethod from token:', pmResult.error);
+                            alert(pmResult.error.message || 'Payment processing failed. Please try again.');
+                            return;
+                        }
+
+                        paymentMethodId = pmResult.paymentMethod.id;
+                    }
+
+                    if (!paymentMethodId) {
+                        console.error('Unable to determine PaymentMethod ID from Google Pay response.');
+                        alert('Payment processing failed. Please try again.');
+                        return;
+                    }
 
                     // Remove existing hidden inputs if present
                     const existingPaymentMethodInput = mainForm.querySelector('[name="payment_method_id"]');
@@ -639,7 +683,7 @@ $(function() {
                     paymentMethodInput.value = paymentMethodId;
                     mainForm.appendChild(paymentMethodInput);
 
-                    // Indicate google_pay as the payment method
+                    // Indicate google_pay as the payment method (still treated as payment_request on server)
                     const existingPayMethodInput = mainForm.querySelector('[name="pay_method"]');
                     if (!existingPayMethodInput) {
                         const paymentMethodTypeInput = document.createElement('input');
