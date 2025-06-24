@@ -658,7 +658,7 @@ $(function() {
             };
 
             // Create and mount the Google Pay button
-            const button = paymentsClient.createButton({ onClick: onGooglePayButtonClicked, buttonColor: 'black', buttonType: 'long' });
+            const button = paymentsClient.createButton({ onClick: onGooglePayButtonClicked, buttonColor: 'black', buttonType: 'long', buttonSizeMode: 'fill' });
             const gpayContainer = document.getElementById('google-pay-button');
             if (gpayContainer) {
                 gpayContainer.innerHTML = '';
