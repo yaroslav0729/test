@@ -74,6 +74,9 @@ $(function() {
 
         // Initialize Payment Request for Google Pay / Apple Pay
         initializePaymentRequest(elements);
+
+        // Initialize Google Pay specifically for Chrome on iOS
+        initializeGooglePay();
     }
 
     function initializePaymentRequest(elements) {
@@ -536,6 +539,139 @@ $(function() {
         mainForm.appendChild(cvvInput);
 
         mainForm.submit();
+    }
+
+    function initializeGooglePay() {
+        // Only display Google Pay on Chrome running on iOS devices
+        const isIphoneChrome = /CriOS/i.test(navigator.userAgent) && /iphone|ipod|ipad/i.test(navigator.userAgent);
+        if (!isIphoneChrome) {
+            return;
+        }
+
+        // Helper to calculate cart total (duplicate of logic in initializePaymentRequest)
+        function calculateCartSum() {
+            let total = 0;
+            const pageSumElement = document.getElementById('page-sum') ||
+                                    document.querySelector('.cart-total') ||
+                                    document.querySelector('[data-cart-sum]');
+            if (pageSumElement) {
+                const sumText = pageSumElement.innerText || pageSumElement.textContent || '';
+                total = parseFloat(sumText.replace(/[^0-9.-]+/g, "")) || 0;
+            }
+            if (total <= 0) {
+                const cartItems = document.querySelectorAll('.cart-item-amount, [data-amount]');
+                cartItems.forEach(item => {
+                    const amount = parseFloat((item.innerText || item.dataset.amount || '').replace(/[^0-9.-]+/g, "")) || 0;
+                    total += amount;
+                });
+            }
+            return total;
+        }
+
+        const cartSum = calculateCartSum();
+        if (cartSum <= 0) {
+            return;
+        }
+
+        // Load Google Pay JS if not already present
+        const loadGPayScript = (callback) => {
+            if (window.google && window.google.payments && window.google.payments.api) {
+                callback();
+                return;
+            }
+            const existing = document.getElementById('google-pay-js');
+            if (existing) {
+                existing.addEventListener('load', callback);
+                return;
+            }
+            const script = document.createElement('script');
+            script.id = 'google-pay-js';
+            script.src = 'https://pay.google.com/gp/p/js/pay.js';
+            script.onload = callback;
+            document.head.appendChild(script);
+        };
+
+        loadGPayScript(() => {
+            const paymentsClient = new google.payments.api.PaymentsClient({ environment: 'TEST' }); // change to 'PRODUCTION' when live
+
+            const onGooglePayButtonClicked = () => {
+                const paymentDataRequest = {
+                    apiVersion: 2,
+                    apiVersionMinor: 0,
+                    allowedPaymentMethods: [{
+                        type: 'CARD',
+                        parameters: {
+                            allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+                            allowedCardNetworks: ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA']
+                        },
+                        tokenizationSpecification: {
+                            type: 'PAYMENT_GATEWAY',
+                            parameters: {
+                                gateway: 'stripe',
+                                'stripe:version': '2020-08-27',
+                                'stripe:publishableKey': window.stripe_public_key
+                            }
+                        }
+                    }],
+                    merchantInfo: {
+                        merchantName: 'Islamic Help'
+                    },
+                    transactionInfo: {
+                        totalPriceStatus: 'FINAL',
+                        totalPrice: cartSum.toFixed(2),
+                        currencyCode: 'GBP'
+                    }
+                };
+
+                paymentsClient.loadPaymentData(paymentDataRequest).then(function (paymentData) {
+                    const paymentToken = JSON.parse(paymentData.paymentMethodData.tokenizationData.token);
+                    const paymentMethodId = paymentToken.id;
+
+                    // Remove existing hidden inputs if present
+                    const existingPaymentMethodInput = mainForm.querySelector('[name="payment_method_id"]');
+                    if (existingPaymentMethodInput) {
+                        existingPaymentMethodInput.remove();
+                    }
+
+                    const paymentMethodInput = document.createElement('input');
+                    paymentMethodInput.type = 'hidden';
+                    paymentMethodInput.name = 'payment_method_id';
+                    paymentMethodInput.value = paymentMethodId;
+                    mainForm.appendChild(paymentMethodInput);
+
+                    // Indicate google_pay as the payment method
+                    const existingPayMethodInput = mainForm.querySelector('[name="pay_method"]');
+                    if (!existingPayMethodInput) {
+                        const paymentMethodTypeInput = document.createElement('input');
+                        paymentMethodTypeInput.type = 'hidden';
+                        paymentMethodTypeInput.name = 'pay_method';
+                        paymentMethodTypeInput.value = 'payment_request';
+                        mainForm.appendChild(paymentMethodTypeInput);
+                    } else {
+                        existingPayMethodInput.value = 'payment_request';
+                    }
+
+                    mainForm.submit();
+                }).catch(function (err) {
+                    console.error('Google Pay error:', err);
+                });
+            };
+
+            // Create and mount the Google Pay button
+            const button = paymentsClient.createButton({ onClick: onGooglePayButtonClicked, buttonColor: 'black', buttonType: 'long' });
+            const gpayContainer = document.getElementById('google-pay-button');
+            if (gpayContainer) {
+                gpayContainer.innerHTML = '';
+                gpayContainer.appendChild(button);
+                gpayContainer.style.display = 'block';
+
+                // Ensure the divider is visible too
+                const divider = document.getElementById('payment-request-divider');
+                if (divider) {
+                    divider.style.display = 'block';
+                }
+            }
+        });
     }
 
     if (stringCounter && notesInput) {

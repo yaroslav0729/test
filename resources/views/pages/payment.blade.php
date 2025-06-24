@@ -485,6 +485,9 @@
                                         <!-- Payment request button will be inserted here -->
                                     </div>
 
+                                    <!-- Google Pay button (Chrome on iOS) -->
+                                    <div id="google-pay-button" style="display: none; margin-bottom: 20px;"></div>
+
                                     <!-- OR divider -->
                                     <div id="payment-request-divider" style="display: none; text-align: center; margin: 20px 0;">
                                         <span style="background: white; padding: 0 15px; color: #666;">OR</span>
