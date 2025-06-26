@@ -195,7 +195,6 @@ Route::prefix('paypal')->group(function () {
 });
 
 Route::prefix('stripe')->group(function () {
-    Route::get('/payment_success', [PaymentController::class, 'stripePaymentSuccess'])->name('stripe.payment.success');
     Route::post('/payment_success', [PaymentController::class, 'stripePaymentSuccess'])->name('stripe.payment.success');
     Route::get('/payment_cancel', [PaymentController::class, 'stripePaymentCancel'])->name('stripe.payment.cancel');
     Route::get('/ramadan', [App\Http\Controllers\RamadanController::class, 'process'])->name('stripe.ramadan.process');
