@@ -382,7 +382,7 @@ class CartController extends Controller
             $response = (object) Paypal::createOrder($sum, 'GBP', 'order-' . $order->id);
 
             if (isset($response->result->id)) {
-                $order->paypal_payment_id = $response->result->id;
+                $order->order_id = $response->result->id;
                 $order->save();
 
                 foreach ($response->result->links as $link) {
