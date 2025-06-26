@@ -454,30 +454,19 @@
                         <div class="col-6 card-col">
                             <div>
                                 <div class="pt-4"></div>
-                                @if ($hasSingleDonations)
-                                    <div class="mb-4 text-center">
-                                        <label class="radio mr-5">
-                                            <input type="radio" name="pay_method" checked
-                                                   value="{{Setting::get(Setting::ENABLE_STRIPE)?'stripe':'global' }}"><span><i
-                                                    class="fal fa-check"></i></span>
-                                            <b>PAY BY CARD</b>
-                                        </label>
-                                        <label class="radio">
-                                            <input type="radio" name="pay_method" value="paypal"><span><i
-                                                    class="fal fa-check"></i></span>
-                                            <b>PAY BY PAYPAL</b>
-                                        </label>
-                                    </div>
-                                    @if(Setting::get(Setting::ENABLE_STRIPE))
-{{--                                    <div class="mb-4 text-center" style="display: none" id="stripe-checkbox">--}}
-{{--                                        <label class="checkbox">--}}
-{{--                                            <input type="checkbox" name="stripe_fee"><span><i--}}
-{{--                                                        class="fal fa-check"></i></span>--}}
-{{--                                            <b style="font-size: 15px">I'm happy to cover the payment processing fees <b id="commission">{{ '(+£' . \App\Services\StripeService::countCommission($cartSum) . ')' }}</b></b>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-                                    @endif
-                                @endif
+                                <div class="mb-4 text-center">
+                                    <label class="radio mr-5">
+                                        <input type="radio" name="pay_method" checked
+                                                value="{{Setting::get(Setting::ENABLE_STRIPE)?'stripe':'global' }}"><span><i
+                                                class="fal fa-check"></i></span>
+                                        <b>PAY BY CARD</b>
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="pay_method" value="paypal"><span><i
+                                                class="fal fa-check"></i></span>
+                                        <b>PAY BY PAYPAL</b>
+                                    </label>
+                                </div>
 
                                 @if(Setting::get(Setting::ENABLE_STRIPE))
                                     <!-- Google Pay / Apple Pay Button -->
