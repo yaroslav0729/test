@@ -267,7 +267,7 @@
                 </div>
 
                 <!-- Google Pay button (Chrome on iOS) -->
-                <div id="google-pay-button" style="display: none; margin-bottom: 20px; width: 100%;"></div>
+                {{-- <div id="google-pay-button" style="display: none; margin-bottom: 20px; width: 100%;"></div> --}}
 
                 <!-- OR divider -->
                 <div id="payment-request-divider" style="display: none; text-align: center; margin: 20px 0;">
