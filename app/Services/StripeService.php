@@ -486,7 +486,7 @@ class StripeService
      * Create a direct payment using PaymentIntent API
      * For immediate payments without user interaction, you may need to confirm the payment separately
      * or provide a payment method to enable auto-confirmation
-     * 
+     *
      * @param array $data Payment data containing amount, currency, customer info, etc.
      * @return PaymentIntent
      * @throws ApiErrorException
@@ -540,7 +540,7 @@ class StripeService
 
     /**
      * Confirm a payment intent
-     * 
+     *
      * @param string $paymentIntentId
      * @param array $data Additional data for confirmation
      * @return PaymentIntent
@@ -553,7 +553,7 @@ class StripeService
 
     /**
      * Retrieve a payment intent
-     * 
+     *
      * @param string $paymentIntentId
      * @return PaymentIntent
      * @throws ApiErrorException
@@ -565,7 +565,7 @@ class StripeService
 
     /**
      * Cancel a payment intent
-     * 
+     *
      * @param string $paymentIntentId
      * @return PaymentIntent
      * @throws ApiErrorException
@@ -577,7 +577,7 @@ class StripeService
 
     /**
      * Create a subscription with immediate payment
-     * 
+     *
      * @param array $data Subscription data
      * @return Subscription
      * @throws ApiErrorException
@@ -618,12 +618,15 @@ class StripeService
         // Add collection method
         $subscriptionData['collection_method'] = $data['collection_method'] ?? 'charge_automatically';
 
-        return $this->stripe->subscriptions->create($subscriptionData);
+        return $this->stripe->subscriptions->create(
+            $subscriptionData,
+            ['expand' => ['latest_invoice.payment_intent']]
+        );
     }
 
     /**
      * Schedule a future subscription
-     * 
+     *
      * @param array $data Scheduled subscription data
      * @return SubscriptionSchedule
      * @throws ApiErrorException
@@ -674,7 +677,7 @@ class StripeService
 
     /**
      * Schedule a future one-time payment
-     * 
+     *
      * @param array $data Scheduled payment data
      * @return array Returns scheduling information
      * @throws ApiErrorException
@@ -726,7 +729,7 @@ class StripeService
 
     /**
      * Process a scheduled one-time payment
-     * 
+     *
      * @param string $paymentIntentId
      * @param array $data Additional confirmation data
      * @return PaymentIntent
@@ -736,7 +739,7 @@ class StripeService
     {
         // First confirm the payment intent
         $paymentIntent = $this->stripe->paymentIntents->confirm($paymentIntentId, $data);
-        
+
         // Then capture the payment if confirmation was successful
         if ($paymentIntent->status === 'requires_capture') {
             $paymentIntent = $this->stripe->paymentIntents->capture($paymentIntentId);
@@ -747,7 +750,7 @@ class StripeService
 
     /**
      * Update a scheduled subscription
-     * 
+     *
      * @param string $scheduleId
      * @param array $data Update data
      * @return SubscriptionSchedule
@@ -777,7 +780,7 @@ class StripeService
 
     /**
      * Cancel a scheduled subscription
-     * 
+     *
      * @param string $scheduleId
      * @return SubscriptionSchedule
      * @throws ApiErrorException
@@ -789,7 +792,7 @@ class StripeService
 
     /**
      * Release a subscription schedule (convert to regular subscription)
-     * 
+     *
      * @param string $scheduleId
      * @return SubscriptionSchedule
      * @throws ApiErrorException
@@ -801,7 +804,7 @@ class StripeService
 
     /**
      * Create a price for individual donation subscription
-     * 
+     *
      * @param array $data Price data containing amount, name, metadata
      * @return \Stripe\Price
      * @throws ApiErrorException
@@ -810,7 +813,7 @@ class StripeService
     {
         // Create product first
         $product = $this->createProduct($data['name']);
-        
+
         // Create price for this specific donation
         $priceData = [
             'currency' => $data['currency'] ?? self::CURRENCY_GBP,
@@ -821,14 +824,14 @@ class StripeService
             'product' => $product->id,
             'metadata' => $this->combineWithBaseMetadata($data['metadata'] ?? []),
         ];
-        
+
         return $this->stripe->prices->create($priceData);
     }
 
     /**
      * Create and immediately process a payment using customer's default payment method
      * This method is suitable for backend processing after customer has set up payment method
-     * 
+     *
      * @param array $data Payment data
      * @return PaymentIntent
      * @throws ApiErrorException
@@ -837,18 +840,18 @@ class StripeService
     {
         // First create the payment intent
         $paymentIntent = $this->createDirectPayment($data);
-        
+
         // If customer has a default payment method, use it to confirm
         if (isset($data['customer_id'])) {
             $customer = $this->stripe->customers->retrieve($data['customer_id']);
-            
+
             if ($customer->invoice_settings->default_payment_method) {
                 return $this->confirmPayment($paymentIntent->id, [
                     'payment_method' => $customer->invoice_settings->default_payment_method
                 ]);
             }
         }
-        
+
         // If no default payment method, return the intent for manual confirmation
         return $paymentIntent;
     }

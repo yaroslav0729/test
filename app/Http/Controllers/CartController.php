@@ -404,6 +404,8 @@ class CartController extends Controller
         }
 
         $paymentResults = [];
+        $requiresAction = false;
+        $clientSecret  = null;
 
         try {
             if (!empty($singleItems)) {
@@ -484,6 +486,15 @@ class CartController extends Controller
 
                     $subscriptionResults[] = $subscription;
 
+                    if (
+                        $subscription->status === 'incomplete' &&
+                        isset($subscription->latest_invoice->payment_intent) &&
+                        $subscription->latest_invoice->payment_intent->status === 'requires_action'
+                    ) {
+                        $requiresAction = true;
+                        $clientSecret   = $subscription->latest_invoice->payment_intent->client_secret;
+                    }
+
                     $donation = Donation::find($item['donation_id']);
                     if ($subscription->status === 'active') {
                         $donation->status = Donation::STATUS_COMPLETE;
@@ -523,6 +534,16 @@ class CartController extends Controller
 
             $thanksUrl = Page::getSinglePageUrl(Template::THANK_YOU_DONATE_PAGE);
             $url = url($thanksUrl . '?order=' . $order->order_id);
+
+            // If the request expects a JSON response (e.g. AJAX Payment Request flow) – return JSON
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success'         => !$requiresAction,
+                    'requires_action' => $requiresAction,
+                    'client_secret'   => $clientSecret,
+                    'redirect_url'    => $url,
+                ]);
+            }
 
             return redirect()->to($url);
 

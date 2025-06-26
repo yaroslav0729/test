@@ -161,45 +161,70 @@ $(function() {
             }
         });
 
-        // Handle payment method creation from Payment Request
-        paymentRequest.on('paymentmethod', function(ev) {
+        // Handle payment method creation from Payment Request (Google / Apple Pay, etc.)
+        paymentRequest.on('paymentmethod', async function(ev) {
             // Validate required fields before processing payment
             if (!validateRequiredFields()) {
                 ev.complete('fail');
                 return;
             }
 
-            // Add payment method ID to form
-            const existingPaymentMethodInput = mainForm.querySelector('[name="payment_method_id"]');
-            if (existingPaymentMethodInput) {
-                existingPaymentMethodInput.remove();
+            // Disable button & show spinner while processing
+            cartPayButton.disabled = true;
+            if(buttonText) buttonText.classList.add('d-none');
+            if(spinnerElement) spinnerElement.classList.remove('d-none');
+
+            try {
+                const formData = new FormData(mainForm);
+                formData.set('pay_method', 'payment_request');
+                formData.set('payment_method_id', ev.paymentMethod.id);
+
+                const response = await fetch(mainForm.action, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: formData,
+                    credentials: 'same-origin'
+                });
+
+                const data = await response.json();
+
+                if (data.requires_action && data.client_secret) {
+                    // Complete the 3-D Secure flow
+                    const { error } = await stripe.confirmCardPayment(data.client_secret);
+
+                    if (error) {
+                        console.error('SCA authentication failed', error);
+                        ev.complete('fail');
+                        alert(error.message || 'Authentication failed.');
+                        cartPayButton.disabled = false;
+                        if(buttonText) buttonText.classList.remove('d-none');
+                        if(spinnerElement) spinnerElement.classList.add('d-none');
+                        return;
+                    }
+
+                    ev.complete('success');
+                    window.location.href = data.redirect_url || '/';
+                } else if (data.success) {
+                    ev.complete('success');
+                    window.location.href = data.redirect_url || '/';
+                } else {
+                    ev.complete('fail');
+                    const errorMsg = data.error || 'Payment failed. Please try again.';
+                    alert(errorMsg);
+                    cartPayButton.disabled = false;
+                    if(buttonText) buttonText.classList.remove('d-none');
+                    if(spinnerElement) spinnerElement.classList.add('d-none');
+                }
+            } catch (error) {
+                console.error('Payment Request error', error);
+                ev.complete('fail');
+                alert('Payment failed. Please try again.');
+                cartPayButton.disabled = false;
+                if(buttonText) buttonText.classList.remove('d-none');
+                if(spinnerElement) spinnerElement.classList.add('d-none');
             }
-
-            const paymentMethodInput = document.createElement('input');
-            paymentMethodInput.type = 'hidden';
-            paymentMethodInput.name = 'payment_method_id';
-            paymentMethodInput.value = ev.paymentMethod.id;
-            mainForm.appendChild(paymentMethodInput);
-
-            // Set payment method to indicate this came from Payment Request
-            const existingPayMethodInput = mainForm.querySelector('[name="pay_method"]');
-            if (!existingPayMethodInput) {
-                const paymentMethodTypeInput = document.createElement('input');
-                paymentMethodTypeInput.type = 'hidden';
-                paymentMethodTypeInput.name = 'pay_method';
-                paymentMethodTypeInput.value = 'payment_request';
-                mainForm.appendChild(paymentMethodTypeInput);
-            } else {
-                existingPayMethodInput.value = 'payment_request';
-            }
-
-            // Complete the payment request
-            ev.complete('success');
-
-            // Submit the form
-            setTimeout(() => {
-                mainForm.submit();
-            }, 100);
         });
 
         paymentRequest.on('cancel', function() {
