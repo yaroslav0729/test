@@ -231,58 +231,32 @@ class CartController extends Controller
             return back()->with('error', "For donations of this value please contact our team on 0121 446 568.");
         }
 
-        if ($request->get('pay_method') === 'paypal') {
-            $order->order_id = 'temp-' . $order->id;
-            $order->save();
-
-            $sum = $cartItems->sum('amount');
-
-            $response = (object) Paypal::createOrder($sum, 'GBP', 'order-' . $order->id);
-
-            if (isset($response->result->id)) {
-                $order->paypal_payment_id = $response->result->id;
-                $order->save();
-
-                foreach ($response->result->links as $link) {
-                    if ($link->rel === 'approve') {
-                        return redirect()->away($link->href);
-                    }
-                }
-            }
-
-            $error_message = 'Error creating PayPal payment.';
-            if (isset($response->error) && is_object($response->error) && isset($response->error->message)) {
-                $error_message .= ' ' . $response->error->message;
-            } elseif (is_string($response->error)) {
-                $error_message .= ' ' . $response->error;
-            }
-            return back()->with('error', $error_message);
-        }
-
+        // Stripe-specific customer creation (skip for PayPal)
         $customer = null;
+        if ($request->get('pay_method') !== 'paypal') {
+            try {
+                $customer = $this->stripeService->processCustomer([
+                    'first_name' => $order->first_name,
+                    'last_name' => $order->last_name,
+                    'email' => $order->email,
+                    'phone' => $order->phone,
+                    'city' => $order->city,
+                    'address_1' => $order->address_1,
+                    'address_2' => $order->address_2,
+                    'post_code' => $order->post_code,
+                ]);
+                $this->stripeService->processUser($orderData, $customer);
 
-        try {
-            $customer = $this->stripeService->processCustomer([
-                'first_name' => $order->first_name,
-                'last_name' => $order->last_name,
-                'email' => $order->email,
-                'phone' => $order->phone,
-                'city' => $order->city,
-                'address_1' => $order->address_1,
-                'address_2' => $order->address_2,
-                'post_code' => $order->post_code,
-            ]);
-            $this->stripeService->processUser($orderData, $customer);
-
-            if ($request->has('payment_method_id')) {
-                $this->stripeService->attachPaymentMethodToCustomer(
-                    $request->payment_method_id,
-                    $customer->id
-                );
+                if ($request->has('payment_method_id')) {
+                    $this->stripeService->attachPaymentMethodToCustomer(
+                        $request->payment_method_id,
+                        $customer->id
+                    );
+                }
+            } catch (\Exception $e) {
+                Log::error('Stripe customer creation or payment method attachment failed: ' . $e->getMessage());
+                return back()->with('error', 'Payment processing failed. Please try again.');
             }
-        } catch (\Exception $e) {
-            Log::error('Stripe customer creation or payment method attachment failed: ' . $e->getMessage());
-            return back()->with('error', 'Payment processing failed. Please try again.');
         }
 
         foreach ($cartItems as $cartItem) {
@@ -390,6 +364,42 @@ class CartController extends Controller
                     ])
                 ];
             }
+        }
+
+        /*
+         * -----------------------------------------------------------------------
+         * Handle PayPal payments AFTER order and donation records are persisted
+         * -----------------------------------------------------------------------
+         */
+        if ($request->get('pay_method') === 'paypal') {
+            // Total (single-payment) amount – monthly donations are not processed via PayPal here
+            $sum = $cartItems->sum('amount');
+
+            if ($sum <= 0) {
+                return back()->with('error', 'Unable to create PayPal payment for zero amount.');
+            }
+
+            $response = (object) Paypal::createOrder($sum, 'GBP', 'order-' . $order->id);
+
+            if (isset($response->result->id)) {
+                $order->paypal_payment_id = $response->result->id;
+                $order->save();
+
+                foreach ($response->result->links as $link) {
+                    if ($link->rel === 'approve') {
+                        return redirect()->away($link->href);
+                    }
+                }
+            }
+
+            $error_message = 'Error creating PayPal payment.';
+            if (isset($response->error) && is_object($response->error) && isset($response->error->message)) {
+                $error_message .= ' ' . $response->error->message;
+            } elseif (isset($response->error) && is_string($response->error)) {
+                $error_message .= ' ' . $response->error;
+            }
+
+            return back()->with('error', $error_message);
         }
 
         $paymentResults = [];
