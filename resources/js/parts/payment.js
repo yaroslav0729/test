@@ -15,6 +15,9 @@ $(function() {
     let card = null;
     let paymentRequest = null;
 
+    // Prevent multiple submissions / double charges
+    let isPaymentProcessing = false;
+
     if (typeof window.stripe_enabled !== 'undefined' && window.stripe_enabled) {
         stripe = Stripe(window.stripe_public_key);
         const elements = stripe.elements({
@@ -343,6 +346,11 @@ $(function() {
     mainForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
+        // If a payment process is already underway, ignore further submits
+        if (isPaymentProcessing) {
+            return;
+        }
+
         const paymentMethod = document.querySelector('[name="pay_method"]:checked')?.value;
 
         // Validate required fields first
@@ -388,20 +396,26 @@ $(function() {
 
                 if (cardNumber && (!cardNumber.value || cardNumber.value.replace(/\s/g, '').length !== 16)) {
                     alert('Please enter a valid 16-digit card number');
+                    isPaymentProcessing = false;
                     return;
                 }
 
                 if (expiryDate && (!expiryDate.value || !/^\d{2}\s*\/\s*\d{2}$/.test(expiryDate.value))) {
                     alert('Please enter a valid expiry date (MM/YY)');
+                    isPaymentProcessing = false;
                     return;
                 }
 
                 if (cvv && (!cvv.value || cvv.value.length !== 3)) {
                     alert('Please enter a valid 3-digit CVV');
+                    isPaymentProcessing = false;
                     return;
                 }
             }
         }
+
+        // At this point we are moving forward with payment processing
+        isPaymentProcessing = true;
 
         cartPayButton.disabled = true;
         buttonText.classList.add('d-none');
@@ -428,6 +442,7 @@ $(function() {
                         cartPayButton.disabled = false;
                         if(buttonText) buttonText.classList.remove('d-none');
                         if(spinnerElement) spinnerElement.classList.add('d-none');
+                        isPaymentProcessing = false;
                     }
                 },
                 error: () => {
@@ -435,6 +450,7 @@ $(function() {
                     cartPayButton.disabled = false;
                     if(buttonText) buttonText.classList.remove('d-none');
                     if(spinnerElement) spinnerElement.classList.add('d-none');
+                    isPaymentProcessing = false;
                 }
             });
             return;
@@ -475,6 +491,7 @@ $(function() {
                 cartPayButton.disabled = false;
                 buttonText.classList.remove('d-none');
                 spinnerElement.classList.add('d-none');
+                isPaymentProcessing = false;
             } else {
                 const paymentMethodInput = document.createElement('input');
                 paymentMethodInput.type = 'hidden';
@@ -494,27 +511,21 @@ $(function() {
         // Validate card number (16 digits)
         if (cardNumber.length !== 16) {
             alert('Please enter a valid 16-digit card number');
-            cartPayButton.disabled = false;
-            buttonText.classList.remove('d-none');
-            spinnerElement.classList.add('d-none');
+            isPaymentProcessing = false;
             return;
         }
 
         // Validate expiry date (MM/YY format)
         if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
             alert('Please enter a valid expiry date (MM/YY)');
-            cartPayButton.disabled = false;
-            buttonText.classList.remove('d-none');
-            spinnerElement.classList.add('d-none');
+            isPaymentProcessing = false;
             return;
         }
 
         // Validate CVV (3 digits)
         if (cvv.length !== 3) {
             alert('Please enter a valid 3-digit CVV');
-            cartPayButton.disabled = false;
-            buttonText.classList.remove('d-none');
-            spinnerElement.classList.add('d-none');
+            isPaymentProcessing = false;
             return;
         }
 
@@ -659,6 +670,10 @@ $(function() {
                         if (pmResult.error) {
                             console.error('Failed to create PaymentMethod from token:', pmResult.error);
                             alert(pmResult.error.message || 'Payment processing failed. Please try again.');
+                            cartPayButton.disabled = false;
+                            if(buttonText) buttonText.classList.remove('d-none');
+                            if(spinnerElement) spinnerElement.classList.add('d-none');
+                            isPaymentProcessing = false;
                             return;
                         }
 
@@ -668,6 +683,10 @@ $(function() {
                     if (!paymentMethodId) {
                         console.error('Unable to determine PaymentMethod ID from Google Pay response.');
                         alert('Payment processing failed. Please try again.');
+                        cartPayButton.disabled = false;
+                        if(buttonText) buttonText.classList.remove('d-none');
+                        if(spinnerElement) spinnerElement.classList.add('d-none');
+                        isPaymentProcessing = false;
                         return;
                     }
 
@@ -698,6 +717,10 @@ $(function() {
                     mainForm.submit();
                 }).catch(function (err) {
                     console.error('Google Pay error:', err);
+                    cartPayButton.disabled = false;
+                    if(buttonText) buttonText.classList.remove('d-none');
+                    if(spinnerElement) spinnerElement.classList.add('d-none');
+                    isPaymentProcessing = false;
                 });
             };
 
