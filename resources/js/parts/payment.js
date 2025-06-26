@@ -79,7 +79,7 @@ $(function() {
         initializePaymentRequest(elements);
 
         // Initialize Google Pay specifically for Chrome on iOS
-        initializeGooglePay();
+        // initializeGooglePay();
     }
 
     function initializePaymentRequest(elements) {
