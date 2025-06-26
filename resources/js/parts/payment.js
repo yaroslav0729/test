@@ -190,12 +190,21 @@ $(function() {
 
                 const data = await response.json();
 
-                if (data.requires_action && data.client_secret) {
-                    // Complete the 3-D Secure flow
-                    const { error } = await stripe.confirmCardPayment(data.client_secret);
+                if (data.requires_action && Array.isArray(data.client_secrets) && data.client_secrets.length) {
+                    try {
+                        for (let i = 0; i < data.client_secrets.length; i++) {
+                            const secret = data.client_secrets[i];
+                            const { error } = await stripe.confirmCardPayment(secret);
 
-                    if (error) {
-                        console.error('SCA authentication failed', error);
+                            if (error) {
+                                console.error('SCA authentication failed', error);
+                                throw error;
+                            }
+                        }
+
+                        ev.complete('success');
+                        window.location.href = data.redirect_url || '/';
+                    } catch (error) {
                         ev.complete('fail');
                         alert(error.message || 'Authentication failed.');
                         cartPayButton.disabled = false;
@@ -203,9 +212,6 @@ $(function() {
                         if(spinnerElement) spinnerElement.classList.add('d-none');
                         return;
                     }
-
-                    ev.complete('success');
-                    window.location.href = data.redirect_url || '/';
                 } else if (data.success) {
                     ev.complete('success');
                     window.location.href = data.redirect_url || '/';

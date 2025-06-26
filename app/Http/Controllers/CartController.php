@@ -405,7 +405,7 @@ class CartController extends Controller
 
         $paymentResults = [];
         $requiresAction = false;
-        $clientSecret  = null;
+        $clientSecrets = [];
 
         try {
             if (!empty($singleItems)) {
@@ -492,7 +492,7 @@ class CartController extends Controller
                         $subscription->latest_invoice->payment_intent->status === 'requires_action'
                     ) {
                         $requiresAction = true;
-                        $clientSecret   = $subscription->latest_invoice->payment_intent->client_secret;
+                        $clientSecrets[] = $subscription->latest_invoice->payment_intent->client_secret;
                     }
 
                     $donation = Donation::find($item['donation_id']);
@@ -540,7 +540,7 @@ class CartController extends Controller
                 return response()->json([
                     'success'         => !$requiresAction,
                     'requires_action' => $requiresAction,
-                    'client_secret'   => $clientSecret,
+                    'client_secrets'  => $clientSecrets,
                     'redirect_url'    => $url,
                 ]);
             }
