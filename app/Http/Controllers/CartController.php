@@ -383,6 +383,7 @@ class CartController extends Controller
 
             if (isset($response->result->id)) {
                 $order->order_id = $response->result->id;
+                $order->pay_with = 'paypal';
                 $order->save();
 
                 foreach ($response->result->links as $link) {
@@ -496,17 +497,22 @@ class CartController extends Controller
                 $paymentResults['subscriptions'] = $subscriptionResults;
             }
 
-            $order->pay_with = $request->pay_method;
+            $order->pay_with = 'stripe';
             if (!empty($monthlyItems)) {
                 $order->pay_with = 'Number: ' . $order->account_number . ', Sort: ' . $order->sort_code . ', Day: ' . $order->pay_day;
             }
             $order->order_id = hash('sha1', Str::random(10) . (empty($monthlyItems) ? 'single' : 'monthly'));
 
             if (isset($paymentResults['single_payments'])) {
-                $order->stripe_payment_intent_id = $paymentResults['single_payments'][0]->id;
+                $order->order_id = $order->stripe_payment_intent_id = $paymentResults['single_payments'][0]->id;
             }
             if (isset($paymentResults['subscriptions'])) {
                 $order->stripe_subscription_id = $paymentResults['subscriptions'][0]->id;
+                if ($order->order_id) {
+                    $order->order_id .= ", " . $order->stripe_subscription_id;
+                } else {
+                    $order->order_id = $order->stripe_subscription_id;
+                }
             }
 
             $order->save();
