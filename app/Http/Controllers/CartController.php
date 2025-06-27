@@ -473,7 +473,7 @@ class CartController extends Controller
                             'donation_id' => $item['donation_id'],
                             'campaign_id' => $item['metadata']['campaign_id'],
                             'donation_type' => 'monthly_subscription_individual',
-                            'total_project_amount' => $item['metadata']['total_project_amount'] ?? $item['amount'],
+                            'total_project_amount' => $item['metadata']['total_project_amount'] ?? '-',
                             'paid_amount' => 0,
                         ]
                     ];

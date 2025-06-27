@@ -318,7 +318,11 @@ class PaymentController extends Controller
                     $donationId = $subscription->metadata['donation_id'] ?? null;
 
                     // Update paid amount and evaluate goal
-                    $goalAmount = isset($subscription->metadata['total_project_amount']) ? floatval($subscription->metadata['total_project_amount']) : null;
+                    $goalAmount = '-';
+                    if (isset($subscription->metadata['total_project_amount']) && $subscription->metadata['total_project_amount'] !== '-') {
+                        $goalAmount = floatval($subscription->metadata['total_project_amount']);
+                    }
+
                     $alreadyPaid = isset($subscription->metadata['paid_amount']) ? floatval($subscription->metadata['paid_amount']) : 0;
                     $currentPayment = $invoice->total / 100; // Stripe totals are in pence/cents
                     $newPaid = $alreadyPaid + $currentPayment;
@@ -343,7 +347,7 @@ class PaymentController extends Controller
                     $stripe->subscriptions->update($subscription->id, ['metadata' => $metadataUpdate]);
 
                     // Cancel subscription if goal reached or exceeded
-                    if ($goalAmount && $newPaid >= $goalAmount) {
+                    if ($goalAmount !== '-' && $newPaid >= $goalAmount) {
                         $stripe->subscriptions->cancel($subscription->id);
                     }
 
