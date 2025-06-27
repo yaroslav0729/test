@@ -482,7 +482,7 @@ class CartController extends Controller
                         $subscriptionData['default_payment_method'] = $request->payment_method_id;
                     }
 
-                    $subscription = $this->stripeService->createSubscriptionPayment($subscriptionData);
+                    $subscription = $this->stripeService->createSubscriptionPayment($subscriptionData, isset($request->request_by) && $request->request_by === 'payment_request_button');
 
                     $subscriptionResults[] = $subscription;
 

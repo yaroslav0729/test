@@ -582,7 +582,7 @@ class StripeService
      * @return Subscription
      * @throws ApiErrorException
      */
-    public function createSubscriptionPayment(array $data): Subscription
+    public function createSubscriptionPayment(array $data, bool $expand = false): Subscription
     {
         $subscriptionData = [
             'customer' => $data['customer_id'],
@@ -618,10 +618,14 @@ class StripeService
         // Add collection method
         $subscriptionData['collection_method'] = $data['collection_method'] ?? 'charge_automatically';
 
-        return $this->stripe->subscriptions->create(
-            $subscriptionData,
-            ['expand' => ['latest_invoice.payment_intent']]
-        );
+        if ($expand) {
+            return $this->stripe->subscriptions->create(
+                $subscriptionData,
+                ['expand' => ['latest_invoice.payment_intent']]
+            );
+        }
+
+        return $this->stripe->subscriptions->create($subscriptionData);
     }
 
     /**

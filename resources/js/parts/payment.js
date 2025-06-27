@@ -178,6 +178,7 @@ $(function() {
                 const formData = new FormData(mainForm);
                 formData.set('pay_method', 'payment_request');
                 formData.set('payment_method_id', ev.paymentMethod.id);
+                formData.set('request_by', 'payment_request_button');
 
                 const response = await fetch(mainForm.action, {
                     method: 'POST',
