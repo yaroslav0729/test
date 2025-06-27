@@ -210,6 +210,9 @@ $(function() {
                         cartPayButton.disabled = false;
                         if(buttonText) buttonText.classList.remove('d-none');
                         if(spinnerElement) spinnerElement.classList.add('d-none');
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 3000);
                         return;
                     }
                 } else if (data.success) {
@@ -222,6 +225,9 @@ $(function() {
                     cartPayButton.disabled = false;
                     if(buttonText) buttonText.classList.remove('d-none');
                     if(spinnerElement) spinnerElement.classList.add('d-none');
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 3000);
                 }
             } catch (error) {
                 console.error('Payment Request error', error);
@@ -230,6 +236,9 @@ $(function() {
                 cartPayButton.disabled = false;
                 if(buttonText) buttonText.classList.remove('d-none');
                 if(spinnerElement) spinnerElement.classList.add('d-none');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
             }
         });
 
