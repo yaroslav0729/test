@@ -443,6 +443,8 @@ class CartController extends Controller
                         $donation->status = Donation::STATUS_PROCESSING;
                         $donation->stripe_payment_intent_id = $paymentIntent->id;
                         $donation->save();
+                        $requiresAction = true;
+                        $clientSecrets[] = $paymentIntent->client_secret;
                     }
                 }
 

@@ -534,12 +534,55 @@ $(function() {
                 spinnerElement.classList.add('d-none');
                 isPaymentProcessing = false;
             } else {
-                const paymentMethodInput = document.createElement('input');
-                paymentMethodInput.type = 'hidden';
-                paymentMethodInput.name = 'payment_method_id';
-                paymentMethodInput.value = result.paymentMethod.id;
-                mainForm.appendChild(paymentMethodInput);
-                mainForm.submit();
+                // Build FormData and submit via fetch so that backend can return JSON with 3-D Secure info
+                const formData = new FormData(mainForm);
+                formData.set('pay_method', 'stripe');
+                formData.set('payment_method_id', result.paymentMethod.id);
+                formData.set('request_by', 'card_form');
+
+                fetch(mainForm.action, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: formData,
+                    credentials: 'same-origin'
+                }).then(r => r.json()).then(async data => {
+                    if (data.requires_action && Array.isArray(data.client_secrets) && data.client_secrets.length) {
+                        try {
+                            for (let i = 0; i < data.client_secrets.length; i++) {
+                                const secret = data.client_secrets[i];
+                                const { error } = await stripe.confirmCardPayment(secret);
+                                if (error) {
+                                    throw error;
+                                }
+                            }
+
+                            window.location.href = data.redirect_url || '/';
+                        } catch (error) {
+                            alert(error.message || 'Authentication failed.');
+                            cartPayButton.disabled = false;
+                            if(buttonText) buttonText.classList.remove('d-none');
+                            if(spinnerElement) spinnerElement.classList.add('d-none');
+                            setTimeout(() => window.location.reload(), 3000);
+                        }
+                    } else if (data.success) {
+                        window.location.href = data.redirect_url || '/';
+                    } else {
+                        alert(data.error || 'Payment failed. Please try again.');
+                        cartPayButton.disabled = false;
+                        if(buttonText) buttonText.classList.remove('d-none');
+                        if(spinnerElement) spinnerElement.classList.add('d-none');
+                        setTimeout(() => window.location.reload(), 3000);
+                    }
+                }).catch(err => {
+                    console.error(err);
+                    alert('Payment failed. Please try again.');
+                    cartPayButton.disabled = false;
+                    if(buttonText) buttonText.classList.remove('d-none');
+                    if(spinnerElement) spinnerElement.classList.add('d-none');
+                    setTimeout(() => window.location.reload(), 3000);
+                });
             }
         });
     }
@@ -731,31 +774,55 @@ $(function() {
                         return;
                     }
 
-                    // Remove existing hidden inputs if present
-                    const existingPaymentMethodInput = mainForm.querySelector('[name="payment_method_id"]');
-                    if (existingPaymentMethodInput) {
-                        existingPaymentMethodInput.remove();
-                    }
+                    // Build FormData and submit via fetch so that backend can return JSON with 3-D Secure info
+                    const formData = new FormData(mainForm);
+                    formData.set('pay_method', 'payment_request');
+                    formData.set('payment_method_id', paymentMethodId);
+                    formData.set('request_by', 'google_pay_button');
 
-                    const paymentMethodInput = document.createElement('input');
-                    paymentMethodInput.type = 'hidden';
-                    paymentMethodInput.name = 'payment_method_id';
-                    paymentMethodInput.value = paymentMethodId;
-                    mainForm.appendChild(paymentMethodInput);
+                    fetch(mainForm.action, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json'
+                        },
+                        body: formData,
+                        credentials: 'same-origin'
+                    }).then(r => r.json()).then(async data => {
+                        if (data.requires_action && Array.isArray(data.client_secrets) && data.client_secrets.length) {
+                            try {
+                                for (let i = 0; i < data.client_secrets.length; i++) {
+                                    const secret = data.client_secrets[i];
+                                    const { error } = await stripe.confirmCardPayment(secret);
+                                    if (error) {
+                                        throw error;
+                                    }
+                                }
 
-                    // Indicate google_pay as the payment method (still treated as payment_request on server)
-                    const existingPayMethodInput = mainForm.querySelector('[name="pay_method"]');
-                    if (!existingPayMethodInput) {
-                        const paymentMethodTypeInput = document.createElement('input');
-                        paymentMethodTypeInput.type = 'hidden';
-                        paymentMethodTypeInput.name = 'pay_method';
-                        paymentMethodTypeInput.value = 'payment_request';
-                        mainForm.appendChild(paymentMethodTypeInput);
-                    } else {
-                        existingPayMethodInput.value = 'payment_request';
-                    }
-
-                    mainForm.submit();
+                                window.location.href = data.redirect_url || '/';
+                            } catch (error) {
+                                alert(error.message || 'Authentication failed.');
+                                cartPayButton.disabled = false;
+                                if(buttonText) buttonText.classList.remove('d-none');
+                                if(spinnerElement) spinnerElement.classList.add('d-none');
+                                setTimeout(() => window.location.reload(), 3000);
+                            }
+                        } else if (data.success) {
+                            window.location.href = data.redirect_url || '/';
+                        } else {
+                            alert(data.error || 'Payment failed. Please try again.');
+                            cartPayButton.disabled = false;
+                            if(buttonText) buttonText.classList.remove('d-none');
+                            if(spinnerElement) spinnerElement.classList.add('d-none');
+                            setTimeout(() => window.location.reload(), 3000);
+                        }
+                    }).catch(err => {
+                        console.error(err);
+                        alert('Payment failed. Please try again.');
+                        cartPayButton.disabled = false;
+                        if(buttonText) buttonText.classList.remove('d-none');
+                        if(spinnerElement) spinnerElement.classList.add('d-none');
+                        setTimeout(() => window.location.reload(), 3000);
+                    });
                 }).catch(function (err) {
                     console.error('Google Pay error:', err);
                     cartPayButton.disabled = false;
